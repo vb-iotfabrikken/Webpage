@@ -1,0 +1,262 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Button from "../components/Button.astro";
+import LogoMarquee from "../components/LogoMarquee.astro";
+import ModuleCard from "../components/ModuleCard.astro";
+import StatBlock from "../components/StatBlock.astro";
+import CtaBand from "../components/CtaBand.astro";
+import ContactForm from "../components/ContactForm.astro";
+import { modules } from "../data/modules";
+
+const stats = [
+  { value: "15.000", prefix: "+", label: "sensorer i drift hos vores kunder" },
+  { value: "2", prefix: "+", suffix: " mio.", label: "indmeldinger i platformen i døgnet" },
+  { value: "12", prefix: "+", label: "forskellige lande bruger vores løsninger" },
+];
+
+const usps = [
+  {
+    title: "Plug and play",
+    body: "Skru sensoren op, og den er online. Ingen konfiguration, ingen specialister.",
+    icon: "plug",
+  },
+  {
+    title: "Langt batteriliv",
+    body: "Op til 10 års drift på samme batteri. Sæt op én gang og glem dem.",
+    icon: "battery",
+  },
+  {
+    title: "Ingen montering",
+    body: "Ingen kabler, intet WiFi, ingen installatør. Du sparer både tid og penge.",
+    icon: "tools",
+  },
+  {
+    title: "Skarp pris",
+    body: "En fair TCO uden skjulte licensomkostninger pr. sensor.",
+    icon: "price",
+  },
+];
+---
+
+<Layout
+  title="IoT Fabrikken — Sensorer og platform til facility og space management"
+  description="Markedsledende dansk platform til indeklima, space management og vandlækagedetektion. Plug and play sensorer, langt batteriliv og ingen montering."
+>
+
+  <Hero
+    eyebrow="Dansk udviklet SaaS og IoT"
+    title="Datadrevne beslutninger for facility og"
+    titleAccent="space management."
+    lead="Trådløse sensorer og én platform der gør data om indeklima, arealudnyttelse og vandlækager brugbar – uden kabler, uden bøvl."
+  >
+    <Button href="/book-demo" variant="primary" size="lg" slot="cta">Book en gratis demo</Button>
+    <Button href="/kontakt" variant="secondary" size="lg" slot="cta">Kontakt salg</Button>
+
+    <div slot="visual" class="reveal">
+      <div class="relative mx-auto max-w-5xl">
+        <div class="relative bg-white border border-stone-100 rounded-xl shadow-2xl overflow-hidden">
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-stone-100 bg-stone-50">
+            <span class="w-3 h-3 rounded-full bg-stone-300/70"></span>
+            <span class="w-3 h-3 rounded-full bg-stone-300/70"></span>
+            <span class="w-3 h-3 rounded-full bg-stone-300/70"></span>
+            <span class="ml-3 text-xs font-medium text-stone-300">RoomAlyzer — Dashboard</span>
+          </div>
+          <img
+            src="/roomalyzer-dashboard-clean.png"
+            alt="RoomAlyzer dashboard med live data fra sensorer"
+            width="1024"
+            height="595"
+            class="w-full h-auto block"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </Hero>
+
+  <LogoMarquee />
+
+  <section class="py-20 md:py-28">
+    <div class="container-page">
+      <div class="reveal max-w-2xl mb-12 md:mb-16">
+        <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
+          Løsninger
+        </p>
+        <h2 class="text-3xl md:text-5xl font-bold text-navy-500 tracking-tight">
+          Alle sensorer er nemme at installere – og data giver unikke indsigter.
+        </h2>
+        <p class="mt-5 text-lg text-stone-900/70">
+          Uanset hvordan du sammensætter din palette af sensorer, har du data samlet ét sted i RoomAlyzer-platformen.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {modules.map((m) => <ModuleCard module={m} />)}
+      </div>
+    </div>
+  </section>
+
+  <StatBlock
+    title="Tal der betyder noget."
+    subtitle="Over en million indmeldinger pr. dag fra sensorer, der kører uden bøvl hos vores kunder."
+    stats={stats}
+  />
+
+  <section class="py-20 md:py-28 bg-stone-50">
+    <div class="container-page">
+      <div class="reveal max-w-2xl mx-auto text-center mb-14">
+        <h2 class="text-3xl md:text-5xl font-bold text-navy-500 tracking-tight">
+          Hvorfor IoT Fabrikken?
+        </h2>
+        <p class="mt-5 text-lg text-stone-900/70">
+          Vi har fjernet alt det, der normalt gør IoT-projekter tunge. Tilbage er sensorer der virker – og data du kan bruge.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {usps.map((u) => (
+          <div class="reveal bg-white border border-stone-100 rounded-xl p-6 hover:border-navy-500 transition-colors">
+            <div class="w-11 h-11 rounded-md bg-sky-50 text-sky-600 inline-flex items-center justify-center mb-4">
+              {u.icon === "plug" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 2v6M15 2v6M7 8h10v4a5 5 0 0 1-10 0V8zM12 17v5" />
+                </svg>
+              )}
+              {u.icon === "battery" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="18" height="10" rx="2" /><path d="M22 11v2" /><path d="M6 10v4M10 10v4M14 10v4" />
+                </svg>
+              )}
+              {u.icon === "tools" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a2 2 0 1 0 3 3l6-6a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z" />
+                </svg>
+              )}
+              {u.icon === "price" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 12V7a2 2 0 0 0-2-2h-5L3 15l6 6 10-10z" /><circle cx="9" cy="9" r="1.5" />
+                </svg>
+              )}
+            </div>
+            <h3 class="text-lg font-semibold text-navy-500 mb-2">{u.title}</h3>
+            <p class="text-sm text-stone-900/70 leading-relaxed">{u.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28">
+    <div class="container-page">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="reveal">
+          <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
+            Arbejdspladsen i tal
+          </p>
+          <h2 class="text-3xl md:text-5xl font-bold text-navy-500 tracking-tight">
+            Verden har ændret sig.<br />
+            <span class="text-sky-600">Har dit kontor?</span>
+          </h2>
+          <p class="mt-5 text-lg text-stone-900/70">
+            Vores kunder kan i gennemsnit optimere anvendelsen af deres arealer markant, fordi de ved præcis hvilke rum der bruges – og hvornår.
+          </p>
+          <ul class="mt-8 space-y-4">
+            {[
+              { year: "2016", pct: "83%", note: "af tiden på kontoret" },
+              { year: "2023", pct: "46%", note: "af tiden på kontoret" },
+            ].map((r) => (
+              <li class="flex items-center gap-4 border-b border-stone-100 pb-4 last:border-0">
+                <span class="text-sm font-semibold text-stone-300 w-14">{r.year}</span>
+                <span class="text-3xl font-bold text-navy-500 w-20">{r.pct}</span>
+                <span class="text-stone-900/70">{r.note}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-6 text-sm text-stone-300 italic">Kilde: UK Workspace Survey 2023.</p>
+        </div>
+
+        <div class="reveal relative">
+          <div class="aspect-square md:aspect-[4/5] bg-stone-50 rounded-xl border border-stone-100 p-8 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-semibold uppercase tracking-wider text-sky-600">Arealudnyttelse</span>
+              <h3 class="mt-3 text-2xl font-bold text-navy-500">Fald på 37 procentpoint på bare syv år.</h3>
+            </div>
+            <div class="grid grid-cols-7 gap-2">
+              {Array.from({ length: 49 }).map((_, i) => {
+                const active = i % 7 < 3;
+                return (
+                  <div class={`aspect-square rounded ${active ? "bg-navy-500" : "bg-white border border-stone-100"}`}></div>
+                );
+              })}
+            </div>
+            <p class="text-sm text-stone-900/70">
+              Hvert mørkt felt er et skrivebord der står tomt i dag, hvor det var optaget i 2016.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-24 bg-navy-500 text-white overflow-hidden">
+    <div class="container-page grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+      <div class="lg:col-span-3 reveal">
+        <p class="inline-block px-3 py-1 rounded-md bg-white/10 text-white text-xs font-semibold uppercase tracking-wider mb-5">
+          RoomAlyzer platform
+        </p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight">
+          Trådløse sensorer. Ét overblik.
+        </h2>
+        <p class="mt-5 text-lg text-white/80 max-w-xl">
+          Alle sensorer afleverer data i RoomAlyzer. Uanset om du kombinerer indeklima, pushbutton, vandlækage eller space management, har du data samlet ét sted.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {[
+            "Ingen WiFi, ingen ledninger",
+            "Letforståelige data – ingen datadesigner nødvendig",
+            "Alarmer og rapporter til de rette folk i organisationen",
+            "Åbne API'er så data kan tale med jeres øvrige systemer",
+          ].map((t) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 w-5 h-5 inline-flex items-center justify-center rounded-md bg-white/10 shrink-0">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+              <span class="text-white/90">{t}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2 reveal">
+        <div class="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur">
+          <div class="text-xs font-semibold uppercase tracking-wider text-white/60 mb-4">Live status</div>
+          <div class="space-y-3">
+            {[
+              { label: "Mødelokale 2.01", v: "CO2 612 ppm", ok: true },
+              { label: "Kontor nord", v: "Luftfugt 41%", ok: true },
+              { label: "Kælder, rør 3", v: "Ingen vand", ok: true },
+              { label: "Mødelokale 3.04", v: "CO2 1240 ppm", ok: false },
+            ].map((r) => (
+              <div class="flex items-center justify-between bg-white/5 rounded-md px-4 py-3 border border-white/5">
+                <span class="text-sm text-white/90">{r.label}</span>
+                <span class={`text-xs font-semibold px-2.5 py-1 rounded-md ${r.ok ? "bg-white/10 text-white" : "bg-coral-500 text-white"}`}>
+                  {r.v}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactForm />
+
+  <CtaBand
+    title="Klar til at prøve det selv?"
+    subtitle="Book en demo og se hvordan data fra vores sensorer kan optimere din drift."
+    primaryLabel="Book demo"
+    secondaryLabel="Kontakt salg"
+  />
+</Layout>

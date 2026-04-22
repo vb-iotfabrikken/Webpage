@@ -1,0 +1,46 @@
+---
+import Hero from "./Hero.astro";
+import Button from "./Button.astro";
+import CtaBand from "./CtaBand.astro";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  titleAccent?: string;
+  lead: string;
+}
+
+const { eyebrow, title, titleAccent, lead } = Astro.props;
+---
+
+<Hero eyebrow={eyebrow} title={title} titleAccent={titleAccent} lead={lead} align="left">
+  <Button href="/book-demo" variant="primary" size="lg" slot="cta">Book demo</Button>
+  <Button href="/kontakt" variant="secondary" size="lg" slot="cta">Kontakt salg</Button>
+
+  <div slot="visual" class="reveal">
+    <div class="bg-white border border-stone-100 rounded-xl p-10 md:p-14 text-center max-w-3xl mx-auto">
+      <div class="inline-flex w-14 h-14 rounded-md bg-sky-50 text-sky-600 items-center justify-center mb-4">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+        </svg>
+      </div>
+      <h3 class="text-xl font-semibold text-navy-500">Indholdet til denne side er på vej</h3>
+      <p class="mt-3 text-stone-900/70 max-w-md mx-auto">
+        Vi er i gang med at sætte indhold, cases og skærmbilleder op. Kontakt os allerede nu, hvis du vil høre mere.
+      </p>
+    </div>
+  </div>
+</Hero>
+
+<section class="py-16">
+  <div class="container-page max-w-3xl">
+    <slot />
+  </div>
+</section>
+
+<CtaBand
+  title="Vil du vide mere allerede nu?"
+  subtitle="Ræk ud til os – vi tager altid gerne en uforpligtende snak."
+  primaryLabel="Book demo"
+  secondaryLabel="Kontakt salg"
+/>

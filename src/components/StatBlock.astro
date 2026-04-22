@@ -1,0 +1,37 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+  prefix?: string;
+  suffix?: string;
+}
+
+interface Props {
+  stats: Stat[];
+  title?: string;
+  subtitle?: string;
+}
+
+const { stats, title, subtitle } = Astro.props;
+---
+
+<section class="py-20 md:py-24 bg-navy-500 text-white">
+  <div class="container-page">
+    {title && (
+      <div class="max-w-2xl mb-12 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold text-white">{title}</h2>
+        {subtitle && <p class="mt-4 text-white/70 text-lg">{subtitle}</p>}
+      </div>
+    )}
+    <div class={`grid gap-10 ${stats.length === 4 ? "grid-cols-2 md:grid-cols-4" : "grid-cols-1 md:grid-cols-3"}`}>
+      {stats.map((s) => (
+        <div class="reveal">
+          <div class="text-5xl md:text-6xl font-bold tracking-tight text-white">
+            {s.prefix}{s.value}{s.suffix}
+          </div>
+          <p class="mt-3 text-sm md:text-base text-white/70 leading-snug max-w-[220px]">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

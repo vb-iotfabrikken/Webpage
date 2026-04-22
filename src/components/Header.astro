@@ -1,0 +1,150 @@
+---
+import Button from "./Button.astro";
+import { modules } from "../data/modules";
+
+const pathname = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? pathname === "/" : pathname.startsWith(href);
+---
+
+<header
+  id="site-header"
+  class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-stone-100"
+>
+  <div class="container-page flex items-center justify-between h-16 md:h-20">
+    <a href="/" class="flex items-center gap-2" aria-label="IoT Fabrikken forside">
+      <img src="/logo.png" alt="IoT Fabrikken" class="h-8 md:h-9 w-auto" />
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-1" aria-label="Primær navigation">
+      <div class="relative group">
+        <button
+          type="button"
+          class={`flex items-center gap-1 px-4 py-2 text-[15px] font-medium rounded-md transition-colors ${
+            isActive("/indeklima") ||
+            isActive("/space-management") ||
+            isActive("/vandlaekage") ||
+            isActive("/konservering") ||
+            isActive("/sensorbaseret-rengoring") ||
+            isActive("/pushbutton") ||
+            isActive("/roomusage")
+              ? "text-coral-500"
+              : "text-navy-500 hover:text-coral-500"
+          }`}
+          aria-haspopup="true"
+        >
+          Produkter & løsninger
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="transition-transform group-hover:rotate-180">
+            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[640px]">
+          <div class="bg-white rounded-xl shadow-xl border border-stone-100 p-3 grid grid-cols-2 gap-1">
+            {modules.map((m) => (
+              <a
+                href={m.href}
+                class="block p-3 rounded-lg hover:bg-stone-50 transition-colors group/item"
+              >
+                <div class="flex items-start gap-3">
+                  <span class={`mt-1 inline-block w-2 h-2 rounded-full ${
+                    m.color === "sky" ? "bg-sky-500" :
+                    m.color === "navy" ? "bg-navy-500" :
+                    m.color === "forest" ? "bg-forest-500" : "bg-sky-500"
+                  }`}></span>
+                  <div>
+                    <div class="font-semibold text-navy-500 group-hover/item:text-coral-500 transition-colors">{m.navn}</div>
+                    <div class="text-sm text-stone-300 leading-snug">{m.kort}</div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <a
+        href="/om-os"
+        class={`px-4 py-2 text-[15px] font-medium rounded-md transition-colors ${
+          isActive("/om-os") ? "text-coral-500" : "text-navy-500 hover:text-coral-500"
+        }`}
+      >
+        Om os
+      </a>
+
+      <a
+        href="/kontakt"
+        class={`px-4 py-2 text-[15px] font-medium rounded-md transition-colors ${
+          isActive("/kontakt") ? "text-coral-500" : "text-navy-500 hover:text-coral-500"
+        }`}
+      >
+        Kontakt
+      </a>
+    </nav>
+
+    <div class="hidden lg:flex items-center gap-2">
+      <a href="https://roomalyzer.com" class="px-3 py-2 text-[15px] font-medium text-navy-500 hover:text-coral-500 transition-colors">
+        Log ind
+      </a>
+      <Button href="/book-demo" variant="primary" size="sm">Book demo</Button>
+    </div>
+
+    <button
+      id="mobile-menu-toggle"
+      type="button"
+      class="lg:hidden inline-flex items-center justify-center w-10 h-10 text-navy-500"
+      aria-label="Åbn menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg id="menu-icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      <svg id="menu-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden">
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="lg:hidden hidden border-t border-stone-100 bg-white"
+  >
+    <div class="container-page py-4 flex flex-col gap-1">
+      <details class="group">
+        <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
+          Produkter & løsninger
+          <svg width="14" height="14" viewBox="0 0 12 12" fill="none" class="transition-transform group-open:rotate-180">
+            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <div class="pl-4 pb-2 flex flex-col">
+          {modules.map((m) => (
+            <a href={m.href} class="block py-2 text-[15px] text-navy-500 hover:text-coral-500">
+              {m.navn}
+            </a>
+          ))}
+        </div>
+      </details>
+      <a href="/om-os" class="px-2 py-3 text-base font-medium text-navy-500 hover:text-coral-500">Om os</a>
+      <a href="/kontakt" class="px-2 py-3 text-base font-medium text-navy-500 hover:text-coral-500">Kontakt</a>
+      <div class="h-px bg-stone-100 my-2"></div>
+      <a href="https://roomalyzer.com" class="px-2 py-3 text-base font-medium text-navy-500">Log ind</a>
+      <Button href="/book-demo" variant="primary" size="md" class="mt-2 w-full">Book demo</Button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("mobile-menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const iconOpen = document.getElementById("menu-icon-open");
+  const iconClose = document.getElementById("menu-icon-close");
+
+  toggle?.addEventListener("click", () => {
+    const isHidden = menu?.classList.contains("hidden");
+    menu?.classList.toggle("hidden");
+    iconOpen?.classList.toggle("hidden");
+    iconClose?.classList.toggle("hidden");
+    toggle.setAttribute("aria-expanded", isHidden ? "true" : "false");
+  });
+</script>

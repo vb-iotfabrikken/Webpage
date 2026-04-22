@@ -1,0 +1,51 @@
+---
+type Variant = "primary" | "secondary" | "ghost" | "white";
+
+interface Props {
+  href?: string;
+  variant?: Variant;
+  size?: "sm" | "md" | "lg";
+  class?: string;
+  type?: "button" | "submit" | "reset";
+}
+
+const {
+  href,
+  variant = "primary",
+  size = "md",
+  class: className = "",
+  type = "button",
+} = Astro.props;
+
+const base =
+  "inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white";
+
+const sizes = {
+  sm: "px-4 py-2 text-sm",
+  md: "px-5 py-2.5 text-[15px]",
+  lg: "px-7 py-3.5 text-base",
+};
+
+const variants: Record<Variant, string> = {
+  primary:
+    "bg-coral-500 text-white hover:bg-coral-600 focus:ring-coral-500 shadow-sm",
+  secondary:
+    "border border-navy-500 text-navy-500 hover:bg-navy-500 hover:text-white focus:ring-navy-500",
+  ghost:
+    "text-navy-500 hover:text-coral-500 focus:ring-navy-500",
+  white:
+    "bg-white text-navy-500 hover:bg-stone-100 focus:ring-white",
+};
+
+const cls = [base, sizes[size], variants[variant], className].join(" ");
+---
+
+{href ? (
+  <a href={href} class={cls}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={cls}>
+    <slot />
+  </button>
+)}

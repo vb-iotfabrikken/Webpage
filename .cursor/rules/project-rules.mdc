@@ -1,0 +1,10 @@
+---
+description: Project coding rules
+alwaysApply: true
+---
+
+# Project Rules
+
+- Keep changes small and focused.
+- Prefer Astro and Tailwind best practices.
+- Avoid adding dependencies unless necessary.

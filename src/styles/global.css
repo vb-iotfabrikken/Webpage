@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+@theme {
+  --font-sans: "Inter Variable", Inter, Arial, Helvetica, sans-serif;
+
+  --color-coral-50: #FECFD2;
+  --color-coral-100: #F49EA4;
+  --color-coral-500: #DC626A;
+  --color-coral-600: #C8525A;
+
+  --color-sky-50: #D3EDF8;
+  --color-sky-100: #ABCDDC;
+  --color-sky-500: #55A1C2;
+  --color-sky-600: #3F8AAB;
+
+  --color-navy-50: #36667D;
+  --color-navy-100: #1E5068;
+  --color-navy-500: #0D3D54;
+  --color-navy-900: #082A3B;
+
+  --color-forest-50: #65A99C;
+  --color-forest-100: #258B78;
+  --color-forest-500: #006C58;
+  --color-forest-900: #004A3D;
+
+  --color-stone-0: #FFFFFF;
+  --color-stone-50: #F9F9F9;
+  --color-stone-100: #F0F0F0;
+  --color-stone-300: #9B9B9B;
+  --color-stone-900: #111111;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-navy-500);
+    background-color: var(--color-stone-0);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-navy-500);
+  }
+
+  ::selection {
+    background-color: var(--color-coral-500);
+    color: white;
+  }
+}
+
+@layer utilities {
+  .container-page {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 700ms ease, transform 700ms ease;
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  .marquee {
+    display: flex;
+    gap: 4rem;
+    animation: marquee-scroll 40s linear infinite;
+    width: max-content;
+  }
+
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      animation: none;
+    }
+  }
+}
