@@ -1,0 +1,148 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import { keyFacts, pressContact, assets, releases, mentions } from "../../../data/press";
+
+const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+---
+
+<Layout
+  title="Press | About | IoT Fabrikken"
+  description="Logos, screenshots, key facts, executive portraits and recent press releases from IoT Fabrikken."
+>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href="/en/" class="hover:text-coral-500 transition-colors">Home</a></li>
+      <li aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+      <li><a href="/en/about/" class="hover:text-coral-500 transition-colors">About</a></li>
+      <li aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+      <li><span class="text-navy-500">Press</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    eyebrow="About"
+    title="Press."
+    titleAccent="Facts, assets and contacts."
+    lead="Everything you need for a story about IoT Fabrikken — key facts, press releases, downloadable assets and a direct contact."
+    align="left"
+  >
+    <Button href={`mailto:${pressContact.email}`} variant="primary" size="lg" slot="cta">Email press</Button>
+    <Button href="/press/iot-fabrikken-factsheet.pdf" variant="secondary" size="lg" slot="cta">Download factsheet</Button>
+  </Hero>
+
+  <section class="py-14">
+    <div class="container-page max-w-5xl">
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="md:col-span-2 bg-white border border-stone-100 rounded-xl p-6">
+          <h2 class="text-xl font-bold text-navy-500 tracking-tight">Key facts</h2>
+          <dl class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+            {keyFacts.map((f) => (
+              <div class="flex justify-between gap-4 pb-2 border-b border-stone-100">
+                <dt class="text-sm text-stone-300">{f.label}</dt>
+                <dd class="text-sm font-semibold text-navy-500 text-right">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <aside class="bg-navy-500 text-white rounded-xl p-6">
+          <p class="text-xs font-semibold uppercase tracking-wider text-white/60">Press contact</p>
+          <p class="mt-2 text-lg font-semibold">{pressContact.name}</p>
+          <p class="text-sm text-white/70">{pressContact.role}</p>
+          <div class="mt-4 space-y-1.5 text-sm">
+            <a href={`mailto:${pressContact.email}`} class="block text-white hover:text-coral-500 underline underline-offset-4">
+              {pressContact.email}
+            </a>
+            <a href={`tel:${pressContact.phone.replace(/\s+/g, "")}`} class="block text-white hover:text-coral-500 underline underline-offset-4">
+              {pressContact.phone}
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      <div class="mt-12">
+        <h2 class="text-xl font-bold text-navy-500 tracking-tight pb-3 border-b border-stone-100">
+          Downloads
+        </h2>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          {assets.map((a) => (
+            <a
+              href={a.url}
+              class="block bg-white border border-stone-100 rounded-xl p-5 hover:border-navy-500 transition-colors group"
+              download
+            >
+              <div class="flex items-start justify-between gap-3">
+                <h3 class="text-base font-semibold text-navy-500 group-hover:text-coral-500 transition-colors">
+                  {a.title}
+                </h3>
+                {a.meta && <span class="shrink-0 text-xs text-stone-300">{a.meta}</span>}
+              </div>
+              <p class="mt-2 text-sm text-stone-900/70 leading-relaxed">{a.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-12">
+        <h2 class="text-xl font-bold text-navy-500 tracking-tight pb-3 border-b border-stone-100">
+          Press releases
+        </h2>
+        <ol class="mt-6 space-y-5">
+          {releases.map((r) => (
+            <li class="bg-white border border-stone-100 rounded-xl p-5">
+              <time datetime={r.date} class="text-xs font-semibold uppercase tracking-wider text-stone-300">
+                {formatDate(r.date)}
+              </time>
+              <h3 class="mt-1 text-base font-semibold text-navy-500">{r.headline}</h3>
+              <p class="mt-2 text-sm text-stone-900/70 leading-relaxed">{r.summary}</p>
+              {r.url && (
+                <a href={r.url} class="mt-2 inline-block text-sm font-semibold text-navy-500 hover:text-coral-500 underline underline-offset-4">
+                  Read full release →
+                </a>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <div class="mt-12">
+        <h2 class="text-xl font-bold text-navy-500 tracking-tight pb-3 border-b border-stone-100">
+          In the press
+        </h2>
+        <ul class="mt-6 divide-y divide-stone-100 bg-white border border-stone-100 rounded-xl">
+          {mentions.map((m) => (
+            <li class="p-5 flex items-center justify-between gap-4">
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-stone-300">{m.outlet} · {formatDate(m.date)}</p>
+                <p class="mt-1 text-sm font-medium text-navy-500">{m.headline}</p>
+              </div>
+              {m.url && (
+                <a href={m.url} target="_blank" rel="noopener" class="shrink-0 text-sm font-semibold text-navy-500 hover:text-coral-500 underline underline-offset-4">
+                  Read →
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Writing about us?"
+    subtitle="We're happy to provide interviews, quotes, data and reference customers."
+    primaryLabel="Email press"
+    primaryHref={`mailto:${pressContact.email}`}
+    secondaryLabel="Download factsheet"
+    secondaryHref="/press/iot-fabrikken-factsheet.pdf"
+  />
+</Layout>

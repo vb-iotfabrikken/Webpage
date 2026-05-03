@@ -1,0 +1,19 @@
+---
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+---
+
+<PlaceholderPage
+  title="Checkout | Shop | IoT Fabrikken"
+  description="Finish your order: shipping, invoice details and confirmation."
+  eyebrow="Shop"
+  heroTitle="Checkout."
+  heroTitleAccent="Just a few details."
+  heroLead="Shipping address, invoice details and a confirmation of the order — we ship from Denmark the next business day."
+  breadcrumbs={[
+    { label: "Home", href: "/en/" },
+    { label: "Shop", href: "/en/shop/" },
+    { label: "Checkout" },
+  ]}
+  primaryCta={{ label: "Back to cart", href: "/en/shop/cart/" }}
+  secondaryCta={{ label: "Talk to sales", href: "/en/contact/sales/" }}
+/>

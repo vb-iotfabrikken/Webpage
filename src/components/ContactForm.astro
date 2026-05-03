@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = "Book et møde med os",
-  subtitle = "Har du spørgsmål? Vi tager altid gerne en uforpligtende snak om dine muligheder – online eller fysisk.",
+  title = "Book a meeting with us",
+  subtitle = "Got questions? We're always happy to have a no-strings chat about your options — online or in person.",
 } = Astro.props;
 ---
 
@@ -17,16 +17,16 @@ const {
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
       <div class="reveal">
         <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
-          Kom i gang
+          Get started
         </p>
         <h2 class="text-3xl md:text-4xl font-bold text-navy-500">{title}</h2>
         <p class="mt-4 text-lg text-stone-900/70">{subtitle}</p>
 
         <ul class="mt-8 space-y-3 text-navy-500">
           {[
-            "Demonstration af RoomAlyzer-platformen",
-            "Gennemgang af de sensorer der passer til din case",
-            "Prisestimat og tidsplan for opstart",
+            "A demo of the RoomAlyzer platform",
+            "A walk-through of the sensors that fit your case",
+            "A price estimate and a timeline for getting started",
           ].map((t) => (
             <li class="flex items-start gap-3">
               <span class="mt-0.5 w-5 h-5 inline-flex items-center justify-center rounded-md bg-forest-500 text-white shrink-0">
@@ -47,31 +47,31 @@ const {
       >
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <label class="block">
-            <span class="text-sm font-medium text-navy-500">Navn</span>
+            <span class="text-sm font-medium text-navy-500">Name</span>
             <input type="text" name="name" required class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
           </label>
           <label class="block">
-            <span class="text-sm font-medium text-navy-500">Firma</span>
+            <span class="text-sm font-medium text-navy-500">Company</span>
             <input type="text" name="company" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
           </label>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <label class="block">
-            <span class="text-sm font-medium text-navy-500">E-mail</span>
+            <span class="text-sm font-medium text-navy-500">Email</span>
             <input type="email" name="email" required class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
           </label>
           <label class="block">
-            <span class="text-sm font-medium text-navy-500">Telefon</span>
+            <span class="text-sm font-medium text-navy-500">Phone</span>
             <input type="tel" name="phone" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
           </label>
         </div>
         <label class="block">
-          <span class="text-sm font-medium text-navy-500">Beskriv dine ønsker</span>
+          <span class="text-sm font-medium text-navy-500">Tell us what you're looking for</span>
           <textarea name="message" rows="4" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500 resize-none"></textarea>
         </label>
         <div class="flex items-center justify-between gap-4 pt-2">
           <p class="text-xs text-stone-300 leading-relaxed">
-            Ved at sende accepterer du vores privatlivspolitik.
+            By submitting you accept our privacy policy.
           </p>
           <Button type="submit" variant="primary" size="md">Send</Button>
         </div>

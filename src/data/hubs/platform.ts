@@ -1,0 +1,74 @@
+import type { Hub } from "./types";
+
+export const platformHub: Hub = {
+  slug: "platform",
+  title: "The RoomAlyzer platform.",
+  titleAccent: "One place for all your sensor data.",
+  eyebrow: "Platform",
+  lead: "Architecture, dashboards, reports, security and APIs. Everything that happens after the sensor reports in.",
+  leaves: [
+    {
+      slug: "how-it-works",
+      eyebrow: "Platform",
+      title: "How it works.",
+      titleAccent: "Sensor to insight in minutes.",
+      lead: "Follow a reading from the physical sensor, through our gateways and cloud, and into the dashboards your team uses every day.",
+    },
+    {
+      slug: "architecture",
+      eyebrow: "Platform",
+      title: "Architecture.",
+      titleAccent: "Scalable, secure, European.",
+      lead: "A multi-tenant SaaS built on EU infrastructure with a clear separation between ingestion, storage and presentation.",
+    },
+    {
+      slug: "dashboards",
+      eyebrow: "Platform",
+      title: "Dashboards.",
+      titleAccent: "Data made readable.",
+      lead: "Configurable dashboards that give facility teams, managers and tenants exactly the view they need.",
+    },
+    {
+      slug: "reports",
+      eyebrow: "Platform",
+      title: "Reports.",
+      titleAccent: "Documentation on demand.",
+      lead: "Scheduled PDF and Excel exports for compliance, ESG reporting, board meetings and tenant communication.",
+    },
+    {
+      slug: "maps-floorplans",
+      eyebrow: "Platform",
+      title: "Maps and floor plans.",
+      titleAccent: "See your building at a glance.",
+      lead: "Upload floor plans and place sensors on them. Live values and alarms colour the rooms as they change.",
+    },
+    {
+      slug: "mobile-tv",
+      eyebrow: "Platform",
+      title: "Mobile and TV views.",
+      titleAccent: "The right data, on the right screen.",
+      lead: "A responsive mobile app for the facility team and fullscreen TV dashboards for lobbies and control rooms.",
+    },
+    {
+      slug: "ai-analytics",
+      eyebrow: "Platform",
+      title: "AI and analytics.",
+      titleAccent: "Patterns you would otherwise miss.",
+      lead: "Anomaly detection, predictive alarms and natural-language queries across your full sensor history.",
+    },
+    {
+      slug: "security",
+      eyebrow: "Platform",
+      title: "Security.",
+      titleAccent: "Built with compliance in mind.",
+      lead: "End-to-end encryption, SSO, fine-grained access control and EU-only data residency by default.",
+    },
+    {
+      slug: "api",
+      eyebrow: "Platform",
+      title: "API.",
+      titleAccent: "Your data, wherever you need it.",
+      lead: "A well-documented REST and MQTT API so you can pipe RoomAlyzer data into your BI, BMS or custom tools.",
+    },
+  ],
+};

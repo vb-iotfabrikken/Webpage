@@ -1,0 +1,29 @@
+---
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import { sensorsHub } from "../../../data/site";
+
+export function getStaticPaths() {
+  return sensorsHub.leaves.map((leaf) => ({
+    params: { slug: leaf.slug },
+    props: { leaf },
+  }));
+}
+
+const { leaf } = Astro.props;
+---
+
+<PlaceholderPage
+  title={`${leaf.title.replace(/\.$/, "")} | IoT Fabrikken`}
+  description={leaf.lead}
+  eyebrow={leaf.eyebrow}
+  heroTitle={leaf.title}
+  heroTitleAccent={leaf.titleAccent}
+  heroLead={leaf.lead}
+  breadcrumbs={[
+    { label: "Home", href: "/en/" },
+    { label: "Sensors", href: "/en/sensors/" },
+    { label: leaf.title.replace(/\.$/, "") },
+  ]}
+  primaryCta={leaf.primaryCta}
+  secondaryCta={leaf.secondaryCta}
+/>

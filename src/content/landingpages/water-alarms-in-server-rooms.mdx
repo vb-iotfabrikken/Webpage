@@ -1,0 +1,81 @@
+---
+title: "Water alarms in server rooms and IT infrastructure"
+description: "A single drip on the wrong rack can cost a whole business day. Place wireless sensors under raised floors and next to cooling units, and get an alarm the instant moisture is detected."
+category: "water-detection"
+eyebrow: "Use case — IT & data centres"
+heroTitle: "Water in the server room?"
+heroTitleAccent: "Not on our watch."
+heroLead: "Condensation from cooling systems, leaks from CRAC units and drips from overhead pipes are among the biggest risks in server rooms. RoomAlyzer alarms you in the same second water hits the floor."
+keyPoints:
+  - title: "Placement"
+    unit: "Under raised floors"
+    body: "Sensors sit directly under the floor tiles next to each rack."
+  - title: "Response time"
+    unit: "< 60 seconds"
+    body: "Data travels over NB-IoT — not your own network."
+  - title: "Independence"
+    unit: "Works even on power loss"
+    body: "The sensors are battery-powered and independent of the server room's own power."
+  - title: "Integration"
+    unit: "MQTT / webhook / SMS"
+    body: "Alarms straight into your NOC, ITSM or emergency centre."
+faq:
+  - q: "Why not use the sensors built into our CRAC unit?"
+    a: "Because the CRAC unit's own sensors only detect water inside the unit itself. Water can come from many places — condensation on pipes, defective pipe penetrations, leaking fire valves. Our sensors cover the whole room."
+  - q: "Do the sensors disturb our network?"
+    a: "No. The sensors use NB-IoT (the mobile network) or LoRaWAN — not your WiFi or LAN."
+  - q: "Can the alarms go straight into our ITSM (ServiceNow, Jira and so on)?"
+    a: "Yes. Alarms are sent as a webhook or MQTT event and can open a ticket in your existing flow."
+  - q: "What about testing and documentation for auditors?"
+    a: "The platform logs test alarms separately from real events, and every event has a full audit trail that can be exported as PDF."
+related:
+  - "water-detection-stop-damage-before-it-spreads"
+  - "leak-sensors-for-basements-and-plant-rooms"
+  - "mqtt-integration"
+tags:
+  - "module:water-detection"
+  - "industry:data-centres"
+  - "industry:it"
+  - "sensor:water-detector"
+  - "type:niche"
+  - "level:advanced"
+  - "Uptime"
+updatedAt: 2026-04-22
+---
+
+A CRAC unit that dumps condensate onto the floor of a server room is rarely a matter of *if* — it's a matter of *when*. And when it happens at 3 a.m. on a Saturday, response time is the single most important thing you've got.
+
+## What the CRAC unit's own sensors miss
+
+Most server rooms have one sensor built into the CRAC unit. It covers **the unit's own drip tray**. It doesn't catch:
+
+- Condensation on overhead pipes.
+- Leaks from fire valves and sprinkler installations.
+- Water that gets in from outside via floor penetrations.
+- A leak in a UPS cooling loop.
+- A thaw that hits a rooftop server room.
+
+That's why we always recommend a dedicated detection solution **on top of** whatever the equipment itself provides.
+
+## Typical sensor plan
+
+For a medium-sized server room (10–20 racks):
+
+1. One sensor under each CRAC unit.
+2. One sensor per row under the raised floor.
+3. One sensor by the door and at pipe penetrations.
+4. One sensor under UPS battery cabinets.
+5. One sensor at a low point where water pools if anything slips in.
+
+Every sensor is shown on a floor plan, so NOC staff can see **exactly** where the alarm is triggered — not just "there's water in the server room".
+
+## Integration patterns we see
+
+- **ServiceNow / Jira / TOPdesk** — automatic P1 ticket when an alarm is triggered.
+- **[MQTT to the NOC](/en/library/mqtt-integration/)** — real-time data into your existing monitoring.
+- **Phone tree** — if the on-call person doesn't acknowledge within X minutes, the next one is called.
+- **Email to the insurance broker** — to document the response time in the event of a claim.
+
+## What does downtime cost?
+
+Our customers in the data-centre segment have told us that even five minutes of extra response time easily costs a six-figure sum in SLA refunds. Seen in that light, the investment in dedicated water detection is negligible.

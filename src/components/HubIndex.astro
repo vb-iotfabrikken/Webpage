@@ -1,0 +1,123 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "./Hero.astro";
+import Button from "./Button.astro";
+import CtaBand from "./CtaBand.astro";
+import type { Hub } from "../data/hubs/types";
+
+interface Breadcrumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  hub: Hub;
+  /** Absolute path to the hub, e.g. "/en/platform/". */
+  basePath: string;
+  breadcrumbs?: Breadcrumb[];
+  /** Optional override of the page <title>. */
+  title?: string;
+  /** Optional override of the meta description. */
+  description?: string;
+}
+
+const { hub, basePath, breadcrumbs = [], title, description } = Astro.props;
+
+const pageTitle = title ?? `${hub.title.replace(/\.$/, "")} | IoT Fabrikken`;
+const metaDescription = description ?? hub.lead;
+const leafBase = basePath.endsWith("/") ? basePath : `${basePath}/`;
+---
+
+<Layout title={pageTitle} description={metaDescription}>
+  {breadcrumbs.length > 0 && (
+    <nav class="container-page pt-6" aria-label="Breadcrumb">
+      <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+        {breadcrumbs.map((b, i) => (
+          <li class="flex items-center gap-1.5">
+            {b.href ? (
+              <a href={b.href} class="hover:text-coral-500 transition-colors">{b.label}</a>
+            ) : (
+              <span class="text-navy-500">{b.label}</span>
+            )}
+            {i < breadcrumbs.length - 1 && (
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )}
+
+  <Hero
+    eyebrow={hub.eyebrow}
+    title={hub.title}
+    titleAccent={hub.titleAccent}
+    lead={hub.lead}
+    align="left"
+  >
+    <Button href="/en/contact/book-demo/" variant="primary" size="lg" slot="cta">Book demo</Button>
+    <Button href="/en/contact/sales/" variant="secondary" size="lg" slot="cta">Contact sales</Button>
+  </Hero>
+
+  <section class="py-16 md:py-20">
+    <div class="container-page">
+      <div class="reveal max-w-2xl mb-10 md:mb-12">
+        <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
+          {hub.leaves.length} {hub.leaves.length === 1 ? "page" : "pages"} in this hub
+        </p>
+        <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
+          Explore {hub.title.replace(/\.$/, "").toLowerCase()}.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <slot name="before-leaves" />
+
+        {hub.leaves.map((leaf) => (
+          <a
+            href={`${leafBase}${leaf.slug}/`}
+            class="reveal group relative flex flex-col h-full p-6 md:p-7 bg-white border border-stone-100 rounded-xl hover:border-navy-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+          >
+            <div class="absolute top-0 left-0 right-0 h-1 rounded-t-xl bg-sky-500"></div>
+
+            <p class="inline-block px-2.5 py-1 rounded-md bg-stone-50 text-navy-500 text-[11px] font-semibold uppercase tracking-wider mb-4 self-start">
+              {leaf.eyebrow}
+            </p>
+
+            <h3 class="text-lg font-semibold text-navy-500 mb-2 leading-snug">
+              {leaf.title}
+              {leaf.titleAccent && (
+                <span class="block text-sky-600 text-base font-medium mt-0.5">{leaf.titleAccent}</span>
+              )}
+            </h3>
+            <p class="text-sm text-stone-900/70 leading-relaxed flex-1">{leaf.lead}</p>
+
+            <div class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-navy-500 group-hover:text-sky-600 transition-colors">
+              Read more
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="transition-transform group-hover:translate-x-1">
+                <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </a>
+        ))}
+
+        <slot name="after-leaves" />
+      </div>
+
+      <div class="mt-12">
+        <slot />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Want a guided walk-through?"
+    subtitle="Book a 30-minute demo and we'll tailor it to your building."
+    primaryLabel="Book demo"
+    primaryHref="/en/contact/book-demo/"
+    secondaryLabel="Contact sales"
+    secondaryHref="/en/contact/sales/"
+  />
+</Layout>

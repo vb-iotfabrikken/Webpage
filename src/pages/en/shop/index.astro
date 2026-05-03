@@ -1,0 +1,76 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+
+const steps = [
+  {
+    n: "01",
+    title: "Pick your purpose",
+    body: "Tell us what you want to measure — we suggest a sensor mix that fits.",
+  },
+  {
+    n: "02",
+    title: "Review the catalogue",
+    body: "Browse every product, compare specs and read the technical details.",
+  },
+  {
+    n: "03",
+    title: "Order online",
+    body: "Add to cart, check out, and the sensors ship from our warehouse the next business day.",
+  },
+];
+---
+
+<Layout
+  title="Shop | IoT Fabrikken"
+  description="Order RoomAlyzer sensors online. Start with a single sensor or a full starter kit — shipping from Denmark."
+>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href="/en/" class="hover:text-coral-500 transition-colors">Home</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><span class="text-navy-500">Shop</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    eyebrow="Shop"
+    title="Order sensors online."
+    titleAccent="Ships from Denmark."
+    lead="A guided shop that helps you pick the right sensors for your building — and lets you order as few as one."
+    align="left"
+  >
+    <Button href="/en/shop/products/" variant="primary" size="lg" slot="cta">Browse all products</Button>
+    <Button href="/en/contact/sales/" variant="secondary" size="lg" slot="cta">Talk to sales</Button>
+  </Hero>
+
+  <section class="py-16 md:py-20">
+    <div class="container-page">
+      <div class="reveal max-w-2xl mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
+          How ordering works.
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {steps.map((s) => (
+          <div class="reveal relative bg-white border border-stone-100 rounded-xl p-6 md:p-8">
+            <span class="text-5xl font-bold text-stone-100 block leading-none">{s.n}</span>
+            <h3 class="mt-4 text-xl font-semibold text-navy-500">{s.title}</h3>
+            <p class="mt-2 text-stone-900/70 leading-relaxed">{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Need help picking the right setup?"
+    subtitle="We're happy to put together a configuration for your specific building."
+    primaryLabel="Book demo"
+    secondaryLabel="Contact sales"
+  />
+</Layout>

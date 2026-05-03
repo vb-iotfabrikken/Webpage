@@ -1,0 +1,19 @@
+---
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+---
+
+<PlaceholderPage
+  title="Thank you | Shop | IoT Fabrikken"
+  description="Your order has been received. We'll send a confirmation to your inbox shortly."
+  eyebrow="Shop"
+  heroTitle="Thank you."
+  heroTitleAccent="Your order is on its way."
+  heroLead="We have received your order and will send a confirmation to your inbox shortly. Any questions in the meantime — just reach out."
+  breadcrumbs={[
+    { label: "Home", href: "/en/" },
+    { label: "Shop", href: "/en/shop/" },
+    { label: "Thank you" },
+  ]}
+  primaryCta={{ label: "Back to shop", href: "/en/shop/" }}
+  secondaryCta={{ label: "Contact support", href: "https://support.iot-fabrikken.com" }}
+/>

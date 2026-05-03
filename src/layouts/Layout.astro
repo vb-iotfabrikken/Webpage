@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = "IoT Fabrikken — Sensorer og platform til facility og space management",
-  description = "Trådløse sensorer og en dansk udviklet SaaS-platform til indeklima, space management og vandlækagedetektion. Plug and play, langt batteriliv og ingen montering.",
+  title = "IoT Fabrikken — Sensors and platform for facility and space management",
+  description = "Wireless sensors and a Danish-built SaaS platform for indoor climate, space management and water-leak detection. Plug and play, long battery life and no installation.",
   ogImage = "/logo.png",
 } = Astro.props;
 
@@ -19,7 +19,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://iot-fabrikk
 ---
 
 <!doctype html>
-<html lang="da">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,7 +35,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://iot-fabrikk
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical.toString()} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content="da_DK" />
+    <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body class="min-h-screen flex flex-col">

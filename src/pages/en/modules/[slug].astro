@@ -1,0 +1,32 @@
+---
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import { modulesHub } from "../../../data/site";
+
+export function getStaticPaths() {
+  return modulesHub.leaves
+    // indoor-climate has its own dedicated rich page; skip it here.
+    .filter((leaf) => leaf.slug !== "indoor-climate")
+    .map((leaf) => ({
+      params: { slug: leaf.slug },
+      props: { leaf },
+    }));
+}
+
+const { leaf } = Astro.props;
+---
+
+<PlaceholderPage
+  title={`${leaf.title.replace(/\.$/, "")} | IoT Fabrikken`}
+  description={leaf.lead}
+  eyebrow={leaf.eyebrow}
+  heroTitle={leaf.title}
+  heroTitleAccent={leaf.titleAccent}
+  heroLead={leaf.lead}
+  breadcrumbs={[
+    { label: "Home", href: "/en/" },
+    { label: "Modules", href: "/en/modules/" },
+    { label: leaf.title.replace(/\.$/, "") },
+  ]}
+  primaryCta={leaf.primaryCta}
+  secondaryCta={leaf.secondaryCta}
+/>

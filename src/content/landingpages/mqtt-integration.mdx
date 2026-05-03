@@ -1,0 +1,74 @@
+---
+title: "MQTT integration"
+description: "Stream real-time data from every RoomAlyzer sensor into your own systems via MQTT. Set roles, topics and access — and get data straight into BMS, BI tools or data platforms."
+category: "integrations"
+eyebrow: "Integration"
+heroTitle: "MQTT integration."
+heroTitleAccent: "Real-time data for your systems."
+heroLead: "Stream every RoomAlyzer reading onto an MQTT topic and pull it into BMS, ITSM, BI or your own data platforms — no polling, no lag."
+keyPoints:
+  - title: "Protocol"
+    unit: "MQTT 3.1.1 / 5.0"
+    body: "Publish–subscribe over TLS — supported by virtually every BMS platform."
+  - title: "Topic structure"
+    unit: "roomalyzer/{tenant}/{building}/{device}"
+    body: "Hierarchical and filterable — subscribe to a single sensor or the whole portfolio."
+  - title: "Payload"
+    unit: "JSON"
+    body: "Easy-to-read JSON with timestamp, reading, unit and device metadata."
+  - title: "Security"
+    unit: "TLS + client certificate"
+    body: "Each consumer has its own identity and can be restricted to specific topics."
+faq:
+  - q: "Do we need to host our own MQTT broker?"
+    a: "No — RoomAlyzer provides the broker. You get credentials and a TLS endpoint, and you can be up and running in under an hour."
+  - q: "What if we already have an MQTT broker?"
+    a: "Then we can bridge to your broker. Many customers run a local broker setup in their BMS network and let us publish out there."
+  - q: "How often does data arrive?"
+    a: "As often as the sensor reports — typically every 1–2 minutes for NB-IoT and every 10 minutes for LoRaWAN, but configurable."
+  - q: "Can we also subscribe to alarms?"
+    a: "Yes. Alarm events are published on a separate topic, so your systems can react to escalations without polling an API."
+related:
+  - "co2-monitoring-in-schools"
+  - "humidity-in-churches"
+tags:
+  - "module:platform"
+  - "sensor:gateway"
+  - "type:integration"
+  - "type:technical"
+  - "level:advanced"
+updatedAt: 2026-04-22
+---
+
+MQTT is the most widely used protocol for sending IoT data between systems. It is lightweight, real-time, and supported by every major BMS, SCADA and data-warehouse platform. That's why it is our preferred route when customers want **RoomAlyzer data directly in their own systems**.
+
+## How it works
+
+1. You get a TLS endpoint, a username and a certificate from us.
+2. You subscribe to the topics you care about — or the whole tree.
+3. Your system receives a message each time a sensor reports in.
+
+No polling, no lag, and no bespoke development.
+
+## What do customers use it for?
+
+- Push CO₂ and presence data into BMS to run ventilation on demand.
+- Stream indoor-climate data into Power BI or Tableau for ESG reporting.
+- Trigger tickets in ServiceNow or TOPdesk when a sensor goes into alarm.
+- Feed ML models with historic and real-time data on the same channel.
+
+## Typical payload
+
+```json
+{
+  "time": "2026-04-22T08:14:31Z",
+  "tenant": "municipality-x",
+  "building": "north-school",
+  "device": "class-2a-sensor",
+  "type": "co2",
+  "value": 847,
+  "unit": "ppm"
+}
+```
+
+See the full specification in our [OpenAPI documentation](/en/library/mqtt-integration/#api) (link coming — contact us for access).

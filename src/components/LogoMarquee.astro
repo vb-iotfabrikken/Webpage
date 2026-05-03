@@ -1,61 +1,108 @@
 ---
-// NOTE: These are placeholder customer logos. Swap the slug/URL for each real customer when provided.
-// `slug` must match a brand on https://simpleicons.org (we fetch from cdn.simpleicons.org).
-// For customers without a Simple Icons match, use `wordmark` to render a styled text logo instead.
+// Customer marquee.
+//
+// Every logo asset under `/public/logos/` is pre-normalised to a 600×200
+// (3:1) canvas with consistent internal padding, so every brand renders at
+// exactly the same visual size inside a single fixed-size tile. The strip
+// auto-scrolls, pauses on hover, and supports click-and-hold dragging to
+// scrub through the list.
 
-type Logo =
-  | { name: string; url: string; slug: string; wordmark?: never }
-  | { name: string; url: string; slug?: never; wordmark: string };
+type Category = "municipality" | "enterprise" | "culture";
 
-const logos: Logo[] = [
-  { name: "Ørsted", url: "https://orsted.com", slug: "orsted" },
-  { name: "Novo Nordisk", url: "https://www.novonordisk.com", slug: "novonordisk" },
-  { name: "Mærsk", url: "https://www.maersk.com", slug: "maersk" },
-  { name: "IKEA", url: "https://www.ikea.com/dk/da/", slug: "ikea" },
-  { name: "LEGO", url: "https://www.lego.com/da-dk", slug: "lego" },
-  { name: "Coop", url: "https://coop.dk", wordmark: "Coop" },
-  { name: "DSB", url: "https://www.dsb.dk", wordmark: "DSB" },
-  { name: "ISS", url: "https://www.issworld.com", wordmark: "ISS" },
-  { name: "Rambøll", url: "https://www.ramboll.com/da-dk", wordmark: "Rambøll" },
-  { name: "Arla", url: "https://www.arla.dk", slug: "arla" },
+type Customer = {
+  /** Official name; used for a11y, link title and wordmark fallback. */
+  name: string;
+  /** Optional short label for the wordmark fallback when `src` is missing. */
+  display?: string;
+  url?: string;
+  category: Category;
+  /** Path to the logo asset under `/public/logos/`. */
+  src?: string;
+};
+
+const customers: Customer[] = [
+  // Municipalities
+  { name: "Aarhus Kommune", category: "municipality", url: "https://www.aarhus.dk", src: "/logos/aarhus.png" },
+  { name: "Københavns Kommune", category: "municipality", url: "https://www.kk.dk", src: "/logos/kobenhavn.png" },
+  { name: "Furesø Kommune", category: "municipality", url: "https://www.furesoe.dk", src: "/logos/fureso.png" },
+  { name: "Gribskov Kommune", category: "municipality", url: "https://www.gribskov.dk", src: "/logos/gribskov.png" },
+  { name: "Høje-Taastrup Kommune", category: "municipality", url: "https://www.htk.dk", src: "/logos/hoje-taastrup.png" },
+  { name: "Ringsted Kommune", category: "municipality", url: "https://www.ringsted.dk", src: "/logos/ringsted.png" },
+  { name: "Roskilde Kommune", category: "municipality", url: "https://www.roskilde.dk", src: "/logos/roskilde.png" },
+  { name: "Vesthimmerlands Kommune", category: "municipality", url: "https://www.vesthimmerland.dk", src: "/logos/vesthimmerland.png" },
+
+  // Large enterprises & organisations
+  { name: "Novo Nordisk", category: "enterprise", url: "https://www.novonordisk.com", src: "/logos/novo-nordisk.png" },
+  { name: "Coloplast", category: "enterprise", url: "https://www.coloplast.com", src: "/logos/coloplast.png" },
+  { name: "Salling Group", category: "enterprise", url: "https://sallinggroup.com", src: "/logos/salling.png" },
+  { name: "Airmaster", category: "enterprise", url: "https://www.airmaster.dk", src: "/logos/airmaster.png" },
+  { name: "Bauhaus", category: "enterprise", url: "https://www.bauhaus.dk", src: "/logos/bauhaus.png" },
+  { name: "Arbejdernes Landsbank", category: "enterprise", url: "https://www.al-bank.dk", src: "/logos/arbejdernes-landsbank.png" },
+  { name: "DEAS", category: "enterprise", url: "https://www.deas.dk", src: "/logos/deas.png" },
+  { name: "Cook Medical", category: "enterprise", url: "https://www.cookmedical.com", src: "/logos/cook-medical.png" },
+  { name: "HOFOR", category: "enterprise", url: "https://www.hofor.dk", src: "/logos/hofor.png" },
+  { name: "Kemp & Lauritzen", category: "enterprise", url: "https://www.kemp-lauritzen.dk", src: "/logos/kemp-lauritzen.png" },
+  { name: "Landbrug & Fødevarer", category: "enterprise", url: "https://lf.dk", src: "/logos/landbrug-fodevarer.png" },
+
+  // Culture, education & churches
+  { name: "Tivoli", category: "culture", url: "https://www.tivoli.dk", src: "/logos/tivoli.png" },
+  { name: "Nationalmuseet", category: "culture", url: "https://natmus.dk", src: "/logos/nationalmuseet.png" },
+  { name: "Ribe Domkirke", category: "culture", url: "https://www.ribe-domkirke.dk", src: "/logos/ribe-domkirke.png" },
+  { name: "Universitetet i Stavanger", display: "Stavanger Universitet", category: "culture", url: "https://www.uis.no", src: "/logos/stavanger.png" },
+  { name: "Deutsches Museum", category: "culture", url: "https://www.deutsches-museum.de", src: "/logos/deutsches-museum.png" },
+  {
+    name: "Wilhelm Busch – Deutsches Museum für Karikatur & Zeichenkunst",
+    display: "Wilhelm Busch Museum",
+    category: "culture",
+    url: "https://www.karikatur-museum.de",
+    src: "/logos/wilhelm-busch.png",
+  },
+  { name: "Bistum Mainz", category: "culture", url: "https://bistummainz.de", src: "/logos/bistum-mainz.png" },
+  { name: "Erzbistum Bamberg", category: "culture", url: "https://www.erzbistum-bamberg.de", src: "/logos/erzbistum-bamberg.png" },
 ];
 
-const doubled = [...logos, ...logos];
-
-// cdn.simpleicons.org serves SVG for a brand, colored via path; we tint to a muted stone tone.
-const iconUrl = (slug: string) => `https://cdn.simpleicons.org/${slug}/9B9B9B`;
-const iconUrlHover = (slug: string) => `https://cdn.simpleicons.org/${slug}/0D3D54`;
+// Double the list so the marquee can loop seamlessly.
+const track = [...customers, ...customers];
 ---
 
-<section class="py-10 bg-white border-y border-stone-100 overflow-hidden">
+<section class="py-12 md:py-14 bg-white border-y border-stone-100 overflow-hidden">
   <div class="container-page">
-    <p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-stone-300 mb-6">
-      Mere end 300 organisationer i 12 lande bruger vores løsninger
+    <p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-stone-400 mb-8">
+      Trusted by municipalities, enterprises and cultural institutions across Europe
     </p>
   </div>
-  <div class="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-    <div class="marquee items-center">
-      {doubled.map((logo) => (
+
+  <div
+    class="logo-marquee relative overflow-hidden select-none [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]"
+    data-logo-marquee
+    role="region"
+    aria-label="Selected customers"
+  >
+    <div class="logo-track flex items-center will-change-transform gap-14 md:gap-20" data-logo-track>
+      {track.map((c, i) => (
         <a
-          href={logo.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Besøg ${logo.name}`}
-          title={logo.name}
-          class="group shrink-0 flex items-center justify-center h-10 min-w-[140px] px-2 opacity-70 hover:opacity-100 transition-opacity"
+          href={c.url || "#"}
+          target={c.url ? "_blank" : undefined}
+          rel={c.url ? "noopener noreferrer" : undefined}
+          aria-label={c.name}
+          aria-hidden={i >= customers.length ? "true" : undefined}
+          tabindex={i >= customers.length ? -1 : 0}
+          title={c.name}
+          class="logo-tile shrink-0"
+          data-category={c.category}
         >
-          {logo.slug ? (
+          {c.src ? (
             <img
-              src={iconUrl(logo.slug)}
-              data-hover={iconUrlHover(logo.slug)}
-              alt={logo.name}
+              src={c.src}
+              alt={c.name}
               loading="lazy"
-              class="h-7 w-auto max-w-[140px] object-contain brand-logo"
+              draggable="false"
+              class="logo-img"
+              width="600"
+              height="200"
             />
           ) : (
-            <span class="text-xl font-bold tracking-tight text-stone-300 group-hover:text-navy-500 transition-colors whitespace-nowrap">
-              {logo.wordmark}
-            </span>
+            <span class="logo-wordmark">{c.display || c.name}</span>
           )}
         </a>
       ))}
@@ -64,21 +111,186 @@ const iconUrlHover = (slug: string) => `https://cdn.simpleicons.org/${slug}/0D3D
 </section>
 
 <style>
-  .brand-logo {
-    transition: filter 200ms ease;
+  .logo-marquee {
+    cursor: grab;
+    touch-action: pan-y;
   }
-  .group:hover .brand-logo {
-    /* Recolor to navy-500 on hover by swapping the src */
+  .logo-marquee.is-dragging {
+    cursor: grabbing;
+  }
+
+  /* Fixed-size tile — sized to match the Bauhaus logo on
+     iot-fabrikken.com (Elementor 5-slides-per-row carousel renders each
+     slide at ~228 px wide on desktop). Source PNGs are 600×200 (3:1) on
+     a uniform canvas, so the tile is sized at the same 3:1 ratio and
+     every logo fills it exactly via `object-fit: contain`. */
+  .logo-tile {
+    flex: 0 0 auto;
+    width: 102px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  @media (min-width: 768px) {
+    .logo-tile {
+      width: 132px;
+      height: 44px;
+    }
+  }
+
+  .logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 200ms ease;
+    pointer-events: none;
+    user-select: none;
+  }
+  .logo-tile:hover .logo-img {
+    transform: scale(1.05);
+  }
+
+  /* Fallback wordmark, only shown if a logo asset is missing. */
+  .logo-wordmark {
+    font-family: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: #1b2547;
+    text-align: center;
+    max-width: 100%;
+    opacity: 0.55;
+    transition: opacity 200ms ease, color 200ms ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  .logo-tile:hover .logo-wordmark {
+    opacity: 1;
+    color: #0c1940;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-marquee { cursor: default; }
   }
 </style>
 
-<script>
-  document.querySelectorAll<HTMLImageElement>(".brand-logo").forEach((img) => {
-    const hover = img.dataset.hover;
-    const base = img.src;
-    if (!hover) return;
-    const parent = img.closest("a");
-    parent?.addEventListener("mouseenter", () => (img.src = hover));
-    parent?.addEventListener("mouseleave", () => (img.src = base));
-  });
+<script is:inline>
+  (() => {
+    const marquee = document.querySelector("[data-logo-marquee]");
+    const track = document.querySelector("[data-logo-track]");
+    if (!(marquee instanceof HTMLElement) || !(track instanceof HTMLElement)) return;
+
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Auto-scroll speed in px/sec. The reference site advances roughly one
+    // ~240px slide every 5s (~48 px/sec); this is a touch quicker for snap.
+    const SPEED = 70;
+
+    let offset = 0;
+    let halfWidth = 0;
+    let lastTs = performance.now();
+    let hovered = false;
+    let dragging = false;
+    let dragStartX = 0;
+    let dragStartOffset = 0;
+    let dragMoved = false;
+
+    const measure = () => {
+      halfWidth = track.scrollWidth / 2;
+    };
+
+    const wrap = () => {
+      if (halfWidth <= 0) return;
+      if (offset >= halfWidth) offset -= halfWidth;
+      else if (offset < 0) offset += halfWidth;
+    };
+
+    const apply = () => {
+      track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+    };
+
+    const tick = (ts) => {
+      const dt = Math.min(0.05, (ts - lastTs) / 1000);
+      lastTs = ts;
+      if (!dragging && !hovered && !prefersReduced) {
+        offset += SPEED * dt;
+      }
+      wrap();
+      apply();
+      requestAnimationFrame(tick);
+    };
+
+    const onEnter = () => { hovered = true; };
+    const onLeave = () => { hovered = false; };
+
+    const onPointerDown = (e) => {
+      if (e.button !== undefined && e.button !== 0) return;
+      // Don't hijack pointerdown on the actual link — let the browser
+      // handle the click naturally. We only enter drag mode if the user
+      // actually moves the pointer.
+      dragging = true;
+      dragMoved = false;
+      dragStartX = e.clientX;
+      dragStartOffset = offset;
+    };
+
+    const onPointerMove = (e) => {
+      if (!dragging) return;
+      const dx = e.clientX - dragStartX;
+      if (!dragMoved && Math.abs(dx) > 4) {
+        dragMoved = true;
+        marquee.classList.add("is-dragging");
+        try { marquee.setPointerCapture(e.pointerId); } catch {}
+      }
+      if (!dragMoved) return;
+      offset = dragStartOffset - dx;
+      wrap();
+      apply();
+    };
+
+    const endDrag = (e) => {
+      if (!dragging) return;
+      dragging = false;
+      marquee.classList.remove("is-dragging");
+      try { marquee.releasePointerCapture(e.pointerId); } catch {}
+    };
+
+    const onClickCapture = (e) => {
+      if (dragMoved) {
+        // It was a real drag — block the click on the anchor.
+        e.preventDefault();
+        e.stopPropagation();
+        dragMoved = false;
+      }
+    };
+
+    measure();
+    window.addEventListener("resize", measure);
+    window.addEventListener("load", measure);
+    // Re-measure as images decode so the seam stays clean.
+    track.querySelectorAll("img").forEach((img) => {
+      if (!(img instanceof HTMLImageElement)) return;
+      if (img.complete) return;
+      img.addEventListener("load", measure, { once: true });
+      img.addEventListener("error", measure, { once: true });
+    });
+
+    marquee.addEventListener("mouseenter", onEnter);
+    marquee.addEventListener("mouseleave", onLeave);
+    marquee.addEventListener("pointerdown", onPointerDown);
+    marquee.addEventListener("pointerup", endDrag);
+    marquee.addEventListener("pointermove", onPointerMove);
+    marquee.addEventListener("pointercancel", endDrag);
+    marquee.addEventListener("click", onClickCapture, true);
+    marquee.addEventListener("dragstart", (e) => e.preventDefault());
+
+    requestAnimationFrame(tick);
+  })();
 </script>

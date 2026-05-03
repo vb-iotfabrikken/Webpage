@@ -1,0 +1,246 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import FAQ from "../../../components/FAQ.astro";
+
+const steps = [
+  {
+    n: "01",
+    title: "Unpack",
+    body: "The sensor ships ready to use — no configuration, no setup.",
+  },
+  {
+    n: "02",
+    title: "Mount",
+    body: "Fix it with a single screw or double-sided tape. Takes under 2 minutes per sensor.",
+  },
+  {
+    n: "03",
+    title: "See data",
+    body: "The sensor reports into RoomAlyzer automatically. Insight is flowing the same day.",
+  },
+];
+
+const features = [
+  {
+    title: "CO2",
+    body: "Precise readings that show when it's time to air the room — before headaches set in.",
+    unit: "400–5000 ppm",
+  },
+  {
+    title: "Temperature",
+    body: "Continuous monitoring so both comfort and compliance are covered.",
+    unit: "-10 to +50°C",
+  },
+  {
+    title: "Humidity",
+    body: "Keep an eye on humidity levels — key to wellbeing and the health of the building.",
+    unit: "0–100 % RH",
+  },
+  {
+    title: "VOC",
+    body: "Total level of volatile organic compounds from materials and cleaning.",
+    unit: "0–5000 ppb",
+  },
+  {
+    title: "Mould & damp",
+    body: "Predictive analysis that alarms before mould takes hold in the structure.",
+    unit: "Predictive model",
+  },
+  {
+    title: "Pressure",
+    body: "Relative pressure between rooms — relevant for labs and clean rooms.",
+    unit: "± 500 Pa",
+  },
+];
+
+const faqItems = [
+  {
+    q: "How long is the battery life?",
+    a: "Our indoor-climate sensors typically run 7–10 years on a single battery, depending on reporting frequency. The platform warns you well in advance when the battery needs replacing.",
+  },
+  {
+    q: "Do we need WiFi across the whole building?",
+    a: "No. The sensors use LoRaWAN or similar long-range radio protocols. A single gateway can typically cover an entire floor or more.",
+  },
+  {
+    q: "Can data be integrated with our BMS (Building Management System)?",
+    a: "Yes. RoomAlyzer offers open APIs and supports the most common BMS protocols. We're happy to help with the setup.",
+  },
+  {
+    q: "Is the solution GDPR-compliant?",
+    a: "Yes. We measure physical conditions in the rooms — not people. Data is processed in the EU and meets the applicable standards.",
+  },
+  {
+    q: "What does it cost?",
+    a: "The price depends on the number of sensors and the size of the building. Book a demo and we'll give a concrete estimate based on your case.",
+  },
+];
+---
+
+<Layout
+  title="Indoor climate — sensors and data | IoT Fabrikken"
+  description="Measure CO2, temperature, humidity and VOC with wireless sensors. React to data instead of feelings — and stay ahead of mould and damp."
+>
+
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href="/en/" class="hover:text-coral-500 transition-colors">Home</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><a href="/en/modules/" class="hover:text-coral-500 transition-colors">Modules</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><span class="text-navy-500">Indoor climate</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    eyebrow="Indoor climate"
+    title="Handle complaints with data."
+    titleAccent="Not feelings."
+    lead="Wireless sensors measure CO2, temperature, humidity and VOC in real time. Get early warnings about mould and damp before they hurt the building — and documentation that stands up to workplace-environment requirements."
+    align="left"
+  >
+    <Button href="/en/contact/book-demo/" variant="primary" size="lg" slot="cta">Book demo</Button>
+    <Button href="#download" variant="secondary" size="lg" slot="cta">Download product sheet</Button>
+
+    <div slot="visual" class="reveal">
+      <div class="relative max-w-5xl">
+        <div class="bg-white border border-stone-100 rounded-xl shadow-xl overflow-hidden">
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-stone-100 bg-stone-50">
+            <span class="w-3 h-3 rounded-full bg-stone-300/70"></span>
+            <span class="w-3 h-3 rounded-full bg-stone-300/70"></span>
+            <span class="w-3 h-3 rounded-full bg-stone-300/70"></span>
+            <span class="ml-3 text-xs font-medium text-stone-300">RoomAlyzer — Indoor climate</span>
+          </div>
+          <img
+            src="/roomalyzer-dashboard-clean.png"
+            alt="RoomAlyzer dashboard showing indoor-climate data from several rooms"
+            width="1024"
+            height="595"
+            class="w-full h-auto block"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </Hero>
+
+  <section class="py-20 md:py-24">
+    <div class="container-page">
+      <div class="reveal max-w-2xl mb-12">
+        <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
+          How it works
+        </p>
+        <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
+          From box to data in under 10 minutes.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {steps.map((s) => (
+          <div class="reveal relative bg-white border border-stone-100 rounded-xl p-6 md:p-8">
+            <span class="text-5xl font-bold text-stone-100 block leading-none">{s.n}</span>
+            <h3 class="mt-4 text-xl font-semibold text-navy-500">{s.title}</h3>
+            <p class="mt-2 text-stone-900/70 leading-relaxed">{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-24 bg-stone-50">
+    <div class="container-page">
+      <div class="reveal max-w-2xl mb-12 md:mb-16">
+        <p class="inline-block px-3 py-1 rounded-md bg-white text-navy-500 border border-stone-100 text-xs font-semibold uppercase tracking-wider mb-5">
+          Parameters we measure
+        </p>
+        <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
+          All the data you need — and nothing you don't.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {features.map((f) => (
+          <div class="reveal bg-white rounded-xl border border-stone-100 p-6 hover:border-navy-500 transition-colors">
+            <div class="inline-flex px-2.5 py-1 rounded-md bg-sky-50 text-sky-600 text-xs font-semibold">
+              {f.unit}
+            </div>
+            <h3 class="mt-4 text-xl font-semibold text-navy-500">{f.title}</h3>
+            <p class="mt-2 text-stone-900/70 leading-relaxed">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-24">
+    <div class="container-page">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-stretch">
+        <div class="reveal bg-stone-50 border border-stone-100 rounded-xl p-8 md:p-10">
+          <div class="w-11 h-11 rounded-md bg-sky-500 text-white inline-flex items-center justify-center mb-5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21V9l9-6 9 6v12M9 21v-6h6v6" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-semibold text-navy-500">For Facility Managers</h3>
+          <ul class="mt-6 space-y-3 text-navy-500">
+            {[
+              "See alarms sorted by criticality",
+              "Document performance of ventilation systems",
+              "Reduce complaint cases with objective data",
+              "Run operations based on real usage — not schedule",
+            ].map((t) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 w-5 h-5 inline-flex items-center justify-center rounded-md bg-sky-500 text-white shrink-0">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </span>
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="reveal bg-navy-500 text-white rounded-xl p-8 md:p-10">
+          <div class="w-11 h-11 rounded-md bg-white/10 text-white inline-flex items-center justify-center mb-5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><path d="M22 4L12 14.01l-3-3" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-semibold">For Compliance & ESG</h3>
+          <ul class="mt-6 space-y-3 text-white/90">
+            {[
+              "Export of reports for CSRD and ESG work",
+              "Indoor-climate history for workplace inspections and audits",
+              "Documented effort on employee wellbeing",
+              "Lower energy consumption through data-driven control",
+            ].map((t) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 w-5 h-5 inline-flex items-center justify-center rounded-md bg-white/10 shrink-0">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </span>
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} />
+
+  <CtaBand
+    title="Want to see it for yourself?"
+    subtitle="Book a 30-minute demo. We'll show the platform, walk through your case and give you a price estimate."
+    primaryLabel="Book demo"
+    secondaryLabel="Download product sheet"
+    secondaryHref="#download"
+    variant="dark"
+  />
+</Layout>

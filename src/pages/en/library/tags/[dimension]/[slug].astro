@@ -1,0 +1,139 @@
+---
+import Layout from "../../../../../layouts/Layout.astro";
+import Hero from "../../../../../components/Hero.astro";
+import Button from "../../../../../components/Button.astro";
+import CtaBand from "../../../../../components/CtaBand.astro";
+import { getCollection } from "astro:content";
+import { landingCategories, categoryColorClasses } from "../../../../../data/landingCategories";
+
+type Dimension = {
+  slug: string;
+  label: string;
+  prefix: string;
+};
+
+const dimensions: Dimension[] = [
+  { slug: "module", label: "Module", prefix: "module:" },
+  { slug: "industry", label: "Industry", prefix: "industry:" },
+  { slug: "sensor", label: "Sensor", prefix: "sensor:" },
+  { slug: "standard", label: "Standard", prefix: "standard:" },
+  { slug: "type", label: "Content type", prefix: "type:" },
+  { slug: "level", label: "Level", prefix: "level:" },
+];
+
+export async function getStaticPaths() {
+  const entries = await getCollection("landingpages", ({ data }) => !data.draft);
+
+  const localDimensions: Dimension[] = [
+    { slug: "module", label: "Module", prefix: "module:" },
+    { slug: "industry", label: "Industry", prefix: "industry:" },
+    { slug: "sensor", label: "Sensor", prefix: "sensor:" },
+    { slug: "standard", label: "Standard", prefix: "standard:" },
+    { slug: "type", label: "Content type", prefix: "type:" },
+    { slug: "level", label: "Level", prefix: "level:" },
+  ];
+
+  const paths: Array<{
+    params: { dimension: string; slug: string };
+    props: { entries: typeof entries; tagValue: string };
+  }> = [];
+
+  for (const d of localDimensions) {
+    const values = new Map<string, typeof entries>();
+    for (const e of entries) {
+      for (const t of e.data.tags ?? []) {
+        if (t.toLowerCase().startsWith(d.prefix)) {
+          const value = t.slice(d.prefix.length);
+          const list = values.get(value) ?? [];
+          list.push(e);
+          values.set(value, list);
+        }
+      }
+    }
+    for (const [value, list] of values) {
+      paths.push({
+        params: { dimension: d.slug, slug: value.toLowerCase() },
+        props: { entries: list, tagValue: value },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { dimension, slug } = Astro.params;
+const { entries, tagValue } = Astro.props;
+const dim = dimensions.find((d) => d.slug === dimension)!;
+
+const sorted = [...entries].sort((a, b) =>
+  a.data.title.localeCompare(b.data.title, "en"),
+);
+---
+
+<Layout
+  title={`${dim.label}: ${tagValue} | Library | IoT Fabrikken`}
+  description={`Articles in the IoT Fabrikken library tagged with ${dim.label.toLowerCase()} "${tagValue}".`}
+>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href="/en/" class="hover:text-coral-500 transition-colors">Home</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><a href="/en/library/" class="hover:text-coral-500 transition-colors">Library</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><a href="/en/library/tags/" class="hover:text-coral-500 transition-colors">Tags</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><span class="text-navy-500">{dim.label}: {tagValue}</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    eyebrow={`Library — ${dim.label}`}
+    title={tagValue}
+    titleAccent={`${sorted.length} ${sorted.length === 1 ? "article" : "articles"}`}
+    lead={`Every article in the IoT Fabrikken library tagged with ${dim.label.toLowerCase()} "${tagValue}".`}
+    align="left"
+  >
+    <Button href="/en/library/" variant="primary" size="lg" slot="cta">Back to library</Button>
+    <Button href="/en/library/tags/" variant="secondary" size="lg" slot="cta">All tags</Button>
+  </Hero>
+
+  <section class="py-16">
+    <div class="container-page">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {sorted.map((e) => {
+          const cc = categoryColorClasses(landingCategories[e.data.category].color);
+          return (
+            <a
+              href={`/en/library/${e.id}/`}
+              class="reveal block bg-white border border-stone-100 rounded-xl p-5 hover:border-navy-500 transition-colors group"
+            >
+              <span class={`inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-[11px] font-semibold uppercase tracking-wider ${cc.chip}`}>
+                <span class={`w-1.5 h-1.5 rounded-full ${cc.dot}`}></span>
+                {landingCategories[e.data.category].name}
+              </span>
+              <h3 class="mt-3 text-base font-semibold text-navy-500 group-hover:text-coral-500 transition-colors leading-snug">
+                {e.data.title}
+              </h3>
+              <p class="mt-2 text-sm text-stone-900/70 leading-relaxed line-clamp-3">
+                {e.data.description}
+              </p>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Want to discuss this topic?"
+    subtitle="Book a 30-minute demo and we'll tailor it to your specific situation."
+    primaryLabel="Book demo"
+    secondaryLabel="Contact sales"
+  />
+</Layout>

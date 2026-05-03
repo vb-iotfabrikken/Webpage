@@ -1,0 +1,705 @@
+---
+// Animated hero scene for the homepage.
+// It tells the two-part story of what IoT Fabrikken actually sells:
+//   • SENSORS — physical hardware (pucks branded "IoT Fabrikken") that
+//     measure the room and transmit readings wirelessly.
+//   • SOLUTION — the RoomAlyzer platform, where those readings become
+//     dashboards, reports, alerts and maps that humans actually use.
+// Pure SVG + CSS, no dependencies. Respects prefers-reduced-motion.
+---
+
+<div class="reveal relative mx-auto max-w-5xl">
+  <!-- Neutral ambient shadow behind the scene — just a single soft,  -->
+  <!-- heavily blurred blob so the illustration feels lifted off the  -->
+  <!-- page without any colour wash.                                  -->
+  <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+    <div class="absolute left-[8%] right-[8%] top-[12%] bottom-[-4%] rounded-[48px] bg-navy-500/10 blur-3xl"></div>
+  </div>
+
+  <svg
+    class="hero-anim relative block w-full h-auto"
+    viewBox="0 0 1024 600"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-label="Physical IoT Fabrikken sensors on the left measure the room and stream data wirelessly into the RoomAlyzer platform on the right, which shows dashboards, reports, maps and alerts."
+  >
+    <defs>
+      <pattern id="hero-dots" width="28" height="28" patternUnits="userSpaceOnUse">
+        <circle cx="1.5" cy="1.5" r="1" fill="#0D3D54" opacity="0.07" />
+      </pattern>
+      <linearGradient id="chart-area" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="#55A1C2" stop-opacity="0.28" />
+        <stop offset="100%" stop-color="#55A1C2" stop-opacity="0" />
+      </linearGradient>
+      <!-- Soft drop shadow used by the dashboard card and the pucks so -->
+      <!-- they feel lifted off the page without needing a window frame. -->
+      <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="150%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="8" />
+        <feOffset dx="0" dy="8" />
+        <feComponentTransfer>
+          <feFuncA type="linear" slope="0.14" />
+        </feComponentTransfer>
+        <feMerge>
+          <feMergeNode />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <filter id="puck-shadow" x="-30%" y="-30%" width="160%" height="180%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+        <feOffset dx="0" dy="4" />
+        <feComponentTransfer>
+          <feFuncA type="linear" slope="0.18" />
+        </feComponentTransfer>
+        <feMerge>
+          <feMergeNode />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <!-- Floorplan: diagonal split.                                    -->
+      <!-- The floorplan rectangle is cut along its main diagonal, with  -->
+      <!-- the lower-right half shown as a clear floorplan and the       -->
+      <!-- upper-left half blurred and overlaid with an availability %.  -->
+      <clipPath id="fp-clear-clip" clipPathUnits="userSpaceOnUse">
+        <polygon points="204,0 204,172 0,172" />
+      </clipPath>
+      <clipPath id="fp-blurred-clip" clipPathUnits="userSpaceOnUse">
+        <polygon points="0,0 204,0 0,172" />
+      </clipPath>
+      <filter id="fp-blur" x="-10%" y="-10%" width="120%" height="120%">
+        <feGaussianBlur stdDeviation="2.5" />
+      </filter>
+      <!-- Preservation chart: mask that reveals only the pixels that  -->
+      <!-- sit inside the safe-zone ribbon. Used to recolour the       -->
+      <!-- actual-RH line (coral when outside the band, sky inside).   -->
+      <!-- The centreline path below must match the one drawn for the  -->
+      <!-- green safe-zone ribbon in the chart itself.                 -->
+      <mask id="preserve-safe-band" maskUnits="userSpaceOnUse" x="0" y="0" width="224" height="148">
+        <rect x="0" y="0" width="224" height="148" fill="black" />
+        <path
+          d="M26 108 C 48 96, 72 56, 108 56 S 170 96, 206 108"
+          stroke="white"
+          stroke-width="16"
+          stroke-linecap="round"
+          fill="none"
+        />
+      </mask>
+      <!-- Static floorplan body: an open-plan office with two small    -->
+      <!-- enclosed rooms in opposite corners. Referenced twice via     -->
+      <!-- <use> (once blurred, once crisp). No visible doors.          -->
+      <symbol id="fp-static" overflow="visible">
+        <!-- Interior partition wall for the single enclosed office     -->
+        <!-- in the top-left corner. Drawn as continuous segments so    -->
+        <!-- there is no door break.                                    -->
+        <g stroke="#0D3D54" stroke-width="1.2" stroke-linecap="square" fill="none">
+          <path d="M0 50 L44 50 L44 0" />
+        </g>
+
+        <!-- Open-plan furniture — all rendered in a single soft grey  -->
+        <!-- so the floor reads as one calm visual layer behind the    -->
+        <!-- live status dots.                                          -->
+        <g fill="#E7E5E4">
+          <!-- Meeting table: long rectangle, centred along the top.   -->
+          <rect x="60" y="20" width="76" height="14" rx="3" />
+          <!-- Lounge on the middle-left: two parallel sofas facing    -->
+          <!-- each other across a low coffee table.                   -->
+          <rect x="6"  y="72"  width="32" height="14" rx="5" />
+          <rect x="6"  y="102" width="32" height="14" rx="5" />
+          <rect x="14" y="91"  width="16" height="6"  rx="1" fill="#D7D3D0" />
+          <!-- Desk pod on the middle-right: four-person cluster.      -->
+          <rect x="116" y="72" width="22" height="10" rx="1.5" />
+          <rect x="142" y="72" width="22" height="10" rx="1.5" />
+          <rect x="116" y="90" width="22" height="10" rx="1.5" />
+          <rect x="142" y="90" width="22" height="10" rx="1.5" />
+          <!-- Collaboration corner (bottom-centre): soft seating       -->
+          <!-- circles grouped around a shared low table.               -->
+          <circle cx="74"  cy="146" r="7" />
+          <circle cx="96"  cy="154" r="6" />
+          <circle cx="118" cy="148" r="7" />
+          <rect x="84" y="132" width="22" height="5" rx="1" fill="#D7D3D0" />
+          <!-- Focus booths (bottom-right): two individual quiet       -->
+          <!-- work / phone-call pods replacing the former Archive.    -->
+          <rect x="150" y="128" width="22" height="22" rx="3" />
+          <rect x="176" y="128" width="22" height="22" rx="3" />
+        </g>
+
+        <!-- Chairs: tiny darker dots ringing the meeting table and    -->
+        <!-- desk pod so the seating arrangement reads as intentional. -->
+        <g fill="#A8A29E">
+          <circle cx="68"  cy="13" r="2.2" />
+          <circle cx="84"  cy="13" r="2.2" />
+          <circle cx="98"  cy="13" r="2.2" />
+          <circle cx="114" cy="13" r="2.2" />
+          <circle cx="128" cy="13" r="2.2" />
+          <circle cx="68"  cy="41" r="2.2" />
+          <circle cx="84"  cy="41" r="2.2" />
+          <circle cx="98"  cy="41" r="2.2" />
+          <circle cx="114" cy="41" r="2.2" />
+          <circle cx="128" cy="41" r="2.2" />
+          <circle cx="127" cy="67" r="2" />
+          <circle cx="153" cy="67" r="2" />
+          <circle cx="127" cy="105" r="2" />
+          <circle cx="153" cy="105" r="2" />
+        </g>
+
+        <!-- Label for the single enclosed office. -->
+        <g font-size="6.5" font-weight="700" fill="#78716C" text-anchor="middle" letter-spacing="0.04em">
+          <text x="22"  y="26">Office</text>
+        </g>
+
+        <!-- Zone labels for the open-plan areas. -->
+        <g font-size="5" font-weight="700" fill="#B8B4B1" text-anchor="middle" letter-spacing="0.3em">
+          <text x="98"  y="60">MEETING</text>
+          <text x="22"  y="66">LOUNGE</text>
+          <text x="140" y="118">DESKS</text>
+          <text x="96"  y="118">COLLAB</text>
+          <text x="174" y="122">FOCUS</text>
+        </g>
+
+        <!-- Availability dots on every seatable zone. Green = free,   -->
+        <!-- coral = in use. Rendered on both halves of the diagonal   -->
+        <!-- so the blurred side still reads as live status while the  -->
+        <!-- clear side stays pixel-sharp.                              -->
+        <g stroke="white" stroke-width="1">
+          <!-- Meeting room: in use. -->
+          <circle cx="98"  cy="27"  r="3.4" fill="#DC626A" />
+          <!-- Lounge: both sofas free. -->
+          <circle cx="22"  cy="79"  r="3.4" fill="#65A99C" />
+          <circle cx="22"  cy="109" r="3.4" fill="#65A99C" />
+          <!-- Desk pod: two free, two in use. -->
+          <circle cx="127" cy="77"  r="3.4" fill="#65A99C" />
+          <circle cx="153" cy="77"  r="3.4" fill="#DC626A" />
+          <circle cx="127" cy="95"  r="3.4" fill="#65A99C" />
+          <circle cx="153" cy="95"  r="3.4" fill="#DC626A" />
+          <!-- Collab corner: free. -->
+          <circle cx="96"  cy="144" r="3.4" fill="#65A99C" />
+          <!-- Office (enclosed): free. -->
+          <circle cx="22"  cy="38"  r="3.4" fill="#65A99C" />
+          <!-- Focus booths: one free, one in use. -->
+          <circle cx="161" cy="139" r="3.4" fill="#65A99C" />
+          <circle cx="187" cy="139" r="3.4" fill="#DC626A" />
+        </g>
+      </symbol>
+    </defs>
+
+    <rect width="1024" height="600" fill="url(#hero-dots)" />
+
+    <!-- All drawable content is wrapped in a small leftward shift so    -->
+    <!-- the sensor column + dashboard read as visually centred within   -->
+    <!-- the 1024px viewBox.                                             -->
+    <g transform="translate(-76 0)">
+
+        <!-- Section headers: a little glyph + strong label + accent    -->
+        <!-- underline in each side's theme colour, so the two zones    -->
+        <!-- read clearly at a glance.                                  -->
+        <g>
+          <!-- SENSORS: a miniature puck icon, coral accent. Positioned -->
+          <!-- so the header sits directly above the sensor column       -->
+          <!-- (icon flush with the left edge of the puck at x=220).     -->
+          <g transform="translate(186 26)">
+            <circle cx="11" cy="11" r="11" fill="#DC626A" opacity="0.12" />
+            <circle cx="11" cy="11" r="7"  fill="white" stroke="#DC626A" stroke-width="1.6" />
+            <circle cx="11" cy="11" r="2.5" fill="#DC626A" />
+          </g>
+          <text x="218" y="42" font-size="16" font-weight="800" fill="#0D3D54" letter-spacing="0.26em">SENSORS</text>
+          <rect x="218" y="50" width="70" height="3" rx="1.5" fill="#DC626A" />
+
+          <!-- SOLUTION: a miniature dashboard icon, sky accent. -->
+          <g transform="translate(506 26)">
+            <rect x="0"  y="2"  width="22" height="18" rx="3" fill="#55A1C2" opacity="0.12" />
+            <rect x="2"  y="4"  width="18" height="14" rx="2" fill="white" stroke="#55A1C2" stroke-width="1.4" />
+            <rect x="4"  y="7"  width="11" height="1.8" rx="0.9" fill="#55A1C2" />
+            <rect x="4"  y="10" width="7"  height="1.8" rx="0.9" fill="#55A1C2" />
+            <rect x="4"  y="13" width="9"  height="1.8" rx="0.9" fill="#55A1C2" />
+          </g>
+          <text x="538" y="42" font-size="16" font-weight="800" fill="#0D3D54" letter-spacing="0.26em">SOLUTION</text>
+          <rect x="538" y="50" width="78" height="3" rx="1.5" fill="#55A1C2" />
+        </g>
+
+        <!-- Dashed channels: sensors → dashboard. Each channel starts -->
+        <!-- at the right edge of the puck (shifted sensor column puts  -->
+        <!-- the puck at cx=220, r=34 → x=254).                         -->
+        <g stroke="#0D3D54" stroke-width="1.2" stroke-dasharray="3 5" fill="none" opacity="0.22" stroke-linecap="round">
+          <line x1="254" y1="140" x2="490" y2="200" />
+          <line x1="254" y1="318" x2="490" y2="318" />
+          <line x1="254" y1="496" x2="490" y2="430" />
+        </g>
+
+        <!-- Data packets in flight. Each colour matches the sensor  -->
+        <!-- it originated from. Packets start at the puck edge.      -->
+        <g>
+          <circle class="packet packet-0" cx="254" cy="140" r="4.5" fill="#55A1C2" />
+          <circle class="packet packet-1" cx="254" cy="318" r="4.5" fill="#DC626A" />
+          <circle class="packet packet-2" cx="254" cy="496" r="4.5" fill="#006C58" />
+        </g>
+
+        <!-- ==================== SENSOR 1 — School (indoor climate) ==================== -->
+        <!-- Each sensor used to be drawn as a generic IoT puck. Instead -->
+        <!-- the hero now shows the kind of building the sensor lives in -->
+        <!-- — a school for indoor air, a church for heritage climate,   -->
+        <!-- an office for workspace use. The radiating waves still      -->
+        <!-- emanate from the building, so "this place is reporting in"  -->
+        <!-- reads at a glance.                                          -->
+        <g class="sensor sensor-0" transform="translate(110 140)">
+          <!-- Wireless arcs radiating from the building. -->
+          <g class="waves" stroke="#55A1C2" fill="none" stroke-linecap="round" stroke-width="1.6">
+            <circle class="wave wave-a" cx="110" cy="0" r="42" />
+            <circle class="wave wave-b" cx="110" cy="0" r="42" />
+            <circle class="wave wave-c" cx="110" cy="0" r="42" />
+          </g>
+
+          <!-- Soft elliptical footprint anchors the building visually. -->
+          <ellipse cx="110" cy="14" rx="34" ry="2.6" fill="#0D3D54" opacity="0.09" />
+
+          <!-- School: long building with a row of windows and a       -->
+          <!-- central arched entrance. Centred on the sensor column.  -->
+          <g stroke="#0D3D54" stroke-width="1.4" fill="none" stroke-linejoin="round" stroke-linecap="round">
+            <!-- Building shell with a low gable roof -->
+            <path d="M83 14 L83 -10 L110 -20 L137 -10 L137 14" />
+            <!-- Arched entrance -->
+            <path d="M106 14 L106 2 A 4 4 0 0 1 114 2 L114 14" />
+            <!-- Windows: two on each side of the entrance -->
+            <rect x="88"  y="-4" width="7" height="7" rx="0.5" />
+            <rect x="98"  y="-4" width="7" height="7" rx="0.5" />
+            <rect x="116" y="-4" width="7" height="7" rx="0.5" />
+            <rect x="126" y="-4" width="7" height="7" rx="0.5" />
+          </g>
+
+          <!-- Caption: small green "live" dot to the left of the      -->
+          <!-- use-case label, then headline reading + supporting line. -->
+          <circle class="led" cx="86" cy="45" r="2.4" fill="#65A99C" />
+          <text x="110" y="48" text-anchor="middle" font-size="7.5" font-weight="700" fill="#A8A29E" letter-spacing="0.18em">SCHOOL</text>
+          <text x="110" y="62" text-anchor="middle" font-size="11" font-weight="700" fill="#0D3D54">CO₂ 612 ppm</text>
+          <text x="110" y="74" text-anchor="middle" font-size="8"  fill="#78716C">Classroom 2.04 · 21.4 °C</text>
+        </g>
+
+        <!-- ==================== SENSOR 2 — Church (heritage climate) ==================== -->
+        <!-- A historic building with a humidity-sensitive interior:    -->
+        <!-- ties the coral wave colour into the dashboard's mould-risk -->
+        <!-- alert and preservation chart so the whole hero reads as    -->
+        <!-- one connected story.                                       -->
+        <g class="sensor sensor-1" transform="translate(110 318)">
+          <g class="waves" stroke="#DC626A" fill="none" stroke-linecap="round" stroke-width="1.6">
+            <circle class="wave wave-a" cx="110" cy="0" r="42" />
+            <circle class="wave wave-b" cx="110" cy="0" r="42" />
+            <circle class="wave wave-c" cx="110" cy="0" r="42" />
+          </g>
+
+          <ellipse cx="110" cy="14" rx="34" ry="2.6" fill="#0D3D54" opacity="0.09" />
+
+          <!-- Church: bell tower with cross + spire on the left, nave  -->
+          <!-- with a gable roof on the right, two arched windows and a -->
+          <!-- small arched door.                                       -->
+          <g stroke="#0D3D54" stroke-width="1.4" fill="none" stroke-linejoin="round" stroke-linecap="round">
+            <!-- Bell tower body -->
+            <path d="M82 14 L82 -16 L94 -16 L94 14" />
+            <!-- Pointed spire -->
+            <path d="M80 -16 L88 -32 L96 -16" />
+            <!-- Cross on top of the spire -->
+            <path d="M88 -32 L88 -38 M85 -35 L91 -35" />
+            <!-- Tower opening -->
+            <path d="M86 -8 L86 -3 A 2 2 0 0 1 90 -3 L90 -8" />
+            <!-- Nave body and gable roof -->
+            <path d="M94 14 L94 -6 L118 -20 L142 -6 L142 14" />
+            <!-- Arched windows on the nave -->
+            <path d="M104 7 L104 -2 A 3 3 0 0 1 110 -2 L110 7" />
+            <path d="M126 7 L126 -2 A 3 3 0 0 1 132 -2 L132 7" />
+            <!-- Arched door between the windows -->
+            <path d="M114 14 L114 5 A 3 3 0 0 1 120 5 L120 14" />
+          </g>
+          <circle class="led" cx="86" cy="45" r="2.4" fill="#65A99C" />
+          <text x="110" y="48" text-anchor="middle" font-size="7.5" font-weight="700" fill="#A8A29E" letter-spacing="0.18em">CHURCH</text>
+          <text x="110" y="62" text-anchor="middle" font-size="11" font-weight="700" fill="#0D3D54">52 % RH</text>
+          <text x="110" y="74" text-anchor="middle" font-size="8"  fill="#78716C">Sanctuary · 18.6 °C</text>
+        </g>
+
+        <!-- ==================== SENSOR 3 — Office (workspace use) ==================== -->
+        <g class="sensor sensor-2" transform="translate(110 496)">
+          <g class="waves" stroke="#006C58" fill="none" stroke-linecap="round" stroke-width="1.6">
+            <circle class="wave wave-a" cx="110" cy="0" r="42" />
+            <circle class="wave wave-b" cx="110" cy="0" r="42" />
+            <circle class="wave wave-c" cx="110" cy="0" r="42" />
+          </g>
+
+          <ellipse cx="110" cy="14" rx="32" ry="2.6" fill="#0D3D54" opacity="0.09" />
+
+          <!-- Multi-storey office: 3 × 3 grid of windows with a        -->
+          <!-- centred entrance taking the place of the middle window   -->
+          <!-- on the ground floor.                                     -->
+          <g stroke="#0D3D54" stroke-width="1.4" fill="none" stroke-linejoin="round" stroke-linecap="round">
+            <!-- Building shell -->
+            <path d="M88 14 L88 -28 L140 -28 L140 14" />
+            <!-- Roof cap -->
+            <path d="M86 -28 L142 -28" />
+            <!-- Window grid -->
+            <rect x="92"  y="-24" width="9" height="6" />
+            <rect x="109" y="-24" width="9" height="6" />
+            <rect x="127" y="-24" width="9" height="6" />
+            <rect x="92"  y="-14" width="9" height="6" />
+            <rect x="109" y="-14" width="9" height="6" />
+            <rect x="127" y="-14" width="9" height="6" />
+            <rect x="92"  y="-4"  width="9" height="6" />
+            <rect x="127" y="-4"  width="9" height="6" />
+            <!-- Entrance -->
+            <path d="M109 14 L109 -4 L118 -4 L118 14" />
+          </g>
+          <circle class="led" cx="86" cy="45" r="2.4" fill="#65A99C" />
+          <text x="110" y="48" text-anchor="middle" font-size="7.5" font-weight="700" fill="#A8A29E" letter-spacing="0.18em">OFFICE</text>
+          <text x="110" y="62" text-anchor="middle" font-size="11" font-weight="700" fill="#0D3D54">67 % free</text>
+          <text x="110" y="74" text-anchor="middle" font-size="8"  fill="#78716C">Floor 2 · 12 of 18 desks</text>
+        </g>
+
+        <!-- ==================== SOLUTION — RoomAlyzer dashboard ==================== -->
+        <g filter="url(#soft-shadow)">
+          <!-- Frame -->
+          <rect x="490" y="90" width="500" height="455" rx="14" fill="white" stroke="#E7E5E4" />
+          <!-- Navy chrome bar (only the top corners are rounded) -->
+          <path d="M490 104 Q 490 90 504 90 L 976 90 Q 990 90 990 104 L 990 128 L 490 128 Z" fill="#0D3D54" />
+        </g>
+        <!-- Chrome contents -->
+        <g>
+          <text x="506" y="113" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="-0.01em">RoomAlyzer</text>
+          <g transform="translate(588 105)">
+            <circle class="live-dot" cx="4" cy="4" r="3" fill="#65A99C" />
+            <text x="13" y="8" font-size="8" font-weight="700" fill="rgba(255,255,255,0.75)" letter-spacing="0.18em">LIVE</text>
+          </g>
+          <!-- Tabs -->
+          <g font-size="10" font-weight="600" letter-spacing="0.02em">
+            <rect x="760" y="101" width="60" height="16" rx="8" fill="rgba(255,255,255,0.15)" />
+            <text x="790" y="112" text-anchor="middle" fill="#ffffff">Overview</text>
+            <text x="834" y="112" fill="rgba(255,255,255,0.55)">Rooms</text>
+            <text x="880" y="112" fill="rgba(255,255,255,0.55)">Alerts</text>
+            <text x="922" y="112" fill="rgba(255,255,255,0.55)">Reports</text>
+          </g>
+        </g>
+
+        <!-- KPI tile (top of left column) -->
+        <g transform="translate(506 140)">
+          <rect width="224" height="56" rx="10" fill="#FAFAF9" stroke="#E7E5E4" />
+          <text x="14" y="20" font-size="9" font-weight="700" fill="#A8A29E" letter-spacing="0.14em">READINGS TODAY</text>
+          <text x="14" y="44" font-size="20" font-weight="800" fill="#0D3D54">2,437,812</text>
+          <g transform="translate(166 28)">
+            <rect width="44" height="18" rx="9" fill="#DEF4EC" />
+            <path d="M10 13 L14 8 L18 13" stroke="#006C58" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+            <text x="22" y="14" font-size="9" font-weight="700" fill="#006C58">+12%</text>
+          </g>
+        </g>
+
+        <!-- Line chart (middle of left column): live CO₂ concentration -->
+        <!-- over the last 24 hours — the "what is happening right      -->
+        <!-- now" summary on top of the reporting pile.                 -->
+        <g transform="translate(506 204)">
+          <rect width="224" height="170" rx="10" fill="white" stroke="#E7E5E4" />
+          <text x="14" y="20" font-size="9" font-weight="700" fill="#A8A29E" letter-spacing="0.14em">LAST 24 HOURS</text>
+          <text x="14" y="34" font-size="11" font-weight="600" fill="#0D3D54">CO₂ concentration</text>
+          <g stroke="#F5F5F4" stroke-width="1">
+            <line x1="14" y1="60"  x2="210" y2="60" />
+            <line x1="14" y1="90"  x2="210" y2="90" />
+            <line x1="14" y1="120" x2="210" y2="120" />
+            <line x1="14" y1="150" x2="210" y2="150" />
+          </g>
+          <path
+            class="chart-fill"
+            d="M14 140 C 40 126, 62 72, 96 94 S 148 50, 180 78 S 204 68, 210 72 L 210 150 L 14 150 Z"
+            fill="url(#chart-area)"
+          />
+          <path
+            class="chart-line"
+            d="M14 140 C 40 126, 62 72, 96 94 S 148 50, 180 78 S 204 68, 210 72"
+            fill="none"
+            stroke="#55A1C2"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle class="chart-pulse" cx="210" cy="72" r="4" fill="none" stroke="#55A1C2" stroke-width="1.5" />
+          <circle cx="210" cy="72" r="3.5" fill="#55A1C2" stroke="white" stroke-width="1.5" />
+        </g>
+
+        <!-- Preservation chart (bottom of left column).                 -->
+        <!-- Mirrors the RoomAlyzer "Historical climate & safe zone"     -->
+        <!-- view: a smooth green ribbon traces the rolling-year ideal   -->
+        <!-- RH band for the object; the actual reading is drawn on top  -->
+        <!-- and switches from sky (inside the safe zone) to coral       -->
+        <!-- (breach) via a mask cut from the same ribbon path.          -->
+        <g transform="translate(506 382)">
+          <rect width="224" height="148" rx="10" fill="white" stroke="#E7E5E4" />
+          <text x="14" y="20" font-size="9" font-weight="700" fill="#A8A29E" letter-spacing="0.14em">PRESERVATION</text>
+          <text x="14" y="34" font-size="11" font-weight="600" fill="#0D3D54">Bronze statue · rolling 365 days</text>
+
+          <!-- Chart axes: Y on the left, X along the bottom. -->
+          <g stroke="#E7E5E4" stroke-width="0.8" fill="none" stroke-linecap="round">
+            <path d="M22 46 L22 126" />
+            <path d="M22 126 L210 126" />
+          </g>
+          <!-- Month ticks on the X axis. -->
+          <g font-size="5.5" font-weight="600" fill="#B8B4B1" text-anchor="middle" letter-spacing="0.06em">
+            <text x="40"  y="134">Jan</text>
+            <text x="80"  y="134">Apr</text>
+            <text x="120" y="134">Jul</text>
+            <text x="160" y="134">Oct</text>
+            <text x="198" y="134">Dec</text>
+          </g>
+          <!-- RH ticks on the Y axis. -->
+          <g font-size="5.5" font-weight="600" fill="#B8B4B1" text-anchor="end">
+            <text x="19" y="64">65</text>
+            <text x="19" y="94">50</text>
+            <text x="19" y="122">35</text>
+          </g>
+
+          <!-- Safe-zone ribbon: smooth thick green band. MUST match   -->
+          <!-- the path inside #preserve-safe-band in <defs> so the    -->
+          <!-- mask lines up pixel-for-pixel.                          -->
+          <path
+            d="M26 108 C 48 96, 72 56, 108 56 S 170 96, 206 108"
+            fill="none"
+            stroke="#CDECDC"
+            stroke-width="16"
+            stroke-linecap="round"
+            opacity="0.9"
+          />
+
+          <!-- Actual-RH trace — drawn first in coral. This version is -->
+          <!-- visible only where the masked sky copy above doesn't    -->
+          <!-- cover it, i.e., on the "safe zone breach" segments.     -->
+          <path
+            class="chart-line"
+            d="M26 108 C 32 104, 38 102, 44 98 C 50 108, 56 120, 64 116 C 70 110, 78 90, 86 70 C 92 58, 100 48, 110 52 C 120 56, 128 62, 138 74 C 146 84, 150 108, 158 118 C 164 124, 172 112, 180 102 C 190 104, 200 108, 206 110"
+            fill="none"
+            stroke="#DC626A"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <!-- Same trace in sky, clipped to the inside of the safe    -->
+          <!-- zone via the preserve-safe-band mask.                   -->
+          <g mask="url(#preserve-safe-band)">
+            <path
+              class="chart-line"
+              d="M26 108 C 32 104, 38 102, 44 98 C 50 108, 56 120, 64 116 C 70 110, 78 90, 86 70 C 92 58, 100 48, 110 52 C 120 56, 128 62, 138 74 C 146 84, 150 108, 158 118 C 164 124, 172 112, 180 102 C 190 104, 200 108, 206 110"
+              fill="none"
+              stroke="#55A1C2"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </g>
+
+          <!-- Compact legend mirroring the RoomAlyzer one. -->
+          <g font-size="6" font-weight="600" fill="#78716C">
+            <circle cx="16"  cy="142" r="1.8" fill="#55A1C2" />
+            <text   x="22"   y="144">Actual RH</text>
+            <rect   x="72"   y="139" width="9" height="4" rx="1" fill="#CDECDC" />
+            <text   x="84"   y="144">Safe zone</text>
+            <rect   x="134"  y="139" width="6" height="4" rx="1" fill="#DC626A" />
+            <text   x="143"  y="144">Breach</text>
+          </g>
+        </g>
+
+        <!-- Floorplan map (top of right column).                     -->
+        <!-- Drawn as an architectural floorplan with thick outer      -->
+        <!-- walls, thinner interior walls, door openings with swing   -->
+        <!-- arcs, light furniture hints and named rooms.              -->
+        <g transform="translate(742 140)">
+          <rect width="232" height="234" rx="10" fill="white" stroke="#E7E5E4" />
+          <text x="14" y="20" font-size="9" font-weight="700" fill="#A8A29E" letter-spacing="0.14em">FLOORPLAN</text>
+          <text x="14" y="34" font-size="11" font-weight="600" fill="#0D3D54">Floor 2 · live status</text>
+
+          <g transform="translate(14 46)">
+            <!-- Floor slab (shared background). -->
+            <rect x="0" y="0" width="204" height="172" fill="#FAFAF9" />
+
+            <!-- Blurred half (upper-left triangle): the architectural   -->
+            <!-- floorplan is softened into an abstract background so    -->
+            <!-- the availability number can sit on top of it.           -->
+            <g clip-path="url(#fp-blurred-clip)">
+              <g filter="url(#fp-blur)" opacity="0.5">
+                <use href="#fp-static" />
+              </g>
+            </g>
+
+            <!-- Clear half (lower-right triangle): the floorplan as it  -->
+            <!-- was before — walls, doors, furniture, labels + the      -->
+            <!-- live status dots and the alerting room.                 -->
+            <g clip-path="url(#fp-clear-clip)">
+              <use href="#fp-static" />
+            </g>
+
+            <!-- Outer walls drawn on top so the frame reads crisply     -->
+            <!-- across both halves.                                     -->
+            <rect x="0" y="0" width="204" height="172" fill="none" stroke="#0D3D54" stroke-width="2" />
+
+            <!-- Diagonal divider: a dashed line across the rectangle.   -->
+            <line x1="204" y1="0" x2="0" y2="172" stroke="#0D3D54" stroke-width="1.4" stroke-dasharray="4 4" opacity="0.45" />
+
+            <!-- Availability summary overlaid on the blurred half. -->
+            <g>
+              <text x="60" y="44" text-anchor="middle" font-size="7" font-weight="700" fill="#78716C" letter-spacing="0.22em">AVAILABILITY</text>
+              <text x="60" y="78" text-anchor="middle" font-size="28" font-weight="800" fill="#0D3D54">67%</text>
+            </g>
+          </g>
+
+          <text x="218" y="230" font-size="9" fill="#A8A29E" text-anchor="end">124 rooms monitored</text>
+        </g>
+
+        <!-- Alert card (bottom of right column). Mould growth alert    -->
+        <!-- fired because the Archive 1.08 room sits in the sweet spot -->
+        <!-- of temperature + humidity where mould thrives.             -->
+        <g transform="translate(742 382)">
+          <rect width="232" height="148" rx="10" fill="#FFF1F2" stroke="#FECDD3" />
+          <text x="14" y="20" font-size="9" font-weight="700" fill="#DC626A" letter-spacing="0.14em">MOULD ALERT</text>
+          <g transform="translate(14 36)">
+            <circle cx="12" cy="12" r="12" fill="#DC626A" />
+            <path d="M12 6 L12 13 M12 16 L12 16.1" stroke="white" stroke-width="2.2" stroke-linecap="round" />
+          </g>
+          <text x="40" y="50" font-size="13" font-weight="700" fill="#0D3D54">Mould growth risk</text>
+          <text x="40" y="66" font-size="10" fill="#78716C">Optimal conditions · Archive 1.08</text>
+          <!-- Action buttons -->
+          <g transform="translate(14 92)">
+            <rect width="112" height="32" rx="8" fill="#0D3D54" />
+            <text x="56" y="20" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">Notify facility</text>
+          </g>
+          <g transform="translate(134 92)">
+            <rect width="84" height="32" rx="8" fill="white" stroke="#E7E5E4" />
+            <text x="42" y="20" text-anchor="middle" font-size="10" font-weight="600" fill="#0D3D54">Snooze</text>
+          </g>
+        </g>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .hero-anim {
+    font-family: var(--font-sans);
+  }
+
+  /* Wireless arcs: three concentric rings that grow and fade, one after
+     the other, simulating an antenna transmitting. */
+  .wave {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: wave-grow 2.8s ease-out infinite;
+    opacity: 0;
+  }
+  .wave-a { animation-delay: 0s; }
+  .wave-b { animation-delay: 0.9s; }
+  .wave-c { animation-delay: 1.8s; }
+  .sensor-1 .wave-a { animation-delay: 0.3s; }
+  .sensor-1 .wave-b { animation-delay: 1.2s; }
+  .sensor-1 .wave-c { animation-delay: 2.1s; }
+  .sensor-2 .wave-a { animation-delay: 0.6s; }
+  .sensor-2 .wave-b { animation-delay: 1.5s; }
+  .sensor-2 .wave-c { animation-delay: 2.4s; }
+
+  @keyframes wave-grow {
+    0%   { transform: scale(1);   opacity: 0.5; }
+    70%  { opacity: 0.08; }
+    100% { transform: scale(1.9); opacity: 0; }
+  }
+
+  /* Data packet flying from the puck edge (x=254) to the dashboard
+     (x=490). The delta vectors match the dashed lines above. */
+  .packet {
+    opacity: 0;
+    animation-duration: 2.8s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+    animation-iteration-count: infinite;
+    will-change: transform, opacity;
+  }
+  @keyframes packet-0 {
+    0%   { transform: translate(0, 0);         opacity: 0; }
+    10%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { transform: translate(236px, 60px);  opacity: 0; }
+  }
+  @keyframes packet-1 {
+    0%   { transform: translate(0, 0);         opacity: 0; }
+    10%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { transform: translate(236px, 0);     opacity: 0; }
+  }
+  @keyframes packet-2 {
+    0%   { transform: translate(0, 0);         opacity: 0; }
+    10%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { transform: translate(236px, -66px); opacity: 0; }
+  }
+  .packet-0 { animation-name: packet-0; animation-delay: 0s; }
+  .packet-1 { animation-name: packet-1; animation-delay: 0.9s; }
+  .packet-2 { animation-name: packet-2; animation-delay: 1.8s; }
+
+  /* Green status LED on each sensor. */
+  .led {
+    animation: led-blink 1.8s ease-in-out infinite;
+  }
+  .sensor-1 .led { animation-delay: 0.6s; }
+  .sensor-2 .led { animation-delay: 1.2s; }
+  @keyframes led-blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.3; }
+  }
+
+  /* Dashboard "live" dot mirrors the sensor LEDs. */
+  .live-dot {
+    animation: led-blink 1.8s ease-in-out infinite;
+  }
+
+  /* Line chart draws itself in once, then sits with a pulsing dot at
+     the far end. The dasharray is sized to cover the longer of the
+     two line-chart paths (preservation ≈ 384px, CO₂ ≈ 260px). */
+  .chart-line {
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    animation: chart-draw 3.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+  }
+  .chart-fill {
+    opacity: 0;
+    animation: chart-fade-in 1s ease-out 3.4s forwards;
+  }
+  @keyframes chart-draw {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes chart-fade-in {
+    to { opacity: 1; }
+  }
+
+  /* Pulsing ring at the current chart value. */
+  .chart-pulse {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: chart-ring 2.2s ease-out infinite;
+    opacity: 0;
+  }
+  @keyframes chart-ring {
+    0%   { transform: scale(0.8); opacity: 0.8; }
+    100% { transform: scale(3);   opacity: 0; }
+  }
+
+  /* One room on the floorplan is in alert: emit a coral ring. */
+  .alert-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: alert-ring 1.8s ease-out infinite;
+  }
+  @keyframes alert-ring {
+    0%   { transform: scale(1);   opacity: 0.9; }
+    100% { transform: scale(4.5); opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wave,
+    .packet,
+    .led,
+    .live-dot,
+    .chart-line,
+    .chart-fill,
+    .chart-pulse,
+    .alert-ring {
+      animation: none;
+    }
+    .packet { opacity: 1; }
+    .wave   { opacity: 0.2; }
+    .chart-line { stroke-dashoffset: 0; }
+    .chart-fill { opacity: 1; }
+  }
+</style>

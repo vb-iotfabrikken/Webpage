@@ -1,0 +1,102 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  author: { "@type": "Person", name: post.data.author },
+  publisher: {
+    "@type": "Organization",
+    name: "IoT Fabrikken",
+    logo: { "@type": "ImageObject", url: "https://iot-fabrikken.com/favicon.svg" },
+  },
+  mainEntityOfPage: `https://iot-fabrikken.com/en/blog/${post.id}/`,
+};
+---
+
+<Layout title={`${post.data.title} | Blog | IoT Fabrikken`} description={post.data.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
+
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href="/en/" class="hover:text-coral-500 transition-colors">Home</a></li>
+      <li aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+      <li><a href="/en/blog/" class="hover:text-coral-500 transition-colors">Blog</a></li>
+      <li aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+      <li><span class="text-navy-500 truncate max-w-[60ch]">{post.data.title}</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    eyebrow={`Blog · ${formatDate(post.data.pubDate)}`}
+    title={post.data.title}
+    lead={post.data.description}
+    align="left"
+  >
+    <Button href="/en/blog/" variant="secondary" size="lg" slot="cta">← Back to blog</Button>
+  </Hero>
+
+  <article class="py-14">
+    <div class="container-page max-w-3xl">
+      <div class="flex items-center gap-3 text-xs font-semibold uppercase tracking-wider text-stone-300 mb-8">
+        <span>{post.data.author}</span>
+        <span aria-hidden="true">·</span>
+        <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+        {post.data.updatedDate && (
+          <>
+            <span aria-hidden="true">·</span>
+            <span>Updated {formatDate(post.data.updatedDate)}</span>
+          </>
+        )}
+      </div>
+
+      <div class="landing-prose">
+        <Content />
+      </div>
+
+      {post.data.tags && post.data.tags.length > 0 && (
+        <div class="mt-10 pt-8 border-t border-stone-100">
+          <p class="text-xs font-semibold uppercase tracking-wider text-stone-300">Tags</p>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            {post.data.tags.map((t) => (
+              <span class="inline-block px-2 py-0.5 rounded bg-stone-50 text-[11px] font-medium text-stone-900/70 border border-stone-100">
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </article>
+
+  <CtaBand
+    title="Want to know more?"
+    subtitle="Drop us a line — we're happy to discuss anything in this post."
+    primaryLabel="Book demo"
+    primaryHref="/en/contact/book-demo/"
+    secondaryLabel="Contact sales"
+    secondaryHref="/en/contact/sales/"
+  />
+</Layout>

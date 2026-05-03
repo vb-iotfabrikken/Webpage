@@ -1,0 +1,13 @@
+---
+import HubIndex from "../../../components/HubIndex.astro";
+import { platformHub } from "../../../data/site";
+---
+
+<HubIndex
+  hub={platformHub}
+  basePath="/en/platform/"
+  breadcrumbs={[
+    { label: "Home", href: "/en/" },
+    { label: "Platform" },
+  ]}
+/>

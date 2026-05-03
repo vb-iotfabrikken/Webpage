@@ -2,69 +2,69 @@ export type ModuleColor = "coral" | "sky" | "navy" | "forest";
 
 export type Module = {
   slug: string;
-  navn: string;
-  kort: string;
-  lang: string;
+  name: string;
+  short: string;
+  long: string;
   color: ModuleColor;
   href: string;
 };
 
 export const modules: Module[] = [
   {
-    slug: "indeklima",
-    navn: "Indeklima",
-    kort: "Håndter klager med data i stedet for følelser.",
-    lang: "Måling af CO2, temperatur, luftfugtighed og VOC. Vær på forkant med skimmel og fugt.",
+    slug: "indoor-climate",
+    name: "Indoor climate",
+    short: "Handle complaints with data instead of feelings.",
+    long: "Measure CO2, temperature, humidity and VOC. Stay ahead of mould and damp.",
     color: "sky",
-    href: "/indeklima",
+    href: "/en/modules/indoor-climate/",
   },
   {
     slug: "space-management",
-    navn: "Space management",
-    kort: "Overblik over kontor- og mødefaciliteter.",
-    lang: "Reager hurtigt på skiftende behov hos jeres medarbejdere og optimer jeres arealudnyttelse.",
+    name: "Space management",
+    short: "Overview of your offices and meeting facilities.",
+    long: "React quickly to your employees' changing needs and optimise how you use your floor space.",
     color: "navy",
-    href: "/space-management",
+    href: "/en/modules/space-management/",
   },
   {
-    slug: "vandlaekage",
-    navn: "Vandlækagedetektion",
-    kort: "Opdag lækager før de koster dyrt.",
-    lang: "Trådløse sensorer der alarmerer med det samme, hvis der registreres vand uønskede steder.",
+    slug: "water-detection",
+    name: "Water detection",
+    short: "Spot leaks before they get expensive.",
+    long: "Wireless sensors that alarm instantly the moment water is detected where it shouldn't be.",
     color: "forest",
-    href: "/vandlaekage",
+    href: "/en/modules/water-detection/",
   },
   {
-    slug: "konservering",
-    navn: "Preservation",
-    kort: "Beskyt værdifulde samlinger og materialer.",
-    lang: "Kontinuerlig overvågning af temperatur og luftfugtighed til museer, arkiver og lagre.",
+    slug: "preservation",
+    name: "Preservation",
+    short: "Protect valuable collections and materials.",
+    long: "Continuous monitoring of temperature and humidity for museums, archives and storage facilities.",
     color: "coral",
-    href: "/konservering",
+    href: "/en/modules/preservation/",
   },
   {
-    slug: "sensorbaseret-rengoring",
-    navn: "Sensorbaseret rengøring",
-    kort: "Rengør efter behov – ikke efter skema.",
-    lang: "Brug data om rumbrug til at styre rengøring dér, hvor det giver mening.",
+    slug: "usage-cleaning",
+    name: "Usage and cleaning",
+    short: "Clean on demand — not to a schedule.",
+    long: "Use occupancy data to direct cleaning to the rooms where it actually makes a difference.",
     color: "sky",
-    href: "/sensorbaseret-rengoring",
+    href: "/en/modules/usage-cleaning/",
   },
   {
-    slug: "pushbutton",
-    navn: "Pushbutton",
-    kort: "Feedback i realtid fra brugerne.",
-    lang: "Lad medarbejdere og gæster give input med et enkelt tryk – målrettet facility-teamet.",
+    slug: "push-buttons",
+    name: "Push buttons",
+    short: "Real-time feedback from your users.",
+    long: "Let staff and guests give input with a single tap — routed straight to the facility team.",
     color: "navy",
-    href: "/pushbutton",
+    href: "/en/modules/push-buttons/",
   },
   {
-    slug: "roomusage",
-    navn: "Roomusage",
-    kort: "Forstå hvordan rummene faktisk bruges.",
-    lang: "Detaljeret data om mødelokaler og fællesarealer giver grundlag for bedre beslutninger.",
+    slug: "lockers-doors",
+    name: "Lockers and doors",
+    short: "Opens, closes, left ajar.",
+    long: "Wireless open/close sensors for doors, cabinets, windows and lockers — without any wiring.",
     color: "forest",
-    href: "/roomusage",
+    href: "/en/modules/lockers-doors/",
   },
 ];
 

@@ -1,0 +1,292 @@
+---
+import Layout from "./Layout.astro";
+import Button from "../components/Button.astro";
+import CtaBand from "../components/CtaBand.astro";
+import FAQ from "../components/FAQ.astro";
+import { landingCategories, categoryColorClasses } from "../data/landingCategories";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"landingpages">;
+  relatedEntries?: CollectionEntry<"landingpages">[];
+}
+
+const { entry, relatedEntries = [] } = Astro.props;
+const d = entry.data;
+
+const category = landingCategories[d.category];
+const cat = categoryColorClasses(category.color);
+
+const eyebrow = d.eyebrow ?? category.eyebrow;
+
+const primaryCta = d.primaryCta ?? { label: "Book demo", href: "/en/contact/book-demo/" };
+const secondaryCta = d.secondaryCta ?? { label: "Contact sales", href: "/en/contact/sales/" };
+
+const formattedUpdated = d.updatedAt
+  ? new Intl.DateTimeFormat("en-GB", { year: "numeric", month: "long" }).format(d.updatedAt)
+  : null;
+
+const pageTitle = `${d.title} | IoT Fabrikken`;
+---
+
+<Layout title={pageTitle} description={d.description}>
+  {d.noindex && <meta slot="head" name="robots" content="noindex,follow" />}
+
+  <section class="relative overflow-hidden bg-stone-50 border-b border-stone-100">
+    <div class="absolute inset-0 pointer-events-none opacity-[0.05]" aria-hidden="true">
+      <div
+        class="w-full h-full"
+        style="background-image: radial-gradient(var(--color-navy-500) 1px, transparent 1px); background-size: 28px 28px;"
+      ></div>
+    </div>
+
+    <div class="relative container-page pt-10 md:pt-14 pb-10 md:pb-14">
+      <nav aria-label="Breadcrumb" class="text-sm text-stone-300 mb-6 flex flex-wrap items-center gap-1.5">
+        <a href="/en/" class="hover:text-navy-500">Home</a>
+        <span>/</span>
+        <a href="/en/library/" class="hover:text-navy-500">Library</a>
+        <span>/</span>
+        <a href={`/en/library/?category=${category.slug}`} class="hover:text-navy-500">{category.name}</a>
+        <span>/</span>
+        <span class="text-navy-500" aria-current="page">{d.title}</span>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-7">
+          <p class={`reveal inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-semibold uppercase tracking-wider mb-6 ${cat.chip}`}>
+            <span class={`w-1.5 h-1.5 rounded-full ${cat.dot}`}></span>
+            {eyebrow}
+          </p>
+          <h1 class="reveal text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight text-navy-500">
+            {d.heroTitle}
+            {d.heroTitleAccent && <span class={cat.accent}> {d.heroTitleAccent}</span>}
+          </h1>
+          <p class="reveal mt-6 text-lg md:text-xl text-stone-900/70 leading-relaxed">
+            {d.heroLead}
+          </p>
+          <div class="reveal mt-8 flex flex-wrap gap-3">
+            <Button href={primaryCta.href} variant="primary" size="lg">{primaryCta.label}</Button>
+            <Button href={secondaryCta.href} variant="secondary" size="lg">{secondaryCta.label}</Button>
+          </div>
+        </div>
+
+        {d.heroImage && (
+          <div class="lg:col-span-5 reveal">
+            <div class="bg-white border border-stone-100 rounded-xl shadow-xl overflow-hidden">
+              <img
+                src={d.heroImage}
+                alt={d.heroImageAlt ?? d.title}
+                class="w-full h-auto block"
+                loading="eager"
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24">
+    <div class="container-page grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+      <article class="lg:col-span-8 landing-prose">
+        <slot />
+      </article>
+
+      <aside class="lg:col-span-4 space-y-6 lg:sticky lg:top-24 self-start">
+        {d.keyPoints && d.keyPoints.length > 0 && (
+          <div class="reveal bg-white border border-stone-100 rounded-xl p-6">
+            <h2 class="text-sm font-semibold uppercase tracking-wider text-navy-500 mb-4">
+              At a glance
+            </h2>
+            <ul class="space-y-4">
+              {d.keyPoints.map((k) => (
+                <li>
+                  <div class="flex items-baseline gap-3">
+                    <span class={`mt-1 w-1.5 h-1.5 rounded-full shrink-0 ${cat.dot}`}></span>
+                    <div>
+                      <div class="font-semibold text-navy-500">{k.title}</div>
+                      {k.unit && (
+                        <div class={`text-xs font-semibold mt-0.5 ${cat.accent}`}>{k.unit}</div>
+                      )}
+                      {k.body && (
+                        <p class="mt-1 text-sm text-stone-900/70 leading-relaxed">{k.body}</p>
+                      )}
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div class="reveal bg-navy-500 text-white rounded-xl p-6">
+          <h2 class="text-lg font-semibold">Get a no-strings overview.</h2>
+          <p class="mt-2 text-sm text-white/80">
+            We'll show the platform live, walk through your case and give a price estimate.
+          </p>
+          <div class="mt-4 flex flex-col gap-2">
+            <Button href="/en/contact/book-demo/" variant="white" size="sm">Book demo</Button>
+            <Button
+              href="/en/contact/sales/"
+              variant="ghost"
+              size="sm"
+              class="text-white hover:text-white/80 border border-white/40 hover:bg-white/10"
+            >
+              Contact sales
+            </Button>
+          </div>
+        </div>
+
+        {d.tags && d.tags.length > 0 && (
+          <div class="reveal">
+            <div class="text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2">
+              Tags
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {d.tags.map((t) => (
+                <a
+                  href={`/en/library/?tag=${encodeURIComponent(t)}`}
+                  class="px-2.5 py-1 rounded-md bg-stone-100 text-navy-500 hover:bg-sky-500 hover:text-white text-xs font-medium transition-colors"
+                >
+                  {t}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {formattedUpdated && (
+          <p class="text-xs text-stone-300">Last updated: {formattedUpdated}</p>
+        )}
+      </aside>
+    </div>
+  </section>
+
+  {d.faq && d.faq.length > 0 && <FAQ items={d.faq} />}
+
+  {relatedEntries.length > 0 && (
+    <section class="py-16 md:py-20 bg-stone-50">
+      <div class="container-page">
+        <div class="reveal max-w-2xl mb-10">
+          <p class="inline-block px-3 py-1 rounded-md bg-white text-navy-500 border border-stone-100 text-xs font-semibold uppercase tracking-wider mb-4">
+            Related
+          </p>
+          <h2 class="text-2xl md:text-3xl font-bold text-navy-500 tracking-tight">
+            You might also like
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {relatedEntries.map((r) => {
+            const rc = landingCategories[r.data.category];
+            const rcc = categoryColorClasses(rc.color);
+            return (
+              <a
+                href={`/en/library/${r.id}/`}
+                class="reveal block bg-white border border-stone-100 rounded-xl p-6 hover:border-navy-500 transition-colors group"
+              >
+                <span class={`inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-[11px] font-semibold uppercase tracking-wider ${rcc.chip}`}>
+                  <span class={`w-1.5 h-1.5 rounded-full ${rcc.dot}`}></span>
+                  {rc.name}
+                </span>
+                <h3 class="mt-4 text-lg font-semibold text-navy-500 group-hover:text-coral-500 transition-colors">
+                  {r.data.title}
+                </h3>
+                <p class="mt-2 text-sm text-stone-900/70 leading-relaxed line-clamp-3">
+                  {r.data.description}
+                </p>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CtaBand
+    title="Ready to see RoomAlyzer in your building?"
+    subtitle="Book a 30-minute demo. We'll walk through your case and give you a concrete price estimate."
+    primaryLabel="Book demo"
+    secondaryLabel="Contact sales"
+    variant="dark"
+  />
+</Layout>
+
+<style is:global>
+  .landing-prose {
+    color: var(--color-stone-900);
+    line-height: 1.7;
+    font-size: 1.0625rem;
+  }
+  .landing-prose > * + * {
+    margin-top: 1.25em;
+  }
+  .landing-prose h2 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+    margin-top: 2.25em;
+    margin-bottom: 0.5em;
+    color: var(--color-navy-500);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .landing-prose h3 {
+    font-size: 1.25rem;
+    margin-top: 1.75em;
+    margin-bottom: 0.5em;
+    color: var(--color-navy-500);
+    font-weight: 600;
+  }
+  .landing-prose p {
+    color: color-mix(in srgb, var(--color-stone-900) 78%, white);
+  }
+  .landing-prose a {
+    color: var(--color-sky-600);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  .landing-prose a:hover {
+    color: var(--color-coral-500);
+  }
+  .landing-prose strong {
+    color: var(--color-navy-500);
+    font-weight: 600;
+  }
+  .landing-prose ul,
+  .landing-prose ol {
+    padding-left: 1.25rem;
+  }
+  .landing-prose ul {
+    list-style: disc;
+  }
+  .landing-prose ol {
+    list-style: decimal;
+  }
+  .landing-prose li + li {
+    margin-top: 0.4em;
+  }
+  .landing-prose blockquote {
+    border-left: 3px solid var(--color-sky-500);
+    padding: 0.5em 1em;
+    background: var(--color-stone-50);
+    border-radius: 0.25rem;
+    font-style: italic;
+    color: var(--color-navy-500);
+  }
+  .landing-prose code {
+    background: var(--color-stone-100);
+    padding: 0.125em 0.35em;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+  }
+  .landing-prose img {
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-stone-100);
+  }
+  .landing-prose hr {
+    border: 0;
+    border-top: 1px solid var(--color-stone-100);
+    margin: 2.5em 0;
+  }
+</style>

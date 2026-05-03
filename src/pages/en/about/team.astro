@@ -1,0 +1,92 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import { team, departments } from "../../../data/team";
+
+const grouped = new Map<(typeof team)[number]["department"], typeof team>();
+for (const m of team) {
+  const list = grouped.get(m.department) ?? [];
+  list.push(m);
+  grouped.set(m.department, list);
+}
+
+const departmentOrder: (keyof typeof departments)[] = [
+  "leadership",
+  "engineering",
+  "customer-success",
+  "sales",
+  "operations",
+];
+---
+
+<Layout
+  title="The team | About | IoT Fabrikken"
+  description="The eleven people behind IoT Fabrikken — engineers, customer success, sales and operations."
+>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href="/en/" class="hover:text-coral-500 transition-colors">Home</a></li>
+      <li aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+      <li><a href="/en/about/" class="hover:text-coral-500 transition-colors">About</a></li>
+      <li aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+      <li><span class="text-navy-500">The team</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    eyebrow="About"
+    title="The team."
+    titleAccent="Eleven people. One product."
+    lead="Engineers, customer success, sales and operations — the people who build, sell, ship and look after the RoomAlyzer platform."
+    align="left"
+  >
+    <Button href="/en/about/careers/" variant="primary" size="lg" slot="cta">See open roles</Button>
+    <Button href="/en/contact/" variant="secondary" size="lg" slot="cta">Contact us</Button>
+  </Hero>
+
+  <section class="py-14">
+    <div class="container-page max-w-4xl">
+      {departmentOrder.map((dept) => {
+        const members = grouped.get(dept) ?? [];
+        if (members.length === 0) return null;
+        const meta = departments[dept];
+        return (
+          <div class="mb-12">
+            <div class="mb-6 pb-3 border-b border-stone-100">
+              <h2 class="text-2xl md:text-3xl font-bold text-navy-500 tracking-tight">{meta.label}</h2>
+              <p class="mt-1 text-stone-900/70">{meta.blurb}</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {members.map((m) => (
+                <article class="bg-white border border-stone-100 rounded-xl p-5 hover:border-navy-500 transition-colors">
+                  <div class="flex items-start gap-4">
+                    <div class="shrink-0 w-14 h-14 rounded-full bg-navy-500 text-white flex items-center justify-center text-lg font-semibold" aria-hidden="true">
+                      {m.name.split(" ").map((p) => p[0]).slice(0, 2).join("")}
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="text-base font-semibold text-navy-500">{m.name}</h3>
+                      <p class="text-sm text-coral-500 font-medium">{m.role}</p>
+                      <p class="mt-2 text-sm text-stone-900/80 leading-relaxed">{m.bio}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+
+  <CtaBand
+    title="We are hiring."
+    subtitle="Talented engineers, customer success and operations people — we'd love to hear from you."
+    primaryLabel="See open roles"
+    primaryHref="/en/about/careers/"
+    secondaryLabel="Contact us"
+    secondaryHref="/en/contact/"
+  />
+</Layout>

@@ -5,6 +5,35 @@ alwaysApply: true
 
 # Project Rules
 
+## Language
+
+- All content, code, UI text, filenames, URL slugs, identifiers, comments,
+  commit messages, and assistant responses MUST be in English.
+- Do not introduce Danish (or any other non-English) text anywhere. If any
+  is encountered in existing files, translate it to English as part of the
+  change.
+
+## General
+
 - Keep changes small and focused.
 - Prefer Astro and Tailwind best practices.
 - Avoid adding dependencies unless necessary.
+
+## Logo carousel (locked)
+
+The customer logo carousel — the `LogoMarquee.astro` component, its
+markup, CSS, JavaScript, the customer roster, the per-customer URLs, and
+the logo asset files under `public/logos/` — is **frozen** and must not
+be modified in any way (size, spacing, speed, colours, hover effect,
+animation, drag behaviour, list contents, ordering, links, or assets).
+
+If a future user request would touch any of the above, you MUST first
+ask the user to confirm explicitly that they really want to change the
+locked carousel before making the edit. Phrase it as a direct yes/no
+confirmation, e.g.: "The logo carousel is locked per project rules — are
+you sure you want to change it?"
+
+The only exception is **moving the `<LogoMarquee />` invocation up or
+down within a page** (i.e. its vertical position relative to other
+sections, with no changes to the component itself). Even this exception
+requires explicit confirmation from the user before being applied.

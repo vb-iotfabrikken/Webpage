@@ -1,0 +1,63 @@
+# IoT Fabrikken
+
+> IoT Fabrikken builds wireless IoT sensor networks for indoor climate,
+> preservation, space management, water leak detection and energy. The
+> RoomAlyzer platform delivers real-time data, dashboards, alarms and open
+> integrations (MQTT, REST, Azure IoT Hub, OS2iot, Dalux, Pronestor, Power BI,
+> BMS/CTS). We serve schools, offices, hospitals, museums, churches, archives,
+> municipalities, hotels, retail, warehouses and elderly care across Europe.
+
+## Platform
+
+- [How it works](https://iot-fabrikken.com/en/platform/how-it-works/)
+- [Architecture](https://iot-fabrikken.com/en/platform/architecture/)
+- [Dashboards](https://iot-fabrikken.com/en/platform/dashboards/)
+- [Reports](https://iot-fabrikken.com/en/platform/reports/)
+- [Maps & floor plans](https://iot-fabrikken.com/en/platform/maps-floorplans/)
+- [Mobile & TV](https://iot-fabrikken.com/en/platform/mobile-tv/)
+- [AI analytics](https://iot-fabrikken.com/en/platform/ai-analytics/)
+- [Security](https://iot-fabrikken.com/en/platform/security/)
+- [API](https://iot-fabrikken.com/en/platform/api/)
+
+## Modules
+
+- [Indoor climate](https://iot-fabrikken.com/en/modules/indoor-climate/) — CO₂, temperature, humidity, VOC for schools, offices, hospitals.
+- [Preservation](https://iot-fabrikken.com/en/modules/preservation/) — protect collections, archives, churches, manors against humidity and temperature swings.
+- [Space management](https://iot-fabrikken.com/en/modules/space-management/) — meeting room occupancy, desk sharing, floor utilisation.
+- [Water detection](https://iot-fabrikken.com/en/modules/water-detection/) — stop leaks before they spread; insurance-grade documentation.
+- [Push buttons](https://iot-fabrikken.com/en/modules/push-buttons/) — one-tap service calls for cleaning, maintenance, restock.
+- [Lockers & doors](https://iot-fabrikken.com/en/modules/lockers-doors/) — wireless open/close monitoring.
+- [Usage & cleaning](https://iot-fabrikken.com/en/modules/usage-cleaning/) — demand-based cleaning driven by real occupancy.
+- [Energy](https://iot-fabrikken.com/en/modules/energy/) — combine climate and presence data to cut consumption.
+
+## Library
+
+Full knowledge base with 325 articles across 19 catalogs: [library](https://iot-fabrikken.com/en/library/)
+Browse by dimension: [tag browser](https://iot-fabrikken.com/en/library/tags/)
+
+## Buying
+
+- [Pricing](https://iot-fabrikken.com/en/pricing/)
+- [ROI calculator](https://iot-fabrikken.com/en/roi/calculator/)
+- [Compare](https://iot-fabrikken.com/en/compare/)
+- [Book a demo](https://iot-fabrikken.com/en/contact/book-demo/)
+
+## Contact
+
+- [Sales](https://iot-fabrikken.com/en/contact/sales/)
+- [Support](https://iot-fabrikken.com/en/contact/support-info/)
+- [Partners](https://iot-fabrikken.com/en/contact/become-partner/)
+
+## About
+
+- [Story](https://iot-fabrikken.com/en/about/story/)
+- [Team](https://iot-fabrikken.com/en/about/team/)
+- [D-label](https://iot-fabrikken.com/en/about/d-label/)
+
+## Legal
+
+- [Privacy](https://iot-fabrikken.com/en/legal/privacy/)
+- [Cookies](https://iot-fabrikken.com/en/legal/cookies/)
+- [Terms](https://iot-fabrikken.com/en/legal/terms/)
+- [Security](https://iot-fabrikken.com/en/legal/security/)
+- [SLA](https://iot-fabrikken.com/en/legal/sla/)

@@ -1,0 +1,13 @@
+---
+import HubIndex from "../../../components/HubIndex.astro";
+import { caseStudiesHub } from "../../../data/site";
+---
+
+<HubIndex
+  hub={caseStudiesHub}
+  basePath="/en/case-studies/"
+  breadcrumbs={[
+    { label: "Home", href: "/en/" },
+    { label: "Case studies" },
+  ]}
+/>
