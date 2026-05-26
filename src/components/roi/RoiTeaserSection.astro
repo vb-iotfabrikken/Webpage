@@ -1,0 +1,63 @@
+---
+import Button from "../Button.astro";
+
+const salesHref = "/en/contact/sales/";
+
+const calculators = [
+  {
+    id: "desk",
+    name: "Desk Optimizer",
+    description: "Right-size hybrid offices from desk count, attendance and cost per desk.",
+    href: "/en/roi/calculator/#desk",
+  },
+  {
+    id: "energy",
+    name: "Energy Saver",
+    description: "Estimate heating savings from indoor climate setbacks and building data.",
+    href: "/en/roi/calculator/#energy",
+  },
+];
+---
+
+<section class="py-20 md:py-28 bg-stone-50">
+  <div class="container-page">
+    <div class="reveal max-w-2xl mb-10 md:mb-12">
+      <p class="inline-block px-3 py-1 rounded-md bg-white text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
+        Interactive value
+      </p>
+      <h2 class="text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight text-navy-500 max-w-3xl">
+        See what you could <span class="text-sky-600">save.</span>
+      </h2>
+      <p class="mt-5 text-lg md:text-xl text-stone-900/70 max-w-2xl">
+        Pick a calculator, move the sliders, and get an illustrative savings estimate — then talk to us about what it means for your buildings.
+      </p>
+    </div>
+
+    <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6 max-w-4xl">
+      {calculators.map((calc) => (
+        <article class="flex flex-col h-full bg-white border border-stone-100 rounded-xl p-6 md:p-8 shadow-sm">
+          <p class="text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2">Calculator</p>
+          <h3 class="text-xl font-semibold text-navy-500 mb-2">{calc.name}</h3>
+          <p class="text-sm text-stone-900/70 leading-relaxed flex-1">{calc.description}</p>
+          <p class="mt-4 text-xs text-stone-300 leading-relaxed">
+            Illustrative estimate based on industry rules of thumb — not a formal audit.
+          </p>
+          <div class="mt-6 flex flex-col sm:flex-row flex-wrap gap-3">
+            <Button href={calc.href} variant="primary" size="md" class="w-full sm:w-auto">
+              Open {calc.name}
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" >
+                <path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </Button>
+            <Button href={salesHref} variant="secondary" size="md" class="w-full sm:w-auto">
+              Discuss your ROI with Sales
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" >
+                <path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </Button>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

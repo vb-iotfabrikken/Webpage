@@ -26,6 +26,9 @@ export default defineConfig({
     // documents or inbound links still resolve. When the /da/ tree ships these
     // will be replaced by proper /da/... routes that use the Danish slugs
     // natively.
+    '/en/cases/': '/en/case-studies/',
+    '/da/cases/': '/da/case-studies/',
+    '/da/case-studies/varde-kommune-3/': '/da/case-studies/varde-kommune/',
     '/en/case-studies/norddjurs-kommune/': '/en/case-studies/norddjurs-municipality/',
     '/en/case-studies/varde-kommune/': '/en/case-studies/varde-municipality/',
     '/en/case-studies/gribskov-kommune/': '/en/case-studies/gribskov-municipality/',

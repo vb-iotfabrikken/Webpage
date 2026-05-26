@@ -19,7 +19,7 @@ export const aboutHub: Hub = {
       eyebrow: "About",
       title: "The team.",
       titleAccent: "Meet the people behind the product.",
-      lead: "Eleven people in development, customer success, sales and operations.",
+      lead: "Ten people in development, customer success, sales and operations.",
     },
     {
       slug: "careers",
@@ -46,8 +46,8 @@ export const aboutHub: Hub = {
       slug: "partners",
       eyebrow: "About",
       title: "Partners.",
-      titleAccent: "Our network across Europe.",
-      lead: "Resellers, integrators and technology partners who work with IoT Fabrikken every day.",
+      titleAccent: "Cooperation creates solutions.",
+      lead: "Strong partners contribute specialised knowledge, technology and experience — together we build better outcomes for buildings and the people in them.",
     },
   ],
 };

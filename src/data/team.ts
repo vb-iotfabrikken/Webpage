@@ -2,7 +2,7 @@
  * The IoT Fabrikken team. Rendered at `/en/about/team/`. Keep descriptions
  * short (1–2 sentences) and factual — LinkedIn is the right place for a CV.
  *
- * Names and titles are placeholders modelled on the 11-person team described
+ * Names and titles are placeholders modelled on the 10-person team described
  * in the legacy site copy and should be updated when the real roster is
  * provided.
  */
@@ -17,12 +17,6 @@ export type TeamMember = {
 };
 
 export const team: TeamMember[] = [
-  {
-    name: "Dennis Thomsen",
-    role: "CEO & co-founder",
-    bio: "Twenty-five years building SaaS businesses, from DIBS through eSmiley to IoT Fabrikken. Keeps customers, investors and the engineering team aligned.",
-    department: "leadership",
-  },
   {
     name: "Dorthe Jensen",
     role: "Head of sales",

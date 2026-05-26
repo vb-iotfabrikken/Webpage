@@ -1,0 +1,44 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div
+  class:list={["flex items-center gap-2", className]}
+  role="group"
+  aria-label="Currency"
+>
+  <span class="text-xs font-medium text-stone-300">Currency</span>
+  <button
+    type="button"
+    class="roi-currency-btn is-active px-3 py-1.5 text-xs font-semibold rounded-md border transition-colors"
+    data-roi-currency="EUR"
+  >
+    EUR
+  </button>
+  <button
+    type="button"
+    class="roi-currency-btn px-3 py-1.5 text-xs font-semibold rounded-md border transition-colors"
+    data-roi-currency="DKK"
+  >
+    DKK
+  </button>
+</div>
+
+<style>
+  .roi-currency-btn.is-active {
+    background: var(--color-navy-500);
+    color: white;
+    border-color: var(--color-navy-500);
+  }
+  .roi-currency-btn:not(.is-active) {
+    border-color: var(--color-stone-100);
+    color: var(--color-navy-500);
+  }
+  .roi-currency-btn:not(.is-active):hover {
+    border-color: var(--color-navy-500);
+  }
+</style>

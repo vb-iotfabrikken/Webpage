@@ -13,7 +13,6 @@ interface Breadcrumb {
 interface Props {
   title: string;
   description?: string;
-  eyebrow: string;
   heroTitle: string;
   heroTitleAccent?: string;
   heroLead: string;
@@ -25,7 +24,6 @@ interface Props {
 const {
   title,
   description,
-  eyebrow,
   heroTitle,
   heroTitleAccent,
   heroLead,
@@ -80,13 +78,13 @@ const slugify = (s: string) =>
   )}
 
   <Hero
-    eyebrow={eyebrow}
     title={heroTitle}
     titleAccent={heroTitleAccent}
     lead={heroLead}
     align="left"
+    compactTop={breadcrumbs.length > 0}
   >
-    <Button href="/en/contact/book-demo/" variant="primary" size="lg" slot="cta">Book demo</Button>
+    <Button href="/en/contact/book-demo/" variant="primary" size="lg" slot="cta">Book a free demo</Button>
     <Button href="/en/contact/sales/" variant="secondary" size="lg" slot="cta">Ask a question</Button>
 
     <div slot="visual" class="reveal">
@@ -143,7 +141,7 @@ const slugify = (s: string) =>
     subtitle="Ask us directly — every question gets turned into future FAQ content."
     primaryLabel="Ask sales"
     primaryHref="/en/contact/sales/"
-    secondaryLabel="Book demo"
+    secondaryLabel="Book a free demo"
     secondaryHref="/en/contact/book-demo/"
   />
 </Layout>

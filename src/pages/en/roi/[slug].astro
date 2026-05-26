@@ -3,10 +3,12 @@ import PlaceholderPage from "../../../components/PlaceholderPage.astro";
 import { roiHub } from "../../../data/site";
 
 export function getStaticPaths() {
-  return roiHub.leaves.map((leaf) => ({
-    params: { slug: leaf.slug },
-    props: { leaf },
-  }));
+  return roiHub.leaves
+    .filter((leaf) => leaf.slug !== "calculator")
+    .map((leaf) => ({
+      params: { slug: leaf.slug },
+      props: { leaf },
+    }));
 }
 
 const { leaf } = Astro.props;
@@ -15,7 +17,6 @@ const { leaf } = Astro.props;
 <PlaceholderPage
   title={`${leaf.title.replace(/\.$/, "")} | IoT Fabrikken`}
   description={leaf.lead}
-  eyebrow={leaf.eyebrow}
   heroTitle={leaf.title}
   heroTitleAccent={leaf.titleAccent}
   heroLead={leaf.lead}

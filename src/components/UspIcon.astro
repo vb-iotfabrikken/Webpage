@@ -1,0 +1,72 @@
+---
+/** Simple stroke icons sized for 44×44 USP boxes (Lucide-style, 24×24 viewBox). */
+export type UspIconName =
+  "battery" | "message" | "check" | "bell" | "plug" | "tools" | "price";
+
+interface Props {
+  name: UspIconName;
+}
+
+const { name } = Astro.props;
+
+const shared = {
+  width: 22,
+  height: 22,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  "stroke-width": 2,
+  "stroke-linecap": "round",
+  "stroke-linejoin": "round",
+  "aria-hidden": true,
+} as const;
+---
+
+{name === "battery" && (
+  <svg {...shared}>
+    <rect x="2" y="7" width="18" height="10" rx="2" />
+    <path d="M22 11v2" />
+    <path d="M6 11v2M10 11v2M14 11v2" />
+  </svg>
+)}
+
+{name === "message" && (
+  <svg {...shared}>
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    <path d="M13 8H7" />
+    <path d="M17 12H7" />
+  </svg>
+)}
+
+{name === "check" && (
+  <svg {...shared}>
+    <circle cx="12" cy="12" r="10" />
+    <path d="m9 12 2 2 4-4" />
+  </svg>
+)}
+
+{name === "bell" && (
+  <svg {...shared}>
+    <path d="M10.268 21a2 2 0 0 0 3.464 0" />
+    <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" />
+  </svg>
+)}
+
+{name === "plug" && (
+  <svg {...shared}>
+    <path d="M9 2v6M15 2v6M7 8h10v4a5 5 0 0 1-10 0V8zM12 17v5" />
+  </svg>
+)}
+
+{name === "tools" && (
+  <svg {...shared}>
+    <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a2 2 0 1 0 3 3l6-6a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z" />
+  </svg>
+)}
+
+{name === "price" && (
+  <svg {...shared}>
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+    <circle cx="7" cy="7" r="1.5" fill="currentColor" stroke="none" />
+  </svg>
+)}

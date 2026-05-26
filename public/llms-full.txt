@@ -1,7 +1,7 @@
 # IoT Fabrikken — full library (7 articles)
 
 Source: https://iot-fabrikken.com/en/library/
-Generated: 2026-04-29T15:44:27.212Z
+Generated: 2026-05-26T15:53:22.081Z
 
 Every article in the IoT Fabrikken knowledge base, concatenated for
 retrieval-augmented generation. Each article is separated by a `---` fence
@@ -15,7 +15,7 @@ and carries its canonical URL, tags and publish metadata.
 URL: https://iot-fabrikken.com/en/library/co2-monitoring-in-schools/
 Description: Measure CO₂ in classrooms and teaching spaces and document the indoor climate. Better air means more focused students — and compliance with BR18 and workplace-environment requirements.
 Category: indoor-climate
-Tags: module:indoor-climate, industry:schools, sensor:co2, standard:br18, standard:en-16798, type:guide, level:beginner
+Tags: module:indoor-climate", industry:schools", sensor:co2", standard:br18", standard:en-16798", type:guide", level:beginner"
 Updated: 2026-04-22
 
 Poor indoor climate is one of the biggest invisible drags on schools. When CO₂ rises above 1,200 ppm, students' ability to focus drops noticeably — and above 2,000 ppm, both headaches and fatigue start to set in. At the same time, CO₂ is one of the easiest parameters to measure, understand and act on.
@@ -111,7 +111,7 @@ Reach out — and we'll take a no-strings chat about your situation.
 URL: https://iot-fabrikken.com/en/library/leak-sensors-for-basements-and-plant-rooms/
 Description: Basements and plant rooms are where water damage typically starts — and where it is discovered last. Wireless leak sensors alert you the moment it happens.
 Category: water-detection
-Tags: module:water-detection, industry:property-management, industry:housing-associations, sensor:water-detector, type:niche, level:intermediate
+Tags: module:water-detection", industry:property-management", industry:housing-associations", sensor:water-detector", type:niche", level:intermediate"
 Updated: 2026-04-22
 
 Basements and plant rooms are the most exposed spaces in a building — and at the same time the worst monitored. Most are only visited by a caretaker once a month, and as a result a developing leak is rarely spotted before it has done real damage.
@@ -153,7 +153,7 @@ Want help planning sensor placement for your basement? Book a demo — we're hap
 URL: https://iot-fabrikken.com/en/library/mqtt-integration/
 Description: Stream real-time data from every RoomAlyzer sensor into your own systems via MQTT. Set roles, topics and access — and get data straight into BMS, BI tools or data platforms.
 Category: integrations
-Tags: module:platform, sensor:gateway, type:integration, type:technical, level:advanced
+Tags: module:platform", sensor:gateway", type:integration", type:technical", level:advanced"
 Updated: 2026-04-22
 
 MQTT is the most widely used protocol for sending IoT data between systems. It is lightweight, real-time, and supported by every major BMS, SCADA and data-warehouse platform. That's why it is our preferred route when customers want **RoomAlyzer data directly in their own systems**.
@@ -196,7 +196,7 @@ See the full specification in our [OpenAPI documentation](/en/library/mqtt-integ
 URL: https://iot-fabrikken.com/en/library/water-alarms-in-server-rooms/
 Description: A single drip on the wrong rack can cost a whole business day. Place wireless sensors under raised floors and next to cooling units, and get an alarm the instant moisture is detected.
 Category: water-detection
-Tags: module:water-detection, industry:data-centres, industry:it, sensor:water-detector, type:niche, level:advanced, Uptime
+Tags: module:water-detection", industry:data-centres", industry:it", sensor:water-detector", type:niche", level:advanced", Uptime"
 Updated: 2026-04-22
 
 A CRAC unit that dumps condensate onto the floor of a server room is rarely a matter of *if* — it's a matter of *when*. And when it happens at 3 a.m. on a Saturday, response time is the single most important thing you've got.
@@ -243,7 +243,7 @@ Our customers in the data-centre segment have told us that even five minutes of 
 URL: https://iot-fabrikken.com/en/library/water-damage-insurance-documentation/
 Description: IoT sensors unlock insurance discounts, faster claims settlement and full documentation of when a leak was detected and when it was acted on. Several insurers already offer a discount.
 Category: water-detection
-Tags: module:water-detection, industry:property-management, industry:insurance, sensor:water-detector, type:business-case, level:intermediate
+Tags: module:water-detection", industry:property-management", industry:insurance", sensor:water-detector", type:business-case", level:intermediate"
 Updated: 2026-04-22
 
 Insurers have got smarter — and they reward customers who actively reduce the risk of big water-damage claims. For a property portfolio, the premium discount can easily cover the whole investment in sensors, before you even count the value of the damage you avoid.
@@ -285,7 +285,7 @@ Want to know what your current insurance offers? [Contact us](/en/contact/) — 
 URL: https://iot-fabrikken.com/en/library/water-detection-stop-damage-before-it-spreads/
 Description: Wireless water sensors that alarm via SMS/email within seconds, so a small leak never turns into a large water-damage claim. Full overview across buildings and sites.
 Category: water-detection
-Tags: module:water-detection, industry:property-management, industry:offices, sensor:water-detector, type:guide, level:beginner
+Tags: module:water-detection", industry:property-management", industry:offices", sensor:water-detector", type:guide", level:beginner"
 Updated: 2026-04-22
 
 A water-damage claim rarely starts with a bang. It starts as a drop per second behind a pipe casing — and is only discovered when water is standing in the basement or the paint starts to bubble on the wall upstairs. By that point you are no longer talking about a repair, but a renovation.

@@ -93,11 +93,11 @@ const sorted = [...entries].sort((a, b) =>
   </nav>
 
   <Hero
-    eyebrow={`Library — ${dim.label}`}
     title={tagValue}
     titleAccent={`${sorted.length} ${sorted.length === 1 ? "article" : "articles"}`}
     lead={`Every article in the IoT Fabrikken library tagged with ${dim.label.toLowerCase()} "${tagValue}".`}
     align="left"
+    compactTop
   >
     <Button href="/en/library/" variant="primary" size="lg" slot="cta">Back to library</Button>
     <Button href="/en/library/tags/" variant="secondary" size="lg" slot="cta">All tags</Button>
@@ -133,7 +133,7 @@ const sorted = [...entries].sort((a, b) =>
   <CtaBand
     title="Want to discuss this topic?"
     subtitle="Book a 30-minute demo and we'll tailor it to your specific situation."
-    primaryLabel="Book demo"
+    primaryLabel="Book a free demo"
     secondaryLabel="Contact sales"
   />
 </Layout>

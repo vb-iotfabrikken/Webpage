@@ -85,7 +85,6 @@ if (props.kind === "stub") {
   <PlaceholderPage
     title={`${stubMeta.title} | Library | IoT Fabrikken`}
     description={stubMeta.lead}
-    eyebrow={`Library — ${stubMeta.categoryName}`}
     heroTitle={stubMeta.title}
     heroLead={stubMeta.lead}
     breadcrumbs={[
@@ -94,7 +93,7 @@ if (props.kind === "stub") {
       { label: stubMeta.categoryName, href: `/en/library/#${stubMeta.categorySlug}` },
       { label: stubMeta.title },
     ]}
-    primaryCta={{ label: "Book demo", href: "/en/contact/book-demo/" }}
+    primaryCta={{ label: "Book a free demo", href: "/en/contact/book-demo/" }}
     secondaryCta={{ label: `More ${stubMeta.categoryName.toLowerCase()} articles`, href: `/en/library/#${stubMeta.categorySlug}` }}
     hideNotice={true}
   >

@@ -58,16 +58,19 @@
 }
 
 @layer utilities {
+  /* Shared horizontal gutter for max-width content (header logo left edge
+     and primary CTA right edge both sit on this inset). */
   .container-page {
+    --page-gutter: 1.25rem;
     width: 100%;
     max-width: 1200px;
     margin-inline: auto;
-    padding-inline: 1.25rem;
+    padding-inline: var(--page-gutter);
   }
 
   @media (min-width: 768px) {
     .container-page {
-      padding-inline: 2rem;
+      --page-gutter: 2rem;
     }
   }
 

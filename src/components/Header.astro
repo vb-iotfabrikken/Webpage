@@ -1,16 +1,17 @@
 ---
 import Button from "./Button.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 import ModuleIcon from "./ModuleIcon.astro";
 import IndustryIcon from "./IndustryIcon.astro";
+import NavDropdownLink from "./NavDropdownLink.astro";
+import MegaMenuLink from "./MegaMenuLink.astro";
 import { modules } from "../data/modules";
-import {
-  platformHub,
-  sensorsHub,
-  industriesHub,
-} from "../data/site";
+import { sensorsHub, industriesHub } from "../data/site";
 import { externalLinks } from "../data/externalLinks";
+import { getLangFromPath, langPath } from "../data/lang";
 
 const pathname = Astro.url.pathname;
+const currentLang = getLangFromPath(pathname);
 const isActive = (href: string) =>
   href === "/" ? pathname === "/" : pathname.startsWith(href);
 
@@ -18,41 +19,31 @@ const isActive = (href: string) =>
 const productActive =
   isActive("/en/platform") ||
   isActive("/en/modules") ||
-  isActive("/en/sensors") ||
-  isActive("/en/integrations");
+  isActive("/en/sensors");
 
-// "Industries" dropdown spans Industries and the decision-making tools
-// (Compare, ROI, Pricing, Case studies, White papers).
+// "Industries" dropdown — sector landing pages; label links to the article library.
 const industriesActive =
-  isActive("/en/industries") ||
-  isActive("/en/compare") ||
-  isActive("/en/roi") ||
-  isActive("/en/case-studies") ||
-  isActive("/en/whitepapers");
+  isActive("/en/industries") || isActive("/en/library");
 
-// Product dropdown — three columns, one per product surface. The
-// Platform column now also surfaces Security, API and Integrations
-// (previously a separate bottom bar) so everything Platform-adjacent
-// lives in one place.
-const platformCoreSlugs = [
-  "how-it-works",
-  "architecture",
-  "dashboards",
-  "reports",
-  "maps-floorplans",
-  "mobile-tv",
-];
-const platformCore = platformCoreSlugs
-  .map((slug) => platformHub.leaves.find((l) => l.slug === slug))
-  .filter((l): l is (typeof platformHub.leaves)[number] => Boolean(l))
-  .map((l) => ({
-    label: l.title.replace(/\.$/, ""),
-    href: `/en/platform/${l.slug}/`,
-  }));
-const platformExtras = [
+const pricingActive =
+  isActive("/en/pricing") || isActive("/en/roi");
+
+const resourcesActive =
+  isActive("/en/library") ||
+  isActive("/da/library") ||
+  isActive(langPath("case-studies", currentLang)) ||
+  isActive("/en/whitepapers") ||
+  isActive("/da/whitepapers");
+
+const companyActive =
+  isActive("/en/about") || isActive("/en/contact");
+
+// Platform column — curated links (not the full hub catalogue).
+const platformLinks = [
+  { label: "How it works", href: "/en/platform/how-it-works/" },
+  { label: "Dashboard & Reports", href: "/en/platform/dashboards/" },
   { label: "Security", href: "/en/platform/security/" },
   { label: "API", href: "/en/platform/api/" },
-  { label: "Integrations", href: "/en/integrations/" },
 ];
 
 // A curated slice of the sensor catalogue for the header. The full list
@@ -73,67 +64,144 @@ const sensorFeatured = sensorFeaturedSlugs
     href: `/en/sensors/${l.slug}/`,
   }));
 
-// Industries dropdown — split the full list across two columns so all
-// sectors fit without scrolling. Each entry keeps its slug so the
-// header can pair it with an IndustryIcon.
-const industriesAll = industriesHub.leaves.map((l) => ({
-  slug: l.slug,
-  label: l.title.replace(/\.$/, ""),
-  href: `/en/industries/${l.slug}/`,
-}));
-const industriesHalf = Math.ceil(industriesAll.length / 2);
-const industriesColA = industriesAll.slice(0, industriesHalf);
-const industriesColB = industriesAll.slice(industriesHalf);
+const industryBySlug = Object.fromEntries(
+  industriesHub.leaves.map((l) => [
+    l.slug,
+    {
+      slug: l.slug,
+      label: l.title.replace(/\.$/, ""),
+      href: `/en/industries/${l.slug}/`,
+    },
+  ]),
+);
 
-// "Evaluate" is deliberately narrow: only things that help a prospect
-// work out whether RoomAlyzer is the right fit. Product catalogue
-// links (Sensors, Integrations) live in the Product dropdown instead.
-const evaluateTools = [
-  { label: "Compare sensors", href: "/en/compare/" },
-  { label: "ROI calculator", href: "/en/roi/calculator/" },
-  { label: "Pricing", href: "/en/pricing/" },
+// Industries dropdown — four sector columns with a fixed sort order.
+const industryColumns = [
+  {
+    title: "Public Sector & Healthcare",
+    slugs: ["municipalities", "schools", "hospitals", "elderly-care"],
+  },
+  {
+    title: "Commercial & Enterprise",
+    slugs: ["offices", "retail", "hotels", "warehouses-logistics"],
+  },
+  {
+    title: "Culture & Heritage",
+    slugs: [
+      "museums-galleries",
+      "archives-libraries",
+      "churches",
+      "manors-castles",
+    ],
+  },
+  {
+    title: "Property & Facility Services",
+    slugs: ["property-management", "fm-companies", "consulting-engineers"],
+  },
+].map((col) => ({
+  title: col.title,
+  items: col.slugs.map((slug) => industryBySlug[slug]).filter(Boolean),
+}));
+
+const pricingLinks = [
+  {
+    label: "Pricing models",
+    href: "/en/pricing/",
+    description: "Simple plans that scale with your building.",
+    icon: "pricing" as const,
+  },
+  {
+    label: "ROI calculator",
+    href: "/en/roi/calculator/",
+    description: "Estimate payback with your own numbers.",
+    icon: "roi" as const,
+  },
 ];
-const evaluateProof = [
-  { label: "Case studies", href: "/en/case-studies/" },
-  { label: "White papers", href: "/en/whitepapers/" },
+
+const resourcesLinks = [
+  {
+    label: "Article library",
+    href: "/en/library/",
+    description: "Guides and use cases by industry.",
+    icon: "library" as const,
+  },
+  {
+    label: "Cases",
+    href: langPath("case-studies", currentLang),
+    description: "What customers say about working with us.",
+    icon: "case-studies" as const,
+  },
+  {
+    label: "White papers",
+    href: "/en/whitepapers/",
+    description: "In-depth reports for decision makers.",
+    icon: "whitepapers" as const,
+  },
+];
+
+const companyLinks = [
+  {
+    label: "About Us",
+    href: "/en/about/",
+    description: "Our story, team and Danish roots.",
+    icon: "about" as const,
+  },
+  {
+    label: "Careers",
+    href: "/en/about/careers/",
+    description: "Open roles and life at IoT Fabrikken.",
+    icon: "careers" as const,
+  },
+  {
+    label: "Contact",
+    href: "/en/contact/",
+    description: "Sales, support and demo requests.",
+    icon: "contact" as const,
+  },
 ];
 ---
 
-<header id="site-header" class="sticky top-0 z-50">
+<header id="site-header" class="sticky top-0 z-50 overflow-visible">
   <!-- Top utility bar — a warm, human-sounding status line. -->
-  <div class="hidden md:block bg-navy-500 text-white">
-    <div class="container-page flex items-center justify-center gap-3 h-8 text-[12px]">
-      <span class="relative inline-flex w-2 h-2" aria-hidden="true">
-        <span class="absolute inline-flex h-full w-full rounded-full bg-forest-50 opacity-75 animate-ping"></span>
-        <span class="relative inline-flex h-2 w-2 rounded-full bg-forest-50"></span>
-      </span>
-      <span class="text-white/85">
-        Built in Denmark — real humans at the other end.
-      </span>
-      <span class="text-white/25 select-none" aria-hidden="true">·</span>
-      <a
-        href="/en/contact/"
-        class="font-semibold text-white hover:text-coral-50 transition-colors underline-offset-4 hover:underline decoration-coral-500 decoration-2"
-      >
-        Talk to us →
-      </a>
+  <div class="bg-navy-500 text-white">
+    <div class="container-page site-header-bar site-header-bar--utility">
+      <div class="site-header-utility-message hidden md:flex">
+        <span class="relative inline-flex w-2 h-2" aria-hidden="true">
+          <span class="absolute inline-flex h-full w-full rounded-full bg-forest-50 opacity-75 animate-ping"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-forest-50"></span>
+        </span>
+        <span class="text-white/85">
+          Built in Denmark — real humans at the other end.
+        </span>
+        <span class="text-white/25 select-none" aria-hidden="true">·</span>
+        <a
+          href="/en/contact/"
+          class="font-semibold text-white hover:text-coral-50 transition-colors underline-offset-4 hover:underline decoration-coral-500 decoration-2"
+        >
+          Talk to us →
+        </a>
+      </div>
+
+      <div class="site-header-actions">
+        <LanguageSwitcher variant="compact" />
+      </div>
     </div>
   </div>
 
   <!-- Main header bar -->
   <div class="bg-white/95 backdrop-blur border-b border-stone-100">
-    <div class="container-page flex items-center justify-between h-16 md:h-20">
-      <a href="/en/" class="flex items-center gap-3 group" aria-label="IoT Fabrikken home">
+    <div class="container-page site-header-bar site-header-bar--main">
+      <a href="/en/" class="site-header-brand flex shrink-0 items-center gap-3 group" aria-label="IoT Fabrikken home">
         <img
           src="/logo.png"
           alt="IoT Fabrikken"
-          class="h-8 md:h-9 w-auto transition-transform duration-300 ease-out group-hover:-rotate-3 group-hover:scale-[1.03]"
+          class="site-header-logo w-auto transition-transform duration-300 ease-out group-hover:-rotate-3 group-hover:scale-[1.03]"
         />
       </a>
 
-      <nav class="relative hidden lg:flex items-center gap-1" aria-label="Primary navigation">
+      <nav class="site-header-menu relative hidden min-[960px]:flex items-center gap-1 min-w-0" aria-label="Primary navigation">
         <!-- Products dropdown: Platform · Modules · Sensors -->
-        <div class="group">
+        <div class="group relative">
           <button
             type="button"
             class="nav-link"
@@ -145,39 +213,23 @@ const evaluateProof = [
               <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
-          <div class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute left-0 top-full pt-3 w-[min(820px,calc(100vw-2rem))]">
-            <div class="bg-white rounded-xl shadow-xl border border-stone-100 p-4">
-              <div class="grid grid-cols-3 gap-5">
+          <div
+            class="nav-dropdown invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 w-[min(720px,calc(100vw-2rem))]"
+          >
+            <div class="bg-white rounded-xl shadow-xl border border-stone-100 p-6">
+              <div class="grid grid-cols-3 gap-6">
                 <!-- Platform -->
                 <div>
                   <a
                     href="/en/platform/"
-                    class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2 hover:text-coral-500 transition-colors"
+                    class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
                   >
                     Platform
                   </a>
-                  <ul>
-                    {platformCore.map((f) => (
+                  <ul class="space-y-0.5">
+                    {platformLinks.map((f) => (
                       <li>
-                        <a
-                          href={f.href}
-                          class="block py-1 text-[13.5px] text-navy-500 hover:text-coral-500 transition-colors"
-                        >
-                          {f.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                  <div class="my-1.5 border-t border-stone-100"></div>
-                  <ul>
-                    {platformExtras.map((f) => (
-                      <li>
-                        <a
-                          href={f.href}
-                          class="block py-1 text-[13.5px] text-navy-500 hover:text-coral-500 transition-colors"
-                        >
-                          {f.label}
-                        </a>
+                        <MegaMenuLink href={f.href} label={f.label} />
                       </li>
                     ))}
                   </ul>
@@ -187,22 +239,16 @@ const evaluateProof = [
                 <div>
                   <a
                     href="/en/modules/"
-                    class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2 hover:text-coral-500 transition-colors"
+                    class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
                   >
                     Modules
                   </a>
-                  <ul>
+                  <ul class="space-y-0.5">
                     {modules.map((m) => (
                       <li>
-                        <a
-                          href={m.href}
-                          class="flex items-center gap-2 py-0.5 text-[13.5px] text-navy-500 hover:text-coral-500 transition-colors"
-                        >
-                          <span class="shrink-0 inline-flex items-center justify-center w-6 h-6 rounded bg-stone-50 text-navy-500">
-                            <ModuleIcon slug={m.slug} class="w-4 h-4" />
-                          </span>
-                          {m.name}
-                        </a>
+                        <MegaMenuLink href={m.href} label={m.name} iconTone="forest">
+                          <ModuleIcon slot="icon" slug={m.slug} class="w-4 h-4" />
+                        </MegaMenuLink>
                       </li>
                     ))}
                   </ul>
@@ -212,41 +258,46 @@ const evaluateProof = [
                 <div>
                   <a
                     href="/en/sensors/"
-                    class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2 hover:text-coral-500 transition-colors"
+                    class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
                   >
                     Sensors
                   </a>
-                  <ul>
+                  <ul class="space-y-0.5">
                     {sensorFeatured.map((f) => (
                       <li>
-                        <a
-                          href={f.href}
-                          class="block py-1 text-[13.5px] text-navy-500 hover:text-coral-500 transition-colors"
-                        >
-                          {f.label}
-                        </a>
+                        <MegaMenuLink href={f.href} label={f.label} />
                       </li>
                     ))}
-                    <li>
+                    <li class="mt-1.5 pt-1.5 border-t border-stone-100">
                       <a
                         href="/en/sensors/"
-                        class="block py-1 text-[12.5px] font-medium text-coral-500 hover:text-coral-500/80 transition-colors"
+                        class="group/item flex rounded-lg px-2 py-1.5 -mx-2 text-[12.5px] font-medium text-coral-500 hover:bg-stone-50 hover:text-coral-500 transition-colors"
                       >
                         All sensors →
+                      </a>
+                    </li>
+                    <li class="mt-1">
+                      <a
+                        href="/en/sensors/compare/"
+                        class="flex items-center justify-between gap-2 px-2 py-1.5 rounded-lg bg-coral-50 text-[12.5px] font-semibold text-coral-600 hover:bg-coral-100 transition-colors group/compare"
+                      >
+                        Compare sensors
+                        <svg width="12" height="12" viewBox="0 0 14 14" fill="none" class="shrink-0 text-coral-500 group-hover/compare:translate-x-0.5 transition-transform" aria-hidden="true">
+                          <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
                       </a>
                     </li>
                   </ul>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
 
-        <!-- Industries dropdown: Industries list + Evaluate tools -->
-        <div class="group">
-          <button
-            type="button"
+        <!-- Industries dropdown — four sector columns -->
+        <div class="group relative" data-nav-industries>
+          <a
+            href="/en/library/"
             class="nav-link"
             data-active={industriesActive}
             aria-haspopup="true"
@@ -255,106 +306,40 @@ const evaluateProof = [
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="ml-1 transition-transform duration-200 group-hover:rotate-180">
               <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-          </button>
-          <div class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute left-0 top-full pt-3 w-[min(820px,calc(100vw-2rem))]">
-            <div class="bg-white rounded-xl shadow-xl border border-stone-100 p-4">
-              <div class="grid grid-cols-3 gap-5">
-                <!-- Industries, column A -->
-                <div>
-                  <a
-                    href="/en/industries/"
-                    class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2 hover:text-coral-500 transition-colors"
-                  >
-                    Industries
-                  </a>
-                  <ul>
-                    {industriesColA.map((f) => (
-                      <li>
-                        <a
-                          href={f.href}
-                          class="flex items-center gap-2 py-0.5 text-[13.5px] text-navy-500 hover:text-coral-500 transition-colors"
-                        >
-                          <span class="shrink-0 inline-flex items-center justify-center w-6 h-6 rounded bg-coral-50 text-coral-500">
-                            <IndustryIcon slug={f.slug} class="w-4 h-4" />
-                          </span>
-                          {f.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <!-- Industries, column B (no heading — visually a continuation) -->
-                <div>
-                  <span class="block text-xs font-semibold uppercase tracking-wider text-transparent select-none mb-2" aria-hidden="true">
-                    &nbsp;
-                  </span>
-                  <ul>
-                    {industriesColB.map((f) => (
-                      <li>
-                        <a
-                          href={f.href}
-                          class="flex items-center gap-2 py-0.5 text-[13.5px] text-navy-500 hover:text-coral-500 transition-colors"
-                        >
-                          <span class="shrink-0 inline-flex items-center justify-center w-6 h-6 rounded bg-coral-50 text-coral-500">
-                            <IndustryIcon slug={f.slug} class="w-4 h-4" />
-                          </span>
-                          {f.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <!-- Evaluate — grouped under two intent-specific sub-headings
-                     so it no longer reads as a random pile of links. -->
-                <div class="border-l border-stone-100 pl-5">
-                  <span class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2">
-                    Evaluate
-                  </span>
-
-                  <span class="block text-[11px] font-semibold uppercase tracking-wider text-coral-500 mb-0.5">
-                    Tools
-                  </span>
-                  <ul class="mb-2">
-                    {evaluateTools.map((f) => (
-                      <li>
-                        <a
-                          href={f.href}
-                          class="block py-1 text-[13.5px] text-navy-500 hover:text-coral-500 transition-colors"
-                        >
-                          {f.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <span class="block text-[11px] font-semibold uppercase tracking-wider text-coral-500 mb-0.5">
-                    Proof
-                  </span>
-                  <ul>
-                    {evaluateProof.map((f) => (
-                      <li>
-                        <a
-                          href={f.href}
-                          class="block py-1 text-[13.5px] text-navy-500 hover:text-coral-500 transition-colors"
-                        >
-                          {f.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+          </a>
+          <div
+            class="nav-dropdown nav-dropdown--industries invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 w-[min(1040px,calc(100vw-2rem))]"
+          >
+            <div class="bg-white rounded-xl shadow-xl border border-stone-100 p-6">
+              <div class="nav-dropdown__grid grid grid-cols-4 gap-6">
+                {industryColumns.map((col) => (
+                  <div>
+                    <a
+                      href="/en/industries/"
+                      class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
+                    >
+                      {col.title}
+                    </a>
+                    <ul class="space-y-0.5">
+                      {col.items.map((f) => (
+                        <li>
+                          <MegaMenuLink href={f.href} label={f.label} iconTone="coral">
+                            <IndustryIcon slot="icon" slug={f.slug} class="w-4 h-4" />
+                          </MegaMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
-
               <a
                 href="/en/library/"
-                class="mt-3 flex items-center justify-between p-2.5 rounded-lg bg-stone-50 hover:bg-stone-100 transition-colors group/all"
+                class="mt-4 flex items-center justify-between p-2.5 rounded-lg bg-stone-50 hover:bg-stone-100 transition-colors group/library"
               >
-                <span class="text-[13.5px] font-semibold text-navy-500 group-hover/all:text-coral-500">
+                <span class="text-[13.5px] font-semibold text-navy-500 group-hover/library:text-coral-500">
                   Browse the whole library of articles and use cases
                 </span>
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="text-navy-500 group-hover/all:text-coral-500 group-hover/all:translate-x-0.5 transition-all">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0 text-navy-500 group-hover/library:text-coral-500 group-hover/library:translate-x-0.5 transition-all" aria-hidden="true">
                   <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </a>
@@ -362,57 +347,154 @@ const evaluateProof = [
           </div>
         </div>
 
-        <a href="/en/pricing/" class="nav-link" data-active={isActive("/en/pricing")}>Pricing</a>
-        <a href="/en/library/" class="nav-link" data-active={isActive("/en/library")}>Library</a>
-        <a href="/en/contact/" class="nav-link" data-active={isActive("/en/contact")}>Contact</a>
+        <!-- Pricing dropdown -->
+        <div class="group relative">
+          <button
+            type="button"
+            class="nav-link"
+            data-active={pricingActive}
+            aria-haspopup="true"
+          >
+            Pricing
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="ml-1 transition-transform duration-200 group-hover:rotate-180">
+              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div
+            class="nav-dropdown invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 w-72"
+          >
+            <div class="bg-white rounded-xl shadow-xl border border-stone-100 p-3">
+              <ul class="space-y-0.5">
+                {pricingLinks.map((f) => (
+                  <li>
+                    <NavDropdownLink
+                      href={f.href}
+                      label={f.label}
+                      description={f.description}
+                      icon={f.icon}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resources dropdown -->
+        <div class="group relative">
+          <button
+            type="button"
+            class="nav-link"
+            data-active={resourcesActive}
+            aria-haspopup="true"
+          >
+            Resources
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="ml-1 transition-transform duration-200 group-hover:rotate-180">
+              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div
+            class="nav-dropdown invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 w-72"
+          >
+            <div class="bg-white rounded-xl shadow-xl border border-stone-100 p-3">
+              <ul class="space-y-0.5">
+                {resourcesLinks.map((f) => (
+                  <li>
+                    <NavDropdownLink
+                      href={f.href}
+                      label={f.label}
+                      description={f.description}
+                      icon={f.icon}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Company dropdown -->
+        <div class="group relative">
+          <button
+            type="button"
+            class="nav-link"
+            data-active={companyActive}
+            aria-haspopup="true"
+          >
+            Company
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="ml-1 transition-transform duration-200 group-hover:rotate-180">
+              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div
+            class="nav-dropdown invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 w-72"
+          >
+            <div class="bg-white rounded-xl shadow-xl border border-stone-100 p-3">
+              <ul class="space-y-0.5">
+                {companyLinks.map((f) => (
+                  <li>
+                    <NavDropdownLink
+                      href={f.href}
+                      label={f.label}
+                      description={f.description}
+                      icon={f.icon}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
         <a
           href={externalLinks.support}
           target="_blank"
           rel="noopener noreferrer"
-          class="nav-link"
+          class="nav-link shrink-0"
         >
-          Help
+          Helpcenter
         </a>
       </nav>
 
-      <div class="hidden lg:flex items-center gap-1">
-        <a
-          href={externalLinks.login}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="nav-link"
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.75"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="mr-1.5"
-            aria-hidden="true"
+      <div class="site-header-actions shrink-0">
+        <div class="hidden min-[960px]:flex items-center gap-1">
+          <a
+            href={externalLinks.login}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav-link shrink-0"
           >
-            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-            <polyline points="10 17 15 12 10 7" />
-            <line x1="15" y1="12" x2="3" y2="12" />
-          </svg>
-          Log in
-        </a>
-        <span class="mx-2 h-5 w-px bg-stone-100" aria-hidden="true"></span>
-        <Button href="/en/contact/book-demo/" variant="primary" size="sm">
-          Book a demo
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="mr-1.5"
+              aria-hidden="true"
+            >
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <polyline points="10 17 15 12 10 7" />
+              <line x1="15" y1="12" x2="3" y2="12" />
+            </svg>
+            Log in
+          </a>
+          <span class="mx-2 h-5 w-px bg-stone-100" aria-hidden="true"></span>
+          <Button href="/en/contact/book-demo/" variant="primary" size="sm" class="shrink-0">
+          Book a free demo
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
             <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
-        </Button>
-      </div>
+          </Button>
+        </div>
 
-      <button
-        id="mobile-menu-toggle"
-        type="button"
-        class="lg:hidden inline-flex items-center justify-center w-10 h-10 text-navy-500"
+        <button
+          id="mobile-menu-toggle"
+          type="button"
+        class="min-[960px]:hidden inline-flex items-center justify-center w-10 h-10 text-navy-500"
         aria-label="Open menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
@@ -423,16 +505,17 @@ const evaluateProof = [
         <svg id="menu-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden">
           <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
         </svg>
-      </button>
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- Mobile menu -->
+  <!-- Mobile menu — scrollable panel when viewport height is limited -->
   <div
     id="mobile-menu"
-    class="lg:hidden hidden border-t border-stone-100 bg-white"
+    class="mobile-menu-panel min-[960px]:hidden hidden border-t border-stone-100 bg-white"
   >
-    <div class="container-page py-4 flex flex-col gap-1">
+    <div class="container-page py-4 pb-10 flex flex-col gap-1">
       <!-- Products group -->
       <details class="group">
         <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
@@ -446,12 +529,9 @@ const evaluateProof = [
             <a href="/en/platform/" class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500">
               Platform
             </a>
-            <div class="flex flex-col">
-              {platformCore.map((f) => (
-                <a href={f.href} class="py-1.5 text-[15px] text-navy-500 hover:text-coral-500">{f.label}</a>
-              ))}
-              {platformExtras.map((f) => (
-                <a href={f.href} class="py-1.5 text-[15px] text-navy-500 hover:text-coral-500">{f.label}</a>
+            <div class="flex flex-col gap-0.5">
+              {platformLinks.map((f) => (
+                <MegaMenuLink href={f.href} label={f.label} variant="mobile" />
               ))}
             </div>
           </div>
@@ -459,14 +539,11 @@ const evaluateProof = [
             <a href="/en/modules/" class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500">
               Modules
             </a>
-            <div class="flex flex-col">
+            <div class="flex flex-col gap-0.5">
               {modules.map((m) => (
-                <a href={m.href} class="flex items-center gap-3 py-2 text-[15px] text-navy-500 hover:text-coral-500">
-                  <span class="shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg bg-stone-50 text-navy-500">
-                    <ModuleIcon slug={m.slug} />
-                  </span>
-                  {m.name}
-                </a>
+                <MegaMenuLink href={m.href} label={m.name} iconTone="forest" variant="mobile">
+                  <ModuleIcon slot="icon" slug={m.slug} />
+                </MegaMenuLink>
               ))}
             </div>
           </div>
@@ -474,70 +551,141 @@ const evaluateProof = [
             <a href="/en/sensors/" class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500">
               Sensors
             </a>
-            <div class="flex flex-col">
+            <div class="flex flex-col gap-0.5">
               {sensorFeatured.map((f) => (
-                <a href={f.href} class="py-1.5 text-[15px] text-navy-500 hover:text-coral-500">{f.label}</a>
+                <MegaMenuLink href={f.href} label={f.label} variant="mobile" />
               ))}
-              <a href="/en/sensors/" class="py-1.5 text-[14px] font-medium text-coral-500">All sensors →</a>
+              <a
+                href="/en/sensors/"
+                class="group/item flex rounded-lg px-2 py-2 mt-1 text-[14px] font-medium text-coral-500 hover:bg-stone-50 transition-colors"
+              >
+                All sensors →
+              </a>
+              <a
+                href="/en/sensors/compare/"
+                class="mt-1.5 flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg bg-coral-50 text-[15px] font-semibold text-coral-600 hover:bg-coral-100 transition-colors"
+              >
+                Compare sensors
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
             </div>
           </div>
         </div>
       </details>
 
-      <!-- Industries group (Industries + Evaluate) -->
+      <!-- Industries group -->
       <details class="group">
         <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
-          Industries
+          <a
+            href="/en/library/"
+            class="hover:text-coral-500 transition-colors"
+            onclick="event.stopPropagation()"
+          >
+            Industries
+          </a>
           <svg width="14" height="14" viewBox="0 0 12 12" fill="none" class="transition-transform group-open:rotate-180">
             <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </summary>
-        <div class="pl-4 pb-2 flex flex-col gap-3">
-          <div>
-            <a href="/en/industries/" class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500">
-              Industries
-            </a>
-            <div class="flex flex-col">
-              {industriesAll.map((f) => (
-                <a href={f.href} class="flex items-center gap-3 py-2 text-[15px] text-navy-500 hover:text-coral-500">
-                  <span class="shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg bg-coral-50 text-coral-500">
-                    <IndustryIcon slug={f.slug} />
-                  </span>
-                  {f.label}
-                </a>
-              ))}
+        <div class="pl-4 pb-2 flex flex-col gap-4">
+          {industryColumns.map((col) => (
+            <div>
+              <span class="block py-1 text-sm font-semibold uppercase tracking-wider text-stone-300">
+                {col.title}
+              </span>
+              <div class="flex flex-col gap-0.5">
+                {col.items.map((f) => (
+                  <MegaMenuLink href={f.href} label={f.label} iconTone="coral" variant="mobile">
+                    <IndustryIcon slot="icon" slug={f.slug} />
+                  </MegaMenuLink>
+                ))}
+              </div>
             </div>
-          </div>
-          <div>
-            <span class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300">
-              Evaluate
-            </span>
-            <span class="block mt-1 text-[11px] font-semibold uppercase tracking-wider text-coral-500">Tools</span>
-            <div class="flex flex-col">
-              {evaluateTools.map((f) => (
-                <a href={f.href} class="py-1.5 text-[15px] text-navy-500 hover:text-coral-500">{f.label}</a>
-              ))}
-            </div>
-            <span class="block mt-2 text-[11px] font-semibold uppercase tracking-wider text-coral-500">Proof</span>
-            <div class="flex flex-col">
-              {evaluateProof.map((f) => (
-                <a href={f.href} class="py-1.5 text-[15px] text-navy-500 hover:text-coral-500">{f.label}</a>
-              ))}
-            </div>
-          </div>
+          ))}
+          <a
+            href="/en/library/"
+            class="mt-2 flex items-center justify-between gap-2 p-3 rounded-lg bg-stone-50 text-[15px] font-semibold text-navy-500 hover:bg-stone-100 hover:text-coral-500 transition-colors"
+          >
+            Browse the whole library of articles and use cases
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0" aria-hidden="true">
+              <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
         </div>
       </details>
 
-      <a href="/en/pricing/" class="px-2 py-3 text-base font-medium text-navy-500 hover:text-coral-500">Pricing</a>
-      <a href="/en/library/" class="px-2 py-3 text-base font-medium text-navy-500 hover:text-coral-500">Library</a>
-      <a href="/en/contact/" class="px-2 py-3 text-base font-medium text-navy-500 hover:text-coral-500">Contact</a>
+      <!-- Pricing group -->
+      <details class="group">
+        <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
+          Pricing
+          <svg width="14" height="14" viewBox="0 0 12 12" fill="none" class="transition-transform group-open:rotate-180">
+            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <div class="pl-4 pb-2 flex flex-col gap-0.5">
+          {pricingLinks.map((f) => (
+            <NavDropdownLink
+              href={f.href}
+              label={f.label}
+              description={f.description}
+              icon={f.icon}
+              variant="mobile"
+            />
+          ))}
+        </div>
+      </details>
+
+      <!-- Resources group -->
+      <details class="group">
+        <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
+          Resources
+          <svg width="14" height="14" viewBox="0 0 12 12" fill="none" class="transition-transform group-open:rotate-180">
+            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <div class="pl-4 pb-2 flex flex-col gap-0.5">
+          {resourcesLinks.map((f) => (
+            <NavDropdownLink
+              href={f.href}
+              label={f.label}
+              description={f.description}
+              icon={f.icon}
+              variant="mobile"
+            />
+          ))}
+        </div>
+      </details>
+
+      <!-- Company group -->
+      <details class="group">
+        <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
+          Company
+          <svg width="14" height="14" viewBox="0 0 12 12" fill="none" class="transition-transform group-open:rotate-180">
+            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <div class="pl-4 pb-2 flex flex-col gap-0.5">
+          {companyLinks.map((f) => (
+            <NavDropdownLink
+              href={f.href}
+              label={f.label}
+              description={f.description}
+              icon={f.icon}
+              variant="mobile"
+            />
+          ))}
+        </div>
+      </details>
+
       <a
         href={externalLinks.support}
         target="_blank"
         rel="noopener noreferrer"
         class="px-2 py-3 text-base font-medium text-navy-500 hover:text-coral-500"
       >
-        Help
+        Helpcenter
       </a>
       <div class="h-px bg-stone-100 my-2"></div>
       <a
@@ -563,12 +711,137 @@ const evaluateProof = [
         </svg>
         Log in
       </a>
-      <Button href="/en/contact/book-demo/" variant="primary" size="md" class="mt-2 w-full">Book a demo</Button>
+      <Button href="/en/contact/book-demo/" variant="primary" size="md" class="mt-2 w-full">Book a free demo</Button>
     </div>
   </div>
 </header>
 
 <style>
+  /* Shared grid so the utility-bar language switch lines up with the
+     main header actions column (Book a demo right edge). */
+  .site-header-bar {
+    display: grid;
+    align-items: center;
+    column-gap: 1rem;
+    width: 100%;
+  }
+
+  .site-header-bar--utility {
+    height: 2rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .site-header-bar--main {
+    --header-control-height: 2.5rem;
+    --header-logo-height: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 4rem;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  @media (min-width: 768px) {
+    .site-header-bar--main {
+      gap: 1rem;
+      height: 5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .site-header-bar--utility {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+    }
+
+    .site-header-utility-message {
+      grid-column: 2;
+    }
+
+    .site-header-bar--utility .site-header-actions {
+      grid-column: 3;
+    }
+  }
+
+  .site-header-brand {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: var(--header-logo-height, 3rem);
+  }
+
+  .site-header-bar--main .site-header-logo {
+    display: block;
+    height: var(--header-logo-height);
+    width: auto;
+    object-fit: contain;
+  }
+
+  .site-header-menu {
+    overflow: visible;
+  }
+
+  /* All dropdowns: left edge of panel aligns with left edge of nav item, opens to the right. */
+  .nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: auto;
+    z-index: 60;
+    padding-top: 0.75rem;
+    max-width: calc(100vw - 2rem);
+  }
+
+  /* Industries mega menu: 2×2 grid on narrower desktops (e.g. half-screen). */
+  @media (max-width: 1399px) {
+    .nav-dropdown--industries {
+      width: min(42rem, calc(100vw - 2rem));
+    }
+
+    .nav-dropdown--industries .nav-dropdown__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .site-header-menu > .group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: var(--header-control-height);
+  }
+
+  .site-header-menu > .nav-link {
+    flex-shrink: 0;
+  }
+
+  .site-header-utility-message {
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-width: 0;
+    font-size: 12px;
+  }
+
+  .site-header-actions {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+    padding-left: 0.5rem;
+  }
+
+  /* Tighter nav padding on narrower desktops; login matches nav label size. */
+  @media (min-width: 960px) and (max-width: 1279px) {
+    .site-header-bar--main .site-header-menu .nav-link,
+    .site-header-bar--main .site-header-actions .nav-link {
+      padding-inline: 0.5rem;
+      font-size: 14px;
+    }
+  }
+
   /* Nav links with a coral underline that slides in on hover and stays
      pinned under the active page. Warmer and more alive than a plain
      color swap. */
@@ -586,6 +859,22 @@ const evaluateProof = [
     transition: color 180ms ease;
     white-space: nowrap;
     cursor: pointer;
+  }
+
+  /* Main header: keep nav labels and Log in on one shared vertical center line. */
+  .site-header-bar--main .nav-link {
+    min-height: var(--header-control-height);
+    box-sizing: border-box;
+  }
+
+  .site-header-actions > div {
+    align-items: center;
+    min-height: var(--header-control-height);
+  }
+
+  .site-header-actions .mx-2.h-5 {
+    align-self: center;
+    height: 1.25rem;
   }
 
   .nav-link::after {
@@ -619,6 +908,15 @@ const evaluateProof = [
       transition: none;
     }
   }
+
+  /* Mobile / narrow header: menu scrolls inside the space below the header bars. */
+  @media (max-width: 959px) {
+    .mobile-menu-panel:not(.hidden) {
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
 </style>
 
 <script>
@@ -627,11 +925,78 @@ const evaluateProof = [
   const iconOpen = document.getElementById("menu-icon-open");
   const iconClose = document.getElementById("menu-icon-close");
 
+  /** Fit mobile menu in the viewport below the header bars so expanded sections scroll. */
+  function updateMobileMenuHeight() {
+    if (!menu || menu.classList.contains("hidden")) return;
+    const top = menu.getBoundingClientRect().top;
+    menu.style.maxHeight = `calc(100dvh - ${top}px)`;
+  }
+
+  function clearMobileMenuHeight() {
+    if (menu) menu.style.maxHeight = "";
+  }
+
   toggle?.addEventListener("click", () => {
     const isHidden = menu?.classList.contains("hidden");
     menu?.classList.toggle("hidden");
     iconOpen?.classList.toggle("hidden");
     iconClose?.classList.toggle("hidden");
     toggle.setAttribute("aria-expanded", isHidden ? "true" : "false");
+    if (isHidden) {
+      requestAnimationFrame(updateMobileMenuHeight);
+    } else {
+      clearMobileMenuHeight();
+    }
   });
+
+  window.addEventListener("resize", updateMobileMenuHeight);
+
+  menu?.querySelectorAll("details").forEach((details) => {
+    details.addEventListener("toggle", () => {
+      if (!menu.classList.contains("hidden")) {
+        requestAnimationFrame(updateMobileMenuHeight);
+      }
+    });
+  });
+
+  /** Industries only: nudge left when the panel would clip on the right (half-screen). */
+  const industriesGroup = document.querySelector("[data-nav-industries]");
+  const industriesPanel = industriesGroup?.querySelector<HTMLElement>(
+    ".nav-dropdown--industries",
+  );
+
+  function fitIndustriesDropdown() {
+    if (!industriesPanel) return;
+    industriesPanel.style.left = "0";
+    requestAnimationFrame(() => {
+      const rect = industriesPanel.getBoundingClientRect();
+      const gap = 16;
+      const vw = document.documentElement.clientWidth;
+      if (rect.right > vw - gap) {
+        industriesPanel.style.left = `${-(rect.right - (vw - gap))}px`;
+      }
+    });
+  }
+
+  function resetIndustriesDropdown() {
+    if (industriesPanel) industriesPanel.style.left = "";
+  }
+
+  if (industriesGroup && industriesPanel) {
+    industriesGroup.addEventListener("mouseenter", fitIndustriesDropdown);
+    industriesGroup.addEventListener("mouseleave", resetIndustriesDropdown);
+    industriesGroup.addEventListener("focusin", fitIndustriesDropdown);
+    industriesGroup.addEventListener("focusout", (event) => {
+      if (
+        !industriesGroup.contains(
+          (event as FocusEvent).relatedTarget as Node | null,
+        )
+      ) {
+        resetIndustriesDropdown();
+      }
+    });
+    window.addEventListener("resize", () => {
+      if (industriesGroup.matches(":hover")) fitIndustriesDropdown();
+    });
+  }
 </script>

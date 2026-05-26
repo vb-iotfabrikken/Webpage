@@ -12,7 +12,7 @@ export const roiHub: Hub = {
       eyebrow: "ROI",
       title: "ROI calculator.",
       titleAccent: "Your case, your numbers.",
-      lead: "An interactive calculator that estimates payback based on the number of sensors, square metres and the cost baseline in your building.",
+      lead: "Desk Optimizer and Energy Saver — gamified sliders that estimate annual savings from space right-sizing and heating setbacks, with a full breakdown by email.",
     },
     {
       slug: "schools",

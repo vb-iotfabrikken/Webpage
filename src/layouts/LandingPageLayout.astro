@@ -17,9 +17,7 @@ const d = entry.data;
 const category = landingCategories[d.category];
 const cat = categoryColorClasses(category.color);
 
-const eyebrow = d.eyebrow ?? category.eyebrow;
-
-const primaryCta = d.primaryCta ?? { label: "Book demo", href: "/en/contact/book-demo/" };
+const primaryCta = d.primaryCta ?? { label: "Book a free demo", href: "/en/contact/book-demo/" };
 const secondaryCta = d.secondaryCta ?? { label: "Contact sales", href: "/en/contact/sales/" };
 
 const formattedUpdated = d.updatedAt
@@ -40,8 +38,8 @@ const pageTitle = `${d.title} | IoT Fabrikken`;
       ></div>
     </div>
 
-    <div class="relative container-page pt-10 md:pt-14 pb-10 md:pb-14">
-      <nav aria-label="Breadcrumb" class="text-sm text-stone-300 mb-6 flex flex-wrap items-center gap-1.5">
+    <div class="relative container-page pt-6 md:pt-8 pb-10 md:pb-14">
+      <nav aria-label="Breadcrumb" class="text-sm text-stone-300 mb-4 flex flex-wrap items-center gap-1.5">
         <a href="/en/" class="hover:text-navy-500">Home</a>
         <span>/</span>
         <a href="/en/library/" class="hover:text-navy-500">Library</a>
@@ -53,10 +51,6 @@ const pageTitle = `${d.title} | IoT Fabrikken`;
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         <div class="lg:col-span-7">
-          <p class={`reveal inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-semibold uppercase tracking-wider mb-6 ${cat.chip}`}>
-            <span class={`w-1.5 h-1.5 rounded-full ${cat.dot}`}></span>
-            {eyebrow}
-          </p>
           <h1 class="reveal text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight text-navy-500">
             {d.heroTitle}
             {d.heroTitleAccent && <span class={cat.accent}> {d.heroTitleAccent}</span>}
@@ -125,7 +119,7 @@ const pageTitle = `${d.title} | IoT Fabrikken`;
             We'll show the platform live, walk through your case and give a price estimate.
           </p>
           <div class="mt-4 flex flex-col gap-2">
-            <Button href="/en/contact/book-demo/" variant="white" size="sm">Book demo</Button>
+            <Button href="/en/contact/book-demo/" variant="white" size="sm">Book a free demo</Button>
             <Button
               href="/en/contact/sales/"
               variant="ghost"
@@ -206,7 +200,7 @@ const pageTitle = `${d.title} | IoT Fabrikken`;
   <CtaBand
     title="Ready to see RoomAlyzer in your building?"
     subtitle="Book a 30-minute demo. We'll walk through your case and give you a concrete price estimate."
-    primaryLabel="Book demo"
+    primaryLabel="Book a free demo"
     secondaryLabel="Contact sales"
     variant="dark"
   />

@@ -1,106 +1,94 @@
 /**
  * Technology and commercial partners. Rendered at `/en/about/partners/`.
  *
- * Keep entries factual and short — this is a credibility page, not a sales
- * pitch for the partner.
+ * Logo files live under `public/partners/`. Keep entries factual and short.
  */
 
-export type Partner = {
-  name: string;
-  kind: "reseller" | "integrator" | "technology" | "academic";
-  country: string;
-  description: string;
-  url?: string;
+export type PartnerEntry =
+  | {
+      kind: "partner";
+      name: string;
+      logo: string;
+      logoAlt: string;
+      url: string;
+    }
+  | {
+      kind: "placeholder";
+      /** Short line shown in the empty slot */
+      label: string;
+      /** Optional subline under the label */
+      hint?: string;
+      href: string;
+    };
+
+export const partnersIntro = {
+  title: "Cooperation creates solutions.",
+  lead:
+    "We believe that the best solutions are created collaboratively. That is why we work closely with a number of strong partners, each of whom contributes specialised knowledge, technology and experience.",
 };
 
-export const partners: Partner[] = [
+/** Partners shown on the public partners page (aligned with iot-fabrikken.uk). */
+export const partners: PartnerEntry[] = [
   {
-    name: "Dalux",
-    kind: "technology",
-    country: "Denmark",
-    description: "Construction and FM software used by most Danish housing associations. RoomAlyzer feeds indoor-climate data directly into Dalux FM.",
-    url: "https://www.dalux.com/",
+    kind: "partner",
+    name: "ERIK",
+    logo: "/partners/erik.jpg",
+    logoAlt: "ERIK logo",
+    url: "https://www.erik.dk/",
   },
   {
-    name: "Pronestor",
-    kind: "technology",
-    country: "Denmark",
-    description: "Meeting-room booking software. Our occupancy sensors auto-release ghost bookings end to end.",
-    url: "https://www.pronestor.com/",
+    kind: "partner",
+    name: "ProEnergi",
+    logo: "/partners/proenergi.jpg",
+    logoAlt: "ProEnergi logo",
+    url: "https://proenergi.dk/",
   },
   {
-    name: "OS2iot",
-    kind: "technology",
-    country: "Denmark",
-    description: "The shared LoRaWAN platform run by Danish municipalities. IoT Fabrikken is a registered device vendor on OS2iot.",
-    url: "https://www.os2.eu/os2iot",
+    kind: "partner",
+    name: "MyDesk",
+    logo: "/partners/mydesk.jpg",
+    logoAlt: "MyDesk logo",
+    url: "https://mydesk.io/",
   },
   {
+    kind: "partner",
     name: "Disruptive Technologies",
-    kind: "technology",
-    country: "Norway",
-    description: "Miniature wireless sensors for micro-environments. Sold as the RoomAlyzer Series B through our catalogue.",
+    logo: "/partners/disruptive.jpg",
+    logoAlt: "Disruptive Technologies logo",
     url: "https://www.disruptive-technologies.com/",
   },
   {
-    name: "Efento",
-    kind: "technology",
-    country: "Poland",
-    description: "NB-IoT sensor hardware for harsh and cellular-only environments. Sold as the RoomAlyzer Series C.",
-    url: "https://efento.io/",
+    kind: "partner",
+    name: "Sodexo",
+    logo: "/partners/sodexo.jpg",
+    logoAlt: "Sodexo logo",
+    url: "https://www.sodexo.com/",
   },
   {
-    name: "Sweco",
-    kind: "integrator",
-    country: "Nordic region",
-    description: "European engineering and architecture consultancy. Specifies RoomAlyzer on indoor-climate and preservation projects.",
-    url: "https://www.sweco.com/",
+    kind: "partner",
+    name: "CleanManager",
+    logo: "/partners/cleanmanager.jpg",
+    logoAlt: "CleanManager logo",
+    url: "https://cleanmanager.dk/",
   },
   {
-    name: "NIRAS",
-    kind: "integrator",
-    country: "Denmark",
-    description: "Danish consulting engineers with deep indoor-climate experience in schools and heritage buildings.",
-    url: "https://www.niras.com/",
+    kind: "partner",
+    name: "Anderberg Klima",
+    logo: "/partners/anderberg-klima.jpg",
+    logoAlt: "Anderberg Klima logo",
+    url: "https://anderbergklima.dk/",
   },
   {
-    name: "Rambøll",
-    kind: "integrator",
-    country: "Nordic region",
-    description: "Engineering consultancy that integrates RoomAlyzer into ESG and DGNB certification projects.",
-    url: "https://www.ramboll.com/",
+    kind: "partner",
+    name: "Dalux",
+    logo: "/partners/dalux.jpg",
+    logoAlt: "Dalux logo",
+    url: "https://www.dalux.com/",
   },
   {
-    name: "DTU – Technical University of Denmark",
-    kind: "academic",
-    country: "Denmark",
-    description: "Joint research on indoor-climate metrics, occupancy algorithms and data-driven facility management.",
-    url: "https://www.dtu.dk/",
-  },
-  {
-    name: "The National Museum of Denmark",
-    kind: "academic",
-    country: "Denmark",
-    description: "Research collaboration on preservation-climate standards and travel-logger protocols.",
-    url: "https://en.natmus.dk/",
+    kind: "placeholder",
+    label: "Your place here",
+    hint: "Become a partner",
+    href: "/en/contact/become-partner/",
   },
 ];
-
-export const partnerKinds: Record<Partner["kind"], { label: string; blurb: string }> = {
-  reseller: {
-    label: "Resellers",
-    blurb: "Partners who sell and invoice IoT Fabrikken products under their own brand.",
-  },
-  integrator: {
-    label: "Integrators",
-    blurb: "Consulting engineers and implementation specialists who design RoomAlyzer into larger projects.",
-  },
-  technology: {
-    label: "Technology partners",
-    blurb: "Platforms and hardware vendors whose products complement or integrate with RoomAlyzer.",
-  },
-  academic: {
-    label: "Research and academic",
-    blurb: "Research collaborations with universities and national institutions.",
-  },
-};

@@ -1,0 +1,109 @@
+---
+type NavDropdownIcon =
+  "pricing" | "roi" | "library" | "case-studies" | "whitepapers" | "about" | "careers" | "contact";
+
+interface Props {
+  href: string;
+  label: string;
+  description: string;
+  icon: NavDropdownIcon;
+  /** Slightly larger touch targets for the mobile menu */
+  variant?: "desktop" | "mobile";
+}
+
+const { href, label, description, icon, variant = "desktop" } = Astro.props;
+
+const iconClass = variant === "mobile" ? "w-8 h-8" : "w-9 h-9";
+const iconInnerClass = variant === "mobile" ? "w-4 h-4" : "w-[18px] h-[18px]";
+---
+
+<a
+  href={href}
+  class:list={[
+    "group/item flex items-start gap-3 rounded-lg transition-colors",
+    variant === "mobile"
+      ? "py-2.5"
+      : "p-2.5 hover:bg-stone-50",
+  ]}
+>
+  <span
+    class:list={[
+      "shrink-0 inline-flex items-center justify-center rounded-lg bg-stone-50 text-forest-500 group-hover/item:bg-forest-50 transition-colors",
+      iconClass,
+    ]}
+  >
+    {icon === "pricing" && (
+      <svg class={iconInnerClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+        <line x1="7" y1="7" x2="7.01" y2="7" />
+      </svg>
+    )}
+    {icon === "roi" && (
+      <svg class={iconInnerClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="20" x2="18" y2="10" />
+        <line x1="12" y1="20" x2="12" y2="4" />
+        <line x1="6" y1="20" x2="6" y2="14" />
+      </svg>
+    )}
+    {icon === "library" && (
+      <svg class={iconInnerClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+      </svg>
+    )}
+    {icon === "case-studies" && (
+      <svg class={iconInnerClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+        <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+        <path d="M9 14l2 2 4-4" />
+      </svg>
+    )}
+    {icon === "whitepapers" && (
+      <svg class={iconInnerClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <polyline points="14 2 14 8 20 8" />
+        <line x1="16" y1="13" x2="8" y2="13" />
+        <line x1="16" y1="17" x2="8" y2="17" />
+      </svg>
+    )}
+    {icon === "about" && (
+      <svg class={iconInnerClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 21h18" />
+        <path d="M5 21V7l8-4v18" />
+        <path d="M19 21V11l-6-4" />
+      </svg>
+    )}
+    {icon === "careers" && (
+      <svg class={iconInnerClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    )}
+    {icon === "contact" && (
+      <svg class={iconInnerClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+        <polyline points="22,6 12,13 2,6" />
+      </svg>
+    )}
+  </span>
+  <span class="min-w-0 pt-0.5">
+    <span
+      class:list={[
+        "block font-medium text-navy-500 group-hover/item:text-coral-500 transition-colors",
+        variant === "mobile" ? "text-[15px]" : "text-[13.5px]",
+      ]}
+    >
+      {label}
+    </span>
+    <span
+      class:list={[
+        "block text-stone-400 leading-snug",
+        variant === "mobile" ? "text-[13px] mt-0.5" : "text-[12px] mt-0.5",
+      ]}
+    >
+      {description}
+    </span>
+  </span>
+</a>

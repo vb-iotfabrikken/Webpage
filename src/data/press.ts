@@ -29,13 +29,13 @@ export const keyFacts: { label: string; value: string }[] = [
   { label: "Founded", value: "2019" },
   { label: "Headquarters", value: "Aarhus, Denmark" },
   { label: "Ownership", value: "100% privately owned" },
-  { label: "Employees", value: "11 (2026)" },
+  { label: "Employees", value: "10 (2026)" },
   { label: "Customers", value: "400+ buildings across 8 European countries" },
   { label: "Sensors deployed", value: "38,000+" },
 ];
 
 export const pressContact = {
-  name: "Dennis Thomsen",
+  name: "Jon Wichmann",
   role: "CEO",
   email: "press@iot-fabrikken.com",
   phone: "+45 70 00 00 00",

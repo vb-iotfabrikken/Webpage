@@ -13,13 +13,13 @@ export const contactHub: Hub = {
       title: "Book a demo.",
       titleAccent: "30 minutes, no strings.",
       lead: "Pick a slot that fits your calendar. We will show the product, discuss your use case and give you a concrete price estimate.",
-      primaryCta: { label: "Book demo", href: "/en/contact/book-demo/" },
+      primaryCta: { label: "Book a free demo", href: "/en/contact/book-demo/" },
     },
     {
       slug: "sales",
       eyebrow: "Contact",
       title: "Talk to sales.",
-      titleAccent: "Dorthe, Dennis and Lars Q.",
+      titleAccent: "Dorthe and Lars Q.",
       lead: "A short conversation with our sales team to understand your setup, scope and timeline.",
     },
     {

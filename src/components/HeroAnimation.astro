@@ -1,4 +1,4 @@
----
+﻿---
 // Animated hero scene for the homepage.
 // It tells the two-part story of what IoT Fabrikken actually sells:
 //   • SENSORS — physical hardware (pucks branded "IoT Fabrikken") that
@@ -8,21 +8,38 @@
 // Pure SVG + CSS, no dependencies. Respects prefers-reduced-motion.
 ---
 
-<div class="reveal relative mx-auto max-w-5xl">
+<div class="hero-stage relative mx-auto max-w-6xl">
   <!-- Neutral ambient shadow behind the scene — just a single soft,  -->
   <!-- heavily blurred blob so the illustration feels lifted off the  -->
   <!-- page without any colour wash.                                  -->
   <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-    <div class="absolute left-[8%] right-[8%] top-[12%] bottom-[-4%] rounded-[48px] bg-navy-500/10 blur-3xl"></div>
+    <div class="absolute left-[40%] right-[8%] top-[12%] bottom-[-4%] rounded-[48px] bg-navy-500/10 blur-3xl"></div>
   </div>
 
-  <svg
-    class="hero-anim relative block w-full h-auto"
-    viewBox="0 0 1024 600"
-    xmlns="http://www.w3.org/2000/svg"
-    role="img"
-    aria-label="Physical IoT Fabrikken sensors on the left measure the room and stream data wirelessly into the RoomAlyzer platform on the right, which shows dashboards, reports, maps and alerts."
-  >
+  <!-- Banner backdrop (wide atrium photo). Grey left of the dashed-line
+       midpoint; atrium fades in from that point toward the tablet. See
+       .hero-backdrop. -->
+  <img
+    src="/images/background-banner.png"
+    alt=""
+    class="hero-backdrop pointer-events-none absolute inset-0 z-0 h-full w-full"
+    width="2800"
+    height="1158"
+    decoding="async"
+    aria-hidden="true"
+  />
+
+  <!-- Tablet bundle: dashboard SVG + floating-man PNG share one transform
+       stack so they always move and scale together. -->
+  <div class="hero-tablet-group absolute inset-0 z-[1] pointer-events-none">
+    <svg
+      class="hero-anim absolute inset-0 z-0 h-full w-full"
+      viewBox="0 0 1024 600"
+      preserveAspectRatio="xMidYMid meet"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="Physical IoT Fabrikken sensors on the left measure the room and stream data wirelessly into the RoomAlyzer platform on the right, which shows dashboards, reports, maps and alerts."
+    >
     <defs>
       <pattern id="hero-dots" width="28" height="28" patternUnits="userSpaceOnUse">
         <circle cx="1.5" cy="1.5" r="1" fill="#0D3D54" opacity="0.07" />
@@ -31,8 +48,24 @@
         <stop offset="0%" stop-color="#55A1C2" stop-opacity="0.28" />
         <stop offset="100%" stop-color="#55A1C2" stop-opacity="0" />
       </linearGradient>
-      <!-- Soft drop shadow used by the dashboard card and the pucks so -->
-      <!-- they feel lifted off the page without needing a window frame. -->
+      <!-- Subtle horizontal wash (stone-50) behind the SOLUTION header -->
+      <linearGradient id="solution-label-fade" gradientUnits="userSpaceOnUse" x1="488" y1="17" x2="632" y2="17">
+        <stop offset="0%" stop-color="#F9F9F9" stop-opacity="0" />
+        <stop offset="22%" stop-color="#F9F9F9" stop-opacity="0.1" />
+        <stop offset="55%" stop-color="#F9F9F9" stop-opacity="0.14" />
+        <stop offset="100%" stop-color="#F9F9F9" stop-opacity="0" />
+      </linearGradient>
+      <!-- Vertical mask so the SOLUTION wash fades out toward the top
+           edge (top transparent → opaque mid/bottom). Uses objectBoundingBox
+           so it scales with the rect it's applied to. -->
+      <linearGradient id="solution-label-top-fade-grad" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="white" stop-opacity="0" />
+        <stop offset="55%" stop-color="white" stop-opacity="1" />
+        <stop offset="100%" stop-color="white" stop-opacity="1" />
+      </linearGradient>
+      <mask id="solution-label-top-fade-mask" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+        <rect x="0" y="0" width="1" height="1" fill="url(#solution-label-top-fade-grad)" />
+      </mask>
       <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="150%">
         <feGaussianBlur in="SourceAlpha" stdDeviation="8" />
         <feOffset dx="0" dy="8" />
@@ -55,10 +88,6 @@
           <feMergeNode in="SourceGraphic" />
         </feMerge>
       </filter>
-      <!-- Floorplan: diagonal split.                                    -->
-      <!-- The floorplan rectangle is cut along its main diagonal, with  -->
-      <!-- the lower-right half shown as a clear floorplan and the       -->
-      <!-- upper-left half blurred and overlaid with an availability %.  -->
       <clipPath id="fp-clear-clip" clipPathUnits="userSpaceOnUse">
         <polygon points="204,0 204,172 0,172" />
       </clipPath>
@@ -68,11 +97,6 @@
       <filter id="fp-blur" x="-10%" y="-10%" width="120%" height="120%">
         <feGaussianBlur stdDeviation="2.5" />
       </filter>
-      <!-- Preservation chart: mask that reveals only the pixels that  -->
-      <!-- sit inside the safe-zone ribbon. Used to recolour the       -->
-      <!-- actual-RH line (coral when outside the band, sky inside).   -->
-      <!-- The centreline path below must match the one drawn for the  -->
-      <!-- green safe-zone ribbon in the chart itself.                 -->
       <mask id="preserve-safe-band" maskUnits="userSpaceOnUse" x="0" y="0" width="224" height="148">
         <rect x="0" y="0" width="224" height="148" fill="black" />
         <path
@@ -83,47 +107,26 @@
           fill="none"
         />
       </mask>
-      <!-- Static floorplan body: an open-plan office with two small    -->
-      <!-- enclosed rooms in opposite corners. Referenced twice via     -->
-      <!-- <use> (once blurred, once crisp). No visible doors.          -->
       <symbol id="fp-static" overflow="visible">
-        <!-- Interior partition wall for the single enclosed office     -->
-        <!-- in the top-left corner. Drawn as continuous segments so    -->
-        <!-- there is no door break.                                    -->
         <g stroke="#0D3D54" stroke-width="1.2" stroke-linecap="square" fill="none">
           <path d="M0 50 L44 50 L44 0" />
         </g>
-
-        <!-- Open-plan furniture — all rendered in a single soft grey  -->
-        <!-- so the floor reads as one calm visual layer behind the    -->
-        <!-- live status dots.                                          -->
         <g fill="#E7E5E4">
-          <!-- Meeting table: long rectangle, centred along the top.   -->
           <rect x="60" y="20" width="76" height="14" rx="3" />
-          <!-- Lounge on the middle-left: two parallel sofas facing    -->
-          <!-- each other across a low coffee table.                   -->
           <rect x="6"  y="72"  width="32" height="14" rx="5" />
           <rect x="6"  y="102" width="32" height="14" rx="5" />
           <rect x="14" y="91"  width="16" height="6"  rx="1" fill="#D7D3D0" />
-          <!-- Desk pod on the middle-right: four-person cluster.      -->
           <rect x="116" y="72" width="22" height="10" rx="1.5" />
           <rect x="142" y="72" width="22" height="10" rx="1.5" />
           <rect x="116" y="90" width="22" height="10" rx="1.5" />
           <rect x="142" y="90" width="22" height="10" rx="1.5" />
-          <!-- Collaboration corner (bottom-centre): soft seating       -->
-          <!-- circles grouped around a shared low table.               -->
           <circle cx="74"  cy="146" r="7" />
           <circle cx="96"  cy="154" r="6" />
           <circle cx="118" cy="148" r="7" />
           <rect x="84" y="132" width="22" height="5" rx="1" fill="#D7D3D0" />
-          <!-- Focus booths (bottom-right): two individual quiet       -->
-          <!-- work / phone-call pods replacing the former Archive.    -->
           <rect x="150" y="128" width="22" height="22" rx="3" />
           <rect x="176" y="128" width="22" height="22" rx="3" />
         </g>
-
-        <!-- Chairs: tiny darker dots ringing the meeting table and    -->
-        <!-- desk pod so the seating arrangement reads as intentional. -->
         <g fill="#A8A29E">
           <circle cx="68"  cy="13" r="2.2" />
           <circle cx="84"  cy="13" r="2.2" />
@@ -140,13 +143,9 @@
           <circle cx="127" cy="105" r="2" />
           <circle cx="153" cy="105" r="2" />
         </g>
-
-        <!-- Label for the single enclosed office. -->
         <g font-size="6.5" font-weight="700" fill="#78716C" text-anchor="middle" letter-spacing="0.04em">
           <text x="22"  y="26">Office</text>
         </g>
-
-        <!-- Zone labels for the open-plan areas. -->
         <g font-size="5" font-weight="700" fill="#B8B4B1" text-anchor="middle" letter-spacing="0.3em">
           <text x="98"  y="60">MEETING</text>
           <text x="22"  y="66">LOUNGE</text>
@@ -154,27 +153,16 @@
           <text x="96"  y="118">COLLAB</text>
           <text x="174" y="122">FOCUS</text>
         </g>
-
-        <!-- Availability dots on every seatable zone. Green = free,   -->
-        <!-- coral = in use. Rendered on both halves of the diagonal   -->
-        <!-- so the blurred side still reads as live status while the  -->
-        <!-- clear side stays pixel-sharp.                              -->
         <g stroke="white" stroke-width="1">
-          <!-- Meeting room: in use. -->
           <circle cx="98"  cy="27"  r="3.4" fill="#DC626A" />
-          <!-- Lounge: both sofas free. -->
           <circle cx="22"  cy="79"  r="3.4" fill="#65A99C" />
           <circle cx="22"  cy="109" r="3.4" fill="#65A99C" />
-          <!-- Desk pod: two free, two in use. -->
           <circle cx="127" cy="77"  r="3.4" fill="#65A99C" />
           <circle cx="153" cy="77"  r="3.4" fill="#DC626A" />
           <circle cx="127" cy="95"  r="3.4" fill="#65A99C" />
           <circle cx="153" cy="95"  r="3.4" fill="#DC626A" />
-          <!-- Collab corner: free. -->
           <circle cx="96"  cy="144" r="3.4" fill="#65A99C" />
-          <!-- Office (enclosed): free. -->
           <circle cx="22"  cy="38"  r="3.4" fill="#65A99C" />
-          <!-- Focus booths: one free, one in use. -->
           <circle cx="161" cy="139" r="3.4" fill="#65A99C" />
           <circle cx="187" cy="139" r="3.4" fill="#DC626A" />
         </g>
@@ -190,48 +178,47 @@
 
         <!-- Section headers: a little glyph + strong label + accent    -->
         <!-- underline in each side's theme colour, so the two zones    -->
-        <!-- read clearly at a glance.                                  -->
-        <g>
-          <!-- SENSORS: a miniature puck icon, coral accent. Positioned -->
-          <!-- so the header sits directly above the sensor column       -->
-          <!-- (icon flush with the left edge of the puck at x=220).     -->
-          <g transform="translate(186 26)">
-            <circle cx="11" cy="11" r="11" fill="#DC626A" opacity="0.12" />
-            <circle cx="11" cy="11" r="7"  fill="white" stroke="#DC626A" stroke-width="1.6" />
-            <circle cx="11" cy="11" r="2.5" fill="#DC626A" />
+        <!-- read clearly at a glance. Translated up 15 px so the       -->
+        <!-- header row sits closer to the top of the SVG.              -->
+        <g transform="translate(0 -15)">
+          <g transform="translate(-5 0)">
+            <!-- SENSORS: a miniature puck icon, coral accent. Positioned -->
+            <!-- so the header sits directly above the sensor column       -->
+            <!-- (icon flush with the left edge of the puck at x=220).     -->
+            <g transform="translate(186 1)">
+              <circle cx="11" cy="11" r="11" fill="#DC626A" opacity="0.12" />
+              <circle cx="11" cy="11" r="7"  fill="white" stroke="#DC626A" stroke-width="1.6" />
+              <circle cx="11" cy="11" r="2.5" fill="#DC626A" />
+            </g>
+            <text x="218" y="17" font-size="16" font-weight="800" fill="#0D3D54" letter-spacing="0.26em">SENSORS</text>
+            <rect x="218" y="25" width="70" height="3" rx="1.5" fill="#DC626A" />
           </g>
-          <text x="218" y="42" font-size="16" font-weight="800" fill="#0D3D54" letter-spacing="0.26em">SENSORS</text>
-          <rect x="218" y="50" width="70" height="3" rx="1.5" fill="#DC626A" />
+
+          <!-- Soft fade behind SOLUTION so the label stays readable over
+               the atrium backdrop (icon + text + underline only). -->
+          <rect
+            x="488"
+            y="0"
+            width="144"
+            height="47"
+            fill="url(#solution-label-fade)"
+            mask="url(#solution-label-top-fade-mask)"
+            pointer-events="none"
+          />
 
           <!-- SOLUTION: a miniature dashboard icon, sky accent. -->
-          <g transform="translate(506 26)">
+          <g transform="translate(506 1)">
             <rect x="0"  y="2"  width="22" height="18" rx="3" fill="#55A1C2" opacity="0.12" />
             <rect x="2"  y="4"  width="18" height="14" rx="2" fill="white" stroke="#55A1C2" stroke-width="1.4" />
             <rect x="4"  y="7"  width="11" height="1.8" rx="0.9" fill="#55A1C2" />
             <rect x="4"  y="10" width="7"  height="1.8" rx="0.9" fill="#55A1C2" />
             <rect x="4"  y="13" width="9"  height="1.8" rx="0.9" fill="#55A1C2" />
           </g>
-          <text x="538" y="42" font-size="16" font-weight="800" fill="#0D3D54" letter-spacing="0.26em">SOLUTION</text>
-          <rect x="538" y="50" width="78" height="3" rx="1.5" fill="#55A1C2" />
+          <text x="538" y="17" font-size="16" font-weight="800" fill="#0D3D54" letter-spacing="0.26em">SOLUTION</text>
+          <rect x="538" y="25" width="78" height="3" rx="1.5" fill="#55A1C2" />
         </g>
 
-        <!-- Dashed channels: sensors → dashboard. Each channel starts -->
-        <!-- at the right edge of the puck (shifted sensor column puts  -->
-        <!-- the puck at cx=220, r=34 → x=254).                         -->
-        <g stroke="#0D3D54" stroke-width="1.2" stroke-dasharray="3 5" fill="none" opacity="0.22" stroke-linecap="round">
-          <line x1="254" y1="140" x2="490" y2="200" />
-          <line x1="254" y1="318" x2="490" y2="318" />
-          <line x1="254" y1="496" x2="490" y2="430" />
-        </g>
-
-        <!-- Data packets in flight. Each colour matches the sensor  -->
-        <!-- it originated from. Packets start at the puck edge.      -->
-        <g>
-          <circle class="packet packet-0" cx="254" cy="140" r="4.5" fill="#55A1C2" />
-          <circle class="packet packet-1" cx="254" cy="318" r="4.5" fill="#DC626A" />
-          <circle class="packet packet-2" cx="254" cy="496" r="4.5" fill="#006C58" />
-        </g>
-
+        <g transform="translate(-5 0)">
         <!-- ==================== SENSOR 1 — School (indoor climate) ==================== -->
         <!-- Each sensor used to be drawn as a generic IoT puck. Instead -->
         <!-- the hero now shows the kind of building the sensor lives in -->
@@ -239,7 +226,7 @@
         <!-- an office for workspace use. The radiating waves still      -->
         <!-- emanate from the building, so "this place is reporting in"  -->
         <!-- reads at a glance.                                          -->
-        <g class="sensor sensor-0" transform="translate(110 140)">
+        <g class="sensor sensor-0" transform="translate(150 125)">
           <!-- Wireless arcs radiating from the building. -->
           <g class="waves" stroke="#55A1C2" fill="none" stroke-linecap="round" stroke-width="1.6">
             <circle class="wave wave-a" cx="110" cy="0" r="42" />
@@ -266,10 +253,9 @@
 
           <!-- Caption: small green "live" dot to the left of the      -->
           <!-- use-case label, then headline reading + supporting line. -->
-          <circle class="led" cx="86" cy="45" r="2.4" fill="#65A99C" />
-          <text x="110" y="48" text-anchor="middle" font-size="7.5" font-weight="700" fill="#A8A29E" letter-spacing="0.18em">SCHOOL</text>
+          <text x="110" y="48" text-anchor="middle" font-size="7.5" font-weight="700" fill="#57534E" letter-spacing="0.18em">SCHOOL</text>
           <text x="110" y="62" text-anchor="middle" font-size="11" font-weight="700" fill="#0D3D54">CO₂ 612 ppm</text>
-          <text x="110" y="74" text-anchor="middle" font-size="8"  fill="#78716C">Classroom 2.04 · 21.4 °C</text>
+          <text x="110" y="74" text-anchor="middle" font-size="8"  fill="#44403C">Classroom 2.04 · 21.4 °C</text>
         </g>
 
         <!-- ==================== SENSOR 2 — Church (heritage climate) ==================== -->
@@ -277,7 +263,7 @@
         <!-- ties the coral wave colour into the dashboard's mould-risk -->
         <!-- alert and preservation chart so the whole hero reads as    -->
         <!-- one connected story.                                       -->
-        <g class="sensor sensor-1" transform="translate(110 318)">
+        <g class="sensor sensor-1" transform="translate(150 303)">
           <g class="waves" stroke="#DC626A" fill="none" stroke-linecap="round" stroke-width="1.6">
             <circle class="wave wave-a" cx="110" cy="0" r="42" />
             <circle class="wave wave-b" cx="110" cy="0" r="42" />
@@ -306,14 +292,13 @@
             <!-- Arched door between the windows -->
             <path d="M114 14 L114 5 A 3 3 0 0 1 120 5 L120 14" />
           </g>
-          <circle class="led" cx="86" cy="45" r="2.4" fill="#65A99C" />
-          <text x="110" y="48" text-anchor="middle" font-size="7.5" font-weight="700" fill="#A8A29E" letter-spacing="0.18em">CHURCH</text>
+          <text x="110" y="48" text-anchor="middle" font-size="7.5" font-weight="700" fill="#57534E" letter-spacing="0.18em">CHURCH</text>
           <text x="110" y="62" text-anchor="middle" font-size="11" font-weight="700" fill="#0D3D54">52 % RH</text>
-          <text x="110" y="74" text-anchor="middle" font-size="8"  fill="#78716C">Sanctuary · 18.6 °C</text>
+          <text x="110" y="74" text-anchor="middle" font-size="8"  fill="#44403C">Sanctuary · 18.6 °C</text>
         </g>
 
         <!-- ==================== SENSOR 3 — Office (workspace use) ==================== -->
-        <g class="sensor sensor-2" transform="translate(110 496)">
+        <g class="sensor sensor-2" transform="translate(150 481)">
           <g class="waves" stroke="#006C58" fill="none" stroke-linecap="round" stroke-width="1.6">
             <circle class="wave wave-a" cx="110" cy="0" r="42" />
             <circle class="wave wave-b" cx="110" cy="0" r="42" />
@@ -324,31 +309,60 @@
 
           <!-- Multi-storey office: 3 × 3 grid of windows with a        -->
           <!-- centred entrance taking the place of the middle window   -->
-          <!-- on the ground floor.                                     -->
+          <!-- on the ground floor. All x coords shifted -4 vs. the     -->
+          <!-- original so the building shell (was 88..140, centre 114) -->
+          <!-- is now 84..136, centred on x=110 — matching the sensor   -->
+          <!-- column's wave/LED/text centre line.                      -->
           <g stroke="#0D3D54" stroke-width="1.4" fill="none" stroke-linejoin="round" stroke-linecap="round">
             <!-- Building shell -->
-            <path d="M88 14 L88 -28 L140 -28 L140 14" />
+            <path d="M84 14 L84 -28 L136 -28 L136 14" />
             <!-- Roof cap -->
-            <path d="M86 -28 L142 -28" />
+            <path d="M82 -28 L138 -28" />
             <!-- Window grid -->
-            <rect x="92"  y="-24" width="9" height="6" />
-            <rect x="109" y="-24" width="9" height="6" />
-            <rect x="127" y="-24" width="9" height="6" />
-            <rect x="92"  y="-14" width="9" height="6" />
-            <rect x="109" y="-14" width="9" height="6" />
-            <rect x="127" y="-14" width="9" height="6" />
-            <rect x="92"  y="-4"  width="9" height="6" />
-            <rect x="127" y="-4"  width="9" height="6" />
+            <rect x="88"  y="-24" width="9" height="6" />
+            <rect x="105" y="-24" width="9" height="6" />
+            <rect x="123" y="-24" width="9" height="6" />
+            <rect x="88"  y="-14" width="9" height="6" />
+            <rect x="105" y="-14" width="9" height="6" />
+            <rect x="123" y="-14" width="9" height="6" />
+            <rect x="88"  y="-4"  width="9" height="6" />
+            <rect x="123" y="-4"  width="9" height="6" />
             <!-- Entrance -->
-            <path d="M109 14 L109 -4 L118 -4 L118 14" />
+            <path d="M105 14 L105 -4 L114 -4 L114 14" />
           </g>
-          <circle class="led" cx="86" cy="45" r="2.4" fill="#65A99C" />
-          <text x="110" y="48" text-anchor="middle" font-size="7.5" font-weight="700" fill="#A8A29E" letter-spacing="0.18em">OFFICE</text>
+          <text x="110" y="48" text-anchor="middle" font-size="7.5" font-weight="700" fill="#57534E" letter-spacing="0.18em">OFFICE</text>
           <text x="110" y="62" text-anchor="middle" font-size="11" font-weight="700" fill="#0D3D54">67 % free</text>
-          <text x="110" y="74" text-anchor="middle" font-size="8"  fill="#78716C">Floor 2 · 12 of 18 desks</text>
+          <text x="110" y="74" text-anchor="middle" font-size="8"  fill="#44403C">Floor 2 · 12 of 18 desks</text>
+        </g>
         </g>
 
-        <!-- ==================== SOLUTION — RoomAlyzer dashboard ==================== -->
+        <!-- Dashed channels: sensors → dashboard. End-points target the
+             scaled dashboard's left edge — see the .dashboard-group
+             transform below for the geometry derivation. -->
+        <g stroke="#0D3D54" stroke-width="1.2" stroke-dasharray="3 5" fill="none" opacity="0.4" stroke-linecap="round">
+          <line x1="294" y1="125" x2="511" y2="183" />
+          <line x1="294" y1="303" x2="511" y2="273" />
+          <line x1="294" y1="481" x2="511" y2="363" />
+        </g>
+
+        <!-- Data packets in flight. Keyframe deltas are calibrated to
+             travel from the sensor edge to the scaled dashboard's
+             visible left edge (which coincides with the SOLUTION
+             label, by design). -->
+        <g>
+          <circle class="packet packet-0" cx="294" cy="125" r="4.5" fill="#55A1C2" />
+          <circle class="packet packet-1" cx="294" cy="303" r="4.5" fill="#DC626A" />
+          <circle class="packet packet-2" cx="294" cy="481" r="4.5" fill="#006C58" />
+        </g>
+
+        <!-- ==================== SOLUTION — RoomAlyzer dashboard ====================
+             The dashboard is wrapped in its own SVG-level transform so the
+             SENSORS column on the left stays at full natural size while
+             only the dashboard scales down to fit inside the tablet
+             screen cutout in the floating-man PNG. The transform values
+             are derived from the cutout geometry — see the comment block
+             above the .hero-anim rule in <style> for the full math. -->
+        <g class="dashboard-group" transform="translate(125.06 21.31) scale(0.7827 0.792)">
         <g filter="url(#soft-shadow)">
           <!-- Frame -->
           <rect x="490" y="90" width="500" height="455" rx="14" fill="white" stroke="#E7E5E4" />
@@ -564,32 +578,199 @@
             <text x="42" y="20" text-anchor="middle" font-size="10" font-weight="600" fill="#0D3D54">Snooze</text>
           </g>
         </g>
+        </g><!-- /.dashboard-group -->
     </g>
   </svg>
+
+    <img
+      src="/images/man.png"
+      alt=""
+      class="hero-overlay pointer-events-none absolute bottom-0 -right-[24.56%] z-10 h-auto w-[92%]"
+      width="1024"
+      height="870"
+      decoding="async"
+      aria-hidden="true"
+    />
+  </div>
 </div>
 
-<style>
+<style is:global>
+  .hero-stage {
+    /* Stable aspect ratio so percentage-based layout scales together on
+       resize. floating-man-new-fade.png (1024 × 870) at 92 % stage_W;
+       shifted with `-right-[24.56%]`. Right-edge fade is baked into the
+       asset; not hard-cropped. No vertical clip — full image height is
+       preserved. */
+    aspect-ratio: 1024 / 768;
+    line-height: 0;
+    width: 100%;
+    overflow: visible;
+    /* Extend the paint region on the sides so the man's fade can spill
+       past the right edge AND the leftward shift below doesn't get
+       clipped on the left. Top/bottom are cropped by 5 px each. */
+    clip-path: inset(20px -35% 35px -10%);
+    /* The 35 px bottom clip above hides the lowest 35 px of the man
+       image but the element still occupies that space in the DOM,
+       which leaves a visible bg-stone-50 strip between the man and
+       the next section. Pull the stage up by the same amount so the
+       visible bottom of the man sits flush against the section
+       boundary, with no leftover background sliver. */
+    margin-bottom: -35px;
+    /* Nudge the whole hero (sensors, dashboard, floating-man, fade)
+       left as one block so the sensor column tucks in just under the
+       Logo + Products area of the nav. Percentage is of `.hero-stage`'s
+       own width, so the shift scales with the viewport — everything
+       inside the stage moves together, no internal layout changes. */
+    --hero-shift-x: -8.91%;
+    transform: translateX(calc(var(--hero-shift-x) - 35px));
+  }
+
+  /* Banner backdrop. Fills the hero-stage and is masked to be visible
+     only behind the dashboard tablet:
+       •   0 % –  22 %  : transparent  (stone-50; fade starts left of the
+         dashed-line midpoint at ~32 %)
+       •  22 % –  40 %  : soft fade-in (gentler ramp over 18 % width)
+       •  53 % – 100 %  : full peak (atrium runs to the right edge;
+         the fade tail extends past the stage so the right edge stays
+         fully visible — the man's own arm fade in the PNG keeps the
+         body crisp) */
+  .hero-backdrop {
+    --backdrop-lines-mid: 22%;
+    object-fit: cover;
+    object-position: right bottom;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      transparent var(--backdrop-lines-mid),
+      rgba(0, 0, 0, 0.1) calc(var(--backdrop-lines-mid) + 3%),
+      rgba(0, 0, 0, 0.24) calc(var(--backdrop-lines-mid) + 6%),
+      rgba(0, 0, 0, 0.4) calc(var(--backdrop-lines-mid) + 9%),
+      rgba(0, 0, 0, 0.58) calc(var(--backdrop-lines-mid) + 12%),
+      rgba(0, 0, 0, 0.78) calc(var(--backdrop-lines-mid) + 15%),
+      black calc(var(--backdrop-lines-mid) + 18%),
+      black 100%,
+      transparent 112%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      transparent var(--backdrop-lines-mid),
+      rgba(0, 0, 0, 0.1) calc(var(--backdrop-lines-mid) + 3%),
+      rgba(0, 0, 0, 0.24) calc(var(--backdrop-lines-mid) + 6%),
+      rgba(0, 0, 0, 0.4) calc(var(--backdrop-lines-mid) + 9%),
+      rgba(0, 0, 0, 0.58) calc(var(--backdrop-lines-mid) + 12%),
+      rgba(0, 0, 0, 0.78) calc(var(--backdrop-lines-mid) + 15%),
+      black calc(var(--backdrop-lines-mid) + 18%),
+      black 100%,
+      transparent 112%
+    );
+  }
+
+  /* man.png — soft 3 % gradient on the very right edge so the silhouette
+     dissolves smoothly instead of ending in a hard line. */
+  .hero-overlay {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      black 0%,
+      black 97%,
+      rgba(0, 0, 0, 0.95) 97.7%,
+      rgba(0, 0, 0, 0.6) 98.4%,
+      rgba(0, 0, 0, 0.35) 99.1%,
+      rgba(0, 0, 0, 0.15) 99.7%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      black 0%,
+      black 97%,
+      rgba(0, 0, 0, 0.95) 97.7%,
+      rgba(0, 0, 0, 0.6) 98.4%,
+      rgba(0, 0, 0, 0.35) 99.1%,
+      rgba(0, 0, 0, 0.15) 99.7%,
+      transparent 100%
+    );
+  }
+
+  /* Geometry for the dashboard-inside-tablet alignment.
+     ────────────────────────────────────────────────────
+     Only the dashboard scales — the sensor column on the left stays
+     at its full natural size. The scale lives INSIDE the SVG (on the
+     `.dashboard-group` transform attribute) so it does not affect the
+     sensors, and the sensors are simply moved as a unit by changing
+     their `transform="translate(...)"` to sit under the SENSORS label.
+
+     Hero-stage:  aspect 1024/768 = 1.3333 (W:H, 4:3)
+       → stage_H = 75.000 % of stage_W.
+     Floating-man-new-fade PNG: 1024×870, aspect 1.1768. Bottom-anchored at
+       width = 92 % of stage_W with `-right-[32.54%]` so the tablet
+       cutout stays aligned; right leeway fades via mask (not cropped).
+       • Image left  =  40.540 % of stage_W
+       • Image right = 132.540 % of stage_W   (extends past stage, faded)
+       • Image top   ≈ −4.25 % of stage_H  (full height, not cropped)
+       • Image bot   = 100.000 %
+     Tablet screen cutout — measured by finding rows that have BOTH a
+     left bezel (opaque at x≈101-112) AND a right bezel (opaque at
+     x≈530-545), so transparent regions outside the tablet (above,
+     below, left of bezel) are excluded:
+       x = 10.84 – 51.76 % of image-W  (width 40.92 %)
+       y = 26.44 – 70.80 % of image-H  (height 44.36 %)
+     With the image at 33.42 % left (-right-[25.42%]), 92 % wide,
+     104.21 % of stage_H tall, bottom-anchored at 100 %:
+       horiz: 43.39 – 81.04 % of stage_W
+       vert:  23.34 – 69.57 % of stage_H
+     Outer-left bezel at image x ≈ 101 → stage 42.49 % → wrapper x≈511,
+     ~30 px left of the "S" in SOLUTION on a 1150 px-wide stage.
+
+     SVG (viewBox 1024×600) renders preserveAspectRatio="xMidYMid meet";
+     SVG fills stage_W, height = 78.13 % of stage_H, vertically centred
+     (top margin 10.94 % of stage_H). Mapping:
+       SVG-x = stage_x_% · 10.24
+       SVG-y = (stage_y_% − 10.94) / 78.13 · 600
+
+     Tablet cutout in wrapper coords (+76 for the wrapper's
+     `<g transform="translate(-76 0)">`):
+       x = 520.29 – 905.83   (width 385.54)
+       y = 95.24 – 450.30    (height 355.06)
+     Dashboard card at x = 490–990, y = 90–545 (500 × 455).
+
+     Base fit:
+       s_x = 385.54 / 500 = 0.7711
+       s_y = 355.06 / 455 = 0.7804
+
+     Tucked 1.5 % under the bezel:
+       s_x = 0.7711 × 1.015 = 0.7827
+       s_y = 0.7804 × 1.015 = 0.7920
+       cutout centre (wrapper) = (713.06, 272.77)
+       dashboard centre        = (740.00, 317.50)
+       t_x = 713.06 − 0.7827 × 740.00 = +133.86
+       t_y = 272.77 − 0.7920 × 317.50 = +21.31
+     → `transform="translate(133.86 21.31) scale(0.7827 0.792)"`
+       on `.dashboard-group`.
+
+     Dashed channels end at x2 = 519 (cutout left edge in wrapper
+     coords); y2 values 183/273/363 sit at 25/50/75 % down the
+     dashboard. Packet keyframes use translate(225px, Δy) to match. */
   .hero-anim {
     font-family: var(--font-sans);
   }
 
   /* Wireless arcs: three concentric rings that grow and fade, one after
      the other, simulating an antenna transmitting. */
-  .wave {
+  .hero-anim .wave {
     transform-box: fill-box;
     transform-origin: center;
     animation: wave-grow 2.8s ease-out infinite;
     opacity: 0;
   }
-  .wave-a { animation-delay: 0s; }
-  .wave-b { animation-delay: 0.9s; }
-  .wave-c { animation-delay: 1.8s; }
-  .sensor-1 .wave-a { animation-delay: 0.3s; }
-  .sensor-1 .wave-b { animation-delay: 1.2s; }
-  .sensor-1 .wave-c { animation-delay: 2.1s; }
-  .sensor-2 .wave-a { animation-delay: 0.6s; }
-  .sensor-2 .wave-b { animation-delay: 1.5s; }
-  .sensor-2 .wave-c { animation-delay: 2.4s; }
+  .hero-anim .wave-a { animation-delay: 0s; }
+  .hero-anim .wave-b { animation-delay: 0.9s; }
+  .hero-anim .wave-c { animation-delay: 1.8s; }
+  .hero-anim .sensor-1 .wave-a { animation-delay: 0.3s; }
+  .hero-anim .sensor-1 .wave-b { animation-delay: 1.2s; }
+  .hero-anim .sensor-1 .wave-c { animation-delay: 2.1s; }
+  .hero-anim .sensor-2 .wave-a { animation-delay: 0.6s; }
+  .hero-anim .sensor-2 .wave-b { animation-delay: 1.5s; }
+  .hero-anim .sensor-2 .wave-c { animation-delay: 2.4s; }
 
   @keyframes wave-grow {
     0%   { transform: scale(1);   opacity: 0.5; }
@@ -597,9 +778,11 @@
     100% { transform: scale(1.9); opacity: 0; }
   }
 
-  /* Data packet flying from the puck edge (x=254) to the dashboard
-     (x=490). The delta vectors match the dashed lines above. */
-  .packet {
+  /* Data packets flying from each sensor's right edge (x=254) to the
+     scaled dashboard's left edge (x=278). The delta vectors match the
+     end-points of the dashed connector lines above — recompute them
+     together if you ever change either. */
+  .hero-anim .packet {
     opacity: 0;
     animation-duration: 2.8s;
     animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
@@ -607,52 +790,52 @@
     will-change: transform, opacity;
   }
   @keyframes packet-0 {
-    0%   { transform: translate(0, 0);         opacity: 0; }
+    0%   { transform: translate(0, 0);          opacity: 0; }
     10%  { opacity: 1; }
     85%  { opacity: 1; }
-    100% { transform: translate(236px, 60px);  opacity: 0; }
+    100% { transform: translate(217px, 58px);   opacity: 0; }
   }
   @keyframes packet-1 {
-    0%   { transform: translate(0, 0);         opacity: 0; }
+    0%   { transform: translate(0, 0);          opacity: 0; }
     10%  { opacity: 1; }
     85%  { opacity: 1; }
-    100% { transform: translate(236px, 0);     opacity: 0; }
+    100% { transform: translate(217px, -30px);  opacity: 0; }
   }
   @keyframes packet-2 {
-    0%   { transform: translate(0, 0);         opacity: 0; }
+    0%   { transform: translate(0, 0);          opacity: 0; }
     10%  { opacity: 1; }
     85%  { opacity: 1; }
-    100% { transform: translate(236px, -66px); opacity: 0; }
+    100% { transform: translate(217px, -118px); opacity: 0; }
   }
-  .packet-0 { animation-name: packet-0; animation-delay: 0s; }
-  .packet-1 { animation-name: packet-1; animation-delay: 0.9s; }
-  .packet-2 { animation-name: packet-2; animation-delay: 1.8s; }
+  .hero-anim .packet-0 { animation-name: packet-0; animation-delay: 0s; }
+  .hero-anim .packet-1 { animation-name: packet-1; animation-delay: 0.9s; }
+  .hero-anim .packet-2 { animation-name: packet-2; animation-delay: 1.8s; }
 
   /* Green status LED on each sensor. */
-  .led {
+  .hero-anim .led {
     animation: led-blink 1.8s ease-in-out infinite;
   }
-  .sensor-1 .led { animation-delay: 0.6s; }
-  .sensor-2 .led { animation-delay: 1.2s; }
+  .hero-anim .sensor-1 .led { animation-delay: 0.6s; }
+  .hero-anim .sensor-2 .led { animation-delay: 1.2s; }
   @keyframes led-blink {
     0%, 100% { opacity: 1; }
     50%      { opacity: 0.3; }
   }
 
   /* Dashboard "live" dot mirrors the sensor LEDs. */
-  .live-dot {
+  .hero-anim .live-dot {
     animation: led-blink 1.8s ease-in-out infinite;
   }
 
   /* Line chart draws itself in once, then sits with a pulsing dot at
      the far end. The dasharray is sized to cover the longer of the
      two line-chart paths (preservation ≈ 384px, CO₂ ≈ 260px). */
-  .chart-line {
+  .hero-anim .chart-line {
     stroke-dasharray: 500;
     stroke-dashoffset: 500;
     animation: chart-draw 3.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
   }
-  .chart-fill {
+  .hero-anim .chart-fill {
     opacity: 0;
     animation: chart-fade-in 1s ease-out 3.4s forwards;
   }
@@ -664,7 +847,7 @@
   }
 
   /* Pulsing ring at the current chart value. */
-  .chart-pulse {
+  .hero-anim .chart-pulse {
     transform-box: fill-box;
     transform-origin: center;
     animation: chart-ring 2.2s ease-out infinite;
@@ -676,7 +859,7 @@
   }
 
   /* One room on the floorplan is in alert: emit a coral ring. */
-  .alert-ring {
+  .hero-anim .alert-ring {
     transform-box: fill-box;
     transform-origin: center;
     animation: alert-ring 1.8s ease-out infinite;
@@ -687,19 +870,19 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .wave,
-    .packet,
-    .led,
-    .live-dot,
-    .chart-line,
-    .chart-fill,
-    .chart-pulse,
-    .alert-ring {
+    .hero-anim .wave,
+    .hero-anim .packet,
+    .hero-anim .led,
+    .hero-anim .live-dot,
+    .hero-anim .chart-line,
+    .hero-anim .chart-fill,
+    .hero-anim .chart-pulse,
+    .hero-anim .alert-ring {
       animation: none;
     }
-    .packet { opacity: 1; }
-    .wave   { opacity: 0.2; }
-    .chart-line { stroke-dashoffset: 0; }
-    .chart-fill { opacity: 1; }
+    .hero-anim .packet { opacity: 1; }
+    .hero-anim .wave   { opacity: 0.2; }
+    .hero-anim .chart-line { stroke-dashoffset: 0; }
+    .hero-anim .chart-fill { opacity: 1; }
   }
 </style>

@@ -17,7 +17,6 @@ interface Cta {
 interface Props {
   title: string;
   description?: string;
-  eyebrow: string;
   heroTitle: string;
   heroTitleAccent?: string;
   heroLead: string;
@@ -26,6 +25,8 @@ interface Props {
   secondaryCta?: Cta;
   /** Hide the "Content on the way" notice (useful when a page already has real content). */
   hideNotice?: boolean;
+  /** Hide hero and bottom-band Book demo / Contact sales buttons. */
+  showCtas?: boolean;
   ctaBandTitle?: string;
   ctaBandSubtitle?: string;
 }
@@ -33,14 +34,14 @@ interface Props {
 const {
   title,
   description,
-  eyebrow,
   heroTitle,
   heroTitleAccent,
   heroLead,
   breadcrumbs = [],
-  primaryCta = { label: "Book demo", href: "/en/contact/book-demo/" },
+  primaryCta = { label: "Book a free demo", href: "/en/contact/book-demo/" },
   secondaryCta = { label: "Contact sales", href: "/en/contact/sales/" },
   hideNotice = false,
+  showCtas = true,
   ctaBandTitle = "Want to know more already now?",
   ctaBandSubtitle = "Get in touch — we're always happy to have a no-strings chat.",
 } = Astro.props;
@@ -69,14 +70,18 @@ const {
   )}
 
   <Hero
-    eyebrow={eyebrow}
     title={heroTitle}
     titleAccent={heroTitleAccent}
     lead={heroLead}
     align="left"
+    compactTop={breadcrumbs.length > 0}
   >
-    <Button href={primaryCta.href} variant="primary" size="lg" slot="cta">{primaryCta.label}</Button>
-    <Button href={secondaryCta.href} variant="secondary" size="lg" slot="cta">{secondaryCta.label}</Button>
+    {showCtas && (
+      <>
+        <Button href={primaryCta.href} variant="primary" size="lg" slot="cta">{primaryCta.label}</Button>
+        <Button href={secondaryCta.href} variant="secondary" size="lg" slot="cta">{secondaryCta.label}</Button>
+      </>
+    )}
 
     {!hideNotice && (
       <div slot="visual" class="reveal">
@@ -96,17 +101,21 @@ const {
   </Hero>
 
   <section class="py-16">
-    <div class="container-page max-w-3xl">
-      <slot />
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <slot />
+      </div>
     </div>
   </section>
 
-  <CtaBand
-    title={ctaBandTitle}
-    subtitle={ctaBandSubtitle}
-    primaryLabel="Book demo"
-    primaryHref={primaryCta.href}
-    secondaryLabel="Contact sales"
-    secondaryHref={secondaryCta.href}
-  />
+  {showCtas && (
+    <CtaBand
+      title={ctaBandTitle}
+      subtitle={ctaBandSubtitle}
+      primaryLabel="Book a free demo"
+      primaryHref={primaryCta.href}
+      secondaryLabel="Contact sales"
+      secondaryHref={secondaryCta.href}
+    />
+  )}
 </Layout>

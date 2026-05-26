@@ -1,0 +1,112 @@
+---
+import Button from "../Button.astro";
+---
+
+<div class="mt-6" data-roi-email-panel>
+  <div data-roi-email-gate>
+    <p class="text-sm font-medium text-navy-500 mb-3">
+      Get your full savings breakdown
+    </p>
+    <form class="space-y-3" data-roi-email-form novalidate>
+      <label class="block">
+        <span class="text-xs font-medium text-stone-300">Work email</span>
+        <input
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+          placeholder="you@company.com"
+          class="mt-1 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
+          data-roi-email-input
+        />
+      </label>
+      <label class="block">
+        <span class="text-xs font-medium text-stone-300">Company (optional)</span>
+        <input
+          type="text"
+          name="company"
+          autocomplete="organization"
+          placeholder="Your organisation"
+          class="mt-1 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
+          data-roi-company-input
+        />
+      </label>
+      <p class="text-xs text-coral-600 hidden" data-roi-email-error role="alert">
+        Please enter a valid work email address.
+      </p>
+      <Button type="submit" variant="primary" size="md" class="w-full sm:w-auto">
+        Email me my full report
+      </Button>
+      <p class="text-xs text-stone-300 leading-relaxed">
+        By submitting you accept our
+        <a href="/en/legal/privacy/" class="underline hover:text-coral-500">privacy policy</a>.
+      </p>
+    </form>
+  </div>
+
+  <div class="hidden space-y-5" data-roi-email-breakdown>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <article class="rounded-lg border border-stone-200 bg-white p-4">
+        <p class="text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1">
+          Without RoomAlyzer
+        </p>
+        <p
+          class="text-2xl font-bold text-coral-600 tabular-nums"
+          data-roi-without-total
+        >
+          —
+        </p>
+        <p class="mt-1 text-xs text-stone-300">Estimated annual cost</p>
+      </article>
+      <article class="rounded-lg border-2 border-forest-500/25 bg-forest-500/5 p-4">
+        <p class="text-xs font-semibold uppercase tracking-wider text-forest-500 mb-1">
+          With RoomAlyzer
+        </p>
+        <p
+          class="text-2xl font-bold text-forest-500 tabular-nums"
+          data-roi-with-total
+        >
+          —
+        </p>
+        <p class="mt-1 text-xs text-stone-300">After estimated savings</p>
+      </article>
+    </div>
+
+    <div>
+      <p class="text-sm font-semibold text-navy-500 mb-3">Your savings breakdown</p>
+      <ul
+        class="space-y-2 text-sm text-stone-900/80 border border-stone-100 rounded-lg p-4 bg-stone-50"
+        data-roi-breakdown-lines
+      ></ul>
+    </div>
+
+    <dl class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+      <div class="rounded-lg bg-stone-50 border border-stone-100 p-3">
+        <dt class="text-stone-300 text-xs font-semibold uppercase tracking-wider">
+          Gross savings
+        </dt>
+        <dd class="mt-1 text-lg font-bold text-navy-500 tabular-nums" data-roi-gross>—</dd>
+      </div>
+      <div class="rounded-lg bg-stone-50 border border-stone-100 p-3">
+        <dt class="text-stone-300 text-xs font-semibold uppercase tracking-wider">
+          RoomAlyzer (illustrative)
+        </dt>
+        <dd class="mt-1 text-lg font-bold text-stone-900/80 tabular-nums" data-roi-platform>—</dd>
+      </div>
+      <div class="rounded-lg bg-forest-500/10 border border-forest-500/20 p-3">
+        <dt class="text-forest-500 text-xs font-semibold uppercase tracking-wider">
+          Net savings
+        </dt>
+        <dd class="mt-1 text-lg font-bold text-forest-500 tabular-nums" data-roi-net>—</dd>
+      </div>
+    </dl>
+
+    <button
+      type="button"
+      class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-md text-stone-300 hover:text-navy-500 transition-colors focus:outline-none focus:ring-2 focus:ring-navy-500 focus:ring-offset-2"
+      data-roi-adjust-inputs
+    >
+      Adjust inputs
+    </button>
+  </div>
+</div>

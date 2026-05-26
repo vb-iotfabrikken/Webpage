@@ -50,10 +50,10 @@ const articleJsonLd = {
   </nav>
 
   <Hero
-    eyebrow={`Blog · ${formatDate(post.data.pubDate)}`}
     title={post.data.title}
     lead={post.data.description}
     align="left"
+    compactTop
   >
     <Button href="/en/blog/" variant="secondary" size="lg" slot="cta">← Back to blog</Button>
   </Hero>
@@ -94,7 +94,7 @@ const articleJsonLd = {
   <CtaBand
     title="Want to know more?"
     subtitle="Drop us a line — we're happy to discuss anything in this post."
-    primaryLabel="Book demo"
+    primaryLabel="Book a free demo"
     primaryHref="/en/contact/book-demo/"
     secondaryLabel="Contact sales"
     secondaryHref="/en/contact/sales/"

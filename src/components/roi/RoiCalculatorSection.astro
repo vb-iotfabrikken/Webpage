@@ -1,0 +1,134 @@
+---
+import DeskOptimizerPanel from "./DeskOptimizerPanel.astro";
+import EnergySaverPanel from "./EnergySaverPanel.astro";
+import SavingsCounter from "./SavingsCounter.astro";
+import EmailUnlockPanel from "./EmailUnlockPanel.astro";
+
+interface Props {
+  id?: string;
+  showHeader?: boolean;
+  compact?: boolean;
+  showEmailGate?: boolean;
+  salesCtaLabel?: string;
+  salesCtaHref?: string;
+  eyebrow?: string;
+  title?: string;
+  titleAccent?: string;
+  subtitle?: string;
+}
+
+const {
+  id = "roi-calculator",
+  showHeader = true,
+  compact = false,
+  showEmailGate = true,
+  salesCtaLabel,
+  salesCtaHref,
+  eyebrow = "ROI calculator",
+  title = "See what you could",
+  titleAccent = "save.",
+  subtitle = "Desk Optimizer and Energy Saver — best-guess sliders, instant estimates.",
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    "bg-stone-50 scroll-mt-24",
+    compact ? "py-10 md:py-14" : "py-20 md:py-28",
+  ]}
+  data-roi-calculator
+>
+  <div class="container-page">
+    {showHeader && (
+      <div class="reveal mb-10 md:mb-12">
+        <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
+          {eyebrow}
+        </p>
+        <h2 class="text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight text-navy-500 max-w-3xl">
+          {title} <span class="text-sky-600">{titleAccent}</span>
+        </h2>
+        <p class="mt-5 text-lg md:text-xl text-stone-900/70 max-w-2xl">
+          {subtitle}
+        </p>
+      </div>
+    )}
+
+    <div class="reveal bg-white border border-stone-100 rounded-xl p-5 md:p-8 shadow-sm">
+      <div class="mb-8 pb-6 border-b border-stone-100">
+        <div class="flex rounded-lg border border-stone-100 p-1 bg-stone-50 w-fit" role="tablist" aria-label="Calculator type">
+          <button
+            type="button"
+            role="tab"
+            aria-selected="true"
+            class="roi-tab is-active px-4 py-2 text-sm font-semibold rounded-md transition-colors"
+            data-roi-tab="desk"
+          >
+            Desk Optimizer
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            class="roi-tab px-4 py-2 text-sm font-semibold rounded-md transition-colors"
+            data-roi-tab="energy"
+          >
+            Energy Saver
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div class="min-w-0">
+          <p class="text-xs text-stone-300 mb-4" data-roi-module-link-desk>
+            <a href="/en/modules/space-management/" class="text-sky-600 hover:text-coral-500 font-medium">
+              Space management →
+            </a>
+          </p>
+          <p class="text-xs text-stone-300 mb-4 hidden" data-roi-module-link-energy>
+            <a href="/en/modules/indoor-climate/" class="text-sky-600 hover:text-coral-500 font-medium">
+              Indoor climate →
+            </a>
+          </p>
+          <DeskOptimizerPanel />
+          <EnergySaverPanel />
+        </div>
+
+        <div class="min-w-0 flex flex-col">
+          <SavingsCounter
+            accent="navy"
+            salesCtaLabel={salesCtaLabel}
+            salesCtaHref={salesCtaHref}
+          />
+          {showEmailGate && <EmailUnlockPanel />}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .roi-tab.is-active {
+    background: var(--color-navy-500);
+    color: white;
+  }
+  .roi-tab:not(.is-active) {
+    color: var(--color-navy-500);
+  }
+  .roi-tab:not(.is-active):hover {
+    background: var(--color-stone-100);
+  }
+
+  .roi-range {
+    height: 0.5rem;
+    cursor: pointer;
+  }
+  .roi-range-hero {
+    height: 0.65rem;
+  }
+
+</style>
+
+<script>
+  import "./roi-calculator.ts";
+</script>

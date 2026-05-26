@@ -1,0 +1,72 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "./Hero.astro";
+import Button from "./Button.astro";
+import ContactForm from "./ContactForm.astro";
+import CaseStudyGrid from "./CaseStudyGrid.astro";
+import { getCaseStudiesContent } from "../data/hubs/caseStudies";
+import { langPath, type Lang } from "../data/lang";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { hub, intro, cases, initialVisible } = getCaseStudiesContent(lang);
+const basePath = langPath("case-studies", lang);
+const casesLabel = lang === "da" ? "Cases" : "Cases";
+---
+
+<Layout
+  title="Customer cases | IoT Fabrikken"
+  description="See how municipalities, consultancies and property managers use RoomAlyzer for indoor climate and space management — real buildings, real results."
+>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li>
+        <a href={langPath("", lang)} class="hover:text-coral-500 transition-colors">Home</a>
+      </li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path
+            d="M4.5 3L7.5 6L4.5 9"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </li>
+      <li><span class="text-navy-500">{casesLabel}</span></li>
+    </ol>
+  </nav>
+
+  <Hero title={hub.title} lead={hub.lead} align="left" compactTop>
+    <Button href={langPath("contact/book-demo", lang)} variant="primary" size="lg" slot="cta">
+      Book a free demo
+    </Button>
+  </Hero>
+
+  <section class="py-14 md:py-20 bg-stone-50 border-y border-stone-100">
+    <div class="container-page">
+      <div class="reveal max-w-3xl mb-10 md:mb-14">
+        <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
+          {intro.title}
+        </h2>
+        {intro.paragraphs.map((paragraph) => (
+          <p class="mt-4 text-lg text-stone-900/70 leading-relaxed">{paragraph}</p>
+        ))}
+      </div>
+
+      <CaseStudyGrid
+        cases={cases}
+        basePath={basePath}
+        initialVisible={initialVisible}
+      />
+    </div>
+  </section>
+
+  <ContactForm
+    title="Book a meeting with us"
+    subtitle="Do you have any questions? Want to know more about indoor climate and/or space management? Then please reach out. We're always happy to talk about your options — either online or in person."
+  />
+</Layout>

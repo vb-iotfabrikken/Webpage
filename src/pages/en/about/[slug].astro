@@ -7,7 +7,7 @@ export function getStaticPaths() {
   // folder, so we exclude them here to avoid a duplicate-route build
   // error. Keep this set inside getStaticPaths — Astro evaluates the
   // function in isolation and outer-scope constants aren't visible.
-  const handAuthored = new Set(["team", "partners", "press"]);
+  const handAuthored = new Set(["team", "partners", "press", "careers"]);
   return aboutHub.leaves
     .filter((leaf) => !handAuthored.has(leaf.slug))
     .map((leaf) => ({
@@ -22,7 +22,6 @@ const { leaf } = Astro.props;
 <PlaceholderPage
   title={`${leaf.title.replace(/\.$/, "")} | IoT Fabrikken`}
   description={leaf.lead}
-  eyebrow={leaf.eyebrow}
   heroTitle={leaf.title}
   heroTitleAccent={leaf.titleAccent}
   heroLead={leaf.lead}

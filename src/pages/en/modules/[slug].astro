@@ -4,8 +4,8 @@ import { modulesHub } from "../../../data/site";
 
 export function getStaticPaths() {
   return modulesHub.leaves
-    // indoor-climate has its own dedicated rich page; skip it here.
-    .filter((leaf) => leaf.slug !== "indoor-climate")
+    // indoor-climate and space-management have dedicated rich pages; skip them here.
+    .filter((leaf) => leaf.slug !== "indoor-climate" && leaf.slug !== "space-management")
     .map((leaf) => ({
       params: { slug: leaf.slug },
       props: { leaf },
@@ -18,7 +18,6 @@ const { leaf } = Astro.props;
 <PlaceholderPage
   title={`${leaf.title.replace(/\.$/, "")} | IoT Fabrikken`}
   description={leaf.lead}
-  eyebrow={leaf.eyebrow}
   heroTitle={leaf.title}
   heroTitleAccent={leaf.titleAccent}
   heroLead={leaf.lead}

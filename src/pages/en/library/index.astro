@@ -88,10 +88,7 @@ const plannedCount = cards.length - publishedCount;
         style="background-image: radial-gradient(var(--color-navy-500) 1px, transparent 1px); background-size: 28px 28px;"
       ></div>
     </div>
-    <div class="relative container-page pt-16 md:pt-20 pb-10">
-      <p class="reveal inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
-        Library
-      </p>
+    <div class="relative container-page pt-6 md:pt-8 pb-10">
       <h1 class="reveal text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight text-navy-500 max-w-3xl">
         Every article, guide and use case <span class="text-sky-600">in one place.</span>
       </h1>
@@ -209,7 +206,6 @@ const plannedCount = cards.length - publishedCount;
       {landingCategoryList.map((cat) => {
         const list = grouped.get(cat.slug) ?? [];
         if (list.length === 0) return null;
-        const cc = categoryColorClasses(cat.color);
         return (
           <div
             id={cat.slug}
@@ -218,11 +214,7 @@ const plannedCount = cards.length - publishedCount;
           >
             <div class="flex flex-wrap items-end justify-between gap-4 mb-6 pb-4 border-b border-stone-100">
               <div>
-                <span class={`inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-xs font-semibold uppercase tracking-wider ${cc.chip}`}>
-                  <span class={`w-1.5 h-1.5 rounded-full ${cc.dot}`}></span>
-                  {cat.eyebrow}
-                </span>
-                <h2 class="mt-3 text-2xl md:text-3xl font-bold text-navy-500 tracking-tight">
+                <h2 class="text-2xl md:text-3xl font-bold text-navy-500 tracking-tight">
                   {cat.name}
                 </h2>
                 <p class="mt-1 text-stone-900/70 max-w-2xl">{cat.description}</p>
@@ -309,7 +301,7 @@ const plannedCount = cards.length - publishedCount;
   <CtaBand
     title="Missing a specific use case?"
     subtitle="Contact us — we're happy to put together a tailored walk-through for your building."
-    primaryLabel="Book demo"
+    primaryLabel="Book a free demo"
     secondaryLabel="Contact sales"
   />
 </Layout>

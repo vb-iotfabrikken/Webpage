@@ -1,0 +1,46 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  iconTone?: "forest" | "coral";
+  variant?: "desktop" | "mobile";
+}
+
+const { href, label, iconTone, variant = "desktop" } = Astro.props;
+const hasIcon = Astro.slots.has("icon");
+const isMobile = variant === "mobile";
+
+const linkClass = isMobile
+  ? "group/item flex items-center gap-2.5 rounded-lg px-2 py-2 transition-colors hover:bg-stone-50"
+  : "group/item flex items-center gap-2 rounded-lg px-2 py-1.5 -mx-2 transition-colors hover:bg-stone-50";
+
+const labelClass = isMobile
+  ? "text-[15px] font-medium text-navy-500 group-hover/item:text-coral-500 transition-colors"
+  : "text-[13.5px] font-medium text-navy-500 group-hover/item:text-coral-500 transition-colors";
+
+const iconBoxClass = isMobile
+  ? "w-8 h-8 rounded-lg"
+  : "w-6 h-6 rounded";
+
+const iconToneClass =
+  iconTone === "coral"
+    ? "bg-coral-50 text-coral-500 group-hover/item:bg-coral-100"
+    : "bg-stone-50 text-forest-500 group-hover/item:bg-forest-50";
+---
+
+<a href={href} class={linkClass}>
+  {
+    hasIcon && (
+      <span
+        class:list={[
+          "shrink-0 inline-flex items-center justify-center transition-colors",
+          iconBoxClass,
+          iconToneClass,
+        ]}
+      >
+        <slot name="icon" />
+      </span>
+    )
+  }
+  <span class={labelClass}>{label}</span>
+</a>

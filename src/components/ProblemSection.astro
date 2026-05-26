@@ -1,0 +1,123 @@
+---
+type ProblemPillar = {
+  id: string;
+  label: string;
+  title: string;
+  lead: string;
+  points: string[];
+  accent: "sky" | "coral";
+};
+
+const pillars: ProblemPillar[] = [
+  {
+    id: "space",
+    label: "Space & energy",
+    title: "You pay for floors nobody fully uses.",
+    lead: "Without occupancy and utilisation data, hybrid offices quietly waste rent and utilities.",
+    points: [
+      "Desks and meeting rooms sit empty while leases stay the same size",
+      "HVAC runs on schedules — not on who is actually in the building",
+      "Decisions about right-sizing happen on gut feel, not evidence",
+    ],
+    accent: "sky",
+  },
+  {
+    id: "climate",
+    label: "Indoor climate",
+    title: "Air quality problems surface too late.",
+    lead: "When you cannot see CO₂, humidity, and temperature in real time, small issues become complaints — or damage.",
+    points: [
+      "Stale air and high CO₂ in classrooms and meeting rooms",
+      "Mold and condensation risk in sensitive or historic spaces",
+      "Tenants and staff report discomfort before you have data to act",
+    ],
+    accent: "coral",
+  },
+];
+
+const accentStyles = {
+  sky: {
+    border: "border-l-sky-500",
+    iconWrap: "bg-sky-50 text-sky-600",
+    tag: "bg-sky-50 text-sky-700",
+  },
+  coral: {
+    border: "border-l-coral-500",
+    iconWrap: "bg-coral-50 text-coral-600",
+    tag: "bg-coral-50 text-coral-700",
+  },
+};
+---
+
+<section class="py-20 md:py-28">
+  <div class="container-page">
+    <div class="reveal max-w-3xl mx-auto text-center">
+      <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
+        The problem
+      </p>
+      <h2 class="text-3xl md:text-5xl font-bold text-navy-500 tracking-tight leading-tight">
+        Stop guessing how your buildings are performing.
+      </h2>
+      <p class="mt-6 text-lg md:text-xl text-stone-900/70 leading-relaxed">
+        Without real-time data, facilities bleed money through unused space and risk occupant health through poor indoor climates.
+      </p>
+    </div>
+
+    <div class="reveal mt-14 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+      {pillars.map((pillar) => {
+        const styles = accentStyles[pillar.accent];
+        return (
+          <article
+            class:list={[
+              "rounded-xl border border-stone-100 bg-white p-6 md:p-8 shadow-sm border-l-4",
+              styles.border,
+            ]}
+          >
+            <div class="flex items-start gap-4 mb-5">
+              <div
+                class:list={[
+                  "w-11 h-11 shrink-0 rounded-lg inline-flex items-center justify-center",
+                  styles.iconWrap,
+                ]}
+                aria-hidden="true"
+              >
+                {pillar.id === "space" ? (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M3 9h18M9 21V9" />
+                  </svg>
+                ) : (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                    <circle cx="12" cy="12" r="4" />
+                  </svg>
+                )}
+              </div>
+              <div class="min-w-0 pt-0.5">
+                <p class:list={["inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider mb-2", styles.tag]}>
+                  {pillar.label}
+                </p>
+                <h3 class="text-xl md:text-2xl font-bold text-navy-500 leading-snug">
+                  {pillar.title}
+                </h3>
+              </div>
+            </div>
+
+            <p class="text-sm md:text-base text-stone-900/70 leading-relaxed mb-5">
+              {pillar.lead}
+            </p>
+
+            <ul class="space-y-2.5" role="list">
+              {pillar.points.map((point) => (
+                <li class="flex items-start gap-2.5 text-sm text-stone-900/80 leading-relaxed">
+                  <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-stone-300 shrink-0" aria-hidden="true"></span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

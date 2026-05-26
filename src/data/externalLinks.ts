@@ -6,7 +6,7 @@
 
 export const externalLinks = {
   login: "https://app.roomalyzer.com/",
-  support: "https://support.iot-fabrikken.com/",
+  support: "https://support.iot-fabrikken.com/portal/da/home",
   status: "https://status.iot-fabrikken.com/",
   linkedin: "https://www.linkedin.com/company/iot-fabrikken/",
   github: "https://github.com/iot-fabrikken",

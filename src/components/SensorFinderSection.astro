@@ -1,0 +1,83 @@
+---
+const useCases = [
+  {
+    slug: "offices",
+    title: "Offices & Workplaces",
+    description: "Utilisation, comfort and energy for hybrid workplaces — optimize desk use, monitor meeting rooms, and ensure comfort in modern environments.",
+    href: "/en/industries/offices/",
+    image: "/images/sensor-finder/offices.png",
+    imageAlt: "People collaborating in a bright modern open-plan office",
+  },
+  {
+    slug: "churches",
+    title: "Churches & Heritage",
+    description: "Balance energy optimization with precise humidity and temperature control to protect historic buildings and interiors.",
+    href: "/en/industries/churches/",
+    image: "/images/sensor-finder/property-management.png",
+    imageAlt: "Caretaker maintaining wooden pews inside a historic church building",
+  },
+  {
+    slug: "museums-galleries",
+    title: "Museums & Culture",
+    description: "Climate data aligned with preservation standards for collections, galleries and loan objects.",
+    href: "/en/industries/museums-galleries/",
+    image: "/images/sensor-finder/municipalities.png",
+    imageAlt: "Visitors viewing art in a museum gallery",
+  },
+  {
+    slug: "municipalities",
+    title: "Schools & Municipalities",
+    description: "Monitor CO2, temperature, and space utilization across your portfolio to guarantee healthy learning environments while optimizing municipal building efficiency.",
+    href: "/en/industries/municipalities/",
+    image: "/images/sensor-finder/schools.png",
+    imageAlt: "Students walking on a school campus in front of a brick school building",
+  },
+];
+---
+
+<section class="py-16 md:py-20 bg-stone-50">
+  <div class="container-page">
+    <div class="reveal max-w-2xl mx-auto text-center mb-12 md:mb-14">
+      <p class="inline-block px-3 py-1 rounded-md bg-white text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
+        Guided solution
+      </p>
+      <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
+        Find the right setup for your space.
+      </h2>
+      <p class="mt-5 text-lg text-stone-900/70">
+        Start with your industry — we will point you to the sensors and modules that fit.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {useCases.map((item) => (
+        <a
+          href={item.href}
+          class="reveal group flex flex-col h-full bg-white border border-stone-100 rounded-xl overflow-hidden hover:border-navy-500 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300"
+        >
+          <div class="aspect-[4/3] overflow-hidden bg-stone-100">
+            <img
+              src={item.image}
+              alt={item.imageAlt}
+              width={640}
+              height={480}
+              class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="flex flex-col flex-1 p-5 sm:p-6">
+            <h3 class="text-lg font-semibold text-navy-500 mb-2">{item.title}</h3>
+            <p class="text-sm text-stone-900/70 leading-relaxed flex-1">{item.description}</p>
+            <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-sky-600 group-hover:text-coral-500 transition-colors">
+              See recommended sensors
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                <path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,311 @@
+---
+import type { CaseStudyLeaf } from "../data/hubs/caseStudies";
+import { caseStudyCategoryLabels } from "../data/hubs/caseStudies";
+
+interface Props {
+  cases: CaseStudyLeaf[];
+  basePath: string;
+  initialVisible?: number;
+  loadMoreLabel?: string;
+}
+
+const {
+  cases,
+  basePath,
+  initialVisible = cases.length,
+  loadMoreLabel = "Load more",
+} = Astro.props;
+
+const leafBase = basePath.endsWith("/") ? basePath : `${basePath}/`;
+const hasMore = cases.length > initialVisible;
+
+function isExternalHref(href: string): boolean {
+  return /^https?:\/\//i.test(href);
+}
+const gridId = `case-grid-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="case-showcase-wrap">
+  <ul class="case-showcase" role="list" id={gridId}>
+    {cases.map((entry, index) => (
+      <li
+        class="case-showcase__item"
+        data-case-item
+        data-index={index}
+        hidden={index >= initialVisible ? true : undefined}
+      >
+        <article class="case-showcase__card">
+          {entry.logo && (
+            <div class="case-showcase__logo" aria-hidden="true">
+              <img
+                src={entry.logo}
+                alt=""
+                width="360"
+                height="200"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          )}
+
+          <div class="case-showcase__body">
+            {entry.category && (
+              <p class="case-showcase__category">
+                {caseStudyCategoryLabels[entry.category]}
+              </p>
+            )}
+
+            <h3 class="case-showcase__title">{entry.title}</h3>
+            <p class="case-showcase__lead">{entry.lead}</p>
+
+            <div class="case-showcase__actions">
+              <a href={`${leafBase}${entry.slug}/`} class="case-showcase__link case-showcase__link--primary">
+                Read more
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path
+                    d="M3 7h8M7 3l4 4-4 4"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
+              </a>
+              {entry.articleHref && (
+                <a
+                  href={entry.articleHref}
+                  class="case-showcase__link case-showcase__link--secondary"
+                  target={isExternalHref(entry.articleHref) ? "_blank" : undefined}
+                  rel={isExternalHref(entry.articleHref) ? "noopener noreferrer" : undefined}
+                >
+                  Read article
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path
+                      d="M3 7h8M7 3l4 4-4 4"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                </a>
+              )}
+            </div>
+          </div>
+        </article>
+      </li>
+    ))}
+  </ul>
+
+  {hasMore && (
+    <div class="case-showcase__more">
+      <button type="button" class="case-showcase__more-btn" data-case-load-more aria-controls={gridId}>
+        {loadMoreLabel}
+      </button>
+    </div>
+  )}
+</div>
+
+{hasMore && (
+  <script>
+    document.querySelectorAll("[data-case-load-more]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const grid = btn.closest(".case-showcase-wrap");
+        grid?.querySelectorAll("[data-case-item][hidden]").forEach((item) => {
+          item.removeAttribute("hidden");
+        });
+        btn.closest(".case-showcase__more")?.remove();
+      });
+    });
+  </script>
+)}
+
+<style>
+  .case-showcase-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .case-showcase {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (min-width: 520px) {
+    .case-showcase {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .case-showcase {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
+    }
+  }
+
+  .case-showcase__card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+    background: var(--color-white);
+    border: 1px solid var(--color-stone-100);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .case-showcase__item:hover .case-showcase__card {
+    border-color: color-mix(in srgb, var(--color-navy-500) 20%, white);
+    box-shadow: 0 8px 32px color-mix(in srgb, var(--color-navy-500) 10%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .case-showcase__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 7.5rem;
+    padding: 2rem 2rem 1.25rem;
+    border-bottom: 1px solid var(--color-stone-100);
+    background: color-mix(in srgb, var(--color-stone-50) 60%, white);
+  }
+
+  @media (min-width: 640px) {
+    .case-showcase__logo {
+      min-height: 8.5rem;
+      padding: 2.25rem 2rem 1.5rem;
+    }
+  }
+
+  .case-showcase__logo img {
+    width: min(100%, 14rem);
+    max-height: 5rem;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .case-showcase__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.75rem;
+    padding: 1.5rem 1.5rem 1.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .case-showcase__body {
+      padding: 1.75rem 2rem 2rem;
+    }
+  }
+
+  .case-showcase__category {
+    display: inline-block;
+    align-self: flex-start;
+    margin: 0;
+    padding: 0.35rem 0.65rem;
+    border-radius: 0.375rem;
+    background: var(--color-stone-50);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-navy-500);
+  }
+
+  .case-showcase__title {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-navy-500);
+  }
+
+  .case-showcase__lead {
+    margin: 0;
+    flex: 1;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--color-stone-900) 70%, white);
+  }
+
+  .case-showcase__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .case-showcase__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .case-showcase__link svg {
+    transition: transform 0.2s ease;
+  }
+
+  .case-showcase__link:hover svg {
+    transform: translateX(2px);
+  }
+
+  .case-showcase__link--primary {
+    color: var(--color-navy-500);
+  }
+
+  .case-showcase__link--primary:hover {
+    color: var(--color-sky-600);
+  }
+
+  .case-showcase__link--secondary {
+    color: var(--color-sky-600);
+  }
+
+  .case-showcase__link--secondary:hover {
+    color: var(--color-coral-500);
+  }
+
+  .case-showcase__more {
+    display: flex;
+    justify-content: center;
+  }
+
+  .case-showcase__more-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-navy-500);
+    background: var(--color-white);
+    border: 1px solid var(--color-stone-100);
+    border-radius: 9999px;
+    cursor: pointer;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .case-showcase__more-btn:hover {
+    border-color: var(--color-navy-500);
+    color: var(--color-coral-500);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--color-navy-500) 8%, transparent);
+  }
+</style>

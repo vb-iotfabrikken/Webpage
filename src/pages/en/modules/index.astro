@@ -1,13 +1,49 @@
 ---
-import HubIndex from "../../../components/HubIndex.astro";
-import { modulesHub } from "../../../data/site";
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import ModulesSection from "../../../components/ModulesSection.astro";
+import { modulesHub } from "../../../data/hubs/modules";
+
+const hub = modulesHub;
 ---
 
-<HubIndex
-  hub={modulesHub}
-  basePath="/en/modules/"
-  breadcrumbs={[
-    { label: "Home", href: "/en/" },
-    { label: "Modules" },
-  ]}
-/>
+<Layout
+  title={`${hub.title.replace(/\.$/, "")} | IoT Fabrikken`}
+  description={hub.lead}
+>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li class="flex items-center gap-1.5">
+        <a href="/en/" class="hover:text-coral-500 transition-colors">Home</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </li>
+      <li><span class="text-navy-500">Modules</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    title={hub.title}
+    titleAccent={hub.titleAccent}
+    lead={hub.lead}
+    align="left"
+    compactTop
+  >
+    <Button href="/en/contact/book-demo/" variant="primary" size="lg" slot="cta">Book a free demo</Button>
+    <Button href="/en/contact/sales/" variant="secondary" size="lg" slot="cta">Contact sales</Button>
+  </Hero>
+
+  <ModulesSection />
+
+  <CtaBand
+    title="Want a guided walk-through?"
+    subtitle="Book a 30-minute demo and we'll tailor it to your building."
+    primaryLabel="Book a free demo"
+    primaryHref="/en/contact/book-demo/"
+    secondaryLabel="Contact sales"
+    secondaryHref="/en/contact/sales/"
+  />
+</Layout>

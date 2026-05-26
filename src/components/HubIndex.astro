@@ -51,22 +51,19 @@ const leafBase = basePath.endsWith("/") ? basePath : `${basePath}/`;
   )}
 
   <Hero
-    eyebrow={hub.eyebrow}
     title={hub.title}
     titleAccent={hub.titleAccent}
     lead={hub.lead}
     align="left"
+    compactTop={breadcrumbs.length > 0}
   >
-    <Button href="/en/contact/book-demo/" variant="primary" size="lg" slot="cta">Book demo</Button>
+    <Button href="/en/contact/book-demo/" variant="primary" size="lg" slot="cta">Book a free demo</Button>
     <Button href="/en/contact/sales/" variant="secondary" size="lg" slot="cta">Contact sales</Button>
   </Hero>
 
   <section class="py-16 md:py-20">
     <div class="container-page">
       <div class="reveal max-w-2xl mb-10 md:mb-12">
-        <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
-          {hub.leaves.length} {hub.leaves.length === 1 ? "page" : "pages"} in this hub
-        </p>
         <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
           Explore {hub.title.replace(/\.$/, "").toLowerCase()}.
         </h2>
@@ -81,10 +78,6 @@ const leafBase = basePath.endsWith("/") ? basePath : `${basePath}/`;
             class="reveal group relative flex flex-col h-full p-6 md:p-7 bg-white border border-stone-100 rounded-xl hover:border-navy-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
           >
             <div class="absolute top-0 left-0 right-0 h-1 rounded-t-xl bg-sky-500"></div>
-
-            <p class="inline-block px-2.5 py-1 rounded-md bg-stone-50 text-navy-500 text-[11px] font-semibold uppercase tracking-wider mb-4 self-start">
-              {leaf.eyebrow}
-            </p>
 
             <h3 class="text-lg font-semibold text-navy-500 mb-2 leading-snug">
               {leaf.title}
@@ -115,7 +108,7 @@ const leafBase = basePath.endsWith("/") ? basePath : `${basePath}/`;
   <CtaBand
     title="Want a guided walk-through?"
     subtitle="Book a 30-minute demo and we'll tailor it to your building."
-    primaryLabel="Book demo"
+    primaryLabel="Book a free demo"
     primaryHref="/en/contact/book-demo/"
     secondaryLabel="Contact sales"
     secondaryHref="/en/contact/sales/"

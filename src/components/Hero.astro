@@ -1,43 +1,54 @@
 ---
 interface Props {
-  eyebrow?: string;
   title: string;
   titleAccent?: string;
   lead: string;
   align?: "center" | "left";
+  /** Let the homepage hero visual extend past the hero width (fade, not clip). */
+  allowVisualOverflow?: boolean;
+  /** Tighter top padding so the text sits closer to the header. */
+  compactTop?: boolean;
+  /** Remove bottom padding so the next section's top edge sits flush against the hero. */
+  compactBottom?: boolean;
 }
 
-const { eyebrow, title, titleAccent, lead, align = "center" } = Astro.props;
+const { title, titleAccent, lead, align = "center", allowVisualOverflow = false, compactTop = false, compactBottom = false } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-stone-50 border-b border-stone-100">
+<section
+  class:list={[
+    "relative bg-stone-50 border-b border-stone-100",
+    allowVisualOverflow ? "overflow-x-visible overflow-y-visible" : "overflow-hidden",
+  ]}
+>
   <div class="absolute inset-0 pointer-events-none opacity-[0.05]" aria-hidden="true">
     <div class="w-full h-full" style="background-image: radial-gradient(var(--color-navy-500) 1px, transparent 1px); background-size: 28px 28px;"></div>
   </div>
 
-  <div class={`relative container-page pt-16 md:pt-24 pb-10 md:pb-14 ${align === "center" ? "text-center" : "text-left"}`}>
+  <div class={`relative container-page ${compactTop ? "pt-6 md:pt-8" : "pt-16 md:pt-24"} ${compactBottom ? "pb-0" : "pb-10 md:pb-14"} ${align === "center" ? "text-center" : "text-left"}`}>
     <div class={align === "center" ? "max-w-3xl mx-auto" : "max-w-3xl"}>
-      {eyebrow && (
-        <p class="reveal inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-6">
-          {eyebrow}
-        </p>
-      )}
       <h1 class="reveal text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight text-navy-500">
         {title}
         {titleAccent && (
-          <span class="text-sky-600"> {titleAccent}</span>
+          <span class:list={["text-sky-600", align === "left" && "block mt-1 md:mt-2"]}>
+            {align === "center" ? ` ${titleAccent}` : titleAccent}
+          </span>
         )}
       </h1>
       <p class="reveal mt-6 text-lg md:text-xl text-stone-900/70 leading-relaxed">
         {lead}
       </p>
-      <div class={`reveal mt-8 flex flex-wrap gap-3 ${align === "center" ? "justify-center" : ""}`}>
-        <slot name="cta" />
-      </div>
+      {Astro.slots.has("cta") && (
+        <div class={`reveal mt-8 flex flex-wrap gap-3 ${align === "center" ? "justify-center" : ""}`}>
+          <slot name="cta" />
+        </div>
+      )}
     </div>
 
-    <div class="mt-12 md:mt-16">
-      <slot name="visual" />
-    </div>
+    {Astro.slots.has("visual") && (
+      <div class={compactTop ? "mt-4 md:mt-6" : "mt-12 md:mt-16"}>
+        <slot name="visual" />
+      </div>
+    )}
   </div>
 </section>

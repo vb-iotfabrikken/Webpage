@@ -2,26 +2,13 @@
 import Layout from "../../../layouts/Layout.astro";
 import Hero from "../../../components/Hero.astro";
 import Button from "../../../components/Button.astro";
-import CtaBand from "../../../components/CtaBand.astro";
-import { partners, partnerKinds } from "../../../data/partners";
-
-const grouped = new Map<(typeof partners)[number]["kind"], typeof partners>();
-for (const p of partners) {
-  const list = grouped.get(p.kind) ?? [];
-  list.push(p);
-  grouped.set(p.kind, list);
-}
-const kindOrder: (keyof typeof partnerKinds)[] = [
-  "technology",
-  "integrator",
-  "reseller",
-  "academic",
-];
+import PartnerGrid from "../../../components/PartnerGrid.astro";
+import { partners, partnersIntro } from "../../../data/partners";
 ---
 
 <Layout
   title="Partners | About | IoT Fabrikken"
-  description="The resellers, integrators, technology partners and research collaborations that make IoT Fabrikken work across Europe."
+  description={partnersIntro.lead}
 >
   <nav class="container-page pt-6" aria-label="Breadcrumb">
     <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
@@ -34,65 +21,43 @@ const kindOrder: (keyof typeof partnerKinds)[] = [
   </nav>
 
   <Hero
-    eyebrow="About"
     title="Partners."
-    titleAccent="Our network across Europe."
-    lead="Resellers, integrators, technology partners and academic collaborations — the companies and institutions that extend what IoT Fabrikken can do."
+    titleAccent={partnersIntro.title}
+    lead={partnersIntro.lead}
     align="left"
+    compactTop
   >
     <Button href="/en/contact/become-partner/" variant="primary" size="lg" slot="cta">Become a partner</Button>
     <Button href="/en/contact/sales/" variant="secondary" size="lg" slot="cta">Talk to sales</Button>
   </Hero>
 
-  <section class="py-14">
-    <div class="container-page max-w-4xl">
-      {kindOrder.map((kind) => {
-        const list = grouped.get(kind) ?? [];
-        if (list.length === 0) return null;
-        const meta = partnerKinds[kind];
-        return (
-          <div class="mb-12">
-            <div class="mb-6 pb-3 border-b border-stone-100">
-              <h2 class="text-2xl md:text-3xl font-bold text-navy-500 tracking-tight">{meta.label}</h2>
-              <p class="mt-1 text-stone-900/70">{meta.blurb}</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {list.map((p) => (
-                <article class="bg-white border border-stone-100 rounded-xl p-5 hover:border-navy-500 transition-colors">
-                  <div class="flex items-start justify-between gap-3">
-                    <h3 class="text-base font-semibold text-navy-500">{p.name}</h3>
-                    <span class="shrink-0 text-xs text-stone-300">{p.country}</span>
-                  </div>
-                  <p class="mt-2 text-sm text-stone-900/80 leading-relaxed">{p.description}</p>
-                  {p.url && (
-                    <a
-                      href={p.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-navy-500 hover:text-coral-500 underline underline-offset-4"
-                    >
-                      Visit website
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                        <path d="M4 2h6v6M10 2L4 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </a>
-                  )}
-                </article>
-              ))}
-            </div>
-          </div>
-        );
-      })}
+  <section class="py-14 md:py-20">
+    <div class="container-page">
+      <PartnerGrid partners={partners} />
     </div>
   </section>
 
-  <CtaBand
-    title="Interested in partnering?"
-    subtitle="Resell, integrate or co-develop with IoT Fabrikken — let's have a chat."
-    primaryLabel="Become a partner"
-    primaryHref="/en/contact/become-partner/"
-    secondaryLabel="Contact sales"
-    secondaryHref="/en/contact/sales/"
-  />
+  <section class="pb-16 md:pb-20">
+    <div class="container-page max-w-3xl">
+      <div class="bg-stone-50 border border-stone-100 rounded-xl p-8 md:p-10">
+        <h2 class="text-xl md:text-2xl font-bold text-navy-500 tracking-tight">
+          Interested in partnering?
+        </h2>
+        <p class="mt-3 text-stone-900/80 leading-relaxed">
+          We work with resellers, integrators, technology vendors and FM specialists who
+          bring RoomAlyzer to new buildings and markets. If you have complementary products
+          or services — or want to sell and support our sensors and platform — we would like
+          to hear from you.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <Button href="/en/contact/become-partner/" variant="primary" size="md">
+            Become a partner
+          </Button>
+          <Button href="/en/integrations/" variant="secondary" size="md">
+            View integrations
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
