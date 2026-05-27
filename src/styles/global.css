@@ -37,6 +37,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    /* Hero art bleeds past the viewport; clip horizontal overflow so
+       `margin-inline: auto` sections stay visually centred. */
+    overflow-x: clip;
   }
 
   body {

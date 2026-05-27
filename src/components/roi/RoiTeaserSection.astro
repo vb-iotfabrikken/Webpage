@@ -1,63 +1,294 @@
 ---
 import Button from "../Button.astro";
+import { DEFAULTS, DESK_LIMITS, ENERGY_LIMITS } from "../../lib/roi/constants";
+import { formatMoney } from "../../lib/roi/format";
+import { calculateDesk, calculateEnergy } from "../../lib/roi/calculations";
 
-const salesHref = "/en/contact/sales/";
+interface Props {
+  embedded?: boolean;
+}
+
+const { embedded = false } = Astro.props;
+
+const deskDefaults = calculateDesk({
+  currentDesks: DESK_LIMITS.defaultDesks,
+  peakAttendancePct: DESK_LIMITS.defaultAttendance,
+  annualCostPerDesk: DEFAULTS.EUR.costPerDesk,
+});
+
+const energyDefaults = calculateEnergy({
+  annualBill: DEFAULTS.EUR.heatingBill,
+  heatsWeekends: true,
+  heatsNightly: true,
+  avgTempC: ENERGY_LIMITS.defaultTemp,
+});
 
 const calculators = [
   {
-    id: "desk",
+    id: "desk" as const,
     name: "Desk Optimizer",
     description: "Right-size hybrid offices from desk count, attendance and cost per desk.",
     href: "/en/roi/calculator/#desk",
+    sliderLabel: "Peak attendance on your busiest day",
+    sliderHint: "Slide down to reflect hybrid work — watch your savings grow.",
+    min: DESK_LIMITS.minAttendance,
+    max: DESK_LIMITS.maxAttendance,
+    step: 1,
+    default: DESK_LIMITS.defaultAttendance,
+    scaleMin: `${DESK_LIMITS.minAttendance}%`,
+    scaleMax: `${DESK_LIMITS.maxAttendance}%`,
+    displayDefault: `${DESK_LIMITS.defaultAttendance}%`,
+    topBarClass: "bg-navy-500",
+    cardRingClass: "ring-navy-500/25",
+    accentClass: "accent-navy-500",
+    boxClass: "border-navy-500/20 bg-navy-500/5",
+    valueClass: "text-navy-500",
+    savingsClass: "text-navy-500",
+    initialSavings: formatMoney("EUR", deskDefaults.totalSavings),
+    initialTeaser: `~${deskDefaults.reducibleDesks} desks could be right-sized at ${DESK_LIMITS.defaultAttendance}% peak attendance.`,
   },
   {
-    id: "energy",
+    id: "energy" as const,
     name: "Energy Saver",
     description: "Estimate heating savings from indoor climate setbacks and building data.",
     href: "/en/roi/calculator/#energy",
+    sliderLabel: "Average office temperature",
+    sliderHint: "Each degree toward 20°C can save ~5% on heating (ENS.dk guideline).",
+    min: ENERGY_LIMITS.minTemp,
+    max: ENERGY_LIMITS.maxTemp,
+    step: 0.5,
+    default: ENERGY_LIMITS.defaultTemp,
+    scaleMin: `${ENERGY_LIMITS.minTemp}°C`,
+    scaleMax: `${ENERGY_LIMITS.maxTemp}°C`,
+    displayDefault: `${ENERGY_LIMITS.defaultTemp}°C`,
+    topBarClass: "bg-sky-500",
+    cardRingClass: "ring-sky-500/30",
+    accentClass: "accent-sky-500",
+    boxClass: "border-sky-500/20 bg-sky-50/80",
+    valueClass: "text-sky-600",
+    savingsClass: "text-sky-600",
+    initialSavings: formatMoney("EUR", energyDefaults.totalSavings),
+    initialTeaser: `Up to ${energyDefaults.savingsPctOfBill.toFixed(0)}% of a typical annual heating bill.`,
   },
 ];
 ---
 
-<section class="py-20 md:py-28 bg-stone-50">
-  <div class="container-page">
-    <div class="reveal max-w-2xl mb-10 md:mb-12">
-      <p class="inline-block px-3 py-1 rounded-md bg-white text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
-        Interactive value
-      </p>
-      <h2 class="text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight text-navy-500 max-w-3xl">
-        See what you could <span class="text-sky-600">save.</span>
-      </h2>
-      <p class="mt-5 text-lg md:text-xl text-stone-900/70 max-w-2xl">
-        Pick a calculator, move the sliders, and get an illustrative savings estimate — then talk to us about what it means for your buildings.
-      </p>
-    </div>
+<div
+  class:list={[
+    embedded ? "reveal mt-6 md:mt-8" : "pt-14 pb-8 md:pt-20 md:pb-12 bg-stone-50",
+  ]}
+  data-roi-teaser-section
+>
+  <div class:list={[!embedded && "container-page"]}>
+    {!embedded && (
+      <div class="reveal max-w-2xl mb-10 md:mb-12">
+        <p class="inline-block px-3 py-1 rounded-md bg-white text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
+          Interactive value
+        </p>
+        <h2 class="text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight text-navy-500 max-w-3xl">
+          See what you could <span class="text-sky-600">save.</span>
+        </h2>
+        <p class="mt-5 text-lg md:text-xl text-stone-900/70 max-w-2xl">
+          Move the sliders for a quick estimate — then open the full calculator for every input.
+        </p>
+      </div>
+    )}
 
-    <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6 max-w-4xl">
-      {calculators.map((calc) => (
-        <article class="flex flex-col h-full bg-white border border-stone-100 rounded-xl p-6 md:p-8 shadow-sm">
-          <p class="text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2">Calculator</p>
-          <h3 class="text-xl font-semibold text-navy-500 mb-2">{calc.name}</h3>
-          <p class="text-sm text-stone-900/70 leading-relaxed flex-1">{calc.description}</p>
-          <p class="mt-4 text-xs text-stone-300 leading-relaxed">
+    <div
+      class:list={[
+        embedded && "roi-teaser-panel relative overflow-hidden rounded-2xl md:rounded-3xl shadow-2xl ring-1 ring-white/10",
+      ]}
+    >
+      {embedded && (
+        <>
+          <div class="roi-teaser-panel__glow roi-teaser-panel__glow--sky" aria-hidden="true"></div>
+          <div class="roi-teaser-panel__glow roi-teaser-panel__glow--forest" aria-hidden="true"></div>
+        </>
+      )}
+
+      <div class:list={["relative z-10", embedded && "px-5 pt-5 pb-4 sm:px-6 sm:pt-6 sm:pb-5 lg:px-8 lg:pt-8 lg:pb-6"]}>
+        {embedded && (
+          <p class="mb-5 lg:mb-6 text-xl sm:text-2xl font-bold text-white tracking-tight text-center">
+            Calculate your potential ROI in <span class="text-sky-300">seconds:</span>
+          </p>
+        )}
+
+        <div
+          class:list={[
+            "grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-5 items-stretch",
+            !embedded && "max-w-4xl reveal",
+          ]}
+        >
+          {calculators.map((calc) => (
+            <article
+              class:list={[
+                "roi-teaser-card flex flex-col h-full overflow-hidden rounded-xl bg-white shadow-xl transition-transform duration-300 ring-2",
+                calc.cardRingClass,
+                embedded && "hover:-translate-y-1",
+                !embedded && "border border-stone-100 shadow-sm ring-0",
+              ]}
+              data-roi-teaser-card={calc.id}
+            >
+              <div class:list={["h-1.5 shrink-0", calc.topBarClass]} aria-hidden="true"></div>
+
+              <div class="roi-teaser-card__body flex flex-col flex-1 p-4 sm:p-5 lg:p-6">
+                <header class="shrink-0">
+                  <h4 class="text-lg sm:text-xl font-bold text-navy-500 leading-tight">{calc.name}</h4>
+                  <p class="mt-1.5 text-sm text-stone-900/70 leading-snug roi-teaser-card__desc">
+                    {calc.description}
+                  </p>
+                </header>
+
+                <div class:list={["roi-teaser-card__slider mt-3 sm:mt-4 shrink-0 rounded-lg border-2 p-3 sm:p-4", calc.boxClass]}>
+                  <div class="flex items-start justify-between gap-2 sm:gap-3">
+                    <label
+                      for={`roi-teaser-${calc.id}`}
+                      class="text-xs sm:text-sm font-semibold text-navy-500 leading-snug"
+                    >
+                      {calc.sliderLabel}
+                    </label>
+                    <span
+                      class:list={["text-lg sm:text-xl font-bold tabular-nums shrink-0", calc.valueClass]}
+                      data-roi-teaser-value
+                    >
+                      {calc.displayDefault}
+                    </span>
+                  </div>
+                  <p class="mt-1.5 text-xs text-stone-900/60 leading-snug roi-teaser-card__hint">
+                    {calc.sliderHint}
+                  </p>
+                  <input
+                    id={`roi-teaser-${calc.id}`}
+                    type="range"
+                    min={calc.min}
+                    max={calc.max}
+                    step={calc.step}
+                    value={calc.default}
+                    class:list={["roi-teaser-range w-full mt-2 sm:mt-2.5", calc.accentClass]}
+                    data-roi-teaser-range
+                  />
+                  <div class="flex justify-between mt-1.5 text-[11px] sm:text-xs font-medium text-stone-400 tabular-nums">
+                    <span>{calc.scaleMin}</span>
+                    <span>{calc.scaleMax}</span>
+                  </div>
+                </div>
+
+                <div class="roi-teaser-card__estimate mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-stone-100 shrink-0">
+                  <p class="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1">
+                    Quick estimate
+                  </p>
+                  <p
+                    class:list={[
+                      "text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums leading-none",
+                      calc.savingsClass,
+                    ]}
+                    data-roi-teaser-savings
+                  >
+                    {calc.initialSavings}
+                  </p>
+                  <p
+                    class="mt-2 text-xs sm:text-sm text-stone-900/70 leading-snug roi-teaser-card__teaser"
+                    data-roi-teaser-teaser
+                  >
+                    {calc.initialTeaser}
+                  </p>
+                </div>
+
+                <footer class="roi-teaser-card__footer mt-auto pt-4 sm:pt-5 shrink-0">
+                  <Button href={calc.href} variant="forest" size="md" class="w-full">
+                    Open {calc.name}
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path
+                        d="M4 10L10 4M10 4H5M10 4V9"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    </svg>
+                  </Button>
+                </footer>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {embedded && (
+          <p class="mt-4 lg:mt-5 text-center text-[11px] sm:text-xs text-white/55 leading-relaxed max-w-2xl mx-auto">
             Illustrative estimate based on industry rules of thumb — not a formal audit.
           </p>
-          <div class="mt-6 flex flex-col sm:flex-row flex-wrap gap-3">
-            <Button href={calc.href} variant="primary" size="md" class="w-full sm:w-auto">
-              Open {calc.name}
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" >
-                <path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </Button>
-            <Button href={salesHref} variant="secondary" size="md" class="w-full sm:w-auto">
-              Discuss your ROI with Sales
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" >
-                <path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </Button>
-          </div>
-        </article>
-      ))}
+        )}
+      </div>
     </div>
   </div>
-</section>
+</div>
+
+<style>
+  .roi-teaser-range {
+    height: 0.65rem;
+    cursor: pointer;
+  }
+
+  .roi-teaser-card__desc,
+  .roi-teaser-card__hint,
+  .roi-teaser-card__teaser {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .roi-teaser-card__desc {
+    -webkit-line-clamp: 2;
+  }
+
+  .roi-teaser-card__hint {
+    -webkit-line-clamp: 2;
+  }
+
+  .roi-teaser-card__teaser {
+    -webkit-line-clamp: 2;
+  }
+
+  @media (min-width: 1280px) {
+    .roi-teaser-card__hint {
+      -webkit-line-clamp: 3;
+    }
+  }
+
+  .roi-teaser-panel {
+    background: linear-gradient(
+      145deg,
+      var(--color-navy-500) 0%,
+      var(--color-navy-900) 55%,
+      #061f2b 100%
+    );
+  }
+
+  .roi-teaser-panel__glow {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(64px);
+    pointer-events: none;
+  }
+
+  .roi-teaser-panel__glow--sky {
+    top: -4rem;
+    right: -2rem;
+    width: 14rem;
+    height: 14rem;
+    background: var(--color-sky-500);
+    opacity: 0.35;
+  }
+
+  .roi-teaser-panel__glow--forest {
+    bottom: -5rem;
+    left: -3rem;
+    width: 16rem;
+    height: 16rem;
+    background: var(--color-forest-500);
+    opacity: 0.28;
+  }
+</style>
+
+<script>
+  import "./roi-teaser.ts";
+</script>

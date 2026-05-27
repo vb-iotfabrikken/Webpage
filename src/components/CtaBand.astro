@@ -8,7 +8,7 @@ interface Props {
   primaryHref?: string;
   secondaryLabel?: string;
   secondaryHref?: string;
-  variant?: "light" | "dark" | "coral";
+  variant?: "light" | "dark" | "coral" | "featured";
 }
 
 const {
@@ -25,29 +25,63 @@ const bg = {
   light: "bg-stone-50",
   dark: "bg-navy-500 text-white",
   coral: "bg-coral-500 text-white",
+  featured: "bg-stone-50",
 }[variant];
 
 const titleCls = variant === "light" ? "text-navy-500" : "text-white";
 const subCls = variant === "light" ? "text-stone-900/70" : "text-white/80";
 ---
 
-<section class={`py-16 md:py-20 ${bg}`}>
-  <div class="container-page">
-    <div class="reveal flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-      <div class="max-w-2xl">
-        <h2 class={`text-3xl md:text-4xl font-bold ${titleCls}`}>{title}</h2>
-        {subtitle && <p class={`mt-3 text-lg ${subCls}`}>{subtitle}</p>}
-      </div>
-      <div class="flex flex-wrap gap-3">
-        <Button href={primaryHref} variant={variant === "light" ? "primary" : "white"} size="lg">
-          {primaryLabel}
-        </Button>
-        {secondaryLabel && (
-          <Button href={secondaryHref} variant={variant === "light" ? "secondary" : "ghost"} size="lg" class={variant !== "light" ? "text-white hover:text-white/80 border border-white/40 hover:bg-white/10" : ""}>
-            {secondaryLabel}
-          </Button>
+{variant === "featured" ? (
+  <section class="py-14 md:py-20 bg-white">
+    <div class="container-page flex justify-center">
+      <div
+        class="reveal w-full max-w-3xl rounded-2xl md:rounded-3xl border border-stone-200 border-t-4 border-t-coral-500 bg-stone-50 px-8 py-11 sm:px-12 sm:py-14 text-center shadow-md"
+      >
+        <h2 class="text-3xl md:text-[2.75rem] font-bold text-navy-500 tracking-tight leading-tight">
+          {title}
+        </h2>
+        {subtitle && (
+          <p class="mt-4 text-lg md:text-xl text-stone-900/70 leading-relaxed">{subtitle}</p>
         )}
+        <div class="mt-9 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <Button href={primaryHref} variant="primary" size="lg">
+            {primaryLabel}
+          </Button>
+          {secondaryLabel && (
+            <Button href={secondaryHref} variant="secondary" size="lg">
+              {secondaryLabel}
+            </Button>
+          )}
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+) : (
+  <section class={`py-12 md:py-16 ${bg}`}>
+    <div class="container-page">
+      <div class="reveal flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div class="max-w-2xl">
+          <h2 class={`text-3xl md:text-4xl font-bold ${titleCls}`}>{title}</h2>
+          {subtitle && <p class={`mt-3 text-lg ${subCls}`}>{subtitle}</p>}
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <Button href={primaryHref} variant={variant === "light" ? "primary" : "white"} size="lg">
+            {primaryLabel}
+          </Button>
+          {secondaryLabel && (
+            <Button
+              href={secondaryHref}
+              variant={variant === "light" ? "secondary" : "ghost"}
+              size="lg"
+              class={variant !== "light" ? "text-white hover:text-white/80 border border-white/40 hover:bg-white/10" : ""}
+            >
+              {secondaryLabel}
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+

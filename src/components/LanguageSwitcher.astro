@@ -1,117 +1,269 @@
 ---
-import { locales, getLangFromPath, switchLocalePath } from "../data/lang";
+import {
+  getLangFromPath,
+  switchLocalePath,
+  type Lang,
+} from "../data/lang";
 
 interface Props {
   /** Visual density — utility bar vs main header / mobile menu. */
   variant?: "compact" | "default";
 }
 
+const dropdownLocales = [
+  { code: "en", label: "EN", name: "English" },
+  { code: "da", label: "DA", name: "Danish" },
+  { code: "de", label: "DE", name: "German" },
+  { code: "sv", label: "SV", name: "Swedish" },
+] as const;
+
+type DropdownLocale = (typeof dropdownLocales)[number]["code"];
+
+const liveLocales = new Set<Lang>(["en", "da"]);
+
+function getCurrentLocale(pathname: string): DropdownLocale {
+  const match = pathname.match(/^\/(en|da|de|sv)(\/|$)/);
+  if (match) return match[1] as DropdownLocale;
+  return getLangFromPath(pathname);
+}
+
+function switchLocaleHref(pathname: string, target: DropdownLocale): string {
+  if (liveLocales.has(target as Lang)) {
+    return switchLocalePath(pathname, target as Lang);
+  }
+
+  const prefixMatch = pathname.match(/^\/(en|da|de|sv)(\/.*)?$/);
+  const rest = prefixMatch?.[2] ?? "";
+  const segments = rest.split("/").filter(Boolean);
+  const path = segments.length > 0 ? `${segments.join("/")}/` : "";
+  return `/${target}/${path}`;
+}
+
 const { variant = "default" } = Astro.props;
-const currentLang = getLangFromPath(Astro.url.pathname);
+const currentLocale = getCurrentLocale(Astro.url.pathname);
+const current = dropdownLocales.find((l) => l.code === currentLocale) ?? dropdownLocales[0];
 const isCompact = variant === "compact";
 ---
 
 <nav
   class:list={[
-    "language-switcher",
-    isCompact ? "language-switcher--compact" : "language-switcher--default",
+    "language-switcher-nav",
+    isCompact ? "language-switcher-nav--compact" : "language-switcher-nav--default",
   ]}
   aria-label="Language"
 >
-  <ul class="language-switcher__list" role="list">
-    {
-      locales.map((locale) => {
-        const href = switchLocalePath(Astro.url.pathname, locale.code);
-        const isActive = locale.code === currentLang;
-        return (
-          <li>
-            {isActive ? (
-              <span
-                class="language-switcher__item language-switcher__item--active"
-                aria-current="true"
-                title={locale.name}
-              >
-                {locale.label}
-              </span>
-            ) : (
+<details
+  id="site-language-switcher"
+  class:list={[
+    "language-switcher",
+    isCompact ? "language-switcher--compact" : "language-switcher--default",
+  ]}
+>
+  <summary
+    class="language-switcher__trigger"
+    aria-label={`Language: ${current.name}. Choose another language.`}
+  >
+    <span class="language-switcher__trigger-label" aria-hidden="true">{current.label}</span>
+    <svg
+      class="language-switcher__chevron"
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  </summary>
+
+  <div class="language-switcher__panel" role="presentation">
+    <ul class="language-switcher__menu" role="list">
+      {
+        dropdownLocales.map((locale) => {
+          const href = switchLocaleHref(Astro.url.pathname, locale.code);
+          const isActive = locale.code === currentLocale;
+          return (
+            <li>
               <a
                 href={href}
-                class="language-switcher__item"
+                class:list={[
+                  "language-switcher__option",
+                  isActive && "language-switcher__option--active",
+                ]}
                 hreflang={locale.code}
                 lang={locale.code}
-                title={locale.name}
+                aria-current={isActive ? "page" : undefined}
               >
-                {locale.label}
+                <span class="language-switcher__option-code">{locale.label}</span>
+                <span class="language-switcher__option-name">{locale.name}</span>
               </a>
-            )}
-          </li>
-        );
-      })
-    }
-  </ul>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</details>
 </nav>
 
+<script>
+  const root = document.getElementById("site-language-switcher");
+  if (root) {
+    document.addEventListener("click", (e) => {
+      if (!root.open) return;
+      if (!root.contains(e.target as Node)) root.open = false;
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && root.open) {
+        root.open = false;
+        root.querySelector("summary")?.focus();
+      }
+    });
+  }
+</script>
+
 <style>
-  .language-switcher__list {
+  .language-switcher-nav {
+    display: inline-flex;
+    position: relative;
+  }
+
+  .language-switcher {
+    position: relative;
+  }
+
+  .language-switcher__trigger {
     display: inline-flex;
     align-items: center;
-    gap: 2px;
+    gap: 0.25rem;
     margin: 0;
-    padding: 0;
+    padding: 0.125rem 0.375rem 0.125rem 0.5rem;
     list-style: none;
+    cursor: pointer;
     border-radius: 0.375rem;
     border: 1px solid var(--color-stone-200);
     background: var(--color-stone-50);
-    padding: 2px;
-  }
-
-  .language-switcher--compact .language-switcher__list {
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  .language-switcher__item {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 2rem;
-    padding: 0.125rem 0.5rem;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.04em;
     line-height: 1.25rem;
-    border-radius: 0.25rem;
-    color: var(--color-stone-400);
+    color: var(--color-navy-500);
+    user-select: none;
+    transition:
+      color 160ms ease,
+      background-color 160ms ease,
+      border-color 160ms ease;
+  }
+
+  .language-switcher__trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .language-switcher__trigger::marker {
+    content: "";
+  }
+
+  .language-switcher--compact .language-switcher__trigger {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .language-switcher__trigger:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: var(--color-stone-200);
+  }
+
+  .language-switcher--compact .language-switcher__trigger:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.28);
+    color: #fff;
+  }
+
+  .language-switcher[open] .language-switcher__trigger {
+    background: #fff;
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+
+  .language-switcher--compact[open] .language-switcher__trigger {
+    color: var(--color-navy-500);
+  }
+
+  .language-switcher__chevron {
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: transform 160ms ease;
+  }
+
+  .language-switcher[open] .language-switcher__chevron {
+    transform: rotate(180deg);
+  }
+
+  .language-switcher__panel {
+    position: absolute;
+    top: calc(100% + 0.375rem);
+    right: 0;
+    z-index: 60;
+    min-width: 9.5rem;
+  }
+
+  .language-switcher__menu {
+    margin: 0;
+    padding: 0.25rem;
+    list-style: none;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-stone-100);
+    background: #fff;
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.08),
+      0 10px 20px -4px rgb(0 0 0 / 0.1);
+  }
+
+  .language-switcher__option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.625rem;
+    border-radius: 0.375rem;
+    font-size: 13px;
+    line-height: 1.25;
+    color: var(--color-stone-600);
     text-decoration: none;
     transition:
       color 160ms ease,
       background-color 160ms ease;
   }
 
-  .language-switcher--compact .language-switcher__item {
-    color: rgba(255, 255, 255, 0.65);
-  }
-
-  .language-switcher__item:hover {
+  .language-switcher__option:hover {
     color: var(--color-navy-500);
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--color-stone-50);
   }
 
-  .language-switcher--compact .language-switcher__item:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.14);
-  }
-
-  .language-switcher__item--active,
-  .language-switcher__item--active:hover {
+  .language-switcher__option--active,
+  .language-switcher__option--active:hover {
     color: var(--color-navy-500);
-    background: #fff;
-    cursor: default;
+    background: var(--color-stone-50);
+    font-weight: 600;
   }
 
-  .language-switcher--compact .language-switcher__item--active,
-  .language-switcher--compact .language-switcher__item--active:hover {
-    color: var(--color-navy-500);
-    background: #fff;
+  .language-switcher__option-code {
+    min-width: 1.5rem;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--color-stone-400);
+  }
+
+  .language-switcher__option--active .language-switcher__option-code {
+    color: var(--color-coral-500);
+  }
+
+  .language-switcher__option-name {
+    flex: 1;
   }
 </style>

@@ -6,7 +6,6 @@ import Button from "../../components/Button.astro";
 import LogoMarquee from "../../components/LogoMarquee.astro";
 import StatBlock from "../../components/StatBlock.astro";
 import CtaBand from "../../components/CtaBand.astro";
-import RoiTeaserSection from "../../components/roi/RoiTeaserSection.astro";
 import UspSection from "../../components/UspSection.astro";
 import ProblemSection from "../../components/ProblemSection.astro";
 import SensorFinderSection from "../../components/SensorFinderSection.astro";
@@ -52,9 +51,8 @@ const stats = [
     stats={stats}
   />
 
-  <RoiTeaserSection />
-
   <CtaBand
+    variant="featured"
     title="Ready to try it?"
     subtitle="Book a demo and see how data from our sensors can optimise your operations."
     primaryLabel="Book a free demo"

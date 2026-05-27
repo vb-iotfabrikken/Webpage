@@ -18,7 +18,7 @@ const { title, titleAccent, lead, align = "center", allowVisualOverflow = false,
 <section
   class:list={[
     "relative bg-stone-50 border-b border-stone-100",
-    allowVisualOverflow ? "overflow-x-visible overflow-y-visible" : "overflow-hidden",
+    allowVisualOverflow ? "overflow-x-clip overflow-y-visible" : "overflow-hidden",
   ]}
 >
   <div class="absolute inset-0 pointer-events-none opacity-[0.05]" aria-hidden="true">

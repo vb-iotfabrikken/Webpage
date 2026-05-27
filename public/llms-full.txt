@@ -1,7 +1,7 @@
 # IoT Fabrikken — full library (7 articles)
 
 Source: https://iot-fabrikken.com/en/library/
-Generated: 2026-05-26T15:53:22.081Z
+Generated: 2026-05-27T11:55:17.521Z
 
 Every article in the IoT Fabrikken knowledge base, concatenated for
 retrieval-augmented generation. Each article is separated by a `---` fence

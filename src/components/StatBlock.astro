@@ -13,25 +13,40 @@ interface Props {
 }
 
 const { stats, title, subtitle } = Astro.props;
+
+const gridCols =
+  stats.length === 4
+    ? "md:grid-cols-4"
+    : stats.length === 2
+      ? "md:grid-cols-2"
+      : "md:grid-cols-3";
 ---
 
-<section class="py-20 md:py-24 bg-navy-500 text-white">
+<section class="py-16 md:py-20 bg-navy-500 text-white">
   <div class="container-page">
     {title && (
-      <div class="max-w-2xl mb-12 reveal">
-        <h2 class="text-3xl md:text-4xl font-bold text-white">{title}</h2>
-        {subtitle && <p class="mt-4 text-white/70 text-lg">{subtitle}</p>}
+      <div class="mx-auto mb-12 max-w-3xl text-center md:mb-14 reveal">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">{title}</h2>
+        {subtitle && <p class="mt-4 text-lg md:text-xl text-white/75 leading-relaxed">{subtitle}</p>}
       </div>
     )}
-    <div class={`grid gap-10 ${stats.length === 4 ? "grid-cols-2 md:grid-cols-4" : "grid-cols-1 md:grid-cols-3"}`}>
+
+    <ul class:list={["reveal grid w-full grid-cols-1 gap-5", gridCols, "md:gap-6"]}>
       {stats.map((s) => (
-        <div class="reveal">
-          <div class="text-5xl md:text-6xl font-bold tracking-tight text-white">
-            {s.prefix}{s.value}{s.suffix}
-          </div>
-          <p class="mt-3 text-sm md:text-base text-white/70 leading-snug max-w-[220px]">{s.label}</p>
-        </div>
+        <li
+          class="flex min-h-[10.5rem] flex-col items-center justify-center rounded-2xl border border-white/15 bg-white/[0.07] px-6 py-8 text-center sm:min-h-[11rem] sm:px-8 md:px-10 md:py-9"
+        >
+          <p class="text-[2.75rem] font-bold leading-none tracking-tight tabular-nums sm:text-5xl md:text-[3.25rem]">
+            {s.prefix && <span class="text-sky-300">{s.prefix}</span>}
+            {s.prefix && "\u00a0"}
+            <span class="text-white">{s.value}</span>
+            {s.suffix && <span class="text-white">{s.suffix}</span>}
+          </p>
+          <p class="mt-3 max-w-[12.5rem] text-sm leading-snug text-white/80 sm:max-w-[13.5rem] md:text-[15px] md:leading-relaxed">
+            {s.label}
+          </p>
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </section>
