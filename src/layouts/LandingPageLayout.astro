@@ -5,6 +5,7 @@ import CtaBand from "../components/CtaBand.astro";
 import FAQ from "../components/FAQ.astro";
 import { landingCategories, categoryColorClasses } from "../data/landingCategories";
 import type { CollectionEntry } from "astro:content";
+import { breadcrumbSchema, faqSchema, webPageSchema } from "../lib/seo/schema";
 
 interface Props {
   entry: CollectionEntry<"landingpages">;
@@ -24,13 +25,31 @@ const formattedUpdated = d.updatedAt
   ? new Intl.DateTimeFormat("en-GB", { year: "numeric", month: "long" }).format(d.updatedAt)
   : null;
 
-const pageTitle = `${d.title} | IoT Fabrikken`;
+const pageTitle = `${d.seoTitle ?? d.title} | IoT Fabrikken`;
+const metaDescription = d.metaDescription ?? d.description;
+const pagePath = `/en/library/${entry.id}/`;
+
+const landingJsonLd = [
+  breadcrumbSchema([
+    { name: "Home", href: "/en/" },
+    { name: "Library", href: "/en/library/" },
+    { name: category.name, href: `/en/library/?category=${category.slug}` },
+    { name: d.title, href: pagePath },
+  ]),
+  webPageSchema({ title: d.title, description: metaDescription, url: pagePath }),
+  faqSchema(d.faq ?? []),
+].filter(Boolean) as Array<Record<string, unknown>>;
 ---
 
-<Layout title={pageTitle} description={d.description}>
-  {d.noindex && <meta slot="head" name="robots" content="noindex,follow" />}
+<Layout
+  title={pageTitle}
+  description={metaDescription}
+  ogImage={d.ogImage ?? d.heroImage}
+  noindex={d.noindex}
+  jsonLd={landingJsonLd}
+>
 
-  <section class="relative overflow-hidden bg-stone-50 border-b border-stone-100">
+  <section data-page-hero class="relative overflow-hidden bg-stone-50 border-b border-stone-100">
     <div class="absolute inset-0 pointer-events-none opacity-[0.05]" aria-hidden="true">
       <div
         class="w-full h-full"

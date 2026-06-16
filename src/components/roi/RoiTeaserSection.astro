@@ -2,7 +2,11 @@
 import Button from "../Button.astro";
 import { DEFAULTS, DESK_LIMITS, ENERGY_LIMITS } from "../../lib/roi/constants";
 import { formatMoney } from "../../lib/roi/format";
-import { calculateDesk, calculateEnergy } from "../../lib/roi/calculations";
+import {
+  calculateDesk,
+  calculateEnergy,
+  defaultEnergyInputs,
+} from "../../lib/roi/calculations";
 
 interface Props {
   embedded?: boolean;
@@ -14,14 +18,17 @@ const deskDefaults = calculateDesk({
   currentDesks: DESK_LIMITS.defaultDesks,
   peakAttendancePct: DESK_LIMITS.defaultAttendance,
   annualCostPerDesk: DEFAULTS.EUR.costPerDesk,
+  goals: ["cut"],
 });
 
-const energyDefaults = calculateEnergy({
-  annualBill: DEFAULTS.EUR.heatingBill,
-  heatsWeekends: true,
-  heatsNightly: true,
-  avgTempC: ENERGY_LIMITS.defaultTemp,
-});
+const energyDefaults = calculateEnergy(
+  defaultEnergyInputs({
+    annualBill: DEFAULTS.EUR.heatingBill,
+    heatsWeekends: true,
+    heatsNightly: true,
+    avgTempC: ENERGY_LIMITS.defaultTemp,
+  }),
+);
 
 const calculators = [
   {

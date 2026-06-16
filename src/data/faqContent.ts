@@ -66,7 +66,7 @@ export const faqContent: Record<string, Qa[]> = {
   ],
 
   sensors: [
-    { q: "Which sensors do you supply?", a: "The RoomAlyzer family (Series A) covers CO₂, humidity, temperature, VOC, PM2.5, motion, open/close, water detection and push buttons. We also resell Disruptive Technologies (Series B) for micro-environment and Efento NB-IoT (Series C) for harsh or cellular-only deployments." },
+    { q: "Which sensors do you supply?", a: "Our portfolio is organised in four lines: RoomAlyzer Air (climate sensors such as CO2, Full+, Humidity, Mini+, Mini+ PIR, Outdoor and Temperature), RoomAlyzer Space (Desk, Motion, Open/Close and Touch), RoomAlyzer Water (Water detector and Water rope) and Miscellaneous (Cloud connector and Range Extender and Bracket). Download product sheets from the sensors section." },
     { q: "Do the sensors need calibration?", a: "CO₂ sensors self-calibrate against outdoor levels; humidity sensors drift about 1% RH per year; temperature sensors are stable for their lifetime. We recommend a factory recalibration every five years for preservation-critical deployments." },
     { q: "What's the typical battery life?", a: "Three to seven years depending on sensor type, reporting interval and ambient temperature. The platform shows a battery gauge for every sensor and predicts replacement dates." },
     { q: "Where can I put the sensors?", a: "Anywhere with LoRaWAN or NB-IoT coverage. Indoors, place 1.1–1.7 m above the floor, away from direct sunlight, outlets and windows. The sensor placement guide covers the details for each room type." },

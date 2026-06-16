@@ -114,4 +114,33 @@
       animation: none;
     }
   }
+
+  /*
+   * Breathing room between the grey page hero and the next section — prevents
+   * photos and stone-100 media frames from sitting flush against the hero band.
+   * Opt out with data-hero-gap-keep (e.g. /en/about/team/ group portrait).
+   * Skipped when the section already sets pt-* or py-* padding.
+   */
+  [data-page-hero]:not([data-compact-bottom])
+    + section:not([data-hero-gap-keep]):where(:not([class*="pt-"]):not([class*="py-"])) {
+    padding-top: 3.5rem;
+  }
+
+  @media (min-width: 768px) {
+    [data-page-hero]:not([data-compact-bottom])
+      + section:not([data-hero-gap-keep]):where(:not([class*="pt-"]):not([class*="py-"])) {
+      padding-top: 5rem;
+    }
+  }
+
+  /* Explicit helper when authoring sections that follow a page hero. */
+  .after-page-hero {
+    padding-top: 3.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .after-page-hero {
+      padding-top: 5rem;
+    }
+  }
 }

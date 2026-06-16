@@ -5,6 +5,7 @@ import Button from "./Button.astro";
 import ContactForm from "./ContactForm.astro";
 import CaseStudyGrid from "./CaseStudyGrid.astro";
 import { getCaseStudiesContent } from "../data/hubs/caseStudies";
+import { getCases } from "../data/i18n/cases";
 import { langPath, type Lang } from "../data/lang";
 
 interface Props {
@@ -14,17 +15,14 @@ interface Props {
 const { lang } = Astro.props;
 const { hub, intro, cases, initialVisible } = getCaseStudiesContent(lang);
 const basePath = langPath("case-studies", lang);
-const casesLabel = lang === "da" ? "Cases" : "Cases";
+const t = getCases(lang);
 ---
 
-<Layout
-  title="Customer cases | IoT Fabrikken"
-  description="See how municipalities, consultancies and property managers use RoomAlyzer for indoor climate and space management — real buildings, real results."
->
+<Layout title={t.metaTitle} description={t.metaDescription}>
   <nav class="container-page pt-6" aria-label="Breadcrumb">
     <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
       <li>
-        <a href={langPath("", lang)} class="hover:text-coral-500 transition-colors">Home</a>
+        <a href={langPath("", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumbHome}</a>
       </li>
       <li aria-hidden="true">
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -36,13 +34,13 @@ const casesLabel = lang === "da" ? "Cases" : "Cases";
             stroke-linejoin="round"></path>
         </svg>
       </li>
-      <li><span class="text-navy-500">{casesLabel}</span></li>
+      <li><span class="text-navy-500">{t.breadcrumbCases}</span></li>
     </ol>
   </nav>
 
-  <Hero title={hub.title} lead={hub.lead} align="left" compactTop>
+  <Hero title={hub.title} titleAccent={hub.titleAccent} lead={hub.lead} align="left" compactTop>
     <Button href={langPath("contact/book-demo", lang)} variant="primary" size="lg" slot="cta">
-      Book a free demo
+      {t.bookDemo}
     </Button>
   </Hero>
 
@@ -60,13 +58,11 @@ const casesLabel = lang === "da" ? "Cases" : "Cases";
       <CaseStudyGrid
         cases={cases}
         basePath={basePath}
+        lang={lang}
         initialVisible={initialVisible}
       />
     </div>
   </section>
 
-  <ContactForm
-    title="Book a meeting with us"
-    subtitle="Do you have any questions? Want to know more about indoor climate and/or space management? Then please reach out. We're always happy to talk about your options — either online or in person."
-  />
+  <ContactForm title={t.contactTitle} subtitle={t.contactSubtitle} />
 </Layout>

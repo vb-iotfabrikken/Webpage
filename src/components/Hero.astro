@@ -16,6 +16,8 @@ const { title, titleAccent, lead, align = "center", allowVisualOverflow = false,
 ---
 
 <section
+  data-page-hero
+  data-compact-bottom={compactBottom || undefined}
   class:list={[
     "relative bg-stone-50 border-b border-stone-100",
     allowVisualOverflow ? "overflow-x-clip overflow-y-visible" : "overflow-hidden",

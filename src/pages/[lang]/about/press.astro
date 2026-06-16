@@ -1,0 +1,148 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import { getKeyFacts, pressContact, releases, mentions } from "../../../data/press";
+import { getAbout } from "../../../data/i18n/about";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = getAbout(lang);
+const keyFacts = getKeyFacts(lang);
+
+const dateLocale: Record<Lang, string> = {
+  en: "en-GB",
+  da: "da-DK",
+  de: "de-DE",
+  sv: "sv-SE",
+};
+const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString(dateLocale[lang], {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+---
+
+<Layout title={t.press.metaTitle} description={t.press.metaDescription}>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href={langPath("", lang)} class="hover:text-coral-500 transition-colors">{t.common.home}</a></li>
+      <li aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+      <li><a href={langPath("about", lang)} class="hover:text-coral-500 transition-colors">{t.common.about}</a></li>
+      <li aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+      <li><span class="text-navy-500">{t.press.crumb}</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    title={t.press.heroTitle}
+    titleAccent={t.press.heroTitleAccent}
+    lead={t.press.heroLead}
+    align="left"
+    compactTop
+  >
+    <Button href={`mailto:${pressContact.email}`} variant="primary" size="lg" slot="cta">{t.press.emailPress}</Button>
+  </Hero>
+
+  <section class="py-14">
+    <div class="container-page max-w-5xl">
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="md:col-span-2 bg-white border border-stone-100 rounded-xl p-6">
+          <h2 class="text-xl font-bold text-navy-500 tracking-tight">{t.press.keyFactsHeading}</h2>
+          <dl class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+            {keyFacts.map((f) => (
+              <div class="flex justify-between gap-4 pb-2 border-b border-stone-100">
+                <dt class="text-sm text-stone-300">{f.label}</dt>
+                <dd class="text-sm font-semibold text-navy-500 text-right">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <aside class="bg-navy-500 text-white rounded-xl p-6">
+          <p class="text-xs font-semibold uppercase tracking-wider text-white/60">{t.press.pressContactLabel}</p>
+          <p class="mt-2 text-lg font-semibold">{pressContact.name}</p>
+          <p class="text-sm text-white/70">{pressContact.role}</p>
+          <div class="mt-4 space-y-1.5 text-sm">
+            <a href={`mailto:${pressContact.email}`} class="block text-white hover:text-coral-500 underline underline-offset-4">
+              {pressContact.email}
+            </a>
+            <a href={`tel:${pressContact.phone.replace(/\s+/g, "")}`} class="block text-white hover:text-coral-500 underline underline-offset-4">
+              {pressContact.phone}
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      <div class="mt-12">
+        <h2 class="text-xl font-bold text-navy-500 tracking-tight pb-3 border-b border-stone-100">
+          {t.press.releasesHeading}
+        </h2>
+        {releases.length > 0 ? (
+          <ol class="mt-6 space-y-5">
+            {releases.map((r) => (
+              <li class="bg-white border border-stone-100 rounded-xl p-5">
+                <time datetime={r.date} class="text-xs font-semibold uppercase tracking-wider text-stone-300">
+                  {formatDate(r.date)}
+                </time>
+                <h3 class="mt-1 text-base font-semibold text-navy-500">{r.headline}</h3>
+                <p class="mt-2 text-sm text-stone-900/70 leading-relaxed">{r.summary}</p>
+                {r.url && (
+                  <a href={r.url} class="mt-2 inline-block text-sm font-semibold text-navy-500 hover:text-coral-500 underline underline-offset-4">
+                    {t.press.readFullRelease}
+                  </a>
+                )}
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p class="mt-6 rounded-xl border border-dashed border-stone-100 bg-white px-5 py-8 text-sm text-stone-900/70 leading-relaxed">
+            {t.press.releasesEmpty}
+          </p>
+        )}
+      </div>
+
+      <div class="mt-12">
+        <h2 class="text-xl font-bold text-navy-500 tracking-tight pb-3 border-b border-stone-100">
+          {t.press.inThePress}
+        </h2>
+        {mentions.length > 0 ? (
+          <ul class="mt-6 divide-y divide-stone-100 bg-white border border-stone-100 rounded-xl">
+            {mentions.map((m) => (
+              <li class="p-5 flex items-center justify-between gap-4">
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-wider text-stone-300">{m.outlet} · {formatDate(m.date)}</p>
+                  <p class="mt-1 text-sm font-medium text-navy-500">{m.headline}</p>
+                </div>
+                {m.url && (
+                  <a href={m.url} target="_blank" rel="noopener" class="shrink-0 text-sm font-semibold text-navy-500 hover:text-coral-500 underline underline-offset-4">
+                    {t.press.read}
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="mt-6 rounded-xl border border-dashed border-stone-100 bg-white px-5 py-8 text-sm text-stone-900/70 leading-relaxed">
+            {t.press.mentionsEmpty}
+          </p>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title={t.press.ctaTitle}
+    subtitle={t.press.ctaSubtitle}
+    primaryLabel={t.press.ctaPrimary}
+    primaryHref={`mailto:${pressContact.email}`}
+    secondaryLabel=""
+  />
+</Layout>

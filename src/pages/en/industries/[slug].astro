@@ -1,6 +1,8 @@
 ---
 import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import IndustryPageContent from "../../../components/content/IndustryPageContent.astro";
 import { industriesHub } from "../../../data/site";
+import { getIndustryContent } from "../../../data/content/industries";
 
 export function getStaticPaths() {
   return industriesHub.leaves.map((leaf) => ({
@@ -10,11 +12,12 @@ export function getStaticPaths() {
 }
 
 const { leaf } = Astro.props;
+const content = getIndustryContent(leaf.slug);
 ---
 
 <PlaceholderPage
   title={`${leaf.title.replace(/\.$/, "")} | IoT Fabrikken`}
-  description={leaf.lead}
+  description={content ? content.focus : leaf.lead}
   heroTitle={leaf.title}
   heroTitleAccent={leaf.titleAccent}
   heroLead={leaf.lead}
@@ -25,4 +28,9 @@ const { leaf } = Astro.props;
   ]}
   primaryCta={leaf.primaryCta}
   secondaryCta={leaf.secondaryCta}
-/>
+  hideNotice={!!content}
+  ctaBandTitle="Want a setup tailored to your buildings?"
+  ctaBandSubtitle="Book a demo and we will walk through the sensors that fit your sector."
+>
+  {content && <IndustryPageContent content={content} />}
+</PlaceholderPage>

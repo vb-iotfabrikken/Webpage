@@ -7,10 +7,11 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "node scripts/build-llms-full.mjs",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "llms-full": "node scripts/build-llms-full.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",
@@ -20,5 +21,9 @@
     "astro": "^6.1.8",
     "jspdf": "^4.2.1",
     "tailwindcss": "^4.2.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "typescript": "^6.0.3"
   }
 }

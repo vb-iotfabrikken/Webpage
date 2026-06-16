@@ -1,14 +1,247 @@
 ---
-import { DEFAULTS, ENERGY_LIMITS } from "../../lib/roi/constants";
+import { DEFAULTS, ENERGY_LIMITS, OFFICE_SQM_PER_EMPLOYEE, PEOPLE_PER_CLASSROOM } from "../../lib/roi/constants";
 import RoiCurrencySwitcher from "./RoiCurrencySwitcher.astro";
 
-const { minTemp, maxTemp, defaultTemp, minSqm, maxSqm, defaultSqm } = ENERGY_LIMITS;
+const {
+  minTemp,
+  maxTemp,
+  defaultTemp,
+  minSqm,
+  maxSqm,
+  defaultSqm,
+  defaultHeritageRooms,
+  defaultClassrooms,
+} = ENERGY_LIMITS;
 const defaultBill = DEFAULTS.EUR.heatingBill;
+const defaultEmployeeCost = DEFAULTS.EUR.avgEmployeeCost;
+const defaultEmployees = Math.round(defaultSqm / OFFICE_SQM_PER_EMPLOYEE);
+const defaultPeople = defaultClassrooms * PEOPLE_PER_CLASSROOM;
+
+const FACILITIES = [
+  { id: "office", label: "Office / Workplace" },
+  { id: "heritage", label: "Church / Museum / Heritage" },
+  { id: "school", label: "School / Municipality" },
+] as const;
 ---
 
 <div data-roi-panel="energy" class="hidden space-y-6">
-  <div class="space-y-3">
-    <RoiCurrencySwitcher />
+  <RoiCurrencySwitcher />
+
+  <div>
+    <span class="text-sm font-medium text-navy-500">What kind of building?</span>
+    <div
+      class="mt-2 flex flex-wrap gap-1 rounded-lg border border-stone-100 p-1 bg-stone-50 w-fit"
+      role="group"
+      aria-label="Facility type"
+    >
+      {FACILITIES.map((facility) => (
+        <button
+          type="button"
+          class:list={["roi-facility-btn", facility.id === "office" && "is-active"]}
+          data-roi-facility={facility.id}
+          aria-pressed={facility.id === "office" ? "true" : "false"}
+        >
+          {facility.label}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <div data-roi-facility-section="office" class="space-y-3">
+    <div class="space-y-2 rounded-lg border border-stone-100 bg-stone-50/50 p-4">
+      <label for="roi-sqm" class="text-xs font-medium text-navy-500">
+        Office floor area (m²)
+        <span class="text-stone-300 font-normal">— sizes sensors and headcount</span>
+      </label>
+      <input
+        id="roi-sqm"
+        type="number"
+        min={minSqm}
+        max={maxSqm}
+        step={50}
+        value={defaultSqm}
+        class="w-full max-w-xs rounded-md border border-stone-100 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+        data-roi-sqm
+      />
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+        <div>
+          <label for="roi-employees" class="text-xs font-medium text-navy-500">
+            Employees <span class="text-stone-300 font-normal">(estimated)</span>
+          </label>
+          <input
+            id="roi-employees"
+            type="number"
+            min={1}
+            step={1}
+            value={defaultEmployees}
+            class="mt-1 w-full max-w-[8rem] rounded-md border border-stone-100 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+            data-roi-employees
+          />
+        </div>
+        <div>
+          <label for="roi-employee-cost" class="text-xs font-medium text-navy-500">
+            Avg. annual cost / employee
+          </label>
+          <div class="mt-1 flex items-center gap-1.5">
+            <span class="text-xs text-stone-300 shrink-0" data-roi-currency-symbol-energy>€</span>
+            <input
+              id="roi-employee-cost"
+              type="number"
+              min={0}
+              step={1000}
+              value={defaultEmployeeCost}
+              class="w-full max-w-[8rem] rounded-md border border-stone-100 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+              data-roi-employee-cost
+            />
+          </div>
+        </div>
+      </div>
+      <p class="text-xs text-stone-300">
+        Healthy CO2 levels keep people sharp — we count a conservative 1%
+        productivity uplift (research supports more).
+      </p>
+    </div>
+  </div>
+
+  <div data-roi-facility-section="heritage" class="hidden space-y-4">
+    <div>
+      <label for="roi-rooms" class="text-sm font-medium text-navy-500">
+        Rooms or zones to monitor
+      </label>
+      <input
+        id="roi-rooms"
+        type="number"
+        min={1}
+        step={1}
+        value={defaultHeritageRooms}
+        class="mt-2 w-28 rounded-md border border-stone-100 px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-sky-500"
+        data-roi-rooms
+      />
+    </div>
+
+    <div class="space-y-3">
+      <div class="roi-toggle-row">
+        <div class="roi-toggle-row-text">
+          <span class="text-sm font-medium text-navy-500">Humidity-sensitive collection or interior?</span>
+          <span class="roi-toggle-hint" data-roi-badge-humidity>Organs, frescoes, paper and wood are most at risk</span>
+        </div>
+        <div class="roi-toggle" data-roi-toggle="humidity" data-roi-toggle-on="true" role="group" aria-label="Humidity sensitivity">
+          <button type="button" class="roi-toggle-btn is-active" data-roi-toggle-value="true" aria-pressed="true">Yes</button>
+          <button type="button" class="roi-toggle-btn" data-roi-toggle-value="false" aria-pressed="false">No</button>
+        </div>
+      </div>
+
+      <div class="roi-toggle-row">
+        <div class="roi-toggle-row-text">
+          <span class="text-sm font-medium text-navy-500">Rooms heated intermittently?</span>
+          <span class="roi-toggle-hint" data-roi-badge-intermittent>Swings between services drive condensation damage</span>
+        </div>
+        <div class="roi-toggle" data-roi-toggle="intermittent" data-roi-toggle-on="true" role="group" aria-label="Intermittent heating">
+          <button type="button" class="roi-toggle-btn is-active" data-roi-toggle-value="true" aria-pressed="true">Yes</button>
+          <button type="button" class="roi-toggle-btn" data-roi-toggle-value="false" aria-pressed="false">No</button>
+        </div>
+      </div>
+
+      <div class="roi-toggle-row">
+        <div class="roi-toggle-row-text">
+          <span class="text-sm font-medium text-navy-500">Need documentation for authorities or funding?</span>
+          <span class="roi-toggle-hint" data-roi-badge-documentation>Continuous logs support conservation fund applications</span>
+        </div>
+        <div class="roi-toggle" data-roi-toggle="documentation" data-roi-toggle-on="true" role="group" aria-label="Documentation needs">
+          <button type="button" class="roi-toggle-btn is-active" data-roi-toggle-value="true" aria-pressed="true">Yes</button>
+          <button type="button" class="roi-toggle-btn" data-roi-toggle-value="false" aria-pressed="false">No</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="rounded-lg border border-coral-500/20 bg-coral-500/5 px-4 py-3">
+      <p class="text-xs font-semibold uppercase tracking-wider text-coral-600">
+        Risk exposure
+      </p>
+      <p class="text-lg font-bold text-coral-600" data-roi-risk-level>High</p>
+    </div>
+
+    <div>
+      <button
+        type="button"
+        class="text-xs text-sky-600 hover:text-coral-500 font-medium underline-offset-2 hover:underline"
+        data-roi-collection-reveal
+        aria-expanded="false"
+      >
+        Add the value of your collection (optional)
+      </button>
+      <div class="hidden mt-2" data-roi-collection-panel>
+        <label for="roi-collection-value" class="text-xs font-medium text-navy-500">
+          Estimated value of collection / interior at risk
+        </label>
+        <div class="mt-1 flex items-center gap-1.5">
+          <span class="text-xs text-stone-300 shrink-0" data-roi-currency-symbol-energy>€</span>
+          <input
+            id="roi-collection-value"
+            type="number"
+            min={0}
+            step={10000}
+            class="w-full max-w-xs rounded-md border border-stone-100 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+            data-roi-collection-value
+          />
+        </div>
+      </div>
+    </div>
+
+    <p class="text-xs text-stone-300 leading-relaxed">
+      Trusted by the Protestant Church in Hesse and Nassau, Rudersdal Museums
+      and Faaborg Museum.
+    </p>
+  </div>
+
+  <div data-roi-facility-section="school" class="hidden space-y-4">
+    <div>
+      <label for="roi-classrooms" class="text-sm font-medium text-navy-500">
+        Classrooms or occupied rooms
+      </label>
+      <input
+        id="roi-classrooms"
+        type="number"
+        min={1}
+        step={1}
+        value={defaultClassrooms}
+        class="mt-2 w-28 rounded-md border border-stone-100 px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-sky-500"
+        data-roi-classrooms
+      />
+    </div>
+    <div>
+      <label for="roi-people" class="text-xs font-medium text-navy-500">
+        Pupils + staff <span class="text-stone-300 font-normal">(estimated)</span>
+      </label>
+      <input
+        id="roi-people"
+        type="number"
+        min={1}
+        step={5}
+        value={defaultPeople}
+        class="mt-1 w-28 rounded-md border border-stone-100 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+        data-roi-people
+      />
+    </div>
+    <p class="text-xs text-stone-300 leading-relaxed">
+      CO2 alerts before classrooms pass the 1,000 ppm guideline — used in the
+      Realdania indoor-climate project across municipal buildings.
+    </p>
+  </div>
+
+  <!-- Heritage/school: optional energy savings module. -->
+  <div data-roi-energy-optin-row class="hidden roi-toggle-row">
+    <div class="roi-toggle-row-text">
+      <span class="text-sm font-medium text-navy-500">Also estimate energy savings?</span>
+      <span class="roi-toggle-hint hidden" data-roi-badge-energy-optin>Setbacks between uses are a real saving</span>
+    </div>
+    <div class="roi-toggle" data-roi-toggle="energy-optin" data-roi-toggle-on="false" role="group" aria-label="Include energy savings">
+      <button type="button" class="roi-toggle-btn" data-roi-toggle-value="true" aria-pressed="false">Yes</button>
+      <button type="button" class="roi-toggle-btn is-active" data-roi-toggle-value="false" aria-pressed="true">No</button>
+    </div>
+  </div>
+
+  <div data-roi-energy-module class="space-y-6">
     <div>
       <label for="roi-heating-bill" class="text-sm font-medium text-navy-500">
         Estimated annual heating bill
@@ -25,89 +258,88 @@ const defaultBill = DEFAULTS.EUR.heatingBill;
           data-roi-heating-bill
         />
       </div>
-      <button
-        type="button"
-        class="mt-2 text-xs text-sky-600 hover:text-coral-500 font-medium underline-offset-2 hover:underline"
-        data-roi-heating-estimate-toggle
-      >
-        I don't know my heating bill
-      </button>
-      <div class="hidden mt-3 space-y-2 rounded-lg border border-stone-100 bg-stone-50/50 p-4" data-roi-heating-estimate>
-        <label for="roi-sqm" class="text-xs font-medium text-navy-500">Office floor area (m²)</label>
-        <input
-          id="roi-sqm"
-          type="number"
-          min={minSqm}
-          max={maxSqm}
-          step={50}
-          value={defaultSqm}
-          class="w-full max-w-xs rounded-md border border-stone-100 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
-          data-roi-sqm
-        />
-        <p class="text-xs text-stone-300">
-          We estimate your bill from typical Nordic office heating costs per m².
-        </p>
-      </div>
     </div>
-  </div>
 
-  <div class="space-y-3">
-    <div class="roi-toggle-row">
-      <div class="roi-toggle-row-text">
-        <span class="text-sm font-medium text-navy-500">Heat the office on weekends?</span>
-        <span class="roi-toggle-hint hidden" data-roi-badge-weekend>Weekend heating off</span>
+    <div class="space-y-3">
+      <div class="roi-toggle-row">
+        <div class="roi-toggle-row-text">
+          <span class="text-sm font-medium text-navy-500" data-roi-label-weekend>Heat the building on weekends?</span>
+          <span class="roi-toggle-hint" data-roi-badge-weekend>Sensors recover ~10% of your bill</span>
+        </div>
+        <div class="roi-toggle" data-roi-toggle="weekend" data-roi-toggle-on="true" role="group" aria-label="Weekend heating">
+          <button type="button" class="roi-toggle-btn is-active" data-roi-toggle-value="true" aria-pressed="true">Yes</button>
+          <button type="button" class="roi-toggle-btn" data-roi-toggle-value="false" aria-pressed="false">No</button>
+        </div>
       </div>
-      <div class="roi-toggle" data-roi-toggle="weekend" data-roi-toggle-on="true" role="group" aria-label="Weekend heating">
-        <button type="button" class="roi-toggle-btn is-active" data-roi-toggle-value="true" aria-pressed="true">Yes</button>
-        <button type="button" class="roi-toggle-btn" data-roi-toggle-value="false" aria-pressed="false">No</button>
+
+      <div class="roi-toggle-row">
+        <div class="roi-toggle-row-text">
+          <span class="text-sm font-medium text-navy-500">Heating on outside working hours?</span>
+          <span class="roi-toggle-hint" data-roi-badge-nightly>Night setback saves ~10% of your bill</span>
+        </div>
+        <div class="roi-toggle" data-roi-toggle="nightly" data-roi-toggle-on="true" role="group" aria-label="Nightly heating">
+          <button type="button" class="roi-toggle-btn is-active" data-roi-toggle-value="true" aria-pressed="true">Yes</button>
+          <button type="button" class="roi-toggle-btn" data-roi-toggle-value="false" aria-pressed="false">No</button>
+        </div>
       </div>
     </div>
 
-    <div class="roi-toggle-row">
-      <div class="roi-toggle-row-text">
-        <span class="text-sm font-medium text-navy-500">Heating on outside working hours?</span>
-        <span class="roi-toggle-hint hidden" data-roi-badge-nightly>Night setback on</span>
+    <div class="rounded-xl border-2 border-sky-500/15 bg-sky-50/50 p-5">
+      <div class="flex items-baseline justify-between gap-4 mb-2">
+        <label for="roi-temp" class="text-sm font-semibold text-navy-500">
+          Average indoor temperature
+        </label>
+        <span class="text-2xl font-bold text-sky-600 tabular-nums" data-roi-temp-display>
+          {defaultTemp}°C
+        </span>
       </div>
-      <div class="roi-toggle" data-roi-toggle="nightly" data-roi-toggle-on="true" role="group" aria-label="Nightly heating">
-        <button type="button" class="roi-toggle-btn is-active" data-roi-toggle-value="true" aria-pressed="true">Yes</button>
-        <button type="button" class="roi-toggle-btn" data-roi-toggle-value="false" aria-pressed="false">No</button>
+      <p class="text-xs text-stone-900/60 mb-3">
+        Each degree toward 20°C can save ~5% on heating (ENS.dk guideline).
+      </p>
+      <input
+        id="roi-temp"
+        type="range"
+        min={minTemp}
+        max={maxTemp}
+        step={0.5}
+        value={defaultTemp}
+        class="roi-range roi-range-hero w-full accent-sky-500"
+        data-roi-temp-range
+        aria-valuemin={minTemp}
+        aria-valuemax={maxTemp}
+        aria-valuenow={defaultTemp}
+      />
+      <div class="flex justify-between mt-1.5 text-xs font-medium text-stone-300 tabular-nums">
+        <span>{minTemp}°C</span>
+        <span>{maxTemp}°C</span>
       </div>
-    </div>
-  </div>
-
-  <div class="rounded-xl border-2 border-sky-500/15 bg-sky-50/50 p-5">
-    <div class="flex items-baseline justify-between gap-4 mb-2">
-      <label for="roi-temp" class="text-sm font-semibold text-navy-500">
-        Average office temperature
-      </label>
-      <span class="text-2xl font-bold text-sky-600 tabular-nums" data-roi-temp-display>
-        {defaultTemp}°C
-      </span>
-    </div>
-    <p class="text-xs text-stone-900/60 mb-3">
-      Each degree toward 20°C can save ~5% on heating (ENS.dk guideline).
-    </p>
-    <input
-      id="roi-temp"
-      type="range"
-      min={minTemp}
-      max={maxTemp}
-      step={0.5}
-      value={defaultTemp}
-      class="roi-range roi-range-hero w-full accent-sky-500"
-      data-roi-temp-range
-      aria-valuemin={minTemp}
-      aria-valuemax={maxTemp}
-      aria-valuenow={defaultTemp}
-    />
-    <div class="flex justify-between mt-1.5 text-xs font-medium text-stone-300 tabular-nums">
-      <span>{minTemp}°C</span>
-      <span>{maxTemp}°C</span>
     </div>
   </div>
 </div>
 
 <style>
+  .roi-facility-btn {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.2;
+    border-radius: 0.375rem;
+    border: 1px solid transparent;
+    color: var(--color-navy-500);
+    background: transparent;
+    cursor: pointer;
+    transition:
+      background 180ms ease,
+      color 180ms ease;
+  }
+  .roi-facility-btn:hover:not(.is-active) {
+    background: var(--color-stone-100);
+  }
+  .roi-facility-btn.is-active {
+    background: var(--color-sky-600);
+    color: white;
+  }
+
   .roi-toggle-row {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -161,16 +393,16 @@ const defaultBill = DEFAULTS.EUR.heatingBill;
     background: var(--color-stone-100);
   }
 
+  /* "Yes" = waste/risk sensors can address — highlight as the opportunity. */
   .roi-toggle-btn[data-roi-toggle-value="true"].is-active {
-    background: var(--color-navy-500);
-    border-color: var(--color-navy-500);
-    color: white;
-  }
-
-  .roi-toggle-btn[data-roi-toggle-value="false"].is-active {
     background: var(--color-forest-500);
     border-color: var(--color-forest-500);
     color: white;
   }
 
+  .roi-toggle-btn[data-roi-toggle-value="false"].is-active {
+    background: var(--color-navy-500);
+    border-color: var(--color-navy-500);
+    color: white;
+  }
 </style>

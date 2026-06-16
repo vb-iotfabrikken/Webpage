@@ -1,0 +1,70 @@
+---
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import SensorPageContent from "../../../components/content/SensorPageContent.astro";
+import { sensorsHub, getSensorsHub } from "../../../data/hubs/sensors";
+import { getSensorContent } from "../../../data/content/sensors";
+import { localizedSensorName } from "../../../data/sensorCategories";
+import { productSchema } from "../../../lib/seo/schema";
+import { getUi } from "../../../data/i18n/ui";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  const slugs = sensorsHub.leaves
+    .filter((leaf) => leaf.slug !== "compare")
+    .map((leaf) => leaf.slug);
+  return locales.flatMap((l) =>
+    slugs.map((slug) => ({ params: { lang: l.code, slug } })),
+  );
+}
+
+const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+const hub = getSensorsHub(lang);
+const leaf = hub.leaves.find((entry) => entry.slug === slug)!;
+const content = getSensorContent(slug, lang);
+const t = getUi(lang).sensors;
+
+const secondaryCta = leaf.productSheetUrl
+  ? { label: t.common.downloadProductSheet, href: leaf.productSheetUrl }
+  : leaf.secondaryCta;
+
+// Enforce the localized sensor name (e.g. de "Wasserdetektor") regardless of
+// whether the translated hero copy supplies its own title.
+const heroTitle = localizedSensorName(slug, content?.heroTitle ?? leaf.title, lang);
+const productName = heroTitle.replace(/\.$/, "");
+
+const sensorJsonLd = productSchema({
+  name: productName,
+  description: content?.heroLead ?? leaf.lead,
+  url: Astro.url.pathname,
+  image: leaf.ogImage,
+  brand: "RoomAlyzer",
+});
+---
+
+<PlaceholderPage
+  title={`${leaf.seoTitle ?? productName} | IoT Fabrikken`}
+  description={leaf.metaDescription ?? content?.heroLead ?? leaf.lead}
+  ogImage={leaf.ogImage}
+  noindex={leaf.noindex}
+  jsonLd={sensorJsonLd}
+  heroTitle={heroTitle}
+  heroTitleAccent={content?.heroTitleAccent ?? leaf.titleAccent}
+  heroLead={content?.heroLead ?? leaf.lead}
+  breadcrumbs={[
+    { label: t.breadcrumb.home, href: langPath("/", lang) },
+    { label: t.breadcrumb.sensors, href: langPath("/sensors/", lang) },
+    { label: productName },
+  ]}
+  primaryCta={leaf.primaryCta ?? { label: t.common.bookLiveDemo, href: langPath("/contact/book-demo/", lang) }}
+  secondaryCta={secondaryCta}
+  hideNotice={!!content}
+  ctaBandTitle={t.detail.ctaBandTitle}
+  ctaBandSubtitle={t.detail.ctaBandSubtitle}
+  ctaBandPrimaryLabel={t.common.bookDemo}
+  ctaBandPrimaryHref={langPath("/contact/book-demo/", lang)}
+  ctaBandSecondaryLabel={t.common.contactSales}
+  ctaBandSecondaryHref={langPath("/contact/sales/", lang)}
+>
+
+  {content && <SensorPageContent content={content} lang={lang} />}
+</PlaceholderPage>

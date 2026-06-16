@@ -1,0 +1,31 @@
+---
+import CaseStudyDetailPage from "../../../components/CaseStudyDetailPage.astro";
+import { getCaseStudiesHub } from "../../../data/hubs/caseStudies";
+import { getCases } from "../../../data/i18n/cases";
+import { locales, langPath, type Lang } from "../../../data/lang";
+import type { CaseStudyLeaf } from "../../../data/hubs/caseStudies";
+
+export function getStaticPaths() {
+  return locales.flatMap((l) =>
+    getCaseStudiesHub(l.code).leaves.map((leaf) => ({
+      params: { lang: l.code, slug: leaf.slug },
+      props: { leaf },
+    })),
+  );
+}
+
+const { lang } = Astro.params as { lang: Lang; slug: string };
+const { leaf } = Astro.props as { leaf: CaseStudyLeaf };
+const t = getCases(lang);
+const casesHref = langPath("case-studies", lang);
+---
+
+<CaseStudyDetailPage
+  lang={lang}
+  leaf={leaf}
+  breadcrumbs={[
+    { label: t.breadcrumbHome, href: langPath("", lang) },
+    { label: t.breadcrumbCases, href: casesHref },
+    { label: leaf.title.replace(/\.$/, "") },
+  ]}
+/>

@@ -1,4 +1,6 @@
 import type { Hub } from "./types";
+import { defaultLang, type Lang } from "../lang";
+import { modulesHubI18n } from "./modules.i18n";
 
 export const modulesHub: Hub = {
   slug: "modules",
@@ -58,3 +60,27 @@ export const modulesHub: Hub = {
     },
   ],
 };
+
+/** Localized modules hub. Falls back to the English base for missing keys. */
+export function getModulesHub(lang: Lang = defaultLang): Hub {
+  if (lang === defaultLang) return modulesHub;
+  const overlay = modulesHubI18n[lang];
+  if (!overlay) return modulesHub;
+  const leaves = modulesHub.leaves.map((leaf) => {
+    const lo = overlay.leaves?.[leaf.slug];
+    return {
+      ...leaf,
+      title: lo?.title ?? leaf.title,
+      titleAccent: lo?.titleAccent ?? leaf.titleAccent,
+      lead: lo?.lead ?? leaf.lead,
+    };
+  });
+  return {
+    ...modulesHub,
+    title: overlay.title ?? modulesHub.title,
+    titleAccent: overlay.titleAccent ?? modulesHub.titleAccent,
+    eyebrow: overlay.eyebrow ?? modulesHub.eyebrow,
+    lead: overlay.lead ?? modulesHub.lead,
+    leaves,
+  };
+}

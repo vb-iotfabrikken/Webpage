@@ -1,0 +1,91 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Hero from "../../../../components/Hero.astro";
+import { getSensorsHub } from "../../../../data/hubs/sensors";
+import {
+  getSensorCategoryLabels,
+  SENSOR_CATEGORY_ORDER,
+} from "../../../../data/sensorCategories";
+import { getUi } from "../../../../data/i18n/ui";
+import { locales, langPath, type Lang } from "../../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const sensorsHub = getSensorsHub(lang);
+const labels = getSensorCategoryLabels(lang);
+const t = getUi(lang).sensors;
+
+const byCategory = SENSOR_CATEGORY_ORDER.map((category) => ({
+  category,
+  label: labels[category],
+  items: sensorsHub.leaves.filter(
+    (leaf) => leaf.slug !== "compare" && leaf.category === category && leaf.productSheetUrl,
+  ),
+})).filter((group) => group.items.length > 0);
+---
+
+<Layout title={`${t.sheets.heroTitle.replace(/\.$/, "")} | IoT Fabrikken`} description={t.sheets.metaDescription}>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li class="flex items-center gap-1.5">
+        <a href={langPath("/", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumb.home}</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </li>
+      <li class="flex items-center gap-1.5">
+        <a href={langPath("/sensors/", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumb.sensors}</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </li>
+      <li><span class="text-navy-500">{t.breadcrumb.productSheets}</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    title={t.sheets.heroTitle}
+    titleAccent={t.sheets.heroAccent}
+    lead={t.sheets.lead}
+    align="left"
+    compactTop
+  />
+
+  <section class="pb-16 md:pb-20">
+    <div class="container-page grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-10">
+      {
+        byCategory.map((group) => (
+          <div>
+            <h2 class="text-lg font-bold text-navy-500 tracking-tight">
+              {group.label}
+            </h2>
+            <ul class="mt-3 space-y-2.5">
+              {group.items.map((leaf) => (
+                <li>
+                  <a
+                    href={leaf.productSheetUrl}
+                    download
+                    class="group inline text-navy-500 hover:text-sky-600 transition-colors leading-relaxed"
+                  >
+                    <span class="underline underline-offset-4 decoration-stone-200 group-hover:decoration-sky-300">
+                      {leaf.title.replace(/\.$/, "")}
+                    </span>
+                    <span class="whitespace-nowrap inline-flex items-center gap-1 ml-1.5 text-xs font-medium text-sky-600 align-middle">
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path d="M8 2v8M5 7l3 3 3-3M3 12h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      {t.sheets.pdf}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

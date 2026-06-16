@@ -4,6 +4,8 @@ import Hero from "./Hero.astro";
 import Button from "./Button.astro";
 import CtaBand from "./CtaBand.astro";
 import type { Hub } from "../data/hubs/types";
+import { getAbout } from "../data/i18n/about";
+import { defaultLang, langPath, type Lang } from "../data/lang";
 
 interface Breadcrumb {
   label: string;
@@ -19,13 +21,18 @@ interface Props {
   title?: string;
   /** Optional override of the meta description. */
   description?: string;
+  /** Locale for chrome strings (CTAs, headings). Defaults to English. */
+  lang?: Lang;
 }
 
-const { hub, basePath, breadcrumbs = [], title, description } = Astro.props;
+const { hub, basePath, breadcrumbs = [], title, description, lang = defaultLang } = Astro.props;
 
+const t = getAbout(lang);
 const pageTitle = title ?? `${hub.title.replace(/\.$/, "")} | IoT Fabrikken`;
 const metaDescription = description ?? hub.lead;
 const leafBase = basePath.endsWith("/") ? basePath : `${basePath}/`;
+const bookDemoHref = langPath("contact/book-demo", lang);
+const contactSalesHref = langPath("contact/sales", lang);
 ---
 
 <Layout title={pageTitle} description={metaDescription}>
@@ -57,15 +64,15 @@ const leafBase = basePath.endsWith("/") ? basePath : `${basePath}/`;
     align="left"
     compactTop={breadcrumbs.length > 0}
   >
-    <Button href="/en/contact/book-demo/" variant="primary" size="lg" slot="cta">Book a free demo</Button>
-    <Button href="/en/contact/sales/" variant="secondary" size="lg" slot="cta">Contact sales</Button>
+    <Button href={bookDemoHref} variant="primary" size="lg" slot="cta">{t.common.bookDemo}</Button>
+    <Button href={contactSalesHref} variant="secondary" size="lg" slot="cta">{t.common.contactSales}</Button>
   </Hero>
 
   <section class="py-16 md:py-20">
     <div class="container-page">
       <div class="reveal max-w-2xl mb-10 md:mb-12">
         <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
-          Explore {hub.title.replace(/\.$/, "").toLowerCase()}.
+          {t.common.explore} {hub.title.replace(/\.$/, "").toLowerCase()}.
         </h2>
       </div>
 
@@ -88,7 +95,7 @@ const leafBase = basePath.endsWith("/") ? basePath : `${basePath}/`;
             <p class="text-sm text-stone-900/70 leading-relaxed flex-1">{leaf.lead}</p>
 
             <div class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-navy-500 group-hover:text-sky-600 transition-colors">
-              Read more
+              {t.common.readMore}
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="transition-transform group-hover:translate-x-1">
                 <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
@@ -106,11 +113,11 @@ const leafBase = basePath.endsWith("/") ? basePath : `${basePath}/`;
   </section>
 
   <CtaBand
-    title="Want a guided walk-through?"
-    subtitle="Book a 30-minute demo and we'll tailor it to your building."
-    primaryLabel="Book a free demo"
-    primaryHref="/en/contact/book-demo/"
-    secondaryLabel="Contact sales"
-    secondaryHref="/en/contact/sales/"
+    title={t.hub.ctaTitle}
+    subtitle={t.hub.ctaSubtitle}
+    primaryLabel={t.common.bookDemo}
+    primaryHref={bookDemoHref}
+    secondaryLabel={t.common.contactSales}
+    secondaryHref={contactSalesHref}
   />
 </Layout>

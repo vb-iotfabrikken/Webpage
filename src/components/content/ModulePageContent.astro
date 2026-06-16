@@ -1,0 +1,51 @@
+---
+import type { ModulePageContent } from "../../data/content/types";
+import { getUi } from "../../data/i18n/ui";
+import { defaultLang, type Lang } from "../../data/lang";
+
+interface Props {
+  content: ModulePageContent;
+  lang?: Lang;
+}
+
+const { content, lang = defaultLang } = Astro.props;
+const t = getUi(lang).modules;
+---
+
+<div class="space-y-16 md:space-y-20">
+  <section>
+    <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
+      {t.content.challengesEyebrow}
+    </p>
+    <ul class="space-y-4">
+      {content.challenges.map((item) => (
+        <li class="flex items-start gap-3 text-navy-500">
+          <span class="mt-1.5 w-2 h-2 rounded-full bg-coral-500 shrink-0" aria-hidden="true"></span>
+          <span class="leading-relaxed">{item}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="bg-stone-50 border border-stone-100 rounded-xl p-8 md:p-10">
+    <p class="inline-block px-3 py-1 rounded-md bg-white text-navy-500 border border-stone-100 text-xs font-semibold uppercase tracking-wider mb-5">
+      {t.content.solutionEyebrow}
+    </p>
+    <div class="space-y-4 text-stone-900/80 leading-relaxed">
+      {content.solution.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </div>
+    {content.smarterTogether && (
+      <p class="mt-6 pt-6 border-t border-stone-200 text-navy-500 leading-relaxed">
+        <span class="font-semibold">{t.content.smarterTogether}</span> {content.smarterTogether}
+      </p>
+    )}
+  </section>
+
+  {content.closing && (
+    <p class="text-lg text-stone-900/70 leading-relaxed border-l-4 border-sky-500 pl-6">
+      {content.closing}
+    </p>
+  )}
+</div>

@@ -78,6 +78,11 @@ const landingpages = defineCollection({
     publishedAt: z.coerce.date().optional(),
     updatedAt: z.coerce.date().optional(),
 
+    // SEO overrides — fall back to title/description when omitted.
+    seoTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
+    ogImage: z.string().optional(),
+
     draft: z.boolean().optional().default(false),
     noindex: z.boolean().optional().default(false),
   }),
@@ -97,7 +102,14 @@ const blog = defineCollection({
     heroImage: z.string().optional(),
     heroImageAlt: z.string().optional(),
     tags: z.array(z.string()).optional(),
+
+    // SEO overrides — fall back to title/description when omitted.
+    seoTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
+    ogImage: z.string().optional(),
+
     draft: z.boolean().optional().default(false),
+    noindex: z.boolean().optional().default(false),
   }),
 });
 

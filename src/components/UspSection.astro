@@ -1,111 +1,38 @@
 ---
 import UspIcon, { type UspIconName } from "./UspIcon.astro";
+import { type Lang, defaultLang } from "../data/lang";
+import { getHome } from "../data/i18n/home";
 
-type UspItem = { title: string; body: string; icon: UspIconName };
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getHome(lang).usp;
 
 const uspImage = {
   src: "/images/usp-assembly-team.png",
   alt: "IoT Fabrikken team members preparing and quality-checking sensors at the assembly bench",
 };
 
-const uspsNew: UspItem[] = [
-  {
-    title: "Up to 10-Year Hardware",
-    body: "Mount in two minutes with no cables or Wi-Fi. Runs seamlessly for up to 10 years.",
-    icon: "battery",
-  },
-  {
-    title: "Advice, Not Just Data",
-    body: "Skip the complex graphs. Our AI gives you simple advice you act on instantly.",
-    icon: "message",
-  },
-  {
-    title: "End the Debates",
-    body: "Replace gut feelings with hard data to confidently optimize your indoor climate.",
-    icon: "check",
-  },
-  {
-    title: "Smart Deployment",
-    body: "End alarm fatigue. The system alerts your team exactly when and where they are actually needed.",
-    icon: "bell",
-  },
-];
-
-const uspsOld: UspItem[] = [
-  {
-    title: "Plug and play",
-    body: "Turn the sensor on and it's online. No configuration, no specialists.",
-    icon: "plug",
-  },
-  {
-    title: "Long battery life",
-    body: "Up to 10 years on a single battery. Set them up once and forget about them.",
-    icon: "battery",
-  },
-  {
-    title: "No installation",
-    body: "No cables, no WiFi, no installer. You save both time and money.",
-    icon: "tools",
-  },
-  {
-    title: "Sharp price",
-    body: "A fair total cost of ownership with no hidden per-sensor license fees.",
-    icon: "price",
-  },
-];
-
-const introNew =
-  "Hardware that just works. Software that actually thinks.";
-const introOld =
-  "We've removed everything that normally makes IoT projects heavy. What's left is sensors that just work — and data you can use.";
+// Icons are presentation, so they live here and zip onto the translated copy.
+const icons: UspIconName[] = ["battery", "message", "check", "bell"];
+const usps = t.items.map((item, i) => ({ ...item, icon: icons[i] ?? "check" }));
 
 const uspCardClass =
   "reveal bg-white border border-stone-100 rounded-xl p-5 sm:p-6 select-none pointer-events-none";
 ---
 
-<section class="pt-14 md:pt-20 pb-12 md:pb-14 bg-stone-50" data-usp-section>
+<section class="pt-14 md:pt-20 pb-12 md:pb-14 bg-stone-50">
   <div class="container-page">
-    <div class="reveal max-w-2xl mb-10 md:mb-12 relative">
-      <span
-        class="absolute -top-1 right-0 md:right-2 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-200"
-      >
-        Demo
-      </span>
-
+    <div class="reveal max-w-2xl mb-10 md:mb-12">
       <h2 class="text-3xl md:text-5xl font-bold text-navy-500 tracking-tight">
-        Why IoT Fabrikken?
+        {t.heading}
       </h2>
 
-      <p class="mt-5 text-lg text-stone-900/70 leading-relaxed" data-usp-intro-new>
-        {introNew}
+      <p class="mt-5 text-lg text-stone-900/70 leading-relaxed">
+        {t.intro}
       </p>
-      <p class="mt-5 text-lg text-stone-900/70 leading-relaxed hidden" data-usp-intro-old>
-        {introOld}
-      </p>
-
-      <button
-        type="button"
-        class="mt-6 inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-stone-200 bg-white text-sm font-medium text-navy-500 hover:border-navy-500 hover:bg-stone-50 transition-colors"
-        data-usp-toggle
-        aria-label="Switch to old USPs for demo"
-      >
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="transition-transform duration-200"
-          data-usp-toggle-icon
-          aria-hidden="true"
-        >
-          <path d="M5 12h14M13 6l6 6-6 6" />
-        </svg>
-        <span data-usp-toggle-label>View old USPs</span>
-      </button>
     </div>
 
     <div class="relative max-w-5xl mx-auto">
@@ -116,7 +43,6 @@ const uspCardClass =
 
       <div
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[minmax(9.5rem,12.5rem)_1fr_1fr] gap-4 lg:gap-5 items-stretch"
-        data-usp-bento
       >
         <figure class="reveal m-0 sm:row-span-2 flex flex-col max-w-[13rem] sm:max-w-none mx-auto sm:mx-0 w-full">
           <div class="flex-1 min-h-[11rem] sm:min-h-0 rounded-xl overflow-hidden border border-stone-100 bg-white shadow-sm">
@@ -131,24 +57,12 @@ const uspCardClass =
             />
           </div>
           <figcaption class="mt-2.5 text-[11px] sm:text-xs text-stone-900/60 leading-snug">
-            Built and quality-checked in-house — every sensor shipped from our team in Denmark.
+            {t.figcaption}
           </figcaption>
         </figure>
 
-        <div class="contents" data-usp-grid-new>
-          {uspsNew.map((u) => (
-            <article class={uspCardClass}>
-              <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-md bg-sky-50 text-sky-600 inline-flex items-center justify-center mb-3 sm:mb-4" aria-hidden="true">
-                <UspIcon name={u.icon} />
-              </div>
-              <h3 class="text-base sm:text-lg font-semibold text-navy-500 mb-1.5 sm:mb-2">{u.title}</h3>
-              <p class="text-sm text-stone-900/70 leading-relaxed">{u.body}</p>
-            </article>
-          ))}
-        </div>
-
-        <div class="contents hidden" data-usp-grid-old>
-          {uspsOld.map((u) => (
+        <div class="contents">
+          {usps.map((u) => (
             <article class={uspCardClass}>
               <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-md bg-sky-50 text-sky-600 inline-flex items-center justify-center mb-3 sm:mb-4" aria-hidden="true">
                 <UspIcon name={u.icon} />
@@ -162,44 +76,3 @@ const uspCardClass =
     </div>
   </div>
 </section>
-
-<script>
-  const section = document.querySelector("[data-usp-section]");
-  if (section) {
-    const introNew = section.querySelector("[data-usp-intro-new]");
-    const introOld = section.querySelector("[data-usp-intro-old]");
-    const gridNew = section.querySelector("[data-usp-grid-new]");
-    const gridOld = section.querySelector("[data-usp-grid-old]");
-    const toggleBtn = section.querySelector("[data-usp-toggle]");
-    const toggleLabel = section.querySelector("[data-usp-toggle-label]");
-    const toggleIcon = section.querySelector("[data-usp-toggle-icon]");
-
-    if (
-      introNew &&
-      introOld &&
-      gridNew &&
-      gridOld &&
-      toggleBtn &&
-      toggleLabel &&
-      toggleIcon
-    ) {
-      let showingOld = false;
-
-      toggleBtn.addEventListener("click", () => {
-        showingOld = !showingOld;
-
-        introNew.classList.toggle("hidden", showingOld);
-        introOld.classList.toggle("hidden", !showingOld);
-        gridNew.classList.toggle("hidden", showingOld);
-        gridOld.classList.toggle("hidden", !showingOld);
-
-        toggleLabel.textContent = showingOld ? "View new USPs" : "View old USPs";
-        toggleIcon.style.transform = showingOld ? "rotate(180deg)" : "";
-        toggleBtn.setAttribute(
-          "aria-label",
-          showingOld ? "Switch to new USPs for demo" : "Switch to old USPs for demo"
-        );
-      });
-    }
-  }
-</script>

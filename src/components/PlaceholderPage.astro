@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "./Hero.astro";
 import Button from "./Button.astro";
 import CtaBand from "./CtaBand.astro";
+import { breadcrumbSchema } from "../lib/seo/schema";
 
 interface Breadcrumb {
   label: string;
@@ -25,10 +26,24 @@ interface Props {
   secondaryCta?: Cta;
   /** Hide the "Content on the way" notice (useful when a page already has real content). */
   hideNotice?: boolean;
+  /** Localizable notice heading/body shown when the notice is visible. */
+  noticeTitle?: string;
+  noticeSubtitle?: string;
   /** Hide hero and bottom-band Book demo / Contact sales buttons. */
   showCtas?: boolean;
   ctaBandTitle?: string;
   ctaBandSubtitle?: string;
+  /** Bottom CtaBand button labels/hrefs (default to English + the CTA hrefs). */
+  ctaBandPrimaryLabel?: string;
+  ctaBandPrimaryHref?: string;
+  ctaBandSecondaryLabel?: string;
+  ctaBandSecondaryHref?: string;
+  /** Page-specific Open Graph image. */
+  ogImage?: string;
+  /** Exclude this page from indexing. */
+  noindex?: boolean;
+  /** Extra page-specific JSON-LD (merged with the auto-generated breadcrumb). */
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const {
@@ -41,13 +56,44 @@ const {
   primaryCta = { label: "Book a free demo", href: "/en/contact/book-demo/" },
   secondaryCta = { label: "Contact sales", href: "/en/contact/sales/" },
   hideNotice = false,
+  noticeTitle = "Content for this page is on its way",
+  noticeSubtitle = "We're busy putting together content, cases and screenshots. Reach out already now if you'd like to hear more.",
   showCtas = true,
   ctaBandTitle = "Want to know more already now?",
   ctaBandSubtitle = "Get in touch — we're always happy to have a no-strings chat.",
+  ctaBandPrimaryLabel = "Book a free demo",
+  ctaBandPrimaryHref,
+  ctaBandSecondaryLabel = "Contact sales",
+  ctaBandSecondaryHref,
+  ogImage,
+  noindex = false,
+  jsonLd,
 } = Astro.props;
+
+// Auto-emit BreadcrumbList from the breadcrumb trail, then append any
+// page-specific structured data passed in.
+const crumbSchema = breadcrumbSchema(
+  breadcrumbs
+    .filter((b) => b.href)
+    .map((b) => ({ name: b.label, href: b.href as string }))
+    // The current page is the last crumb; include it pointing at this URL.
+    .concat({ name: breadcrumbs[breadcrumbs.length - 1]?.label ?? title, href: Astro.url.pathname }),
+);
+const extraJsonLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const combinedJsonLd = [crumbSchema, ...extraJsonLd].filter(Boolean) as Array<Record<string, unknown>>;
+
+// A page still showing the "Content on the way" notice is thin — keep it out
+// of the index until real content replaces the placeholder.
+const effectiveNoindex = noindex || !hideNotice;
 ---
 
-<Layout title={title} description={description ?? heroLead}>
+<Layout
+  title={title}
+  description={description ?? heroLead}
+  ogImage={ogImage}
+  noindex={effectiveNoindex}
+  jsonLd={combinedJsonLd}
+>
   {breadcrumbs.length > 0 && (
     <nav class="container-page pt-6" aria-label="Breadcrumb">
       <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
@@ -77,10 +123,10 @@ const {
     compactTop={breadcrumbs.length > 0}
   >
     {showCtas && (
-      <>
-        <Button href={primaryCta.href} variant="primary" size="lg" slot="cta">{primaryCta.label}</Button>
-        <Button href={secondaryCta.href} variant="secondary" size="lg" slot="cta">{secondaryCta.label}</Button>
-      </>
+      <Fragment slot="cta">
+        <Button href={primaryCta.href} variant="primary" size="lg">{primaryCta.label}</Button>
+        <Button href={secondaryCta.href} variant="secondary" size="lg">{secondaryCta.label}</Button>
+      </Fragment>
     )}
 
     {!hideNotice && (
@@ -91,9 +137,9 @@ const {
               <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-navy-500">Content for this page is on its way</h3>
+          <h3 class="text-xl font-semibold text-navy-500">{noticeTitle}</h3>
           <p class="mt-3 text-stone-900/70 max-w-md mx-auto">
-            We're busy putting together content, cases and screenshots. Reach out already now if you'd like to hear more.
+            {noticeSubtitle}
           </p>
         </div>
       </div>
@@ -112,10 +158,10 @@ const {
     <CtaBand
       title={ctaBandTitle}
       subtitle={ctaBandSubtitle}
-      primaryLabel="Book a free demo"
-      primaryHref={primaryCta.href}
-      secondaryLabel="Contact sales"
-      secondaryHref={secondaryCta.href}
+      primaryLabel={ctaBandPrimaryLabel}
+      primaryHref={ctaBandPrimaryHref ?? primaryCta.href}
+      secondaryLabel={ctaBandSecondaryLabel}
+      secondaryHref={ctaBandSecondaryHref ?? secondaryCta.href}
     />
   )}
 </Layout>

@@ -1,0 +1,42 @@
+---
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import LegalProse from "../../../components/legal/LegalProse.astro";
+import { getLegalHub } from "../../../data/hubs/legal";
+import { getLegal } from "../../../data/i18n/legal";
+import { getAbout } from "../../../data/i18n/about";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const leaf = getLegalHub(lang).leaves.find((l) => l.slug === "privacy")!;
+const legal = getLegal(lang);
+const a = getAbout(lang);
+---
+
+<PlaceholderPage
+  title={legal.privacy.metaTitle}
+  description={leaf.lead}
+  heroTitle={leaf.title}
+  heroTitleAccent={leaf.titleAccent}
+  heroLead={leaf.lead}
+  breadcrumbs={[
+    { label: legal.common.home, href: langPath("", lang) },
+    { label: legal.common.legal, href: langPath("legal", lang) },
+    { label: leaf.title.replace(/[.,]\s*$/, "") },
+  ]}
+  hideNotice={true}
+  primaryCta={{ label: a.common.bookDemo, href: langPath("contact/book-demo", lang) }}
+  secondaryCta={{ label: a.common.contactSales, href: langPath("contact/sales", lang) }}
+  ctaBandTitle={legal.privacy.ctaTitle}
+  ctaBandSubtitle={legal.privacy.ctaSubtitle}
+>
+  <LegalProse>
+    <p class="text-sm text-stone-300 not-prose">
+      <strong class="text-navy-500">{legal.common.lastUpdated}</strong> {legal.privacy.lastUpdatedDate}
+    </p>
+    <Fragment set:html={legal.privacy.body} />
+  </LegalProse>
+</PlaceholderPage>

@@ -1,4 +1,6 @@
 import type { CaseStudyLeaf } from "./caseStudies";
+import { defaultLang, type Lang } from "../lang";
+import { getCaseDetailOverlay } from "./caseStudyDetails.i18n";
 
 export type CaseStudyQuote = {
   heading: string;
@@ -170,13 +172,30 @@ function canonicalSlug(slug: string): string {
   return slugAliases[slug] ?? slug;
 }
 
-export function getCaseStudyDetail(slug: string): CaseStudyDetail | undefined {
-  return details[canonicalSlug(slug)];
+export function getCaseStudyDetail(
+  slug: string,
+  lang: Lang = defaultLang,
+): CaseStudyDetail | undefined {
+  const canonical = canonicalSlug(slug);
+  const base = details[canonical];
+  if (!base) return undefined;
+  if (lang === defaultLang) return base;
+  const overlay = getCaseDetailOverlay(canonical, lang);
+  if (!overlay) return base;
+  return {
+    ...base,
+    ...overlay,
+    intro: overlay.intro ?? base.intro,
+    quote: overlay.quote ?? base.quote,
+  };
 }
 
 /** Detail content for a case card, with a sensible fallback from the index teaser. */
-export function resolveCaseStudyDetail(leaf: CaseStudyLeaf): CaseStudyDetail {
-  const found = getCaseStudyDetail(leaf.slug);
+export function resolveCaseStudyDetail(
+  leaf: CaseStudyLeaf,
+  lang: Lang = defaultLang,
+): CaseStudyDetail {
+  const found = getCaseStudyDetail(leaf.slug, lang);
   if (found) return found;
   return {
     titleAccent: "",

@@ -19,7 +19,7 @@ const dropdownLocales = [
 
 type DropdownLocale = (typeof dropdownLocales)[number]["code"];
 
-const liveLocales = new Set<Lang>(["en", "da"]);
+const liveLocales = new Set<Lang>(["en", "da", "de", "sv"]);
 
 function getCurrentLocale(pathname: string): DropdownLocale {
   const match = pathname.match(/^\/(en|da|de|sv)(\/|$)/);
@@ -111,7 +111,7 @@ const isCompact = variant === "compact";
 </nav>
 
 <script>
-  const root = document.getElementById("site-language-switcher");
+  const root = document.getElementById("site-language-switcher") as HTMLDetailsElement | null;
   if (root) {
     document.addEventListener("click", (e) => {
       if (!root.open) return;

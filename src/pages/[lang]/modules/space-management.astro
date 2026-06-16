@@ -1,0 +1,39 @@
+---
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import ModulePageContent from "../../../components/content/ModulePageContent.astro";
+import { getModuleContent } from "../../../data/content/modules";
+import { getUi } from "../../../data/i18n/ui";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const content = getModuleContent("space-management", lang)!;
+const t = getUi(lang).modules;
+
+const heroTitle = content.heroTitle;
+---
+
+<PlaceholderPage
+  title={`${heroTitle.replace(/[.,]\s*$/, "")} | IoT Fabrikken`}
+  description={content.heroLead}
+  heroTitle={heroTitle}
+  heroTitleAccent={content.heroTitleAccent}
+  heroLead={content.heroLead}
+  breadcrumbs={[
+    { label: t.breadcrumb.home, href: langPath("/", lang) },
+    { label: t.breadcrumb.modules, href: langPath("/modules/", lang) },
+    { label: heroTitle.replace(/[.,]\s*$/, "") },
+  ]}
+  primaryCta={{ label: t.common.bookDemo, href: langPath("/contact/book-demo/", lang) }}
+  secondaryCta={{ label: t.common.contactSales, href: langPath("/contact/sales/", lang) }}
+  ctaBandTitle={t.detail.ctaBandTitle}
+  ctaBandSubtitle={t.detail.ctaBandSubtitle}
+  ctaBandPrimaryLabel={t.common.bookDemo}
+  ctaBandSecondaryLabel={t.common.contactSales}
+  hideNotice
+>
+  <ModulePageContent content={content} lang={lang} />
+</PlaceholderPage>

@@ -1,0 +1,49 @@
+---
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import { getContactHub } from "../../../data/hubs/contact";
+import { getContact } from "../../../data/i18n/contact";
+import { getAbout } from "../../../data/i18n/about";
+import { locales, langPath, type Lang } from "../../../data/lang";
+import type { HubLeaf } from "../../../data/hubs/types";
+
+export function getStaticPaths() {
+  return locales.flatMap((l) =>
+    getContactHub(l.code).leaves
+      // book-demo has its own dedicated page with the ContactForm; skip it here.
+      .filter((leaf) => leaf.slug !== "book-demo")
+      .map((leaf) => ({
+        params: { lang: l.code, slug: leaf.slug },
+        props: { leaf },
+      })),
+  );
+}
+
+const { lang } = Astro.params as { lang: Lang; slug: string };
+const { leaf } = Astro.props as { leaf: HubLeaf };
+const t = getContact(lang);
+const a = getAbout(lang);
+const cleanTitle = leaf.title.replace(/[.,]\s*$/, "");
+---
+
+<PlaceholderPage
+  title={`${cleanTitle} | IoT Fabrikken`}
+  description={leaf.lead}
+  heroTitle={leaf.title}
+  heroTitleAccent={leaf.titleAccent}
+  heroLead={leaf.lead}
+  breadcrumbs={[
+    { label: t.breadcrumb.home, href: langPath("", lang) },
+    { label: t.breadcrumb.contact, href: langPath("contact", lang) },
+    { label: cleanTitle },
+  ]}
+  primaryCta={leaf.primaryCta ?? { label: a.common.bookDemo, href: langPath("contact/book-demo", lang) }}
+  secondaryCta={{ label: a.common.contactSales, href: langPath("contact/sales", lang) }}
+  noticeTitle={a.placeholder.noticeTitle}
+  noticeSubtitle={a.placeholder.noticeSubtitle}
+  ctaBandTitle={a.placeholder.ctaTitle}
+  ctaBandSubtitle={a.placeholder.ctaSubtitle}
+  ctaBandPrimaryLabel={a.common.bookDemo}
+  ctaBandPrimaryHref={langPath("contact/book-demo", lang)}
+  ctaBandSecondaryLabel={a.common.contactSales}
+  ctaBandSecondaryHref={langPath("contact/sales", lang)}
+/>

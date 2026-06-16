@@ -3,10 +3,12 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "./Hero.astro";
 import Button from "./Button.astro";
 import CtaBand from "./CtaBand.astro";
-import { caseStudyCategoryLabels } from "../data/hubs/caseStudies";
+import { getCaseStudyCategoryLabels } from "../data/hubs/caseStudies";
 import { resolveCaseStudyDetail } from "../data/hubs/caseStudyDetails";
 import type { CaseStudyLeaf } from "../data/hubs/caseStudies";
+import { getCases } from "../data/i18n/cases";
 import { langPath, type Lang } from "../data/lang";
+import { articleSchema, breadcrumbSchema } from "../lib/seo/schema";
 
 interface Breadcrumb {
   label: string;
@@ -20,15 +22,40 @@ interface Props {
 }
 
 const { lang, leaf, breadcrumbs } = Astro.props;
-const detail = resolveCaseStudyDetail(leaf);
+const detail = resolveCaseStudyDetail(leaf, lang);
+const t = getCases(lang);
+const categoryLabels = getCaseStudyCategoryLabels(lang);
 const casesHref = langPath("case-studies", lang);
-const pageTitle = `${leaf.title.replace(/\.$/, "")} | IoT Fabrikken`;
+const pageTitle = `${leaf.seoTitle ?? leaf.title.replace(/\.$/, "")} | IoT Fabrikken`;
 const heroLead = detail.intro[0] ?? leaf.lead;
+const metaDescription = leaf.metaDescription ?? heroLead;
 const bodyParagraphs = detail.intro.length > 1 ? detail.intro.slice(1) : detail.intro.length === 0 ? [] : [];
 const isExternal = (href: string) => /^https?:\/\//i.test(href);
+
+const caseJsonLd = [
+  breadcrumbSchema(
+    breadcrumbs
+      .filter((b) => b.href)
+      .map((b) => ({ name: b.label, href: b.href as string }))
+      .concat({ name: leaf.title.replace(/\.$/, ""), href: Astro.url.pathname }),
+  ),
+  articleSchema({
+    title: leaf.title.replace(/\.$/, ""),
+    description: metaDescription,
+    url: Astro.url.pathname,
+    image: leaf.ogImage ?? leaf.logo,
+    type: "Article",
+  }),
+].filter(Boolean) as Array<Record<string, unknown>>;
 ---
 
-<Layout title={pageTitle} description={heroLead}>
+<Layout
+  title={pageTitle}
+  description={metaDescription}
+  ogImage={leaf.ogImage ?? leaf.logo}
+  noindex={leaf.noindex}
+  jsonLd={caseJsonLd}
+>
   <nav class="container-page pt-6" aria-label="Breadcrumb">
     <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
       {breadcrumbs.map((b, i) => (
@@ -81,7 +108,7 @@ const isExternal = (href: string) => /^https?:\/\//i.test(href);
       <div class="max-w-3xl space-y-8">
         {leaf.category && (
           <p class="inline-block px-2.5 py-1 rounded-md bg-stone-50 text-navy-500 text-[11px] font-semibold uppercase tracking-wider">
-            {caseStudyCategoryLabels[leaf.category]}
+            {categoryLabels[leaf.category as keyof typeof categoryLabels]}
           </p>
         )}
 
@@ -97,7 +124,7 @@ const isExternal = (href: string) => /^https?:\/\//i.test(href);
               target={isExternal(leaf.articleHref) ? "_blank" : undefined}
               rel={isExternal(leaf.articleHref) ? "noopener noreferrer" : undefined}
             >
-              Read the full case
+              {t.readFullCase}
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path
                   d="M3 7h8M7.5 3.5L11 7l-3.5 3.5"
@@ -128,9 +155,9 @@ const isExternal = (href: string) => /^https?:\/\//i.test(href);
         )}
 
         <div class="flex flex-wrap gap-3 pt-2">
-          <Button href={casesHref} variant="secondary" size="md">All customer cases</Button>
+          <Button href={casesHref} variant="secondary" size="md">{t.allCases}</Button>
           <Button href={langPath("contact/book-demo", lang)} variant="primary" size="md">
-            Book a free demo
+            {t.bookDemo}
           </Button>
         </div>
       </div>
@@ -138,11 +165,11 @@ const isExternal = (href: string) => /^https?:\/\//i.test(href);
   </section>
 
   <CtaBand
-    title="Want to know more?"
-    subtitle="Get in touch — we are always happy to talk about indoor climate and space management for your buildings."
-    primaryLabel="Book a free demo"
+    title={t.detailCtaTitle}
+    subtitle={t.detailCtaSubtitle}
+    primaryLabel={t.bookDemo}
     primaryHref={langPath("contact/book-demo", lang)}
-    secondaryLabel="Contact sales"
+    secondaryLabel={t.contactSales}
     secondaryHref={langPath("contact/sales", lang)}
   />
 </Layout>

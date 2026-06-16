@@ -1,10 +1,24 @@
 import type { Lang } from "../lang";
+import { defaultLang } from "../lang";
 import type { CaseStudyCategory, Hub, HubLeaf } from "./types";
+import { getCases } from "../i18n/cases";
+import { caseStudiesI18n } from "./caseStudies.i18n";
 
 export const caseStudyCategoryLabels: Record<CaseStudyCategory, string> = {
   "space-management": "Space management",
   "indoor-climate": "Indoor climate",
 };
+
+/** Locale-aware case-study category labels. */
+export function getCaseStudyCategoryLabels(
+  lang: Lang = defaultLang,
+): Record<CaseStudyCategory, string> {
+  const c = getCases(lang).categories;
+  return {
+    "space-management": c.spaceManagement,
+    "indoor-climate": c.indoorClimate,
+  };
+}
 
 export type CaseStudyLeaf = HubLeaf & {
   /** Shown before the user clicks “Load more”. */
@@ -12,7 +26,7 @@ export type CaseStudyLeaf = HubLeaf & {
 };
 
 export type CaseStudiesContent = {
-  hub: Pick<Hub, "title" | "eyebrow" | "lead">;
+  hub: Pick<Hub, "title" | "titleAccent" | "eyebrow" | "lead">;
   intro: {
     title: string;
     paragraphs: string[];
@@ -369,31 +383,39 @@ const daCases: CaseStudyLeaf[] = [
   }),
 ];
 
+const enHub = {
+  title: "Customer cases.",
+  titleAccent: "Join our customers in 15 countries.",
+  eyebrow: "Cases",
+  lead: "Stay ahead of indoor climate and space management with data in RoomAlyzer.",
+};
+
+function buildContent(lang: Lang, baseCases: CaseStudyLeaf[]): CaseStudiesContent {
+  const leafOverlay = caseStudiesI18n.leaf[lang];
+  const cases =
+    lang === defaultLang || !leafOverlay
+      ? baseCases
+      : baseCases.map((entry) => {
+          const o = leafOverlay[entry.slug];
+          return o ? { ...entry, title: o.title, lead: o.lead } : entry;
+        });
+  return {
+    hub: caseStudiesI18n.hub[lang] ?? enHub,
+    intro: caseStudiesI18n.intro[lang] ?? sharedIntro,
+    cases,
+    initialVisible: INITIAL_VISIBLE,
+  };
+}
+
 const byLang: Record<Lang, CaseStudiesContent> = {
-  en: {
-    hub: {
-      title: "Join our customers in 15 countries.",
-      eyebrow: "Cases",
-      lead: "Stay ahead of indoor climate and space management with data in RoomAlyzer.",
-    },
-    intro: sharedIntro,
-    cases: enCases,
-    initialVisible: INITIAL_VISIBLE,
-  },
-  da: {
-    hub: {
-      title: "Join our customers in 15 countries.",
-      eyebrow: "Cases",
-      lead: "Stay ahead of indoor climate and space management with data in RoomAlyzer.",
-    },
-    intro: sharedIntro,
-    cases: daCases,
-    initialVisible: INITIAL_VISIBLE,
-  },
+  en: buildContent("en", enCases),
+  da: buildContent("da", daCases),
+  de: buildContent("de", enCases),
+  sv: buildContent("sv", enCases),
 };
 
 export function getCaseStudiesContent(lang: Lang): CaseStudiesContent {
-  return byLang[lang];
+  return byLang[lang] ?? byLang[defaultLang];
 }
 
 /** Hub shape for static routes and legacy imports (English catalog). */

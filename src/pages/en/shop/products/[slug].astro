@@ -13,6 +13,10 @@ export function getStaticPaths() {
 }
 
 const { leaf } = Astro.props;
+
+const secondaryCta = leaf.productSheetUrl
+  ? { label: "Download product sheet", href: leaf.productSheetUrl }
+  : { label: "See product page", href: `/en/sensors/${leaf.slug}/` };
 ---
 
 <PlaceholderPage
@@ -28,5 +32,5 @@ const { leaf } = Astro.props;
     { label: leaf.title.replace(/\.$/, "") },
   ]}
   primaryCta={{ label: "Add to cart", href: "/en/shop/cart/" }}
-  secondaryCta={{ label: "See technical spec", href: `/en/sensors/${leaf.slug}/` }}
+  secondaryCta={secondaryCta}
 />

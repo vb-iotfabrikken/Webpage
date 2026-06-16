@@ -1,0 +1,63 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import ContactForm from "../../../components/ContactForm.astro";
+import { getContactHub } from "../../../data/hubs/contact";
+import { getContact } from "../../../data/i18n/contact";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = getContact(lang);
+const hub = getContactHub(lang);
+---
+
+<Layout title={`${t.breadcrumb.contact} | IoT Fabrikken`} description={hub.lead}>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href={langPath("", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumb.home}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><span class="text-navy-500">{t.breadcrumb.contact}</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    title={t.index.heroTitle}
+    titleAccent={t.index.heroTitleAccent}
+    lead={t.index.heroLead}
+    align="left"
+    compactTop
+  >
+    <Button href={langPath("contact/book-demo", lang)} variant="primary" size="lg" slot="cta">{t.index.primaryCta}</Button>
+    <Button href={langPath("contact/sales", lang)} variant="secondary" size="lg" slot="cta">{t.index.secondaryCta}</Button>
+  </Hero>
+
+  <section class="py-16">
+    <div class="container-page">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {hub.leaves.map((leaf) => (
+          <a
+            href={langPath(`contact/${leaf.slug}`, lang)}
+            class="reveal group flex flex-col p-6 md:p-7 bg-white border border-stone-100 rounded-xl hover:border-navy-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+          >
+            <h3 class="text-lg font-semibold text-navy-500 mb-2 leading-snug">
+              {leaf.title}
+              {leaf.titleAccent && (
+                <span class="block text-sky-600 text-base font-medium mt-0.5">{leaf.titleAccent}</span>
+              )}
+            </h3>
+            <p class="text-sm text-stone-900/70 leading-relaxed">{leaf.lead}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ContactForm lang={lang} title={t.index.formTitle} subtitle={t.index.formSubtitle} />
+</Layout>

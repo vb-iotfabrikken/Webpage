@@ -1,5 +1,6 @@
 ---
 import Layout from "../../../../layouts/Layout.astro";
+import Hero from "../../../../components/Hero.astro";
 import RoiCalculatorSection from "../../../../components/roi/RoiCalculatorSection.astro";
 ---
 
@@ -7,26 +8,18 @@ import RoiCalculatorSection from "../../../../components/roi/RoiCalculatorSectio
   title="ROI calculator | IoT Fabrikken"
   description="Estimate annual savings from space right-sizing and indoor climate optimisation — Desk Optimizer and Energy Saver calculators with instant results."
 >
-  <section class="relative overflow-hidden bg-stone-50 border-b border-stone-100">
-    <div class="absolute inset-0 pointer-events-none opacity-[0.05]" aria-hidden="true">
-      <div
-        class="w-full h-full"
-        style="background-image: radial-gradient(var(--color-navy-500) 1px, transparent 1px); background-size: 28px 28px;"
-      ></div>
-    </div>
-    <div class="relative container-page pt-6 md:pt-8 pb-10">
-      <h1 class="reveal text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight text-navy-500 max-w-3xl">
-        Your savings, <span class="text-sky-600">your numbers.</span>
-      </h1>
-      <p class="reveal mt-5 text-lg md:text-xl text-stone-900/70 max-w-2xl">
-        Desk Optimizer and Energy Saver — best-guess sliders, instant estimates.
-      </p>
-    </div>
-  </section>
+  <Hero
+    title="Your savings,"
+    titleAccent="your numbers."
+    lead="Desk Optimizer and Energy Saver — best-guess sliders, instant estimates."
+    align="left"
+    compactTop
+  />
 
   <RoiCalculatorSection
     id="roi-calculator"
     showHeader={false}
     compact
+    afterPageHero
   />
 </Layout>

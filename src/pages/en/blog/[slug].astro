@@ -4,6 +4,7 @@ import Hero from "../../../components/Hero.astro";
 import Button from "../../../components/Button.astro";
 import CtaBand from "../../../components/CtaBand.astro";
 import { getCollection, render } from "astro:content";
+import { articleSchema, breadcrumbSchema } from "../../../lib/seo/schema";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -19,26 +20,38 @@ const { Content } = await render(post);
 const formatDate = (d: Date) =>
   d.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
 
-const articleJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: post.data.title,
-  description: post.data.description,
-  datePublished: post.data.pubDate.toISOString(),
-  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
-  author: { "@type": "Person", name: post.data.author },
-  publisher: {
-    "@type": "Organization",
-    name: "IoT Fabrikken",
-    logo: { "@type": "ImageObject", url: "https://iot-fabrikken.com/favicon.svg" },
-  },
-  mainEntityOfPage: `https://iot-fabrikken.com/en/blog/${post.id}/`,
-};
+const postUrl = `/en/blog/${post.id}/`;
+const modified = post.data.updatedDate ?? post.data.pubDate;
+
+const blogJsonLd = [
+  breadcrumbSchema([
+    { name: "Home", href: "/en/" },
+    { name: "Blog", href: "/en/blog/" },
+    { name: post.data.title, href: postUrl },
+  ]),
+  articleSchema({
+    type: "BlogPosting",
+    title: post.data.title,
+    description: post.data.description,
+    url: postUrl,
+    datePublished: post.data.pubDate,
+    dateModified: modified,
+    authorName: post.data.author,
+    image: post.data.ogImage ?? post.data.heroImage,
+  }),
+].filter(Boolean) as Array<Record<string, unknown>>;
 ---
 
-<Layout title={`${post.data.title} | Blog | IoT Fabrikken`} description={post.data.description}>
-  <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
-
+<Layout
+  title={`${post.data.seoTitle ?? post.data.title} | Blog | IoT Fabrikken`}
+  description={post.data.metaDescription ?? post.data.description}
+  ogImage={post.data.ogImage ?? post.data.heroImage}
+  ogType="article"
+  noindex={post.data.noindex}
+  publishedTime={post.data.pubDate.toISOString()}
+  modifiedTime={modified.toISOString()}
+  jsonLd={blogJsonLd}
+>
   <nav class="container-page pt-6" aria-label="Breadcrumb">
     <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
       <li><a href="/en/" class="hover:text-coral-500 transition-colors">Home</a></li>

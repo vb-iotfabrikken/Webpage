@@ -1,48 +1,63 @@
 ---
-const useCases = [
-  {
-    slug: "offices",
-    title: "Offices & Workplaces",
-    description: "Utilisation, comfort and energy for hybrid workplaces — optimize desk use, monitor meeting rooms, and ensure comfort in modern environments.",
-    href: "/en/industries/offices/",
-    image: "/images/sensor-finder/offices.png",
-    imageAlt: "People collaborating in a bright modern open-plan office",
-  },
-  {
-    slug: "churches",
-    title: "Churches & Heritage",
-    description: "Balance energy optimization with precise humidity and temperature control to protect historic buildings and interiors.",
-    href: "/en/industries/churches/",
-    image: "/images/sensor-finder/property-management.png",
-    imageAlt: "Caretaker maintaining wooden pews inside a historic church building",
-  },
-  {
-    slug: "museums-galleries",
-    title: "Museums & Culture",
-    description: "Climate data aligned with preservation standards for collections, galleries and loan objects.",
-    href: "/en/industries/museums-galleries/",
-    image: "/images/sensor-finder/municipalities.png",
-    imageAlt: "Visitors viewing art in a museum gallery",
-  },
-  {
-    slug: "municipalities",
-    title: "Schools & Municipalities",
-    description: "Monitor CO2, temperature, and space utilization across your portfolio to guarantee healthy learning environments while optimizing municipal building efficiency.",
-    href: "/en/industries/municipalities/",
-    image: "/images/sensor-finder/schools.png",
-    imageAlt: "Students walking on a school campus in front of a brick school building",
-  },
+import { type Lang, defaultLang, langPath } from "../data/lang";
+import { getHome, type FeaturedIndustrySlug } from "../data/i18n/home";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getHome(lang).sensorFinder;
+
+const featuredSlugs: readonly FeaturedIndustrySlug[] = [
+  "offices",
+  "churches",
+  "museums-galleries",
+  "municipalities",
 ];
+
+const cardImages: Record<FeaturedIndustrySlug, { src: string; alt: string }> = {
+  offices: {
+    src: "/images/sensor-finder/offices.png",
+    alt: "People collaborating in a bright modern open-plan office",
+  },
+  churches: {
+    src: "/images/sensor-finder/property-management.png",
+    alt: "Caretaker maintaining wooden pews inside a historic church building",
+  },
+  "museums-galleries": {
+    src: "/images/sensor-finder/municipalities.png",
+    alt: "Visitors viewing art in a museum gallery",
+  },
+  municipalities: {
+    src: "/images/sensor-finder/schools.png",
+    alt: "Students walking on a school campus in front of a brick school building",
+  },
+};
+
+const useCases = featuredSlugs.map((slug) => {
+  const card = t.cards[slug];
+  const image = cardImages[slug];
+
+  return {
+    slug,
+    title: card.title,
+    description: card.description,
+    href: langPath(`industries/${slug}`, lang),
+    image: image.src,
+    imageAlt: image.alt,
+  };
+});
 ---
 
 <section class="pt-12 pb-16 md:pt-14 md:pb-20 bg-stone-50">
   <div class="container-page">
     <div class="reveal max-w-2xl mx-auto text-center mb-10 md:mb-12">
       <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
-        Find the right setup for your space.
+        {t.heading}
       </h2>
       <p class="mt-5 text-lg text-stone-900/70">
-        Start with your industry — we will point you to the sensors and modules that fit.
+        {t.subtitle}
       </p>
     </div>
 
@@ -67,7 +82,7 @@ const useCases = [
             <h3 class="text-lg font-semibold text-navy-500 mb-2">{item.title}</h3>
             <p class="text-sm text-stone-900/70 leading-relaxed flex-1">{item.description}</p>
             <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-sky-600 group-hover:text-coral-500 transition-colors">
-              See recommended sensors
+              {t.ctaLabel}
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                 <path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
               </svg>

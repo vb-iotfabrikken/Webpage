@@ -1,4 +1,8 @@
-import { calculateDesk, calculateEnergy } from "../../lib/roi/calculations";
+import {
+  calculateDesk,
+  calculateEnergy,
+  defaultEnergyInputs,
+} from "../../lib/roi/calculations";
 import { DEFAULTS, DESK_LIMITS, ENERGY_LIMITS } from "../../lib/roi/constants";
 import { formatMoney, formatNumber, formatPct } from "../../lib/roi/format";
 
@@ -19,6 +23,7 @@ function initTeaserCard(card: HTMLElement) {
         currentDesks: DESK_LIMITS.defaultDesks,
         peakAttendancePct: peak,
         annualCostPerDesk: DEFAULTS.EUR.costPerDesk,
+        goals: ["cut"],
       });
       if (savingsEl) savingsEl.textContent = formatMoney("EUR", results.totalSavings);
       if (teaserEl) {
@@ -32,12 +37,14 @@ function initTeaserCard(card: HTMLElement) {
 
     const temp = Number(range.value);
     if (valueDisplay) valueDisplay.textContent = `${temp}°C`;
-    const results = calculateEnergy({
-      annualBill: DEFAULTS.EUR.heatingBill,
-      heatsWeekends: true,
-      heatsNightly: true,
-      avgTempC: temp,
-    });
+    const results = calculateEnergy(
+      defaultEnergyInputs({
+        annualBill: DEFAULTS.EUR.heatingBill,
+        heatsWeekends: true,
+        heatsNightly: true,
+        avgTempC: temp,
+      }),
+    );
     if (savingsEl) savingsEl.textContent = formatMoney("EUR", results.totalSavings);
     if (teaserEl) {
       teaserEl.textContent =

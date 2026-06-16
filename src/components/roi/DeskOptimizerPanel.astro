@@ -1,90 +1,196 @@
 ---
-import { DEFAULTS, DESK_LIMITS } from "../../lib/roi/constants";
+import { ATTENDANCE_MARKS, DEFAULTS, DESK_LIMITS } from "../../lib/roi/constants";
 import RoiCurrencySwitcher from "./RoiCurrencySwitcher.astro";
 
 const { minDesks, maxDesks, deskStep, minAttendance, maxAttendance, defaultDesks, defaultAttendance } =
   DESK_LIMITS;
 const defaultCost = DEFAULTS.EUR.costPerDesk;
+
+const GOALS = [
+  { id: "cut", label: "Cut costs" },
+  { id: "repurpose", label: "Repurpose space" },
+  { id: "grow", label: "Grow without moving" },
+] as const;
 ---
 
 <div data-roi-panel="desk" class="space-y-6">
   <div>
-    <div class="flex items-baseline justify-between gap-4 mb-2">
-      <label for="roi-desks" class="text-sm font-medium text-navy-500">
-        How many desks do you currently have?
-      </label>
-      <span class="text-sm font-semibold text-navy-500 tabular-nums" data-roi-desks-display>
-        {defaultDesks}
-      </span>
-    </div>
-    <input
-      id="roi-desks"
-      type="range"
-      min={minDesks}
-      max={maxDesks}
-      step={deskStep}
-      value={defaultDesks}
-      class="roi-range w-full accent-navy-500"
-      data-roi-desks-range
-    />
-    <input
-      type="number"
-      min={minDesks}
-      max={maxDesks}
-      step={deskStep}
-      value={defaultDesks}
-      class="mt-2 w-28 rounded-md border border-stone-100 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-navy-500"
-      data-roi-desks-number
-      aria-label="Number of desks"
-    />
-  </div>
-
-  <div class="rounded-xl border-2 border-navy-500/15 bg-navy-500/5 p-5">
-    <div class="flex items-baseline justify-between gap-4 mb-2">
-      <label for="roi-attendance" class="text-sm font-semibold text-navy-500">
-        Peak attendance on your busiest day
-      </label>
-      <span
-        class="text-2xl font-bold text-navy-500 tabular-nums"
-        data-roi-attendance-display
-      >
-        {defaultAttendance}%
-      </span>
-    </div>
-    <p class="text-xs text-stone-900/60 mb-3">
-      Slide down to reflect hybrid work — watch your savings grow.
+    <span class="text-sm font-medium text-navy-500">What is your goal?</span>
+    <p class="mt-0.5 text-xs text-stone-300">
+      Pick one or more — we only ask for inputs that matter to your goals.
     </p>
-    <input
-      id="roi-attendance"
-      type="range"
-      min={minAttendance}
-      max={maxAttendance}
-      step={1}
-      value={defaultAttendance}
-      class="roi-range roi-range-hero w-full accent-navy-500"
-      data-roi-attendance-range
-    />
+    <div
+      class="mt-2 flex flex-wrap gap-2"
+      role="group"
+      aria-label="Optimisation goals"
+      data-roi-goal-group
+    >
+      {GOALS.map((goal) => (
+        <button
+          type="button"
+          class="roi-goal-chip"
+          data-roi-goal={goal.id}
+          aria-pressed="false"
+        >
+          {goal.label}
+        </button>
+      ))}
+    </div>
+    <div data-roi-email-slot-desk class="mt-4"></div>
   </div>
 
-  <div class="space-y-3">
-    <RoiCurrencySwitcher />
+  <div class="roi-desk-reveal space-y-6" data-roi-desk-block="core">
     <div>
-    <label for="roi-desk-cost" class="text-sm font-medium text-navy-500">
-      Estimated annual cost per desk
-      <span class="font-normal text-stone-300">(rent, maintenance, IT)</span>
-    </label>
-    <div class="mt-2 flex items-center gap-2">
-      <span class="text-sm text-stone-300 shrink-0" data-roi-currency-symbol>€</span>
+      <div class="flex items-baseline justify-between gap-4 mb-2">
+        <label for="roi-desks" class="text-sm font-medium text-navy-500">
+          How many desks do you currently have?
+        </label>
+        <span class="text-sm font-semibold text-navy-500 tabular-nums" data-roi-desks-display>
+          {defaultDesks}
+        </span>
+      </div>
       <input
-        id="roi-desk-cost"
+        id="roi-desks"
+        type="range"
+        min={minDesks}
+        max={maxDesks}
+        step={deskStep}
+        value={defaultDesks}
+        class="roi-range w-full accent-navy-500"
+        data-roi-desks-range
+      />
+      <input
         type="number"
-        min={0}
-        step={500}
-        value={defaultCost}
-        class="w-full max-w-xs rounded-md border border-stone-100 px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-navy-500"
-        data-roi-desk-cost
+        min={minDesks}
+        max={maxDesks}
+        step={deskStep}
+        value={defaultDesks}
+        class="mt-2 w-28 rounded-md border border-stone-100 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-navy-500"
+        data-roi-desks-number
+        aria-label="Number of desks"
       />
     </div>
+
+    <div class="rounded-xl border-2 border-navy-500/15 bg-navy-500/5 p-5">
+      <div class="flex items-baseline justify-between gap-4 mb-2">
+        <label for="roi-attendance" class="text-sm font-semibold text-navy-500">
+          Peak attendance on your busiest day
+        </label>
+        <span
+          class="text-2xl font-bold text-navy-500 tabular-nums"
+          data-roi-attendance-display
+        >
+          {defaultAttendance}%
+        </span>
+      </div>
+      <p class="text-xs text-stone-900/60 mb-3">
+        Slide down to reflect hybrid work — watch the heatmap and savings update.
+      </p>
+      <div class="flex flex-col gap-1" data-roi-attendance-track>
+        <input
+          id="roi-attendance"
+          type="range"
+          min={minAttendance}
+          max={maxAttendance}
+          step={1}
+          value={defaultAttendance}
+          class="roi-range roi-range-hero w-full accent-navy-500"
+          data-roi-attendance-range
+        />
+        <div
+          class="relative h-6 w-full"
+          role="group"
+          aria-label="Attendance presets"
+          data-roi-attendance-marks
+        >
+          {
+            ATTENDANCE_MARKS.map((mark) => (
+              <button
+                type="button"
+                class="absolute top-0 flex flex-col items-center -translate-x-1/2 cursor-pointer border-0 bg-transparent p-0 text-stone-300 hover:text-navy-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-navy-500 focus-visible:ring-offset-1 rounded-sm"
+                data-roi-attendance-mark={mark.value}
+                aria-label={`Set peak attendance to ${mark.value}% (${mark.label})`}
+              >
+                <span class="size-1.5 shrink-0 rounded-full bg-stone-200" aria-hidden="true" />
+                <span class="mt-0.5 text-[10px] font-medium leading-none whitespace-nowrap">
+                  {mark.label}
+                </span>
+              </button>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="roi-desk-reveal space-y-3" data-roi-desk-block="cut">
+    <RoiCurrencySwitcher />
+    <div>
+      <label for="roi-desk-cost" class="text-sm font-medium text-navy-500">
+        Estimated annual cost per desk
+        <span class="font-normal text-stone-300">(rent, maintenance, IT)</span>
+      </label>
+      <div class="mt-2 flex items-center gap-2">
+        <span class="text-sm text-stone-300 shrink-0" data-roi-currency-symbol>€</span>
+        <input
+          id="roi-desk-cost"
+          type="number"
+          min={0}
+          step={500}
+          value={defaultCost}
+          class="w-full max-w-xs rounded-md border border-stone-100 px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-navy-500"
+          data-roi-desk-cost
+        />
+      </div>
     </div>
   </div>
 </div>
+
+<style>
+  .roi-goal-chip {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.2;
+    border-radius: 9999px;
+    border: 1px solid var(--color-stone-100);
+    color: var(--color-navy-500);
+    background: var(--color-stone-50);
+    cursor: pointer;
+    transition:
+      background 180ms ease,
+      color 180ms ease,
+      border-color 180ms ease;
+  }
+  .roi-goal-chip:hover:not(.is-active) {
+    background: var(--color-stone-100);
+  }
+  .roi-goal-chip.is-active {
+    background: var(--color-navy-500);
+    border-color: var(--color-navy-500);
+    color: white;
+  }
+
+  .roi-desk-reveal {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition:
+      max-height 520ms cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 480ms ease;
+  }
+  .roi-desk-reveal.is-visible {
+    max-height: 720px;
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .roi-desk-reveal {
+      transition: none;
+    }
+  }
+
+  .roi-range-hero {
+    padding-inline: 9px;
+    box-sizing: border-box;
+  }
+</style>

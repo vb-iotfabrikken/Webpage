@@ -1,3 +1,6 @@
+import { defaultLang, langPath, type Lang } from "./lang";
+import { modulesI18n } from "./modules.i18n";
+
 export type ModuleColor = "coral" | "sky" | "navy" | "forest";
 
 export type Module = {
@@ -67,6 +70,24 @@ export const modules: Module[] = [
     href: "/en/modules/lockers-doors/",
   },
 ];
+
+/**
+ * Localized module cards with locale-prefixed hrefs. Names/short/long fall back
+ * to English when no overlay exists for the locale.
+ */
+export function getModules(lang: Lang = defaultLang): Module[] {
+  const overlay = lang === defaultLang ? undefined : modulesI18n[lang];
+  return modules.map((m) => {
+    const o = overlay?.[m.slug];
+    return {
+      ...m,
+      name: o?.name ?? m.name,
+      short: o?.short ?? m.short,
+      long: o?.long ?? m.long,
+      href: langPath(`/modules/${m.slug}/`, lang),
+    };
+  });
+}
 
 export const moduleColorClasses: Record<
   ModuleColor,

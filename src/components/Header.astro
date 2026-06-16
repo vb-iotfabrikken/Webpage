@@ -5,13 +5,19 @@ import ModuleIcon from "./ModuleIcon.astro";
 import IndustryIcon from "./IndustryIcon.astro";
 import NavDropdownLink from "./NavDropdownLink.astro";
 import MegaMenuLink from "./MegaMenuLink.astro";
-import { modules } from "../data/modules";
+import { getModules } from "../data/modules";
 import { sensorsHub, industriesHub } from "../data/site";
-import { externalLinks } from "../data/externalLinks";
+import { externalLinks, getRoomAlyzerLoginUrl } from "../data/externalLinks";
 import { getLangFromPath, langPath } from "../data/lang";
+import { getUi } from "../data/i18n/ui";
+import { isLivePath } from "../data/launch";
 
 const pathname = Astro.url.pathname;
 const currentLang = getLangFromPath(pathname);
+const loginUrl = getRoomAlyzerLoginUrl(currentLang);
+const nav = getUi(currentLang).nav;
+const modules = getModules(currentLang);
+const lp = (path: string) => langPath(path, currentLang);
 const isActive = (href: string) =>
   href === "/" ? pathname === "/" : pathname.startsWith(href);
 
@@ -32,6 +38,7 @@ const resourcesActive =
   isActive("/en/library") ||
   isActive("/da/library") ||
   isActive(langPath("case-studies", currentLang)) ||
+  isActive("/en/sensors/product-sheets") ||
   isActive("/en/whitepapers") ||
   isActive("/da/whitepapers");
 
@@ -41,27 +48,29 @@ const companyActive =
 // Platform column — curated links (not the full hub catalogue).
 const platformLinks = [
   { label: "How it works", href: "/en/platform/how-it-works/" },
-  { label: "Dashboard & Reports", href: "/en/platform/dashboards/" },
+  { label: "Dashboard", href: "/en/platform/dashboards/" },
+  { label: "Reports", href: "/en/platform/reports/" },
+  { label: "Notifications", href: "/en/platform/notifications/" },
   { label: "Security", href: "/en/platform/security/" },
   { label: "API", href: "/en/platform/api/" },
-];
+].filter((l) => isLivePath(l.href));
 
 // A curated slice of the sensor catalogue for the header. The full list
 // lives on the sensors hub page.
 const sensorFeaturedSlugs = [
-  "full",
-  "mini",
-  "full-plus-pir",
+  "full-plus",
+  "mini-plus",
   "humidity",
+  "co2",
   "water-detector",
-  "gateway",
+  "cloud-connector",
 ];
 const sensorFeatured = sensorFeaturedSlugs
   .map((slug) => sensorsHub.leaves.find((l) => l.slug === slug))
   .filter((l): l is (typeof sensorsHub.leaves)[number] => Boolean(l))
   .map((l) => ({
     label: l.title.replace(/\.$/, ""),
-    href: `/en/sensors/${l.slug}/`,
+    href: lp(`sensors/${l.slug}`),
   }));
 
 const industryBySlug = Object.fromEntries(
@@ -70,7 +79,7 @@ const industryBySlug = Object.fromEntries(
     {
       slug: l.slug,
       label: l.title.replace(/\.$/, ""),
-      href: `/en/industries/${l.slug}/`,
+      href: lp(`industries/${l.slug}`),
     },
   ]),
 );
@@ -78,15 +87,15 @@ const industryBySlug = Object.fromEntries(
 // Industries dropdown — four sector columns with a fixed sort order.
 const industryColumns = [
   {
-    title: "Public Sector & Healthcare",
+    title: nav.industryColumns.publicHealth,
     slugs: ["municipalities", "schools", "hospitals", "elderly-care"],
   },
   {
-    title: "Commercial & Enterprise",
+    title: nav.industryColumns.commercial,
     slugs: ["offices", "retail", "hotels", "warehouses-logistics"],
   },
   {
-    title: "Culture & Heritage",
+    title: nav.industryColumns.culture,
     slugs: [
       "museums-galleries",
       "archives-libraries",
@@ -95,70 +104,79 @@ const industryColumns = [
     ],
   },
   {
-    title: "Property & Facility Services",
+    title: nav.industryColumns.property,
     slugs: ["property-management", "fm-companies", "consulting-engineers"],
   },
 ].map((col) => ({
   title: col.title,
-  items: col.slugs.map((slug) => industryBySlug[slug]).filter(Boolean),
+  items: col.slugs
+    .map((slug) => industryBySlug[slug])
+    .filter((f) => Boolean(f) && isLivePath(f.href)),
 }));
 
 const pricingLinks = [
   {
-    label: "Pricing models",
-    href: "/en/pricing/",
-    description: "Simple plans that scale with your building.",
+    label: nav.pricing.modelsLabel,
+    href: lp("pricing"),
+    description: nav.pricing.modelsDesc,
     icon: "pricing" as const,
   },
   {
-    label: "ROI calculator",
-    href: "/en/roi/calculator/",
-    description: "Estimate payback with your own numbers.",
+    label: nav.pricing.roiLabel,
+    href: lp("roi/calculator"),
+    description: nav.pricing.roiDesc,
     icon: "roi" as const,
   },
-];
+].filter((l) => isLivePath(l.href));
 
 const resourcesLinks = [
   {
-    label: "Article library",
-    href: "/en/library/",
-    description: "Guides and use cases by industry.",
+    label: nav.resources.libraryLabel,
+    href: lp("library"),
+    description: nav.resources.libraryDesc,
     icon: "library" as const,
   },
   {
-    label: "Cases",
-    href: langPath("case-studies", currentLang),
-    description: "What customers say about working with us.",
+    label: nav.resources.casesLabel,
+    href: lp("case-studies"),
+    description: nav.resources.casesDesc,
     icon: "case-studies" as const,
   },
   {
-    label: "White papers",
-    href: "/en/whitepapers/",
-    description: "In-depth reports for decision makers.",
+    label: nav.resources.whitepapersLabel,
+    href: lp("whitepapers"),
+    description: nav.resources.whitepapersDesc,
     icon: "whitepapers" as const,
   },
-];
+].filter((l) => isLivePath(l.href));
 
 const companyLinks = [
   {
-    label: "About Us",
-    href: "/en/about/",
-    description: "Our story, team and Danish roots.",
+    label: nav.company.aboutLabel,
+    href: lp("about"),
+    description: nav.company.aboutDesc,
     icon: "about" as const,
   },
   {
-    label: "Careers",
-    href: "/en/about/careers/",
-    description: "Open roles and life at IoT Fabrikken.",
+    label: nav.company.careersLabel,
+    href: lp("about/careers"),
+    description: nav.company.careersDesc,
     icon: "careers" as const,
   },
   {
-    label: "Contact",
-    href: "/en/contact/",
-    description: "Sales, support and demo requests.",
+    label: nav.company.contactLabel,
+    href: lp("contact"),
+    description: nav.company.contactDesc,
     icon: "contact" as const,
   },
-];
+].filter((l) => isLivePath(l.href));
+
+// Soft-launch: only show a menu/column when it still has live destinations.
+const showPlatform = platformLinks.length > 0;
+const showPricing = pricingLinks.length > 0;
+const showResources = resourcesLinks.length > 0;
+const showIndustries =
+  industryColumns.some((col) => col.items.length > 0) && isLivePath(lp("library"));
 ---
 
 <header id="site-header" class="sticky top-0 z-50 overflow-visible">
@@ -171,14 +189,14 @@ const companyLinks = [
           <span class="relative inline-flex h-2 w-2 rounded-full bg-forest-50"></span>
         </span>
         <span class="text-white/85">
-          Built in Denmark — real humans at the other end.
+          {nav.utility.builtInDenmark}
         </span>
         <span class="text-white/25 select-none" aria-hidden="true">·</span>
         <a
-          href="/en/contact/"
+          href={lp("contact")}
           class="font-semibold text-white hover:text-coral-50 transition-colors underline-offset-4 hover:underline decoration-coral-500 decoration-2"
         >
-          Talk to us →
+          {nav.utility.talkToUs} →
         </a>
       </div>
 
@@ -191,7 +209,7 @@ const companyLinks = [
   <!-- Main header bar -->
   <div class="bg-white/95 backdrop-blur border-b border-stone-100">
     <div class="container-page site-header-bar site-header-bar--main">
-      <a href="/en/" class="site-header-brand flex shrink-0 items-center gap-3 group" aria-label="IoT Fabrikken home">
+      <a href={lp("")} class="site-header-brand flex shrink-0 items-center gap-3 group" aria-label="IoT Fabrikken home">
         <img
           src="/logo.png"
           alt="IoT Fabrikken"
@@ -208,7 +226,7 @@ const companyLinks = [
             data-active={productActive}
             aria-haspopup="true"
           >
-            Products
+            {nav.top.products}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="ml-1 transition-transform duration-200 group-hover:rotate-180">
               <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
@@ -217,31 +235,33 @@ const companyLinks = [
             class="nav-dropdown invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 w-[min(720px,calc(100vw-2rem))]"
           >
             <div class="bg-white rounded-xl shadow-xl border border-stone-100 p-6">
-              <div class="grid grid-cols-3 gap-6">
-                <!-- Platform -->
-                <div>
-                  <a
-                    href="/en/platform/"
-                    class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
-                  >
-                    Platform
-                  </a>
-                  <ul class="space-y-0.5">
-                    {platformLinks.map((f) => (
-                      <li>
-                        <MegaMenuLink href={f.href} label={f.label} />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div class:list={["grid gap-6", showPlatform ? "grid-cols-3" : "grid-cols-2"]}>
+                {showPlatform && (
+                  <!-- Platform -->
+                  <div>
+                    <a
+                      href={lp("platform")}
+                      class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
+                    >
+                      {nav.columns.platform}
+                    </a>
+                    <ul class="space-y-0.5">
+                      {platformLinks.map((f) => (
+                        <li>
+                          <MegaMenuLink href={f.href} label={f.label} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 <!-- Modules -->
                 <div>
                   <a
-                    href="/en/modules/"
+                    href={lp("modules")}
                     class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
                   >
-                    Modules
+                    {nav.columns.modules}
                   </a>
                   <ul class="space-y-0.5">
                     {modules.map((m) => (
@@ -257,10 +277,10 @@ const companyLinks = [
                 <!-- Sensors -->
                 <div>
                   <a
-                    href="/en/sensors/"
+                    href={lp("sensors")}
                     class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
                   >
-                    Sensors
+                    {nav.columns.sensors}
                   </a>
                   <ul class="space-y-0.5">
                     {sensorFeatured.map((f) => (
@@ -270,18 +290,18 @@ const companyLinks = [
                     ))}
                     <li class="mt-1.5 pt-1.5 border-t border-stone-100">
                       <a
-                        href="/en/sensors/"
+                        href={lp("sensors")}
                         class="group/item flex rounded-lg px-2 py-1.5 -mx-2 text-[12.5px] font-medium text-coral-500 hover:bg-stone-50 hover:text-coral-500 transition-colors"
                       >
-                        All sensors →
+                        {nav.cta.allSensors} →
                       </a>
                     </li>
                     <li class="mt-1">
                       <a
-                        href="/en/sensors/compare/"
+                        href={lp("sensors/compare")}
                         class="flex items-center justify-between gap-2 px-2 py-1.5 rounded-lg bg-coral-50 text-[12.5px] font-semibold text-coral-600 hover:bg-coral-100 transition-colors group/compare"
                       >
-                        Compare sensors
+                        {nav.cta.compareSensors}
                         <svg width="12" height="12" viewBox="0 0 14 14" fill="none" class="shrink-0 text-coral-500 group-hover/compare:translate-x-0.5 transition-transform" aria-hidden="true">
                           <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
@@ -294,15 +314,16 @@ const companyLinks = [
           </div>
         </div>
 
+        {showIndustries && (
         <!-- Industries dropdown — four sector columns -->
         <div class="group relative" data-nav-industries>
           <a
-            href="/en/library/"
+            href={lp("library")}
             class="nav-link"
             data-active={industriesActive}
             aria-haspopup="true"
           >
-            Industries
+            {nav.top.industries}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="ml-1 transition-transform duration-200 group-hover:rotate-180">
               <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
@@ -315,7 +336,7 @@ const companyLinks = [
                 {industryColumns.map((col) => (
                   <div>
                     <a
-                      href="/en/industries/"
+                      href={lp("industries")}
                       class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
                     >
                       {col.title}
@@ -333,11 +354,11 @@ const companyLinks = [
                 ))}
               </div>
               <a
-                href="/en/library/"
+                href={lp("library")}
                 class="mt-4 flex items-center justify-between p-2.5 rounded-lg bg-stone-50 hover:bg-stone-100 transition-colors group/library"
               >
                 <span class="text-[13.5px] font-semibold text-navy-500 group-hover/library:text-coral-500">
-                  Browse the whole library of articles and use cases
+                  {nav.cta.browseLibrary}
                 </span>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0 text-navy-500 group-hover/library:text-coral-500 group-hover/library:translate-x-0.5 transition-all" aria-hidden="true">
                   <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -346,7 +367,9 @@ const companyLinks = [
             </div>
           </div>
         </div>
+        )}
 
+        {showPricing && (
         <!-- Pricing dropdown -->
         <div class="group relative">
           <button
@@ -355,7 +378,7 @@ const companyLinks = [
             data-active={pricingActive}
             aria-haspopup="true"
           >
-            Pricing
+            {nav.top.pricing}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="ml-1 transition-transform duration-200 group-hover:rotate-180">
               <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
@@ -379,7 +402,9 @@ const companyLinks = [
             </div>
           </div>
         </div>
+        )}
 
+        {showResources && (
         <!-- Resources dropdown -->
         <div class="group relative">
           <button
@@ -388,7 +413,7 @@ const companyLinks = [
             data-active={resourcesActive}
             aria-haspopup="true"
           >
-            Resources
+            {nav.top.resources}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="ml-1 transition-transform duration-200 group-hover:rotate-180">
               <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
@@ -412,20 +437,21 @@ const companyLinks = [
             </div>
           </div>
         </div>
+        )}
 
         <!-- Company dropdown -->
         <div class="group relative">
-          <button
-            type="button"
+          <a
+            href={lp("about")}
             class="nav-link"
             data-active={companyActive}
             aria-haspopup="true"
           >
-            Company
+            {nav.top.company}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="ml-1 transition-transform duration-200 group-hover:rotate-180">
               <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-          </button>
+          </a>
           <div
             class="nav-dropdown invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 w-72"
           >
@@ -452,14 +478,14 @@ const companyLinks = [
           rel="noopener noreferrer"
           class="nav-link shrink-0"
         >
-          Helpcenter
+          {nav.top.helpcenter}
         </a>
       </nav>
 
       <div class="site-header-actions shrink-0">
         <div class="hidden min-[960px]:flex items-center gap-1">
           <a
-            href={externalLinks.login}
+            href={loginUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="nav-link shrink-0"
@@ -480,11 +506,11 @@ const companyLinks = [
               <polyline points="10 17 15 12 10 7" />
               <line x1="15" y1="12" x2="3" y2="12" />
             </svg>
-            Log in
+            {nav.top.login}
           </a>
           <span class="mx-2 h-5 w-px bg-stone-100" aria-hidden="true"></span>
-          <Button href="/en/contact/book-demo/" variant="primary" size="sm" class="shrink-0">
-          Book a free demo
+          <Button href={lp("contact/book-demo")} variant="primary" size="sm" class="shrink-0">
+          {nav.top.bookDemo}
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
             <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
@@ -519,25 +545,27 @@ const companyLinks = [
       <!-- Products group -->
       <details class="group">
         <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
-          Products
+          {nav.top.products}
           <svg width="14" height="14" viewBox="0 0 12 12" fill="none" class="transition-transform group-open:rotate-180">
             <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </summary>
         <div class="pl-4 pb-2 flex flex-col gap-3">
-          <div>
-            <a href="/en/platform/" class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500">
-              Platform
-            </a>
-            <div class="flex flex-col gap-0.5">
-              {platformLinks.map((f) => (
-                <MegaMenuLink href={f.href} label={f.label} variant="mobile" />
-              ))}
+          {showPlatform && (
+            <div>
+              <a href={lp("platform")} class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500">
+                {nav.columns.platform}
+              </a>
+              <div class="flex flex-col gap-0.5">
+                {platformLinks.map((f) => (
+                  <MegaMenuLink href={f.href} label={f.label} variant="mobile" />
+                ))}
+              </div>
             </div>
-          </div>
+          )}
           <div>
-            <a href="/en/modules/" class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500">
-              Modules
+            <a href={lp("modules")} class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500">
+              {nav.columns.modules}
             </a>
             <div class="flex flex-col gap-0.5">
               {modules.map((m) => (
@@ -548,24 +576,24 @@ const companyLinks = [
             </div>
           </div>
           <div>
-            <a href="/en/sensors/" class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500">
-              Sensors
+            <a href={lp("sensors")} class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500">
+              {nav.columns.sensors}
             </a>
             <div class="flex flex-col gap-0.5">
               {sensorFeatured.map((f) => (
                 <MegaMenuLink href={f.href} label={f.label} variant="mobile" />
               ))}
               <a
-                href="/en/sensors/"
+                href={lp("sensors")}
                 class="group/item flex rounded-lg px-2 py-2 mt-1 text-[14px] font-medium text-coral-500 hover:bg-stone-50 transition-colors"
               >
-                All sensors →
+                {nav.cta.allSensors} →
               </a>
               <a
-                href="/en/sensors/compare/"
+                href={lp("sensors/compare")}
                 class="mt-1.5 flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg bg-coral-50 text-[15px] font-semibold text-coral-600 hover:bg-coral-100 transition-colors"
               >
-                Compare sensors
+                {nav.cta.compareSensors}
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                   <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
@@ -575,15 +603,16 @@ const companyLinks = [
         </div>
       </details>
 
+      {showIndustries && (
       <!-- Industries group -->
       <details class="group">
         <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
           <a
-            href="/en/library/"
+            href={lp("library")}
             class="hover:text-coral-500 transition-colors"
             onclick="event.stopPropagation()"
           >
-            Industries
+            {nav.top.industries}
           </a>
           <svg width="14" height="14" viewBox="0 0 12 12" fill="none" class="transition-transform group-open:rotate-180">
             <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -605,21 +634,23 @@ const companyLinks = [
             </div>
           ))}
           <a
-            href="/en/library/"
+            href={lp("library")}
             class="mt-2 flex items-center justify-between gap-2 p-3 rounded-lg bg-stone-50 text-[15px] font-semibold text-navy-500 hover:bg-stone-100 hover:text-coral-500 transition-colors"
           >
-            Browse the whole library of articles and use cases
+            {nav.cta.browseLibrary}
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0" aria-hidden="true">
               <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </a>
         </div>
       </details>
+      )}
 
+      {showPricing && (
       <!-- Pricing group -->
       <details class="group">
         <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
-          Pricing
+          {nav.top.pricing}
           <svg width="14" height="14" viewBox="0 0 12 12" fill="none" class="transition-transform group-open:rotate-180">
             <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
@@ -636,11 +667,13 @@ const companyLinks = [
           ))}
         </div>
       </details>
+      )}
 
+      {showResources && (
       <!-- Resources group -->
       <details class="group">
         <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
-          Resources
+          {nav.top.resources}
           <svg width="14" height="14" viewBox="0 0 12 12" fill="none" class="transition-transform group-open:rotate-180">
             <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
@@ -657,11 +690,18 @@ const companyLinks = [
           ))}
         </div>
       </details>
+      )}
 
       <!-- Company group -->
       <details class="group">
         <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
-          Company
+          <a
+            href={lp("about")}
+            class="hover:text-coral-500 transition-colors"
+            onclick="event.stopPropagation()"
+          >
+            {nav.top.company}
+          </a>
           <svg width="14" height="14" viewBox="0 0 12 12" fill="none" class="transition-transform group-open:rotate-180">
             <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
@@ -685,11 +725,11 @@ const companyLinks = [
         rel="noopener noreferrer"
         class="px-2 py-3 text-base font-medium text-navy-500 hover:text-coral-500"
       >
-        Helpcenter
+        {nav.top.helpcenter}
       </a>
       <div class="h-px bg-stone-100 my-2"></div>
       <a
-        href={externalLinks.login}
+        href={loginUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="flex items-center gap-2 px-2 py-3 text-base font-medium text-navy-500 hover:text-coral-500"
@@ -709,9 +749,9 @@ const companyLinks = [
           <polyline points="10 17 15 12 10 7" />
           <line x1="15" y1="12" x2="3" y2="12" />
         </svg>
-        Log in
+        {nav.top.login}
       </a>
-      <Button href="/en/contact/book-demo/" variant="primary" size="md" class="mt-2 w-full">Book a free demo</Button>
+      <Button href={lp("contact/book-demo")} variant="primary" size="md" class="mt-2 w-full">{nav.top.bookDemo}</Button>
     </div>
   </div>
 </header>

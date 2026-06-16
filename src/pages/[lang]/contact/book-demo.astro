@@ -1,0 +1,43 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import ContactForm from "../../../components/ContactForm.astro";
+import { getContact } from "../../../data/i18n/contact";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = getContact(lang);
+---
+
+<Layout
+  title={`${t.breadcrumb.bookDemo} | IoT Fabrikken`}
+  description={t.bookDemo.heroLead}
+>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href={langPath("", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumb.home}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><a href={langPath("contact", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumb.contact}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><span class="text-navy-500">{t.breadcrumb.bookDemo}</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    title={t.bookDemo.heroTitle}
+    titleAccent={t.bookDemo.heroTitleAccent}
+    lead={t.bookDemo.heroLead}
+    align="left"
+    compactTop
+  />
+
+  <ContactForm lang={lang} title={t.bookDemo.formTitle} subtitle={t.bookDemo.formSubtitle} />
+</Layout>

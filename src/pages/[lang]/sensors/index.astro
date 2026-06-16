@@ -1,0 +1,126 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import { getSensorsHub } from "../../../data/hubs/sensors";
+import {
+  getSensorCategoryLabels,
+  SENSOR_CATEGORY_ORDER,
+} from "../../../data/sensorCategories";
+import { getUi } from "../../../data/i18n/ui";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const sensorsHub = getSensorsHub(lang);
+const labels = getSensorCategoryLabels(lang);
+const ui = getUi(lang);
+const t = ui.sensors;
+
+const productLeaves = sensorsHub.leaves.filter((leaf) => leaf.slug !== "compare");
+const compareLeaf = sensorsHub.leaves.find((leaf) => leaf.slug === "compare");
+
+const byCategory = SENSOR_CATEGORY_ORDER.map((category) => ({
+  category,
+  label: labels[category],
+  items: productLeaves.filter((leaf) => leaf.category === category),
+})).filter((group) => group.items.length > 0);
+---
+
+<Layout
+  title={`${sensorsHub.title.replace(/\.$/, "")} | IoT Fabrikken`}
+  description={sensorsHub.lead}
+>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li class="flex items-center gap-1.5">
+        <a href={langPath("/", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumb.home}</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </li>
+      <li><span class="text-navy-500">{t.breadcrumb.sensors}</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    title={sensorsHub.title}
+    titleAccent={sensorsHub.titleAccent}
+    lead={sensorsHub.lead}
+    align="left"
+    compactTop
+  >
+    <Button href={langPath("/sensors/product-sheets/", lang)} variant="secondary" size="lg" slot="cta">{t.common.productSheets}</Button>
+    <Button href={langPath("/contact/book-demo/", lang)} variant="primary" size="lg" slot="cta">{t.common.bookDemo}</Button>
+  </Hero>
+
+  <section class="py-16 md:py-20">
+    <div class="container-page space-y-14">
+      {
+        byCategory.map((group) => (
+          <div class="reveal">
+            <h2 class="text-2xl md:text-3xl font-bold text-navy-500 tracking-tight mb-6">
+              {group.label}
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {group.items.map((leaf) => (
+                <a
+                  href={langPath(`/sensors/${leaf.slug}/`, lang)}
+                  class="group relative flex flex-col h-full p-6 md:p-7 bg-white border border-stone-100 rounded-xl hover:border-navy-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+                >
+                  <div class="absolute top-0 left-0 right-0 h-1 rounded-t-xl bg-sky-500" />
+                  <h3 class="text-lg font-semibold text-navy-500 mb-2 leading-snug">
+                    {leaf.title}
+                    {leaf.titleAccent && (
+                      <span class="block text-sky-600 text-base font-medium mt-0.5">{leaf.titleAccent}</span>
+                    )}
+                  </h3>
+                  <p class="text-sm text-stone-900/70 leading-relaxed flex-1">{leaf.lead}</p>
+                  <div class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-navy-500 group-hover:text-sky-600 transition-colors">
+                    {t.common.readMore}
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="transition-transform group-hover:translate-x-1">
+                      <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+
+      {compareLeaf && (
+        <div class="reveal pt-4 border-t border-stone-100">
+          <a
+            href={langPath("/sensors/compare/", lang)}
+            class="group inline-flex flex-col sm:flex-row sm:items-center gap-4 p-6 md:p-7 bg-stone-50 border border-stone-100 rounded-xl hover:border-navy-500 transition-all w-full"
+          >
+            <div class="flex-1">
+              <h2 class="text-xl font-semibold text-navy-500">{compareLeaf.title}</h2>
+              <p class="text-sm text-stone-900/70 mt-1">{compareLeaf.lead}</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-medium text-navy-500 group-hover:text-sky-600">
+              {ui.nav.cta.compareSensors}
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CtaBand
+    title={t.index.ctaTitle}
+    subtitle={t.index.ctaSubtitle}
+    primaryLabel={t.common.bookDemo}
+    primaryHref={langPath("/contact/book-demo/", lang)}
+    secondaryLabel={t.common.contactSales}
+    secondaryHref={langPath("/contact/sales/", lang)}
+  />
+</Layout>

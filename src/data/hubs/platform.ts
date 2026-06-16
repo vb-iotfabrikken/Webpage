@@ -36,6 +36,13 @@ export const platformHub: Hub = {
       lead: "Scheduled PDF and Excel exports for compliance, ESG reporting, board meetings and tenant communication.",
     },
     {
+      slug: "notifications",
+      eyebrow: "Platform",
+      title: "Notifications.",
+      titleAccent: "The right person, at the right time.",
+      lead: "SMS, email, webhooks and escalation ladders when a reading crosses a threshold.",
+    },
+    {
       slug: "maps-floorplans",
       eyebrow: "Platform",
       title: "Maps and floor plans.",

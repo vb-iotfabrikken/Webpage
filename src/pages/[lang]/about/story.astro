@@ -1,0 +1,78 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import { getStory } from "../../../data/story";
+import { aboutHubCardImages } from "../../../data/aboutHubCards";
+import { getAbout } from "../../../data/i18n/about";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = getAbout(lang);
+const { intro, paragraphs } = getStory(lang);
+const heroImage = aboutHubCardImages.story;
+---
+
+<Layout title={t.story.metaTitle} description={intro.lead}>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href={langPath("", lang)} class="hover:text-coral-500 transition-colors">{t.common.home}</a></li>
+      <li aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+      <li><a href={langPath("about", lang)} class="hover:text-coral-500 transition-colors">{t.common.about}</a></li>
+      <li aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+      <li><span class="text-navy-500">{t.story.crumb}</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    title={intro.title}
+    titleAccent={intro.titleAccent}
+    lead={intro.lead}
+    align="left"
+    compactTop
+  >
+    <Button href={langPath("about/team", lang)} variant="primary" size="lg" slot="cta">{t.story.heroPrimary}</Button>
+    <Button href={langPath("contact", lang)} variant="secondary" size="lg" slot="cta">{t.story.heroSecondary}</Button>
+  </Hero>
+
+  <section class="after-page-hero pb-14 md:pb-20">
+    <div class="container-page max-w-4xl">
+      {heroImage.image && (
+        <figure class="reveal mb-8 md:mb-0 md:float-left md:mr-8 lg:mr-10 md:w-72 lg:w-80 shrink-0 overflow-hidden rounded-2xl border border-stone-100 bg-stone-100 shadow-sm">
+          <img
+            src={heroImage.image}
+            alt={heroImage.imageAlt}
+            width={heroImage.width}
+            height={heroImage.height}
+            loading="eager"
+            decoding="async"
+            class="w-full h-auto object-cover aspect-[3/4]"
+            style={heroImage.objectPosition ? `object-position: ${heroImage.objectPosition}` : undefined}
+          />
+        </figure>
+      )}
+
+      <div class="space-y-6 text-stone-900/80 leading-relaxed text-[17px] md:text-lg">
+        {paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+
+      <div class="clear-both" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <CtaBand
+    title={t.story.ctaTitle}
+    subtitle={t.story.ctaSubtitle}
+    primaryLabel={t.story.ctaPrimary}
+    primaryHref={langPath("about/team", lang)}
+    secondaryLabel={t.story.ctaSecondary}
+    secondaryHref={langPath("about/careers", lang)}
+  />
+</Layout>

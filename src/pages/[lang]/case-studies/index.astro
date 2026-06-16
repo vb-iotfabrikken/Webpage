@@ -1,0 +1,12 @@
+---
+import CaseStudiesPage from "../../../components/CaseStudiesPage.astro";
+import { locales, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+---
+
+<CaseStudiesPage lang={lang} />

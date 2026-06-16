@@ -7,11 +7,53 @@ alwaysApply: true
 
 ## Language
 
-- All content, code, UI text, filenames, URL slugs, identifiers, comments,
-  commit messages, and assistant responses MUST be in English.
-- Do not introduce Danish (or any other non-English) text anywhere. If any
-  is encountered in existing files, translate it to English as part of the
-  change.
+- **Code stays English.** All code, identifiers, file names, comments, commit
+  messages, and assistant responses MUST be in English.
+- **Site content is multilingual.** User-facing content may be localized into
+  the supported locales: English (`en`, canonical source), Danish (`da`),
+  German (`de`), and Swedish (`sv`). English is the source of truth; the other
+  locales are translated from it.
+- URL slugs are English by default; localized slugs are allowed only via the
+  slug-pair mechanism in `src/data/lang.ts`.
+- Product and brand names (the RoomAlyzer lines and product names) are NOT
+  translated — they stay identical across all locales, with **one approved
+  exception**: "Water detector" is **"Wasserdetektor"** in German (`de`).
+  Per-locale name overrides live in `src/data/sensorCategories.ts`
+  (`localizedSensorName`); do not add others without explicit approval.
+- When adding new content, write the English version first, then provide the
+  translations (or rely on the English fallback) for the other locales.
+
+## Excluded personnel
+
+- **Dennis Knudsen** must not appear anywhere on this website — team
+  pages, contact lists, press material, case studies, blog posts, metadata,
+  or generated content. He no longer works at IoT Fabrikken. If his name
+  appears in existing content, remove it. Do not add him back unless the
+  user explicitly revokes this rule.
+
+## RoomAlyzer product portfolio (official)
+
+The authoritative product list uses **four lines only**. Do not publish Series A/B/C,
+vendor names (e.g. Disruptive Technologies, Efento), or other alternate groupings.
+
+| Line | Products |
+|------|----------|
+| **RoomAlyzer Air** | CO2, Full+, Humidity, Mini+, Mini+ PIR, Outdoor, Temperature |
+| **RoomAlyzer Space** | Desk, Motion, Open/Close, Touch |
+| **RoomAlyzer Water** | Water detector, Water rope |
+| **Miscellaneous** | Cloud connector, Range Extender and Bracket |
+
+- **Full+ PIR** is RoomAlyzer Air but must **not** appear on the site until explicitly approved.
+- **When adding a new product**, ask which RoomAlyzer line it belongs to before updating the catalogue.
+- Product sheet PDFs are localized. Sources under `Productsheets/{EN,DE,DK}/`;
+  served via `scripts/sync-product-sheets.mjs` into:
+  - English (canonical): `/downloads/product-sheets/{slug}.pdf`
+  - German: `/downloads/product-sheets/de/{slug}.pdf`
+  - Danish: `/downloads/product-sheets/da/{slug}.pdf`
+  Swedish sheets do not exist yet, so `sv` pages fall back to the English PDF.
+  Use `productSheetPath(slug, lang)` (`src/data/sensorCategories.ts`) to resolve
+  the correct URL. Re-run the sync script whenever the source PDFs change.
+- Catalogue data: [`src/data/hubs/sensors.ts`](src/data/hubs/sensors.ts).
 
 ## General
 

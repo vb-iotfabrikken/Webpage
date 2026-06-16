@@ -1,0 +1,117 @@
+---
+/**
+ * Live savings headline. 3-year net is clear; annual comparison sits in a
+ * paywall blur zone overlapped by the email gate on the right column.
+ */
+---
+
+<div
+  class="bg-white border border-stone-100 rounded-xl p-5 shadow-sm"
+  data-roi-demo-panel
+>
+  <div data-roi-demo-content>
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1">
+        Cumulative 3-year net
+      </p>
+      <p
+        class="text-2xl md:text-3xl font-bold tracking-tight tabular-nums text-forest-500"
+        data-roi-demo-three-year-net
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        —
+      </p>
+      <p class="mt-1 text-xs text-stone-300 leading-relaxed">
+        Net after hardware and subscription. Break-even and line items are in your PDF report.
+      </p>
+    </div>
+
+    <div class="mt-4 pt-4 border-t border-stone-100 roi-paywall-zone is-locked" data-roi-paywall-zone>
+      <div class="roi-paywall-blur-target" data-roi-paywall-blur>
+        <p class="text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3">
+          Estimated annual run rate
+        </p>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="rounded-lg border border-coral-500/25 bg-coral-500/5 px-3 py-2.5">
+            <p class="text-[10px] font-semibold uppercase tracking-wider text-coral-600 leading-tight">
+              Without RoomAlyzer
+            </p>
+            <p
+              class="mt-1 text-lg font-bold tabular-nums text-coral-600 leading-tight"
+              data-roi-demo-without
+              aria-live="polite"
+            >
+              —
+            </p>
+          </div>
+          <div class="rounded-lg border border-forest-500/25 bg-forest-500/5 px-3 py-2.5">
+            <p class="text-[10px] font-semibold uppercase tracking-wider text-forest-500 leading-tight">
+              With RoomAlyzer
+            </p>
+            <p
+              class="mt-1 text-lg font-bold tabular-nums text-forest-500 leading-tight"
+              data-roi-demo-with
+              aria-live="polite"
+            >
+              —
+            </p>
+          </div>
+        </div>
+
+        <p class="mt-3 text-xs text-stone-300 leading-relaxed" data-roi-demo-annual-note>
+          Annual cost today vs. after right-sizing desks and optimising climate.
+        </p>
+      </div>
+      <div class="roi-paywall-gradient" aria-hidden="true"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .roi-paywall-zone {
+    position: relative;
+  }
+
+  .roi-paywall-blur-target {
+    transition: filter 400ms ease, opacity 400ms ease;
+  }
+
+  .roi-paywall-zone.is-locked .roi-paywall-blur-target {
+    filter: blur(9px);
+    opacity: 0.55;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .roi-paywall-zone.is-unlocked .roi-paywall-blur-target {
+    filter: none;
+    opacity: 1;
+    user-select: auto;
+    pointer-events: auto;
+  }
+
+  .roi-paywall-gradient {
+    position: absolute;
+    inset: 35% 0 0 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgb(255 255 255 / 0.55) 35%,
+      rgb(255 255 255 / 0.92) 70%,
+      rgb(255 255 255 / 1) 100%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 400ms ease;
+  }
+
+  .roi-paywall-zone.is-locked .roi-paywall-gradient {
+    opacity: 1;
+  }
+
+  .roi-paywall-zone.is-unlocked .roi-paywall-gradient {
+    opacity: 0;
+  }
+</style>

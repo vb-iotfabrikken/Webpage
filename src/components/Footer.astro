@@ -1,52 +1,84 @@
 ---
-import { externalLinks } from "../data/externalLinks";
+import { externalLinks, getRoomAlyzerLoginUrl } from "../data/externalLinks";
 import { getLangFromPath, langPath } from "../data/lang";
+import { getUi } from "../data/i18n/ui";
+import { isLivePath } from "../data/launch";
+
+interface Props {
+  /** Remove the default gap above the footer (page ends flush against it). */
+  flushTop?: boolean;
+}
+
+const { flushTop = false } = Astro.props;
 
 const year = new Date().getFullYear();
 const currentLang = getLangFromPath(Astro.url.pathname);
+const loginUrl = getRoomAlyzerLoginUrl(currentLang);
+const ui = getUi(currentLang);
+const f = ui.footer;
+const lp = (path: string) => langPath(path, currentLang);
 
-const productLinks = [
-  { label: "Platform", href: "/en/platform/" },
-  { label: "Modules", href: "/en/modules/" },
-  { label: "Sensors", href: "/en/sensors/" },
-  { label: "Integrations", href: "/en/integrations/" },
-  { label: "Pricing", href: "/en/pricing/" },
-];
+// Soft-launch: drop any link to a page that is not on the live allowlist.
+// External links (no internal path) always stay.
+const live = <T extends { href: string; external?: boolean }>(links: T[]) =>
+  links.filter((l) => l.external || isLivePath(l.href));
 
-const solutionLinks = [
-  { label: "Industries", href: "/en/industries/" },
-  { label: "Compare", href: "/en/compare/" },
-  { label: "ROI", href: "/en/roi/" },
-];
+const productLinks = live([
+  { label: f.links.platform, href: lp("platform") },
+  { label: f.links.modules, href: lp("modules") },
+  { label: f.links.sensors, href: lp("sensors") },
+  { label: f.links.integrations, href: lp("integrations") },
+  { label: f.links.pricing, href: lp("pricing") },
+]);
 
-const resourceLinks = [
-  { label: "Library", href: "/en/library/" },
-  { label: "Cases", href: langPath("case-studies", currentLang) },
-  { label: "White papers", href: "/en/whitepapers/" },
-  { label: "Blog", href: "/en/blog/" },
-];
+const solutionLinks = live([
+  { label: f.links.industries, href: lp("industries") },
+  { label: f.links.compare, href: lp("compare") },
+  { label: f.links.roi, href: lp("roi") },
+]);
 
-const companyLinks = [
-  { label: "About", href: "/en/about/" },
-  { label: "Careers", href: "/en/about/careers/" },
-  { label: "Partners", href: "/en/about/partners/" },
-  { label: "Press", href: "/en/about/press/" },
-  { label: "Contact", href: "/en/contact/" },
-];
+const resourceLinks = live([
+  { label: f.links.library, href: lp("library") },
+  { label: f.links.cases, href: lp("case-studies") },
+  { label: f.links.productSheets, href: lp("sensors/product-sheets") },
+  { label: f.links.whitepapers, href: lp("whitepapers") },
+]);
+
+const companyLinks = live([
+  { label: f.links.about, href: lp("about") },
+  { label: f.links.careers, href: lp("about/careers") },
+  { label: f.links.partners, href: lp("about/partners") },
+  { label: f.links.press, href: lp("about/press") },
+  { label: f.links.contact, href: lp("contact") },
+]);
 
 // Operational + legal combined into one column. External links open in
 // a new tab and carry an arrow glyph in the label.
 // Privacy, Cookies and Terms live only in the bottom bar — not duplicated here.
-const supportLegalLinks = [
-  { label: "Log in", href: externalLinks.login, external: true },
-  { label: "Support", href: externalLinks.support, external: true },
-  { label: "FAQ", href: "/en/faq/", external: false },
-  { label: "Security & SLA", href: "/en/legal/security/", external: false },
-  { label: "Impressum", href: "/en/legal/impressum/", external: false },
-];
+const supportLegalLinks = live([
+  { label: f.links.login, href: loginUrl, external: true },
+  { label: f.links.support, href: externalLinks.support, external: true },
+  { label: f.links.faq, href: lp("faq"), external: false },
+  { label: f.links.securitySla, href: lp("legal/security"), external: false },
+  { label: f.links.impressum, href: lp("legal/impressum"), external: false },
+]);
+
+// Bottom-bar legal links, filtered to the live set.
+const legalBottomLinks = live([
+  { label: f.links.privacy, href: lp("legal/privacy") },
+  { label: f.links.cookies, href: lp("legal/cookies") },
+  { label: f.links.terms, href: lp("legal/terms") },
+]);
+
+const footerColumns = [
+  { heading: f.headings.product, links: productLinks },
+  { heading: f.headings.solutions, links: solutionLinks },
+  { heading: f.headings.resources, links: resourceLinks },
+  { heading: f.headings.company, links: companyLinks },
+].filter((col) => col.links.length > 0);
 ---
 
-<footer class="bg-navy-500 text-white mt-24">
+<footer class:list={["bg-navy-500 text-white", !flushTop && "mt-24"]}>
   <div class="container-page py-16">
     <!-- Top tier: brand · locations · contact & hours -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 pb-12 border-b border-white/10">
@@ -56,15 +88,13 @@ const supportLegalLinks = [
           <img src="/logo.png" alt="IoT Fabrikken" class="h-8 w-auto" />
         </div>
         <p class="mt-5 text-sm text-white/70 leading-relaxed">
-          100% Danish-owned SaaS and IoT company. We deliver wireless sensors and
-          a platform that turns data into something useful for facility and
-          space management.
+          {f.brandBlurb}
         </p>
         <p class="footer-cvr">
           IoT Fabrikken ApS · CVR 39 11 03 93
         </p>
         <div class="mt-6">
-          <span class="footer-eyebrow">Follow us</span>
+          <span class="footer-eyebrow">{f.followUs}</span>
           <div class="mt-2 flex gap-3">
             <a href={externalLinks.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-social">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -88,13 +118,13 @@ const supportLegalLinks = [
       <!-- Column 2 — Locations -->
       <div class="text-sm text-white/80 leading-relaxed">
         <address class="not-italic">
-          <span class="footer-eyebrow">Head office</span>
+          <span class="footer-eyebrow">{f.headOffice}</span>
           Brønsager 1<br />
           4000 Roskilde<br />
           <span class="footer-block-last-line">Denmark</span>
         </address>
         <address class="not-italic">
-          <span class="footer-eyebrow">Hub office</span>
+          <span class="footer-eyebrow">{f.hubOffice}</span>
           Nydamsvej 17<br />
           8362 Hørning<br />
           Denmark
@@ -104,14 +134,14 @@ const supportLegalLinks = [
       <!-- Column 3 — Contact & hours -->
       <div class="text-sm text-white/80 leading-relaxed">
         <div>
-          <span class="footer-eyebrow">Opening hours</span>
+          <span class="footer-eyebrow">{f.openingHours}</span>
           <ul class="mt-2 space-y-1">
-            <li>Mon – Thu: 8:00 – 15:30</li>
-            <li class="footer-block-last-line">Friday: Closed (Email support only)</li>
+            <li>{f.hoursWeekday}</li>
+            <li class="footer-block-last-line">{f.hoursFriday}</li>
           </ul>
         </div>
         <div>
-          <span class="footer-eyebrow">Contact</span>
+          <span class="footer-eyebrow">{f.contact}</span>
           <ul class="mt-2 space-y-1">
             <li>
               <a href="tel:+4571718090" class="hover:text-coral-500 transition-colors">
@@ -130,69 +160,26 @@ const supportLegalLinks = [
 
     <!-- Bottom tier: link columns -->
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 pt-12">
-      <div>
-        <h4 class="text-sm font-semibold uppercase tracking-wider text-white/60 mb-4">
-          Product
-        </h4>
-        <ul class="text-sm">
-          {productLinks.map((l) => (
-            <li>
-              <a href={l.href} class="footer-nav-link">
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {footerColumns.map((col) => (
+        <div>
+          <h4 class="text-sm font-semibold uppercase tracking-wider text-white/60 mb-4">
+            {col.heading}
+          </h4>
+          <ul class="text-sm">
+            {col.links.map((l) => (
+              <li>
+                <a href={l.href} class="footer-nav-link">
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
 
       <div>
         <h4 class="text-sm font-semibold uppercase tracking-wider text-white/60 mb-4">
-          Solutions
-        </h4>
-        <ul class="text-sm">
-          {solutionLinks.map((l) => (
-            <li>
-              <a href={l.href} class="footer-nav-link">
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="text-sm font-semibold uppercase tracking-wider text-white/60 mb-4">
-          Resources
-        </h4>
-        <ul class="text-sm">
-          {resourceLinks.map((l) => (
-            <li>
-              <a href={l.href} class="footer-nav-link">
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="text-sm font-semibold uppercase tracking-wider text-white/60 mb-4">
-          Company
-        </h4>
-        <ul class="text-sm">
-          {companyLinks.map((l) => (
-            <li>
-              <a href={l.href} class="footer-nav-link">
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="text-sm font-semibold uppercase tracking-wider text-white/60 mb-4">
-          Support &amp; Legal
+          {f.headings.supportLegal}
         </h4>
         <ul class="text-sm">
           {supportLegalLinks.map((l) => (
@@ -218,11 +205,11 @@ const supportLegalLinks = [
     </div>
 
     <div class="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
-      <p>© {year} IoT Fabrikken ApS. All rights reserved.</p>
+      <p>{f.rightsReserved.replace("{year}", String(year))}</p>
       <div class="flex gap-6">
-        <a href="/en/legal/privacy/" class="hover:text-white transition-colors">Privacy</a>
-        <a href="/en/legal/cookies/" class="hover:text-white transition-colors">Cookies</a>
-        <a href="/en/legal/terms/" class="hover:text-white transition-colors">Terms</a>
+        {legalBottomLinks.map((l) => (
+          <a href={l.href} class="hover:text-white transition-colors">{l.label}</a>
+        ))}
       </div>
     </div>
   </div>

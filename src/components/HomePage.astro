@@ -1,0 +1,65 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "./Hero.astro";
+import HeroAnimation from "./HeroAnimation.astro";
+import Button from "./Button.astro";
+import LogoMarquee from "./LogoMarquee.astro";
+import StatBlock from "./StatBlock.astro";
+import CtaBand from "./CtaBand.astro";
+import UspSection from "./UspSection.astro";
+import SensorFinderSection from "./SensorFinderSection.astro";
+import { type Lang, defaultLang, langPath } from "../data/lang";
+import { getHome } from "../data/i18n/home";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getHome(lang);
+
+const bookDemoHref = langPath("contact/book-demo", lang);
+const salesHref = langPath("contact/sales", lang);
+
+const stats = [
+  { value: "15,000", prefix: "+", label: t.stats.labels[0] },
+  { value: "2", prefix: "+", suffix: t.stats.millionSuffix, label: t.stats.labels[1] },
+  { value: "12", prefix: "+", label: t.stats.labels[2] },
+];
+---
+
+<Layout title={t.meta.title} description={t.meta.description}>
+  <Hero
+    title={t.hero.title}
+    titleAccent={t.hero.titleAccent}
+    lead={t.hero.lead}
+    allowVisualOverflow
+    compactTop
+    compactBottom
+  >
+    <Button href={bookDemoHref} variant="primary" size="lg" slot="cta">{t.hero.ctaPrimary}</Button>
+    <Button href={salesHref} variant="secondary" size="lg" slot="cta">{t.hero.ctaSecondary}</Button>
+
+    <div slot="visual" class="overflow-visible">
+      <HeroAnimation />
+    </div>
+  </Hero>
+
+  <LogoMarquee />
+
+  <UspSection lang={lang} />
+
+  <SensorFinderSection lang={lang} />
+
+  <StatBlock title={t.stats.title} subtitle={t.stats.subtitle} stats={stats} />
+
+  <CtaBand
+    variant="featured"
+    title={t.cta.title}
+    subtitle={t.cta.subtitle}
+    primaryLabel={t.cta.primary}
+    primaryHref={bookDemoHref}
+    secondaryLabel={t.cta.secondary}
+    secondaryHref={salesHref}
+  />
+</Layout>

@@ -1,0 +1,50 @@
+---
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import ModulePageContent from "../../../components/content/ModulePageContent.astro";
+import { getModulesHub } from "../../../data/hubs/modules";
+import { getModuleContent } from "../../../data/content/modules";
+import { getUi } from "../../../data/i18n/ui";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  // indoor-climate and space-management have dedicated rich pages; skip them here.
+  const dedicated = new Set(["indoor-climate", "space-management"]);
+  return locales.flatMap((l) =>
+    getModulesHub(l.code).leaves
+      .filter((leaf) => !dedicated.has(leaf.slug))
+      .map((leaf) => ({
+        params: { lang: l.code, slug: leaf.slug },
+        props: { leaf },
+      })),
+  );
+}
+
+const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+const { leaf } = Astro.props;
+const content = getModuleContent(slug, lang);
+const t = getUi(lang).modules;
+
+const heroTitle = content?.heroTitle ?? leaf.title;
+---
+
+<PlaceholderPage
+  title={`${heroTitle.replace(/[.,]\s*$/, "")} | IoT Fabrikken`}
+  description={content?.heroLead ?? leaf.lead}
+  heroTitle={heroTitle}
+  heroTitleAccent={content?.heroTitleAccent ?? leaf.titleAccent}
+  heroLead={content?.heroLead ?? leaf.lead}
+  breadcrumbs={[
+    { label: t.breadcrumb.home, href: langPath("/", lang) },
+    { label: t.breadcrumb.modules, href: langPath("/modules/", lang) },
+    { label: heroTitle.replace(/[.,]\s*$/, "") },
+  ]}
+  primaryCta={{ label: t.common.bookDemo, href: langPath("/contact/book-demo/", lang) }}
+  secondaryCta={{ label: t.common.contactSales, href: langPath("/contact/sales/", lang) }}
+  ctaBandTitle={t.detail.ctaBandTitle}
+  ctaBandSubtitle={t.detail.ctaBandSubtitle}
+  ctaBandPrimaryLabel={t.common.bookDemo}
+  ctaBandSecondaryLabel={t.common.contactSales}
+  hideNotice={!!content}
+>
+  {content && <ModulePageContent content={content} lang={lang} />}
+</PlaceholderPage>

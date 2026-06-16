@@ -1,0 +1,90 @@
+---
+/**
+ * Illustrative office heatmap for the Desk Optimizer. One cell ~ one desk
+ * (scaled above 200 desks). Cells and suggestion chips are rendered live by
+ * `roi-calculator.ts`; the freed zone is partitioned among the selected goals.
+ */
+---
+
+<div class="rounded-xl border border-stone-100 bg-stone-50/50 p-4" data-roi-heatmap data-roi-heatmap-side>
+  <div class="flex items-baseline justify-between gap-3 mb-3">
+    <p class="text-xs font-semibold uppercase tracking-wider text-stone-300">
+      Your space at peak attendance
+    </p>
+    <p class="text-xs text-stone-300" data-roi-heatmap-scale-note></p>
+  </div>
+
+  <div
+    class="roi-heatmap-grid"
+    data-roi-heatmap-grid
+    role="img"
+    aria-label="Illustrative desk utilisation heatmap"
+  >
+  </div>
+
+  <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-stone-900/70">
+    <span class="inline-flex items-center gap-1.5">
+      <span class="roi-heat-swatch roi-heat-occupied" aria-hidden="true"></span>
+      Desks in use at peak
+    </span>
+    <span class="inline-flex items-center gap-1.5" data-roi-heatmap-legend="cut">
+      <span class="roi-heat-swatch roi-heat-cut" aria-hidden="true"></span>
+      Cut / sublease
+    </span>
+    <span class="inline-flex items-center gap-1.5" data-roi-heatmap-legend="repurpose">
+      <span class="roi-heat-swatch roi-heat-repurpose" aria-hidden="true"></span>
+      Repurpose
+    </span>
+    <span class="inline-flex items-center gap-1.5" data-roi-heatmap-legend="grow">
+      <span class="roi-heat-swatch roi-heat-grow" aria-hidden="true"></span>
+      Growth seats
+    </span>
+  </div>
+
+  <ul class="mt-3 space-y-1.5 text-sm text-stone-900/80" data-roi-heatmap-suggestions></ul>
+
+  <p class="mt-3 text-xs text-stone-300 leading-relaxed">
+    Illustrative layout — not your actual floor plan. Desk sensors map the real
+    pattern within weeks.
+  </p>
+</div>
+
+<style is:global>
+  .roi-heatmap-grid {
+    display: grid;
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+    gap: 2px;
+  }
+  [data-roi-heatmap-side] .roi-heatmap-grid {
+    gap: 2px;
+  }
+  [data-roi-heatmap-side] .roi-heat-cell {
+    min-height: 0;
+  }
+  .roi-heat-cell {
+    aspect-ratio: 1 / 1;
+    border-radius: 2px;
+  }
+  .roi-heat-swatch {
+    display: inline-block;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 2px;
+  }
+  .roi-heat-occupied {
+    background: var(--color-navy-500);
+    opacity: 0.85;
+  }
+  .roi-heat-cut {
+    background: var(--color-coral-500);
+    opacity: 0.75;
+  }
+  .roi-heat-repurpose {
+    background: var(--color-sky-500);
+    opacity: 0.8;
+  }
+  .roi-heat-grow {
+    background: var(--color-forest-500);
+    opacity: 0.8;
+  }
+</style>

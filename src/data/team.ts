@@ -1,81 +1,120 @@
 /**
- * The IoT Fabrikken team. Rendered at `/en/about/team/`. Keep descriptions
- * short (1–2 sentences) and factual — LinkedIn is the right place for a CV.
- *
- * Names and titles are placeholders modelled on the 10-person team described
- * in the legacy site copy and should be updated when the real roster is
- * provided.
+ * The IoT Fabrikken team. Rendered at `/{lang}/about/team/`.
+ * Photos live in `public/team/` — individual crops plus `team-group.webp` from
+ * `Portraits/` via `node scripts/build-team-portraits.mjs`.
  */
+
+import { defaultLang, langPath, type Lang } from "./lang";
+
+/** Full team photo shown at the top of `/en/about/team/`. */
+export const teamGroupPhoto = {
+  src: "/team/team-group.webp",
+  alt: "The IoT Fabrikken team",
+};
 
 export type TeamMember = {
   name: string;
   role: string;
-  bio: string;
   email?: string;
-  linkedin?: string;
-  department: "leadership" | "engineering" | "customer-success" | "sales" | "operations";
+  phone?: string;
+  photo?: string;
+  /** Hiring placeholder card — links to `href` instead of showing contact details. */
+  placeholder?: boolean;
+  href?: string;
+  department:
+    | "leadership"
+    | "engineering"
+    | "customer-success"
+    | "sales"
+    | "operations"
+    | "communications";
 };
 
 export const team: TeamMember[] = [
   {
-    name: "Dorthe Jensen",
-    role: "Head of sales",
-    bio: "Runs the commercial side across Denmark, Sweden and Germany. The first voice most customers hear before they sign.",
+    name: "Jon Wichmann",
+    role: "Partner & CEO",
+    email: "jkw@iot-fabrikken.com",
+    phone: "+45 61 40 30 30",
+    photo: "/team/jon-wichmann.webp",
+    department: "leadership",
+  },
+  {
+    name: "Mikkel Fischer",
+    role: "Partner",
+    email: "mf@iot-fabrikken.com",
+    phone: "+45 51 90 83 36",
+    photo: "/team/mikkel-fischer.webp",
+    department: "leadership",
+  },
+  {
+    name: "Lars Qvistgaard",
+    role: "CCO",
+    email: "lsq@iot-fabrikken.com",
+    phone: "+45 93 99 40 60",
+    photo: "/team/lars-qvistgaard.webp",
+    department: "leadership",
+  },
+  {
+    name: "Dorthe Deleuran",
+    role: "Head of sales, East",
+    email: "dd@iot-fabrikken.com",
+    phone: "+45 71 71 40 70",
+    photo: "/team/dorthe-deleuran.webp",
     department: "sales",
   },
   {
-    name: "Lars Qvist",
-    role: "Sales engineer",
-    bio: "Translates indoor-climate physics and BMS plumbing into concrete customer proposals. Lives on site visits.",
+    name: "Charlotte Bangsø",
+    role: "Internal sales & support",
+    email: "cb@iot-fabrikken.com",
+    phone: "+45 71 71 40 80",
+    photo: "/team/charlotte-bangso.webp",
     department: "sales",
   },
   {
-    name: "Morten Sørensen",
-    role: "CTO & co-founder",
-    bio: "Architects the RoomAlyzer platform from sensor firmware to cloud data pipelines. Former lead engineer at a Scandinavian IoT platform vendor.",
+    name: "This could be you",
+    role: "Join our sales team",
+    placeholder: true,
+    href: "/en/about/careers/",
+    department: "sales",
+  },
+  {
+    name: "Lars Wichmann",
+    role: "Software developer",
+    photo: "/team/lars-wichmann.webp",
     department: "engineering",
   },
   {
-    name: "Anders Holm",
-    role: "Lead backend engineer",
-    bio: "Owns the time-series storage and API layer. Has an opinion on every database from TimescaleDB to ClickHouse.",
-    department: "engineering",
-  },
-  {
-    name: "Maria Lindholm",
-    role: "Lead frontend engineer",
-    bio: "Builds the dashboards, floor-plan editor and mobile app. Turns raw sensor data into pictures facility managers can act on.",
-    department: "engineering",
-  },
-  {
-    name: "Jens Pedersen",
-    role: "Firmware engineer",
-    bio: "Squeezes multi-year battery life out of Series-A hardware. Runs the lab that stress-tests every sensor before it ships.",
-    department: "engineering",
-  },
-  {
-    name: "Sofie Nielsen",
-    role: "Customer success manager",
-    bio: "Onboards new municipalities, dioceses and museums. Measures success in customer-led case studies, not in tickets closed.",
+    name: "Jeanette Christensen",
+    role: "Space management",
+    email: "jc@iot-fabrikken.com",
+    phone: "+45 93 99 16 76",
+    photo: "/team/jeanette-christensen.webp",
     department: "customer-success",
   },
   {
-    name: "Kasper Dahl",
-    role: "Customer success engineer",
-    bio: "The technical side of CS — handles integration rollouts, SSO setup and the tricky custom reports.",
-    department: "customer-success",
-  },
-  {
-    name: "Emma Lund",
-    role: "Operations lead",
-    bio: "Runs procurement, logistics and the supply chain behind every sensor we ship. Has never missed a quarterly invoice cycle.",
+    name: "Kaisa Braæ",
+    role: "Office coordinator",
+    email: "kaisa@iot-fabrikken.com",
+    phone: "+45 71 71 80 90",
+    photo: "/team/kaisa-braae.webp",
     department: "operations",
   },
   {
-    name: "Peter Madsen",
-    role: "Service technician",
-    bio: "On the road most weeks with a bag of sensors and a gateway spare kit. The unsung hero behind every on-time rollout.",
-    department: "operations",
+    name: "Katja Kafling",
+    role: "Communications",
+    email: "kaf@iot-fabrikken.com",
+    phone: "+45 27 13 10 40",
+    photo: "/team/katja-kafling.webp",
+    department: "communications",
+  },
+  {
+    name: "Vivian Bodenlosz",
+    role: "Marketing coordinator",
+    email: "vb@iot-fabrikken.com",
+    phone: "+45 93 99 65 45",
+    photo: "/team/vivian-bodenlosz.webp",
+    department: "communications",
   },
 ];
 
@@ -85,22 +124,118 @@ export const departments: Record<
 > = {
   leadership: {
     label: "Leadership",
-    blurb: "The people responsible for the company's direction and culture.",
+    blurb: "Direction, partnerships and the long-term vision behind IoT Fabrikken.",
   },
   engineering: {
     label: "Engineering",
-    blurb: "The team behind the sensors, the firmware, the platform and the mobile app.",
+    blurb: "The people who build and maintain the platform, integrations and product experience.",
   },
   "customer-success": {
     label: "Customer success",
-    blurb: "The team that turns signed contracts into happy customers, every quarter.",
+    blurb: "Specialists who help customers get lasting value from space management and indoor climate.",
   },
   sales: {
     label: "Sales",
-    blurb: "The first point of contact for new customers, from schools to dioceses.",
+    blurb: "First contact for new customers — in Denmark, Sweden and Germany.",
   },
   operations: {
     label: "Operations",
-    blurb: "Logistics, procurement, quality control and the on-site rollout crew.",
+    blurb: "Administration and logistics that keep the company running smoothly.",
+  },
+  communications: {
+    label: "Communications & marketing",
+    blurb: "How we tell our story — press, newsletters, website and campaigns.",
   },
 };
+
+type DeptMeta = { label: string; blurb: string };
+
+const departmentsI18n: Partial<
+  Record<Lang, Record<TeamMember["department"], DeptMeta>>
+> = {
+  da: {
+    leadership: { label: "Ledelse", blurb: "Retning, partnerskaber og den langsigtede vision bag IoT Fabrikken." },
+    engineering: { label: "Udvikling", blurb: "Dem, der bygger og vedligeholder platformen, integrationerne og produktoplevelsen." },
+    "customer-success": { label: "Customer success", blurb: "Specialister, der hjælper kunder med at få varig værdi af space management og indeklima." },
+    sales: { label: "Salg", blurb: "Første kontakt for nye kunder — i Danmark, Sverige og Tyskland." },
+    operations: { label: "Drift", blurb: "Administration og logistik, der får virksomheden til at køre gnidningsfrit." },
+    communications: { label: "Kommunikation & marketing", blurb: "Sådan fortæller vi vores historie — presse, nyhedsbreve, website og kampagner." },
+  },
+  de: {
+    leadership: { label: "Führung", blurb: "Ausrichtung, Partnerschaften und die langfristige Vision hinter IoT Fabrikken." },
+    engineering: { label: "Entwicklung", blurb: "Die Menschen, die die Plattform, Integrationen und das Produkterlebnis bauen und pflegen." },
+    "customer-success": { label: "Customer Success", blurb: "Spezialisten, die Kunden helfen, dauerhaften Nutzen aus Space-Management und Raumklima zu ziehen." },
+    sales: { label: "Vertrieb", blurb: "Erster Kontakt für neue Kunden — in Dänemark, Schweden und Deutschland." },
+    operations: { label: "Betrieb", blurb: "Verwaltung und Logistik, die das Unternehmen reibungslos am Laufen halten." },
+    communications: { label: "Kommunikation & Marketing", blurb: "Wie wir unsere Geschichte erzählen — Presse, Newsletter, Website und Kampagnen." },
+  },
+  sv: {
+    leadership: { label: "Ledning", blurb: "Inriktning, partnerskap och den långsiktiga visionen bakom IoT Fabrikken." },
+    engineering: { label: "Utveckling", blurb: "De som bygger och underhåller plattformen, integrationerna och produktupplevelsen." },
+    "customer-success": { label: "Customer success", blurb: "Specialister som hjälper kunder att få bestående värde av space management och inomhusklimat." },
+    sales: { label: "Försäljning", blurb: "Första kontakten för nya kunder — i Danmark, Sverige och Tyskland." },
+    operations: { label: "Drift", blurb: "Administration och logistik som får företaget att fungera smidigt." },
+    communications: { label: "Kommunikation & marknad", blurb: "Så berättar vi vår historia — press, nyhetsbrev, webbplats och kampanjer." },
+  },
+};
+
+/** English role string → per-locale translation. */
+const roleI18n: Record<Lang, Record<string, string>> = {
+  en: {},
+  da: {
+    "Head of sales, East": "Salgschef, Øst",
+    "Internal sales & support": "Intern salg & support",
+    "Software developer": "Softwareudvikler",
+    "Office coordinator": "Kontorkoordinator",
+    Communications: "Kommunikation",
+    "Marketing coordinator": "Marketingkoordinator",
+    "Join our sales team": "Bliv en del af vores salgsteam",
+  },
+  de: {
+    "Head of sales, East": "Vertriebsleiter, Ost",
+    "Internal sales & support": "Innendienst & Support",
+    "Software developer": "Softwareentwickler",
+    "Space management": "Space-Management",
+    "Office coordinator": "Büromanagement",
+    Communications: "Kommunikation",
+    "Marketing coordinator": "Marketingkoordination",
+    "Join our sales team": "Werden Sie Teil unseres Vertriebsteams",
+  },
+  sv: {
+    "Head of sales, East": "Försäljningschef, Öst",
+    "Internal sales & support": "Innesälj & support",
+    "Software developer": "Mjukvaruutvecklare",
+    "Office coordinator": "Kontorskoordinator",
+    Communications: "Kommunikation",
+    "Marketing coordinator": "Marknadskoordinator",
+    "Join our sales team": "Bli en del av vårt säljteam",
+  },
+};
+
+const placeholderNameI18n: Partial<Record<Lang, string>> = {
+  da: "Her kunne du stå",
+  de: "Hier könnten Sie stehen",
+  sv: "Här kan du stå",
+};
+
+export function getDepartments(
+  lang: Lang = defaultLang,
+): Record<TeamMember["department"], DeptMeta> {
+  return departmentsI18n[lang] ?? departments;
+}
+
+export function getTeam(lang: Lang = defaultLang): TeamMember[] {
+  return team.map((m) => {
+    const localized: TeamMember = { ...m };
+    if (lang !== defaultLang) {
+      localized.role = roleI18n[lang]?.[m.role] ?? m.role;
+      if (m.placeholder) {
+        localized.name = placeholderNameI18n[lang] ?? m.name;
+      }
+    }
+    if (m.href) {
+      localized.href = langPath("about/careers", lang);
+    }
+    return localized;
+  });
+}

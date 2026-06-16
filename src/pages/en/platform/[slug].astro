@@ -1,6 +1,8 @@
 ---
 import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import PlatformPageContent from "../../../components/content/PlatformPageContent.astro";
 import { platformHub } from "../../../data/site";
+import { getPlatformContent } from "../../../data/content/platform";
 
 export function getStaticPaths() {
   return platformHub.leaves.map((leaf) => ({
@@ -10,19 +12,23 @@ export function getStaticPaths() {
 }
 
 const { leaf } = Astro.props;
+const content = getPlatformContent(leaf.slug);
 ---
 
 <PlaceholderPage
-  title={`${leaf.title.replace(/\.$/, "")} | IoT Fabrikken`}
-  description={leaf.lead}
-  heroTitle={leaf.title}
-  heroTitleAccent={leaf.titleAccent}
-  heroLead={leaf.lead}
+  title={`${(content?.heroTitle ?? leaf.title).replace(/\.$/, "")} | IoT Fabrikken`}
+  description={content?.heroLead ?? leaf.lead}
+  heroTitle={content?.heroTitle ?? leaf.title}
+  heroTitleAccent={content?.heroTitleAccent ?? leaf.titleAccent}
+  heroLead={content?.heroLead ?? leaf.lead}
   breadcrumbs={[
     { label: "Home", href: "/en/" },
     { label: "Platform", href: "/en/platform/" },
-    { label: leaf.title.replace(/\.$/, "") },
+    { label: (content?.heroTitle ?? leaf.title).replace(/\.$/, "") },
   ]}
   primaryCta={leaf.primaryCta}
   secondaryCta={leaf.secondaryCta}
-/>
+  hideNotice={!!content}
+>
+  {content && <PlatformPageContent content={content} />}
+</PlaceholderPage>

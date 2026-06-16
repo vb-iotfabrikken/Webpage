@@ -1,0 +1,15 @@
+---
+import HomePage from "../../components/HomePage.astro";
+import { locales, type Lang } from "../../data/lang";
+
+// Emit a real homepage for every locale from a single route. This avoids the
+// Astro i18n bug where a default-locale-only index.astro is mirrored as
+// fallback routes that overwrite physical localized index pages (#10226).
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+---
+
+<HomePage lang={lang} />

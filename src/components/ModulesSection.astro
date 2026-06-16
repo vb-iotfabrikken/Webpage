@@ -1,24 +1,34 @@
 ---
 import ModuleCard from "./ModuleCard.astro";
-import { modules } from "../data/modules";
+import { getModules } from "../data/modules";
+import { getUi } from "../data/i18n/ui";
+import { defaultLang, type Lang } from "../data/lang";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const modules = getModules(lang);
+const t = getUi(lang).modules;
 ---
 
 <section class="py-20 md:py-28">
   <div class="container-page">
     <div class="reveal max-w-2xl mb-12 md:mb-16">
       <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
-        Modules
+        {t.index.sectionEyebrow}
       </p>
       <h2 class="text-3xl md:text-5xl font-bold text-navy-500 tracking-tight">
-        Easy-to-install sensors — and data that gives unique insight.
+        {t.index.sectionHeading}
       </h2>
       <p class="mt-5 text-lg text-stone-900/70">
-        However you combine your sensor setup, the data is collected in one place in the RoomAlyzer platform.
+        {t.index.sectionIntro}
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      {modules.map((m) => <ModuleCard module={m} />)}
+      {modules.map((m) => <ModuleCard module={m} readMore={t.common.readMore} />)}
     </div>
   </div>
 </section>

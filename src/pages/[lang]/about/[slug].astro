@@ -1,0 +1,44 @@
+---
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import { getAboutHub } from "../../../data/hubs/about";
+import { getAbout } from "../../../data/i18n/about";
+import { locales, langPath, type Lang } from "../../../data/lang";
+import type { HubLeaf } from "../../../data/hubs/types";
+
+export function getStaticPaths() {
+  const handAuthored = new Set(["story", "team", "partners", "press", "careers"]);
+  return locales.flatMap((l) =>
+    getAboutHub(l.code).leaves
+      .filter((leaf) => !handAuthored.has(leaf.slug))
+      .map((leaf) => ({
+        params: { lang: l.code, slug: leaf.slug },
+        props: { leaf },
+      })),
+  );
+}
+
+const { lang } = Astro.params as { lang: Lang; slug: string };
+const { leaf } = Astro.props as { leaf: HubLeaf };
+const t = getAbout(lang);
+const bookDemoHref = langPath("contact/book-demo", lang);
+const contactSalesHref = langPath("contact/sales", lang);
+---
+
+<PlaceholderPage
+  title={`${leaf.title.replace(/[.,]\s*$/, "")} | IoT Fabrikken`}
+  description={leaf.lead}
+  heroTitle={leaf.title}
+  heroTitleAccent={leaf.titleAccent}
+  heroLead={leaf.lead}
+  breadcrumbs={[
+    { label: t.common.home, href: langPath("", lang) },
+    { label: t.common.about, href: langPath("about", lang) },
+    { label: leaf.title.replace(/[.,]\s*$/, "") },
+  ]}
+  primaryCta={{ label: t.common.bookDemo, href: bookDemoHref }}
+  secondaryCta={{ label: t.common.contactSales, href: contactSalesHref }}
+  noticeTitle={t.placeholder.noticeTitle}
+  noticeSubtitle={t.placeholder.noticeSubtitle}
+  ctaBandTitle={t.placeholder.ctaTitle}
+  ctaBandSubtitle={t.placeholder.ctaSubtitle}
+/>

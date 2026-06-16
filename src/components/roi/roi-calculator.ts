@@ -1,7 +1,9 @@
 import {
   calculateDesk,
   calculateEnergy,
-  estimateBillFromSqm,
+  deriveEmployeesFromArea,
+  derivePeopleFromClassrooms,
+  partitionFreedDesks,
   type DeskInputs,
   type DeskResults,
   type EnergyInputs,
@@ -14,6 +16,8 @@ import {
   ROI_LEAD_STORAGE_KEY,
   type CalculatorTab,
   type Currency,
+  type DeskGoal,
+  type EnergyFacility,
 } from "../../lib/roi/constants";
 import { formatMoney, formatNumber, formatPct } from "../../lib/roi/format";
 import {
@@ -22,40 +26,60 @@ import {
 } from "../../lib/roi/generate-report-pdf";
 import {
   buildComparisonReport,
+  buildGoalSuggestions,
   buildReportDisplayMeta,
   type ComparisonReport,
 } from "../../lib/roi/report";
-import { submitLead, type LeadPayload } from "../../lib/roi/submit-lead";
+import {
+  submitConsultRequest,
+  submitLead,
+  type ConsultRequestPayload,
+  type LeadPayload,
+} from "../../lib/roi/submit-lead";
+import {
+  isHoneypotFilled,
+  isSubmitTooSoon,
+  isWorkEmail,
+  validateLeadForm,
+} from "../../lib/forms/validate-lead";
+import {
+  calculateDeskInvestment,
+  calculateEnergyInvestment,
+  type InvestmentSummary,
+} from "../../lib/roi/investment";
+
+/** Heatmap caps at this many cells; above it one cell represents N desks. */
+const HEATMAP_MAX_CELLS = 200;
+/** Approximate range-thumb width for aligning preset labels under the track. */
+const ATTENDANCE_THUMB_PX = 18;
 
 function initCalculator(root: HTMLElement) {
+  const calculatorReadyAt = Date.now();
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
 
   let activeTab: CalculatorTab = "desk";
   let currency: Currency = "EUR";
-  let animFrame = 0;
-  let displayValue = 0;
-  let targetValue = 0;
+  const deskGoals = new Set<DeskGoal>();
+  let activeFacility: EnergyFacility = "office";
+  /** Derived fields stop auto-syncing once the visitor edits them. */
+  let employeesDirty = false;
+  let peopleDirty = false;
 
-  const counterEl = root.querySelector<HTMLElement>("[data-roi-counter-value]");
-  const teaserEl = root.querySelector<HTMLElement>("[data-roi-counter-teaser]");
-  const capNoteEl = root.querySelector<HTMLElement>("[data-roi-counter-cap-note]");
-  const savingsCounterWrap = root.querySelector<HTMLElement>(
-    "[data-roi-savings-counter]",
-  );
   const emailForm = root.querySelector<HTMLFormElement>("[data-roi-email-form]");
   const emailGate = root.querySelector<HTMLElement>("[data-roi-email-gate]");
-  const emailBreakdown = root.querySelector<HTMLElement>("[data-roi-email-breakdown]");
+  const emailSuccess = root.querySelector<HTMLElement>("[data-roi-email-success]");
+  const firstNameInput = root.querySelector<HTMLInputElement>(
+    "[data-roi-first-name-input]",
+  );
+  const lastNameInput = root.querySelector<HTMLInputElement>(
+    "[data-roi-last-name-input]",
+  );
   const emailInput = root.querySelector<HTMLInputElement>("[data-roi-email-input]");
-  const companyInput = root.querySelector<HTMLInputElement>("[data-roi-company-input]");
+  const phoneInput = root.querySelector<HTMLInputElement>("[data-roi-phone-input]");
+  const honeypotInput = root.querySelector<HTMLInputElement>("[data-roi-honeypot]");
   const emailError = root.querySelector<HTMLElement>("[data-roi-email-error]");
-  const heatingEstimateToggle = root.querySelector<HTMLButtonElement>(
-    "[data-roi-heating-estimate-toggle]",
-  );
-  const heatingEstimatePanel = root.querySelector<HTMLElement>(
-    "[data-roi-heating-estimate]",
-  );
 
   const deskPanel = root.querySelector<HTMLElement>('[data-roi-panel="desk"]');
   const energyPanel = root.querySelector<HTMLElement>(
@@ -83,6 +107,15 @@ function initCalculator(root: HTMLElement) {
   );
   const deskCostInput = root.querySelector<HTMLInputElement>("[data-roi-desk-cost]");
 
+  const goalChips = root.querySelectorAll<HTMLButtonElement>("[data-roi-goal]");
+  const heatmapGrid = root.querySelector<HTMLElement>("[data-roi-heatmap-grid]");
+  const heatmapSuggestions = root.querySelector<HTMLElement>(
+    "[data-roi-heatmap-suggestions]",
+  );
+  const heatmapScaleNote = root.querySelector<HTMLElement>(
+    "[data-roi-heatmap-scale-note]",
+  );
+
   const heatingBillInput = root.querySelector<HTMLInputElement>(
     "[data-roi-heating-bill]",
   );
@@ -90,24 +123,103 @@ function initCalculator(root: HTMLElement) {
   const tempRange = root.querySelector<HTMLInputElement>("[data-roi-temp-range]");
   const tempDisplay = root.querySelector<HTMLElement>("[data-roi-temp-display]");
 
+  const facilityButtons = root.querySelectorAll<HTMLButtonElement>(
+    "[data-roi-facility]",
+  );
+  const facilitySections = root.querySelectorAll<HTMLElement>(
+    "[data-roi-facility-section]",
+  );
+  const energyOptinRow = root.querySelector<HTMLElement>(
+    "[data-roi-energy-optin-row]",
+  );
+  const energyModule = root.querySelector<HTMLElement>("[data-roi-energy-module]");
+  const deskHeatmapWrap = root.querySelector<HTMLElement>(
+    "[data-roi-desk-heatmap-wrap]",
+  );
+  const demoWrap = root.querySelector<HTMLElement>("[data-roi-demo-wrap]");
+  const emailPanel = root.querySelector<HTMLElement>("[data-roi-email-panel]");
+  const emailSlotDesk = root.querySelector<HTMLElement>("[data-roi-email-slot-desk]");
+  const emailSlotRight = root.querySelector<HTMLElement>("[data-roi-email-slot-right]");
+
+  const employeesInput = root.querySelector<HTMLInputElement>("[data-roi-employees]");
+  const employeeCostInput = root.querySelector<HTMLInputElement>(
+    "[data-roi-employee-cost]",
+  );
+  const roomsInput = root.querySelector<HTMLInputElement>("[data-roi-rooms]");
+  const classroomsInput = root.querySelector<HTMLInputElement>(
+    "[data-roi-classrooms]",
+  );
+  const peopleInput = root.querySelector<HTMLInputElement>("[data-roi-people]");
+  const riskLevelEl = root.querySelector<HTMLElement>("[data-roi-risk-level]");
+  const collectionReveal = root.querySelector<HTMLButtonElement>(
+    "[data-roi-collection-reveal]",
+  );
+  const collectionPanel = root.querySelector<HTMLElement>(
+    "[data-roi-collection-panel]",
+  );
+  const collectionInput = root.querySelector<HTMLInputElement>(
+    "[data-roi-collection-value]",
+  );
+
+  const demoWithoutEl = root.querySelector<HTMLElement>("[data-roi-demo-without]");
+  const demoWithEl = root.querySelector<HTMLElement>("[data-roi-demo-with]");
+  const demoAnnualNoteEl = root.querySelector<HTMLElement>("[data-roi-demo-annual-note]");
+  const demoThreeYearNetEl = root.querySelector<HTMLElement>(
+    "[data-roi-demo-three-year-net]",
+  );
+
+  const disqualifyDialog = root.querySelector<HTMLDialogElement>(
+    "[data-roi-disqualify-dialog]",
+  );
+  const disqualifyForm = root.querySelector<HTMLFormElement>(
+    "[data-roi-disqualify-form]",
+  );
+  const disqualifyContent = root.querySelector<HTMLElement>(
+    "[data-roi-disqualify-content]",
+  );
+  const disqualifySuccess = root.querySelector<HTMLElement>(
+    "[data-roi-disqualify-success]",
+  );
+  const disqualifyFirstName = root.querySelector<HTMLInputElement>(
+    "[data-roi-disqualify-first-name]",
+  );
+  const disqualifyLastName = root.querySelector<HTMLInputElement>(
+    "[data-roi-disqualify-last-name]",
+  );
+  const disqualifyEmail = root.querySelector<HTMLInputElement>(
+    "[data-roi-disqualify-email]",
+  );
+  const disqualifyPhone = root.querySelector<HTMLInputElement>(
+    "[data-roi-disqualify-phone]",
+  );
+  const disqualifyError = root.querySelector<HTMLElement>(
+    "[data-roi-disqualify-error]",
+  );
+  const disqualifyHoneypot = root.querySelector<HTMLInputElement>(
+    "[data-roi-disqualify-honeypot]",
+  );
+
   const currencySymbols = root.querySelectorAll<HTMLElement>(
     "[data-roi-currency-symbol], [data-roi-currency-symbol-energy]",
   );
 
   let deskResults: DeskResults | null = null;
   let energyResults: EnergyResults | null = null;
-  let sqmEstimateActive = false;
   let leadUnlocked = false;
   let breakdownVisible = false;
+  let savedFirstName = "";
+  let savedLastName = "";
   let savedEmail = "";
-  let savedCompany = "";
+  let savedPhone = "";
   let lastReport: ComparisonReport | null = null;
 
   function buildPayload(): LeadPayload {
     return {
       calculator: activeTab,
+      firstName: savedFirstName,
+      lastName: savedLastName,
       email: savedEmail,
-      company: savedCompany || undefined,
+      phone: savedPhone || undefined,
       currency,
       inputs: activeTab === "desk" ? readDeskInputs() : readEnergyInputs(),
       results:
@@ -118,124 +230,133 @@ function initCalculator(root: HTMLElement) {
     };
   }
 
-  function readLeadFromForm(): { email: string } | null {
-    const email = emailInput?.value.trim() ?? "";
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return null;
-    }
-    return { email };
+  function readLeadFromForm() {
+    return validateLeadForm({
+      firstName: firstNameInput?.value ?? "",
+      lastName: lastNameInput?.value ?? "",
+      email: emailInput?.value ?? "",
+      phone: phoneInput?.value ?? "",
+    });
   }
 
-  function persistLead(email: string, company: string) {
+  function persistLead(
+    firstName: string,
+    lastName: string,
+    email: string,
+    phone: string,
+  ) {
+    savedFirstName = firstName;
+    savedLastName = lastName;
     savedEmail = email;
-    savedCompany = company;
+    savedPhone = phone;
     sessionStorage.setItem(
       ROI_LEAD_STORAGE_KEY,
-      JSON.stringify({ email, company }),
+      JSON.stringify({ firstName, lastName, email, phone }),
     );
+    if (firstNameInput) firstNameInput.value = firstName;
+    if (lastNameInput) lastNameInput.value = lastName;
     if (emailInput) emailInput.value = email;
-    if (companyInput) companyInput.value = company;
+    if (phoneInput) phoneInput.value = phone;
   }
 
   function prefillLeadFromStorage() {
     try {
       const raw = sessionStorage.getItem(ROI_LEAD_STORAGE_KEY);
       if (!raw) return;
-      const { email, company } = JSON.parse(raw) as {
+      const parsed = JSON.parse(raw) as {
+        firstName?: string;
+        lastName?: string;
         email?: string;
-        company?: string;
+        phone?: string;
       };
-      if (email && emailInput) emailInput.value = email;
-      if (company && companyInput) companyInput.value = company;
-      if (email) savedEmail = email;
-      if (company) savedCompany = company;
+      if (parsed.firstName && firstNameInput) firstNameInput.value = parsed.firstName;
+      if (parsed.lastName && lastNameInput) lastNameInput.value = parsed.lastName;
+      if (parsed.email && emailInput) emailInput.value = parsed.email;
+      if (parsed.phone && phoneInput) phoneInput.value = parsed.phone;
+      if (parsed.firstName) savedFirstName = parsed.firstName;
+      if (parsed.lastName) savedLastName = parsed.lastName;
+      if (parsed.email) savedEmail = parsed.email;
+      if (parsed.phone) savedPhone = parsed.phone;
     } catch {
       /* ignore */
     }
   }
 
-  function renderBreakdown() {
-    if (!emailBreakdown || !savedEmail) return;
-    const payload = buildPayload();
-    const report = buildComparisonReport(payload);
-    lastReport = report;
+  function syncReportCache() {
+    lastReport = buildComparisonReport(buildPayload());
+  }
 
-    const set = (sel: string, text: string) => {
-      const el = emailBreakdown.querySelector<HTMLElement>(sel);
-      if (el) el.textContent = text;
-    };
-    set("[data-roi-without-total]", formatMoney(report.currency, report.statusQuoAnnual));
-    set("[data-roi-with-total]", formatMoney(report.currency, report.optimizedAnnual));
-    set("[data-roi-gross]", formatMoney(report.currency, report.grossSavings));
-    set("[data-roi-platform]", formatMoney(report.currency, report.platformCostAnnual));
-    set("[data-roi-net]", formatMoney(report.currency, report.netSavings));
-
-    const list = emailBreakdown.querySelector("[data-roi-breakdown-lines]");
-    if (list) {
-      list.innerHTML = "";
-      for (const line of report.lineItems) {
-        const li = document.createElement("li");
-        li.className = "flex justify-between gap-3";
-        li.innerHTML = `<span>${line.label}</span><span class="font-medium text-navy-500 shrink-0">${line.value}</span>`;
-        list.appendChild(li);
+  function deliverPdfReport() {
+    if (!lastReport || !savedEmail) {
+      console.warn("[ROI] PDF skipped: missing report or email", {
+        hasReport: !!lastReport,
+        hasEmail: !!savedEmail,
+      });
+      return;
+    }
+    try {
+      const payload = buildPayload();
+      const meta = buildReportDisplayMeta(payload);
+      const investment = computeInvestment();
+      const blob = generateReportPdf(
+        lastReport,
+        {
+          firstName: savedFirstName,
+          lastName: savedLastName,
+          email: savedEmail,
+          phone: savedPhone || undefined,
+        },
+        meta,
+        { investment, inputs: payload.inputs },
+      );
+      downloadReportPdf(blob);
+    } catch (err) {
+      console.error("[ROI] PDF generation failed", err);
+      if (emailError) {
+        emailError.textContent =
+          "Sorry — we couldn't build the PDF. Open the browser console for details.";
+        emailError.classList.remove("hidden");
       }
     }
   }
 
-  function deliverPdfReport() {
-    if (!lastReport || !savedEmail) return;
-    const payload = buildPayload();
-    const meta = buildReportDisplayMeta(payload);
-    const blob = generateReportPdf(
-      lastReport,
-      {
-        email: savedEmail,
-        company: savedCompany || undefined,
-      },
-      meta,
-    );
-    downloadReportPdf(blob);
-  }
-
-  function showBreakdown() {
+  function showSuccess() {
     breakdownVisible = true;
     emailGate?.classList.add("hidden");
-    emailBreakdown?.classList.remove("hidden");
-    renderBreakdown();
+    emailSuccess?.classList.remove("hidden");
+    syncReportCache();
+    renderDemoPanel();
   }
 
   function showGate(prefillOnly = false) {
     breakdownVisible = false;
     emailGate?.classList.remove("hidden");
-    emailBreakdown?.classList.add("hidden");
+    emailSuccess?.classList.add("hidden");
     if (prefillOnly) {
       prefillLeadFromStorage();
     }
   }
 
-  /** true = Yes, still heating (waste); false = No, setback active */
-  function getToggleHeating(name: "weekend" | "nightly"): boolean {
-    const group = root.querySelector<HTMLElement>(
-      `[data-roi-toggle="${name}"]`,
-    );
+  /** Generic yes/no toggle row state. true = "Yes". */
+  function getToggle(name: string): boolean {
+    const group = root.querySelector<HTMLElement>(`[data-roi-toggle="${name}"]`);
     return group?.dataset.roiToggleOn === "true";
   }
 
-  function setToggleHeating(name: "weekend" | "nightly", stillHeating: boolean) {
-    const group = root.querySelector<HTMLElement>(
-      `[data-roi-toggle="${name}"]`,
-    );
+  function setToggle(name: string, on: boolean) {
+    const group = root.querySelector<HTMLElement>(`[data-roi-toggle="${name}"]`);
     if (!group) return;
-    group.dataset.roiToggleOn = String(stillHeating);
+    group.dataset.roiToggleOn = String(on);
     group.querySelectorAll<HTMLButtonElement>(".roi-toggle-btn").forEach((btn) => {
       const val = btn.dataset.roiToggleValue === "true";
-      const active = val === stillHeating;
+      const active = val === on;
       btn.classList.toggle("is-active", active);
       btn.setAttribute("aria-pressed", String(active));
     });
     const hint = root.querySelector<HTMLElement>(`[data-roi-badge-${name}]`);
     if (hint) {
-      hint.classList.toggle("hidden", stillHeating);
+      // "Yes" answers are the opportunity sensors address — show the badge.
+      hint.classList.toggle("hidden", !on);
     }
   }
 
@@ -247,58 +368,219 @@ function initCalculator(root: HTMLElement) {
         attendanceRange?.value ?? DESK_LIMITS.defaultAttendance,
       ),
       annualCostPerDesk: Number(deskCostInput?.value ?? DEFAULTS[currency].costPerDesk),
+      goals: [...deskGoals],
     };
+  }
+
+  function energyModuleActive(): boolean {
+    return activeFacility === "office" || getToggle("energy-optin");
   }
 
   function readEnergyInputs(): EnergyInputs {
-    let bill = Number(heatingBillInput?.value ?? DEFAULTS[currency].heatingBill);
-    if (sqmEstimateActive && sqmInput) {
-      bill = estimateBillFromSqm(
-        Number(sqmInput.value),
-        DEFAULTS[currency].heatingPerSqm,
-      );
-      if (heatingBillInput) heatingBillInput.value = String(Math.round(bill));
-    }
+    const collectionRaw = Number(collectionInput?.value);
     return {
-      annualBill: bill,
-      heatsWeekends: getToggleHeating("weekend"),
-      heatsNightly: getToggleHeating("nightly"),
+      facility: activeFacility,
+      energyModuleActive: energyModuleActive(),
+      annualBill: Number(heatingBillInput?.value ?? DEFAULTS[currency].heatingBill),
+      heatsWeekends: getToggle("weekend"),
+      heatsNightly: getToggle("nightly"),
       avgTempC: Number(tempRange?.value ?? ENERGY_LIMITS.defaultTemp),
+      areaSqm: readEnergyAreaSqm(),
+      employees:
+        employeesDirty && employeesInput
+          ? Math.max(1, Number(employeesInput.value) || 1)
+          : undefined,
+      avgEmployeeCost: Number(
+        employeeCostInput?.value ?? DEFAULTS[currency].avgEmployeeCost,
+      ),
+      monitoredRooms: Math.max(
+        1,
+        Number(roomsInput?.value ?? ENERGY_LIMITS.defaultHeritageRooms) || 1,
+      ),
+      humiditySensitive: getToggle("humidity"),
+      intermittentHeating: getToggle("intermittent"),
+      needsDocumentation: getToggle("documentation"),
+      collectionValue:
+        Number.isFinite(collectionRaw) && collectionRaw > 0
+          ? collectionRaw
+          : undefined,
+      heritageIncidentCost: DEFAULTS[currency].heritageIncidentCost,
+      classrooms: Math.max(
+        1,
+        Number(classroomsInput?.value ?? ENERGY_LIMITS.defaultClassrooms) || 1,
+      ),
+      people:
+        peopleDirty && peopleInput
+          ? Math.max(1, Number(peopleInput.value) || 1)
+          : undefined,
+      costPerSickDay: DEFAULTS[currency].costPerSickDay,
     };
   }
 
-  function animateCounter(target: number) {
-    if (!counterEl) return;
-    targetValue = target;
-    if (prefersReducedMotion) {
-      displayValue = target;
-      counterEl.textContent = formatMoney(currency, displayValue);
-      return;
+  /** Returns m² either from the input or back-derived from the heating bill. */
+  function readEnergyAreaSqm(): number {
+    const inputVal = Number(sqmInput?.value);
+    if (Number.isFinite(inputVal) && inputVal > 0) return inputVal;
+    const bill = Number(heatingBillInput?.value ?? DEFAULTS[currency].heatingBill);
+    const perSqm = DEFAULTS[currency].heatingPerSqm;
+    if (bill > 0 && perSqm > 0) return Math.max(50, Math.round(bill / perSqm));
+    return ENERGY_LIMITS.defaultSqm;
+  }
+
+  function computeInvestment(): InvestmentSummary {
+    if (activeTab === "desk") {
+      const inputs = readDeskInputs();
+      const results = deskResults ?? calculateDesk(inputs);
+      return calculateDeskInvestment({
+        currentDesks: inputs.currentDesks,
+        grossAnnualSavings: results.totalSavings,
+        currency,
+      });
     }
-    cancelAnimationFrame(animFrame);
-    const start = displayValue;
-    const startTime = performance.now();
-    const duration = 400;
-
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - startTime) / duration);
-      const eased = 1 - (1 - t) ** 3;
-      displayValue = start + (target - start) * eased;
-      counterEl.textContent = formatMoney(currency, displayValue);
-      if (t < 1) {
-        animFrame = requestAnimationFrame(tick);
-      } else {
-        displayValue = target;
-      }
-    };
-    animFrame = requestAnimationFrame(tick);
+    const energyInputs = readEnergyInputs();
+    const results = energyResults ?? calculateEnergy(energyInputs);
+    return calculateEnergyInvestment({
+      facility: activeFacility,
+      areaSqm: energyInputs.areaSqm,
+      roomCount:
+        activeFacility === "heritage"
+          ? energyInputs.monitoredRooms
+          : energyInputs.classrooms,
+      grossAnnualSavings: results.totalSavings,
+      currency,
+    });
   }
 
-  function updateCounterAccent(tab: CalculatorTab) {
-    if (!savingsCounterWrap) return;
-    const valueEl = savingsCounterWrap.querySelector("[data-roi-counter-value]");
-    valueEl?.classList.toggle("text-sky-600", tab === "energy");
-    valueEl?.classList.toggle("text-navy-500", tab === "desk");
+  function renderDemoPanel() {
+    if (activeTab === "desk" && deskGoals.size === 0) return;
+
+    const investment = computeInvestment();
+    const report = buildComparisonReport(buildPayload());
+
+    if (demoWithoutEl) {
+      demoWithoutEl.textContent = formatMoney(currency, report.statusQuoAnnual);
+    }
+    if (demoWithEl) {
+      demoWithEl.textContent = formatMoney(currency, report.optimizedAnnual);
+    }
+    if (demoAnnualNoteEl) {
+      if (activeTab === "desk") {
+        demoAnnualNoteEl.textContent =
+          "Annual desk spend today vs. after right-sizing at peak attendance.";
+      } else if (activeFacility === "heritage") {
+        demoAnnualNoteEl.textContent =
+          "Bill and risk exposure today vs. after monitoring and setbacks.";
+      } else if (activeFacility === "school") {
+        demoAnnualNoteEl.textContent =
+          "Today's bill and sick-day cost vs. after healthier classrooms.";
+      } else {
+        demoAnnualNoteEl.textContent =
+          "Energy bill and productivity cost today vs. after optimising climate.";
+      }
+    }
+    if (demoThreeYearNetEl) {
+      demoThreeYearNetEl.textContent = formatMoney(
+        currency,
+        Math.max(0, investment.threeYearNet),
+      );
+    }
+    syncPaywallState();
+  }
+
+  function clearEmailFieldErrors() {
+    firstNameInput?.classList.remove("roi-field-error");
+    lastNameInput?.classList.remove("roi-field-error");
+    emailInput?.classList.remove("roi-field-error");
+  }
+
+  function markEmailFieldErrors(fields: {
+    firstName: string;
+    lastName: string;
+    email: string;
+  }) {
+    clearEmailFieldErrors();
+    if (!fields.firstName.trim()) firstNameInput?.classList.add("roi-field-error");
+    if (!fields.lastName.trim()) lastNameInput?.classList.add("roi-field-error");
+    const emailTrim = fields.email.trim();
+    if (!emailTrim || !isWorkEmail(emailTrim)) {
+      emailInput?.classList.add("roi-field-error");
+    }
+  }
+
+  function syncPaywallState() {
+    const zone = root.querySelector<HTMLElement>("[data-roi-paywall-zone]");
+    if (!zone) return;
+    zone.classList.toggle("is-unlocked", leadUnlocked);
+    zone.classList.toggle("is-locked", !leadUnlocked);
+  }
+
+  function syncEmailPanelPlacement() {
+    if (!emailPanel || !emailSlotDesk || !emailSlotRight) return;
+    const onLeft = activeTab === "desk" && deskGoals.size === 0;
+    const target = onLeft ? emailSlotDesk : emailSlotRight;
+    if (emailPanel.parentElement !== target) {
+      target.appendChild(emailPanel);
+    }
+    emailPanel.classList.toggle("roi-email-inline", onLeft);
+    emailPanel.classList.toggle("roi-email-paywall", !onLeft);
+  }
+
+  function syncDeskBlocks() {
+    const hasGoals = deskGoals.size > 0;
+    root.querySelectorAll<HTMLElement>("[data-roi-desk-block]").forEach((block) => {
+      const kind = block.dataset.roiDeskBlock;
+      const visible =
+        (kind === "core" && hasGoals) || (kind === "cut" && deskGoals.has("cut"));
+      block.classList.toggle("is-visible", visible);
+    });
+  }
+
+  function syncLayout() {
+    const hasGoals = deskGoals.size > 0;
+    const onDesk = activeTab === "desk";
+    if (onDesk) syncDeskBlocks();
+    deskHeatmapWrap?.classList.toggle("hidden", !onDesk || !hasGoals);
+    demoWrap?.classList.toggle("hidden", onDesk && !hasGoals);
+    syncEmailPanelPlacement();
+    syncPaywallState();
+  }
+
+  /** Pixel centre of the range thumb for a given value — matches browser track geometry. */
+  function rangeThumbCenterPx(range: HTMLInputElement, value: number): number {
+    const min = Number(range.min);
+    const max = Number(range.max);
+    const span = max - min;
+    const ratio = span > 0 ? (value - min) / span : 0;
+    const rect = range.getBoundingClientRect();
+    return rect.left + ATTENDANCE_THUMB_PX / 2 + ratio * (rect.width - ATTENDANCE_THUMB_PX);
+  }
+
+  function syncAttendanceMarks() {
+    const marksContainer = root.querySelector<HTMLElement>("[data-roi-attendance-marks]");
+    if (!attendanceRange || !marksContainer) return;
+    const containerRect = marksContainer.getBoundingClientRect();
+    if (containerRect.width <= 0) return;
+
+    root
+      .querySelectorAll<HTMLButtonElement>("[data-roi-attendance-mark]")
+      .forEach((btn) => {
+        const value = Number(btn.dataset.roiAttendanceMark);
+        if (Number.isNaN(value)) return;
+        const leftPx = rangeThumbCenterPx(attendanceRange, value) - containerRect.left;
+        btn.style.left = `${leftPx}px`;
+      });
+  }
+
+  function syncEnergyModuleVisibility(scrollReveal = false) {
+    const show = activeFacility === "office" || getToggle("energy-optin");
+    energyModule?.classList.toggle("hidden", !show);
+    energyOptinRow?.classList.toggle("hidden", activeFacility === "office");
+    if (scrollReveal && show && activeFacility !== "office") {
+      energyModule?.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "nearest",
+      });
+    }
   }
 
   function renderDesk() {
@@ -307,15 +589,83 @@ function initCalculator(root: HTMLElement) {
     if (desksDisplay) desksDisplay.textContent = formatNumber(inputs.currentDesks);
     if (attendanceDisplay)
       attendanceDisplay.textContent = formatPct(inputs.peakAttendancePct);
-    if (activeTab === "desk") {
-      animateCounter(deskResults.totalSavings);
-      if (teaserEl) {
-        teaserEl.textContent =
-          deskResults.reducibleDesks > 0
-            ? `You could right-size ~${formatNumber(deskResults.reducibleDesks)} desks (${formatPct(deskResults.savingsPctOfCapacity, 0)} of capacity).`
-            : "Your peak attendance matches your desk count — try lowering the attendance slider.";
+    renderHeatmap(inputs, deskResults);
+    syncAttendanceMarks();
+  }
+
+  function renderHeatmap(inputs: DeskInputs, results: DeskResults) {
+    if (!heatmapGrid) return;
+    if (deskGoals.size === 0) return;
+
+    const desks = Math.max(0, inputs.currentDesks);
+    const scale = Math.max(1, Math.ceil(desks / HEATMAP_MAX_CELLS));
+    const totalCells = Math.max(1, Math.round(desks / scale));
+    const occupiedCells = Math.min(
+      totalCells,
+      Math.round(results.requiredDesks / scale),
+    );
+    const freedCells = totalCells - occupiedCells;
+
+    if (heatmapScaleNote) {
+      heatmapScaleNote.textContent =
+        scale > 1 ? `1 square ≈ ${scale} desks` : "1 square = 1 desk";
+    }
+
+    const targetRows = 5;
+    const cols = Math.min(20, Math.max(10, Math.ceil(totalCells / targetRows)));
+    heatmapGrid.style.gridTemplateColumns = `repeat(${cols}, minmax(0, 1fr))`;
+
+    // Zone the freed cells across the selected goals.
+    const shares = partitionFreedDesks(freedCells, inputs.goals);
+    const cellClasses: string[] = [];
+    for (let i = 0; i < occupiedCells; i++) cellClasses.push("roi-heat-occupied");
+    if (shares.length > 0) {
+      for (const share of shares) {
+        for (let i = 0; i < share.desks; i++) {
+          cellClasses.push(`roi-heat-${share.goal}`);
+        }
       }
-      capNoteEl?.classList.add("hidden");
+    } else if (freedCells > 0) {
+      for (let i = 0; i < freedCells; i++) cellClasses.push("roi-heat-cut");
+    }
+    while (cellClasses.length < totalCells) cellClasses.push("roi-heat-occupied");
+
+    heatmapGrid.innerHTML = "";
+    for (const cls of cellClasses) {
+      const cell = document.createElement("div");
+      cell.className = `roi-heat-cell ${cls}`;
+      heatmapGrid.appendChild(cell);
+    }
+
+    // Legend rows only for selected goals.
+    root
+      .querySelectorAll<HTMLElement>("[data-roi-heatmap-legend]")
+      .forEach((legend) => {
+        const goal = legend.dataset.roiHeatmapLegend as DeskGoal;
+        legend.classList.toggle("hidden", !inputs.goals.includes(goal));
+      });
+
+    if (heatmapSuggestions) {
+      heatmapSuggestions.innerHTML = "";
+      const suggestions = buildGoalSuggestions(currency, inputs, results);
+      for (const suggestion of suggestions) {
+        const li = document.createElement("li");
+        li.className = "flex items-start gap-2";
+        const dot = document.createElement("span");
+        dot.className = `roi-heat-swatch roi-heat-${suggestion.goal} mt-1 shrink-0`;
+        dot.setAttribute("aria-hidden", "true");
+        const text = document.createElement("span");
+        text.textContent = suggestion.text;
+        li.append(dot, text);
+        heatmapSuggestions.appendChild(li);
+      }
+      if (suggestions.length === 0 && freedCells === 0) {
+        const li = document.createElement("li");
+        li.className = "text-stone-300";
+        li.textContent =
+          "Peak attendance matches your desk count — lower the attendance slider to free up space.";
+        heatmapSuggestions.appendChild(li);
+      }
     }
   }
 
@@ -324,23 +674,26 @@ function initCalculator(root: HTMLElement) {
     energyResults = calculateEnergy(inputs);
     if (tempDisplay) tempDisplay.textContent = `${inputs.avgTempC}°C`;
     if (tempRange) tempRange.setAttribute("aria-valuenow", String(inputs.avgTempC));
-    if (activeTab === "energy") {
-      animateCounter(energyResults.totalSavings);
-      if (teaserEl) {
-        teaserEl.textContent =
-          inputs.annualBill > 0
-            ? `Up to ${formatPct(energyResults.savingsPctOfBill, 0)} of your annual heating bill.`
-            : "Enter your heating bill or floor area to see an estimate.";
-      }
-      capNoteEl?.classList.toggle("hidden", !energyResults.capped);
+
+    // Keep derived fields in sync until the visitor edits them.
+    if (employeesInput && !employeesDirty) {
+      employeesInput.value = String(deriveEmployeesFromArea(inputs.areaSqm));
+    }
+    if (peopleInput && !peopleDirty) {
+      peopleInput.value = String(derivePeopleFromClassrooms(inputs.classrooms));
+    }
+    if (riskLevelEl) {
+      const labels = { low: "Low", medium: "Medium", high: "High" } as const;
+      riskLevelEl.textContent = labels[energyResults.riskLevel];
     }
   }
 
   function recalc() {
     renderDesk();
     renderEnergy();
+    renderDemoPanel();
     if (leadUnlocked && breakdownVisible) {
-      renderBreakdown();
+      syncReportCache();
     }
   }
 
@@ -356,14 +709,24 @@ function initCalculator(root: HTMLElement) {
     energyPanel?.classList.toggle("hidden", tab !== "energy");
     moduleLinkDesk?.classList.toggle("hidden", tab !== "desk");
     moduleLinkEnergy?.classList.toggle("hidden", tab !== "energy");
-    updateCounterAccent(tab);
-    if (tab === "desk" && deskResults) {
-      animateCounter(deskResults.totalSavings);
-      renderDesk();
-    } else if (tab === "energy" && energyResults) {
-      animateCounter(energyResults.totalSavings);
-      renderEnergy();
-    }
+    syncLayout();
+    recalc();
+  }
+
+  function setFacility(facility: EnergyFacility) {
+    activeFacility = facility;
+    facilityButtons.forEach((btn) => {
+      const isActive = btn.dataset.roiFacility === facility;
+      btn.classList.toggle("is-active", isActive);
+      btn.setAttribute("aria-pressed", String(isActive));
+    });
+    facilitySections.forEach((section) => {
+      section.classList.toggle(
+        "hidden",
+        section.dataset.roiFacilitySection !== facility,
+      );
+    });
+    syncEnergyModuleVisibility();
     recalc();
   }
 
@@ -378,11 +741,14 @@ function initCalculator(root: HTMLElement) {
       el.textContent = sym;
     });
 
-    if (deskCostInput && prev !== next) {
-      deskCostInput.value = String(DEFAULTS[next].costPerDesk);
-    }
-    if (heatingBillInput && prev !== next) {
-      heatingBillInput.value = String(DEFAULTS[next].heatingBill);
+    if (prev !== next) {
+      if (deskCostInput) deskCostInput.value = String(DEFAULTS[next].costPerDesk);
+      if (heatingBillInput) {
+        heatingBillInput.value = String(DEFAULTS[next].heatingBill);
+      }
+      if (employeeCostInput) {
+        employeeCostInput.value = String(DEFAULTS[next].avgEmployeeCost);
+      }
     }
     recalc();
   }
@@ -404,6 +770,26 @@ function initCalculator(root: HTMLElement) {
     });
   });
 
+  // Desk goal chips — multi-select; fields appear as goals are chosen.
+  goalChips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const goal = chip.dataset.roiGoal as DeskGoal;
+      if (!goal) return;
+      if (deskGoals.has(goal)) {
+        deskGoals.delete(goal);
+      } else {
+        deskGoals.add(goal);
+      }
+      goalChips.forEach((c) => {
+        const active = deskGoals.has(c.dataset.roiGoal as DeskGoal);
+        c.classList.toggle("is-active", active);
+        c.setAttribute("aria-pressed", String(active));
+      });
+      syncLayout();
+      recalc();
+    });
+  });
+
   // Desk inputs
   const syncDesks = (value: number) => {
     const v = Math.min(
@@ -422,61 +808,252 @@ function initCalculator(root: HTMLElement) {
     syncDesks(Number(desksNumber.value));
     recalc();
   });
-  attendanceRange?.addEventListener("input", () => renderDesk());
+  attendanceRange?.addEventListener("input", () => {
+    renderDesk();
+    recalc();
+  });
+  deskCostInput?.addEventListener("change", () => {
+    recalc();
+  });
+
+  root.querySelectorAll<HTMLButtonElement>("[data-roi-attendance-mark]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const value = Number(btn.dataset.roiAttendanceMark);
+      if (!attendanceRange || Number.isNaN(value)) return;
+      attendanceRange.value = String(value);
+      renderDesk();
+      recalc();
+    });
+  });
   deskCostInput?.addEventListener("input", () => renderDesk());
+
+  // Facility selector
+  facilityButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const facility = btn.dataset.roiFacility as EnergyFacility;
+      if (facility) setFacility(facility);
+    });
+  });
 
   // Energy inputs
   heatingBillInput?.addEventListener("input", () => {
-    sqmEstimateActive = false;
     renderEnergy();
+    renderDemoPanel();
   });
   sqmInput?.addEventListener("input", () => {
-    sqmEstimateActive = true;
     renderEnergy();
+    renderDemoPanel();
   });
-  tempRange?.addEventListener("input", () => renderEnergy());
+  tempRange?.addEventListener("input", () => {
+    renderEnergy();
+    renderDemoPanel();
+  });
+  employeesInput?.addEventListener("input", () => {
+    employeesDirty = true;
+    renderEnergy();
+    renderDemoPanel();
+  });
+  employeeCostInput?.addEventListener("input", () => {
+    renderEnergy();
+    renderDemoPanel();
+  });
+  roomsInput?.addEventListener("input", () => {
+    renderEnergy();
+    renderDemoPanel();
+  });
+  classroomsInput?.addEventListener("input", () => {
+    renderEnergy();
+    renderDemoPanel();
+  });
+  peopleInput?.addEventListener("input", () => {
+    peopleDirty = true;
+    renderEnergy();
+    renderDemoPanel();
+  });
+  collectionInput?.addEventListener("input", () => {
+    renderEnergy();
+    renderDemoPanel();
+  });
 
-  heatingEstimateToggle?.addEventListener("click", () => {
-    const open = heatingEstimatePanel?.classList.toggle("hidden") === false;
-    heatingEstimateToggle.setAttribute("aria-expanded", String(open));
-    if (!open) {
-      sqmEstimateActive = false;
-      renderEnergy();
-    }
+  const clearFieldError = (el: HTMLInputElement | null) => {
+    el?.addEventListener("input", () => el.classList.remove("roi-field-error"));
+  };
+  clearFieldError(firstNameInput);
+  clearFieldError(lastNameInput);
+  clearFieldError(emailInput);
+
+  collectionReveal?.addEventListener("click", () => {
+    const open = collectionPanel?.classList.toggle("hidden") === false;
+    collectionReveal.setAttribute("aria-expanded", String(open));
+    if (open) collectionInput?.focus();
   });
 
   root.querySelectorAll<HTMLElement>("[data-roi-toggle]").forEach((group) => {
     group.querySelectorAll<HTMLButtonElement>(".roi-toggle-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
-        const stillHeating = btn.dataset.roiToggleValue === "true";
-        const name = group.dataset.roiToggle as "weekend" | "nightly";
-        setToggleHeating(name, stillHeating);
-        renderEnergy();
+        const on = btn.dataset.roiToggleValue === "true";
+        const name = group.dataset.roiToggle;
+        if (!name) return;
+        setToggle(name, on);
+        if (name === "energy-optin") {
+          syncEnergyModuleVisibility(on);
+        }
+        recalc();
       });
     });
   });
 
   emailForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const lead = readLeadFromForm();
-    if (!lead) {
+
+    // Anti-spam gates (honeypot + dwell time) are temporarily disabled so
+    // reports can be tested end-to-end. Re-enable both before going live.
+    // if (isHoneypotFilled(honeypotInput?.value ?? "")) return;
+    // if (isSubmitTooSoon(calculatorReadyAt)) { ... }
+    void honeypotInput;
+    void calculatorReadyAt;
+    void isHoneypotFilled;
+    void isSubmitTooSoon;
+
+    clearEmailFieldErrors();
+    const formFields = {
+      firstName: firstNameInput?.value ?? "",
+      lastName: lastNameInput?.value ?? "",
+      email: emailInput?.value ?? "",
+      phone: phoneInput?.value ?? "",
+    };
+    const result = validateLeadForm(formFields);
+    if (!result.valid) {
+      markEmailFieldErrors(formFields);
+      if (emailError) emailError.textContent = result.message;
       emailError?.classList.remove("hidden");
+      emailError?.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "nearest",
+      });
+      if (!formFields.firstName.trim()) firstNameInput?.focus();
+      else if (!formFields.lastName.trim()) lastNameInput?.focus();
+      else emailInput?.focus();
       return;
     }
     emailError?.classList.add("hidden");
-    persistLead(lead.email, companyInput?.value.trim() ?? "");
+    persistLead(
+      result.data.firstName,
+      result.data.lastName,
+      result.data.email,
+      result.data.phone ?? "",
+    );
+
+    // Disqualification: when subscription >= savings the customer can never
+    // break even — skip the negative PDF and route them to sales.
+    const investment = computeInvestment();
+    if (investment.disqualified) {
+      openDisqualifyDialog();
+      return;
+    }
+
     leadUnlocked = true;
 
     const payload = buildPayload();
     await submitLead(payload);
-    showBreakdown();
+    showSuccess();
     deliverPdfReport();
+  });
+
+  function openDisqualifyDialog() {
+    if (!disqualifyDialog) return;
+    disqualifyContent?.classList.remove("hidden");
+    disqualifySuccess?.classList.add("hidden");
+    disqualifyError?.classList.add("hidden");
+    if (disqualifyFirstName) disqualifyFirstName.value = savedFirstName;
+    if (disqualifyLastName) disqualifyLastName.value = savedLastName;
+    if (disqualifyEmail) disqualifyEmail.value = savedEmail;
+    if (disqualifyPhone) disqualifyPhone.value = savedPhone;
+    if (typeof disqualifyDialog.showModal === "function") {
+      disqualifyDialog.showModal();
+    } else {
+      disqualifyDialog.setAttribute("open", "");
+    }
+  }
+
+  function closeDisqualifyDialog() {
+    if (!disqualifyDialog) return;
+    if (typeof disqualifyDialog.close === "function") {
+      disqualifyDialog.close();
+    } else {
+      disqualifyDialog.removeAttribute("open");
+    }
+  }
+
+  root.querySelectorAll<HTMLButtonElement>(
+    "[data-roi-disqualify-close]",
+  ).forEach((btn) => {
+    btn.addEventListener("click", closeDisqualifyDialog);
+  });
+
+  disqualifyForm?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Anti-spam gates temporarily disabled (see emailForm handler above).
+    void disqualifyHoneypot;
+
+    const validation = validateLeadForm({
+      firstName: disqualifyFirstName?.value ?? "",
+      lastName: disqualifyLastName?.value ?? "",
+      email: disqualifyEmail?.value ?? "",
+      phone: disqualifyPhone?.value ?? "",
+    });
+    const phoneRaw = disqualifyPhone?.value.trim() ?? "";
+
+    if (!validation.valid || !phoneRaw) {
+      if (disqualifyError) {
+        disqualifyError.textContent = validation.valid
+          ? "A phone number is required so sales can reach you."
+          : validation.message;
+      }
+      disqualifyError?.classList.remove("hidden");
+      return;
+    }
+    disqualifyError?.classList.add("hidden");
+
+    persistLead(
+      validation.data.firstName,
+      validation.data.lastName,
+      validation.data.email,
+      validation.data.phone ?? "",
+    );
+
+    const inputs =
+      activeTab === "desk" ? readDeskInputs() : readEnergyInputs();
+    const results =
+      activeTab === "desk"
+        ? (deskResults ?? calculateDesk(readDeskInputs()))
+        : (energyResults ?? calculateEnergy(readEnergyInputs()));
+
+    const payload: ConsultRequestPayload = {
+      reason: "disqualified-roi",
+      calculator: activeTab,
+      firstName: validation.data.firstName,
+      lastName: validation.data.lastName,
+      email: validation.data.email,
+      phone: validation.data.phone ?? "",
+      currency,
+      inputs,
+      results,
+      pageUrl: window.location.href,
+    };
+
+    await submitConsultRequest(payload);
+    disqualifyContent?.classList.add("hidden");
+    disqualifySuccess?.classList.remove("hidden");
   });
 
   root.querySelector<HTMLButtonElement>("[data-roi-adjust-inputs]")?.addEventListener(
     "click",
     () => {
+      leadUnlocked = false;
       showGate(true);
+      renderDemoPanel();
       root.scrollIntoView({ behavior: "smooth", block: "start" });
     },
   );
@@ -511,7 +1088,13 @@ function initCalculator(root: HTMLElement) {
   breakdownVisible = false;
   prefillLeadFromStorage();
   showGate();
-  recalc();
+  if (emailPanel && emailSlotDesk) {
+    emailSlotDesk.appendChild(emailPanel);
+  }
+  syncLayout();
+  setFacility("office");
+  requestAnimationFrame(() => syncAttendanceMarks());
+  window.addEventListener("resize", () => syncAttendanceMarks());
 }
 
 document.querySelectorAll<HTMLElement>("[data-roi-calculator]").forEach((root) => {

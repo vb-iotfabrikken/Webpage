@@ -1,10 +1,13 @@
 ---
 import type { CaseStudyLeaf } from "../data/hubs/caseStudies";
-import { caseStudyCategoryLabels } from "../data/hubs/caseStudies";
+import { getCaseStudyCategoryLabels } from "../data/hubs/caseStudies";
+import { getCases } from "../data/i18n/cases";
+import { defaultLang, type Lang } from "../data/lang";
 
 interface Props {
   cases: CaseStudyLeaf[];
   basePath: string;
+  lang?: Lang;
   initialVisible?: number;
   loadMoreLabel?: string;
 }
@@ -12,9 +15,14 @@ interface Props {
 const {
   cases,
   basePath,
+  lang = defaultLang,
   initialVisible = cases.length,
-  loadMoreLabel = "Load more",
+  loadMoreLabel,
 } = Astro.props;
+
+const t = getCases(lang);
+const categoryLabels = getCaseStudyCategoryLabels(lang);
+const loadMoreText = loadMoreLabel ?? t.loadMore;
 
 const leafBase = basePath.endsWith("/") ? basePath : `${basePath}/`;
 const hasMore = cases.length > initialVisible;
@@ -51,7 +59,7 @@ const gridId = `case-grid-${Math.random().toString(36).slice(2, 9)}`;
           <div class="case-showcase__body">
             {entry.category && (
               <p class="case-showcase__category">
-                {caseStudyCategoryLabels[entry.category]}
+                {categoryLabels[entry.category as keyof typeof categoryLabels]}
               </p>
             )}
 
@@ -60,7 +68,7 @@ const gridId = `case-grid-${Math.random().toString(36).slice(2, 9)}`;
 
             <div class="case-showcase__actions">
               <a href={`${leafBase}${entry.slug}/`} class="case-showcase__link case-showcase__link--primary">
-                Read more
+                {t.readMore}
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                   <path
                     d="M3 7h8M7 3l4 4-4 4"
@@ -77,7 +85,7 @@ const gridId = `case-grid-${Math.random().toString(36).slice(2, 9)}`;
                   target={isExternalHref(entry.articleHref) ? "_blank" : undefined}
                   rel={isExternalHref(entry.articleHref) ? "noopener noreferrer" : undefined}
                 >
-                  Read article
+                  {t.readArticle}
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                     <path
                       d="M3 7h8M7 3l4 4-4 4"
@@ -98,7 +106,7 @@ const gridId = `case-grid-${Math.random().toString(36).slice(2, 9)}`;
   {hasMore && (
     <div class="case-showcase__more">
       <button type="button" class="case-showcase__more-btn" data-case-load-more aria-controls={gridId}>
-        {loadMoreLabel}
+        {loadMoreText}
       </button>
     </div>
   )}
