@@ -1,0 +1,17 @@
+# Build artifacts and tooling — never needed inside the image.
+node_modules
+dist
+.astro
+.git
+.github
+.vscode
+.cursor
+terminals
+*.log
+npm-debug.log*
+
+# Large source-only assets. Product sheets are already synced into
+# public/downloads/, so the originals under Productsheets/ are not needed for
+# the build. Content/ holds .docx source documents, never served.
+Content
+Productsheets

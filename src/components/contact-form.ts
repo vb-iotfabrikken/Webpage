@@ -4,8 +4,18 @@ import {
   validateContactForm,
 } from "../lib/forms/validate-lead";
 
+/** Localized validation strings injected server-side via data-contact-messages. */
+function readMessages(form: HTMLFormElement): Record<string, string> {
+  try {
+    return JSON.parse(form.dataset.contactMessages ?? "{}") as Record<string, string>;
+  } catch {
+    return {};
+  }
+}
+
 function initContactForm(form: HTMLFormElement) {
   const readyAt = Date.now();
+  const messages = readMessages(form);
   const honeypot = form.querySelector<HTMLInputElement>("[data-contact-honeypot]");
   const errorEl = form.querySelector<HTMLElement>("[data-contact-error]");
   const nameInput = form.querySelector<HTMLInputElement>('[name="name"]');
@@ -22,7 +32,7 @@ function initContactForm(form: HTMLFormElement) {
     if (isSubmitTooSoon(readyAt)) {
       if (errorEl) {
         errorEl.textContent =
-          "Please wait a moment before submitting, then try again.";
+          messages.too_soon ?? "Please wait a moment before submitting, then try again.";
       }
       errorEl?.classList.remove("hidden");
       return;
@@ -35,7 +45,7 @@ function initContactForm(form: HTMLFormElement) {
     });
 
     if (!result.valid) {
-      if (errorEl) errorEl.textContent = result.message;
+      if (errorEl) errorEl.textContent = messages[result.code] ?? result.message;
       errorEl?.classList.remove("hidden");
       return;
     }

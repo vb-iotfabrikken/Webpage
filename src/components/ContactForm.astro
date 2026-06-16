@@ -10,9 +10,11 @@ interface Props {
 }
 
 const { title, subtitle, lang = defaultLang } = Astro.props;
-const f = getContact(lang).form;
-const heading = title ?? getContact(lang).bookDemo.formTitle;
-const sub = subtitle ?? getContact(lang).bookDemo.formSubtitle;
+const c = getContact(lang);
+const f = c.form;
+const heading = title ?? c.bookDemo.formTitle;
+const sub = subtitle ?? c.bookDemo.formSubtitle;
+const validationMessages = JSON.stringify(c.validation);
 ---
 
 <section class="py-20 md:py-24 bg-white">
@@ -44,6 +46,7 @@ const sub = subtitle ?? getContact(lang).bookDemo.formSubtitle;
         action="#"
         method="post"
         data-contact-form
+        data-contact-messages={validationMessages}
         novalidate
       >
         <div class="form-honeypot" aria-hidden="true">

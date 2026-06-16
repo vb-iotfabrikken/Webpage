@@ -4,6 +4,7 @@ import LegalProse from "../../../components/legal/LegalProse.astro";
 import { getLegalHub } from "../../../data/hubs/legal";
 import { getLegal } from "../../../data/i18n/legal";
 import { locales, langPath, type Lang } from "../../../data/lang";
+import { isLivePath } from "../../../data/launch";
 
 export function getStaticPaths() {
   return locales.map((l) => ({ params: { lang: l.code } }));
@@ -12,6 +13,17 @@ export function getStaticPaths() {
 const { lang } = Astro.params as { lang: Lang };
 const leaf = getLegalHub(lang).leaves.find((l) => l.slug === "impressum")!;
 const legal = getLegal(lang);
+
+const unwrapHidden = (html: string) =>
+  html.replace(/<a href="(\/[^"]*)">(.*?)<\/a>/g, (m, href, text) =>
+    isLivePath(href) ? m : text,
+  );
+const impressumBody = unwrapHidden(legal.impressum.body);
+
+const legalHubHref = langPath("legal", lang);
+const legalCrumb = isLivePath(legalHubHref)
+  ? { label: legal.common.legal, href: legalHubHref }
+  : { label: legal.common.legal };
 ---
 
 <PlaceholderPage
@@ -22,13 +34,13 @@ const legal = getLegal(lang);
   heroLead={leaf.lead}
   breadcrumbs={[
     { label: legal.common.home, href: langPath("", lang) },
-    { label: legal.common.legal, href: langPath("legal", lang) },
+    legalCrumb,
     { label: leaf.title.replace(/[.,]\s*$/, "") },
   ]}
   hideNotice={true}
   showCtas={false}
 >
   <LegalProse>
-    <Fragment set:html={legal.impressum.body} />
+    <Fragment set:html={impressumBody} />
   </LegalProse>
 </PlaceholderPage>

@@ -33,6 +33,15 @@ export interface ContactStrings {
     disclaimer: string;
     submit: string;
   };
+  /** Client-side validation messages, keyed by ValidationCode + tooSoon. */
+  validation: {
+    name_required: string;
+    email_invalid: string;
+    email_personal: string;
+    email_disposable: string;
+    phone_invalid: string;
+    too_soon: string;
+  };
 }
 
 const contactStrings: Record<Lang, ContactStrings> = {
@@ -76,6 +85,16 @@ const contactStrings: Record<Lang, ContactStrings> = {
         "By submitting you accept our privacy policy. Use your company email — personal addresses are not accepted.",
       submit: "Send",
     },
+    validation: {
+      name_required: "Please enter your name.",
+      email_invalid: "Please enter a valid work email address.",
+      email_personal:
+        "Please use your work email. Personal addresses (Gmail, Outlook, Yahoo, etc.) are not accepted.",
+      email_disposable:
+        "Please use a permanent work email. Temporary or disposable addresses are not accepted.",
+      phone_invalid: "Please enter a valid phone number, or leave the field empty.",
+      too_soon: "Please wait a moment before submitting, then try again.",
+    },
   },
   da: {
     breadcrumb: { home: "Hjem", contact: "Kontakt", bookDemo: "Book demo" },
@@ -116,6 +135,16 @@ const contactStrings: Record<Lang, ContactStrings> = {
       disclaimer:
         "Ved at sende accepterer du vores privatlivspolitik. Brug din arbejdsmail — personlige adresser accepteres ikke.",
       submit: "Send",
+    },
+    validation: {
+      name_required: "Indtast dit navn.",
+      email_invalid: "Indtast en gyldig arbejdsmail.",
+      email_personal:
+        "Brug din arbejdsmail. Personlige adresser (Gmail, Outlook, Yahoo osv.) accepteres ikke.",
+      email_disposable:
+        "Brug en permanent arbejdsmail. Midlertidige eller engangsadresser accepteres ikke.",
+      phone_invalid: "Indtast et gyldigt telefonnummer, eller lad feltet stå tomt.",
+      too_soon: "Vent et øjeblik, før du sender, og prøv igen.",
     },
   },
   de: {
@@ -158,6 +187,18 @@ const contactStrings: Record<Lang, ContactStrings> = {
         "Mit dem Absenden akzeptieren Sie unsere Datenschutzerklärung. Verwenden Sie Ihre geschäftliche E-Mail — private Adressen werden nicht akzeptiert.",
       submit: "Senden",
     },
+    validation: {
+      name_required: "Bitte geben Sie Ihren Namen ein.",
+      email_invalid: "Bitte geben Sie eine gültige geschäftliche E-Mail-Adresse ein.",
+      email_personal:
+        "Bitte verwenden Sie Ihre geschäftliche E-Mail. Private Adressen (Gmail, Outlook, Yahoo usw.) werden nicht akzeptiert.",
+      email_disposable:
+        "Bitte verwenden Sie eine dauerhafte geschäftliche E-Mail. Temporäre oder Wegwerf-Adressen werden nicht akzeptiert.",
+      phone_invalid:
+        "Bitte geben Sie eine gültige Telefonnummer ein oder lassen Sie das Feld leer.",
+      too_soon:
+        "Bitte warten Sie einen Moment, bevor Sie absenden, und versuchen Sie es erneut.",
+    },
   },
   sv: {
     breadcrumb: { home: "Hem", contact: "Kontakt", bookDemo: "Boka demo" },
@@ -198,6 +239,16 @@ const contactStrings: Record<Lang, ContactStrings> = {
       disclaimer:
         "Genom att skicka godkänner du vår integritetspolicy. Använd din jobbmejl — personliga adresser accepteras inte.",
       submit: "Skicka",
+    },
+    validation: {
+      name_required: "Ange ditt namn.",
+      email_invalid: "Ange en giltig jobbmejladress.",
+      email_personal:
+        "Använd din jobbmejl. Personliga adresser (Gmail, Outlook, Yahoo osv.) accepteras inte.",
+      email_disposable:
+        "Använd en permanent jobbmejl. Tillfälliga eller engångsadresser accepteras inte.",
+      phone_invalid: "Ange ett giltigt telefonnummer, eller lämna fältet tomt.",
+      too_soon: "Vänta en stund innan du skickar och försök igen.",
     },
   },
 };

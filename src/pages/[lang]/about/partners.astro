@@ -6,6 +6,7 @@ import PartnerGrid from "../../../components/PartnerGrid.astro";
 import { getPartners, getPartnersIntro } from "../../../data/partners";
 import { getAbout } from "../../../data/i18n/about";
 import { locales, langPath, type Lang } from "../../../data/lang";
+import { isLivePath } from "../../../data/launch";
 
 export function getStaticPaths() {
   return locales.map((l) => ({ params: { lang: l.code } }));
@@ -15,6 +16,8 @@ const { lang } = Astro.params as { lang: Lang };
 const t = getAbout(lang);
 const partners = getPartners(lang);
 const partnersIntro = getPartnersIntro(lang);
+const integrationsHref = langPath("integrations", lang);
+const showIntegrations = isLivePath(integrationsHref);
 ---
 
 <Layout title={t.partners.metaTitle} description={partnersIntro.lead}>
@@ -58,9 +61,11 @@ const partnersIntro = getPartnersIntro(lang);
           <Button href={langPath("contact/become-partner", lang)} variant="primary" size="md">
             {t.partners.becomePartner}
           </Button>
-          <Button href={langPath("integrations", lang)} variant="secondary" size="md">
-            {t.partners.viewIntegrations}
-          </Button>
+          {showIntegrations && (
+            <Button href={integrationsHref} variant="secondary" size="md">
+              {t.partners.viewIntegrations}
+            </Button>
+          )}
         </div>
       </div>
     </div>

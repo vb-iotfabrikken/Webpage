@@ -108,9 +108,17 @@ export type ContactFormFields = {
   phone?: string;
 };
 
+/** Stable identifiers for validation failures, so the UI can localize them. */
+export type ValidationCode =
+  | "name_required"
+  | "email_invalid"
+  | "email_personal"
+  | "email_disposable"
+  | "phone_invalid";
+
 export type FormValidation<T> =
   | { valid: true; data: T }
-  | { valid: false; message: string };
+  | { valid: false; message: string; code: ValidationCode };
 
 export type LeadFormValidation = FormValidation<
   Required<Pick<LeadFormFields, "firstName" | "lastName" | "email">> & {
@@ -171,12 +179,15 @@ export function isValidPhone(raw: string): boolean {
 
 function validateWorkEmail(
   email: string,
-): { valid: true; email: string } | { valid: false; message: string } {
+):
+  | { valid: true; email: string }
+  | { valid: false; message: string; code: ValidationCode } {
   const normalised = email.trim().toLowerCase();
 
   if (!EMAIL_FORMAT.test(normalised)) {
     return {
       valid: false,
+      code: "email_invalid",
       message: "Please enter a valid work email address.",
     };
   }
@@ -184,6 +195,7 @@ function validateWorkEmail(
   if (isPersonalEmailDomain(normalised)) {
     return {
       valid: false,
+      code: "email_personal",
       message:
         "Please use your work email. Personal addresses (Gmail, Outlook, Yahoo, etc.) are not accepted.",
     };
@@ -192,6 +204,7 @@ function validateWorkEmail(
   if (isDisposableEmailDomain(normalised)) {
     return {
       valid: false,
+      code: "email_disposable",
       message:
         "Please use a permanent work email. Temporary or disposable addresses are not accepted.",
     };
@@ -209,6 +222,7 @@ export function validateLeadForm(input: LeadFormFields): LeadFormValidation {
   if (!firstName || !lastName) {
     return {
       valid: false,
+      code: "name_required",
       message: "Please enter your first and last name.",
     };
   }
@@ -219,6 +233,7 @@ export function validateLeadForm(input: LeadFormFields): LeadFormValidation {
   if (phone && !isValidPhone(phone)) {
     return {
       valid: false,
+      code: "phone_invalid",
       message: "Please enter a valid phone number, or leave the field empty.",
     };
   }
@@ -244,6 +259,7 @@ export function validateContactForm(
   if (!name) {
     return {
       valid: false,
+      code: "name_required",
       message: "Please enter your name.",
     };
   }
@@ -254,6 +270,7 @@ export function validateContactForm(
   if (phone && !isValidPhone(phone)) {
     return {
       valid: false,
+      code: "phone_invalid",
       message: "Please enter a valid phone number, or leave the field empty.",
     };
   }

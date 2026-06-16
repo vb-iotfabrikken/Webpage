@@ -5,6 +5,7 @@ import { getLegalHub } from "../../../data/hubs/legal";
 import { getLegal } from "../../../data/i18n/legal";
 import { getAbout } from "../../../data/i18n/about";
 import { locales, langPath, type Lang } from "../../../data/lang";
+import { isLivePath } from "../../../data/launch";
 
 export function getStaticPaths() {
   return locales.map((l) => ({ params: { lang: l.code } }));
@@ -14,6 +15,19 @@ const { lang } = Astro.params as { lang: Lang };
 const leaf = getLegalHub(lang).leaves.find((l) => l.slug === "privacy")!;
 const legal = getLegal(lang);
 const a = getAbout(lang);
+
+// Soft-launch: unwrap inline links to legal pages that are not yet live
+// (keep the text, drop the dead anchor). Only touches internal links.
+const unwrapHidden = (html: string) =>
+  html.replace(/<a href="(\/[^"]*)">(.*?)<\/a>/g, (m, href, text) =>
+    isLivePath(href) ? m : text,
+  );
+const privacyBody = unwrapHidden(legal.privacy.body);
+
+const legalHubHref = langPath("legal", lang);
+const legalCrumb = isLivePath(legalHubHref)
+  ? { label: legal.common.legal, href: legalHubHref }
+  : { label: legal.common.legal };
 ---
 
 <PlaceholderPage
@@ -24,7 +38,7 @@ const a = getAbout(lang);
   heroLead={leaf.lead}
   breadcrumbs={[
     { label: legal.common.home, href: langPath("", lang) },
-    { label: legal.common.legal, href: langPath("legal", lang) },
+    legalCrumb,
     { label: leaf.title.replace(/[.,]\s*$/, "") },
   ]}
   hideNotice={true}
@@ -37,6 +51,6 @@ const a = getAbout(lang);
     <p class="text-sm text-stone-300 not-prose">
       <strong class="text-navy-500">{legal.common.lastUpdated}</strong> {legal.privacy.lastUpdatedDate}
     </p>
-    <Fragment set:html={legal.privacy.body} />
+    <Fragment set:html={privacyBody} />
   </LegalProse>
 </PlaceholderPage>

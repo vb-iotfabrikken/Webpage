@@ -1,6 +1,7 @@
 ---
 import { type Lang, defaultLang, langPath } from "../data/lang";
 import { getHome, type FeaturedIndustrySlug } from "../data/i18n/home";
+import { isLivePath } from "../data/launch";
 
 interface Props {
   lang?: Lang;
@@ -35,21 +36,26 @@ const cardImages: Record<FeaturedIndustrySlug, { src: string; alt: string }> = {
   },
 };
 
-const useCases = featuredSlugs.map((slug) => {
-  const card = t.cards[slug];
-  const image = cardImages[slug];
+const useCases = featuredSlugs
+  .map((slug) => {
+    const card = t.cards[slug];
+    const image = cardImages[slug];
 
-  return {
-    slug,
-    title: card.title,
-    description: card.description,
-    href: langPath(`industries/${slug}`, lang),
-    image: image.src,
-    imageAlt: image.alt,
-  };
-});
+    return {
+      slug,
+      title: card.title,
+      description: card.description,
+      href: langPath(`industries/${slug}`, lang),
+      image: image.src,
+      imageAlt: image.alt,
+    };
+  })
+  // Soft-launch: industry pages are hidden, so drop cards that would 404.
+  // The whole section disappears until those destinations go live.
+  .filter((item) => isLivePath(item.href));
 ---
 
+{useCases.length > 0 && (
 <section class="pt-12 pb-16 md:pt-14 md:pb-20 bg-stone-50">
   <div class="container-page">
     <div class="reveal max-w-2xl mx-auto text-center mb-10 md:mb-12">
@@ -93,3 +99,4 @@ const useCases = featuredSlugs.map((slug) => {
     </div>
   </div>
 </section>
+)}

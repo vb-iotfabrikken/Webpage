@@ -1,0 +1,37 @@
+# Caddy static-file server for the IoT Fabrikken soft launch.
+#
+# The whole site is password-protected with HTTP Basic Auth so only invited
+# people can see the in-progress launch. Credentials are read from environment
+# variables (set them in Railway → Variables), never committed here.
+#
+#   BASIC_AUTH_USER  – the username (e.g. "iotfabrikken")
+#   BASIC_AUTH_HASH  – a bcrypt hash of the password. Generate with:
+#                        docker run --rm caddy caddy hash-password --plaintext 'your-password'
+#                      (or `caddy hash-password ...` if Caddy is installed locally)
+
+{
+	admin off
+	# Railway terminates TLS at its edge and forwards plain HTTP on $PORT,
+	# so Caddy should not try to provision its own certificates.
+	auto_https off
+}
+
+:{$PORT:8080} {
+	root * /srv
+	encode zstd gzip
+
+	# Gate the entire soft-launch site behind a single set of credentials.
+	basic_auth {
+		{$BASIC_AUTH_USER} {$BASIC_AUTH_HASH}
+	}
+
+	# Static output uses directory-style URLs (foo/index.html); file_server
+	# resolves the index automatically and adds canonical trailing slashes.
+	file_server
+
+	# Serve Astro's generated 404 page for unknown paths.
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
+}
