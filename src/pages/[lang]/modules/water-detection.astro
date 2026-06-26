@@ -1,0 +1,26 @@
+---
+import ModuleLandingPage from "../../../components/modules/ModuleLandingPage.astro";
+import { getWaterDetection } from "../../../data/i18n/waterDetection";
+import { waterDetectionDashboard, waterDetectionFeatureImages, waterDetectionCapabilitiesContext } from "../../../data/waterDetectionImages";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = getWaterDetection(lang);
+---
+
+<ModuleLandingPage
+  lang={lang}
+  moduleSlug="water-detection"
+  t={t}
+  dashboard={waterDetectionDashboard}
+  featureImages={waterDetectionFeatureImages}
+  relatedModuleHref={langPath("/modules/preservation/", lang)}
+  featureTabId="water-detection-features"
+  challengeIconSet="water"
+  secondaryAudienceIcon="housing"
+  capabilitiesContext={waterDetectionCapabilitiesContext}
+/>

@@ -1,0 +1,59 @@
+---
+import SectionIntro from "../SectionIntro.astro";
+import ModuleScreenshotPlaceholder from "./ModuleScreenshotPlaceholder.astro";
+
+export interface ModuleCapabilitiesContextImage {
+  src?: string;
+  width: number;
+  height: number;
+  placeholderLabel: string;
+}
+
+interface Props {
+  eyebrow: string;
+  heading: string;
+  lead?: string;
+  contextAlt: string;
+  context: ModuleCapabilitiesContextImage;
+  class?: string;
+}
+
+const { eyebrow, heading, lead, contextAlt, context, class: className } = Astro.props;
+
+const figureClass =
+  "reveal order-2 lg:order-1 overflow-hidden rounded-2xl border border-stone-100 bg-white shadow-lg shadow-navy-500/5 lg:self-stretch";
+const imageClass =
+  "w-full h-full min-h-[12rem] max-h-56 sm:max-h-64 lg:max-h-none object-cover object-center";
+---
+
+<div
+  class:list={[
+    "mb-12 md:mb-16 grid grid-cols-1 lg:grid-cols-[minmax(0,34rem)_1fr] gap-6 lg:gap-10 xl:gap-14 lg:items-stretch",
+    className,
+  ]}
+>
+  <figure class={figureClass}>
+    {
+      context.src ? (
+        <img
+          src={context.src}
+          alt={contextAlt}
+          width={context.width}
+          height={context.height}
+          class={imageClass}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <ModuleScreenshotPlaceholder label={context.placeholderLabel} />
+      )
+    }
+  </figure>
+  <SectionIntro
+    eyebrow={eyebrow}
+    heading={heading}
+    lead={lead}
+    surface="white"
+    class="order-1 lg:order-2 !max-w-none min-w-0"
+  />
+</div>

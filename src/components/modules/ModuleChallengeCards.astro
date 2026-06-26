@@ -1,0 +1,140 @@
+---
+interface Challenge {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  challenges: Challenge[];
+  /** Icon set variant for visual variety across module pages. */
+  iconSet?: "default" | "climate" | "heritage" | "water" | "service" | "access" | "cleaning";
+}
+
+const { challenges, iconSet = "default" } = Astro.props;
+
+const stroke = {
+  width: "1.8",
+  cap: "round" as const,
+  join: "round" as const,
+};
+---
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+  {
+    challenges.map((challenge, index) => (
+      <article class="reveal bg-white border border-stone-100 rounded-xl p-6 md:p-8">
+        <div class="w-11 h-11 rounded-md bg-coral-50 text-coral-500 inline-flex items-center justify-center mb-5">
+          {iconSet === "default" && index === 0 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+          )}
+          {iconSet === "default" && index === 1 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <path d="M16 2v4M8 2v4M3 10h18" />
+              <path d="m9 16 2 2 4-4" />
+            </svg>
+          )}
+          {iconSet === "default" && index === 2 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 21V9l9-6 9 6v12M9 21v-6h6v6" />
+            </svg>
+          )}
+          {iconSet === "climate" && index === 0 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
+            </svg>
+          )}
+          {iconSet === "climate" && index === 1 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+            </svg>
+          )}
+          {iconSet === "climate" && index === 2 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" />
+            </svg>
+          )}
+          {iconSet === "heritage" && index === 0 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <path d="M3 21h18" /><path d="M5 21V7l7-4 7 4v14" /><path d="M9 21v-6h6v6" />
+            </svg>
+          )}
+          {iconSet === "heritage" && index === 1 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6" /><path d="M16 13H8" /><path d="M16 17H8" />
+            </svg>
+          )}
+          {iconSet === "heritage" && index === 2 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg>
+          )}
+          {iconSet === "water" && index === 0 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+            </svg>
+          )}
+          {iconSet === "water" && index === 1 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+          )}
+          {iconSet === "water" && index === 2 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
+            </svg>
+          )}
+          {iconSet === "service" && index === 0 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <circle cx="12" cy="12" r="10" /><path d="M12 8v4" /><path d="M12 16h.01" />
+            </svg>
+          )}
+          {iconSet === "service" && index === 1 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+          )}
+          {iconSet === "service" && index === 2 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" />
+            </svg>
+          )}
+          {iconSet === "access" && index === 0 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+          )}
+          {iconSet === "access" && index === 1 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 3v18" />
+            </svg>
+          )}
+          {iconSet === "access" && index === 2 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <path d="M3 3v18h18" /><path d="M18 17V9" /><path d="M13 17V5" /><path d="M8 17v-3" />
+            </svg>
+          )}
+          {iconSet === "cleaning" && index === 0 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" />
+            </svg>
+          )}
+          {iconSet === "cleaning" && index === 1 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <path d="M12 2v4" /><path d="m4.93 4.93 2.83 2.83" /><path d="M2 12h4" /><path d="m4.93 19.07 2.83-2.83" /><path d="M12 18v4" /><path d="m19.07 19.07-2.83-2.83" /><path d="M22 12h-4" /><path d="m19.07 4.93-2.83 2.83" />
+            </svg>
+          )}
+          {iconSet === "cleaning" && index === 2 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <path d="M3 3v18h18" /><path d="M7 16l4-8 4 5 5-9" />
+            </svg>
+          )}
+        </div>
+        <h3 class="text-xl font-semibold text-navy-500">{challenge.title}</h3>
+        <p class="mt-3 text-base leading-relaxed text-stone-900/75">{challenge.body}</p>
+      </article>
+    ))
+  }
+</div>

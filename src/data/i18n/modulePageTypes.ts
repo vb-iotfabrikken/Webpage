@@ -1,0 +1,40 @@
+/** Shared string shape for rich module landing pages. */
+export interface ModulePageStrings {
+  metaTitle: string;
+  metaDescription: string;
+  breadcrumbHome: string;
+  breadcrumbModules: string;
+  breadcrumbCurrent: string;
+  heroTitle: string;
+  heroTitleAccent: string;
+  heroLead: string;
+  intro: string[];
+  heroPrimaryCta: string;
+  heroSecondaryCta: string;
+  dashboardLabel: string;
+  dashboardAlt: string;
+  challengesEyebrow: string;
+  challengesHeading: string;
+  challenges: { title: string; body: string }[];
+  capabilitiesEyebrow: string;
+  capabilitiesHeading: string;
+  solutionLead: string;
+  capabilitiesContextAlt: string;
+  features: { id: string; title: string; body: string; unit: string; imageAlt: string }[];
+  relatedModuleLabel: string;
+  relatedModuleBody: string;
+  relatedModuleLink: string;
+  audiencesEyebrow: string;
+  audiencesHeading: string;
+  audiencesLead: string;
+  primaryAudienceHeading: string;
+  primaryAudienceItems: string[];
+  secondaryAudienceHeading: string;
+  secondaryAudienceItems: string[];
+  faqTitle: string;
+  faqContextAlt: string;
+  faqItems: { q: string; a: string }[];
+  ctaTitle: string;
+  ctaSubtitle: string;
+  ctaMicrocopy: string;
+}

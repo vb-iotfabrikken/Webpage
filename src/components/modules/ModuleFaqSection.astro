@@ -1,0 +1,109 @@
+---
+import ModuleScreenshotPlaceholder from "./ModuleScreenshotPlaceholder.astro";
+import type { ModuleCapabilitiesContextImage } from "./ModuleCapabilitiesIntro.astro";
+
+interface QA {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  title: string;
+  items: QA[];
+  contextAlt: string;
+  context: ModuleCapabilitiesContextImage;
+  class?: string;
+}
+
+const { title, items, contextAlt, context, class: className } = Astro.props;
+
+const figureClass =
+  "reveal order-2 lg:order-1 overflow-hidden rounded-2xl border border-stone-100 bg-white shadow-lg shadow-navy-500/5 lg:self-start";
+const imageClass =
+  "w-full h-full min-h-[12rem] max-h-56 sm:max-h-64 lg:max-h-none object-cover object-center";
+---
+
+<section class:list={["py-20 md:py-24 bg-white", className]}>
+  <div class="container-page">
+    <div
+      class="grid grid-cols-1 lg:grid-cols-[minmax(0,34rem)_1fr] gap-6 lg:gap-10 xl:gap-14 lg:items-start"
+      data-faq-section
+    >
+      <figure class={figureClass} data-faq-figure>
+        {
+          context.src ? (
+            <img
+              src={context.src}
+              alt={contextAlt}
+              width={context.width}
+              height={context.height}
+              class={imageClass}
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <ModuleScreenshotPlaceholder label={context.placeholderLabel} />
+          )
+        }
+      </figure>
+
+      <div class="order-1 lg:order-2 min-w-0 flex flex-col" data-faq-content>
+        <h2 class="reveal text-3xl md:text-4xl font-bold text-navy-500 mb-10 md:mb-12">
+          {title}
+        </h2>
+        <div class="divide-y divide-stone-100 border-y border-stone-100">
+          {
+            items.map((item) => (
+              <details class="group py-5 reveal">
+                <summary class="flex items-center justify-between cursor-pointer list-none gap-6">
+                  <span class="text-lg font-medium text-navy-500">{item.q}</span>
+                  <span class="shrink-0 w-8 h-8 inline-flex items-center justify-center rounded-md border border-stone-100 text-navy-500 transition-transform group-open:rotate-45">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                    </svg>
+                  </span>
+                </summary>
+                <div class="mt-3 pr-12 text-stone-900/70 leading-relaxed">
+                  {item.a}
+                </div>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function lockFaqFigureHeights() {
+    const desktop = window.matchMedia("(min-width: 1024px)").matches;
+
+    document.querySelectorAll("[data-faq-section]").forEach((section) => {
+      const figure = section.querySelector("[data-faq-figure]");
+      const content = section.querySelector("[data-faq-content]");
+      if (!(figure instanceof HTMLElement) || !(content instanceof HTMLElement)) return;
+
+      if (!desktop) {
+        figure.style.height = "";
+        return;
+      }
+
+      const details = section.querySelectorAll("details");
+      const openState = [...details].map((detail) => detail.open);
+      details.forEach((detail) => {
+        detail.open = false;
+      });
+
+      figure.style.height = `${content.getBoundingClientRect().height}px`;
+
+      details.forEach((detail, index) => {
+        detail.open = openState[index] ?? false;
+      });
+    });
+  }
+
+  lockFaqFigureHeights();
+  window.addEventListener("resize", lockFaqFigureHeights);
+  document.addEventListener("astro:page-load", lockFaqFigureHeights);
+</script>

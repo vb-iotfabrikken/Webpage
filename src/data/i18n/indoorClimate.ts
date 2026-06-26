@@ -11,24 +11,36 @@ export interface IndoorClimateStrings {
   heroTitle: string;
   heroTitleAccent: string;
   heroLead: string;
+  /** Intro paragraphs below the hero screenshot (white band). */
+  intro: string[];
   heroPrimaryCta: string;
   heroSecondaryCta: string;
   dashboardLabel: string;
   dashboardAlt: string;
-  howItWorksEyebrow: string;
-  howItWorksHeading: string;
-  steps: { n: string; title: string; body: string }[];
-  paramsEyebrow: string;
-  paramsHeading: string;
-  features: { title: string; body: string; unit: string }[];
+  challengesEyebrow: string;
+  challengesHeading: string;
+  challenges: { title: string; body: string }[];
+  capabilitiesEyebrow: string;
+  capabilitiesHeading: string;
+  solutionLead: string;
+  capabilitiesContextAlt: string;
+  features: { id: string; title: string; body: string; unit: string; imageAlt: string }[];
+  relatedModuleLabel: string;
+  relatedModuleBody: string;
+  relatedModuleLink: string;
+  audiencesEyebrow: string;
+  audiencesHeading: string;
+  audiencesLead: string;
   fmHeading: string;
   fmItems: string[];
   complianceHeading: string;
   complianceItems: string[];
   faqTitle: string;
+  faqContextAlt: string;
   faqItems: { q: string; a: string }[];
   ctaTitle: string;
   ctaSubtitle: string;
+  ctaMicrocopy: string;
 }
 
 const en: IndoorClimateStrings = {
@@ -41,28 +53,88 @@ const en: IndoorClimateStrings = {
   heroTitle: "Handle complaints with data.",
   heroTitleAccent: "Not feelings.",
   heroLead:
-    "Wireless sensors measure CO2, temperature, humidity and VOC in real time. Get early warnings about mould and damp before they hurt the building — and documentation that stands up to workplace-environment requirements.",
+    "Wireless sensors measure CO2, temperature, humidity and VOC in real time — so you can act before complaints escalate.",
+  intro: [
+    "Indoor-climate complaints are hard to settle when everyone feels the air differently and nobody has numbers to point to.",
+    "RoomAlyzer gives you live readings in every room, early warnings about mould and damp, and documentation that stands up to workplace-environment requirements.",
+  ],
   heroPrimaryCta: "Book a free demo",
-  heroSecondaryCta: "Download product sheets",
+  heroSecondaryCta: "Get an offer",
   dashboardLabel: "RoomAlyzer — Indoor climate",
   dashboardAlt: "RoomAlyzer dashboard showing indoor-climate data from several rooms",
-  howItWorksEyebrow: "How it works",
-  howItWorksHeading: "From box to data in under 10 minutes.",
-  steps: [
-    { n: "01", title: "Unpack", body: "The sensor ships ready to use — no configuration, no setup." },
-    { n: "02", title: "Mount", body: "Fix it with a single screw or double-sided tape. Takes under 2 minutes per sensor." },
-    { n: "03", title: "See data", body: "The sensor reports into RoomAlyzer automatically. Insight is flowing the same day." },
+  challengesEyebrow: "The challenges you know",
+  challengesHeading: "When you cannot measure the air, every complaint becomes a debate.",
+  challenges: [
+    {
+      title: "Complaints you cannot verify",
+      body: "Staff say it is stuffy or too cold — but without room-level data, facility teams are stuck mediating opinions instead of fixing the cause.",
+    },
+    {
+      title: "Mould and damp you see too late",
+      body: "By the time moisture damage is visible, remediation is expensive. Humidity trends should alarm you long before the structure is at risk.",
+    },
+    {
+      title: "Ventilation on autopilot",
+      body: "Systems run at full capacity whether rooms are packed or empty — wasting energy and still missing the rooms that actually need more air.",
+    },
   ],
-  paramsEyebrow: "Parameters we measure",
-  paramsHeading: "All the data you need — and nothing you don't.",
+  capabilitiesEyebrow: "What we measure",
+  capabilitiesHeading: "All the parameters that matter — in one view.",
+  solutionLead:
+    "RoomAlyzer Indoor climate turns sensor readings into clear dashboards, alarms and reports — built for facility teams, compliance officers and building owners.",
+  capabilitiesContextAlt: "Facility team reviewing indoor climate data on a display",
   features: [
-    { title: "CO2", body: "Precise readings that show when it's time to air the room — before headaches set in.", unit: "400–5000 ppm" },
-    { title: "Temperature", body: "Continuous monitoring so both comfort and compliance are covered.", unit: "-10 to +50°C" },
-    { title: "Humidity", body: "Keep an eye on humidity levels — key to wellbeing and the health of the building.", unit: "0–100 % RH" },
-    { title: "VOC", body: "Total level of volatile organic compounds from materials and cleaning.", unit: "0–5000 ppb" },
-    { title: "Mould & damp", body: "Predictive analysis that alarms before mould takes hold in the structure.", unit: "Predictive model" },
-    { title: "Pressure", body: "Relative pressure between rooms — relevant for labs and clean rooms.", unit: "± 500 Pa" },
+    {
+      id: "co2",
+      title: "CO2",
+      body: "Precise readings that show when it is time to air the room — before headaches set in.",
+      unit: "400–5000 ppm",
+      imageAlt: "CO2 levels chart in RoomAlyzer",
+    },
+    {
+      id: "temperature",
+      title: "Temperature",
+      body: "Continuous monitoring so both comfort and compliance are covered.",
+      unit: "-10 to +50°C",
+      imageAlt: "Temperature monitoring dashboard in RoomAlyzer",
+    },
+    {
+      id: "humidity",
+      title: "Humidity",
+      body: "Keep an eye on humidity levels — key to wellbeing and the health of the building.",
+      unit: "0–100 % RH",
+      imageAlt: "Humidity trend view in RoomAlyzer",
+    },
+    {
+      id: "voc",
+      title: "VOC",
+      body: "Total level of volatile organic compounds from materials and cleaning.",
+      unit: "0–5000 ppb",
+      imageAlt: "VOC monitoring view in RoomAlyzer",
+    },
+    {
+      id: "mould-damp",
+      title: "Mould & damp",
+      body: "Predictive analysis that alarms before mould takes hold in the structure.",
+      unit: "Predictive model",
+      imageAlt: "Mould and damp risk analysis in RoomAlyzer",
+    },
+    {
+      id: "pressure",
+      title: "Pressure",
+      body: "Relative pressure between rooms — relevant for labs and clean rooms.",
+      unit: "± 500 Pa",
+      imageAlt: "Room pressure monitoring in RoomAlyzer",
+    },
   ],
+  relatedModuleLabel: "Smarter together",
+  relatedModuleBody:
+    "Pair indoor-climate data with occupancy from Space management — ventilate when rooms are in use and dial back when they are empty.",
+  relatedModuleLink: "Explore space management",
+  audiencesEyebrow: "Who it is for",
+  audiencesHeading: "For operations teams and compliance — with data everyone can trust.",
+  audiencesLead:
+    "Whether you run day-to-day building operations or report on ESG, RoomAlyzer gives you the same objective baseline.",
   fmHeading: "For Facility Managers",
   fmItems: [
     "See alarms sorted by criticality",
@@ -78,6 +150,7 @@ const en: IndoorClimateStrings = {
     "Lower energy consumption through data-driven control",
   ],
   faqTitle: "Frequently asked questions",
+  faqContextAlt: "Colleagues discussing plans around a meeting table",
   faqItems: [
     {
       q: "How long is the battery life?",
@@ -103,6 +176,7 @@ const en: IndoorClimateStrings = {
   ctaTitle: "Want to see it for yourself?",
   ctaSubtitle:
     "Book a 30-minute demo. We'll show the platform, walk through your case and give you a price estimate.",
+  ctaMicrocopy: "Sensors live in minutes · years of battery life",
 };
 
 const da: IndoorClimateStrings = {
@@ -115,28 +189,88 @@ const da: IndoorClimateStrings = {
   heroTitle: "Håndtér klager med data.",
   heroTitleAccent: "Ikke fornemmelser.",
   heroLead:
-    "Trådløse sensorer måler CO2, temperatur, fugt og VOC i realtid. Få tidlige advarsler om skimmel og fugt, før de skader bygningen — og dokumentation, der lever op til arbejdsmiljøkravene.",
+    "Trådløse sensorer måler CO2, temperatur, fugt og VOC i realtid — så I kan handle, før klagerne eskalerer.",
+  intro: [
+    "Indeklimaklager er svære at løse, når alle oplever luften forskelligt — og ingen har tal at pege på.",
+    "RoomAlyzer giver jer live målinger i hvert rum, tidlige advarsler om skimmel og fugt og dokumentation, der lever op til arbejdsmiljøkravene.",
+  ],
   heroPrimaryCta: "Book en gratis demo",
-  heroSecondaryCta: "Download produktblade",
+  heroSecondaryCta: "Få et tilbud",
   dashboardLabel: "RoomAlyzer — Indeklima",
   dashboardAlt: "RoomAlyzer-dashboard, der viser indeklimadata fra flere rum",
-  howItWorksEyebrow: "Sådan virker det",
-  howItWorksHeading: "Fra kasse til data på under 10 minutter.",
-  steps: [
-    { n: "01", title: "Pak ud", body: "Sensoren leveres klar til brug — ingen konfiguration, ingen opsætning." },
-    { n: "02", title: "Montér", body: "Sæt den op med en enkelt skrue eller dobbeltklæbende tape. Tager under 2 minutter pr. sensor." },
-    { n: "03", title: "Se data", body: "Sensoren rapporterer automatisk ind i RoomAlyzer. Indsigten flyder samme dag." },
+  challengesEyebrow: "Udfordringerne, I kender",
+  challengesHeading: "Når I ikke kan måle luften, bliver hver klage til en diskussion.",
+  challenges: [
+    {
+      title: "Klager I ikke kan verificere",
+      body: "Medarbejdere siger, det er tung luft eller for koldt — men uden rumdata sidder facility-teamet og mægler meninger i stedet for at løse årsagen.",
+    },
+    {
+      title: "Skimmel og fugt, I ser for sent",
+      body: "Når fugtskader først er synlige, er udbedringen dyr. Fugttrends bør alarmer jer længe før konstruktionen er i fare.",
+    },
+    {
+      title: "Ventilation på autopilot",
+      body: "Anlæg kører for fuld kraft, uanset om rummene er fyldt eller tomme — det spilder energi og rammer stadig ikke de rum, der faktisk mangler luft.",
+    },
   ],
-  paramsEyebrow: "Parametre, vi måler",
-  paramsHeading: "Alle de data, du har brug for — og intet, du ikke har.",
+  capabilitiesEyebrow: "Det vi måler",
+  capabilitiesHeading: "Alle de parametre, der betyder noget — i ét overblik.",
+  solutionLead:
+    "RoomAlyzer Indeklima omsætter sensordata til tydelige dashboards, alarmer og rapporter — bygget til facility-teams, compliance-ansvarlige og bygningsejere.",
+  capabilitiesContextAlt: "Facility-team der gennemgår indeklimadata på en skærm",
   features: [
-    { title: "CO2", body: "Præcise målinger, der viser, hvornår der skal luftes ud — før hovedpinen sætter ind.", unit: "400–5000 ppm" },
-    { title: "Temperatur", body: "Kontinuerlig overvågning, så både komfort og compliance er dækket.", unit: "-10 til +50°C" },
-    { title: "Fugt", body: "Hold øje med fugtniveauet — afgørende for trivsel og bygningens sundhed.", unit: "0–100 % RH" },
-    { title: "VOC", body: "Samlet niveau af flygtige organiske forbindelser fra materialer og rengøring.", unit: "0–5000 ppb" },
-    { title: "Skimmel og fugt", body: "Forudsigende analyse, der alarmerer, før skimmel får fat i konstruktionen.", unit: "Forudsigende model" },
-    { title: "Tryk", body: "Relativt tryk mellem rum — relevant for laboratorier og renrum.", unit: "± 500 Pa" },
+    {
+      id: "co2",
+      title: "CO2",
+      body: "Præcise målinger, der viser, hvornår der skal luftes ud — før hovedpinen sætter ind.",
+      unit: "400–5000 ppm",
+      imageAlt: "CO2-niveauer i RoomAlyzer",
+    },
+    {
+      id: "temperature",
+      title: "Temperatur",
+      body: "Kontinuerlig overvågning, så både komfort og compliance er dækket.",
+      unit: "-10 til +50°C",
+      imageAlt: "Temperaturovervågning i RoomAlyzer",
+    },
+    {
+      id: "humidity",
+      title: "Fugt",
+      body: "Hold øje med fugtniveauet — afgørende for trivsel og bygningens sundhed.",
+      unit: "0–100 % RH",
+      imageAlt: "Fugttrend i RoomAlyzer",
+    },
+    {
+      id: "voc",
+      title: "VOC",
+      body: "Samlet niveau af flygtige organiske forbindelser fra materialer og rengøring.",
+      unit: "0–5000 ppb",
+      imageAlt: "VOC-overvågning i RoomAlyzer",
+    },
+    {
+      id: "mould-damp",
+      title: "Skimmel og fugt",
+      body: "Forudsigende analyse, der alarmerer, før skimmel får fat i konstruktionen.",
+      unit: "Forudsigende model",
+      imageAlt: "Skimmel- og fugtrisikoanalyse i RoomAlyzer",
+    },
+    {
+      id: "pressure",
+      title: "Tryk",
+      body: "Relativt tryk mellem rum — relevant for laboratorier og renrum.",
+      unit: "± 500 Pa",
+      imageAlt: "Rumtryksovervågning i RoomAlyzer",
+    },
   ],
+  relatedModuleLabel: "Smartere sammen",
+  relatedModuleBody:
+    "Kombinér indeklimadata med belægning fra Space management — ventilér, når rummene er i brug, og skru ned, når de står tomme.",
+  relatedModuleLink: "Udforsk space management",
+  audiencesEyebrow: "Hvem det er til",
+  audiencesHeading: "Til driftsteams og compliance — med data, alle kan stole på.",
+  audiencesLead:
+    "Uanset om I driver den daglige bygningsdrift eller rapporterer på ESG, giver RoomAlyzer jer det samme objektive udgangspunkt.",
   fmHeading: "Til facility managers",
   fmItems: [
     "Se alarmer sorteret efter kritikalitet",
@@ -152,6 +286,7 @@ const da: IndoorClimateStrings = {
     "Lavere energiforbrug gennem datadreven styring",
   ],
   faqTitle: "Ofte stillede spørgsmål",
+  faqContextAlt: "Kolleger der diskuterer planer omkring et mødebord",
   faqItems: [
     {
       q: "Hvor lang er batterilevetiden?",
@@ -177,6 +312,7 @@ const da: IndoorClimateStrings = {
   ctaTitle: "Vil du selv se det?",
   ctaSubtitle:
     "Book en demo på 30 minutter. Vi viser platformen, gennemgår jeres case og giver dig et prisestimat.",
+  ctaMicrocopy: "Sensorer klar på minutter · års batterilevetid",
 };
 
 const de: IndoorClimateStrings = {
@@ -189,28 +325,88 @@ const de: IndoorClimateStrings = {
   heroTitle: "Beschwerden mit Daten begegnen.",
   heroTitleAccent: "Nicht mit Gefühlen.",
   heroLead:
-    "Drahtlose Sensoren messen CO2, Temperatur, Luftfeuchtigkeit und VOC in Echtzeit. Erhalten Sie frühzeitige Warnungen vor Schimmel und Feuchtigkeit, bevor sie dem Gebäude schaden — und Dokumentation, die den Arbeitsschutzanforderungen standhält.",
+    "Drahtlose Sensoren messen CO2, Temperatur, Luftfeuchtigkeit und VOC in Echtzeit — damit Sie handeln können, bevor Beschwerden eskalieren.",
+  intro: [
+    "Raumklima-Beschwerden lassen sich schwer klären, wenn jeder die Luft anders empfindet — und niemand Zahlen vorlegen kann.",
+    "RoomAlyzer liefert Live-Messwerte in jedem Raum, frühzeitige Warnungen vor Schimmel und Feuchtigkeit sowie Dokumentation, die den Arbeitsschutzanforderungen standhält.",
+  ],
   heroPrimaryCta: "Kostenlose Demo buchen",
-  heroSecondaryCta: "Produktdatenblätter herunterladen",
+  heroSecondaryCta: "Angebot anfordern",
   dashboardLabel: "RoomAlyzer — Raumklima",
   dashboardAlt: "RoomAlyzer-Dashboard mit Raumklimadaten aus mehreren Räumen",
-  howItWorksEyebrow: "So funktioniert es",
-  howItWorksHeading: "Von der Box zu Daten in unter 10 Minuten.",
-  steps: [
-    { n: "01", title: "Auspacken", body: "Der Sensor wird einsatzbereit geliefert — keine Konfiguration, keine Einrichtung." },
-    { n: "02", title: "Montieren", body: "Befestigen Sie ihn mit einer einzigen Schraube oder mit doppelseitigem Klebeband. Unter 2 Minuten pro Sensor." },
-    { n: "03", title: "Daten sehen", body: "Der Sensor meldet automatisch an RoomAlyzer. Die Erkenntnisse fließen noch am selben Tag." },
+  challengesEyebrow: "Die Herausforderungen, die Sie kennen",
+  challengesHeading: "Wenn Sie die Luft nicht messen können, wird jede Beschwerde zur Debatte.",
+  challenges: [
+    {
+      title: "Beschwerden, die Sie nicht verifizieren können",
+      body: "Mitarbeitende sagen, es sei stickig oder zu kalt — aber ohne Raumdaten vermittelt das Facility-Team Meinungen statt die Ursache zu beheben.",
+    },
+    {
+      title: "Schimmel und Feuchtigkeit, die Sie zu spät sehen",
+      body: "Wenn Feuchteschäden sichtbar werden, ist die Sanierung teuer. Feuchtigkeitstrends sollten alarmieren, lange bevor die Bausubstanz gefährdet ist.",
+    },
+    {
+      title: "Lüftung auf Autopilot",
+      body: "Anlagen laufen auf Hochtouren, egal ob Räume voll oder leer sind — das verschwendet Energie und trifft trotzdem nicht die Räume, die wirklich mehr Luft brauchen.",
+    },
   ],
-  paramsEyebrow: "Parameter, die wir messen",
-  paramsHeading: "Alle Daten, die Sie brauchen — und nichts, was Sie nicht brauchen.",
+  capabilitiesEyebrow: "Was wir messen",
+  capabilitiesHeading: "Alle relevanten Parameter — in einer Ansicht.",
+  solutionLead:
+    "RoomAlyzer Raumklima verwandelt Sensordaten in klare Dashboards, Alarme und Berichte — für Facility-Teams, Compliance-Verantwortliche und Gebäudeeigentümer.",
+  capabilitiesContextAlt: "Facility-Team prüft Raumklimadaten auf einem Display",
   features: [
-    { title: "CO2", body: "Präzise Messwerte, die zeigen, wann gelüftet werden sollte — bevor Kopfschmerzen einsetzen.", unit: "400–5000 ppm" },
-    { title: "Temperatur", body: "Kontinuierliche Überwachung, sodass Komfort und Compliance abgedeckt sind.", unit: "-10 bis +50°C" },
-    { title: "Luftfeuchtigkeit", body: "Behalten Sie die Luftfeuchtigkeit im Blick — entscheidend für Wohlbefinden und die Gesundheit des Gebäudes.", unit: "0–100 % RH" },
-    { title: "VOC", body: "Gesamtgehalt flüchtiger organischer Verbindungen aus Materialien und Reinigung.", unit: "0–5000 ppb" },
-    { title: "Schimmel & Feuchtigkeit", body: "Vorausschauende Analyse, die alarmiert, bevor sich Schimmel in der Bausubstanz festsetzt.", unit: "Prognosemodell" },
-    { title: "Druck", body: "Relativer Druck zwischen Räumen — relevant für Labore und Reinräume.", unit: "± 500 Pa" },
+    {
+      id: "co2",
+      title: "CO2",
+      body: "Präzise Messwerte, die zeigen, wann gelüftet werden sollte — bevor Kopfschmerzen einsetzen.",
+      unit: "400–5000 ppm",
+      imageAlt: "CO2-Werte in RoomAlyzer",
+    },
+    {
+      id: "temperature",
+      title: "Temperatur",
+      body: "Kontinuierliche Überwachung, sodass Komfort und Compliance abgedeckt sind.",
+      unit: "-10 bis +50°C",
+      imageAlt: "Temperaturüberwachung in RoomAlyzer",
+    },
+    {
+      id: "humidity",
+      title: "Luftfeuchtigkeit",
+      body: "Behalten Sie die Luftfeuchtigkeit im Blick — entscheidend für Wohlbefinden und die Gesundheit des Gebäudes.",
+      unit: "0–100 % RH",
+      imageAlt: "Luftfeuchtigkeitstrend in RoomAlyzer",
+    },
+    {
+      id: "voc",
+      title: "VOC",
+      body: "Gesamtgehalt flüchtiger organischer Verbindungen aus Materialien und Reinigung.",
+      unit: "0–5000 ppb",
+      imageAlt: "VOC-Überwachung in RoomAlyzer",
+    },
+    {
+      id: "mould-damp",
+      title: "Schimmel & Feuchtigkeit",
+      body: "Vorausschauende Analyse, die alarmiert, bevor sich Schimmel in der Bausubstanz festsetzt.",
+      unit: "Prognosemodell",
+      imageAlt: "Schimmel- und Feuchtigkeitsrisiko in RoomAlyzer",
+    },
+    {
+      id: "pressure",
+      title: "Druck",
+      body: "Relativer Druck zwischen Räumen — relevant für Labore und Reinräume.",
+      unit: "± 500 Pa",
+      imageAlt: "Raumdrucküberwachung in RoomAlyzer",
+    },
   ],
+  relatedModuleLabel: "Smarter zusammen",
+  relatedModuleBody:
+    "Kombinieren Sie Raumklimadaten mit Belegung aus Space management — lüften, wenn Räume genutzt werden, und drosseln, wenn sie leer stehen.",
+  relatedModuleLink: "Space management entdecken",
+  audiencesEyebrow: "Für wen es gedacht ist",
+  audiencesHeading: "Für Betriebsteams und Compliance — mit Daten, denen alle vertrauen können.",
+  audiencesLead:
+    "Ob Sie den täglichen Gebäudebetrieb steuern oder ESG berichten — RoomAlyzer liefert dieselbe objektive Basis.",
   fmHeading: "Für Facility Manager",
   fmItems: [
     "Alarme nach Kritikalität sortiert sehen",
@@ -226,6 +422,7 @@ const de: IndoorClimateStrings = {
     "Geringerer Energieverbrauch durch datengestützte Steuerung",
   ],
   faqTitle: "Häufig gestellte Fragen",
+  faqContextAlt: "Kollegen besprechen Pläne an einem Besprechungstisch",
   faqItems: [
     {
       q: "Wie lange hält die Batterie?",
@@ -251,6 +448,7 @@ const de: IndoorClimateStrings = {
   ctaTitle: "Möchten Sie es selbst sehen?",
   ctaSubtitle:
     "Buchen Sie eine 30-minütige Demo. Wir zeigen die Plattform, gehen Ihren Fall durch und geben Ihnen eine Preisschätzung.",
+  ctaMicrocopy: "Sensoren in Minuten live · jahrelange Batterielaufzeit",
 };
 
 const sv: IndoorClimateStrings = {
@@ -263,28 +461,88 @@ const sv: IndoorClimateStrings = {
   heroTitle: "Hantera klagomål med data.",
   heroTitleAccent: "Inte känslor.",
   heroLead:
-    "Trådlösa sensorer mäter CO2, temperatur, fukt och VOC i realtid. Få tidiga varningar om mögel och fukt innan de skadar byggnaden — och dokumentation som håller för arbetsmiljökraven.",
+    "Trådlösa sensorer mäter CO2, temperatur, fukt och VOC i realtid — så att ni kan agera innan klagomålen eskalerar.",
+  intro: [
+    "Klagomål om inomhusklimat är svåra att lösa när alla upplever luften olika — och ingen har siffror att peka på.",
+    "RoomAlyzer ger er livemätningar i varje rum, tidiga varningar om mögel och fukt samt dokumentation som håller för arbetsmiljökraven.",
+  ],
   heroPrimaryCta: "Boka en gratis demo",
-  heroSecondaryCta: "Ladda ner produktblad",
+  heroSecondaryCta: "Få en offert",
   dashboardLabel: "RoomAlyzer — Inomhusklimat",
   dashboardAlt: "RoomAlyzer-dashboard som visar inomhusklimatdata från flera rum",
-  howItWorksEyebrow: "Så fungerar det",
-  howItWorksHeading: "Från kartong till data på under 10 minuter.",
-  steps: [
-    { n: "01", title: "Packa upp", body: "Sensorn levereras klar att använda — ingen konfiguration, ingen installation." },
-    { n: "02", title: "Montera", body: "Fäst den med en enda skruv eller dubbelhäftande tejp. Tar under 2 minuter per sensor." },
-    { n: "03", title: "Se data", body: "Sensorn rapporterar automatiskt in i RoomAlyzer. Insikten flödar redan samma dag." },
+  challengesEyebrow: "Utmaningarna ni känner igen",
+  challengesHeading: "När ni inte kan mäta luften blir varje klagomål en debatt.",
+  challenges: [
+    {
+      title: "Klagomål ni inte kan verifiera",
+      body: "Personalen säger att det är tung luft eller för kallt — men utan rumsdata sitter facility-teamet och medlar mellan åsikter i stället för att åtgärda orsaken.",
+    },
+    {
+      title: "Mögel och fukt ni ser för sent",
+      body: "När fuktskador syns är åtgärden dyr. Fukt­trender bör larma er långt innan konstruktionen riskeras.",
+    },
+    {
+      title: "Ventilation på autopilot",
+      body: "Systemen kör för fullt oavsett om rummen är fulla eller tomma — det slösar energi och missar fortfarande de rum som faktiskt behöver mer luft.",
+    },
   ],
-  paramsEyebrow: "Parametrar vi mäter",
-  paramsHeading: "All data du behöver — och inget du inte behöver.",
+  capabilitiesEyebrow: "Det vi mäter",
+  capabilitiesHeading: "Alla parametrar som spelar roll — i en vy.",
+  solutionLead:
+    "RoomAlyzer Inomhusklimat omvandlar sensordata till tydliga dashboards, larm och rapporter — byggt för facility-team, compliance-ansvariga och fastighetsägare.",
+  capabilitiesContextAlt: "Facility-team som granskar inomhusklimatdata på en skärm",
   features: [
-    { title: "CO2", body: "Exakta mätvärden som visar när det är dags att vädra — innan huvudvärken sätter in.", unit: "400–5000 ppm" },
-    { title: "Temperatur", body: "Kontinuerlig övervakning så att både komfort och compliance täcks.", unit: "-10 till +50°C" },
-    { title: "Fukt", body: "Håll koll på fuktnivåerna — avgörande för välbefinnande och byggnadens hälsa.", unit: "0–100 % RH" },
-    { title: "VOC", body: "Total nivå av flyktiga organiska föreningar från material och städning.", unit: "0–5000 ppb" },
-    { title: "Mögel och fukt", body: "Förutsägande analys som larmar innan mögel får fäste i konstruktionen.", unit: "Förutsägande modell" },
-    { title: "Tryck", body: "Relativt tryck mellan rum — relevant för laboratorier och renrum.", unit: "± 500 Pa" },
+    {
+      id: "co2",
+      title: "CO2",
+      body: "Exakta mätvärden som visar när det är dags att vädra — innan huvudvärken sätter in.",
+      unit: "400–5000 ppm",
+      imageAlt: "CO2-nivåer i RoomAlyzer",
+    },
+    {
+      id: "temperature",
+      title: "Temperatur",
+      body: "Kontinuerlig övervakning så att både komfort och compliance täcks.",
+      unit: "-10 till +50°C",
+      imageAlt: "Temperaturövervakning i RoomAlyzer",
+    },
+    {
+      id: "humidity",
+      title: "Fukt",
+      body: "Håll koll på fuktnivåerna — avgörande för välbefinnande och byggnadens hälsa.",
+      unit: "0–100 % RH",
+      imageAlt: "Fukttrend i RoomAlyzer",
+    },
+    {
+      id: "voc",
+      title: "VOC",
+      body: "Total nivå av flyktiga organiska föreningar från material och städning.",
+      unit: "0–5000 ppb",
+      imageAlt: "VOC-övervakning i RoomAlyzer",
+    },
+    {
+      id: "mould-damp",
+      title: "Mögel och fukt",
+      body: "Förutsägande analys som larmar innan mögel får fäste i konstruktionen.",
+      unit: "Förutsägande modell",
+      imageAlt: "Mögel- och fuktriskanalys i RoomAlyzer",
+    },
+    {
+      id: "pressure",
+      title: "Tryck",
+      body: "Relativt tryck mellan rum — relevant för laboratorier och renrum.",
+      unit: "± 500 Pa",
+      imageAlt: "Rumstrycksövervakning i RoomAlyzer",
+    },
   ],
+  relatedModuleLabel: "Smartare tillsammans",
+  relatedModuleBody:
+    "Kombinera inomhusklimatdata med beläggning från Space management — ventilera när rummen används och dra ner när de står tomma.",
+  relatedModuleLink: "Utforska space management",
+  audiencesEyebrow: "Vem det är för",
+  audiencesHeading: "För driftteam och compliance — med data alla kan lita på.",
+  audiencesLead:
+    "Oavsett om ni driver den dagliga byggnadsdriften eller rapporterar ESG ger RoomAlyzer er samma objektiva utgångspunkt.",
   fmHeading: "För facility managers",
   fmItems: [
     "Se larm sorterade efter kritikalitet",
@@ -300,6 +558,7 @@ const sv: IndoorClimateStrings = {
     "Lägre energiförbrukning genom datadriven styrning",
   ],
   faqTitle: "Vanliga frågor",
+  faqContextAlt: "Kolleger som diskuterar planer runt ett mötesbord",
   faqItems: [
     {
       q: "Hur lång är batteritiden?",
@@ -325,6 +584,7 @@ const sv: IndoorClimateStrings = {
   ctaTitle: "Vill du se det själv?",
   ctaSubtitle:
     "Boka en 30-minuters demo. Vi visar plattformen, går igenom ert fall och ger dig en prisuppskattning.",
+  ctaMicrocopy: "Sensorer live på minuter · års batteritid",
 };
 
 const dictionaries: Partial<Record<Lang, IndoorClimateStrings>> = { en, da, de, sv };

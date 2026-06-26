@@ -7,8 +7,16 @@ import { getUi } from "../../../data/i18n/ui";
 import { locales, langPath, type Lang } from "../../../data/lang";
 
 export function getStaticPaths() {
-  // indoor-climate and space-management have dedicated rich pages; skip them here.
-  const dedicated = new Set(["indoor-climate", "space-management"]);
+  // Rich module landing pages live as dedicated routes; skip them here.
+  const dedicated = new Set([
+    "indoor-climate",
+    "space-management",
+    "preservation",
+    "water-detection",
+    "push-buttons",
+    "lockers-doors",
+    "usage-cleaning",
+  ]);
   return locales.flatMap((l) =>
     getModulesHub(l.code).leaves
       .filter((leaf) => !dedicated.has(leaf.slug))

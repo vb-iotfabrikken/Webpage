@@ -1,0 +1,26 @@
+---
+import ModuleLandingPage from "../../../components/modules/ModuleLandingPage.astro";
+import { getPreservation } from "../../../data/i18n/preservation";
+import { preservationDashboard, preservationFeatureImages, preservationCapabilitiesContext } from "../../../data/preservationImages";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = getPreservation(lang);
+---
+
+<ModuleLandingPage
+  lang={lang}
+  moduleSlug="preservation"
+  t={t}
+  dashboard={preservationDashboard}
+  featureImages={preservationFeatureImages}
+  relatedModuleHref={langPath("/modules/indoor-climate/", lang)}
+  featureTabId="preservation-features"
+  challengeIconSet="heritage"
+  secondaryAudienceIcon="heritage"
+  capabilitiesContext={preservationCapabilitiesContext}
+/>

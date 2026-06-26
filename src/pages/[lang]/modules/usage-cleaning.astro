@@ -1,0 +1,27 @@
+---
+import ModuleLandingPage from "../../../components/modules/ModuleLandingPage.astro";
+import { getUsageCleaning } from "../../../data/i18n/usageCleaning";
+import { usageCleaningDashboard, usageCleaningFeatureImages, usageCleaningCapabilitiesContext } from "../../../data/usageCleaningImages";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = getUsageCleaning(lang);
+---
+
+<ModuleLandingPage
+  lang={lang}
+  moduleSlug="usage-cleaning"
+  t={t}
+  dashboard={usageCleaningDashboard}
+  featureImages={usageCleaningFeatureImages}
+  relatedModuleHref={langPath("/modules/space-management/", lang)}
+  featureTabId="usage-cleaning-features"
+  challengeIconSet="cleaning"
+  audiencesOnStone
+  secondaryAudienceIcon="compliance"
+  capabilitiesContext={usageCleaningCapabilitiesContext}
+/>

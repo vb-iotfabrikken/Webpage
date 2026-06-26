@@ -1,0 +1,251 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../Hero.astro";
+import Button from "../Button.astro";
+import CtaBand from "../CtaBand.astro";
+import { moduleFaqContext } from "../../data/moduleFaqImages";
+import SectionIntro from "../SectionIntro.astro";
+import ModuleChallengeCards from "./ModuleChallengeCards.astro";
+import ModuleFeatureTabs from "./ModuleFeatureTabs.astro";
+import ModuleCrossLink from "./ModuleCrossLink.astro";
+import ModuleDashboardFrame from "./ModuleDashboardFrame.astro";
+import ModuleCapabilitiesIntro, {
+  type ModuleCapabilitiesContextImage,
+} from "./ModuleCapabilitiesIntro.astro";
+import ModuleFaqSection from "./ModuleFaqSection.astro";
+import type { ModulePageStrings } from "../../data/i18n/modulePageTypes";
+import { breadcrumbSchema, faqSchema } from "../../lib/seo/schema";
+import { langPath, type Lang } from "../../data/lang";
+
+interface ImageMeta {
+  src?: string;
+  width: number;
+  height: number;
+  placeholderLabel?: string;
+}
+
+interface Props {
+  lang: Lang;
+  moduleSlug: string;
+  t: ModulePageStrings;
+  dashboard: ImageMeta;
+  featureImages: Record<string, ImageMeta>;
+  relatedModuleHref: string;
+  featureTabId: string;
+  challengeIconSet?: "default" | "climate" | "heritage" | "water" | "service" | "access" | "cleaning";
+  heroInlineTitleAccent?: boolean;
+  audiencesOnStone?: boolean;
+  secondaryAudienceIcon?: "compliance" | "chart" | "heritage" | "housing" | "service" | "workspace";
+  imageClass?: Record<string, string>;
+  capabilitiesContext: ModuleCapabilitiesContextImage;
+}
+
+const {
+  lang,
+  moduleSlug,
+  t,
+  dashboard,
+  featureImages,
+  relatedModuleHref,
+  featureTabId,
+  challengeIconSet = "default",
+  heroInlineTitleAccent = false,
+  audiencesOnStone = false,
+  secondaryAudienceIcon = "compliance",
+  imageClass,
+  capabilitiesContext,
+} = Astro.props;
+
+const pageJsonLd = [
+  breadcrumbSchema([
+    { name: t.breadcrumbHome, href: langPath("/", lang) },
+    { name: t.breadcrumbModules, href: langPath("/modules/", lang) },
+    { name: t.breadcrumbCurrent, href: langPath(`/modules/${moduleSlug}/`, lang) },
+  ]),
+  faqSchema(t.faqItems),
+].filter(Boolean) as Array<Record<string, unknown>>;
+---
+
+<Layout title={t.metaTitle} description={t.metaDescription} jsonLd={pageJsonLd}>
+  <Hero
+    title={t.heroTitle}
+    titleAccent={t.heroTitleAccent}
+    lead={t.heroLead}
+    align="left"
+    inlineTitleAccent={heroInlineTitleAccent}
+    visualOnWhite
+    compactTop
+  >
+    <ol slot="breadcrumb" class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href={langPath("/", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumbHome}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><a href={langPath("/modules/", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumbModules}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><span class="text-navy-500">{t.breadcrumbCurrent}</span></li>
+    </ol>
+
+    <Button href={langPath("/contact/book-demo/", lang)} variant="primary" size="lg" slot="cta">{t.heroPrimaryCta}</Button>
+    <Button href={langPath("/get-an-offer/", lang)} variant="secondary" size="lg" slot="cta">{t.heroSecondaryCta}</Button>
+
+    <ModuleDashboardFrame
+      slot="visual"
+      class="reveal max-w-5xl"
+      label={t.dashboardLabel}
+      src={dashboard.src}
+      placeholderLabel={dashboard.placeholderLabel ?? t.dashboardAlt}
+      alt={t.dashboardAlt}
+      width={dashboard.width}
+      height={dashboard.height}
+    />
+
+    <div slot="belowVisual" class="max-w-5xl space-y-5">
+      {t.intro.map((paragraph) => (
+        <p class="reveal text-lg text-stone-900/80 leading-relaxed">{paragraph}</p>
+      ))}
+    </div>
+  </Hero>
+
+  <section class="py-20 md:py-24 bg-stone-50">
+    <div class="container-page">
+      <SectionIntro
+        eyebrow={t.challengesEyebrow}
+        heading={t.challengesHeading}
+        surface="stone"
+        class="mb-12"
+      />
+
+      <ModuleChallengeCards challenges={t.challenges} iconSet={challengeIconSet} />
+    </div>
+  </section>
+
+  <section class="py-20 md:py-24">
+    <div class="container-page">
+      <ModuleCapabilitiesIntro
+        eyebrow={t.capabilitiesEyebrow}
+        heading={t.capabilitiesHeading}
+        lead={t.solutionLead}
+        contextAlt={t.capabilitiesContextAlt}
+        context={capabilitiesContext}
+      />
+
+      <ModuleFeatureTabs
+        features={t.features}
+        images={featureImages}
+        tabId={featureTabId}
+        imageClass={imageClass}
+      />
+    </div>
+  </section>
+
+  <section class:list={["py-20 md:py-24", audiencesOnStone && "bg-stone-50"]}>
+    <div class="container-page">
+      <SectionIntro
+        eyebrow={t.audiencesEyebrow}
+        heading={t.audiencesHeading}
+        lead={t.audiencesLead}
+        surface={audiencesOnStone ? "stone" : "white"}
+        class="mb-12 md:mb-14"
+      />
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+        <div class:list={[
+          "reveal rounded-xl p-8 md:p-10",
+          audiencesOnStone
+            ? "bg-white border border-stone-100"
+            : "bg-stone-50 border border-stone-100",
+        ]}>
+          <div class="w-11 h-11 rounded-md bg-sky-500 text-white inline-flex items-center justify-center mb-5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 21V9l9-6 9 6v12M9 21v-6h6v6" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-semibold text-navy-500">{t.primaryAudienceHeading}</h3>
+          <ul class="mt-6 space-y-3 text-navy-500">
+            {t.primaryAudienceItems.map((item) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 w-5 h-5 inline-flex items-center justify-center rounded-md bg-sky-500 text-white shrink-0">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="reveal bg-navy-500 text-white rounded-xl p-8 md:p-10">
+          <div class="w-11 h-11 rounded-md bg-sky-500 text-white inline-flex items-center justify-center mb-5">
+            {secondaryAudienceIcon === "chart" && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 3v18h18" /><path d="M7 16l4-8 4 5 5-9" />
+              </svg>
+            )}
+            {secondaryAudienceIcon === "compliance" && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><path d="M22 4L12 14.01l-3-3" />
+              </svg>
+            )}
+            {secondaryAudienceIcon === "heritage" && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 21h18" /><path d="M5 21V7l7-4 7 4v14" /><path d="M9 21v-6h6v6" />
+              </svg>
+            )}
+            {secondaryAudienceIcon === "housing" && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path d="M9 22V12h6v10" />
+              </svg>
+            )}
+            {secondaryAudienceIcon === "service" && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+            )}
+            {secondaryAudienceIcon === "workspace" && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+              </svg>
+            )}
+          </div>
+          <h3 class="text-2xl font-semibold text-white">{t.secondaryAudienceHeading}</h3>
+          <ul class="mt-6 space-y-3">
+            {t.secondaryAudienceItems.map((item) => (
+              <li class="flex items-start gap-3 text-white/90">
+                <span class="mt-0.5 w-5 h-5 inline-flex items-center justify-center rounded-md bg-white/15 shrink-0">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </span>
+                <span class="text-white/90">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ModuleCrossLink
+    label={t.relatedModuleLabel}
+    body={t.relatedModuleBody}
+    linkLabel={t.relatedModuleLink}
+    href={relatedModuleHref}
+  />
+
+  <ModuleFaqSection
+    title={t.faqTitle}
+    items={t.faqItems}
+    contextAlt={t.faqContextAlt}
+    context={moduleFaqContext}
+  />
+
+  <CtaBand
+    variant="featured"
+    title={t.ctaTitle}
+    subtitle={t.ctaSubtitle}
+    primaryLabel={t.heroPrimaryCta}
+    primaryHref={langPath("/contact/book-demo/", lang)}
+    secondaryLabel={t.heroSecondaryCta}
+    secondaryHref={langPath("/get-an-offer/", lang)}
+  />
+</Layout>

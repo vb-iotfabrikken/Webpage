@@ -1,0 +1,219 @@
+---
+import ModuleScreenshotPlaceholder from "./ModuleScreenshotPlaceholder.astro";
+
+interface Feature {
+  id: string;
+  title: string;
+  body: string;
+  unit: string;
+  imageAlt: string;
+}
+
+interface ImageMeta {
+  src?: string;
+  width: number;
+  height: number;
+  placeholderLabel?: string;
+}
+
+interface Props {
+  features: Feature[];
+  images: Record<string, ImageMeta>;
+  /** Unique id prefix for tab/panel aria wiring (one per page). */
+  tabId: string;
+  /** Optional per-feature image object-position / layout classes. */
+  imageClass?: Record<string, string>;
+}
+
+const { features, images, tabId, imageClass = {} } = Astro.props;
+
+const unitChipClass = "bg-stone-100 text-navy-500 ring-stone-200";
+---
+
+<div data-module-feature-tabs={tabId}>
+  <div
+    class="hidden lg:grid lg:grid-cols-[minmax(0,34rem)_1fr] gap-10 xl:gap-14 items-start"
+    data-feature-tabs-layout
+  >
+    <div
+      role="tablist"
+      aria-label="Capabilities"
+      class="flex flex-col gap-1 min-h-0 overflow-y-auto pr-1"
+      data-feature-tablist
+    >
+      {
+        features.map((feature, index) => (
+          <button
+            type="button"
+            role="tab"
+            id={`${tabId}-tab-${feature.id}`}
+            aria-selected={index === 0 ? "true" : "false"}
+            aria-controls={`${tabId}-panel-${feature.id}`}
+            tabindex={index === 0 ? 0 : -1}
+            data-feature-tab={feature.id}
+            class:list={[
+              "feature-tab text-left rounded-r-md border-l-4 px-4 py-3 transition-colors",
+              index === 0
+                ? "border-coral-500 bg-white shadow-sm"
+                : "border-transparent text-stone-900/70 hover:text-navy-500 hover:bg-white/60",
+            ]}
+          >
+            <span
+              class:list={[
+                "inline-flex rounded-md px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ring-1 ring-inset",
+                unitChipClass,
+              ]}
+            >
+              {feature.unit}
+            </span>
+            <span class="mt-2 block text-base font-semibold text-navy-500 leading-snug">{feature.title}</span>
+            <span class="mt-2 block text-sm leading-relaxed text-stone-900/70">{feature.body}</span>
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="relative w-full" data-feature-panels>
+      {
+        features.map((feature, index) => {
+          const image = images[feature.id];
+          const focus = imageClass[feature.id] ?? "object-top";
+          const placeholderLabel = image?.placeholderLabel ?? feature.imageAlt;
+
+          return (
+            <figure
+              role="tabpanel"
+              id={`${tabId}-panel-${feature.id}`}
+              aria-labelledby={`${tabId}-tab-${feature.id}`}
+              data-feature-panel={feature.id}
+              class:list={[
+                "overflow-hidden rounded-2xl border border-stone-100 bg-white shadow-lg shadow-navy-500/5",
+                index !== 0 && "hidden",
+              ]}
+            >
+              {image?.src ? (
+                <img
+                  src={image.src}
+                  alt={feature.imageAlt}
+                  width={image.width}
+                  height={image.height}
+                  class:list={["aspect-[16/10] w-full object-cover", focus]}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                />
+              ) : (
+                <ModuleScreenshotPlaceholder label={placeholderLabel} />
+              )}
+            </figure>
+          );
+        })
+      }
+    </div>
+  </div>
+
+  <div class="lg:hidden space-y-8">
+    {
+      features.map((feature) => {
+        const image = images[feature.id];
+        const focus = imageClass[feature.id] ?? "object-top";
+        const placeholderLabel = image?.placeholderLabel ?? feature.imageAlt;
+
+        return (
+          <article class="reveal rounded-xl border border-stone-100 bg-stone-50 p-6">
+            <span
+              class:list={[
+                "inline-flex rounded-md px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ring-1 ring-inset",
+                unitChipClass,
+              ]}
+            >
+              {feature.unit}
+            </span>
+            <h3 class="mt-4 text-xl font-bold text-navy-500">{feature.title}</h3>
+            <p class="mt-3 text-base leading-relaxed text-stone-900/75">{feature.body}</p>
+            <figure class="mt-6 overflow-hidden rounded-xl border border-stone-100 bg-white shadow-md">
+              {image?.src ? (
+                <img
+                  src={image.src}
+                  alt={feature.imageAlt}
+                  width={image.width}
+                  height={image.height}
+                  class:list={["aspect-[16/10] w-full object-cover", focus]}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <ModuleScreenshotPlaceholder label={placeholderLabel} />
+              )}
+            </figure>
+          </article>
+        );
+      })
+    }
+  </div>
+</div>
+
+<script>
+  function syncFeatureTabListHeight() {
+    document.querySelectorAll("[data-feature-tabs-layout]").forEach((layout) => {
+      const tablist = layout.querySelector<HTMLElement>("[data-feature-tablist]");
+      const panel =
+        layout.querySelector<HTMLElement>("[data-feature-panel]:not(.hidden)") ??
+        layout.querySelector<HTMLElement>("[data-feature-panel]");
+      if (!tablist || !panel) return;
+      tablist.style.maxHeight = `${panel.offsetHeight}px`;
+    });
+  }
+
+  function initModuleFeatureTabs() {
+    document.querySelectorAll("[data-module-feature-tabs]").forEach((root) => {
+      const tabs = root.querySelectorAll<HTMLButtonElement>("[data-feature-tab]");
+      const panels = root.querySelectorAll<HTMLElement>("[data-feature-panel]");
+      if (tabs.length === 0) return;
+
+      const activate = (id: string) => {
+        tabs.forEach((tab) => {
+          const active = tab.dataset.featureTab === id;
+          tab.setAttribute("aria-selected", String(active));
+          tab.tabIndex = active ? 0 : -1;
+          tab.classList.toggle("border-coral-500", active);
+          tab.classList.toggle("bg-white", active);
+          tab.classList.toggle("shadow-sm", active);
+          tab.classList.toggle("border-transparent", !active);
+          tab.classList.toggle("text-stone-900/70", !active);
+        });
+        panels.forEach((panel) => {
+          panel.classList.toggle("hidden", panel.dataset.featurePanel !== id);
+        });
+        syncFeatureTabListHeight();
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => activate(tab.dataset.featureTab ?? ""));
+        tab.addEventListener("keydown", (e) => {
+          const list = Array.from(tabs);
+          const i = list.indexOf(tab);
+          if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+            e.preventDefault();
+            const next = list[(i + 1) % list.length];
+            next.focus();
+            activate(next.dataset.featureTab ?? "");
+          }
+          if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+            e.preventDefault();
+            const prev = list[(i - 1 + list.length) % list.length];
+            prev.focus();
+            activate(prev.dataset.featureTab ?? "");
+          }
+        });
+      });
+    });
+  }
+
+  initModuleFeatureTabs();
+  syncFeatureTabListHeight();
+  window.addEventListener("resize", syncFeatureTabListHeight);
+  document.addEventListener("astro:page-load", () => {
+    initModuleFeatureTabs();
+    syncFeatureTabListHeight();
+  });
+</script>

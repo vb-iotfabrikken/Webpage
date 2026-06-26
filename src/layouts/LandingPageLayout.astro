@@ -2,24 +2,45 @@
 import Layout from "./Layout.astro";
 import Button from "../components/Button.astro";
 import CtaBand from "../components/CtaBand.astro";
-import FAQ from "../components/FAQ.astro";
+import ModuleFaqSection from "../components/modules/ModuleFaqSection.astro";
+import { moduleFaqContext } from "../data/moduleFaqImages";
+import { getUi } from "../data/i18n/ui";
+import ArticleCard from "../components/articles/ArticleCard.astro";
+import ArticleImage from "../components/articles/ArticleImage.astro";
+import type { ArticleCard as ArticleCardModel } from "../data/articles/query";
+import type { ArticlePageData } from "../data/articles/articlePage";
 import { landingCategories, categoryColorClasses } from "../data/landingCategories";
-import type { CollectionEntry } from "astro:content";
+import { industriesHub } from "../data/site";
 import { breadcrumbSchema, faqSchema, webPageSchema } from "../lib/seo/schema";
+import {
+  articlePath,
+  articlesIndexPath,
+  astroLang,
+  langPath,
+  localizeCta,
+} from "../data/lang";
 
 interface Props {
-  entry: CollectionEntry<"landingpages">;
-  relatedEntries?: CollectionEntry<"landingpages">[];
+  article: ArticlePageData;
+  relatedCards?: ArticleCardModel[];
 }
 
-const { entry, relatedEntries = [] } = Astro.props;
-const d = entry.data;
+const { article, relatedCards = [] } = Astro.props;
+const d = article;
+const lang = astroLang(Astro);
+const ui = getUi(lang);
 
 const category = landingCategories[d.category];
 const cat = categoryColorClasses(category.color);
 
-const primaryCta = d.primaryCta ?? { label: "Book a free demo", href: "/en/contact/book-demo/" };
-const secondaryCta = d.secondaryCta ?? { label: "Contact sales", href: "/en/contact/sales/" };
+const primaryCta = localizeCta(
+  d.primaryCta ?? { label: "Book a free demo", href: langPath("contact/book-demo", lang) },
+  lang,
+);
+const secondaryCta = localizeCta(
+  d.secondaryCta ?? { label: "Contact sales", href: langPath("contact/sales", lang) },
+  lang,
+);
 
 const formattedUpdated = d.updatedAt
   ? new Intl.DateTimeFormat("en-GB", { year: "numeric", month: "long" }).format(d.updatedAt)
@@ -27,15 +48,43 @@ const formattedUpdated = d.updatedAt
 
 const pageTitle = `${d.seoTitle ?? d.title} | IoT Fabrikken`;
 const metaDescription = d.metaDescription ?? d.description;
-const pagePath = `/en/library/${entry.id}/`;
+const pagePath = articlePath(article.slug, lang);
+
+// Dual breadcrumb paths: when an article carries exactly one `industry:` tag
+// that maps to a sector hub, show the audience-first trail
+// (Home → Industries → Sector → Article); otherwise the topic-first trail
+// (Home → Articles → Category → Article).
+const hubLabelBySlug = new Map(
+  industriesHub.leaves.map((l) => [l.slug, l.title.replace(/\.$/, "")]),
+);
+const industrySlugs = (d.tags ?? [])
+  .filter((t) => t.toLowerCase().startsWith("industry:"))
+  .map((t) => t.slice("industry:".length).toLowerCase())
+  .filter((slug) => hubLabelBySlug.has(slug));
+const primaryIndustrySlug = industrySlugs.length === 1 ? industrySlugs[0] : null;
+
+const breadcrumbTrail = primaryIndustrySlug
+  ? [
+      { name: "Home", href: langPath("", lang) },
+      { name: "Industries", href: langPath("industries", lang) },
+      {
+        name: hubLabelBySlug.get(primaryIndustrySlug) as string,
+        href: langPath(`industries/${primaryIndustrySlug}`, lang),
+      },
+      { name: d.title, href: pagePath },
+    ]
+  : [
+      { name: "Home", href: langPath("", lang) },
+      { name: "Articles", href: articlesIndexPath(lang) },
+      {
+        name: category.name,
+        href: `${articlesIndexPath(lang)}?category=${category.slug}`,
+      },
+      { name: d.title, href: pagePath },
+    ];
 
 const landingJsonLd = [
-  breadcrumbSchema([
-    { name: "Home", href: "/en/" },
-    { name: "Library", href: "/en/library/" },
-    { name: category.name, href: `/en/library/?category=${category.slug}` },
-    { name: d.title, href: pagePath },
-  ]),
+  breadcrumbSchema(breadcrumbTrail),
   webPageSchema({ title: d.title, description: metaDescription, url: pagePath }),
   faqSchema(d.faq ?? []),
 ].filter(Boolean) as Array<Record<string, unknown>>;
@@ -59,17 +108,25 @@ const landingJsonLd = [
 
     <div class="relative container-page pt-6 md:pt-8 pb-10 md:pb-14">
       <nav aria-label="Breadcrumb" class="text-sm text-stone-300 mb-4 flex flex-wrap items-center gap-1.5">
-        <a href="/en/" class="hover:text-navy-500">Home</a>
-        <span>/</span>
-        <a href="/en/library/" class="hover:text-navy-500">Library</a>
-        <span>/</span>
-        <a href={`/en/library/?category=${category.slug}`} class="hover:text-navy-500">{category.name}</a>
-        <span>/</span>
-        <span class="text-navy-500" aria-current="page">{d.title}</span>
+        {breadcrumbTrail.map((crumb, i) =>
+          i === breadcrumbTrail.length - 1 ? (
+            <span class="text-navy-500" aria-current="page">{crumb.name}</span>
+          ) : (
+            <Fragment>
+              <a href={crumb.href} class="hover:text-navy-500">{crumb.name}</a>
+              <span>/</span>
+            </Fragment>
+          ),
+        )}
       </nav>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         <div class="lg:col-span-7">
+          {d.eyebrow && (
+            <p class="reveal inline-block px-3 py-1 rounded-md bg-white text-navy-500 border border-stone-100 text-xs font-semibold uppercase tracking-wider mb-4">
+              {d.eyebrow}
+            </p>
+          )}
           <h1 class="reveal text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight text-navy-500">
             {d.heroTitle}
             {d.heroTitleAccent && <span class={cat.accent}> {d.heroTitleAccent}</span>}
@@ -83,8 +140,8 @@ const landingJsonLd = [
           </div>
         </div>
 
-        {d.heroImage && (
-          <div class="lg:col-span-5 reveal">
+        <div class="lg:col-span-5 reveal">
+          {d.heroImage ? (
             <div class="bg-white border border-stone-100 rounded-xl shadow-xl overflow-hidden">
               <img
                 src={d.heroImage}
@@ -93,8 +150,16 @@ const landingJsonLd = [
                 loading="eager"
               />
             </div>
-          </div>
-        )}
+          ) : (
+            <ArticleImage
+              category={d.category}
+              ratio="aspect-[4/3]"
+              rounded="rounded-xl"
+              class="border border-stone-100 shadow-xl"
+              eager={true}
+            />
+          )}
+        </div>
       </div>
     </div>
   </section>
@@ -138,9 +203,9 @@ const landingJsonLd = [
             We'll show the platform live, walk through your case and give a price estimate.
           </p>
           <div class="mt-4 flex flex-col gap-2">
-            <Button href="/en/contact/book-demo/" variant="white" size="sm">Book a free demo</Button>
+            <Button href={langPath("contact/book-demo", lang)} variant="white" size="sm">Book a free demo</Button>
             <Button
-              href="/en/contact/sales/"
+              href={langPath("contact/sales", lang)}
               variant="ghost"
               size="sm"
               class="text-white hover:text-white/80 border border-white/40 hover:bg-white/10"
@@ -158,7 +223,7 @@ const landingJsonLd = [
             <div class="flex flex-wrap gap-2">
               {d.tags.map((t) => (
                 <a
-                  href={`/en/library/?tag=${encodeURIComponent(t)}`}
+                  href={`${articlesIndexPath(lang)}?tag=${encodeURIComponent(t)}`}
                   class="px-2.5 py-1 rounded-md bg-stone-100 text-navy-500 hover:bg-sky-500 hover:text-white text-xs font-medium transition-colors"
                 >
                   {t}
@@ -171,13 +236,25 @@ const landingJsonLd = [
         {formattedUpdated && (
           <p class="text-xs text-stone-300">Last updated: {formattedUpdated}</p>
         )}
+        {d.publishedAt && !formattedUpdated && (
+          <p class="text-xs text-stone-300">
+            Published: {new Intl.DateTimeFormat("en-GB", { year: "numeric", month: "long" }).format(d.publishedAt)}
+          </p>
+        )}
       </aside>
     </div>
   </section>
 
-  {d.faq && d.faq.length > 0 && <FAQ items={d.faq} />}
+  {d.faq && d.faq.length > 0 && (
+    <ModuleFaqSection
+      title={ui.faqSection.title}
+      items={d.faq}
+      contextAlt={ui.faqSection.contextAlt}
+      context={moduleFaqContext}
+    />
+  )}
 
-  {relatedEntries.length > 0 && (
+  {relatedCards.length > 0 && (
     <section class="py-16 md:py-20 bg-stone-50">
       <div class="container-page">
         <div class="reveal max-w-2xl mb-10">
@@ -189,28 +266,10 @@ const landingJsonLd = [
           </h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {relatedEntries.map((r) => {
-            const rc = landingCategories[r.data.category];
-            const rcc = categoryColorClasses(rc.color);
-            return (
-              <a
-                href={`/en/library/${r.id}/`}
-                class="reveal block bg-white border border-stone-100 rounded-xl p-6 hover:border-navy-500 transition-colors group"
-              >
-                <span class={`inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-[11px] font-semibold uppercase tracking-wider ${rcc.chip}`}>
-                  <span class={`w-1.5 h-1.5 rounded-full ${rcc.dot}`}></span>
-                  {rc.name}
-                </span>
-                <h3 class="mt-4 text-lg font-semibold text-navy-500 group-hover:text-coral-500 transition-colors">
-                  {r.data.title}
-                </h3>
-                <p class="mt-2 text-sm text-stone-900/70 leading-relaxed line-clamp-3">
-                  {r.data.description}
-                </p>
-              </a>
-            );
-          })}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+          {relatedCards.map((card) => (
+            <ArticleCard card={card} lang={lang} />
+          ))}
         </div>
       </div>
     </section>
@@ -221,7 +280,6 @@ const landingJsonLd = [
     subtitle="Book a 30-minute demo. We'll walk through your case and give you a concrete price estimate."
     primaryLabel="Book a free demo"
     secondaryLabel="Contact sales"
-    variant="dark"
   />
 </Layout>
 
