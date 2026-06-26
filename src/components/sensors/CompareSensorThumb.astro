@@ -1,0 +1,65 @@
+---
+import { getSensorProductImage } from "../../data/sensorProductImages";
+
+interface Props {
+  slug: string;
+  href: string;
+  /** sm = 44px, md = 64px, lg = 80px */
+  size?: "sm" | "md" | "lg";
+  /** Full-bleed tile for matrix column headers */
+  fill?: boolean;
+  class?: string;
+}
+
+const { slug, href, size = "md", fill = false, class: className } = Astro.props;
+
+const productImage = getSensorProductImage(slug);
+
+const frameClass = {
+  sm: "w-11 h-11 p-1",
+  md: "w-16 h-16 p-1.5",
+  lg: "w-20 h-20 p-2",
+}[size];
+
+const imgSize = { sm: 44, md: 64, lg: 80 }[size];
+---
+
+{productImage && fill ? (
+  <a href={href} class:list={["group/compare-thumb block w-full", className]}>
+    <div class="compare-matrix-thumb-fill h-28 w-full overflow-hidden rounded-lg border border-stone-100 bg-stone-50 transition-colors group-hover/compare-thumb:border-navy-500/40">
+      <img
+        src={productImage.src}
+        alt=""
+        width={144}
+        height={112}
+        class="w-full h-full object-contain scale-[1.55] origin-center transition-transform duration-300 group-hover/compare-thumb:scale-[1.65]"
+        loading="lazy"
+        decoding="async"
+        aria-hidden="true"
+      />
+    </div>
+  </a>
+) : productImage ? (
+  <a
+    href={href}
+    class:list={["group/compare-thumb inline-flex shrink-0", className]}
+  >
+    <div
+      class:list={[
+        "rounded-lg border border-stone-100 bg-stone-50 overflow-hidden flex items-center justify-center transition-colors group-hover/compare-thumb:border-navy-500/40",
+        frameClass,
+      ]}
+    >
+      <img
+        src={productImage.src}
+        alt=""
+        width={imgSize}
+        height={imgSize}
+        class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover/compare-thumb:scale-105"
+        loading="lazy"
+        decoding="async"
+        aria-hidden="true"
+      />
+    </div>
+  </a>
+) : null}

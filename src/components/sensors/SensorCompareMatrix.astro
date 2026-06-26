@@ -2,6 +2,7 @@
 import type { CompareSensor } from "../../data/sensorCompare";
 import { getCompareMatrix, getCompareRowGroups } from "../../data/sensorCompare";
 import { getCompareStrings } from "../../data/i18n/sensorsCompare";
+import CompareSensorThumb from "./CompareSensorThumb.astro";
 import { defaultLang, type Lang } from "../../data/lang";
 
 interface Props {
@@ -75,22 +76,35 @@ const sensorsJson = JSON.stringify(
     </div>
   )}
 
-  <div class="relative">
-    <div class="overflow-x-auto rounded-lg border border-stone-100">
+  <div class="relative" data-compare-matrix>
+    <div class="relative rounded-lg border border-stone-100">
+      <div
+        class="compare-matrix-scroll overflow-x-auto overflow-y-auto rounded-lg"
+        data-compare-scroll
+        tabindex="0"
+        aria-label={c.legend.scrollHint}
+      >
       <table
         id="sensor-compare-matrix"
-        class="w-full min-w-[960px] border-collapse text-sm"
+        class="compare-matrix-table compare-matrix-table--fixed-cols w-full text-sm"
+        style={`--compare-sensor-count: ${sensors.length}`}
         data-matrix={matrixJson}
         data-row-groups={rowGroupsJson}
         data-sensors={sensorsJson}
       >
-        <thead>
-          <tr class="border-b border-stone-100">
+        <thead class="compare-matrix-sticky-head">
+          <tr class="compare-matrix-sticky-img-row">
             <th
+              rowspan="2"
               scope="col"
-              class="sticky left-0 z-20 bg-stone-50 px-4 py-4 text-left text-xs font-semibold uppercase tracking-wider text-stone-900/50 min-w-[10rem]"
+              class="compare-matrix-corner compare-matrix-sticky-corner sticky left-0 z-50 min-w-[10rem] align-bottom border-b border-stone-200 p-0"
             >
-              {c.headers.capability}
+              <div class="compare-matrix-corner-stack">
+                <div class="compare-matrix-corner-spacer" aria-hidden="true"></div>
+                <div class="compare-matrix-corner-label px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-stone-900/50 bg-stone-50">
+                  {c.headers.capability}
+                </div>
+              </div>
             </th>
             {sensors.map((sensor) => (
               <th
@@ -98,9 +112,24 @@ const sensorsJson = JSON.stringify(
                 data-sensor-col
                 data-slug={sensor.slug}
                 data-category={sensor.category}
-                class="px-3 py-4 text-center min-w-[7.5rem] align-bottom border-l border-stone-50 transition-colors"
+                class="compare-matrix-sticky-img px-2 pt-2 pb-1 text-center min-w-[9rem] border-l border-stone-50 transition-colors bg-white"
               >
-                <div data-col-head class="rounded-lg px-2 py-2 transition-colors">
+                <div data-col-head class="transition-colors mx-auto w-full max-w-[9rem]">
+                  <CompareSensorThumb slug={sensor.slug} href={sensor.href} fill class="w-full" />
+                </div>
+              </th>
+            ))}
+          </tr>
+          <tr class="compare-matrix-sticky-name-row border-b border-stone-200">
+            {sensors.map((sensor) => (
+              <th
+                scope="col"
+                data-sensor-col
+                data-slug={sensor.slug}
+                data-category={sensor.category}
+                class="compare-matrix-sticky-name px-2 py-2.5 text-center min-w-[9rem] align-bottom border-l border-stone-50 transition-colors bg-white"
+              >
+                <div data-col-head class="rounded-lg px-1 transition-colors">
                   <a
                     href={sensor.href}
                     class="text-sm font-semibold text-navy-500 hover:text-sky-600 transition-colors leading-snug block"
@@ -114,10 +143,12 @@ const sensorsJson = JSON.stringify(
               </th>
             ))}
           </tr>
+        </thead>
+        <tbody>
           <tr class="border-b border-stone-100 bg-stone-50/80">
             <th
               scope="row"
-              class="sticky left-0 z-20 bg-stone-50 px-4 py-2 text-left text-xs font-medium text-stone-900/60"
+              class="sticky left-0 z-10 bg-stone-50 px-4 py-2 text-left text-xs font-medium text-stone-900/60"
             >
               {c.headers.batteryLife}
             </th>
@@ -135,7 +166,7 @@ const sensorsJson = JSON.stringify(
           <tr class="border-b border-stone-200 bg-stone-50/80">
             <th
               scope="row"
-              class="sticky left-0 z-20 bg-stone-50 px-4 py-2 text-left text-xs font-medium text-stone-900/60"
+              class="sticky left-0 z-10 bg-stone-50 px-4 py-2 text-left text-xs font-medium text-stone-900/60"
             >
               {c.headers.connectivity}
             </th>
@@ -150,8 +181,6 @@ const sensorsJson = JSON.stringify(
               </td>
             ))}
           </tr>
-        </thead>
-        <tbody>
           {compareRowGroups.flatMap((group) => [
             (
               <tr class="bg-navy-500/5">
@@ -205,8 +234,37 @@ const sensorsJson = JSON.stringify(
           ])}
         </tbody>
       </table>
+      </div>
+
+      <div
+        class="compare-matrix-scroll-fade compare-matrix-scroll-fade-right"
+        data-compare-fade-right
+        aria-hidden="true"
+      >
+        <span class="compare-matrix-scroll-fade-icon" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+      </div>
+
+      <div
+        class="compare-matrix-scroll-fade compare-matrix-scroll-fade-bottom"
+        data-compare-fade-bottom
+        aria-hidden="true"
+      >
+        <span class="compare-matrix-scroll-fade-icon" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+      </div>
     </div>
-    <p class="mt-3 text-xs text-stone-900/45 sm:hidden">
+
+    <p class="mt-3 text-xs text-stone-900/55 flex items-center gap-2">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0 text-stone-400" aria-hidden="true">
+        <path d="M2 4.5h10M2 9.5h10M10.5 2.5v9" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" />
+      </svg>
       {c.legend.scrollHint}
     </p>
   </div>
@@ -240,3 +298,160 @@ const sensorsJson = JSON.stringify(
     ))}
   </div>
 </div>
+
+<script>
+  import { initSensorCompareScroll } from "./sensor-compare-scroll";
+
+  function setup() {
+    document.querySelectorAll<HTMLElement>("[data-compare-matrix]").forEach((root) => {
+      initSensorCompareScroll(root);
+    });
+  }
+
+  setup();
+  document.addEventListener("astro:page-load", setup);
+</script>
+
+<style>
+  .compare-matrix-scroll {
+    max-height: min(70vh, 38rem);
+    overflow-x: auto;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(155 155 155 / 0.85) rgb(245 245 245);
+  }
+
+  /* Native scrollbars — vertical (right) and horizontal (bottom) */
+  .compare-matrix-scroll::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .compare-matrix-scroll::-webkit-scrollbar-track {
+    background: rgb(245 245 245);
+    border-radius: 9999px;
+  }
+
+  .compare-matrix-scroll::-webkit-scrollbar-thumb {
+    background: rgb(155 155 155 / 0.85);
+    border-radius: 9999px;
+    border: 2px solid rgb(245 245 245);
+  }
+
+  .compare-matrix-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgb(13 61 84 / 0.45);
+  }
+
+  .compare-matrix-scroll-fade-right {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    bottom: 10px;
+    width: 2.75rem;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.35rem;
+    background: linear-gradient(to left, rgb(255 255 255 / 0.98) 20%, transparent);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 5;
+  }
+
+  .compare-matrix-scroll-fade-bottom {
+    position: absolute;
+    left: 0;
+    right: 10px;
+    bottom: 10px;
+    height: 2.75rem;
+    pointer-events: none;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0.35rem;
+    background: linear-gradient(to top, rgb(255 255 255 / 0.98) 25%, transparent);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 5;
+  }
+
+  .compare-matrix-scroll-fade-right.is-visible,
+  .compare-matrix-scroll-fade-bottom.is-visible {
+    opacity: 1;
+  }
+
+  .compare-matrix-scroll-fade-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    background: rgb(255 255 255 / 0.95);
+    border: 1px solid rgb(240 240 240);
+    color: rgb(13 61 84 / 0.55);
+    box-shadow: 0 1px 4px rgb(13 61 84 / 0.08);
+  }
+
+  .compare-matrix-table {
+    --compare-matrix-img-offset: calc(7rem + 0.75rem);
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .compare-matrix-corner-stack {
+    display: flex;
+    flex-direction: column;
+    background: white;
+  }
+
+  .compare-matrix-corner-spacer {
+    height: var(--compare-matrix-img-offset);
+    flex-shrink: 0;
+    background: white;
+    border-bottom: 1px solid rgb(245 245 245);
+  }
+
+  .compare-matrix-sticky-corner {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: white;
+  }
+
+  .compare-matrix-sticky-img {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: white;
+    box-shadow: 0 1px 0 white;
+  }
+
+  .compare-matrix-sticky-name {
+    position: sticky;
+    top: var(--compare-matrix-img-offset);
+    z-index: 29;
+    background: white;
+    box-shadow:
+      0 -4px 0 white,
+      0 1px 0 rgb(240 240 240);
+  }
+
+  .compare-matrix-table--fixed-cols {
+    min-width: max(100%, calc(10rem + 9rem * var(--compare-sensor-count, 15)));
+  }
+
+  .compare-matrix-table th[data-sensor-col],
+  .compare-matrix-table td[data-sensor-col] {
+    width: 9rem;
+    max-width: 9rem;
+  }
+
+  .compare-matrix-table th.compare-matrix-corner,
+  .compare-matrix-table th[scope="row"]:first-child {
+    width: 10rem;
+    min-width: 10rem;
+    max-width: 10rem;
+  }
+</style>

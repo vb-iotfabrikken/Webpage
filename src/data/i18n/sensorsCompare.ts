@@ -42,7 +42,7 @@ const en: CompareStrings = {
   legend: {
     supported: "Supported",
     notApplicable: "Not applicable",
-    scrollHint: "Scroll horizontally to see all sensors.",
+    scrollHint: "Scroll horizontally and vertically to see all sensors.",
   },
   headers: {
     capability: "Capability",
@@ -116,7 +116,7 @@ const da: CompareStrings = {
   legend: {
     supported: "Understøttet",
     notApplicable: "Ikke relevant",
-    scrollHint: "Scroll vandret for at se alle sensorer.",
+    scrollHint: "Scroll vandret og lodret for at se alle sensorer.",
   },
   headers: {
     capability: "Funktion",
@@ -190,7 +190,7 @@ const de: CompareStrings = {
   legend: {
     supported: "Unterstützt",
     notApplicable: "Nicht zutreffend",
-    scrollHint: "Horizontal scrollen, um alle Sensoren zu sehen.",
+    scrollHint: "Horizontal und vertikal scrollen, um alle Sensoren zu sehen.",
   },
   headers: {
     capability: "Funktion",
@@ -264,7 +264,7 @@ const sv: CompareStrings = {
   legend: {
     supported: "Stöds",
     notApplicable: "Ej tillämpligt",
-    scrollHint: "Scrolla horisontellt för att se alla sensorer.",
+    scrollHint: "Scrolla horisontellt och vertikalt för att se alla sensorer.",
   },
   headers: {
     capability: "Funktion",

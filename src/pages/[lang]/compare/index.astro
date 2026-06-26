@@ -1,0 +1,553 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import SensorCompareMatrix from "../../../components/sensors/SensorCompareMatrix.astro";
+import {
+  getCompareSensors,
+  getCompareSensorsByCategory,
+  getCompareUseCases,
+} from "../../../data/sensorCompare";
+import { getSensorsHub } from "../../../data/hubs/sensors";
+import { getUi } from "../../../data/i18n/ui";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const sensors = getCompareSensors(lang);
+const byCategory = getCompareSensorsByCategory(lang);
+const compareUseCases = getCompareUseCases(lang);
+const useCasesWithCategories = compareUseCases.map((useCase) => ({
+  ...useCase,
+  categories: [
+    ...new Set(
+      useCase.slugs
+        .map((slug) => sensors.find((s) => s.slug === slug)?.category)
+        .filter((category): category is NonNullable<typeof category> => Boolean(category)),
+    ),
+  ],
+}));
+const t = getUi(lang).sensors;
+
+const compareLeaf = getSensorsHub(lang).leaves.find((leaf) => leaf.slug === "compare");
+const compareTitle = compareLeaf?.title ?? "Compare sensors.";
+const compareLead =
+  compareLeaf?.lead ??
+  "A side-by-side comparison of every sensor in the catalogue so you can pick the right one for your rooms.";
+
+const duelSensors = sensors.map((s) => ({
+  slug: s.slug,
+  name: s.name,
+  tagline: s.tagline,
+  batteryLife: s.batteryLife,
+  connectivity: s.connectivity,
+  href: s.href,
+  categoryLabel: s.categoryLabel.replace("RoomAlyzer ", ""),
+  productSheetUrl: s.productSheetUrl ?? "",
+}));
+
+const duelStrings = {
+  pickTwoDifferent: t.compare.pickTwoDifferent,
+  sameProfile: t.compare.sameProfile,
+  capability: t.compare.capability,
+  yes: t.compare.yes,
+  battery: t.compare.battery,
+  connectivity: t.compare.connectivity,
+  sensorA: t.compare.sensorA,
+  sensorB: t.compare.sensorB,
+  selectSensor: t.compare.selectSensor,
+  swapSensors: t.compare.swapSensors,
+  showDifferencesOnly: t.compare.showDifferencesOnly,
+  showAllCapabilities: t.compare.showAllCapabilities,
+  differencesFound: t.compare.differencesFound,
+  allCapabilitiesMatch: t.compare.allCapabilitiesMatch,
+  downloadProductSheetPdf: t.compare.downloadProductSheetPdf,
+  exampleUseCases: t.compare.exampleUseCases,
+};
+---
+
+<Layout title={`${compareTitle.replace(/\.$/, "")} | IoT Fabrikken`} description={compareLead}>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li class="flex items-center gap-1.5">
+        <a href={langPath("/", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumb.home}</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </li>
+      <li class="flex items-center gap-1.5">
+        <a href={langPath("/sensors/", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumb.sensors}</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </li>
+      <li><span class="text-navy-500">{t.breadcrumb.compare}</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    title={compareTitle}
+    titleAccent={t.compare.heroAccent}
+    lead={compareLead}
+    align="left"
+    compactTop
+  >
+    <Button href={langPath("/contact/book-demo/", lang)} variant="primary" size="lg" slot="cta">{t.common.bookDemo}</Button>
+    <Button href={langPath("/sensors/product-sheets/", lang)} variant="secondary" size="lg" slot="cta">{t.common.productSheets}</Button>
+  </Hero>
+
+  <section class="pb-8 md:pb-12 bg-stone-50" data-hero-gap-keep>
+    <div class="container-page">
+      <div class="reveal bg-white border border-stone-100 rounded-xl p-5 md:p-8 shadow-sm overflow-visible">
+        <div class="mb-6 pb-6 border-b border-stone-100 space-y-4">
+          <div
+            class="flex flex-wrap gap-1 rounded-lg border border-stone-100 p-1 bg-stone-50 w-fit"
+            role="tablist"
+            aria-label={t.compare.filterByLine}
+          >
+            <button
+              type="button"
+              id="category-all"
+              class="category-btn px-3 py-2 text-sm font-semibold rounded-md transition-colors bg-white text-navy-500 shadow-sm"
+              data-category="all"
+              aria-pressed="true"
+            >
+              {t.compare.all} ({sensors.length})
+            </button>
+            {byCategory.map((group) => (
+              <button
+                type="button"
+                class="category-btn px-3 py-2 text-sm font-semibold rounded-md transition-colors text-stone-900/60 hover:text-navy-500"
+                data-category={group.category}
+                aria-pressed="false"
+              >
+                {group.label.replace("RoomAlyzer ", "")} ({group.sensors.length})
+              </button>
+            ))}
+          </div>
+
+          <div
+            class="flex flex-wrap gap-2"
+            id="use-case-filters"
+            role="group"
+            aria-label={t.compare.highlightByUseCase}
+          >
+            {useCasesWithCategories.map((useCase) => (
+              <button
+                type="button"
+                class="use-case-btn px-3 py-1.5 rounded-full border border-stone-200 bg-stone-50 text-xs font-medium text-navy-500 hover:border-navy-500 transition-colors"
+                data-slugs={useCase.slugs.join(",")}
+                data-categories={useCase.categories.join(",")}
+                aria-pressed="false"
+                title={useCase.description}
+              >
+                {useCase.label}
+              </button>
+            ))}
+            <button
+              type="button"
+              id="use-case-clear"
+              class="px-3 py-1.5 rounded-full border border-dashed border-stone-300 text-xs font-medium text-stone-900/45 hover:border-navy-500 hover:text-navy-500 transition-colors"
+            >
+              {t.compare.clear}
+            </button>
+          </div>
+        </div>
+
+        <SensorCompareMatrix sensors={sensors} lang={lang} showHeader={false} showSensorCards={false} />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-16 bg-stone-50 border-t border-stone-100">
+    <div class="container-page">
+      <div class="reveal max-w-2xl mb-8">
+        <p class="inline-block px-3 py-1 rounded-md bg-white border border-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-3">
+          {t.compare.headToHead}
+        </p>
+        <h2 class="text-2xl md:text-3xl font-bold text-navy-500 tracking-tight">
+          {t.compare.headToHeadHeading}
+        </h2>
+      </div>
+
+      <div class="reveal bg-white border border-stone-100 rounded-xl p-6 md:p-8 shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 items-end mb-6">
+          <label class="block">
+            <span class="text-sm font-medium text-navy-500 mb-2 block">{t.compare.sensorA}</span>
+            <select id="duel-a" class="w-full rounded-lg border border-stone-200 px-3 py-2.5 text-sm text-navy-500 bg-white focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/20">
+              <option value="" selected>{t.compare.selectSensor}</option>
+              {sensors.map((s) => (
+                <option value={s.slug}>{s.name}</option>
+              ))}
+            </select>
+          </label>
+          <button
+            type="button"
+            id="duel-swap"
+            class="hidden md:inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-200 bg-stone-50 text-navy-500 hover:border-navy-500 hover:bg-white transition-colors shrink-0"
+            aria-label={t.compare.swapSensors}
+            title={t.compare.swapSensors}
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M11 2.5L13.5 5M13.5 5L11 7.5M13.5 5H5.5C3.5 5 2 6.5 2 8.5M5 13.5L2.5 11M2.5 11L5 8.5M2.5 11H10.5C12.5 11 14 9.5 14 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <label class="block">
+            <span class="text-sm font-medium text-navy-500 mb-2 block">{t.compare.sensorB}</span>
+            <select id="duel-b" class="w-full rounded-lg border border-stone-200 px-3 py-2.5 text-sm text-navy-500 bg-white focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/20">
+              <option value="" selected>{t.compare.selectSensor}</option>
+              {sensors.map((s) => (
+                <option value={s.slug}>{s.name}</option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        <button
+          type="button"
+          id="duel-swap-mobile"
+          class="md:hidden w-full mb-6 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-stone-200 bg-stone-50 text-sm font-medium text-navy-500 hover:border-navy-500 transition-colors"
+        >
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M11 2.5L13.5 5M13.5 5L11 7.5M13.5 5H5.5C3.5 5 2 6.5 2 8.5M5 13.5L2.5 11M2.5 11L5 8.5M2.5 11H10.5C12.5 11 14 9.5 14 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          {t.compare.swapSensors}
+        </button>
+
+        <div id="duel-output" class="space-y-6"></div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title={t.compare.ctaTitle}
+    subtitle={t.compare.ctaSubtitle}
+    primaryLabel={t.common.bookDemo}
+    primaryHref={langPath("/contact/book-demo/", lang)}
+    secondaryLabel={t.compare.browseAllSensors}
+    secondaryHref={langPath("/sensors/", lang)}
+  />
+</Layout>
+
+<script define:vars={{ duelSensors, duelStrings }}>
+  const matrixRoot = document.getElementById("sensor-compare-matrix");
+  const categoryButtons = document.querySelectorAll(".category-btn");
+  const useCaseButtons = document.querySelectorAll(".use-case-btn");
+  const useCaseFilters = document.getElementById("use-case-filters");
+  const useCaseClear = document.getElementById("use-case-clear");
+  const duelA = document.getElementById("duel-a");
+  const duelB = document.getElementById("duel-b");
+  const duelSwap = document.getElementById("duel-swap");
+  const duelSwapMobile = document.getElementById("duel-swap-mobile");
+  const duelOutput = document.getElementById("duel-output");
+
+  const matrixData = JSON.parse(matrixRoot?.dataset.matrix ?? "{}");
+  const rowGroups = JSON.parse(matrixRoot?.dataset.rowGroups ?? "[]");
+  const sensorBySlug = Object.fromEntries(duelSensors.map((s) => [s.slug, s]));
+
+  let duelDiffOnly = true;
+
+  function updateVisibleSensorCount() {
+    if (!matrixRoot) return;
+    const visibleSlugs = new Set();
+    matrixRoot.querySelectorAll("[data-sensor-col]").forEach((col) => {
+      if (col.classList.contains("hidden")) return;
+      const slug = col.getAttribute("data-slug");
+      if (slug) visibleSlugs.add(slug);
+    });
+    matrixRoot.style.setProperty("--compare-sensor-count", String(visibleSlugs.size));
+    window.dispatchEvent(new Event("resize"));
+  }
+
+  function setCategoryFilter(category) {
+    categoryButtons.forEach((btn) => {
+      const active = btn.dataset.category === category;
+      btn.setAttribute("aria-pressed", String(active));
+      btn.classList.toggle("bg-white", active);
+      btn.classList.toggle("text-navy-500", active);
+      btn.classList.toggle("shadow-sm", active);
+      btn.classList.toggle("text-stone-900/60", !active);
+    });
+
+    matrixRoot?.querySelectorAll("[data-sensor-col]").forEach((col) => {
+      const colCategory = col.getAttribute("data-category");
+      const show = category === "all" || colCategory === category;
+      col.classList.toggle("hidden", !show);
+    });
+
+    setUseCaseHighlight([]);
+
+    const allView = category === "all";
+    let visibleCount = 0;
+
+    useCaseButtons.forEach((btn) => {
+      const categories = btn.dataset.categories?.split(",").filter(Boolean) ?? [];
+      const applicable = allView || categories.includes(category);
+      btn.classList.toggle("hidden", !applicable);
+      btn.disabled = !allView;
+      if (applicable) visibleCount += 1;
+    });
+
+    useCaseClear?.toggleAttribute("disabled", !allView);
+    useCaseClear?.classList.toggle("hidden", !allView);
+    useCaseFilters?.classList.toggle("hidden", !allView && visibleCount === 0);
+
+    updateVisibleSensorCount();
+  }
+
+  function setUseCaseHighlight(slugs) {
+    matrixRoot?.querySelectorAll("[data-sensor-col]").forEach((col) => {
+      const slug = col.getAttribute("data-slug");
+      const match = slugs.length === 0 || slugs.includes(slug);
+      col.classList.toggle("compare-col-dim", slugs.length > 0 && !match);
+      col.classList.toggle("compare-col-highlight", slugs.length > 0 && match);
+    });
+
+    useCaseButtons.forEach((btn) => {
+      const btnSlugs = btn.dataset.slugs?.split(",") ?? [];
+      const active = slugs.length > 0 && btnSlugs.join(",") === slugs.join(",");
+      btn.setAttribute("aria-pressed", String(active));
+      btn.classList.toggle("border-navy-500", active);
+      btn.classList.toggle("bg-sky-50", active);
+      btn.classList.toggle("text-sky-700", active);
+    });
+
+    if (slugs.length > 0 && matrixRoot) {
+      requestAnimationFrame(() => {
+        const scroller = matrixRoot.closest("[data-compare-matrix]")?.querySelector("[data-compare-scroll]");
+        const first = matrixRoot.querySelector("[data-sensor-col].compare-col-highlight");
+        if (!scroller || !first) return;
+        const scrollerRect = scroller.getBoundingClientRect();
+        const colRect = first.getBoundingClientRect();
+        const offset = colRect.left - scrollerRect.left - 16;
+        if (offset < 0 || colRect.right > scrollerRect.right) {
+          scroller.scrollBy({ left: offset, behavior: "smooth" });
+        }
+      });
+    }
+  }
+
+  categoryButtons.forEach((btn) => {
+    btn.addEventListener("click", () => setCategoryFilter(btn.dataset.category ?? "all"));
+  });
+
+  updateVisibleSensorCount();
+
+  useCaseButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (btn.disabled) return;
+      const slugs = btn.dataset.slugs?.split(",") ?? [];
+      const isActive = btn.getAttribute("aria-pressed") === "true";
+      setUseCaseHighlight(isActive ? [] : slugs);
+    });
+  });
+
+  useCaseClear?.addEventListener("click", () => {
+    if (useCaseClear.hasAttribute("disabled")) return;
+    setUseCaseHighlight([]);
+  });
+
+  function formatCell(value) {
+    if (value === true) return { kind: "yes", text: duelStrings.yes };
+    if (value === false) return { kind: "no", text: "—" };
+    return { kind: "note", text: String(value) };
+  }
+
+  function renderMetaCard(meta) {
+    if (!meta) return "";
+    const sheetLink = meta.productSheetUrl
+      ? `<a href="${meta.productSheetUrl}" target="_blank" rel="noopener noreferrer" download class="text-xs font-medium text-sky-600 hover:text-sky-700 transition-colors">${duelStrings.downloadProductSheetPdf}</a>`
+      : "";
+    return `
+      <div class="rounded-xl border border-stone-100 bg-stone-50 p-5 flex flex-col h-full">
+        <span class="text-[10px] font-semibold uppercase tracking-wide text-sky-600">${meta.categoryLabel}</span>
+        <h3 class="mt-1 leading-snug">
+          <a href="${meta.href}" class="font-semibold text-navy-500 hover:text-sky-600 transition-colors">${meta.name}</a>
+        </h3>
+        <dl class="mt-4 space-y-1.5 text-xs flex-1">
+          <div class="flex justify-between gap-3"><dt class="text-stone-900/50">${duelStrings.battery}</dt><dd class="text-navy-500 font-medium text-right">${meta.batteryLife}</dd></div>
+          <div class="flex justify-between gap-3"><dt class="text-stone-900/50">${duelStrings.connectivity}</dt><dd class="text-navy-500 font-medium text-right">${meta.connectivity}</dd></div>
+        </dl>
+        ${sheetLink ? `<div class="mt-4 pt-4 border-t border-stone-200/80">${sheetLink}</div>` : ""}
+      </div>`;
+  }
+
+  function renderUseCasesBlock(metaA, metaB) {
+    return `
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="rounded-lg border border-stone-100 bg-white px-4 py-3">
+          <p class="text-[10px] font-semibold uppercase tracking-wide text-stone-900/45 mb-1.5">${duelStrings.exampleUseCases}</p>
+          <p class="text-sm text-stone-900/70 leading-relaxed">${metaA?.tagline ?? ""}</p>
+        </div>
+        <div class="rounded-lg border border-stone-100 bg-white px-4 py-3">
+          <p class="text-[10px] font-semibold uppercase tracking-wide text-stone-900/45 mb-1.5">${duelStrings.exampleUseCases}</p>
+          <p class="text-sm text-stone-900/70 leading-relaxed">${metaB?.tagline ?? ""}</p>
+        </div>
+      </div>`;
+  }
+
+  function swapDuelSensors() {
+    if (!duelA || !duelB) return;
+    const tmp = duelA.value;
+    duelA.value = duelB.value;
+    duelB.value = tmp;
+    renderDuel();
+  }
+
+  function renderDuel() {
+    if (!duelOutput || !duelA || !duelB) return;
+    const slugA = duelA.value;
+    const slugB = duelB.value;
+    const metaA = sensorBySlug[slugA];
+    const metaB = sensorBySlug[slugB];
+    const rowA = matrixData[slugA] ?? {};
+    const rowB = matrixData[slugB] ?? {};
+
+    if (!slugA || !slugB || slugA === slugB) {
+      duelOutput.innerHTML = `<p class="text-stone-900/70 text-sm py-4 text-center border border-dashed border-stone-200 rounded-lg">${duelStrings.pickTwoDifferent}</p>`;
+      return;
+    }
+
+    let bodyHtml = "";
+    let diffCount = 0;
+
+    for (const group of rowGroups) {
+      const groupRows = group.rows
+        .map((row) => {
+          const a = rowA[row.id];
+          const b = rowB[row.id];
+          const isDiff = a !== b;
+          if (duelDiffOnly && !isDiff) return null;
+          if (isDiff) diffCount += 1;
+          const cellA = formatCell(a);
+          const cellB = formatCell(b);
+          const rowClass = isDiff ? "bg-sky-50/60" : "";
+          return `
+            <tr class="border-b border-stone-100 last:border-0 ${rowClass}">
+              <td class="py-3 pr-4 text-sm font-medium text-navy-500">${row.label}</td>
+              <td class="py-3 px-3 text-sm text-center ${cellA.kind === "yes" ? "text-sky-700 font-semibold" : "text-stone-900/60"}">${cellA.text}</td>
+              <td class="py-3 pl-3 text-sm text-center ${cellB.kind === "yes" ? "text-sky-700 font-semibold" : "text-stone-900/60"}">${cellB.text}</td>
+            </tr>`;
+        })
+        .filter(Boolean)
+        .join("");
+
+      if (!groupRows) continue;
+
+      bodyHtml += `
+        <tr class="duel-group-row">
+          <th colspan="3" scope="colgroup" class="pt-5 pb-2 text-left text-xs font-semibold uppercase tracking-wider text-stone-900/50">${group.label}</th>
+        </tr>
+        ${groupRows}`;
+    }
+
+    const summaryLabel = duelDiffOnly
+      ? diffCount > 0
+        ? duelStrings.differencesFound.replace("{n}", String(diffCount))
+        : duelStrings.allCapabilitiesMatch
+      : duelStrings.showAllCapabilities;
+
+    const toggleLabel = duelDiffOnly ? duelStrings.showAllCapabilities : duelStrings.showDifferencesOnly;
+
+    const tableBlock = bodyHtml
+      ? `
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <p class="text-sm text-stone-900/60">${summaryLabel}</p>
+          <button type="button" id="duel-toggle-view" class="text-sm font-medium text-sky-600 hover:text-sky-700 transition-colors">${toggleLabel}</button>
+        </div>
+        <div class="overflow-x-auto rounded-lg border border-stone-100">
+          <table class="w-full duel-table min-w-[320px]">
+            <colgroup>
+              <col />
+              <col class="duel-sensor-col" />
+              <col class="duel-sensor-col" />
+            </colgroup>
+            <thead>
+              <tr class="border-b border-stone-200 bg-stone-50/80">
+                <th class="py-3 pl-4 text-left text-xs font-semibold text-stone-900/50">${duelStrings.capability}</th>
+                <th class="py-3 px-3 text-center text-xs font-semibold text-navy-500">
+                  <a href="${metaA?.href ?? "#"}" class="hover:text-sky-600 transition-colors">${metaA?.name ?? slugA}</a>
+                </th>
+                <th class="py-3 pr-4 pl-3 text-center text-xs font-semibold text-navy-500">
+                  <a href="${metaB?.href ?? "#"}" class="hover:text-sky-600 transition-colors">${metaB?.name ?? slugB}</a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>${bodyHtml}</tbody>
+          </table>
+        </div>`
+      : `<p class="text-stone-900/70 text-sm py-4 text-center border border-dashed border-stone-200 rounded-lg">${duelStrings.sameProfile}</p>`;
+
+    duelOutput.innerHTML = `
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pb-6 border-b border-stone-100">
+        ${renderMetaCard(metaA)}
+        ${renderMetaCard(metaB)}
+      </div>
+      ${renderUseCasesBlock(metaA, metaB)}
+      ${tableBlock}`;
+
+    document.getElementById("duel-toggle-view")?.addEventListener("click", () => {
+      duelDiffOnly = !duelDiffOnly;
+      renderDuel();
+    });
+  }
+
+  duelA?.addEventListener("change", renderDuel);
+  duelB?.addEventListener("change", renderDuel);
+  duelSwap?.addEventListener("click", swapDuelSensors);
+  duelSwapMobile?.addEventListener("click", swapDuelSensors);
+  renderDuel();
+</script>
+
+<style is:global>
+  [data-sensor-col].compare-col-dim {
+    opacity: 0.2;
+  }
+
+  [data-sensor-col].compare-col-highlight {
+    background-color: rgb(224 242 254 / 0.55);
+  }
+
+  [data-sensor-col].compare-col-highlight [data-col-head] {
+    background-color: rgb(186 230 253 / 0.65);
+  }
+
+  .compare-matrix-sticky-img[data-sensor-col].compare-col-highlight,
+  .compare-matrix-sticky-name[data-sensor-col].compare-col-highlight {
+    background-color: rgb(224 242 254 / 0.92);
+  }
+
+  .compare-matrix-sticky-name-row [data-sensor-col].compare-col-highlight {
+    box-shadow: 0 1px 0 rgb(186 230 253 / 0.8);
+  }
+
+  .use-case-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  #use-case-clear:disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+  }
+</style>
+
+<style>
+  .duel-table {
+    table-layout: fixed;
+  }
+
+  .duel-table .duel-sensor-col {
+    width: 8.5rem;
+  }
+
+  .duel-table .duel-group-row:first-child th {
+    padding-top: 0;
+  }
+</style>
