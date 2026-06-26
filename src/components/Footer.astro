@@ -1,6 +1,7 @@
 ---
+import { getLocaleContact } from "../data/contact";
 import { externalLinks, getRoomAlyzerLoginUrl } from "../data/externalLinks";
-import { getLangFromPath, langPath } from "../data/lang";
+import { langPath, resolveLang } from "../data/lang";
 import { getUi } from "../data/i18n/ui";
 import { isLivePath } from "../data/launch";
 
@@ -12,9 +13,15 @@ interface Props {
 const { flushTop = false } = Astro.props;
 
 const year = new Date().getFullYear();
-const currentLang = getLangFromPath(Astro.url.pathname);
+const currentLang = resolveLang({
+  pathname: Astro.url.pathname,
+  paramLang: Astro.params.lang,
+  currentLocale: Astro.currentLocale,
+  originPathname: Astro.originPathname,
+});
 const loginUrl = getRoomAlyzerLoginUrl(currentLang);
 const ui = getUi(currentLang);
+const contact = getLocaleContact(currentLang);
 const f = ui.footer;
 const lp = (path: string) => langPath(path, currentLang);
 
@@ -27,18 +34,17 @@ const productLinks = live([
   { label: f.links.platform, href: lp("platform") },
   { label: f.links.modules, href: lp("modules") },
   { label: f.links.sensors, href: lp("sensors") },
-  { label: f.links.integrations, href: lp("integrations") },
   { label: f.links.pricing, href: lp("pricing") },
 ]);
 
-const solutionLinks = live([
+const evaluateLinks = live([
   { label: f.links.industries, href: lp("industries") },
   { label: f.links.compare, href: lp("compare") },
   { label: f.links.roi, href: lp("roi") },
 ]);
 
 const resourceLinks = live([
-  { label: f.links.library, href: lp("library") },
+  { label: f.links.library, href: lp("articles") },
   { label: f.links.cases, href: lp("case-studies") },
   { label: f.links.productSheets, href: lp("sensors/product-sheets") },
   { label: f.links.whitepapers, href: lp("whitepapers") },
@@ -72,7 +78,7 @@ const legalBottomLinks = live([
 
 const footerColumns = [
   { heading: f.headings.product, links: productLinks },
-  { heading: f.headings.solutions, links: solutionLinks },
+  { heading: f.headings.evaluate, links: evaluateLinks },
   { heading: f.headings.resources, links: resourceLinks },
   { heading: f.headings.company, links: companyLinks },
 ].filter((col) => col.links.length > 0);
@@ -144,13 +150,13 @@ const footerColumns = [
           <span class="footer-eyebrow">{f.contact}</span>
           <ul class="mt-2 space-y-1">
             <li>
-              <a href="tel:+4571718090" class="hover:text-coral-500 transition-colors">
-                +45 71 71 80 90
+              <a href={contact.telHref} class="hover:text-coral-500 transition-colors">
+                {contact.phone}
               </a>
             </li>
             <li>
-              <a href="mailto:info@iot-fabrikken.com" class="hover:text-coral-500 transition-colors">
-                info@iot-fabrikken.com
+              <a href={`mailto:${contact.email}`} class="hover:text-coral-500 transition-colors">
+                {contact.email}
               </a>
             </li>
           </ul>

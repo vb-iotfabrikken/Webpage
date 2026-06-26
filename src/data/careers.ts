@@ -3,11 +3,14 @@
  */
 
 import { defaultLang, type Lang } from "./lang";
+import { defaultContact, getLocaleContact, isLocaleContactEmail } from "./contact";
 
-export const careersContact = {
-  email: "info@iot-fabrikken.com",
-  phone: "+45 71 71 80 90",
-};
+/** @deprecated Use `getLocaleContact(lang)` for locale-aware contact details. */
+export const careersContact = defaultContact;
+
+export function getCareersContact(lang: Lang = defaultLang) {
+  return getLocaleContact(lang);
+}
 
 /** Hero lead for `/en/about/careers/` (title and accent are set inline on the page). */
 export const careersIntro = {
@@ -270,20 +273,33 @@ export function getCareersIntro(lang: Lang = defaultLang): { lead: string } {
 }
 
 export function getOpenPositions(lang: Lang = defaultLang): JobOpening[] {
-  if (lang === defaultLang) return openPositions;
-  const overlay = jobsI18n[lang];
-  if (!overlay) return openPositions;
-  return openPositions.map((job) => {
-    const o = overlay[job.slug];
-    if (!o) return job;
-    const { hiringContactRole, ...fields } = o;
-    return {
+  const contact = getLocaleContact(lang);
+  const withContactEmail = (jobs: JobOpening[]) =>
+    jobs.map((job) => ({
       ...job,
-      ...fields,
-      hiringContact:
-        job.hiringContact && hiringContactRole
-          ? { ...job.hiringContact, role: hiringContactRole }
-          : job.hiringContact,
-    };
-  });
+      practical: job.practical.map((row) =>
+        isLocaleContactEmail(row.value) || row.value === defaultContact.email
+          ? { ...row, value: contact.email }
+          : row,
+      ),
+    }));
+
+  if (lang === defaultLang) return withContactEmail(openPositions);
+  const overlay = jobsI18n[lang];
+  if (!overlay) return withContactEmail(openPositions);
+  return withContactEmail(
+    openPositions.map((job) => {
+      const o = overlay[job.slug];
+      if (!o) return job;
+      const { hiringContactRole, ...fields } = o;
+      return {
+        ...job,
+        ...fields,
+        hiringContact:
+          job.hiringContact && hiringContactRole
+            ? { ...job.hiringContact, role: hiringContactRole }
+            : job.hiringContact,
+      };
+    }),
+  );
 }

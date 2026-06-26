@@ -1,5 +1,6 @@
 import type { Lang } from "../lang";
 import { defaultLang } from "../lang";
+import { applyLocaleContactToHtml } from "../contact";
 
 /** Chrome + long-form prose for the Legal section (privacy + impressum). */
 export interface LegalStrings {
@@ -561,5 +562,16 @@ const sv: LegalStrings = {
 const dictionaries: Record<Lang, LegalStrings> = { en, da, de, sv };
 
 export function getLegal(lang: Lang): LegalStrings {
-  return dictionaries[lang] ?? dictionaries[defaultLang];
+  const base = dictionaries[lang] ?? dictionaries[defaultLang];
+  return {
+    ...base,
+    privacy: {
+      ...base.privacy,
+      body: applyLocaleContactToHtml(base.privacy.body, lang),
+    },
+    impressum: {
+      ...base.impressum,
+      body: applyLocaleContactToHtml(base.impressum.body, lang),
+    },
+  };
 }

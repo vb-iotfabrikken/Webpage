@@ -2,7 +2,8 @@
 import Layout from "../../../../layouts/Layout.astro";
 import Hero from "../../../../components/Hero.astro";
 import Button from "../../../../components/Button.astro";
-import { careersContact, getOpenPositions, type JobOpening } from "../../../../data/careers";
+import { getCareersContact, getOpenPositions, type JobOpening } from "../../../../data/careers";
+import { isLocaleContactEmail } from "../../../../data/contact";
 import { getAbout } from "../../../../data/i18n/about";
 import { locales, langPath, type Lang } from "../../../../data/lang";
 
@@ -17,9 +18,10 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params as { lang: Lang; slug: string };
 const { job } = Astro.props as { job: JobOpening };
+const contact = getCareersContact(lang);
 const t = getAbout(lang);
 const mailSubject = encodeURIComponent(`${t.careers.applicationSubjectPrefix} ${job.title}`);
-const mailtoApply = `mailto:${careersContact.email}?subject=${mailSubject}`;
+const mailtoApply = `mailto:${contact.email}?subject=${mailSubject}`;
 ---
 
 <Layout title={`${job.title} | IoT Fabrikken`} description={job.summary}>
@@ -111,9 +113,9 @@ const mailtoApply = `mailto:${careersContact.email}?subject=${mailSubject}`;
             <div class="flex flex-col sm:flex-row sm:justify-between gap-1 pb-3 border-b border-stone-100 last:border-0 last:pb-0">
               <dt class="text-sm text-stone-300">{row.label}</dt>
               <dd class="text-sm font-medium text-navy-500 sm:text-right">
-                {row.value === careersContact.email ? (
+                {isLocaleContactEmail(row.value) ? (
                   <a href={mailtoApply} class="hover:text-coral-500 underline underline-offset-4">
-                    {row.value}
+                    {contact.email}
                   </a>
                 ) : (
                   row.value
