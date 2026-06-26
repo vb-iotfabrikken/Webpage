@@ -1,0 +1,231 @@
+---
+import Button from "./Button.astro";
+import { defaultLang, type Lang } from "../data/lang";
+import { getGetOffer } from "../data/i18n/getOffer";
+import { getSensorsHub } from "../data/hubs/sensors";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getGetOffer(lang);
+const f = t.form;
+const validationMessages = JSON.stringify(t.validation);
+
+// Dropdown options come straight from the catalogue (localized names, with the
+// approved `de` "Wasserdetektor" override). Exclude the "compare" helper leaf.
+const sensorOptions = getSensorsHub(lang)
+  .leaves.filter((leaf) => leaf.slug !== "compare")
+  .map((leaf) => leaf.title.replace(/\.$/, ""));
+---
+
+<section class="py-20 md:py-24 bg-white">
+  <div class="container-page">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      <div class="reveal">
+        <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
+          {f.eyebrow}
+        </p>
+        <h2 class="text-3xl md:text-4xl font-bold text-navy-500">{f.title}</h2>
+        <p class="mt-4 text-lg text-stone-900/70">{f.subtitle}</p>
+
+        <ul class="mt-8 space-y-3 text-navy-500">
+          {t.bullets.map((b) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 w-5 h-5 inline-flex items-center justify-center rounded-md bg-forest-500 text-white shrink-0">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 6L5 8.5L9.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+
+        <p class="mt-8 text-navy-500">{t.contactNote}</p>
+      </div>
+
+      <div class="reveal">
+        <form
+          class="relative bg-stone-50 border border-stone-100 rounded-xl p-6 md:p-8 space-y-4"
+          action="#"
+          method="post"
+          data-offer-form
+          data-offer-messages={validationMessages}
+          novalidate
+        >
+          <div class="form-honeypot" aria-hidden="true">
+            <label for="offer-website" class="form-honeypot-label">Website</label>
+            <input
+              type="text"
+              id="offer-website"
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+              data-offer-honeypot
+            />
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <label class="block">
+              <span class="text-sm font-medium text-navy-500">{f.firstName}</span>
+              <input type="text" name="firstName" required autocomplete="given-name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-navy-500">{f.lastName}</span>
+              <input type="text" name="lastName" required autocomplete="family-name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+            </label>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <label class="block">
+              <span class="text-sm font-medium text-navy-500">{f.phone}</span>
+              <input type="tel" name="phone" autocomplete="tel" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-navy-500">{f.email}</span>
+              <input type="email" name="email" required autocomplete="work email" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+            </label>
+          </div>
+          <label class="block">
+            <span class="text-sm font-medium text-navy-500">{f.company}</span>
+            <input type="text" name="company" required autocomplete="organization" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+          </label>
+          <label class="block">
+            <span class="text-sm font-medium text-navy-500">{f.wishes}</span>
+            <textarea name="wishes" rows="3" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500 resize-none"></textarea>
+          </label>
+
+          <fieldset class="space-y-3">
+            <legend class="text-sm font-medium text-navy-500">{f.productsHeading}</legend>
+
+            <template data-offer-row-template>
+              <div class="offer-row flex items-end gap-2">
+                <label class="block flex-1 min-w-0">
+                  <select
+                    data-offer-sensor
+                    class="w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
+                  >
+                    <option value="">{f.sensorSelect}</option>
+                    {sensorOptions.map((name) => (
+                      <option value={name}>{name}</option>
+                    ))}
+                  </select>
+                </label>
+                <label class="flex items-center gap-2 shrink-0">
+                  <span class="text-xs text-stone-300">{f.quantity}</span>
+                  <input
+                    type="number"
+                    data-offer-qty
+                    min="1"
+                    step="1"
+                    inputmode="numeric"
+                    class="w-16 rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
+                  />
+                </label>
+                <button
+                  type="button"
+                  data-offer-remove
+                  aria-label={f.removeSensor}
+                  title={f.removeSensor}
+                  class="shrink-0 inline-flex h-9 w-9 items-center justify-center rounded-md border border-stone-100 bg-white text-stone-300 hover:text-coral-500 hover:border-coral-500 transition-colors"
+                >
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3.5 3.5L10.5 10.5M10.5 3.5L3.5 10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                  </svg>
+                </button>
+              </div>
+            </template>
+
+            <div class="space-y-3" data-offer-rows></div>
+
+            <button
+              type="button"
+              data-offer-add
+              class="inline-flex items-center gap-1.5 text-sm font-medium text-coral-600 hover:text-coral-700 transition-colors"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M7 2.5V11.5M2.5 7H11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+              </svg>
+              {f.addSensor}
+            </button>
+          </fieldset>
+
+          <label class="block">
+            <span class="text-sm font-medium text-navy-500">{f.comment}</span>
+            <textarea name="comment" rows="3" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500 resize-none"></textarea>
+          </label>
+          <label class="flex items-start gap-2.5 pt-1">
+            <input
+              type="checkbox"
+              name="consent"
+              required
+              class="mt-0.5 h-4 w-4 shrink-0 rounded border-stone-300 text-coral-500 focus:ring-coral-500"
+              data-offer-consent
+            />
+            <span class="text-xs text-stone-300 leading-relaxed">{f.consent}</span>
+          </label>
+          <p class="text-xs text-coral-600 hidden" role="alert" data-offer-error>
+            {f.emailError}
+          </p>
+          <div class="flex items-center justify-between gap-4 pt-2">
+            <p class="text-xs text-stone-300 leading-relaxed">
+              {f.disclaimer}
+            </p>
+            <Button type="submit" variant="primary" size="md">{f.submit}</Button>
+          </div>
+        </form>
+        <div
+          class="hidden bg-stone-50 border border-stone-100 rounded-xl p-6 md:p-8"
+          role="status"
+          aria-live="polite"
+          data-offer-success
+        >
+          <div class="flex items-start gap-3">
+            <span class="mt-0.5 w-6 h-6 inline-flex items-center justify-center rounded-md bg-forest-500 text-white shrink-0">
+              <svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+                <path d="M2.5 6L5 8.5L9.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <div>
+              <p class="text-lg font-semibold text-navy-500">{f.successTitle}</p>
+              <p class="mt-1 text-stone-900/70">{f.successBody}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .form-honeypot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .form-honeypot-label,
+  .form-honeypot input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+</style>
+
+<script>
+  import "./offer-form.ts";
+</script>
