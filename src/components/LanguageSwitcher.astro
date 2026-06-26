@@ -1,6 +1,7 @@
 ---
 import {
-  getLangFromPath,
+  pagePathname,
+  resolveLang,
   switchLocalePath,
   type Lang,
 } from "../data/lang";
@@ -21,10 +22,13 @@ type DropdownLocale = (typeof dropdownLocales)[number]["code"];
 
 const liveLocales = new Set<Lang>(["en", "da", "de", "sv"]);
 
-function getCurrentLocale(pathname: string): DropdownLocale {
-  const match = pathname.match(/^\/(en|da|de|sv)(\/|$)/);
-  if (match) return match[1] as DropdownLocale;
-  return getLangFromPath(pathname);
+function getCurrentLocale(): DropdownLocale {
+  return resolveLang({
+    pathname: Astro.url.pathname,
+    paramLang: Astro.params.lang,
+    currentLocale: Astro.currentLocale,
+    originPathname: Astro.originPathname,
+  });
 }
 
 function switchLocaleHref(pathname: string, target: DropdownLocale): string {
@@ -40,7 +44,8 @@ function switchLocaleHref(pathname: string, target: DropdownLocale): string {
 }
 
 const { variant = "default" } = Astro.props;
-const currentLocale = getCurrentLocale(Astro.url.pathname);
+const routePathname = pagePathname(Astro.url.pathname, Astro.originPathname);
+const currentLocale = getCurrentLocale();
 const current = dropdownLocales.find((l) => l.code === currentLocale) ?? dropdownLocales[0];
 const isCompact = variant === "compact";
 ---
@@ -84,7 +89,7 @@ const isCompact = variant === "compact";
     <ul class="language-switcher__menu" role="list">
       {
         dropdownLocales.map((locale) => {
-          const href = switchLocaleHref(Astro.url.pathname, locale.code);
+          const href = switchLocaleHref(routePathname, locale.code);
           const isActive = locale.code === currentLocale;
           return (
             <li>

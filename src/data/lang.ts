@@ -27,6 +27,31 @@ export function isIndexedLocale(lang: Lang): boolean {
 }
 
 /**
+ * Locale-stripped routes that are fully translated in every locale and should
+ * be indexed (and included in hreflang) even when the locale is not yet in
+ * INDEXED_LOCALES site-wide.
+ */
+export const MULTILINGUAL_INDEXED_ROUTES = new Set<string>(["compare"]);
+
+/** Strip the locale prefix and return the bare route key (no leading/trailing slashes). */
+export function stripLocaleRoute(pathname: string): string {
+  return pathname
+    .replace(/^\/(en|da|de|sv)(\/|$)/, "/")
+    .replace(/^\/+/, "")
+    .replace(/\/+$/, "");
+}
+
+/** Whether this pathname is a fully translated route indexed in all locales. */
+export function isMultilingualIndexedRoute(pathname: string): boolean {
+  return MULTILINGUAL_INDEXED_ROUTES.has(stripLocaleRoute(pathname));
+}
+
+/** Whether this page should be indexed and advertised via hreflang alternates. */
+export function isPageIndexed(pathname: string, lang: Lang): boolean {
+  return isIndexedLocale(lang) || isMultilingualIndexedRoute(pathname);
+}
+
+/**
  * EN ↔ DA slug pairs where the two locales use different path segments.
  * Mirrors the legacy redirects in astro.config.mjs.
  */
@@ -34,7 +59,6 @@ const slugPairs: ReadonlyArray<readonly [enSlug: string, daSlug: string]> = [
   ["norddjurs-municipality", "norddjurs-kommune"],
   ["varde-municipality", "varde-kommune"],
   ["gribskov-municipality", "gribskov-kommune"],
-  ["d-label", "d-maerket"],
 ];
 
 /**
@@ -47,6 +71,24 @@ export function langPath(path: string, lang: Lang = defaultLang): string {
   return `/${lang}/${clean}/`;
 }
 
+/** URL of the articles index (the single canonical content catalogue). */
+export function articlesIndexPath(lang: Lang = defaultLang): string {
+  return langPath("articles", lang);
+}
+
+/** URL of a single article by slug. */
+export function articlePath(slug: string, lang: Lang = defaultLang): string {
+  return langPath(`articles/${slug}`, lang);
+}
+
+/** URL of the per-sector article list under an industry hub. */
+export function industryArticlesPath(
+  industrySlug: string,
+  lang: Lang = defaultLang,
+): string {
+  return langPath(`industries/${industrySlug}/articles`, lang);
+}
+
 /** Read the locale prefix from a pathname, or fall back to the default. */
 export function getLangFromPath(pathname: string): Lang {
   const match = pathname.match(/^\/(en|da|de|sv)(\/|$)/);
@@ -54,6 +96,115 @@ export function getLangFromPath(pathname: string): Lang {
     return match[1] as Lang;
   }
   return defaultLang;
+}
+
+type ResolveLangInput = {
+  pathname: string;
+  paramLang?: string;
+  currentLocale?: string;
+  originPathname?: string;
+};
+
+function safeDecodePath(path: string): string {
+  try {
+    return decodeURIComponent(path);
+  } catch {
+    return path;
+  }
+}
+
+/**
+ * Pathname the visitor requested. On i18n fallback rewrites Astro.url.pathname
+ * points at the English source while originPathname keeps /de/... (etc.).
+ */
+export function pagePathname(pathname: string, originPathname?: string): string {
+  if (originPathname) {
+    const decoded = safeDecodePath(originPathname);
+    if (/^\/(en|da|de|sv)(\/|$)/.test(decoded)) return decoded;
+  }
+  return pathname;
+}
+
+/**
+ * Active locale for the current request. Prefer Astro i18n metadata and route
+ * params over Astro.url.pathname, which rewrites to English on fallbacks.
+ */
+export function resolveLang(input: ResolveLangInput): Lang {
+  const { pathname, paramLang, currentLocale, originPathname } = input;
+
+  if (paramLang && localeCodes.has(paramLang as Lang)) {
+    return paramLang as Lang;
+  }
+
+  if (currentLocale && localeCodes.has(currentLocale as Lang)) {
+    return currentLocale as Lang;
+  }
+
+  return getLangFromPath(pagePathname(pathname, originPathname));
+}
+
+/** Minimal Astro context needed to resolve the visitor's locale. */
+export type AstroLangContext = {
+  url: URL;
+  params: Record<string, string | undefined>;
+  currentLocale?: string;
+  originPathname?: string;
+};
+
+/** Resolve locale from an Astro component's global context. */
+export function astroLang(astro: AstroLangContext): Lang {
+  return resolveLang({
+    pathname: astro.url.pathname,
+    paramLang: astro.params.lang,
+    currentLocale: astro.currentLocale,
+    originPathname: astro.originPathname,
+  });
+}
+
+type LocalLink = { label: string; href?: string };
+
+/** Swap the locale prefix on an internal path (keeps query + hash). */
+export function localizeHref(href: string, lang: Lang): string {
+  if (
+    !href ||
+    /^https?:\/\//i.test(href) ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:") ||
+    href.startsWith("#")
+  ) {
+    return href;
+  }
+
+  const url = new URL(href, "https://placeholder.local");
+  const localeMatch = url.pathname.match(/^\/(en|da|de|sv)(\/.*)?$/);
+
+  let pathname: string;
+  if (localeMatch) {
+    const rest = (localeMatch[2] ?? "/").replace(/^\/+/, "").replace(/\/+$/, "");
+    pathname = langPath(rest, lang);
+  } else if (url.pathname.startsWith("/")) {
+    const rest = url.pathname.replace(/^\/+/, "").replace(/\/+$/, "");
+    pathname = langPath(rest, lang);
+  } else {
+    return href;
+  }
+
+  return `${pathname}${url.search}${url.hash}`;
+}
+
+/** Localize a CTA pair's hrefs while keeping labels intact. */
+export function localizeCta<T extends { label: string; href: string }>(
+  cta: T,
+  lang: Lang,
+): T {
+  return { ...cta, href: localizeHref(cta.href, lang) };
+}
+
+/** Localize breadcrumb hrefs for the active locale. */
+export function localizeCrumbs<T extends LocalLink>(crumbs: T[], lang: Lang): T[] {
+  return crumbs.map((crumb) =>
+    crumb.href ? { ...crumb, href: localizeHref(crumb.href, lang) } : crumb,
+  );
 }
 
 function translateSlug(slug: string, targetLang: Lang): string {

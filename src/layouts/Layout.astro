@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { locales, getLangFromPath, switchLocalePath, isIndexedLocale } from "../data/lang";
+import { locales, pagePathname, resolveLang, switchLocalePath, isPageIndexed } from "../data/lang";
 import { DEFAULT_OG_IMAGE, SITE_NAME, organizationSchema, websiteSchema } from "../lib/seo/config";
 
 interface Props {
@@ -42,11 +42,27 @@ const siteOrigin = Astro.site ?? "https://iot-fabrikken.com";
 const canonical = new URL(canonicalPath ?? Astro.url.pathname, siteOrigin);
 const ogImageUrl = new URL(ogImage, siteOrigin).toString();
 
-const currentLang = getLangFromPath(Astro.url.pathname);
+const routePathname = pagePathname(Astro.url.pathname, Astro.originPathname);
+const currentLang = resolveLang({
+  pathname: Astro.url.pathname,
+  paramLang: Astro.params.lang,
+  currentLocale: Astro.currentLocale,
+  originPathname: Astro.originPathname,
+});
 
-// English-first: keep untranslated locales (those still serving English via
-// the i18n fallback) out of the index until their translations ship.
-const robotsNoindex = noindex || !isIndexedLocale(currentLang);
+// English-first: untranslated locales stay noindex site-wide, except routes in
+// MULTILINGUAL_INDEXED_ROUTES (e.g. /compare/) that ship in all four locales.
+const pageIndexed = !noindex && isPageIndexed(routePathname, currentLang);
+const robotsNoindex = !pageIndexed;
+
+// hreflang alternates — indexed locales plus any fully translated route.
+const alternates = locales
+  .filter((l) => isPageIndexed(routePathname, l.code))
+  .map((l) => ({
+    hreflang: l.code,
+    href: new URL(switchLocalePath(routePathname, l.code), siteOrigin).toString(),
+  }));
+const xDefaultHref = new URL(switchLocalePath(routePathname, "en"), siteOrigin).toString();
 
 // BCP-47 / Open Graph locale tags per supported language.
 const ogLocaleByLang = {
@@ -55,17 +71,6 @@ const ogLocaleByLang = {
   de: "de_DE",
   sv: "sv_SE",
 } as const;
-
-// hreflang alternates — only locales that are genuinely translated, plus
-// x-default → English. Advertising untranslated locales would point search
-// engines at duplicate English content.
-const alternates = locales
-  .filter((l) => isIndexedLocale(l.code))
-  .map((l) => ({
-    hreflang: l.code,
-    href: new URL(switchLocalePath(Astro.url.pathname, l.code), siteOrigin).toString(),
-  }));
-const xDefaultHref = new URL(switchLocalePath(Astro.url.pathname, "en"), siteOrigin).toString();
 
 // Global structured data emitted on every page, plus any page-specific nodes.
 const globalJsonLd = [organizationSchema(), websiteSchema()];

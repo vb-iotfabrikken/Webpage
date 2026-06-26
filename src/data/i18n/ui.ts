@@ -24,7 +24,7 @@ export interface FooterStrings {
   rightsReserved: string; // "{year}" is replaced at render time
   headings: {
     product: string;
-    solutions: string;
+    evaluate: string;
     resources: string;
     company: string;
     supportLegal: string;
@@ -81,7 +81,7 @@ export interface NavStrings {
   cta: {
     allSensors: string;
     compareSensors: string;
-    browseLibrary: string;
+    allIndustries: string;
   };
   industryColumns: {
     publicHealth: string;
@@ -120,6 +120,7 @@ export interface SensorStrings {
     bookDemo: string;
     bookLiveDemo: string;
     downloadProductSheet: string;
+    getAnOffer: string;
     productSheets: string;
     contactSales: string;
     allSensors: string;
@@ -128,9 +129,39 @@ export interface SensorStrings {
   index: { ctaTitle: string; ctaSubtitle: string };
   detail: {
     exampleUseCases: string;
+    productViews: string;
     whyChoose: string;
     ctaBandTitle: string;
     ctaBandSubtitle: string;
+    specs: {
+      title: string;
+      downloadFullSheet: string;
+      rows: {
+        productLine: string;
+        measurements: string;
+        dimensions: string;
+        measuringRange: string;
+        operatingRange: string;
+        operatingConditions: string;
+        fieldOfView: string;
+        precision: string;
+        longTermDrift: string;
+        battery: string;
+        connectivity: string;
+        simCard: string;
+        wirelessRange: string;
+        voltage: string;
+        ipRating: string;
+        probe: string;
+        maintenance: string;
+        activation: string;
+        controlSoftware: string;
+        mounting: string;
+        material: string;
+        application: string;
+        certification: string;
+      };
+    };
   };
   compare: {
     heroAccent: string;
@@ -142,6 +173,7 @@ export interface SensorStrings {
     headToHeadHeading: string;
     sensorA: string;
     sensorB: string;
+    selectSensor: string;
     pickTwoDifferent: string;
     sameProfile: string;
     capability: string;
@@ -151,6 +183,14 @@ export interface SensorStrings {
     ctaTitle: string;
     ctaSubtitle: string;
     browseAllSensors: string;
+    swapSensors: string;
+    showDifferencesOnly: string;
+    showAllCapabilities: string;
+    viewProduct: string;
+    differencesFound: string;
+    allCapabilitiesMatch: string;
+    downloadProductSheetPdf: string;
+    exampleUseCases: string;
   };
   sheets: {
     heroTitle: string;
@@ -158,6 +198,19 @@ export interface SensorStrings {
     lead: string;
     metaDescription: string;
     pdf: string;
+  };
+  gallery: {
+    tablistLabel: string;
+    product: string;
+    dimensions: string;
+    dimensionsHeading: string;
+    zoomDimensions: string;
+    closeZoom: string;
+    inUse: string;
+    compact: string;
+    pro: string;
+    rangeExtender: string;
+    bracket: string;
   };
 }
 
@@ -168,12 +221,9 @@ export interface ModuleStrings {
     bookDemo: string;
     contactSales: string;
     productSheets: string;
-    downloadProductSheets: string;
+    getAnOffer: string;
   };
   index: {
-    sectionEyebrow: string;
-    sectionHeading: string;
-    sectionIntro: string;
     ctaTitle: string;
     ctaSubtitle: string;
   };
@@ -185,11 +235,42 @@ export interface ModuleStrings {
   detail: { ctaBandTitle: string; ctaBandSubtitle: string };
 }
 
+export interface IndustryStrings {
+  breadcrumb: { home: string; industries: string };
+  content: {
+    focusEyebrow: string;
+    challengesEyebrow: string;
+    solutionEyebrow: string;
+    smarterTogether: string;
+    sensorsEyebrow: string;
+    modulesEyebrow: string;
+    modulesLinkLabel: string;
+  };
+  cases: {
+    eyebrow: string;
+    heading: string;
+    readMore: string;
+  };
+  detail: { ctaBandTitle: string; ctaBandSubtitle: string };
+  articles: {
+    eyebrow: string;
+    heading: string;
+    viewAll: string;
+  };
+}
+
+export interface FaqSectionStrings {
+  title: string;
+  contextAlt: string;
+}
+
 export interface UiStrings {
   footer: FooterStrings;
   nav: NavStrings;
   sensors: SensorStrings;
   modules: ModuleStrings;
+  industries: IndustryStrings;
+  faqSection: FaqSectionStrings;
 }
 
 const en: UiStrings = {
@@ -206,7 +287,7 @@ const en: UiStrings = {
     rightsReserved: "© {year} IoT Fabrikken ApS. All rights reserved.",
     headings: {
       product: "Product",
-      solutions: "Solutions",
+      evaluate: "Evaluate",
       resources: "Resources",
       company: "Company",
       supportLegal: "Support & Legal",
@@ -220,7 +301,7 @@ const en: UiStrings = {
       industries: "Industries",
       compare: "Compare",
       roi: "ROI",
-      library: "Library",
+      library: "Articles",
       cases: "Cases",
       productSheets: "Product sheets",
       whitepapers: "White papers",
@@ -262,7 +343,7 @@ const en: UiStrings = {
     cta: {
       allSensors: "All sensors",
       compareSensors: "Compare sensors",
-      browseLibrary: "Browse the whole library of articles and use cases",
+      allIndustries: "All industries",
     },
     industryColumns: {
       publicHealth: "Public Sector & Healthcare",
@@ -277,8 +358,8 @@ const en: UiStrings = {
       roiDesc: "Estimate payback with your own numbers.",
     },
     resources: {
-      libraryLabel: "Article library",
-      libraryDesc: "Guides and use cases by industry.",
+      libraryLabel: "Articles",
+      libraryDesc: "Guides, use cases and news — searchable by topic or industry.",
       casesLabel: "Cases",
       casesDesc: "What customers say about working with us.",
       whitepapersLabel: "White papers",
@@ -300,6 +381,7 @@ const en: UiStrings = {
       bookDemo: "Book a free demo",
       bookLiveDemo: "Book a live demo",
       downloadProductSheet: "Download product sheet",
+      getAnOffer: "Get an offer",
       productSheets: "Product sheets",
       contactSales: "Contact sales",
       allSensors: "Browse all sensors",
@@ -311,9 +393,39 @@ const en: UiStrings = {
     },
     detail: {
       exampleUseCases: "Example use cases",
+      productViews: "Product views",
       whyChoose: "Why choose this sensor?",
       ctaBandTitle: "Want to see it for yourself?",
       ctaBandSubtitle: "Book a live demo — always free of charge and completely non-binding.",
+      specs: {
+        title: "Technical specifications",
+        downloadFullSheet: "Download full product sheet (PDF)",
+        rows: {
+          productLine: "Product line",
+          measurements: "Measurements",
+          dimensions: "Dimensions",
+          measuringRange: "Measuring range",
+          operatingRange: "Operating range",
+          operatingConditions: "Operating conditions",
+          fieldOfView: "Field of view",
+          precision: "Precision",
+          longTermDrift: "Long-term drift",
+          battery: "Battery",
+          connectivity: "Connectivity",
+          simCard: "SIM card",
+          wirelessRange: "Wireless range",
+          voltage: "Voltage",
+          ipRating: "IP rating",
+          probe: "Probe",
+          maintenance: "Maintenance",
+          activation: "Activation",
+          controlSoftware: "Control software",
+          mounting: "Mounting",
+          material: "Material",
+          application: "Application",
+          certification: "Certification",
+        },
+      },
     },
     compare: {
       heroAccent: "Every parameter, one view.",
@@ -325,6 +437,7 @@ const en: UiStrings = {
       headToHeadHeading: "Pick any two sensors and see how they differ.",
       sensorA: "Sensor A",
       sensorB: "Sensor B",
+      selectSensor: "Select a sensor",
       pickTwoDifferent: "Pick two different sensors to compare.",
       sameProfile:
         "These sensors share the same capability profile in our matrix. Check product pages for finer details.",
@@ -335,6 +448,14 @@ const en: UiStrings = {
       ctaTitle: "Still deciding?",
       ctaSubtitle: "Book a demo and we will map the right sensors to your rooms — no guesswork.",
       browseAllSensors: "Browse all sensors",
+      swapSensors: "Swap sensors",
+      showDifferencesOnly: "Show differences only",
+      showAllCapabilities: "Show all capabilities",
+      viewProduct: "View product page",
+      differencesFound: "{n} capability differences",
+      allCapabilitiesMatch: "All capabilities match in this view",
+      downloadProductSheetPdf: "Download product sheet PDF",
+      exampleUseCases: "Example use cases",
     },
     sheets: {
       heroTitle: "Product sheets.",
@@ -344,6 +465,19 @@ const en: UiStrings = {
         "Download official RoomAlyzer product sheets for every sensor in our portfolio.",
       pdf: "PDF",
     },
+    gallery: {
+      tablistLabel: "Product views",
+      product: "Product",
+      dimensions: "Dimensions",
+      dimensionsHeading: "Dimensions",
+      zoomDimensions: "Enlarge dimensions view",
+      closeZoom: "Close",
+      inUse: "In use",
+      compact: "Compact (IP30)",
+      pro: "Pro (IP67)",
+      rangeExtender: "Range extender",
+      bracket: "Bracket",
+    },
   },
   modules: {
     breadcrumb: { home: "Home", modules: "Modules" },
@@ -352,13 +486,9 @@ const en: UiStrings = {
       bookDemo: "Book a free demo",
       contactSales: "Contact sales",
       productSheets: "Product sheets",
-      downloadProductSheets: "Download product sheets",
+      getAnOffer: "Get an offer",
     },
     index: {
-      sectionEyebrow: "Modules",
-      sectionHeading: "Easy-to-install sensors — and data that gives unique insight.",
-      sectionIntro:
-        "However you combine your sensor setup, the data is collected in one place in the RoomAlyzer platform.",
       ctaTitle: "Want a guided walk-through?",
       ctaSubtitle: "Book a 30-minute demo and we'll tailor it to your building.",
     },
@@ -371,6 +501,36 @@ const en: UiStrings = {
       ctaBandTitle: "Want to know more already now?",
       ctaBandSubtitle: "Get in touch — we're always happy to have a no-strings chat.",
     },
+  },
+  industries: {
+    breadcrumb: { home: "Home", industries: "Industries" },
+    content: {
+      focusEyebrow: "What matters in this sector",
+      challengesEyebrow: "Typical challenges",
+      solutionEyebrow: "How RoomAlyzer helps",
+      smarterTogether: "Smarter together:",
+      sensorsEyebrow: "Recommended sensors",
+      modulesEyebrow: "Relevant modules",
+      modulesLinkLabel: "Explore module",
+    },
+    cases: {
+      eyebrow: "Customer cases",
+      heading: "Buildings like yours.",
+      readMore: "Read case",
+    },
+    detail: {
+      ctaBandTitle: "Want a setup tailored to your buildings?",
+      ctaBandSubtitle: "Book a demo and we will walk through the sensors that fit your sector.",
+    },
+    articles: {
+      eyebrow: "Articles",
+      heading: "Reading for this sector.",
+      viewAll: "View all articles",
+    },
+  },
+  faqSection: {
+    title: "Frequently asked questions",
+    contextAlt: "Colleagues discussing plans around a meeting table",
   },
 };
 
@@ -388,7 +548,7 @@ const da: UiStrings = {
     rightsReserved: "© {year} IoT Fabrikken ApS. Alle rettigheder forbeholdes.",
     headings: {
       product: "Produkt",
-      solutions: "Løsninger",
+      evaluate: "Vurder",
       resources: "Ressourcer",
       company: "Virksomhed",
       supportLegal: "Support og juridisk",
@@ -402,7 +562,7 @@ const da: UiStrings = {
       industries: "Brancher",
       compare: "Sammenlign",
       roi: "ROI",
-      library: "Bibliotek",
+      library: "Artikler",
       cases: "Cases",
       productSheets: "Produktblade",
       whitepapers: "Whitepapers",
@@ -434,7 +594,7 @@ const da: UiStrings = {
       company: "Virksomhed",
       helpcenter: "Hjælpecenter",
       login: "Log ind",
-      bookDemo: "Book en gratis demo",
+      bookDemo: "Book gratis demo",
     },
     columns: {
       platform: "Platform",
@@ -444,7 +604,7 @@ const da: UiStrings = {
     cta: {
       allSensors: "Alle sensorer",
       compareSensors: "Sammenlign sensorer",
-      browseLibrary: "Gennemse hele biblioteket af artikler og use cases",
+      allIndustries: "Alle brancher",
     },
     industryColumns: {
       publicHealth: "Offentlig sektor og sundhed",
@@ -459,8 +619,8 @@ const da: UiStrings = {
       roiDesc: "Estimer tilbagebetaling med dine egne tal.",
     },
     resources: {
-      libraryLabel: "Artikelbibliotek",
-      libraryDesc: "Guides og use cases efter branche.",
+      libraryLabel: "Artikler",
+      libraryDesc: "Guides, use cases og nyheder — søgbare efter emne eller branche.",
       casesLabel: "Cases",
       casesDesc: "Hvad kunder siger om at arbejde med os.",
       whitepapersLabel: "Whitepapers",
@@ -482,6 +642,7 @@ const da: UiStrings = {
       bookDemo: "Book en gratis demo",
       bookLiveDemo: "Book en live-demo",
       downloadProductSheet: "Download produktblad",
+      getAnOffer: "Få et tilbud",
       productSheets: "Produktblade",
       contactSales: "Kontakt salg",
       allSensors: "Se alle sensorer",
@@ -493,9 +654,39 @@ const da: UiStrings = {
     },
     detail: {
       exampleUseCases: "Eksempler på anvendelse",
+      productViews: "Produktvisninger",
       whyChoose: "Hvorfor vælge denne sensor?",
       ctaBandTitle: "Vil du selv se det?",
       ctaBandSubtitle: "Book en live-demo — altid gratis og helt uforpligtende.",
+      specs: {
+        title: "Tekniske specifikationer",
+        downloadFullSheet: "Download fuldt produktblad (PDF)",
+        rows: {
+          productLine: "Produktlinje",
+          measurements: "Målinger",
+          dimensions: "Dimensioner",
+          measuringRange: "Måleområde",
+          operatingRange: "Driftsområde",
+          operatingConditions: "Driftsforhold",
+          fieldOfView: "Synsfelt",
+          precision: "Præcision",
+          longTermDrift: "Langtidsdrift",
+          battery: "Batteri",
+          connectivity: "Forbindelse",
+          simCard: "SIM-kort",
+          wirelessRange: "Trådløs rækkevidde",
+          voltage: "Spænding",
+          ipRating: "IP-klassificering",
+          probe: "Probe",
+          maintenance: "Vedligeholdelse",
+          activation: "Aktivering",
+          controlSoftware: "Styringssoftware",
+          mounting: "Montering",
+          material: "Materiale",
+          application: "Anvendelse",
+          certification: "Certificering",
+        },
+      },
     },
     compare: {
       heroAccent: "Alle parametre i ét overblik.",
@@ -507,6 +698,7 @@ const da: UiStrings = {
       headToHeadHeading: "Vælg to vilkårlige sensorer, og se hvordan de adskiller sig.",
       sensorA: "Sensor A",
       sensorB: "Sensor B",
+      selectSensor: "Vælg en sensor",
       pickTwoDifferent: "Vælg to forskellige sensorer for at sammenligne.",
       sameProfile:
         "Disse sensorer har samme funktionsprofil i vores matrix. Se produktsiderne for flere detaljer.",
@@ -517,6 +709,14 @@ const da: UiStrings = {
       ctaTitle: "Stadig i tvivl?",
       ctaSubtitle: "Book en demo, så matcher vi de rette sensorer til dine rum — uden gætværk.",
       browseAllSensors: "Se alle sensorer",
+      swapSensors: "Byt sensorer",
+      showDifferencesOnly: "Vis kun forskelle",
+      showAllCapabilities: "Vis alle funktioner",
+      viewProduct: "Se produktside",
+      differencesFound: "{n} funktionsforskelle",
+      allCapabilitiesMatch: "Alle funktioner matcher i denne visning",
+      downloadProductSheetPdf: "Download produktblad PDF",
+      exampleUseCases: "Eksempler på anvendelse",
     },
     sheets: {
       heroTitle: "Produktblade.",
@@ -526,6 +726,19 @@ const da: UiStrings = {
         "Download officielle RoomAlyzer-produktblade for hver sensor i vores portefølje.",
       pdf: "PDF",
     },
+    gallery: {
+      tablistLabel: "Produktvisninger",
+      product: "Produkt",
+      dimensions: "Dimensioner",
+      dimensionsHeading: "Dimensioner",
+      zoomDimensions: "Forstør dimensionsvisning",
+      closeZoom: "Luk",
+      inUse: "I brug",
+      compact: "Compact (IP30)",
+      pro: "Pro (IP67)",
+      rangeExtender: "Range extender",
+      bracket: "Beslag",
+    },
   },
   modules: {
     breadcrumb: { home: "Hjem", modules: "Moduler" },
@@ -534,13 +747,9 @@ const da: UiStrings = {
       bookDemo: "Book en gratis demo",
       contactSales: "Kontakt salg",
       productSheets: "Produktblade",
-      downloadProductSheets: "Download produktblade",
+      getAnOffer: "Få et tilbud",
     },
     index: {
-      sectionEyebrow: "Moduler",
-      sectionHeading: "Sensorer, der er lette at installere — og data, der giver unik indsigt.",
-      sectionIntro:
-        "Uanset hvordan du kombinerer dit sensoropsæt, samles dataene ét sted i RoomAlyzer-platformen.",
       ctaTitle: "Vil du have en guidet gennemgang?",
       ctaSubtitle: "Book en demo på 30 minutter, så tilpasser vi den til din bygning.",
     },
@@ -553,6 +762,36 @@ const da: UiStrings = {
       ctaBandTitle: "Vil du vide mere allerede nu?",
       ctaBandSubtitle: "Tag fat i os — vi tager altid gerne en uforpligtende snak.",
     },
+  },
+  industries: {
+    breadcrumb: { home: "Hjem", industries: "Brancher" },
+    content: {
+      focusEyebrow: "Det, der betyder noget i denne branche",
+      challengesEyebrow: "Typiske udfordringer",
+      solutionEyebrow: "Sådan hjælper RoomAlyzer",
+      smarterTogether: "Smartere sammen:",
+      sensorsEyebrow: "Anbefalede sensorer",
+      modulesEyebrow: "Relevante moduler",
+      modulesLinkLabel: "Se modul",
+    },
+    cases: {
+      eyebrow: "Kundecases",
+      heading: "Bygninger som jeres.",
+      readMore: "Læs case",
+    },
+    detail: {
+      ctaBandTitle: "Vil I have en løsning skræddersyet til jeres bygninger?",
+      ctaBandSubtitle: "Book en demo, så gennemgår vi de sensorer, der passer til jeres branche.",
+    },
+    articles: {
+      eyebrow: "Artikler",
+      heading: "Læsning til denne branche.",
+      viewAll: "Se alle artikler",
+    },
+  },
+  faqSection: {
+    title: "Ofte stillede spørgsmål",
+    contextAlt: "Kolleger der diskuterer planer omkring et mødebord",
   },
 };
 
@@ -570,7 +809,7 @@ const de: UiStrings = {
     rightsReserved: "© {year} IoT Fabrikken ApS. Alle Rechte vorbehalten.",
     headings: {
       product: "Produkt",
-      solutions: "Lösungen",
+      evaluate: "Bewerten",
       resources: "Ressourcen",
       company: "Unternehmen",
       supportLegal: "Support & Rechtliches",
@@ -584,7 +823,7 @@ const de: UiStrings = {
       industries: "Branchen",
       compare: "Vergleichen",
       roi: "ROI",
-      library: "Bibliothek",
+      library: "Artikel",
       cases: "Referenzen",
       productSheets: "Produktdatenblätter",
       whitepapers: "Whitepaper",
@@ -616,7 +855,7 @@ const de: UiStrings = {
       company: "Unternehmen",
       helpcenter: "Hilfecenter",
       login: "Anmelden",
-      bookDemo: "Kostenlose Demo buchen",
+      bookDemo: "Demo buchen",
     },
     columns: {
       platform: "Plattform",
@@ -626,7 +865,7 @@ const de: UiStrings = {
     cta: {
       allSensors: "Alle Sensoren",
       compareSensors: "Sensoren vergleichen",
-      browseLibrary: "Die gesamte Bibliothek mit Artikeln und Anwendungsfällen durchsuchen",
+      allIndustries: "Alle Branchen",
     },
     industryColumns: {
       publicHealth: "Öffentlicher Sektor & Gesundheit",
@@ -641,8 +880,8 @@ const de: UiStrings = {
       roiDesc: "Berechnen Sie die Amortisation mit Ihren eigenen Zahlen.",
     },
     resources: {
-      libraryLabel: "Artikelbibliothek",
-      libraryDesc: "Leitfäden und Anwendungsfälle nach Branche.",
+      libraryLabel: "Artikel",
+      libraryDesc: "Leitfäden, Anwendungsfälle und News — nach Thema oder Branche durchsuchbar.",
       casesLabel: "Referenzen",
       casesDesc: "Was Kunden über die Zusammenarbeit mit uns sagen.",
       whitepapersLabel: "Whitepaper",
@@ -664,6 +903,7 @@ const de: UiStrings = {
       bookDemo: "Kostenlose Demo buchen",
       bookLiveDemo: "Live-Demo buchen",
       downloadProductSheet: "Produktdatenblatt herunterladen",
+      getAnOffer: "Angebot anfordern",
       productSheets: "Produktdatenblätter",
       contactSales: "Vertrieb kontaktieren",
       allSensors: "Alle Sensoren ansehen",
@@ -675,9 +915,39 @@ const de: UiStrings = {
     },
     detail: {
       exampleUseCases: "Beispielhafte Anwendungsfälle",
+      productViews: "Produktansichten",
       whyChoose: "Warum dieser Sensor?",
       ctaBandTitle: "Möchten Sie es selbst sehen?",
       ctaBandSubtitle: "Buchen Sie eine Live-Demo — immer kostenlos und völlig unverbindlich.",
+      specs: {
+        title: "Technische Spezifikationen",
+        downloadFullSheet: "Vollständiges Produktdatenblatt herunterladen (PDF)",
+        rows: {
+          productLine: "Produktlinie",
+          measurements: "Messgrößen",
+          dimensions: "Abmessungen",
+          measuringRange: "Messbereich",
+          operatingRange: "Betriebsbereich",
+          operatingConditions: "Betriebsbedingungen",
+          fieldOfView: "Erfassungsbereich",
+          precision: "Genauigkeit",
+          longTermDrift: "Langzeitdrift",
+          battery: "Batterie",
+          connectivity: "Konnektivität",
+          simCard: "SIM-Karte",
+          wirelessRange: "Funkreichweite",
+          voltage: "Spannung",
+          ipRating: "IP-Schutzart",
+          probe: "Sonde",
+          maintenance: "Wartung",
+          activation: "Aktivierung",
+          controlSoftware: "Steuerungssoftware",
+          mounting: "Montage",
+          material: "Material",
+          application: "Anwendung",
+          certification: "Zertifizierung",
+        },
+      },
     },
     compare: {
       heroAccent: "Alle Parameter auf einen Blick.",
@@ -689,6 +959,7 @@ const de: UiStrings = {
       headToHeadHeading: "Wählen Sie zwei beliebige Sensoren und sehen Sie die Unterschiede.",
       sensorA: "Sensor A",
       sensorB: "Sensor B",
+      selectSensor: "Sensor auswählen",
       pickTwoDifferent: "Wählen Sie zwei verschiedene Sensoren zum Vergleichen.",
       sameProfile:
         "Diese Sensoren haben in unserer Matrix dasselbe Funktionsprofil. Weitere Details finden Sie auf den Produktseiten.",
@@ -699,6 +970,14 @@ const de: UiStrings = {
       ctaTitle: "Noch unentschlossen?",
       ctaSubtitle: "Buchen Sie eine Demo, und wir ordnen die passenden Sensoren Ihren Räumen zu — ohne Rätselraten.",
       browseAllSensors: "Alle Sensoren ansehen",
+      swapSensors: "Sensoren tauschen",
+      showDifferencesOnly: "Nur Unterschiede anzeigen",
+      showAllCapabilities: "Alle Funktionen anzeigen",
+      viewProduct: "Produktseite ansehen",
+      differencesFound: "{n} Funktionsunterschiede",
+      allCapabilitiesMatch: "Alle Funktionen stimmen in dieser Ansicht überein",
+      downloadProductSheetPdf: "Produktdatenblatt PDF herunterladen",
+      exampleUseCases: "Beispielhafte Anwendungsfälle",
     },
     sheets: {
       heroTitle: "Produktdatenblätter.",
@@ -708,6 +987,19 @@ const de: UiStrings = {
         "Laden Sie offizielle RoomAlyzer-Produktdatenblätter für jeden Sensor unseres Portfolios herunter.",
       pdf: "PDF",
     },
+    gallery: {
+      tablistLabel: "Produktansichten",
+      product: "Produkt",
+      dimensions: "Abmessungen",
+      dimensionsHeading: "Abmessungen",
+      zoomDimensions: "Abmessungsansicht vergrößern",
+      closeZoom: "Schließen",
+      inUse: "Im Einsatz",
+      compact: "Compact (IP30)",
+      pro: "Pro (IP67)",
+      rangeExtender: "Range Extender",
+      bracket: "Halterung",
+    },
   },
   modules: {
     breadcrumb: { home: "Startseite", modules: "Module" },
@@ -716,14 +1008,9 @@ const de: UiStrings = {
       bookDemo: "Kostenlose Demo buchen",
       contactSales: "Vertrieb kontaktieren",
       productSheets: "Produktdatenblätter",
-      downloadProductSheets: "Produktdatenblätter herunterladen",
+      getAnOffer: "Angebot anfordern",
     },
     index: {
-      sectionEyebrow: "Module",
-      sectionHeading:
-        "Einfach zu installierende Sensoren — und Daten, die einzigartige Einblicke liefern.",
-      sectionIntro:
-        "Wie auch immer Sie Ihr Sensor-Setup kombinieren — die Daten laufen an einem Ort in der RoomAlyzer-Plattform zusammen.",
       ctaTitle: "Möchten Sie eine geführte Tour?",
       ctaSubtitle: "Buchen Sie eine 30-minütige Demo, die wir auf Ihr Gebäude zuschneiden.",
     },
@@ -736,6 +1023,36 @@ const de: UiStrings = {
       ctaBandTitle: "Möchten Sie schon jetzt mehr erfahren?",
       ctaBandSubtitle: "Melden Sie sich — wir führen jederzeit gern ein unverbindliches Gespräch.",
     },
+  },
+  industries: {
+    breadcrumb: { home: "Startseite", industries: "Branchen" },
+    content: {
+      focusEyebrow: "Was in dieser Branche zählt",
+      challengesEyebrow: "Typische Herausforderungen",
+      solutionEyebrow: "So hilft RoomAlyzer",
+      smarterTogether: "Gemeinsam smarter:",
+      sensorsEyebrow: "Empfohlene Sensoren",
+      modulesEyebrow: "Relevante Module",
+      modulesLinkLabel: "Modul ansehen",
+    },
+    cases: {
+      eyebrow: "Kundenreferenzen",
+      heading: "Gebäude wie Ihre.",
+      readMore: "Referenz lesen",
+    },
+    detail: {
+      ctaBandTitle: "Möchten Sie eine Lösung für Ihre Gebäude?",
+      ctaBandSubtitle: "Buchen Sie eine Demo — wir zeigen die Sensoren, die zu Ihrer Branche passen.",
+    },
+    articles: {
+      eyebrow: "Artikel",
+      heading: "Lesestoff für diese Branche.",
+      viewAll: "Alle Artikel ansehen",
+    },
+  },
+  faqSection: {
+    title: "Häufig gestellte Fragen",
+    contextAlt: "Kollegen besprechen Pläne an einem Besprechungstisch",
   },
 };
 
@@ -753,7 +1070,7 @@ const sv: UiStrings = {
     rightsReserved: "© {year} IoT Fabrikken ApS. Alla rättigheter förbehållna.",
     headings: {
       product: "Produkt",
-      solutions: "Lösningar",
+      evaluate: "Utvärdera",
       resources: "Resurser",
       company: "Företag",
       supportLegal: "Support och juridik",
@@ -767,7 +1084,7 @@ const sv: UiStrings = {
       industries: "Branscher",
       compare: "Jämför",
       roi: "ROI",
-      library: "Bibliotek",
+      library: "Artiklar",
       cases: "Kundcase",
       productSheets: "Produktblad",
       whitepapers: "Whitepapers",
@@ -809,7 +1126,7 @@ const sv: UiStrings = {
     cta: {
       allSensors: "Alla sensorer",
       compareSensors: "Jämför sensorer",
-      browseLibrary: "Bläddra i hela biblioteket med artiklar och användningsfall",
+      allIndustries: "Alla branscher",
     },
     industryColumns: {
       publicHealth: "Offentlig sektor och vård",
@@ -824,8 +1141,8 @@ const sv: UiStrings = {
       roiDesc: "Uppskatta återbetalning med dina egna siffror.",
     },
     resources: {
-      libraryLabel: "Artikelbibliotek",
-      libraryDesc: "Guider och användningsfall per bransch.",
+      libraryLabel: "Artiklar",
+      libraryDesc: "Guider, användningsfall och nyheter — sökbara efter ämne eller bransch.",
       casesLabel: "Kundcase",
       casesDesc: "Vad kunder säger om att arbeta med oss.",
       whitepapersLabel: "Whitepapers",
@@ -847,6 +1164,7 @@ const sv: UiStrings = {
       bookDemo: "Boka en gratis demo",
       bookLiveDemo: "Boka en live-demo",
       downloadProductSheet: "Ladda ner produktblad",
+      getAnOffer: "Få en offert",
       productSheets: "Produktblad",
       contactSales: "Kontakta försäljning",
       allSensors: "Se alla sensorer",
@@ -858,9 +1176,39 @@ const sv: UiStrings = {
     },
     detail: {
       exampleUseCases: "Exempel på användning",
+      productViews: "Produktvyer",
       whyChoose: "Varför välja den här sensorn?",
       ctaBandTitle: "Vill du se det själv?",
       ctaBandSubtitle: "Boka en live-demo — alltid kostnadsfri och helt förutsättningslös.",
+      specs: {
+        title: "Tekniska specifikationer",
+        downloadFullSheet: "Ladda ner fullständigt produktblad (PDF)",
+        rows: {
+          productLine: "Produktlinje",
+          measurements: "Mätningar",
+          dimensions: "Dimensioner",
+          measuringRange: "Mätområde",
+          operatingRange: "Driftområde",
+          operatingConditions: "Driftförhållanden",
+          fieldOfView: "Synfält",
+          precision: "Precision",
+          longTermDrift: "Långtidsdrift",
+          battery: "Batteri",
+          connectivity: "Anslutning",
+          simCard: "SIM-kort",
+          wirelessRange: "Trådlös räckvidd",
+          voltage: "Spänning",
+          ipRating: "IP-klassificering",
+          probe: "Sond",
+          maintenance: "Underhåll",
+          activation: "Aktivering",
+          controlSoftware: "Styrprogramvara",
+          mounting: "Montering",
+          material: "Material",
+          application: "Användning",
+          certification: "Certifiering",
+        },
+      },
     },
     compare: {
       heroAccent: "Alla parametrar i en vy.",
@@ -872,6 +1220,7 @@ const sv: UiStrings = {
       headToHeadHeading: "Välj två valfria sensorer och se hur de skiljer sig åt.",
       sensorA: "Sensor A",
       sensorB: "Sensor B",
+      selectSensor: "Välj en sensor",
       pickTwoDifferent: "Välj två olika sensorer för att jämföra.",
       sameProfile:
         "Dessa sensorer har samma funktionsprofil i vår matris. Se produktsidorna för fler detaljer.",
@@ -882,6 +1231,14 @@ const sv: UiStrings = {
       ctaTitle: "Fortfarande osäker?",
       ctaSubtitle: "Boka en demo så matchar vi rätt sensorer till dina rum — utan gissningar.",
       browseAllSensors: "Se alla sensorer",
+      swapSensors: "Byt sensorer",
+      showDifferencesOnly: "Visa endast skillnader",
+      showAllCapabilities: "Visa alla funktioner",
+      viewProduct: "Visa produktsida",
+      differencesFound: "{n} funktionsskillnader",
+      allCapabilitiesMatch: "Alla funktioner matchar i den här vyn",
+      downloadProductSheetPdf: "Ladda ner produktblad PDF",
+      exampleUseCases: "Exempel på användning",
     },
     sheets: {
       heroTitle: "Produktblad.",
@@ -891,6 +1248,19 @@ const sv: UiStrings = {
         "Ladda ner officiella RoomAlyzer-produktblad för varje sensor i vår portfölj.",
       pdf: "PDF",
     },
+    gallery: {
+      tablistLabel: "Produktvyer",
+      product: "Produkt",
+      dimensions: "Dimensioner",
+      dimensionsHeading: "Dimensioner",
+      zoomDimensions: "Förstora dimensionsvy",
+      closeZoom: "Stäng",
+      inUse: "I bruk",
+      compact: "Compact (IP30)",
+      pro: "Pro (IP67)",
+      rangeExtender: "Range extender",
+      bracket: "Fäste",
+    },
   },
   modules: {
     breadcrumb: { home: "Hem", modules: "Moduler" },
@@ -899,13 +1269,9 @@ const sv: UiStrings = {
       bookDemo: "Boka en gratis demo",
       contactSales: "Kontakta försäljning",
       productSheets: "Produktblad",
-      downloadProductSheets: "Ladda ner produktblad",
+      getAnOffer: "Få en offert",
     },
     index: {
-      sectionEyebrow: "Moduler",
-      sectionHeading: "Sensorer som är lätta att installera — och data som ger unik insikt.",
-      sectionIntro:
-        "Hur du än kombinerar din sensoruppsättning samlas datan på ett ställe i RoomAlyzer-plattformen.",
       ctaTitle: "Vill du ha en guidad genomgång?",
       ctaSubtitle: "Boka en 30-minuters demo så skräddarsyr vi den efter din byggnad.",
     },
@@ -918,6 +1284,36 @@ const sv: UiStrings = {
       ctaBandTitle: "Vill du veta mer redan nu?",
       ctaBandSubtitle: "Hör av dig — vi tar alltid gärna ett förutsättningslöst samtal.",
     },
+  },
+  industries: {
+    breadcrumb: { home: "Hem", industries: "Branscher" },
+    content: {
+      focusEyebrow: "Det som spelar roll i den här branschen",
+      challengesEyebrow: "Typiska utmaningar",
+      solutionEyebrow: "Så hjälper RoomAlyzer",
+      smarterTogether: "Smartare tillsammans:",
+      sensorsEyebrow: "Rekommenderade sensorer",
+      modulesEyebrow: "Relevanta moduler",
+      modulesLinkLabel: "Utforska modul",
+    },
+    cases: {
+      eyebrow: "Kundcase",
+      heading: "Byggnader som era.",
+      readMore: "Läs case",
+    },
+    detail: {
+      ctaBandTitle: "Vill ni ha en lösning skräddarsydd för era byggnader?",
+      ctaBandSubtitle: "Boka en demo så går vi igenom sensorerna som passar er bransch.",
+    },
+    articles: {
+      eyebrow: "Artiklar",
+      heading: "Läsning för den här branschen.",
+      viewAll: "Visa alla artiklar",
+    },
+  },
+  faqSection: {
+    title: "Vanliga frågor",
+    contextAlt: "Kolleger som diskuterar planer runt ett mötesbord",
   },
 };
 

@@ -5,7 +5,13 @@ import Button from "./Button.astro";
 import CtaBand from "./CtaBand.astro";
 import type { Hub } from "../data/hubs/types";
 import { getAbout } from "../data/i18n/about";
-import { defaultLang, langPath, type Lang } from "../data/lang";
+import {
+  astroLang,
+  defaultLang,
+  langPath,
+  localizeCrumbs,
+  type Lang,
+} from "../data/lang";
 
 interface Breadcrumb {
   label: string;
@@ -25,28 +31,36 @@ interface Props {
   lang?: Lang;
 }
 
-const { hub, basePath, breadcrumbs = [], title, description, lang = defaultLang } = Astro.props;
+const {
+  hub,
+  basePath,
+  breadcrumbs = [],
+  title,
+  description,
+  lang: langProp,
+} = Astro.props;
 
+const lang = langProp ?? astroLang(Astro);
 const t = getAbout(lang);
 const pageTitle = title ?? `${hub.title.replace(/\.$/, "")} | IoT Fabrikken`;
 const metaDescription = description ?? hub.lead;
-const leafBase = basePath.endsWith("/") ? basePath : `${basePath}/`;
+const localizedBreadcrumbs = localizeCrumbs(breadcrumbs, lang);
 const bookDemoHref = langPath("contact/book-demo", lang);
 const contactSalesHref = langPath("contact/sales", lang);
 ---
 
 <Layout title={pageTitle} description={metaDescription}>
-  {breadcrumbs.length > 0 && (
+  {localizedBreadcrumbs.length > 0 && (
     <nav class="container-page pt-6" aria-label="Breadcrumb">
       <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
-        {breadcrumbs.map((b, i) => (
+        {localizedBreadcrumbs.map((b, i) => (
           <li class="flex items-center gap-1.5">
             {b.href ? (
               <a href={b.href} class="hover:text-coral-500 transition-colors">{b.label}</a>
             ) : (
               <span class="text-navy-500">{b.label}</span>
             )}
-            {i < breadcrumbs.length - 1 && (
+            {i < localizedBreadcrumbs.length - 1 && (
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                 <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
@@ -62,7 +76,7 @@ const contactSalesHref = langPath("contact/sales", lang);
     titleAccent={hub.titleAccent}
     lead={hub.lead}
     align="left"
-    compactTop={breadcrumbs.length > 0}
+    compactTop={localizedBreadcrumbs.length > 0}
   >
     <Button href={bookDemoHref} variant="primary" size="lg" slot="cta">{t.common.bookDemo}</Button>
     <Button href={contactSalesHref} variant="secondary" size="lg" slot="cta">{t.common.contactSales}</Button>
@@ -81,7 +95,7 @@ const contactSalesHref = langPath("contact/sales", lang);
 
         {hub.leaves.map((leaf) => (
           <a
-            href={`${leafBase}${leaf.slug}/`}
+            href={langPath(`${hub.slug}/${leaf.slug}`, lang)}
             class="reveal group relative flex flex-col h-full p-6 md:p-7 bg-white border border-stone-100 rounded-xl hover:border-navy-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
           >
             <div class="absolute top-0 left-0 right-0 h-1 rounded-t-xl bg-sky-500"></div>
