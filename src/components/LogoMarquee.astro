@@ -63,12 +63,18 @@ const customers: Customer[] = [
 
 // Double the list so the marquee can loop seamlessly.
 const track = [...customers, ...customers];
+
+interface Props {
+  caption: string;
+}
+
+const { caption } = Astro.props;
 ---
 
 <section class="py-12 md:py-14 bg-white border-y border-stone-100 overflow-hidden">
   <div class="container-page">
     <p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-stone-400 mb-8">
-      Trusted by municipalities, enterprises and cultural institutions across Europe
+      {caption}
     </p>
   </div>
 

@@ -31,6 +31,9 @@ export interface HomeStrings {
     ctaPrimary: string;
     ctaSecondary: string;
   };
+  logoMarquee: {
+    caption: string;
+  };
   usp: {
     heading: string;
     intro: string;
@@ -69,6 +72,10 @@ const en: HomeStrings = {
     lead: "Wireless sensors and a single platform that turns data about indoor climate, space utilisation and water leaks into something you can actually use — no cables, no hassle.",
     ctaPrimary: "Book a free demo",
     ctaSecondary: "Contact sales",
+  },
+  logoMarquee: {
+    caption:
+      "Trusted by municipalities, enterprises and cultural institutions across Europe",
   },
   usp: {
     heading: "Why IoT Fabrikken?",
@@ -124,12 +131,12 @@ const en: HomeStrings = {
   stats: {
     title: "Numbers that matter.",
     subtitle:
-      "More than a million readings per day from sensors that run without hassle at our customers.",
-    millionSuffix: " million",
+      "More than fifteen million readings per day from sensors that run without hassle at our customers.",
+    millionSuffix: " mio.",
     labels: [
       "sensors in operation at our customers",
       "readings sent to the platform every day",
-      "countries where our solutions are in use",
+      "different countries where our solutions are in use",
     ],
   },
   cta: {
@@ -153,6 +160,10 @@ const da: HomeStrings = {
     lead: "Trådløse sensorer og én samlet platform, der gør data om indeklima, arealudnyttelse og vandlækager til noget, du faktisk kan bruge — ingen kabler, intet besvær.",
     ctaPrimary: "Book en gratis demo",
     ctaSecondary: "Kontakt salg",
+  },
+  logoMarquee: {
+    caption:
+      "Betroet af kommuner, virksomheder og kulturinstitutioner i hele Europa",
   },
   usp: {
     heading: "Hvorfor IoT Fabrikken?",
@@ -208,12 +219,12 @@ const da: HomeStrings = {
   stats: {
     title: "Tal, der betyder noget.",
     subtitle:
-      "Mere end en million aflæsninger om dagen fra sensorer, der kører uden besvær hos vores kunder.",
-    millionSuffix: " millioner",
+      "Mere end 15 millioner aflæsninger om dagen fra sensorer, der kører uden besvær hos vores kunder.",
+    millionSuffix: " mio.",
     labels: [
       "sensorer i drift hos vores kunder",
       "aflæsninger sendt til platformen hver dag",
-      "lande hvor vores løsninger er i brug",
+      "forskellige lande hvor vores løsninger er i brug",
     ],
   },
   cta: {
@@ -237,6 +248,10 @@ const de: HomeStrings = {
     lead: "Drahtlose Sensoren und eine einzige Plattform, die Daten zu Raumklima, Flächennutzung und Wasserlecks in echten Mehrwert verwandelt — ohne Kabel, ohne Aufwand.",
     ctaPrimary: "Kostenlose Demo buchen",
     ctaSecondary: "Vertrieb kontaktieren",
+  },
+  logoMarquee: {
+    caption:
+      "Vertraut von Kommunen, Unternehmen und Kultureinrichtungen in ganz Europa",
   },
   usp: {
     heading: "Warum IoT Fabrikken?",
@@ -292,12 +307,12 @@ const de: HomeStrings = {
   stats: {
     title: "Zahlen, die zählen.",
     subtitle:
-      "Mehr als eine Million Messwerte pro Tag von Sensoren, die bei unseren Kunden ohne Aufwand laufen.",
-    millionSuffix: " Millionen",
+      "Mehr als 15 Millionen Messwerte pro Tag von Sensoren, die bei unseren Kunden ohne Aufwand laufen.",
+    millionSuffix: " Mio.",
     labels: [
       "Sensoren im Einsatz bei unseren Kunden",
       "Messwerte täglich an die Plattform gesendet",
-      "Länder, in denen unsere Lösungen im Einsatz sind",
+      "verschiedene Länder, in denen unsere Lösungen im Einsatz sind",
     ],
   },
   cta: {
@@ -321,6 +336,10 @@ const sv: HomeStrings = {
     lead: "Trådlösa sensorer och en enda plattform som förvandlar data om inomhusklimat, ytutnyttjande och vattenläckor till något du faktiskt kan använda — inga kablar, inget krångel.",
     ctaPrimary: "Boka en gratis demo",
     ctaSecondary: "Kontakta försäljning",
+  },
+  logoMarquee: {
+    caption:
+      "Betrodd av kommuner, företag och kulturinstitutioner i hela Europa",
   },
   usp: {
     heading: "Varför IoT Fabrikken?",
@@ -376,12 +395,12 @@ const sv: HomeStrings = {
   stats: {
     title: "Siffror som betyder något.",
     subtitle:
-      "Mer än en miljon avläsningar om dagen från sensorer som rullar utan krångel hos våra kunder.",
-    millionSuffix: " miljoner",
+      "Mer än 15 miljoner avläsningar om dagen från sensorer som rullar utan krångel hos våra kunder.",
+    millionSuffix: " mio.",
     labels: [
       "sensorer i drift hos våra kunder",
       "avläsningar skickade till plattformen varje dag",
-      "länder där våra lösningar används",
+      "olika länder där våra lösningar används",
     ],
   },
   cta: {
