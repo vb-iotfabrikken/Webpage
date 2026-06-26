@@ -10,15 +10,20 @@
  *   • Homepage
  *   • Products      → Modules, Sensors (incl. compare + product sheets)
  *   • Resources     → Cases (case studies)
- *   • Company       → About (incl. Story, Team, Press, D-Label), Careers, Partners
+ *   • Company       → About (incl. Story, Team, Press, Trust center), Careers, Partners
  *   • Contact       → Book a demo, Sales, Become a partner, Support info
+ *   • Get an offer  → Quote request form (CTA target from sensors + modules)
  *   • Support/Legal → Privacy policy, Impressum
  *   • Helpcenter + Log in are external links (no internal page to gate)
  *
- * Hidden for now: Platform, Industries, Integrations, Pricing, Compare hub,
- * ROI, FAQ, Whitepapers, Shop, Glossary, Blog, Library, Solutions/landing
- * pages, and the remaining Legal pages (Cookies, Terms, Security,
- * Accessibility, SLA) plus the Legal hub index.
+ * Also live via LIVE_EXACT: sensor compare matrix + head-to-head at /compare/.
+ *
+ * Hidden for now: Platform, Industries (sector hubs + per-sector article
+ * lists), Integrations, Pricing, competitive compare articles
+ * (vs-manual-logging, etc. — data kept in hubs/compare.ts), ROI, FAQ,
+ * Whitepapers, Shop, Glossary, Articles (the renamed library catalogue),
+ * Solutions/landing pages, and the remaining Legal pages (Cookies, Terms,
+ * Security, Accessibility, SLA) plus the Legal hub index.
  *
  * Matching is locale-agnostic: the leading `/en|da|de|sv/` prefix is stripped
  * before a path is compared, so a rule covers every locale at once.
@@ -52,6 +57,8 @@ export const LIVE_PREFIXES: readonly string[] = [
 export const LIVE_EXACT: readonly string[] = [
   "",
   "cases", // legacy redirect → case-studies; keep reachable
+  "compare", // sensor compare matrix + head-to-head
+  "get-an-offer",
   "legal/privacy",
   "legal/impressum",
 ];

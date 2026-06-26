@@ -1,11 +1,14 @@
 // @ts-check
 import { fileURLToPath } from 'node:url';
 import { readdir, readFile, rm, rmdir, writeFile } from 'node:fs/promises';
+import { readdirSync } from 'node:fs';
 import path from 'node:path';
 
 const SITE_URL = 'https://iot-fabrikken.com';
 
 import { defineConfig } from 'astro/config';
+
+import { articles as articleCatalog } from './src/data/library/catalog';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -14,7 +17,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 import { isHiddenPath, isLivePath, LAUNCH_LIVE_ONLY } from './src/data/launch';
-import { getLangFromPath, isIndexedLocale } from './src/data/lang';
+import { getLangFromPath, isPageIndexed } from './src/data/lang';
 
 // Soft-launch gate: after the build completes, delete every page that is not
 // on the live allowlist (src/data/launch.ts) so only the approved pages ship
@@ -103,6 +106,21 @@ async function removeEmptyDirs(/** @type {string} */ dir) {
   }
 }
 
+// The article catalogue moved from /en/library/ to /en/articles/. Enumerate an
+// explicit 301 for every old article URL (catalogue stubs + published MDX) so
+// static hosts emit a real redirect stub for each — Astro does not reliably
+// prerender redirect stubs for spread/dynamic patterns in `output: 'static'`.
+const landingDir = fileURLToPath(new URL('./src/content/landingpages', import.meta.url));
+const landingSlugs = readdirSync(landingDir)
+  .filter((f) => /\.(md|mdx)$/.test(f))
+  .map((f) => f.replace(/\.(md|mdx)$/, ''));
+const articleSlugs = Array.from(
+  new Set([...articleCatalog.map((a) => a.slug), ...landingSlugs]),
+);
+const libraryRedirects = Object.fromEntries(
+  articleSlugs.map((slug) => [`/en/library/${slug}/`, `/en/articles/${slug}/`]),
+);
+
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
@@ -146,7 +164,8 @@ export default defineConfig({
     '/en/case-studies/norddjurs-kommune/': '/en/case-studies/norddjurs-municipality/',
     '/en/case-studies/varde-kommune/': '/en/case-studies/varde-municipality/',
     '/en/case-studies/gribskov-kommune/': '/en/case-studies/gribskov-municipality/',
-    '/en/about/d-maerket/': '/en/about/d-label/',
+    '/en/about/d-label/': '/en/about/trust-center/',
+    '/en/about/d-maerket/': '/en/about/trust-center/',
 
     // Sensor catalogue slug changes and removed products
     '/en/sensors/gateway/': '/en/sensors/cloud-connector/',
@@ -167,6 +186,34 @@ export default defineConfig({
     '/en/shop/products/series-a/': '/en/shop/products/',
     '/en/shop/products/series-b/': '/en/shop/products/',
     '/en/shop/products/series-c/': '/en/shop/products/',
+
+    // Sensor compare moved from /sensors/compare/ to /compare/
+    '/en/sensors/compare/': '/en/compare/',
+    '/da/sensors/compare/': '/da/compare/',
+    '/de/sensors/compare/': '/de/compare/',
+    '/sv/sensors/compare/': '/sv/compare/',
+
+    // The Library was renamed to Articles (single canonical content catalogue).
+    '/en/library/': '/en/articles/',
+    '/en/library/tags/': '/en/articles/tags/',
+    ...libraryRedirects,
+
+    // The /blog/ section was retired and folded into Articles. The two real
+    // posts became articles; the welcome post is now intro copy on the index.
+    '/en/blog/': '/en/articles/',
+    '/en/blog/welcome-to-the-iot-fabrikken-blog/': '/en/articles/',
+    '/en/blog/en-15757-in-practice/': '/en/articles/en-15757-in-practice/',
+    '/en/blog/rollout-in-varde-municipality/': '/en/articles/rollout-in-varde-municipality/',
+
+    // Pricing plans and enterprise were merged into a single pricing page.
+    '/en/pricing/plans/': '/en/pricing/',
+    '/en/pricing/enterprise/': '/en/pricing/',
+    '/da/pricing/plans/': '/da/pricing/',
+    '/da/pricing/enterprise/': '/da/pricing/',
+    '/de/pricing/plans/': '/de/pricing/',
+    '/de/pricing/enterprise/': '/de/pricing/',
+    '/sv/pricing/plans/': '/sv/pricing/',
+    '/sv/pricing/enterprise/': '/sv/pricing/',
   },
 
   vite: {
@@ -176,16 +223,20 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      // English-first launch: only indexed locales (currently just `en`) and
-      // pages on the soft-launch allowlist belong in the sitemap. Untranslated
-      // locales still serve English via the i18n fallback, so they are kept
-      // out until their translations ship (see INDEXED_LOCALES in lang.ts).
-      // Re-add the `i18n` alternates block here once more locales are indexed.
+      i18n: {
+        defaultLocale: 'en',
+        locales: {
+          en: 'en',
+          da: 'da',
+          de: 'de',
+          sv: 'sv',
+        },
+      },
       filter: (page) => {
         const pathname = new URL(page).pathname;
         const excludedSegments = ['/thank-you', '/thanks', '/404', '/draft', '/preview'];
         if (excludedSegments.some((seg) => pathname.includes(seg))) return false;
-        if (!isIndexedLocale(getLangFromPath(pathname))) return false;
+        if (!isPageIndexed(pathname, getLangFromPath(pathname))) return false;
         return isLivePath(pathname);
       },
     }),
