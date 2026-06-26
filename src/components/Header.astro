@@ -6,53 +6,59 @@ import IndustryIcon from "./IndustryIcon.astro";
 import NavDropdownLink from "./NavDropdownLink.astro";
 import MegaMenuLink from "./MegaMenuLink.astro";
 import { getModules } from "../data/modules";
-import { sensorsHub, industriesHub } from "../data/site";
+import { sensorsHub } from "../data/site";
+import { getIndustriesHub } from "../data/hubs/industries";
 import { externalLinks, getRoomAlyzerLoginUrl } from "../data/externalLinks";
-import { getLangFromPath, langPath } from "../data/lang";
+import { langPath, pagePathname, resolveLang, stripLocaleRoute } from "../data/lang";
 import { getUi } from "../data/i18n/ui";
 import { isLivePath } from "../data/launch";
 
-const pathname = Astro.url.pathname;
-const currentLang = getLangFromPath(pathname);
+const pathname = pagePathname(Astro.url.pathname, Astro.originPathname);
+const currentLang = resolveLang({
+  pathname: Astro.url.pathname,
+  paramLang: Astro.params.lang,
+  currentLocale: Astro.currentLocale,
+  originPathname: Astro.originPathname,
+});
 const loginUrl = getRoomAlyzerLoginUrl(currentLang);
 const nav = getUi(currentLang).nav;
 const modules = getModules(currentLang);
 const lp = (path: string) => langPath(path, currentLang);
-const isActive = (href: string) =>
-  href === "/" ? pathname === "/" : pathname.startsWith(href);
+const routeKey = stripLocaleRoute(pathname);
+const isActive = (segment: string) => {
+  const clean = segment.replace(/^\/+/, "").replace(/\/+$/, "");
+  return routeKey === clean || routeKey.startsWith(`${clean}/`);
+};
 
 // "Product" dropdown spans Platform, Modules and Sensors.
 const productActive =
-  isActive("/en/platform") ||
-  isActive("/en/modules") ||
-  isActive("/en/sensors");
+  isActive("platform") ||
+  isActive("modules") ||
+  isActive("sensors");
 
-// "Industries" dropdown — sector landing pages; label links to the article library.
-const industriesActive =
-  isActive("/en/industries") || isActive("/en/library");
+// "Industries" dropdown — sector hubs; the label links to the industries overview.
+const industriesActive = isActive("industries");
 
 const pricingActive =
-  isActive("/en/pricing") || isActive("/en/roi");
+  isActive("pricing") || isActive("roi");
 
 const resourcesActive =
-  isActive("/en/library") ||
-  isActive("/da/library") ||
-  isActive(langPath("case-studies", currentLang)) ||
-  isActive("/en/sensors/product-sheets") ||
-  isActive("/en/whitepapers") ||
-  isActive("/da/whitepapers");
+  isActive("articles") ||
+  isActive("case-studies") ||
+  isActive("sensors/product-sheets") ||
+  isActive("whitepapers");
 
 const companyActive =
-  isActive("/en/about") || isActive("/en/contact");
+  isActive("about") || isActive("contact");
 
 // Platform column — curated links (not the full hub catalogue).
 const platformLinks = [
-  { label: "How it works", href: "/en/platform/how-it-works/" },
-  { label: "Dashboard", href: "/en/platform/dashboards/" },
-  { label: "Reports", href: "/en/platform/reports/" },
-  { label: "Notifications", href: "/en/platform/notifications/" },
-  { label: "Security", href: "/en/platform/security/" },
-  { label: "API", href: "/en/platform/api/" },
+  { label: "How it works", href: lp("platform/how-it-works") },
+  { label: "Dashboard", href: lp("platform/dashboards") },
+  { label: "Reports", href: lp("platform/reports") },
+  { label: "Notifications", href: lp("platform/notifications") },
+  { label: "Security", href: lp("platform/security") },
+  { label: "API", href: lp("platform/api") },
 ].filter((l) => isLivePath(l.href));
 
 // A curated slice of the sensor catalogue for the header. The full list
@@ -71,7 +77,12 @@ const sensorFeatured = sensorFeaturedSlugs
   .map((l) => ({
     label: l.title.replace(/\.$/, ""),
     href: lp(`sensors/${l.slug}`),
-  }));
+  }))
+  .filter((f) => isLivePath(f.href));
+
+const showCompare = isLivePath(lp("compare"));
+
+const industriesHub = getIndustriesHub(currentLang);
 
 const industryBySlug = Object.fromEntries(
   industriesHub.leaves.map((l) => [
@@ -132,7 +143,7 @@ const pricingLinks = [
 const resourcesLinks = [
   {
     label: nav.resources.libraryLabel,
-    href: lp("library"),
+    href: lp("articles"),
     description: nav.resources.libraryDesc,
     icon: "library" as const,
   },
@@ -176,11 +187,11 @@ const showPlatform = platformLinks.length > 0;
 const showPricing = pricingLinks.length > 0;
 const showResources = resourcesLinks.length > 0;
 const showIndustries =
-  industryColumns.some((col) => col.items.length > 0) && isLivePath(lp("library"));
+  industryColumns.some((col) => col.items.length > 0) && isLivePath(lp("industries"));
 ---
 
-<header id="site-header" class="sticky top-0 z-50 overflow-visible">
-  <!-- Top utility bar — a warm, human-sounding status line. -->
+<header id="site-header" class="sticky top-0 z-50 overflow-visible" data-lang={currentLang}>
+  <!-- Top utility bar — a warm, human-sounding status line plus utility links. -->
   <div class="bg-navy-500 text-white">
     <div class="container-page site-header-bar site-header-bar--utility">
       <div class="site-header-utility-message hidden md:flex">
@@ -191,16 +202,18 @@ const showIndustries =
         <span class="text-white/85">
           {nav.utility.builtInDenmark}
         </span>
-        <span class="text-white/25 select-none" aria-hidden="true">·</span>
-        <a
-          href={lp("contact")}
-          class="font-semibold text-white hover:text-coral-50 transition-colors underline-offset-4 hover:underline decoration-coral-500 decoration-2"
-        >
-          {nav.utility.talkToUs} →
-        </a>
       </div>
 
       <div class="site-header-actions">
+        <a
+          href={externalLinks.support}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="utility-link hidden md:inline-flex"
+        >
+          {nav.top.helpcenter}
+        </a>
+        <span class="utility-divider hidden md:inline-block" aria-hidden="true"></span>
         <LanguageSwitcher variant="compact" />
       </div>
     </div>
@@ -297,8 +310,9 @@ const showIndustries =
                       </a>
                     </li>
                     <li class="mt-1">
+                      {showCompare && (
                       <a
-                        href={lp("sensors/compare")}
+                        href={lp("compare")}
                         class="flex items-center justify-between gap-2 px-2 py-1.5 rounded-lg bg-coral-50 text-[12.5px] font-semibold text-coral-600 hover:bg-coral-100 transition-colors group/compare"
                       >
                         {nav.cta.compareSensors}
@@ -306,6 +320,7 @@ const showIndustries =
                           <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                       </a>
+                      )}
                     </li>
                   </ul>
                 </div>
@@ -318,7 +333,7 @@ const showIndustries =
         <!-- Industries dropdown — four sector columns -->
         <div class="group relative" data-nav-industries>
           <a
-            href={lp("library")}
+            href={lp("industries")}
             class="nav-link"
             data-active={industriesActive}
             aria-haspopup="true"
@@ -354,11 +369,11 @@ const showIndustries =
                 ))}
               </div>
               <a
-                href={lp("library")}
+                href={lp("industries")}
                 class="mt-4 flex items-center justify-between p-2.5 rounded-lg bg-stone-50 hover:bg-stone-100 transition-colors group/library"
               >
                 <span class="text-[13.5px] font-semibold text-navy-500 group-hover/library:text-coral-500">
-                  {nav.cta.browseLibrary}
+                  {nav.cta.allIndustries}
                 </span>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0 text-navy-500 group-hover/library:text-coral-500 group-hover/library:translate-x-0.5 transition-all" aria-hidden="true">
                   <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -472,14 +487,6 @@ const showIndustries =
           </div>
         </div>
 
-        <a
-          href={externalLinks.support}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="nav-link shrink-0"
-        >
-          {nav.top.helpcenter}
-        </a>
       </nav>
 
       <div class="site-header-actions shrink-0">
@@ -509,7 +516,7 @@ const showIndustries =
             {nav.top.login}
           </a>
           <span class="mx-2 h-5 w-px bg-stone-100" aria-hidden="true"></span>
-          <Button href={lp("contact/book-demo")} variant="primary" size="sm" class="shrink-0">
+          <Button href={lp("contact/book-demo")} variant="primary" size="sm" class="site-header-demo-btn shrink-0">
           {nav.top.bookDemo}
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
             <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
@@ -589,8 +596,9 @@ const showIndustries =
               >
                 {nav.cta.allSensors} →
               </a>
+              {showCompare && (
               <a
-                href={lp("sensors/compare")}
+                href={lp("compare")}
                 class="mt-1.5 flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg bg-coral-50 text-[15px] font-semibold text-coral-600 hover:bg-coral-100 transition-colors"
               >
                 {nav.cta.compareSensors}
@@ -598,6 +606,7 @@ const showIndustries =
                   <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </a>
+              )}
             </div>
           </div>
         </div>
@@ -608,7 +617,7 @@ const showIndustries =
       <details class="group">
         <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
           <a
-            href={lp("library")}
+            href={lp("industries")}
             class="hover:text-coral-500 transition-colors"
             onclick="event.stopPropagation()"
           >
@@ -634,10 +643,10 @@ const showIndustries =
             </div>
           ))}
           <a
-            href={lp("library")}
+            href={lp("industries")}
             class="mt-2 flex items-center justify-between gap-2 p-3 rounded-lg bg-stone-50 text-[15px] font-semibold text-navy-500 hover:bg-stone-100 hover:text-coral-500 transition-colors"
           >
-            {nav.cta.browseLibrary}
+            {nav.cta.allIndustries}
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0" aria-hidden="true">
               <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
@@ -771,6 +780,20 @@ const showIndustries =
     grid-template-columns: minmax(0, 1fr) auto;
   }
 
+  @media (min-width: 1024px) {
+    .site-header-bar--utility {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+    }
+
+    .site-header-utility-message {
+      grid-column: 2;
+    }
+
+    .site-header-bar--utility .site-header-actions {
+      grid-column: 3;
+    }
+  }
+
   .site-header-bar--main {
     --header-control-height: 2.5rem;
     --header-logo-height: 3rem;
@@ -786,20 +809,6 @@ const showIndustries =
     .site-header-bar--main {
       gap: 1rem;
       height: 5rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .site-header-bar--utility {
-      grid-template-columns: auto minmax(0, 1fr) auto;
-    }
-
-    .site-header-utility-message {
-      grid-column: 2;
-    }
-
-    .site-header-bar--utility .site-header-actions {
-      grid-column: 3;
     }
   }
 
@@ -821,6 +830,13 @@ const showIndustries =
 
   .site-header-menu {
     overflow: visible;
+  }
+
+  @media (min-width: 960px) {
+    .site-header-menu {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
   }
 
   /* All dropdowns: left edge of panel aligns with left edge of nav item, opens to the right. */
@@ -864,13 +880,46 @@ const showIndustries =
     font-size: 12px;
   }
 
+  /* Utility-bar links (Helpcenter, Log in) — light on navy, with thin dividers. */
+  .utility-link {
+    align-items: center;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    color: rgb(255 255 255 / 0.85);
+    white-space: nowrap;
+    transition: color 180ms ease;
+  }
+
+  .utility-link:hover {
+    color: var(--color-coral-50);
+  }
+
+  .utility-divider {
+    width: 1px;
+    height: 0.875rem;
+    margin-inline: 0.625rem;
+    background-color: rgb(255 255 255 / 0.2);
+  }
+
   .site-header-actions {
     display: flex;
     flex-shrink: 0;
     align-items: center;
     justify-content: flex-end;
     margin-left: auto;
+    /* Pull toward the right edge, but never past the page gutter so the
+       controls don't get clipped by `html { overflow-x: clip }` when the
+       window is narrow. The full shift only applies once the centred
+       container has empty side margins to absorb it (>= 1280px). */
+    margin-right: -1.5rem;
     padding-left: 0.5rem;
+  }
+
+  @media (min-width: 1280px) {
+    .site-header-actions {
+      margin-right: -4rem;
+    }
   }
 
   /* Tighter nav padding on narrower desktops; login matches nav label size. */
@@ -879,6 +928,22 @@ const showIndustries =
     .site-header-bar--main .site-header-actions .nav-link {
       padding-inline: 0.5rem;
       font-size: 14px;
+    }
+  }
+
+  /* da/de labels run longer — squeeze a bit more before the tail link yields. */
+  @media (min-width: 960px) and (max-width: 1399px) {
+    #site-header[data-lang="da"] .site-header-bar--main .site-header-menu .nav-link,
+    #site-header[data-lang="da"] .site-header-bar--main .site-header-actions .nav-link,
+    #site-header[data-lang="de"] .site-header-bar--main .site-header-menu .nav-link,
+    #site-header[data-lang="de"] .site-header-bar--main .site-header-actions .nav-link {
+      padding-inline: 0.375rem;
+    }
+
+    #site-header[data-lang="da"] :global(.site-header-demo-btn),
+    #site-header[data-lang="de"] :global(.site-header-demo-btn) {
+      padding-inline: 0.75rem;
+      font-size: 13px;
     }
   }
 
