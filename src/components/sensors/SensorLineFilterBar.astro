@@ -1,0 +1,84 @@
+---
+/**
+ * Product-line filter for the sensors catalogue (RoomAlyzer Air / Space / Water / Misc).
+ */
+interface Props {
+  filterLabel: string;
+  allLabel: string;
+  totalCount: number;
+  groups: Array<{ category: string; label: string; count: number }>;
+}
+
+const { filterLabel, allLabel, totalCount, groups } = Astro.props;
+
+const activeClass =
+  "bg-white text-navy-500 shadow-sm";
+const inactiveClass =
+  "text-stone-900/60 hover:text-navy-500";
+const baseClass =
+  "line-filter-btn px-3 py-2 text-sm font-semibold rounded-md transition-colors";
+---
+
+<div
+  class="flex flex-wrap gap-1 rounded-lg border border-stone-100 p-1 bg-stone-50 w-fit"
+  role="tablist"
+  aria-label={filterLabel}
+  data-sensor-line-filter
+>
+  <button
+    type="button"
+    class:list={[baseClass, activeClass]}
+    data-line="all"
+    aria-pressed="true"
+  >
+    {allLabel} ({totalCount})
+  </button>
+  {groups.map((group) => (
+    <button
+      type="button"
+      class:list={[baseClass, inactiveClass]}
+      data-line={group.category}
+      aria-pressed="false"
+    >
+      {group.label} ({group.count})
+    </button>
+  ))}
+</div>
+
+<script>
+  function initSensorLineFilter() {
+    const filterRoot = document.querySelector("[data-sensor-line-filter]");
+    const catalogue = document.querySelector("[data-sensor-catalogue]");
+    if (!filterRoot || !catalogue) return;
+
+    const buttons = filterRoot.querySelectorAll(".line-filter-btn");
+    const sections = catalogue.querySelectorAll("[data-sensor-line]");
+
+    function setLineFilter(line: string) {
+      buttons.forEach((btn) => {
+        const el = btn as HTMLButtonElement;
+        const active = el.dataset.line === line;
+        el.setAttribute("aria-pressed", String(active));
+        el.classList.toggle("bg-white", active);
+        el.classList.toggle("text-navy-500", active);
+        el.classList.toggle("shadow-sm", active);
+        el.classList.toggle("text-stone-900/60", !active);
+      });
+
+      sections.forEach((section) => {
+        const match =
+          line === "all" || section.getAttribute("data-sensor-line") === line;
+        section.classList.toggle("hidden", !match);
+      });
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        setLineFilter((btn as HTMLButtonElement).dataset.line ?? "all");
+      });
+    });
+  }
+
+  initSensorLineFilter();
+  document.addEventListener("astro:page-load", initSensorLineFilter);
+</script>

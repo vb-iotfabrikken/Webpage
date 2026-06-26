@@ -8,7 +8,7 @@ const cloudConnectorNote =
 export const sensorPageContent: SensorPageContent[] = [
  {
  slug: "full-plus",
- heroTitle: "Full+ sensor.",
+ heroTitle: "Full+ sensor",
  heroTitleAccent: "Complete indoor climate monitoring — entirely wireless.",
  heroLead:
  "The Full+ sensor is your all-in-one solution for precise monitoring of temperature, humidity, CO2, and TVOC. Designed for effortless professional use, it delivers the vital data you need to optimise wellbeing, protect your buildings, and reduce heating costs.",
@@ -34,7 +34,7 @@ export const sensorPageContent: SensorPageContent[] = [
  },
  {
  slug: "mini-plus",
- heroTitle: "Mini+ sensor.",
+ heroTitle: "Mini+ sensor",
  heroTitleAccent: "Precise temperature and humidity monitoring — without the complexity.",
  heroLead:
  "The Mini+ sensor is the ideal solution for precisely monitoring the most critical parameters of your indoor climate without unnecessary complexity. Designed for professional use, it combines robust hardware with the intelligent RoomAlyzer platform to help you optimise energy consumption and protect your assets.",
@@ -42,25 +42,25 @@ export const sensorPageContent: SensorPageContent[] = [
  benefits: [
  {
  title: "Rapid deployment",
- body: "Simply place the sensor and activate it with a single press of a button to start sending data immediately via the secure NB-IoT network.",
+ body: "Press the on-sensor button to activate — data flows immediately over NB-IoT with no Wi-Fi, gateway, or IT setup.",
  },
  {
  title: "True maintenance-free operation",
- body: "Benefit from up to 10 years of battery life for continuous, stable performance with low operating costs.",
+ body: "A replaceable 3 × AA lithium pack delivers up to 10 years of battery life for stable, low-cost monitoring.",
  },
  {
  title: "Fact-based documentation",
- body: "The high-end measuring component guarantees first-class long-term stability and high precision.",
+ body: "±0.1 °C and ±1% RH precision with <0.03 °C/year drift — verifiable conditions you can export from the RoomAlyzer platform.",
  },
  {
  title: "Precise energy savings",
- body: "Effortlessly record temperatures across all rooms to lower your heating costs by 5% for every degree the room temperature is reduced.",
+ body: "At H124 × W60 × D26 mm (130 g), deploy across every room and cut heating costs by ~5% for each degree you lower setpoint — backed by room-level data.",
  },
  ],
  },
  {
  slug: "mini-plus-pir",
- heroTitle: "Mini+ PIR sensor.",
+ heroTitle: "Mini+ PIR sensor",
  heroTitleAccent: "Precise indoor climate and space utilisation data — with a long battery life.",
  heroLead:
  "The Mini+ PIR is the intelligent all-in-one solution for an optimised indoor climate and needs-based space utilisation. By combining precise climate measurements with anonymised occupancy tracking, it delivers a holistic overview of your building dynamics to make your operations smarter.",
@@ -86,7 +86,7 @@ export const sensorPageContent: SensorPageContent[] = [
  },
  {
  slug: "humidity",
- heroTitle: "Humidity sensor.",
+ heroTitle: "Humidity sensor",
  heroTitleAccent: "Discreet protection for assets and the indoor climate — with an extremely long battery life.",
  heroLead:
  "The Humidity sensor is the ideal solution for anyone who requires precise temperature and humidity data in a discreet, compact format. It delivers exact values to the RoomAlyzer platform to safeguard irreplaceable cultural assets, comply with strict heritage conservation, or optimise office environments.",
@@ -113,7 +113,7 @@ export const sensorPageContent: SensorPageContent[] = [
  },
  {
  slug: "co2",
- heroTitle: "CO2 sensor.",
+ heroTitle: "CO2 sensor",
  heroTitleAccent: "Precise air quality data — with maximum battery life.",
  heroLead:
  "The CO2 sensor is the professional solution for monitoring air quality in environments where wellbeing, health, and concentration are crucial. In combination with the RoomAlyzer platform, it provides a sound, fact-based foundation for optimising ventilation and your overall indoor climate.",
@@ -140,7 +140,7 @@ export const sensorPageContent: SensorPageContent[] = [
  },
  {
  slug: "temperature",
- heroTitle: "Temperature sensor.",
+ heroTitle: "Temperature sensor",
  heroTitleAccent: "Secure and precise temperature monitoring in the world's smallest format.",
  heroLead:
  "The Temperature sensor offers precise monitoring of critical environments where the smallest deviations have significant consequences. Designed for effortless validation, it ensures the correct storage of medications and food, as well as the stable operation of technical installations and laboratories.",
@@ -167,7 +167,7 @@ export const sensorPageContent: SensorPageContent[] = [
  },
  {
  slug: "outdoor",
- heroTitle: "Outdoor sensor.",
+ heroTitle: "Outdoor sensor",
  heroTitleAccent: "The professional solution for precise monitoring of your outdoor climate.",
  heroLead:
  "The Outdoor sensor is an essential component of modern building management. By precisely recording outdoor temperature and humidity, it establishes the necessary reference to help you understand exactly how the outdoor climate influences your building fabric.",
@@ -193,7 +193,7 @@ export const sensorPageContent: SensorPageContent[] = [
  },
  {
  slug: "desk",
- heroTitle: "Desk sensor.",
+ heroTitle: "Desk sensor",
  heroTitleAccent: "Data-driven space management for the modern workplace.",
  heroLead:
  "The Desk sensor provides precise utilisation data for efficient, needs-based optimisation of your office space, eliminating guesswork. By combining ambient temperature measurements with intelligent algorithms for presence detection, it strictly follows the Privacy by Design principle by only determining whether a workspace is occupied or free.",
@@ -220,7 +220,7 @@ export const sensorPageContent: SensorPageContent[] = [
  },
  {
  slug: "touch",
- heroTitle: "Touch sensor.",
+ heroTitle: "Touch sensor",
  heroTitleAccent: "Simple feedback and rapid service — exactly where the need arises.",
  heroLead:
  "The Touch sensor is the ideal solution for anyone looking to manage their operations based on demand. By giving your users and guests the ability to notify you directly with a simple press of a button, you can react instantly when a facility requires attention — whether a coffee machine is out of order or a washroom needs servicing.",
@@ -247,7 +247,7 @@ export const sensorPageContent: SensorPageContent[] = [
  },
  {
  slug: "open-close",
- heroTitle: "Open/Close sensor.",
+ heroTitle: "Open/Close sensor",
  heroTitleAccent: "Full transparency of your space resources in real time — from lockers to windows.",
  heroLead:
  "The Open/Close sensor delivers precise facts instead of guesswork regarding the status and utilisation of your infrastructure. Whether managing lockers, optimising logistics for workwear, or ensuring property protection by checking closed windows — the sensor transforms every event into valuable insights.",
@@ -274,7 +274,7 @@ export const sensorPageContent: SensorPageContent[] = [
  },
  {
  slug: "motion",
- heroTitle: "Motion sensor.",
+ heroTitle: "Motion sensor",
  heroTitleAccent: "Wireless tracking of space utilisation with a 360° panoramic view.",
  heroLead:
  "The Motion sensor provides the precise foundation for professional space management and the strategic optimisation of your building utilisation. Using its Passive Infrared (PIR) technology to detect thermal movement, the system records space occupancy exclusively to map out how your square metres are used.",
@@ -301,7 +301,7 @@ export const sensorPageContent: SensorPageContent[] = [
  },
  {
  slug: "water-detector",
- heroTitle: "Water detector.",
+ heroTitle: "Water detector",
  heroTitleAccent: "Reliable monitoring of unwanted water — even in hard-to-reach places.",
  heroLead:
  "The Water detector is the ultimate safeguard against costly water damage across your building portfolio. Developed specifically for professional operation, the sensor is available in both a robust, fully waterproof variant (Water Detector Pro IP67) and a discreet indoor variant (Water Detector Compact IP30).",
@@ -327,7 +327,7 @@ export const sensorPageContent: SensorPageContent[] = [
  },
  {
  slug: "water-rope",
- heroTitle: "Water rope sensor.",
+ heroTitle: "Water rope sensor",
  heroTitleAccent: "Comprehensive protection over isolated data points with continuous zone detection.",
  heroLead:
  "The Water rope sensor provides an advanced safety net by monitoring a continuous path rather than a single point. Triggered by as little as 50 mm of contact anywhere along its flexible 3-metre cable, it delivers the ultimate real-time coverage required to safeguard high-risk infrastructure like archives, labs, and server rooms.",
@@ -353,7 +353,7 @@ export const sensorPageContent: SensorPageContent[] = [
  },
  {
  slug: "cloud-connector",
- heroTitle: "Cloud Connector.",
+ heroTitle: "Cloud Connector",
  heroTitleAccent: "The secure bridge between your sensors and the cloud.",
  heroLead:
  "The Cloud Connector is the central gateway that provides your sensors with secure network access so that you receive precise data for your building operations. While our NB-IoT sensors operate completely independently, the Cloud Connector acts as a necessary and secure bridge for all sensors with SecureDataShot technology.",
@@ -374,6 +374,28 @@ export const sensorPageContent: SensorPageContent[] = [
  {
  title: "Zero Wi-Fi dependence",
  body: "Equipped with an internal SIM card, it operates entirely independently of local building Wi-Fi, guaranteeing maximum stability and hardware isolation.",
+ },
+ ],
+ },
+ {
+ slug: "range-extender-and-bracket",
+ heroTitle: "Range Extender and Bracket",
+ heroTitleAccent: "Reach the corners of the building.",
+ heroLead:
+ "The Range Extender and Bracket are essential accessories when standard mounting is insufficient — from metal desk drawers to industrial freezers. Both act as signal boosters so barriers such as metal, thick walls, or condensation do not interrupt reliable sensor data.",
+ useCases: "Metal desk drawers · Freezer & cold rooms · Display cases · Basements",
+ benefits: [
+ {
+ title: "Targeted signal amplification",
+ body: "The Range Extender keeps desk sensors connected even inside metal drawers or behind signal-blocking barriers.",
+ },
+ {
+ title: "Robust protection in extreme environments",
+ body: "Both mounts resist condensation and extreme cold — ideal for cooling and freezer areas where they protect compact sensors and amplify the signal through insulated walls.",
+ },
+ {
+ title: "Flexible mounting anywhere",
+ body: "Mounting holes on the Bracket accept cable ties in display cases or industrial refrigerators; the Range Extender uses peel-and-stick installation.",
  },
  ],
  },

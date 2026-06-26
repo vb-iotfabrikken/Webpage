@@ -1,0 +1,76 @@
+---
+import { getUi } from "../../data/i18n/ui";
+import { defaultLang, type Lang } from "../../data/lang";
+import {
+  getLocalizedSensorTechnicalSpecs,
+  type SpecRowId,
+} from "../../data/sensorTechnicalSpecs";
+
+interface Props {
+  slug: string;
+  lang?: Lang;
+  productSheetUrl?: string;
+}
+
+const { slug, lang = defaultLang, productSheetUrl } = Astro.props;
+
+const specs = getLocalizedSensorTechnicalSpecs(slug, lang);
+if (!specs) {
+  return null;
+}
+
+const t = getUi(lang).sensors.detail.specs;
+
+function rowLabel(id: SpecRowId): string {
+  return t.rows[id];
+}
+---
+
+<section aria-labelledby={`${slug}-specs`}>
+  <h2
+    id={`${slug}-specs`}
+    class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5"
+  >
+    {t.title}
+  </h2>
+
+  <div class="overflow-x-auto rounded-xl border border-stone-100 bg-white">
+    <table class="w-full min-w-[280px] text-left text-sm">
+      <tbody>
+        {specs.rows.map((row) => (
+          <tr class="border-b border-stone-100 last:border-b-0">
+            <th
+              scope="row"
+              class="w-[38%] min-w-[7.5rem] px-4 py-3 font-semibold text-navy-500 align-top sm:px-5 sm:py-3.5"
+            >
+              {rowLabel(row.id)}
+            </th>
+            <td class="px-4 py-3 text-stone-900/80 leading-relaxed align-top sm:px-5 sm:py-3.5">
+              {row.value}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  {productSheetUrl && (
+    <p class="mt-4">
+      <a
+        href={productSheetUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        download={`${slug}.pdf`}
+        class="text-sm font-medium text-sky-600 hover:text-sky-700 underline underline-offset-2"
+      >
+        {t.downloadFullSheet}
+      </a>
+    </p>
+  )}
+
+  {specs.complianceNote && (
+    <p class="mt-4 text-sm text-stone-900/60 leading-relaxed">
+      {specs.complianceNote}
+    </p>
+  )}
+</section>

@@ -1,9 +1,16 @@
 ---
 import PlaceholderPage from "../../../components/PlaceholderPage.astro";
 import SensorPageContent from "../../../components/content/SensorPageContent.astro";
+import SensorProductGallery from "../../../components/sensors/SensorProductGallery.astro";
 import { sensorsHub, getSensorsHub } from "../../../data/hubs/sensors";
 import { getSensorContent } from "../../../data/content/sensors";
 import { localizedSensorName } from "../../../data/sensorCategories";
+import { getSensorProductImage, sensorProductOgImage } from "../../../data/sensorProductImages";
+import { getSensorHeroSpecs } from "../../../data/sensorHeroSpecs";
+import {
+  getSensorProductSchemaProperties,
+  isEnhancedProductPage,
+} from "../../../data/sensorTechnicalSpecs";
 import { productSchema } from "../../../lib/seo/schema";
 import { getUi } from "../../../data/i18n/ui";
 import { locales, langPath, type Lang } from "../../../data/lang";
@@ -22,29 +29,42 @@ const hub = getSensorsHub(lang);
 const leaf = hub.leaves.find((entry) => entry.slug === slug)!;
 const content = getSensorContent(slug, lang);
 const t = getUi(lang).sensors;
+const enhanced = isEnhancedProductPage(slug);
 
-const secondaryCta = leaf.productSheetUrl
+const getOfferHref = langPath("/get-an-offer/", lang);
+const secondaryCta = { label: t.common.getAnOffer, href: getOfferHref };
+const productSheetCta = leaf.productSheetUrl
   ? { label: t.common.downloadProductSheet, href: leaf.productSheetUrl }
-  : leaf.secondaryCta;
+  : undefined;
 
 // Enforce the localized sensor name (e.g. de "Wasserdetektor") regardless of
 // whether the translated hero copy supplies its own title.
 const heroTitle = localizedSensorName(slug, content?.heroTitle ?? leaf.title, lang);
 const productName = heroTitle.replace(/\.$/, "");
+const productImage = getSensorProductImage(slug);
+const ogImage = leaf.ogImage ?? sensorProductOgImage(slug);
+
+const schemaProperties = enhanced
+  ? getSensorProductSchemaProperties(slug, lang, t.detail.specs.rows)
+  : undefined;
 
 const sensorJsonLd = productSchema({
   name: productName,
-  description: content?.heroLead ?? leaf.lead,
+  description: leaf.metaDescription ?? content?.heroLead ?? leaf.lead,
   url: Astro.url.pathname,
-  image: leaf.ogImage,
+  image: ogImage,
   brand: "RoomAlyzer",
+  additionalProperty: schemaProperties,
 });
+
+const heroSpecs = enhanced ? getSensorHeroSpecs(slug, lang) : undefined;
 ---
 
 <PlaceholderPage
   title={`${leaf.seoTitle ?? productName} | IoT Fabrikken`}
   description={leaf.metaDescription ?? content?.heroLead ?? leaf.lead}
-  ogImage={leaf.ogImage}
+  ogImage={ogImage}
+  ogImageAlt={productImage?.imageAlt}
   noindex={leaf.noindex}
   jsonLd={sensorJsonLd}
   heroTitle={heroTitle}
@@ -62,9 +82,27 @@ const sensorJsonLd = productSchema({
   ctaBandSubtitle={t.detail.ctaBandSubtitle}
   ctaBandPrimaryLabel={t.common.bookDemo}
   ctaBandPrimaryHref={langPath("/contact/book-demo/", lang)}
-  ctaBandSecondaryLabel={t.common.contactSales}
-  ctaBandSecondaryHref={langPath("/contact/sales/", lang)}
+  ctaBandSecondaryLabel={enhanced ? t.common.getAnOffer : (productSheetCta?.label ?? t.common.contactSales)}
+  ctaBandSecondaryHref={enhanced ? getOfferHref : (productSheetCta?.href ?? langPath("/contact/sales/", lang))}
 >
 
-  {content && <SensorPageContent content={content} lang={lang} />}
+  {content ? (
+    <SensorPageContent
+      content={content}
+      slug={slug}
+      lang={lang}
+      productSheetUrl={leaf.productSheetUrl}
+      heroSpecs={heroSpecs}
+    />
+  ) : (
+    <section aria-labelledby={`${slug}-product-views`}>
+      <p
+        id={`${slug}-product-views`}
+        class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5"
+      >
+        {t.detail.productViews}
+      </p>
+      <SensorProductGallery slug={slug} lang={lang} class="max-w-sm" />
+    </section>
+  )}
 </PlaceholderPage>

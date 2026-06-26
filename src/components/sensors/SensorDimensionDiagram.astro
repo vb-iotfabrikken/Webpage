@@ -1,0 +1,110 @@
+---
+/**
+ * Side-view product photo with measurement labels placed in baked-in bracket guides.
+ */
+import type { DimensionOverlayPreset } from "../../data/dimensionOverlayPresets";
+import {
+  dimensionAxisLetters,
+  dimensionLabel,
+  parseDimensionMm,
+  pickAxisValue,
+} from "../../lib/sensors/parse-dimensions";
+import { defaultLang, type Lang } from "../../data/lang";
+
+interface Props {
+  src: string;
+  alt: string;
+  size: string;
+  overlay: DimensionOverlayPreset;
+  lang?: Lang;
+  loading?: "lazy" | "eager";
+  /** Zoom in for half-height gallery tiles (water compact/pro stack). */
+  dense?: boolean;
+  denseScale?: number;
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  size,
+  overlay,
+  lang = defaultLang,
+  loading = "lazy",
+  dense = false,
+  denseScale = 1.5,
+  class: className,
+} = Astro.props;
+
+const parsed = parseDimensionMm(size);
+const letters = dimensionAxisLetters(lang);
+const stroke = "var(--color-navy-500)";
+
+const labels = overlay.labels
+  .map((slot) => {
+    if ("text" in slot) {
+      return { ...slot, text: slot.text };
+    }
+    const value = pickAxisValue(parsed, slot.axis);
+    if (value === undefined) return null;
+    return { ...slot, text: dimensionLabel(slot.axis, value, letters) };
+  })
+  .filter(Boolean);
+---
+
+<div class:list={[
+  "relative h-full w-full overflow-hidden",
+  dense && "flex items-center justify-center",
+  className,
+]}>
+  <div
+    class="relative h-full w-full"
+    style={
+      dense
+        ? `transform: scale(${denseScale}); transform-origin: center center;`
+        : undefined
+    }
+  >
+    <img
+      src={src}
+      alt={alt}
+      width={1080}
+      height={1080}
+      class="h-full w-full object-contain"
+      loading={loading}
+      decoding="async"
+    />
+
+    {labels.length > 0 && (
+      <svg
+        class="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="xMidYMid meet"
+        aria-hidden="true"
+      >
+        {labels.map((label) => (
+          <text
+            x={label!.x}
+            y={label!.y}
+            text-anchor={label!.textAnchor ?? "middle"}
+            dominant-baseline="central"
+            alignment-baseline="central"
+            fill={stroke}
+            font-size="2.35"
+            font-weight="600"
+            class="dimension-label"
+          >
+            {label!.text}
+          </text>
+        ))}
+      </svg>
+    )}
+  </div>
+</div>
+
+<style>
+  .dimension-label {
+    font-family: var(--font-sans, Inter, system-ui, sans-serif);
+    letter-spacing: -0.02em;
+  }
+</style>

@@ -17,7 +17,7 @@ export type SensorContentOverlay = Partial<Omit<SensorPageContent, "slug">>;
 export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorContentOverlay>>> = {
   de: {
     "full-plus": {
-      heroTitle: "Full+ Sensor.",
+      heroTitle: "Full+ Sensor",
       heroTitleAccent: "Vollständige Raumklimaüberwachung — komplett kabellos.",
       heroLead:
         "Der Full+ Sensor ist Ihre All-in-One-Lösung zur präzisen Überwachung von Temperatur, Luftfeuchtigkeit, CO2 und TVOC. Konzipiert für den mühelosen professionellen Einsatz, liefert er die entscheidenden Daten, um Wohlbefinden zu optimieren, Gebäude zu schützen und Heizkosten zu senken.",
@@ -42,7 +42,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     "mini-plus": {
-      heroTitle: "Mini+ Sensor.",
+      heroTitle: "Mini+ Sensor",
       heroTitleAccent: "Präzise Temperatur- und Feuchtemessung — ohne die Komplexität.",
       heroLead:
         "Der Mini+ Sensor ist die ideale Lösung, um die wichtigsten Parameter Ihres Raumklimas präzise zu überwachen — ohne unnötige Komplexität. Für den professionellen Einsatz konzipiert, verbindet er robuste Hardware mit der intelligenten RoomAlyzer-Plattform, um Energieverbrauch zu optimieren und Werte zu schützen.",
@@ -50,24 +50,24 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       benefits: [
         {
           title: "Schnelle Inbetriebnahme",
-          body: "Sensor platzieren, per Knopfdruck aktivieren und sofort Daten über das sichere NB-IoT-Netz senden.",
+          body: "Taste am Sensor drücken — Daten fließen sofort über NB-IoT, ohne Wi-Fi, Gateway oder IT-Einrichtung.",
         },
         {
           title: "Echter wartungsfreier Betrieb",
-          body: "Bis zu 10 Jahre Batterielaufzeit für eine durchgehend stabile Leistung bei niedrigen Betriebskosten.",
+          body: "Ein austauschbares 3 × AA-Lithium-Paket liefert bis zu 10 Jahre Batterielaufzeit für stabile Überwachung bei niedrigen Betriebskosten.",
         },
         {
           title: "Faktenbasierte Dokumentation",
-          body: "Die High-End-Messkomponente garantiert erstklassige Langzeitstabilität und hohe Präzision.",
+          body: "±0,1 °C und ±1 % RF Präzision mit <0,03 °C/Jahr Drift — nachweisbare Bedingungen, exportierbar über die RoomAlyzer-Plattform.",
         },
         {
           title: "Präzise Energieeinsparungen",
-          body: "Erfassen Sie mühelos die Temperaturen aller Räume und senken Sie die Heizkosten um 5 % pro Grad weniger Raumtemperatur.",
+          body: "Mit H124 × B60 × T26 mm (130 g) in jedem Raum einsetzen und Heizkosten um ~5 % pro gesenktem Grad senken — gestützt durch Raumdaten.",
         },
       ],
     },
     "mini-plus-pir": {
-      heroTitle: "Mini+ PIR Sensor.",
+      heroTitle: "Mini+ PIR Sensor",
       heroTitleAccent: "Präzise Raumklima- und Auslastungsdaten — mit langer Batterielaufzeit.",
       heroLead:
         "Der Mini+ PIR ist die intelligente All-in-One-Lösung für ein optimiertes Raumklima und eine bedarfsgerechte Flächennutzung. Durch die Kombination präziser Klimamessungen mit anonymisierter Belegungserfassung liefert er einen ganzheitlichen Überblick über Ihre Gebäudedynamik.",
@@ -92,7 +92,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     humidity: {
-      heroTitle: "Humidity Sensor.",
+      heroTitle: "Humidity Sensor",
       heroTitleAccent: "Diskreter Schutz für Werte und Raumklima — mit extrem langer Batterielaufzeit.",
       heroLead:
         "Der Humidity Sensor ist die ideale Lösung für alle, die präzise Temperatur- und Feuchtedaten in einem diskreten, kompakten Format benötigen. Er liefert exakte Werte an die RoomAlyzer-Plattform, um unersetzliche Kulturgüter zu schützen, strengen Denkmalschutz einzuhalten oder Büroumgebungen zu optimieren.",
@@ -117,7 +117,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     co2: {
-      heroTitle: "CO2 Sensor.",
+      heroTitle: "CO2 Sensor",
       heroTitleAccent: "Präzise Luftqualitätsdaten — mit maximaler Batterielaufzeit.",
       heroLead:
         "Der CO2 Sensor ist die professionelle Lösung zur Überwachung der Luftqualität dort, wo Wohlbefinden, Gesundheit und Konzentration entscheidend sind. In Kombination mit der RoomAlyzer-Plattform bietet er eine fundierte, faktenbasierte Grundlage, um Lüftung und Raumklima zu optimieren.",
@@ -142,7 +142,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     temperature: {
-      heroTitle: "Temperature Sensor.",
+      heroTitle: "Temperature Sensor",
       heroTitleAccent: "Sichere und präzise Temperaturüberwachung im kleinsten Format der Welt.",
       heroLead:
         "Der Temperature Sensor überwacht präzise kritische Umgebungen, in denen kleinste Abweichungen erhebliche Folgen haben. Für die mühelose Validierung konzipiert, sichert er die korrekte Lagerung von Medikamenten und Lebensmitteln sowie den stabilen Betrieb technischer Anlagen und Labore.",
@@ -167,7 +167,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     outdoor: {
-      heroTitle: "Outdoor Sensor.",
+      heroTitle: "Outdoor Sensor",
       heroTitleAccent: "Die professionelle Lösung zur präzisen Überwachung Ihres Außenklimas.",
       heroLead:
         "Der Outdoor Sensor ist ein wesentlicher Bestandteil des modernen Gebäudemanagements. Durch die präzise Erfassung von Außentemperatur und -feuchte schafft er die nötige Referenz, um zu verstehen, wie das Außenklima Ihre Bausubstanz beeinflusst.",
@@ -192,7 +192,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     desk: {
-      heroTitle: "Desk Sensor.",
+      heroTitle: "Desk Sensor",
       heroTitleAccent: "Datengestütztes Flächenmanagement für den modernen Arbeitsplatz.",
       heroLead:
         "Der Desk Sensor liefert präzise Auslastungsdaten für eine effiziente, bedarfsgerechte Optimierung Ihrer Büroflächen — ohne Rätselraten. Durch die Kombination von Umgebungstemperaturmessung mit intelligenten Algorithmen zur Präsenzerkennung folgt er konsequent dem Privacy-by-Design-Prinzip und ermittelt nur, ob ein Arbeitsplatz belegt oder frei ist.",
@@ -217,7 +217,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     touch: {
-      heroTitle: "Touch Sensor.",
+      heroTitle: "Touch Sensor",
       heroTitleAccent: "Einfaches Feedback und schneller Service — genau dort, wo der Bedarf entsteht.",
       heroLead:
         "Der Touch Sensor ist die ideale Lösung für alle, die ihren Betrieb bedarfsorientiert steuern möchten. Geben Sie Nutzern und Gästen die Möglichkeit, Sie per Knopfdruck direkt zu informieren — so reagieren Sie sofort, wenn eine Einrichtung Aufmerksamkeit braucht, ob eine Kaffeemaschine defekt ist oder ein Waschraum Service benötigt.",
@@ -242,7 +242,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     "open-close": {
-      heroTitle: "Open/Close Sensor.",
+      heroTitle: "Open/Close Sensor",
       heroTitleAccent: "Volle Transparenz Ihrer Raumressourcen in Echtzeit — von Schließfächern bis Fenstern.",
       heroLead:
         "Der Open/Close Sensor liefert präzise Fakten statt Vermutungen zum Status und zur Nutzung Ihrer Infrastruktur. Ob Schließfachverwaltung, Logistikoptimierung für Arbeitskleidung oder Objektschutz durch die Kontrolle geschlossener Fenster — der Sensor verwandelt jedes Ereignis in wertvolle Erkenntnisse.",
@@ -267,7 +267,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     motion: {
-      heroTitle: "Motion Sensor.",
+      heroTitle: "Motion Sensor",
       heroTitleAccent: "Kabellose Erfassung der Flächennutzung mit 360°-Rundumblick.",
       heroLead:
         "Der Motion Sensor schafft die präzise Grundlage für professionelles Flächenmanagement und die strategische Optimierung Ihrer Gebäudenutzung. Mittels passiver Infrarottechnik (PIR) zur Erkennung von Wärmebewegung erfasst das System die Raumbelegung ausschließlich, um die Nutzung Ihrer Quadratmeter abzubilden.",
@@ -316,7 +316,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     "water-rope": {
-      heroTitle: "Water Rope Sensor.",
+      heroTitle: "Water Rope Sensor",
       heroTitleAccent: "Umfassender Schutz statt einzelner Messpunkte — mit durchgehender Zonenerkennung.",
       heroLead:
         "Der Water Rope Sensor bietet ein fortschrittliches Sicherheitsnetz, indem er einen durchgehenden Pfad statt eines einzelnen Punktes überwacht. Bereits ab 50 mm Kontakt an einer beliebigen Stelle seines flexiblen 3-Meter-Kabels ausgelöst, liefert er die nötige Echtzeitabdeckung, um Hochrisiko-Infrastruktur wie Archive, Labore und Serverräume zu schützen.",
@@ -341,7 +341,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     "cloud-connector": {
-      heroTitle: "Cloud Connector.",
+      heroTitle: "Cloud Connector",
       heroTitleAccent: "Die sichere Brücke zwischen Ihren Sensoren und der Cloud.",
       heroLead:
         "Der Cloud Connector ist das zentrale Gateway, das Ihren Sensoren sicheren Netzzugang verschafft, damit Sie präzise Daten für Ihren Gebäudebetrieb erhalten. Während unsere NB-IoT-Sensoren völlig eigenständig arbeiten, fungiert der Cloud Connector als notwendige, sichere Brücke für alle Sensoren mit SecureDataShot-Technologie.",
@@ -368,7 +368,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
   },
   da: {
     "full-plus": {
-      heroTitle: "Full+ sensor.",
+      heroTitle: "Full+ sensor",
       heroTitleAccent: "Komplet overvågning af indeklimaet — helt trådløst.",
       heroLead:
         "Full+ sensoren er din alt-i-én-løsning til præcis overvågning af temperatur, luftfugtighed, CO2 og TVOC. Designet til ubesværet professionel brug leverer den de vitale data, du har brug for til at optimere trivsel, beskytte dine bygninger og reducere varmeomkostninger.",
@@ -393,7 +393,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     "mini-plus": {
-      heroTitle: "Mini+ sensor.",
+      heroTitle: "Mini+ sensor",
       heroTitleAccent: "Præcis temperatur- og fugtovervågning — uden kompleksiteten.",
       heroLead:
         "Mini+ sensoren er den ideelle løsning til præcist at overvåge de mest kritiske parametre i dit indeklima uden unødig kompleksitet. Designet til professionel brug kombinerer den robust hardware med den intelligente RoomAlyzer-platform og hjælper dig med at optimere energiforbruget og beskytte dine værdier.",
@@ -401,24 +401,24 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       benefits: [
         {
           title: "Hurtig idriftsættelse",
-          body: "Placér blot sensoren og aktivér den med et enkelt tryk på en knap for straks at sende data via det sikre NB-IoT-netværk.",
+          body: "Tryk på knappen på sensoren — data sendes straks via NB-IoT uden Wi-Fi, gateway eller IT-opsætning.",
         },
         {
           title: "Ægte vedligeholdelsesfri drift",
-          body: "Få op til 10 års batterilevetid for kontinuerlig, stabil ydeevne med lave driftsomkostninger.",
+          body: "Et udskifteligt 3 × AA litiumpakke giver op til 10 års batterilevetid for stabil overvågning med lave driftsomkostninger.",
         },
         {
           title: "Faktabaseret dokumentation",
-          body: "Den avancerede målekomponent garanterer førsteklasses langtidsstabilitet og høj præcision.",
+          body: "±0,1 °C og ±1 % RF præcision med <0,03 °C/år drift — verificerbare forhold, du kan eksportere fra RoomAlyzer-platformen.",
         },
         {
           title: "Præcise energibesparelser",
-          body: "Registrér ubesværet temperaturer på tværs af alle rum og sænk varmeomkostningerne med 5 % for hver grad rumtemperaturen reduceres.",
+          body: "Med H124 × B60 × D26 mm (130 g) i hvert rum og sænk varmeomkostningerne med ~5 % for hver grad, du sænker setpunktet — understøttet af rumdata.",
         },
       ],
     },
     "mini-plus-pir": {
-      heroTitle: "Mini+ PIR sensor.",
+      heroTitle: "Mini+ PIR sensor",
       heroTitleAccent: "Præcise data om indeklima og arealudnyttelse — med lang batterilevetid.",
       heroLead:
         "Mini+ PIR er den intelligente alt-i-én-løsning til et optimeret indeklima og en behovsbaseret arealudnyttelse. Ved at kombinere præcise klimamålinger med anonymiseret tilstedeværelsesregistrering giver den et helhedsbillede af din bygnings dynamik.",
@@ -443,7 +443,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     humidity: {
-      heroTitle: "Humidity sensor.",
+      heroTitle: "Humidity sensor",
       heroTitleAccent: "Diskret beskyttelse af værdier og indeklima — med ekstremt lang batterilevetid.",
       heroLead:
         "Humidity sensoren er den ideelle løsning for alle, der har brug for præcise temperatur- og fugtdata i et diskret, kompakt format. Den leverer nøjagtige værdier til RoomAlyzer-platformen for at beskytte uerstattelige kulturværdier, overholde streng bevaring eller optimere kontormiljøer.",
@@ -468,7 +468,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     co2: {
-      heroTitle: "CO2 sensor.",
+      heroTitle: "CO2 sensor",
       heroTitleAccent: "Præcise data om luftkvalitet — med maksimal batterilevetid.",
       heroLead:
         "CO2 sensoren er den professionelle løsning til at overvåge luftkvaliteten i miljøer, hvor trivsel, sundhed og koncentration er afgørende. Sammen med RoomAlyzer-platformen giver den et solidt, faktabaseret grundlag for at optimere ventilation og dit samlede indeklima.",
@@ -493,7 +493,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     temperature: {
-      heroTitle: "Temperature sensor.",
+      heroTitle: "Temperature sensor",
       heroTitleAccent: "Sikker og præcis temperaturovervågning i verdens mindste format.",
       heroLead:
         "Temperature sensoren tilbyder præcis overvågning af kritiske miljøer, hvor selv de mindste afvigelser har store konsekvenser. Designet til ubesværet validering sikrer den korrekt opbevaring af medicin og fødevarer samt stabil drift af tekniske installationer og laboratorier.",
@@ -518,7 +518,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     outdoor: {
-      heroTitle: "Outdoor sensor.",
+      heroTitle: "Outdoor sensor",
       heroTitleAccent: "Den professionelle løsning til præcis overvågning af dit udeklima.",
       heroLead:
         "Outdoor sensoren er en væsentlig del af moderne bygningsdrift. Ved præcist at registrere udendørs temperatur og luftfugtighed skaber den den nødvendige reference, så du forstår, hvordan udeklimaet påvirker din bygningskonstruktion.",
@@ -543,7 +543,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     desk: {
-      heroTitle: "Desk sensor.",
+      heroTitle: "Desk sensor",
       heroTitleAccent: "Datadrevet arealstyring til den moderne arbejdsplads.",
       heroLead:
         "Desk sensoren leverer præcise udnyttelsesdata til effektiv, behovsbaseret optimering af dine kontorarealer uden gætværk. Ved at kombinere måling af omgivelsestemperatur med intelligente algoritmer til tilstedeværelsesregistrering følger den konsekvent Privacy by Design-princippet og afgør kun, om en arbejdsplads er optaget eller fri.",
@@ -568,7 +568,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     touch: {
-      heroTitle: "Touch sensor.",
+      heroTitle: "Touch sensor",
       heroTitleAccent: "Enkel feedback og hurtig service — præcis dér, hvor behovet opstår.",
       heroLead:
         "Touch sensoren er den ideelle løsning for alle, der vil styre deres drift ud fra behov. Ved at give dine brugere og gæster mulighed for at give besked direkte med et enkelt tryk på en knap kan du reagere med det samme, når en facilitet kræver opmærksomhed — om en kaffemaskine er ude af drift, eller et toilet skal serviceres.",
@@ -593,7 +593,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     "open-close": {
-      heroTitle: "Open/Close sensor.",
+      heroTitle: "Open/Close sensor",
       heroTitleAccent: "Fuld gennemsigtighed over dine arealressourcer i realtid — fra skabe til vinduer.",
       heroLead:
         "Open/Close sensoren leverer præcise fakta i stedet for gætværk om status og udnyttelse af din infrastruktur. Om du administrerer skabe, optimerer logistik for arbejdstøj eller sikrer ejendomsbeskyttelse ved at kontrollere lukkede vinduer — sensoren forvandler enhver hændelse til værdifuld indsigt.",
@@ -618,7 +618,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     motion: {
-      heroTitle: "Motion sensor.",
+      heroTitle: "Motion sensor",
       heroTitleAccent: "Trådløs registrering af arealudnyttelse med 360° panoramaudsyn.",
       heroLead:
         "Motion sensoren giver det præcise grundlag for professionel arealstyring og strategisk optimering af din bygningsudnyttelse. Ved hjælp af passiv infrarød (PIR) teknologi til at registrere termisk bevægelse registrerer systemet udelukkende rumbelægning for at kortlægge, hvordan dine kvadratmeter bruges.",
@@ -667,7 +667,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     "water-rope": {
-      heroTitle: "Water rope sensor.",
+      heroTitle: "Water rope sensor",
       heroTitleAccent: "Omfattende beskyttelse frem for enkelte datapunkter med kontinuerlig zoneregistrering.",
       heroLead:
         "Water rope sensoren giver et avanceret sikkerhedsnet ved at overvåge en kontinuerlig strækning frem for et enkelt punkt. Udløst af så lidt som 50 mm kontakt hvor som helst langs det fleksible 3-meter-kabel leverer den den realtidsdækning, der kræves for at beskytte højrisiko-infrastruktur som arkiver, laboratorier og serverrum.",
@@ -692,7 +692,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     "cloud-connector": {
-      heroTitle: "Cloud Connector.",
+      heroTitle: "Cloud Connector",
       heroTitleAccent: "Den sikre bro mellem dine sensorer og skyen.",
       heroLead:
         "Cloud Connector er den centrale gateway, der giver dine sensorer sikker netværksadgang, så du modtager præcise data til din bygningsdrift. Mens vores NB-IoT-sensorer fungerer helt selvstændigt, fungerer Cloud Connector som en nødvendig og sikker bro for alle sensorer med SecureDataShot-teknologi.",
@@ -719,7 +719,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
   },
   sv: {
     "full-plus": {
-      heroTitle: "Full+ sensor.",
+      heroTitle: "Full+ sensor",
       heroTitleAccent: "Komplett övervakning av inomhusklimatet — helt trådlöst.",
       heroLead:
         "Full+ sensorn är din allt-i-ett-lösning för exakt övervakning av temperatur, luftfuktighet, CO2 och TVOC. Utformad för smidig professionell användning levererar den de viktiga data du behöver för att optimera välbefinnande, skydda dina byggnader och sänka uppvärmningskostnaderna.",
@@ -744,7 +744,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     "mini-plus": {
-      heroTitle: "Mini+ sensor.",
+      heroTitle: "Mini+ sensor",
       heroTitleAccent: "Exakt temperatur- och fuktövervakning — utan komplexiteten.",
       heroLead:
         "Mini+ sensorn är den idealiska lösningen för att exakt övervaka de mest kritiska parametrarna i ditt inomhusklimat utan onödig komplexitet. Utformad för professionell användning kombinerar den robust hårdvara med den intelligenta RoomAlyzer-plattformen för att optimera energiförbrukningen och skydda dina tillgångar.",
@@ -752,24 +752,24 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       benefits: [
         {
           title: "Snabb driftsättning",
-          body: "Placera bara sensorn och aktivera den med ett enda knapptryck för att direkt skicka data via det säkra NB-IoT-nätet.",
+          body: "Tryck på knappen på sensorn — data skickas direkt via NB-IoT utan Wi-Fi, gateway eller IT-installation.",
         },
         {
           title: "Verkligt underhållsfri drift",
-          body: "Få upp till 10 års batteritid för kontinuerlig, stabil prestanda med låga driftskostnader.",
+          body: "Ett utbytbart 3 × AA litiumpaket ger upp till 10 års batteritid för stabil övervakning med låga driftskostnader.",
         },
         {
           title: "Faktabaserad dokumentation",
-          body: "Den avancerade mätkomponenten garanterar förstklassig långtidsstabilitet och hög precision.",
+          body: "±0,1 °C och ±1 % RF precision med <0,03 °C/år drift — verifierbara förhållanden som du kan exportera från RoomAlyzer-plattformen.",
         },
         {
           title: "Exakta energibesparingar",
-          body: "Registrera enkelt temperaturer i alla rum och sänk uppvärmningskostnaderna med 5 % för varje grad rumstemperaturen sänks.",
+          body: "Med H124 × B60 × D26 mm (130 g) i varje rum och sänk uppvärmningskostnaderna med ~5 % för varje grad du sänker börvärdet — stödd av rumsdata.",
         },
       ],
     },
     "mini-plus-pir": {
-      heroTitle: "Mini+ PIR sensor.",
+      heroTitle: "Mini+ PIR sensor",
       heroTitleAccent: "Exakta data om inomhusklimat och ytutnyttjande — med lång batteritid.",
       heroLead:
         "Mini+ PIR är den intelligenta allt-i-ett-lösningen för ett optimerat inomhusklimat och ett behovsanpassat ytutnyttjande. Genom att kombinera exakta klimatmätningar med anonymiserad närvaroregistrering ger den en helhetsbild av byggnadens dynamik.",
@@ -794,7 +794,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     humidity: {
-      heroTitle: "Humidity sensor.",
+      heroTitle: "Humidity sensor",
       heroTitleAccent: "Diskret skydd för tillgångar och inomhusklimat — med extremt lång batteritid.",
       heroLead:
         "Humidity sensorn är den idealiska lösningen för alla som behöver exakta temperatur- och fuktdata i ett diskret, kompakt format. Den levererar exakta värden till RoomAlyzer-plattformen för att skydda oersättliga kulturvärden, uppfylla strängt bevarande eller optimera kontorsmiljöer.",
@@ -819,7 +819,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     co2: {
-      heroTitle: "CO2 sensor.",
+      heroTitle: "CO2 sensor",
       heroTitleAccent: "Exakta data om luftkvalitet — med maximal batteritid.",
       heroLead:
         "CO2 sensorn är den professionella lösningen för att övervaka luftkvaliteten i miljöer där välbefinnande, hälsa och koncentration är avgörande. Tillsammans med RoomAlyzer-plattformen ger den ett gediget, faktabaserat underlag för att optimera ventilation och hela ditt inomhusklimat.",
@@ -844,7 +844,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     temperature: {
-      heroTitle: "Temperature sensor.",
+      heroTitle: "Temperature sensor",
       heroTitleAccent: "Säker och exakt temperaturövervakning i världens minsta format.",
       heroLead:
         "Temperature sensorn erbjuder exakt övervakning av kritiska miljöer där minsta avvikelse får stora konsekvenser. Utformad för smidig validering säkerställer den korrekt förvaring av läkemedel och livsmedel samt stabil drift av tekniska installationer och laboratorier.",
@@ -869,7 +869,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     outdoor: {
-      heroTitle: "Outdoor sensor.",
+      heroTitle: "Outdoor sensor",
       heroTitleAccent: "Den professionella lösningen för exakt övervakning av ditt utomhusklimat.",
       heroLead:
         "Outdoor sensorn är en väsentlig del av modern fastighetsdrift. Genom att exakt registrera utomhustemperatur och luftfuktighet skapar den den referens som behövs för att förstå hur utomhusklimatet påverkar din byggnadsstomme.",
@@ -894,7 +894,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     desk: {
-      heroTitle: "Desk sensor.",
+      heroTitle: "Desk sensor",
       heroTitleAccent: "Datadriven ytstyrning för den moderna arbetsplatsen.",
       heroLead:
         "Desk sensorn levererar exakta utnyttjandedata för effektiv, behovsanpassad optimering av dina kontorsytor utan gissningar. Genom att kombinera mätning av omgivningstemperatur med intelligenta algoritmer för närvarodetektering följer den konsekvent principen Privacy by Design och avgör endast om en arbetsplats är upptagen eller ledig.",
@@ -919,7 +919,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     touch: {
-      heroTitle: "Touch sensor.",
+      heroTitle: "Touch sensor",
       heroTitleAccent: "Enkel feedback och snabb service — precis där behovet uppstår.",
       heroLead:
         "Touch sensorn är den idealiska lösningen för alla som vill styra sin verksamhet utifrån behov. Genom att ge dina användare och gäster möjlighet att meddela dig direkt med ett enkelt knapptryck kan du reagera omedelbart när en anläggning behöver uppmärksamhet — om en kaffemaskin är trasig eller ett toalettutrymme behöver service.",
@@ -944,7 +944,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     "open-close": {
-      heroTitle: "Open/Close sensor.",
+      heroTitle: "Open/Close sensor",
       heroTitleAccent: "Full transparens över dina ytresurser i realtid — från skåp till fönster.",
       heroLead:
         "Open/Close sensorn levererar exakta fakta i stället för gissningar om status och användning av din infrastruktur. Oavsett om du hanterar skåp, optimerar logistik för arbetskläder eller säkerställer egendomsskydd genom att kontrollera stängda fönster — sensorn förvandlar varje händelse till värdefulla insikter.",
@@ -969,7 +969,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     motion: {
-      heroTitle: "Motion sensor.",
+      heroTitle: "Motion sensor",
       heroTitleAccent: "Trådlös registrering av ytutnyttjande med 360° panoramavy.",
       heroLead:
         "Motion sensorn ger den exakta grunden för professionell ytstyrning och strategisk optimering av din byggnadsanvändning. Med hjälp av passiv infraröd (PIR) teknik för att upptäcka termisk rörelse registrerar systemet endast rumsbeläggning för att kartlägga hur dina kvadratmeter används.",
@@ -1018,7 +1018,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     "water-rope": {
-      heroTitle: "Water rope sensor.",
+      heroTitle: "Water rope sensor",
       heroTitleAccent: "Omfattande skydd i stället för enskilda datapunkter med kontinuerlig zonregistrering.",
       heroLead:
         "Water rope sensorn ger ett avancerat skyddsnät genom att övervaka en kontinuerlig sträcka i stället för en enda punkt. Utlöst av så lite som 50 mm kontakt var som helst längs den flexibla 3-meterskabeln levererar den den realtidstäckning som krävs för att skydda högriskinfrastruktur som arkiv, laboratorier och serverrum.",
@@ -1043,7 +1043,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     "cloud-connector": {
-      heroTitle: "Cloud Connector.",
+      heroTitle: "Cloud Connector",
       heroTitleAccent: "Den säkra bron mellan dina sensorer och molnet.",
       heroLead:
         "Cloud Connector är den centrala gateway som ger dina sensorer säker nätverksåtkomst, så att du får exakta data för din fastighetsdrift. Medan våra NB-IoT-sensorer fungerar helt självständigt fungerar Cloud Connector som en nödvändig och säker brygga för alla sensorer med SecureDataShot-teknik.",

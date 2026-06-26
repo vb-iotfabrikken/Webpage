@@ -24,6 +24,22 @@
   --color-forest-500: #006C58;
   --color-forest-900: #004A3D;
 
+  /* Module catalogue accents — distinct hues beyond the core brand palette */
+  --color-amber-50: #FEF9E8;
+  --color-amber-100: #FDE68A;
+  --color-amber-500: #D97706;
+  --color-amber-600: #B45309;
+
+  --color-violet-50: #F3EEFF;
+  --color-violet-100: #DDD6FE;
+  --color-violet-500: #7C3AED;
+  --color-violet-600: #6D28D9;
+
+  --color-orange-50: #FFF4ED;
+  --color-orange-100: #FED7AA;
+  --color-orange-500: #EA580C;
+  --color-orange-600: #C2410C;
+
   --color-stone-0: #FFFFFF;
   --color-stone-50: #F9F9F9;
   --color-stone-100: #F0F0F0;

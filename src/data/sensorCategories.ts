@@ -50,11 +50,12 @@ export function productSheetPath(slug: string, lang: Lang = defaultLang): string
 }
 
 /**
- * Sensor and brand names are not translated — with one approved exception:
- * "Water detector" is "Wasserdetektor" in German. Keyed by sensor slug.
+ * Sensor and brand names are not translated — with approved per-locale
+ * exceptions. Keyed by sensor slug.
  */
 const SENSOR_NAME_OVERRIDES: Partial<Record<string, Partial<Record<Lang, string>>>> = {
   "water-detector": { de: "Wasserdetektor" },
+  outdoor: { de: "Außen Sensor" },
 };
 
 /**

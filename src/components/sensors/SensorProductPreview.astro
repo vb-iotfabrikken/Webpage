@@ -1,0 +1,177 @@
+---
+/**
+ * Sensor catalogue image preview — square `aspect-square` frame on stone-50.
+ *
+ * Layout is chosen from `sensorProductImages.ts`:
+ * - **Single `src`**: one image, `object-contain` + `p-6 sm:p-8` (Cloud connector style).
+ * - **`src` + `extraSrc`**: two images stacked vertically, same outer frame, kit zoom
+ *   (Range Extender and Bracket style). Only use for genuine two-part kits.
+ */
+import {
+  getSensorProductImage,
+  type SensorProductImage,
+} from "../../data/sensorProductImages";
+
+interface Props {
+  slug?: string;
+  src?: string;
+  alt?: string;
+  extraSrc?: string[];
+  width?: number;
+  height?: number;
+  loading?: "lazy" | "eager";
+  /** Subtle zoom on group hover (catalogue cards). */
+  hoverZoom?: boolean;
+  /** Render inner image(s) only — parent supplies the frame (e.g. detail gallery). */
+  embedded?: boolean;
+  /** Less padding and slight zoom for small gallery tiles. */
+  compact?: boolean;
+  /** On kit products only — show one part instead of the stacked preview (detail gallery). */
+  kitPart?: "primary" | "secondary";
+  class?: string;
+}
+
+const {
+  slug,
+  src,
+  alt,
+  extraSrc = [],
+  width = 1080,
+  height = 1080,
+  loading = "lazy",
+  hoverZoom = false,
+  embedded = false,
+  compact = false,
+  kitPart,
+  class: className,
+} = Astro.props;
+
+const image: SensorProductImage | undefined = slug
+  ? getSensorProductImage(slug)
+  : src && alt
+    ? { src, imageAlt: alt, extraSrc, width, height }
+    : undefined;
+
+const extras = image?.extraSrc ?? [];
+const kitPrimaryOnly = kitPart === "primary";
+const kitSecondaryOnly = kitPart === "secondary";
+const showKitStack = extras.length > 0 && !kitPart;
+const zoomClass = hoverZoom
+  ? "transition-transform duration-500 group-hover:scale-[1.03]"
+  : "";
+const frameClass = compact ? "p-1.5 sm:p-2" : "p-6 sm:p-8";
+const singleImageClass = compact
+  ? "w-full h-full object-contain scale-[1.55] origin-center"
+  : "w-full h-full object-contain";
+const kitImageClass =
+  "w-full h-full object-contain scale-[2.35] sm:scale-[2.5] origin-center";
+---
+
+{image && (
+  embedded ? (
+    showKitStack ? (
+      <div
+        class:list={[
+          "grid h-full w-full grid-rows-2 gap-2",
+          frameClass,
+          zoomClass,
+          className,
+        ]}
+      >
+        <div class="flex min-h-0 items-center justify-center overflow-hidden">
+          <img
+            src={image.src}
+            alt={image.imageAlt}
+            width={image.width}
+            height={image.height}
+            class={kitImageClass}
+            loading={loading}
+            decoding="async"
+          />
+        </div>
+        {extras.map((extraSrc) => (
+          <div class="flex min-h-0 items-center justify-center overflow-hidden">
+            <img
+              src={extraSrc}
+              alt=""
+              width={image.width}
+              height={image.height}
+              class={kitImageClass}
+              loading={loading}
+              decoding="async"
+              aria-hidden="true"
+            />
+          </div>
+        ))}
+      </div>
+    ) : kitSecondaryOnly && extras[0] ? (
+      <img
+        src={extras[0]}
+        alt={image.imageAlt}
+        width={image.width}
+        height={image.height}
+        class:list={[singleImageClass, frameClass, zoomClass, className]}
+        loading={loading}
+        decoding="async"
+      />
+    ) : (
+      <img
+        src={image.src}
+        alt={image.imageAlt}
+        width={image.width}
+        height={image.height}
+        class:list={[singleImageClass, frameClass, zoomClass, className]}
+        loading={loading}
+        decoding="async"
+      />
+    )
+  ) : (
+    <div class:list={["aspect-square overflow-hidden bg-stone-50", className]}>
+      {showKitStack ? (
+        <div
+          class:list={[
+            "grid h-full w-full grid-rows-2 gap-2",
+            frameClass,
+            zoomClass,
+          ]}
+        >
+          <div class="flex min-h-0 items-center justify-center overflow-hidden">
+            <img
+              src={image.src}
+              alt={image.imageAlt}
+              width={image.width}
+              height={image.height}
+              class={kitImageClass}
+              loading={loading}
+              decoding="async"
+            />
+          </div>
+          {extras.map((extraSrc) => (
+            <div class="flex min-h-0 items-center justify-center overflow-hidden">
+              <img
+                src={extraSrc}
+                alt=""
+                width={image.width}
+                height={image.height}
+                class={kitImageClass}
+                loading={loading}
+                decoding="async"
+                aria-hidden="true"
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <img
+          src={image.src}
+          alt={image.imageAlt}
+          width={image.width}
+          height={image.height}
+          class:list={["w-full h-full object-contain", frameClass, zoomClass]}
+          loading={loading}
+          decoding="async"
+        />
+      )}
+    </div>
+  )
+)}

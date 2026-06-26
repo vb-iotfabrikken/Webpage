@@ -14,6 +14,8 @@ export type SensorLeafOverlay = {
   title?: string;
   titleAccent?: string;
   lead?: string;
+  seoTitle?: string;
+  metaDescription?: string;
 };
 
 export type SensorHubOverlay = {
@@ -46,6 +48,9 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
       "mini-plus": {
         titleAccent: "Kleiner Footprint, präzise Klimadaten.",
         lead: "Einfache Installation und präzise Klimawerte dort, wo Größe und Ästhetik zählen.",
+        seoTitle: "RoomAlyzer Air Mini+ | NB-IoT Temperatur- & Feuchtesensor",
+        metaDescription:
+          "RoomAlyzer Air Mini+ Funk-Sensor: NB-IoT Temperatur- und Feuchtigkeitsüberwachung, bis zu 10 Jahre Batterie, ±0,1 °C Präzision. Ohne Wi-Fi oder Gateway.",
       },
       "mini-plus-pir": {
         titleAccent: "Klima und Präsenz in einem.",
@@ -119,6 +124,9 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
       "mini-plus": {
         titleAccent: "Lille fodaftryk, præcise klimadata.",
         lead: "Nem installation og præcise klimaaflæsninger, hvor størrelse og æstetik betyder noget.",
+        seoTitle: "RoomAlyzer Air Mini+ | NB-IoT temperatur- og fugtsensor",
+        metaDescription:
+          "RoomAlyzer Air Mini+ trådløs sensor: NB-IoT temperatur- og fugtovervågning, op til 10 års batteri, ±0,1 °C præcision. Uden Wi-Fi eller gateway.",
       },
       "mini-plus-pir": {
         titleAccent: "Klima og tilstedeværelse i én.",
@@ -192,6 +200,9 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
       "mini-plus": {
         titleAccent: "Litet fotavtryck, exakta klimatdata.",
         lead: "Enkel installation och exakta klimatavläsningar där storlek och estetik spelar roll.",
+        seoTitle: "RoomAlyzer Air Mini+ | NB-IoT temperatur- och fuktsensor",
+        metaDescription:
+          "RoomAlyzer Air Mini+ trådlös sensor: NB-IoT temperatur- och fuktövervakning, upp till 10 års batteri, ±0,1 °C precision. Utan Wi-Fi eller gateway.",
       },
       "mini-plus-pir": {
         titleAccent: "Klimat och närvaro i ett.",

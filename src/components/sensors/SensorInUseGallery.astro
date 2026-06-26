@@ -1,0 +1,59 @@
+---
+import { getSensorInUseImages } from "../../data/sensorProductImages";
+import { getUi } from "../../data/i18n/ui";
+import { defaultLang, type Lang } from "../../data/lang";
+
+interface Props {
+  slug: string;
+  lang?: Lang;
+  loading?: "lazy" | "eager";
+  /** Cap how many in-use photos are shown. */
+  limit?: number;
+  class?: string;
+}
+
+const { slug, lang = defaultLang, loading = "lazy", limit, class: className } = Astro.props;
+
+const images = getSensorInUseImages(slug).slice(0, limit);
+const t = getUi(lang).sensors.gallery;
+
+if (images.length === 0) {
+  return null;
+}
+
+const imageClass = "h-full w-full object-cover";
+const cellClass = "relative aspect-[16/10] min-h-[10rem] overflow-hidden bg-stone-50";
+---
+
+<section
+  class:list={["sensor-in-use-gallery", className]}
+  aria-labelledby={`${slug}-in-use`}
+>
+  <h2 id={`${slug}-in-use`} class="sr-only">
+    {t.inUse}
+  </h2>
+  <div
+    class:list={[
+      "grid gap-3 sm:gap-4",
+      images.length === 1 && "grid-cols-1",
+      images.length === 2 && "grid-cols-1 sm:grid-cols-2",
+      images.length >= 3 && "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+    ]}
+  >
+    {images.map((image, index) => (
+      <figure class:list={[cellClass, "overflow-hidden rounded-xl border border-stone-100 shadow-sm"]}>
+        <img
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          class={imageClass}
+          style={`object-position: ${image.objectPosition}`}
+          sizes="(min-width: 640px) 384px, 100vw"
+          loading={index === 0 ? loading : "lazy"}
+          decoding="async"
+        />
+      </figure>
+    ))}
+  </div>
+</section>

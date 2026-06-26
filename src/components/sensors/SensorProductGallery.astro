@@ -1,0 +1,529 @@
+---
+/**
+ * Sensor detail gallery — product, dimensions, and optional in-use photography.
+ *
+ * Editorial layout with in-use assets: lifestyle strip on top, product + dimensions below.
+ * Reference-only editorial (omitInUse): product + dimensions row only.
+ */
+import SensorProductPreview from "./SensorProductPreview.astro";
+import SensorDimensionFigure from "./SensorDimensionFigure.astro";
+import { getSensorProductImage, getSensorInUseImages } from "../../data/sensorProductImages";
+import {
+  getSensorDimensions,
+  getDimensionOverlayPreset,
+  sensorHasDimensionGallery,
+  type SensorDimensionLine,
+} from "../../data/sensorDimensions";
+import { getUi, type SensorStrings } from "../../data/i18n/ui";
+import { defaultLang, type Lang } from "../../data/lang";
+
+interface Props {
+  slug: string;
+  lang?: Lang;
+  loading?: "lazy" | "eager";
+  layout?: "stacked" | "sideBySide" | "editorial";
+  /** Hide visible micro-labels when the parent section already has a heading. */
+  hideInnerLabels?: boolean;
+  /** Omit in-use photos from this gallery (shown in a separate page section). */
+  omitInUse?: boolean;
+  class?: string;
+}
+
+const {
+  slug,
+  lang = defaultLang,
+  loading = "lazy",
+  layout = "stacked",
+  hideInnerLabels = false,
+  omitInUse = false,
+  class: className,
+} = Astro.props;
+
+const product = getSensorProductImage(slug);
+const inUseImages = getSensorInUseImages(slug);
+const dimensions = getSensorDimensions(slug);
+const t = getUi(lang).sensors.gallery;
+const hasDimensions = sensorHasDimensionGallery(slug) && !!dimensions;
+const hasInUse = inUseImages.length > 0 && !omitInUse;
+const singleDimensionImage =
+  dimensions?.images.kind === "single" ? dimensions.images : undefined;
+
+const useEditorialLayout =
+  hasInUse && !!singleDimensionImage && !!dimensions?.overlay;
+
+const canUseReferenceRow =
+  !!dimensions &&
+  hasDimensions &&
+  layout === "editorial" &&
+  (dimensions.images.kind === "single"
+    ? !!dimensions.overlay
+    : dimensions.images.kind === "variants"
+      ? !!dimensions.variantOverlays
+      : dimensions.images.kind === "kit"
+        ? !!dimensions.kitOverlays
+        : false);
+
+const useReferenceRowLayout = !useEditorialLayout && canUseReferenceRow;
+
+/** Product page only: range extender and bracket each get their own gallery tile. */
+const splitKitProductGallery =
+  slug === "range-extender-and-bracket" && dimensions?.images.kind === "kit";
+
+const referenceProductSpan =
+  dimensions?.images.kind === "kit" && !splitKitProductGallery ? "row-span-2" : undefined;
+
+const sideBySide =
+  !useEditorialLayout &&
+  !useReferenceRowLayout &&
+  layout === "sideBySide" &&
+  hasDimensions &&
+  !!singleDimensionImage;
+
+if (!product) {
+  return null;
+}
+
+const tilePadding = "p-3 sm:p-4";
+const editorialCell =
+  "relative flex min-h-0 items-center justify-center overflow-hidden bg-stone-50";
+const productTile = `relative flex items-center justify-center overflow-hidden bg-stone-50 ${tilePadding}`;
+const squareTile = `aspect-square ${productTile}`;
+const squareDimensionTile = `aspect-square ${editorialCell} ${tilePadding}`;
+const inUseZoomClass =
+  "absolute inset-0 h-full w-full scale-[1.18] object-cover object-center";
+
+const sectionLabel =
+  "text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2";
+const captionClass = hideInnerLabels
+  ? "sr-only"
+  : "absolute bottom-0 inset-x-0 bg-gradient-to-t from-stone-900/50 to-transparent px-3 py-2 text-[11px] font-semibold uppercase tracking-wider text-white";
+
+function lineLabel(line: SensorDimensionLine, gallery: SensorStrings["gallery"]): string | undefined {
+  if (!line.label) return undefined;
+  if (line.label === "compact") return gallery.compact;
+  if (line.label === "pro") return gallery.pro;
+  if (line.label === "rangeExtender") return gallery.rangeExtender;
+  if (line.label === "bracket") return gallery.bracket;
+  return line.label;
+}
+
+function formatSpecLine(line: SensorDimensionLine, gallery: SensorStrings["gallery"]): string {
+  const prefix = lineLabel(line, gallery);
+  const size = line.size;
+  const weight = line.weight ? ` · ${line.weight}` : "";
+  return prefix ? `${prefix}: ${size}${weight}` : `${size}${weight}`;
+}
+
+const dimensionFigureLabels = {
+  title: t.dimensions,
+  zoomLabel: t.zoomDimensions,
+  closeLabel: t.closeZoom,
+  showTitle: !hideInnerLabels,
+};
+
+/** Half-height row inside the variant dimension stack (must not use `flex` on the outer grid). */
+const variantStackRow =
+  "relative flex h-full min-h-0 items-center justify-center overflow-hidden bg-stone-50";
+const variantStackOuter =
+  "relative grid min-h-0 grid-rows-2 divide-y divide-stone-100 overflow-hidden bg-stone-50 aspect-square";
+const variantTilePadding = "p-1 sm:p-1.5";
+const inUseStripCell = "relative aspect-[5/3] sm:aspect-[16/10] min-h-[9rem] sm:min-h-[10.5rem]";
+const referenceCell = "relative aspect-square min-h-0";
+---
+
+{useEditorialLayout && dimensions && singleDimensionImage ? (
+  <figure
+    class:list={["sensor-product-gallery sensor-product-gallery--editorial", className]}
+  >
+    <div class="overflow-hidden rounded-xl border border-stone-100 bg-stone-100 shadow-sm">
+      <div
+        class:list={[
+          "grid gap-px bg-stone-100",
+          inUseImages.length > 1 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1",
+        ]}
+      >
+        {inUseImages.slice(0, 2).map((image, index) => (
+          <div class:list={[editorialCell, inUseStripCell]}>
+            <img
+              src={image.src}
+              alt={image.alt}
+              width={1080}
+              height={675}
+              class={inUseZoomClass}
+              style={`object-position: ${image.objectPosition}`}
+              loading={index === 0 ? loading : "lazy"}
+              decoding="async"
+            />
+            <figcaption class={captionClass}>{t.inUse}</figcaption>
+          </div>
+        ))}
+      </div>
+
+      <div class="grid grid-cols-2 gap-px bg-stone-100">
+        <div class:list={[editorialCell, referenceCell, tilePadding]}>
+          <SensorProductPreview
+            slug={slug}
+            loading={loading}
+            embedded
+            compact
+            class="h-full w-full max-h-full"
+          />
+          <figcaption class={captionClass}>{t.product}</figcaption>
+        </div>
+        <div class:list={[editorialCell, referenceCell, tilePadding]}>
+          <SensorDimensionFigure
+            figureId={`${slug}-dimensions`}
+            src={singleDimensionImage.src}
+            alt={singleDimensionImage.alt}
+            size={dimensions.spec.lines[0]!.size}
+            overlay={getDimensionOverlayPreset(dimensions.overlay!)}
+            lang={lang}
+            loading={loading}
+            class="h-full w-full"
+            {...dimensionFigureLabels}
+          />
+        </div>
+      </div>
+    </div>
+
+    <dl class="sr-only">
+      {dimensions.spec.lines.map((line) => (
+        <div>
+          <dt>{lineLabel(line, t) ?? t.dimensions}</dt>
+          <dd>{formatSpecLine(line, t)}</dd>
+        </div>
+      ))}
+    </dl>
+  </figure>
+) : useReferenceRowLayout && dimensions ? (
+  <figure
+    class:list={["sensor-product-gallery sensor-product-gallery--reference", className]}
+  >
+    <div class="overflow-hidden rounded-xl border border-stone-100 bg-stone-100 shadow-sm">
+      <div class="grid grid-cols-2 gap-px bg-stone-100">
+        {splitKitProductGallery ? (
+          <>
+            <div class:list={[editorialCell, referenceCell, tilePadding]}>
+              <SensorProductPreview
+                slug={slug}
+                loading={loading}
+                embedded
+                compact
+                kitPart="primary"
+                class="h-full w-full max-h-full"
+              />
+              <figcaption class={captionClass}>{t.rangeExtender}</figcaption>
+            </div>
+            {dimensions.images.kind === "kit" &&
+              dimensions.kitOverlays &&
+              dimensions.images.parts[0] && (
+                <div class:list={[editorialCell, referenceCell, tilePadding]}>
+                  <SensorDimensionFigure
+                    figureId={`${slug}-dimensions-rangeExtender`}
+                    src={dimensions.images.parts[0].src}
+                    alt={dimensions.images.parts[0].alt}
+                    size={dimensions.spec.lines[0]!.size}
+                    overlay={getDimensionOverlayPreset(dimensions.kitOverlays.rangeExtender)}
+                    lang={lang}
+                    loading={loading}
+                    class="h-full w-full"
+                    {...dimensionFigureLabels}
+                  />
+                </div>
+              )}
+            <div class:list={[editorialCell, referenceCell, tilePadding]}>
+              <SensorProductPreview
+                slug={slug}
+                loading={loading}
+                embedded
+                compact
+                kitPart="secondary"
+                class="h-full w-full max-h-full"
+              />
+              <figcaption class={captionClass}>{t.bracket}</figcaption>
+            </div>
+            {dimensions.images.kind === "kit" &&
+              dimensions.kitOverlays &&
+              dimensions.images.parts[1] && (
+                <div class:list={[editorialCell, referenceCell, tilePadding]}>
+                  <SensorDimensionFigure
+                    figureId={`${slug}-dimensions-bracket`}
+                    src={dimensions.images.parts[1].src}
+                    alt={dimensions.images.parts[1].alt}
+                    size={dimensions.spec.lines[1]!.size}
+                    overlay={getDimensionOverlayPreset(dimensions.kitOverlays.bracket)}
+                    lang={lang}
+                    loading={loading}
+                    class="h-full w-full"
+                    {...dimensionFigureLabels}
+                  />
+                </div>
+              )}
+          </>
+        ) : (
+          <>
+            <div class:list={[editorialCell, referenceCell, tilePadding, referenceProductSpan]}>
+              <SensorProductPreview
+                slug={slug}
+                loading={loading}
+                embedded
+                compact
+                class="h-full w-full max-h-full"
+              />
+              <figcaption class={captionClass}>{t.product}</figcaption>
+            </div>
+
+            {dimensions.images.kind === "single" && dimensions.overlay && (
+              <div class:list={[editorialCell, referenceCell, tilePadding]}>
+                <SensorDimensionFigure
+                  figureId={`${slug}-dimensions`}
+                  src={dimensions.images.src}
+                  alt={dimensions.images.alt}
+                  size={dimensions.spec.lines[0]!.size}
+                  overlay={getDimensionOverlayPreset(dimensions.overlay)}
+                  lang={lang}
+                  loading={loading}
+                  class="h-full w-full"
+                  {...dimensionFigureLabels}
+                />
+              </div>
+            )}
+
+            {dimensions.images.kind === "variants" && dimensions.variantOverlays && (
+              <div class:list={[variantStackOuter, referenceCell]}>
+                <div class:list={[variantStackRow, variantTilePadding]}>
+                  <SensorDimensionFigure
+                    figureId={`${slug}-dimensions-compact`}
+                    src={dimensions.images.compact.src}
+                    alt={dimensions.images.compact.alt}
+                    size={dimensions.spec.lines[0]!.size}
+                    overlay={getDimensionOverlayPreset(dimensions.variantOverlays.compact)}
+                    lang={lang}
+                    loading={loading}
+                    dense
+                    denseScale={1.2}
+                    denseZoomCorner="top"
+                    class="h-full w-full"
+                    {...dimensionFigureLabels}
+                  />
+                </div>
+                <div class:list={[variantStackRow, variantTilePadding]}>
+                  <SensorDimensionFigure
+                    figureId={`${slug}-dimensions-pro`}
+                    src={dimensions.images.pro.src}
+                    alt={dimensions.images.pro.alt}
+                    size={dimensions.spec.lines[1]!.size}
+                    overlay={getDimensionOverlayPreset(dimensions.variantOverlays.pro)}
+                    lang={lang}
+                    loading={loading}
+                    dense
+                    denseScale={1.2}
+                    denseZoomCorner="bottom"
+                    class="h-full w-full"
+                    {...dimensionFigureLabels}
+                  />
+                </div>
+              </div>
+            )}
+
+            {dimensions.images.kind === "kit" &&
+              !splitKitProductGallery &&
+              dimensions.kitOverlays &&
+              dimensions.images.parts.map((part, index) => {
+                const line = dimensions.spec.lines[index];
+                const overlayKey =
+                  part.labelKey === "rangeExtender"
+                    ? dimensions.kitOverlays!.rangeExtender
+                    : dimensions.kitOverlays!.bracket;
+                return (
+                  <div class:list={[editorialCell, referenceCell, tilePadding]}>
+                    <SensorDimensionFigure
+                      figureId={`${slug}-dimensions-${part.labelKey}`}
+                      src={part.src}
+                      alt={part.alt}
+                      size={line!.size}
+                      overlay={getDimensionOverlayPreset(overlayKey)}
+                      lang={lang}
+                      loading={loading}
+                      class="h-full w-full"
+                      {...dimensionFigureLabels}
+                    />
+                  </div>
+                );
+              })}
+          </>
+        )}
+      </div>
+    </div>
+
+    <dl class="sr-only">
+      {dimensions.spec.lines.map((line) => (
+        <div>
+          <dt>{lineLabel(line, t) ?? t.dimensions}</dt>
+          <dd>{formatSpecLine(line, t)}</dd>
+        </div>
+      ))}
+    </dl>
+  </figure>
+) : (
+  <div class:list={["sensor-product-gallery space-y-4", className]}>
+    {sideBySide && dimensions && singleDimensionImage ? (
+      <div class="overflow-hidden rounded-xl border border-stone-100 bg-white shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-stone-100">
+          <div class={squareTile}>
+            {!hideInnerLabels && <p class={`${sectionLabel} absolute top-3 left-3 z-10 mb-0`}>{t.product}</p>}
+            <SensorProductPreview slug={slug} loading={loading} embedded class="h-full w-full" />
+          </div>
+          <div class={squareDimensionTile}>
+            <SensorDimensionFigure
+              figureId={`${slug}-dimensions`}
+              src={singleDimensionImage.src}
+              alt={singleDimensionImage.alt}
+              size={dimensions.spec.lines[0]!.size}
+              overlay={getDimensionOverlayPreset(dimensions.overlay!)}
+              lang={lang}
+              loading={loading}
+              class="h-full w-full"
+              {...dimensionFigureLabels}
+            />
+          </div>
+        </div>
+      </div>
+    ) : (
+      <>
+        <div class="overflow-hidden rounded-xl border border-stone-100 bg-white shadow-sm">
+          {!hideInnerLabels && <p class={`${sectionLabel} px-4 pt-4 mb-0`}>{t.product}</p>}
+          <div class={`aspect-square ${productTile}`}>
+            <SensorProductPreview slug={slug} loading={loading} embedded class="h-full w-full" />
+          </div>
+        </div>
+
+        {hasDimensions && dimensions && (
+          <div class="overflow-hidden rounded-xl border border-stone-100 bg-white shadow-sm">
+            {dimensions.images.kind === "single" && dimensions.overlay && (
+              <div class={squareDimensionTile}>
+                <SensorDimensionFigure
+                  figureId={`${slug}-dimensions`}
+                  src={dimensions.images.src}
+                  alt={dimensions.images.alt}
+                  size={dimensions.spec.lines[0]!.size}
+                  overlay={getDimensionOverlayPreset(dimensions.overlay)}
+                  lang={lang}
+                  loading={loading}
+                  class="h-full w-full"
+                  {...dimensionFigureLabels}
+                />
+              </div>
+            )}
+
+            {dimensions.images.kind === "variants" && dimensions.variantOverlays && (
+              <div class="divide-y divide-stone-100">
+                <div>
+                  {!hideInnerLabels && <p class="text-xs text-stone-300 px-4 pt-4 mb-2">{t.compact}</p>}
+                  <div class={squareDimensionTile}>
+                    <SensorDimensionFigure
+                      figureId={`${slug}-dimensions-compact`}
+                      src={dimensions.images.compact.src}
+                      alt={dimensions.images.compact.alt}
+                      size={dimensions.spec.lines[0]!.size}
+                      overlay={getDimensionOverlayPreset(dimensions.variantOverlays.compact)}
+                      lang={lang}
+                      loading={loading}
+                      class="h-full w-full"
+                      {...dimensionFigureLabels}
+                    />
+                  </div>
+                </div>
+                <div>
+                  {!hideInnerLabels && <p class="text-xs text-stone-300 px-4 pt-4 mb-2">{t.pro}</p>}
+                  <div class={squareDimensionTile}>
+                    <SensorDimensionFigure
+                      figureId={`${slug}-dimensions-pro`}
+                      src={dimensions.images.pro.src}
+                      alt={dimensions.images.pro.alt}
+                      size={dimensions.spec.lines[1]!.size}
+                      overlay={getDimensionOverlayPreset(dimensions.variantOverlays.pro)}
+                      lang={lang}
+                      loading={loading}
+                      class="h-full w-full"
+                      {...dimensionFigureLabels}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {dimensions.images.kind === "kit" && dimensions.kitOverlays && (
+              <div class="divide-y divide-stone-100">
+                {dimensions.images.parts.map((part, index) => {
+                  const line = dimensions.spec.lines[index];
+                  const overlayKey =
+                    part.labelKey === "rangeExtender"
+                      ? dimensions.kitOverlays!.rangeExtender
+                      : dimensions.kitOverlays!.bracket;
+                  const partLabel =
+                    part.labelKey === "rangeExtender" ? t.rangeExtender : t.bracket;
+                  return (
+                    <div>
+                      {!hideInnerLabels && (
+                        <p class="text-xs text-stone-300 px-4 pt-4 mb-2">{partLabel}</p>
+                      )}
+                      <div class={squareDimensionTile}>
+                        <SensorDimensionFigure
+                          figureId={`${slug}-dimensions-${part.labelKey}`}
+                          src={part.src}
+                          alt={part.alt}
+                          size={line.size}
+                          overlay={getDimensionOverlayPreset(overlayKey)}
+                          lang={lang}
+                          loading={loading}
+                          class="h-full w-full"
+                          {...dimensionFigureLabels}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            <dl class="sr-only">
+              {dimensions.spec.lines.map((line) => (
+                <div>
+                  <dt>{lineLabel(line, t) ?? t.dimensions}</dt>
+                  <dd>{formatSpecLine(line, t)}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
+      </>
+    )}
+
+    {hasInUse && (
+      <div class="overflow-hidden rounded-xl border border-stone-100 bg-white shadow-sm">
+        {!hideInnerLabels && <p class={`${sectionLabel} px-4 pt-4 mb-0`}>{t.inUse}</p>}
+        <div
+          class:list={[
+            inUseImages.length > 1 && "grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-stone-100",
+          ]}
+        >
+          {inUseImages.map((image) => (
+            <div class="relative aspect-[3/4] max-h-[13rem] overflow-hidden bg-stone-100 sm:max-h-[15rem]">
+              <img
+                src={image.src}
+                alt={image.alt}
+                width={1080}
+                height={1350}
+                class={inUseZoomClass}
+                style={`object-position: ${image.objectPosition}`}
+                loading={loading}
+                decoding="async"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+)}

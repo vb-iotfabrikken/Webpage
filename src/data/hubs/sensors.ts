@@ -46,6 +46,9 @@ export const sensorsHub: Hub = {
       title: "Mini+.",
       titleAccent: "Small footprint, accurate climate data.",
       lead: "Easy installation and precise climate readings where size and aesthetics matter.",
+      seoTitle: "RoomAlyzer Air Mini+ | NB-IoT temperature & humidity sensor",
+      metaDescription:
+        "RoomAlyzer Air Mini+ wireless sensor: NB-IoT temperature and humidity monitoring, up to 10-year battery, ±0.1 °C precision. No Wi-Fi or gateway required.",
     },
     {
       slug: "mini-plus-pir",
@@ -176,6 +179,8 @@ export function getSensorsHub(lang: Lang = defaultLang): Hub {
       title: lo?.title ?? localizedSensorName(leaf.slug, leaf.title, lang),
       titleAccent: lo?.titleAccent ?? leaf.titleAccent,
       lead: lo?.lead ?? leaf.lead,
+      seoTitle: lo?.seoTitle ?? leaf.seoTitle,
+      metaDescription: lo?.metaDescription ?? leaf.metaDescription,
       productSheetUrl: leaf.productSheetUrl
         ? productSheetPath(leaf.slug, lang)
         : undefined,

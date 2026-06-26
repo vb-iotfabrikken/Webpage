@@ -4,53 +4,207 @@ interface Props {
   titleAccent?: string;
   lead: string;
   align?: "center" | "left";
+  /** Product line eyebrow shown above the H1 (enhanced product pages). */
+  eyebrow?: string;
+  /** Short spec chips rendered below the lead (enhanced product pages). */
+  specs?: string[];
   /** Let the homepage hero visual extend past the hero width (fade, not clip). */
   allowVisualOverflow?: boolean;
   /** Tighter top padding so the text sits closer to the header. */
   compactTop?: boolean;
   /** Remove bottom padding so the next section's top edge sits flush against the hero. */
   compactBottom?: boolean;
+  /** Keep titleAccent on the same line as the title (left-aligned heroes default to a block break). */
+  inlineTitleAccent?: boolean;
+  /** Render the visual slot on a white band below the grey title/CTA hero (standard split layout). */
+  visualOnWhite?: boolean;
+  /** Place title/lead/CTAs and the visual slot side-by-side in the grey band (article-style). */
+  splitVisual?: boolean;
+  /** Render the title band on a dark navy surface (like the footer) instead of grey. */
+  dark?: boolean;
+  /** Hide the decorative dot pattern in the title band. */
+  noPattern?: boolean;
 }
 
-const { title, titleAccent, lead, align = "center", allowVisualOverflow = false, compactTop = false, compactBottom = false } = Astro.props;
+const {
+  title,
+  titleAccent,
+  lead,
+  align = "center",
+  eyebrow,
+  specs = [],
+  allowVisualOverflow = false,
+  compactTop = false,
+  compactBottom = false,
+  inlineTitleAccent = false,
+  visualOnWhite = false,
+  splitVisual = false,
+  dark = false,
+  noPattern = false,
+} = Astro.props;
+
+const hasVisual = Astro.slots.has("visual");
+const hasBelowVisual = Astro.slots.has("belowVisual");
+const visualInGreyBand = hasVisual && !visualOnWhite && !splitVisual;
+
+const surfaceClass = dark
+  ? "bg-navy-500 border-b border-navy-900"
+  : "bg-stone-50 border-b border-stone-100";
+const eyebrowClass = dark ? "text-coral-100" : "text-sky-600";
+const titleClass = dark ? "text-white" : "text-navy-500";
+const accentClass = dark ? "text-sky-100" : "text-sky-600";
+const leadClass = dark ? "text-white/80" : "text-stone-900/70";
+const chipClass = dark
+  ? "border-white/20 bg-white/10 text-white"
+  : "border-stone-200 bg-white text-navy-500";
+const dotColor = dark ? "#FFFFFF" : "var(--color-navy-500)";
+const dotOpacityClass = dark ? "opacity-[0.08]" : "opacity-[0.05]";
 ---
 
 <section
   data-page-hero
-  data-compact-bottom={compactBottom || undefined}
+  data-compact-bottom={(compactBottom || visualOnWhite) || undefined}
   class:list={[
-    "relative bg-stone-50 border-b border-stone-100",
+    "relative",
+    surfaceClass,
     allowVisualOverflow ? "overflow-x-clip overflow-y-visible" : "overflow-hidden",
   ]}
 >
-  <div class="absolute inset-0 pointer-events-none opacity-[0.05]" aria-hidden="true">
-    <div class="w-full h-full" style="background-image: radial-gradient(var(--color-navy-500) 1px, transparent 1px); background-size: 28px 28px;"></div>
-  </div>
-
-  <div class={`relative container-page ${compactTop ? "pt-6 md:pt-8" : "pt-16 md:pt-24"} ${compactBottom ? "pb-0" : "pb-10 md:pb-14"} ${align === "center" ? "text-center" : "text-left"}`}>
-    <div class={align === "center" ? "max-w-3xl mx-auto" : "max-w-3xl"}>
-      <h1 class="reveal text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight text-navy-500">
-        {title}
-        {titleAccent && (
-          <span class:list={["text-sky-600", align === "left" && "block mt-1 md:mt-2"]}>
-            {align === "center" ? ` ${titleAccent}` : titleAccent}
-          </span>
-        )}
-      </h1>
-      <p class="reveal mt-6 text-lg md:text-xl text-stone-900/70 leading-relaxed">
-        {lead}
-      </p>
-      {Astro.slots.has("cta") && (
-        <div class={`reveal mt-8 flex flex-wrap gap-3 ${align === "center" ? "justify-center" : ""}`}>
-          <slot name="cta" />
-        </div>
-      )}
+  {!noPattern && (
+    <div class:list={["absolute inset-0 pointer-events-none", dotOpacityClass]} aria-hidden="true">
+      <div class="w-full h-full" style={`background-image: radial-gradient(${dotColor} 1px, transparent 1px); background-size: 28px 28px;`}></div>
     </div>
+  )}
 
-    {Astro.slots.has("visual") && (
+  <div
+    class={`relative container-page ${compactTop ? "pt-6 md:pt-8" : "pt-16 md:pt-24"} ${compactBottom && !visualOnWhite ? "pb-0" : visualOnWhite ? "pb-8 md:pb-10" : "pb-10 md:pb-14"} ${align === "center" ? "text-center" : "text-left"}`}
+  >
+    {Astro.slots.has("breadcrumb") && (
+      <nav class="reveal mb-4 md:mb-6" aria-label="Breadcrumb">
+        <slot name="breadcrumb" />
+      </nav>
+    )}
+
+    {splitVisual && hasVisual ? (
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-center">
+        <div class="lg:col-span-7 max-w-3xl">
+          {eyebrow && (
+            <p class:list={["reveal mb-3 text-sm font-semibold uppercase tracking-wider", eyebrowClass]}>
+              {eyebrow}
+            </p>
+          )}
+          <h1 class:list={["reveal text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight", titleClass]}>
+            {title}
+            {titleAccent && (
+              <span
+                class:list={[
+                  accentClass,
+                  align === "left" && !inlineTitleAccent && "block mt-1 md:mt-2",
+                ]}
+              >
+                {align === "center" || inlineTitleAccent ? ` ${titleAccent}` : titleAccent}
+              </span>
+            )}
+          </h1>
+          <p class:list={["reveal mt-6 text-lg md:text-xl leading-relaxed", leadClass]}>
+            {lead}
+          </p>
+          {specs.length > 0 && (
+            <ul class="reveal mt-5 flex flex-wrap gap-2" aria-label="Key specifications">
+              {specs.map((chip) => (
+                <li class:list={["rounded-md border px-3 py-1.5 text-sm font-medium", chipClass]}>
+                  {chip}
+                </li>
+              ))}
+            </ul>
+          )}
+          {Astro.slots.has("cta") && (
+            <div class="reveal mt-8 flex flex-wrap gap-3">
+              <slot name="cta" />
+            </div>
+          )}
+          {Astro.slots.has("belowCta") && (
+            <div class="reveal mt-4">
+              <slot name="belowCta" />
+            </div>
+          )}
+        </div>
+        <div class="lg:col-span-5 reveal w-full max-lg:pt-2">
+          <slot name="visual" />
+        </div>
+      </div>
+    ) : (
+      <div class={align === "center" ? "max-w-3xl mx-auto" : "max-w-3xl"}>
+        {eyebrow && (
+          <p class:list={["reveal mb-3 text-sm font-semibold uppercase tracking-wider", eyebrowClass]}>
+            {eyebrow}
+          </p>
+        )}
+        <h1 class:list={["reveal text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight", titleClass]}>
+          {title}
+          {titleAccent && (
+            <span
+              class:list={[
+                accentClass,
+                align === "left" && !inlineTitleAccent && "block mt-1 md:mt-2",
+              ]}
+            >
+              {align === "center" || inlineTitleAccent ? ` ${titleAccent}` : titleAccent}
+            </span>
+          )}
+        </h1>
+        <p class:list={["reveal mt-6 text-lg md:text-xl leading-relaxed", leadClass]}>
+          {lead}
+        </p>
+        {specs.length > 0 && (
+          <ul
+            class={`reveal mt-5 flex flex-wrap gap-2 ${align === "center" ? "justify-center" : ""}`}
+            aria-label="Key specifications"
+          >
+            {specs.map((chip) => (
+              <li class:list={["rounded-md border px-3 py-1.5 text-sm font-medium", chipClass]}>
+                {chip}
+              </li>
+            ))}
+          </ul>
+        )}
+        {Astro.slots.has("cta") && (
+          <div class={`reveal mt-8 flex flex-wrap gap-3 ${align === "center" ? "justify-center" : ""}`}>
+            <slot name="cta" />
+          </div>
+        )}
+        {Astro.slots.has("belowCta") && (
+          <div class={`reveal mt-4 ${align === "center" ? "text-center" : ""}`}>
+            <slot name="belowCta" />
+          </div>
+        )}
+      </div>
+    )}
+
+    {visualInGreyBand && (
       <div class={compactTop ? "mt-4 md:mt-6" : "mt-12 md:mt-16"}>
         <slot name="visual" />
       </div>
     )}
   </div>
 </section>
+
+{
+  (hasVisual || hasBelowVisual) && visualOnWhite && (
+    <section class="bg-white border-b border-stone-100">
+      <div
+        class:list={[
+          "container-page pt-8 md:pt-10",
+          hasBelowVisual ? "pb-12 md:pb-16" : "pb-0",
+        ]}
+      >
+        {hasVisual && <slot name="visual" />}
+        {hasBelowVisual && (
+          <div class:list={[hasVisual && "mt-8 md:mt-10"]}>
+            <slot name="belowVisual" />
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}

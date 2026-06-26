@@ -1,5 +1,5 @@
 ---
-type Variant = "primary" | "secondary" | "ghost" | "white" | "navy" | "forest";
+type Variant = "primary" | "secondary" | "secondary-light" | "ghost" | "white" | "navy" | "forest";
 
 interface Props {
   href?: string;
@@ -31,6 +31,8 @@ const variants: Record<Variant, string> = {
     "bg-coral-500 text-white hover:bg-coral-600 focus:ring-coral-500 shadow-sm",
   secondary:
     "border border-navy-500 text-navy-500 hover:bg-navy-500 hover:text-white focus:ring-navy-500",
+  "secondary-light":
+    "border border-white/40 text-white hover:bg-white hover:text-navy-500 focus:ring-white",
   ghost:
     "text-navy-500 hover:text-coral-500 focus:ring-navy-500",
   white:

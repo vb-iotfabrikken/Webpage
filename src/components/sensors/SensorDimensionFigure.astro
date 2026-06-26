@@ -1,0 +1,187 @@
+---
+/**
+ * Dimension side-view with on-image title and click-to-enlarge dialog.
+ */
+import SensorDimensionDiagram from "./SensorDimensionDiagram.astro";
+import type { DimensionOverlayPreset } from "../../data/dimensionOverlayPresets";
+import { defaultLang, type Lang } from "../../data/lang";
+
+interface Props {
+  /** Unique id pairing the tile button with its dialog. */
+  figureId: string;
+  src: string;
+  alt: string;
+  size: string;
+  overlay: DimensionOverlayPreset;
+  lang?: Lang;
+  loading?: "lazy" | "eager";
+  /** Localized "Dimensions" label shown on the image. */
+  title: string;
+  zoomLabel: string;
+  closeLabel: string;
+  /** Show the on-image title badge (hidden on editorial product pages). */
+  showTitle?: boolean;
+  /** Half-height gallery tile — zoomed to fill the row. */
+  dense?: boolean;
+  /** Scale factor when `dense` (defaults to 1.5). */
+  denseScale?: number;
+  /** Zoom control placement in dense stacked tiles. */
+  denseZoomCorner?: "top" | "bottom";
+  class?: string;
+}
+
+const {
+  figureId,
+  src,
+  alt,
+  size,
+  overlay,
+  lang = defaultLang,
+  loading = "lazy",
+  title,
+  zoomLabel,
+  closeLabel,
+  showTitle = true,
+  dense = false,
+  denseScale = 1.5,
+  denseZoomCorner = "bottom",
+  class: className,
+} = Astro.props;
+
+const zoomBase =
+  "absolute z-10 flex h-7 w-7 items-center justify-center rounded-md bg-white/95 text-navy-500 shadow-sm transition-colors hover:bg-white hover:text-coral-500 focus:outline-none focus:ring-2 focus:ring-coral-500 focus:ring-offset-1";
+const zoomButtonClass = dense
+  ? denseZoomCorner === "top"
+    ? `${zoomBase} top-1.5 right-1.5`
+    : `${zoomBase} bottom-1.5 right-1.5`
+  : `${zoomBase} bottom-1.5 right-1.5`;
+---
+
+<div class:list={["sensor-dimension-figure relative h-full w-full overflow-hidden", className]}>
+  {showTitle ? (
+    <span
+      class="pointer-events-none absolute top-1.5 left-1.5 z-10 rounded bg-white/95 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-navy-500 shadow-sm"
+    >
+      {title}
+    </span>
+  ) : (
+    <span class="sr-only">{title}</span>
+  )}
+
+  <SensorDimensionDiagram
+    src={src}
+    alt={alt}
+    size={size}
+    overlay={overlay}
+    lang={lang}
+    loading={loading}
+    dense={dense}
+    denseScale={denseScale}
+    class="h-full w-full"
+  />
+
+  <button
+    type="button"
+    class={zoomButtonClass}
+    data-dimension-zoom-open={figureId}
+    aria-label={zoomLabel}
+  >
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.75" />
+      <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+      <path d="M11 8v6M8 11h6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+    </svg>
+  </button>
+</div>
+
+<dialog
+  class="dimension-zoom-dialog"
+  data-dimension-zoom-dialog={figureId}
+  aria-labelledby={`${figureId}-zoom-title`}
+>
+  <div class="dimension-zoom-panel">
+    <button
+      type="button"
+      class="dimension-zoom-close"
+      data-dimension-zoom-close
+      aria-label={closeLabel}
+    >
+      ×
+    </button>
+    <p
+      id={`${figureId}-zoom-title`}
+      class="mb-3 text-xs font-semibold uppercase tracking-wider text-stone-300"
+    >
+      {title}
+    </p>
+    <div class="dimension-zoom-canvas aspect-square w-full max-h-[min(70vh,28rem)]">
+      <SensorDimensionDiagram
+        src={src}
+        alt={alt}
+        size={size}
+        overlay={overlay}
+        lang={lang}
+        loading="eager"
+        class="h-full w-full scale-[1.35] origin-center"
+      />
+    </div>
+  </div>
+</dialog>
+
+<script>
+  import { initSensorDimensionZoom } from "./sensor-dimension-zoom";
+  initSensorDimensionZoom();
+</script>
+
+<style>
+  .dimension-zoom-dialog {
+    margin: auto;
+    max-width: min(92vw, 36rem);
+    width: 100%;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0;
+    background: transparent;
+  }
+
+  .dimension-zoom-dialog::backdrop {
+    background: rgb(10 31 68 / 0.55);
+    backdrop-filter: blur(2px);
+  }
+
+  .dimension-zoom-panel {
+    position: relative;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-stone-100, #f5f5f4);
+    background: white;
+    padding: 1.25rem 1.25rem 1.5rem;
+    box-shadow: 0 20px 40px rgb(10 31 68 / 0.12);
+  }
+
+  .dimension-zoom-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: flex;
+    height: 2rem;
+    width: 2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.375rem;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--color-stone-300, #a8a29e);
+    transition: color 0.15s;
+  }
+
+  .dimension-zoom-close:hover {
+    color: var(--color-navy-500, #0a1f44);
+  }
+
+  .dimension-zoom-canvas {
+    overflow: visible;
+    background: var(--color-stone-50, #fafaf9);
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+</style>

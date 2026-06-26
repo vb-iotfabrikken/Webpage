@@ -3,7 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "./Hero.astro";
 import Button from "./Button.astro";
 import CtaBand from "./CtaBand.astro";
+import SensorProductPreview from "./sensors/SensorProductPreview.astro";
 import { breadcrumbSchema } from "../lib/seo/schema";
+import { astroLang, langPath, localizeCta, localizeCrumbs } from "../data/lang";
 
 interface Breadcrumb {
   label: string;
@@ -24,6 +26,12 @@ interface Props {
   breadcrumbs?: Breadcrumb[];
   primaryCta?: Cta;
   secondaryCta?: Cta;
+  /** Third hero CTA (e.g. product sheet download on enhanced product pages). */
+  tertiaryCta?: Cta;
+  /** Product line eyebrow above the hero title. */
+  heroEyebrow?: string;
+  /** Short spec chips below the hero lead. */
+  heroSpecs?: string[];
   /** Hide the "Content on the way" notice (useful when a page already has real content). */
   hideNotice?: boolean;
   /** Localizable notice heading/body shown when the notice is visible. */
@@ -40,6 +48,12 @@ interface Props {
   ctaBandSecondaryHref?: string;
   /** Page-specific Open Graph image. */
   ogImage?: string;
+  ogImageAlt?: string;
+  /** Optional product or hero image shown beside the page title. */
+  heroImage?: string;
+  heroImageAlt?: string;
+  /** Additional hero images for two-part kits (shown beside the primary). */
+  heroImageExtra?: string[];
   /** Exclude this page from indexing. */
   noindex?: boolean;
   /** Extra page-specific JSON-LD (merged with the auto-generated breadcrumb). */
@@ -55,6 +69,9 @@ const {
   breadcrumbs = [],
   primaryCta = { label: "Book a free demo", href: "/en/contact/book-demo/" },
   secondaryCta = { label: "Contact sales", href: "/en/contact/sales/" },
+  tertiaryCta,
+  heroEyebrow,
+  heroSpecs = [],
   hideNotice = false,
   noticeTitle = "Content for this page is on its way",
   noticeSubtitle = "We're busy putting together content, cases and screenshots. Reach out already now if you'd like to hear more.",
@@ -66,18 +83,39 @@ const {
   ctaBandSecondaryLabel = "Contact sales",
   ctaBandSecondaryHref,
   ogImage,
+  ogImageAlt,
+  heroImage,
+  heroImageAlt,
+  heroImageExtra = [],
   noindex = false,
   jsonLd,
 } = Astro.props;
 
+const lang = astroLang(Astro);
+const defaultPrimaryCta = { label: "Book a free demo", href: langPath("contact/book-demo", lang) };
+const defaultSecondaryCta = { label: "Contact sales", href: langPath("contact/sales", lang) };
+const resolvedPrimaryCta = localizeCta(primaryCta ?? defaultPrimaryCta, lang);
+const resolvedSecondaryCta = localizeCta(secondaryCta ?? defaultSecondaryCta, lang);
+const resolvedTertiaryCta = tertiaryCta ? localizeCta(tertiaryCta, lang) : undefined;
+const localizedBreadcrumbs = localizeCrumbs(breadcrumbs, lang);
+const resolvedCtaBandPrimaryHref = ctaBandPrimaryHref
+  ? localizeCta({ label: "", href: ctaBandPrimaryHref }, lang).href
+  : resolvedPrimaryCta.href;
+const resolvedCtaBandSecondaryHref = ctaBandSecondaryHref
+  ? localizeCta({ label: "", href: ctaBandSecondaryHref }, lang).href
+  : resolvedSecondaryCta.href;
+
 // Auto-emit BreadcrumbList from the breadcrumb trail, then append any
 // page-specific structured data passed in.
 const crumbSchema = breadcrumbSchema(
-  breadcrumbs
+  localizedBreadcrumbs
     .filter((b) => b.href)
     .map((b) => ({ name: b.label, href: b.href as string }))
     // The current page is the last crumb; include it pointing at this URL.
-    .concat({ name: breadcrumbs[breadcrumbs.length - 1]?.label ?? title, href: Astro.url.pathname }),
+    .concat({
+      name: localizedBreadcrumbs[localizedBreadcrumbs.length - 1]?.label ?? title,
+      href: Astro.url.pathname,
+    }),
 );
 const extraJsonLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 const combinedJsonLd = [crumbSchema, ...extraJsonLd].filter(Boolean) as Array<Record<string, unknown>>;
@@ -91,20 +129,21 @@ const effectiveNoindex = noindex || !hideNotice;
   title={title}
   description={description ?? heroLead}
   ogImage={ogImage}
+  ogImageAlt={ogImageAlt}
   noindex={effectiveNoindex}
   jsonLd={combinedJsonLd}
 >
-  {breadcrumbs.length > 0 && (
+  {localizedBreadcrumbs.length > 0 && (
     <nav class="container-page pt-6" aria-label="Breadcrumb">
       <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
-        {breadcrumbs.map((b, i) => (
+        {localizedBreadcrumbs.map((b, i) => (
           <li class="flex items-center gap-1.5">
             {b.href ? (
               <a href={b.href} class="hover:text-coral-500 transition-colors">{b.label}</a>
             ) : (
               <span class="text-navy-500">{b.label}</span>
             )}
-            {i < breadcrumbs.length - 1 && (
+            {i < localizedBreadcrumbs.length - 1 && (
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                 <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
@@ -119,17 +158,22 @@ const effectiveNoindex = noindex || !hideNotice;
     title={heroTitle}
     titleAccent={heroTitleAccent}
     lead={heroLead}
+    eyebrow={heroEyebrow}
+    specs={heroSpecs}
     align="left"
-    compactTop={breadcrumbs.length > 0}
+    compactTop={localizedBreadcrumbs.length > 0}
   >
     {showCtas && (
       <Fragment slot="cta">
-        <Button href={primaryCta.href} variant="primary" size="lg">{primaryCta.label}</Button>
-        <Button href={secondaryCta.href} variant="secondary" size="lg">{secondaryCta.label}</Button>
+        <Button href={resolvedPrimaryCta.href} variant="primary" size="lg">{resolvedPrimaryCta.label}</Button>
+        <Button href={resolvedSecondaryCta.href} variant="secondary" size="lg">{resolvedSecondaryCta.label}</Button>
+        {resolvedTertiaryCta && (
+          <Button href={resolvedTertiaryCta.href} variant="ghost" size="lg">{resolvedTertiaryCta.label}</Button>
+        )}
       </Fragment>
     )}
 
-    {!hideNotice && (
+    {!hideNotice && !heroImage && (
       <div slot="visual" class="reveal">
         <div class="bg-white border border-stone-100 rounded-xl p-10 md:p-14 text-center max-w-3xl">
           <div class="inline-flex w-14 h-14 rounded-md bg-sky-50 text-sky-600 items-center justify-center mb-4">
@@ -144,13 +188,27 @@ const effectiveNoindex = noindex || !hideNotice;
         </div>
       </div>
     )}
+
+    {(heroImage && heroImageAlt) && (
+      <div slot="visual" class="reveal flex justify-center lg:justify-end w-full max-w-sm">
+        <SensorProductPreview
+          class="w-full rounded-xl border border-stone-100 shadow-sm"
+          src={heroImage}
+          alt={heroImageAlt}
+          extraSrc={heroImageExtra}
+          loading="eager"
+        />
+      </div>
+    )}
   </Hero>
 
   <section class="py-16">
-    <div class="container-page">
+    <div class="container-page space-y-16 md:space-y-20">
+      {Astro.slots.has("full") && <slot name="full" />}
       <div class="max-w-3xl">
         <slot />
       </div>
+      {Astro.slots.has("wide") && <slot name="wide" />}
     </div>
   </section>
 
@@ -159,9 +217,9 @@ const effectiveNoindex = noindex || !hideNotice;
       title={ctaBandTitle}
       subtitle={ctaBandSubtitle}
       primaryLabel={ctaBandPrimaryLabel}
-      primaryHref={ctaBandPrimaryHref ?? primaryCta.href}
+      primaryHref={resolvedCtaBandPrimaryHref}
       secondaryLabel={ctaBandSecondaryLabel}
-      secondaryHref={ctaBandSecondaryHref ?? secondaryCta.href}
+      secondaryHref={resolvedCtaBandSecondaryHref}
     />
   )}
 </Layout>

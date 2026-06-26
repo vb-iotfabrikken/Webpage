@@ -1,29 +1,76 @@
 ---
 import type { SensorPageContent } from "../../data/content/types";
+import { getSensorInUseImages } from "../../data/sensorProductImages";
+import SensorProductGallery from "../sensors/SensorProductGallery.astro";
+import SensorInUseGallery from "../sensors/SensorInUseGallery.astro";
+import SensorSpecTable from "../sensors/SensorSpecTable.astro";
 import { getUi } from "../../data/i18n/ui";
 import { defaultLang, type Lang } from "../../data/lang";
+import { isEnhancedProductPage } from "../../data/sensorTechnicalSpecs";
 
 interface Props {
   content: SensorPageContent;
+  slug: string;
   lang?: Lang;
+  productSheetUrl?: string;
+  /** Hero spec chips — shown below product views on enhanced pages. */
+  heroSpecs?: string[];
 }
 
-const { content, lang = defaultLang } = Astro.props;
+const { content, slug, lang = defaultLang, productSheetUrl, heroSpecs = [] } = Astro.props;
 const t = getUi(lang).sensors;
+const enhanced = isEnhancedProductPage(slug);
+const hasInUseGallery = getSensorInUseImages(slug).length > 0;
+
+const sectionHeadingClass =
+  "inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5";
 ---
 
 <div class="space-y-16 md:space-y-20">
-  <section>
-    <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
-      {t.detail.exampleUseCases}
-    </p>
-    <p class="text-navy-500 leading-relaxed">{content.useCases}</p>
+  {!enhanced && (
+    <section>
+      <p class={`${sectionHeadingClass} mb-5`}>{t.detail.exampleUseCases}</p>
+      <p class="text-navy-500 leading-relaxed">{content.useCases}</p>
+    </section>
+  )}
+
+  <section aria-labelledby={`${slug}-product-views`}>
+    {enhanced ? (
+      <h2 id={`${slug}-product-views`} class="sr-only">
+        {t.detail.productViews}
+      </h2>
+    ) : (
+      <p id={`${slug}-product-views`} class={`${sectionHeadingClass} mb-5`}>
+        {t.detail.productViews}
+      </p>
+    )}
+    <SensorProductGallery
+      slug={slug}
+      lang={lang}
+      layout={enhanced ? "editorial" : "stacked"}
+      hideInnerLabels={enhanced}
+      omitInUse={enhanced}
+      class={enhanced ? undefined : hasInUseGallery ? "max-w-xl" : "max-w-sm"}
+    />
+    {enhanced && heroSpecs.length > 0 && (
+      <ul class="mt-4 flex flex-wrap gap-1.5" aria-label="Key specifications">
+        {heroSpecs.map((chip) => (
+          <li class="rounded border border-stone-200 bg-white px-2 py-0.5 text-[11px] font-medium leading-snug text-navy-500">
+            {chip}
+          </li>
+        ))}
+      </ul>
+    )}
   </section>
 
-  <section>
-    <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
-      {t.detail.whyChoose}
-    </p>
+  <section aria-labelledby={enhanced ? `${slug}-why-choose` : undefined}>
+    {enhanced ? (
+      <h2 id={`${slug}-why-choose`} class={sectionHeadingClass}>
+        {t.detail.whyChoose}
+      </h2>
+    ) : (
+      <p class={`${sectionHeadingClass} mb-5`}>{t.detail.whyChoose}</p>
+    )}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {content.benefits.map((benefit) => (
         <div class="bg-white rounded-xl border border-stone-100 p-6">
@@ -34,13 +81,31 @@ const t = getUi(lang).sensors;
     </div>
   </section>
 
+  {enhanced && (
+    <section aria-labelledby={`${slug}-use-cases`}>
+      <h2 id={`${slug}-use-cases`} class={sectionHeadingClass}>
+        {t.detail.exampleUseCases}
+      </h2>
+      <p class="text-navy-500 leading-relaxed">{content.useCases}</p>
+      {hasInUseGallery && (
+        <SensorInUseGallery slug={slug} lang={lang} limit={2} class="mt-8 max-w-3xl" />
+      )}
+    </section>
+  )}
+
+  {enhanced && (
+    <SensorSpecTable slug={slug} lang={lang} productSheetUrl={productSheetUrl} />
+  )}
+
   {content.cloudConnectorNote && (
     <p class="text-sm text-stone-900/60 leading-relaxed bg-sky-50 border border-sky-100 rounded-lg px-5 py-4">
       {content.cloudConnectorNote}
     </p>
   )}
 
-  <p class="text-sm text-stone-900/50 italic">
-    {t.common.demoDisclaimer}
-  </p>
+  {!enhanced && (
+    <p class="text-sm text-stone-900/50 italic">
+      {t.common.demoDisclaimer}
+    </p>
+  )}
 </div>
