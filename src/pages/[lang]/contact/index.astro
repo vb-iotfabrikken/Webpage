@@ -2,18 +2,28 @@
 import Layout from "../../../layouts/Layout.astro";
 import Hero from "../../../components/Hero.astro";
 import Button from "../../../components/Button.astro";
-import ContactForm from "../../../components/ContactForm.astro";
 import { getContactHub } from "../../../data/hubs/contact";
 import { getContact } from "../../../data/i18n/contact";
+import { contactCardImages } from "../../../data/contactCardImages";
 import { locales, langPath, type Lang } from "../../../data/lang";
+import { getLocaleContact } from "../../../data/contact";
+
+const contactCardAccents: Record<string, string> = {
+  "book-demo": "bg-coral-500",
+  sales: "bg-sky-500",
+  "become-partner": "bg-navy-500",
+};
 
 export function getStaticPaths() {
   return locales.map((l) => ({ params: { lang: l.code } }));
 }
 
 const { lang } = Astro.params as { lang: Lang };
+const contact = getLocaleContact(lang);
 const t = getContact(lang);
 const hub = getContactHub(lang);
+const gridLeaves = hub.leaves.filter((leaf) => leaf.slug !== "support-info");
+const supportLeaf = hub.leaves.find((leaf) => leaf.slug === "support-info");
 ---
 
 <Layout title={`${t.breadcrumb.contact} | IoT Fabrikken`} description={hub.lead}>
@@ -33,31 +43,92 @@ const hub = getContactHub(lang);
     lead={t.index.heroLead}
     align="left"
     compactTop
-  >
-    <Button href={langPath("contact/book-demo", lang)} variant="primary" size="lg" slot="cta">{t.index.primaryCta}</Button>
-    <Button href={langPath("contact/sales", lang)} variant="secondary" size="lg" slot="cta">{t.index.secondaryCta}</Button>
-  </Hero>
+  />
 
-  <section class="py-16">
+  <section class="py-16 pb-20 md:pb-24">
     <div class="container-page">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {hub.leaves.map((leaf) => (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl">
+        {gridLeaves.map((leaf) => {
+          const accentBar = contactCardAccents[leaf.slug] ?? contactCardAccents.sales;
+          const media = contactCardImages[leaf.slug];
+          const linkLabel = leaf.primaryCta?.label ?? leaf.title.replace(/\.\s*$/, "");
+
+          return (
           <a
             href={langPath(`contact/${leaf.slug}`, lang)}
-            class="reveal group flex flex-col p-6 md:p-7 bg-white border border-stone-100 rounded-xl hover:border-navy-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+            class="reveal group relative flex flex-col h-full bg-white border border-stone-100 rounded-xl overflow-hidden hover:border-navy-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
           >
-            <h3 class="text-lg font-semibold text-navy-500 mb-2 leading-snug">
-              {leaf.title}
-              {leaf.titleAccent && (
-                <span class="block text-sky-600 text-base font-medium mt-0.5">{leaf.titleAccent}</span>
-              )}
-            </h3>
-            <p class="text-sm text-stone-900/70 leading-relaxed">{leaf.lead}</p>
+            <div class={`absolute top-0 left-0 right-0 h-1 z-10 ${accentBar}`} />
+
+            {media && (
+              <div class="aspect-[2/1] overflow-hidden bg-stone-50">
+                <img
+                  src={media.image}
+                  alt={media.imageAlt}
+                  width={media.width ?? 640}
+                  height={media.height ?? 400}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  style={
+                    media.objectPosition || media.imageScale
+                      ? [
+                          media.objectPosition ? `object-position: ${media.objectPosition}` : "",
+                          media.imageScale
+                            ? `transform: scale(${media.imageScale}); transform-origin: ${media.objectPosition ?? "50% 50%"}`
+                            : "",
+                        ]
+                          .filter(Boolean)
+                          .join("; ")
+                      : undefined
+                  }
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )}
+
+            <div class="flex flex-col flex-1 p-4 sm:p-5">
+              <p class="text-sm text-stone-900/70 leading-relaxed flex-1">{leaf.lead}</p>
+
+              <div class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-navy-500 group-hover:text-coral-500 transition-colors">
+                {linkLabel}
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="transition-transform group-hover:translate-x-1" aria-hidden="true">
+                  <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
           </a>
-        ))}
+          );
+        })}
       </div>
+
+      {supportLeaf && (
+        <div class="reveal max-w-2xl mt-10 md:mt-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-navy-500">{supportLeaf.title}</h2>
+          {supportLeaf.titleAccent && (
+            <p class="mt-2 text-lg font-medium text-sky-600">{supportLeaf.titleAccent}</p>
+          )}
+          <p class="mt-4 text-lg text-stone-900/70 leading-relaxed">{supportLeaf.lead}</p>
+          <ul class="mt-3 space-y-1.5 text-lg">
+            <li>
+              <a href={contact.telHref} class="text-navy-500 font-medium hover:text-coral-500 transition-colors">
+                {contact.phone}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${contact.email}`} class="text-navy-500 font-medium hover:text-coral-500 transition-colors">
+                {contact.email}
+              </a>
+            </li>
+          </ul>
+          {supportLeaf.primaryCta && (
+            <div class="mt-6">
+              <Button href={supportLeaf.primaryCta.href} variant="primary" size="lg">
+                {supportLeaf.primaryCta.label}
+              </Button>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   </section>
-
-  <ContactForm lang={lang} title={t.index.formTitle} subtitle={t.index.formSubtitle} />
 </Layout>

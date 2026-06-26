@@ -7,7 +7,7 @@ export const contactHub: Hub = {
   title: "Get in touch.",
   titleAccent: "We are happy to help.",
   eyebrow: "Contact",
-  lead: "Book a demo, talk to sales, find an existing customer's help centre or apply to become a partner.",
+  lead: "Book a demo, talk to sales, find an existing customer's helpcenter or apply to become a partner.",
   leaves: [
     {
       slug: "book-demo",
@@ -21,7 +21,6 @@ export const contactHub: Hub = {
       slug: "sales",
       eyebrow: "Contact",
       title: "Talk to sales.",
-      titleAccent: "Dorthe and Lars Q.",
       lead: "A short conversation with our sales team to understand your setup, scope and timeline.",
     },
     {
@@ -29,8 +28,8 @@ export const contactHub: Hub = {
       eyebrow: "Contact",
       title: "Support information.",
       titleAccent: "Already a customer?",
-      lead: "Our help centre, service-level agreements and the fastest way to reach support.",
-      primaryCta: { label: "Go to the help centre", href: "https://support.iot-fabrikken.com" },
+      lead: "Use the helpcenter for guides, documentation and service levels. For direct support, call or write to us using the details below.",
+      primaryCta: { label: "Go to the helpcenter", href: "https://support.iot-fabrikken.com" },
     },
     {
       slug: "become-partner",
@@ -44,7 +43,7 @@ export const contactHub: Hub = {
 
 type LeafOverlay = {
   title: string;
-  titleAccent: string;
+  titleAccent?: string;
   lead: string;
   primaryCtaLabel?: string;
 };
@@ -70,13 +69,12 @@ const contactHubI18n: Partial<Record<Lang, ContactHubOverlay>> = {
       },
       sales: {
         title: "Tal med salg.",
-        titleAccent: "Dorthe og Lars Q.",
         lead: "En kort samtale med vores salgsteam for at forstå din opsætning, omfang og tidsplan.",
       },
       "support-info": {
         title: "Supportinformation.",
         titleAccent: "Allerede kunde?",
-        lead: "Vores helpcenter, serviceaftaler og den hurtigste vej til support.",
+        lead: "Brug helpcenteret til guides, dokumentation og serviceaftaler. Har du brug for direkte support, kan du ringe eller skrive til os via oplysningerne nedenfor.",
         primaryCtaLabel: "Gå til helpcenter",
       },
       "become-partner": {
@@ -89,7 +87,7 @@ const contactHubI18n: Partial<Record<Lang, ContactHubOverlay>> = {
   de: {
     title: "Kontakt aufnehmen.",
     titleAccent: "Wir helfen gern.",
-    lead: "Buchen Sie eine Demo, sprechen Sie mit dem Vertrieb, finden Sie das Help-Center für Bestandskunden oder bewerben Sie sich als Partner.",
+    lead: "Buchen Sie eine Demo, sprechen Sie mit dem Vertrieb, finden Sie das Helpcenter für Bestandskunden oder bewerben Sie sich als Partner.",
     leaves: {
       "book-demo": {
         title: "Demo buchen.",
@@ -99,14 +97,13 @@ const contactHubI18n: Partial<Record<Lang, ContactHubOverlay>> = {
       },
       sales: {
         title: "Mit dem Vertrieb sprechen.",
-        titleAccent: "Dorthe und Lars Q.",
         lead: "Ein kurzes Gespräch mit unserem Vertriebsteam, um Ihr Setup, den Umfang und den Zeitplan zu verstehen.",
       },
       "support-info": {
         title: "Support-Informationen.",
         titleAccent: "Bereits Kunde?",
-        lead: "Unser Help-Center, Service-Level-Agreements und der schnellste Weg zum Support.",
-        primaryCtaLabel: "Zum Help-Center",
+        lead: "Im Helpcenter finden Sie Anleitungen, Dokumentation und Service-Level-Agreements. Für direkten Support erreichen Sie uns per Telefon oder E-Mail über die Angaben unten.",
+        primaryCtaLabel: "Zum Helpcenter",
       },
       "become-partner": {
         title: "Partner werden.",
@@ -118,7 +115,7 @@ const contactHubI18n: Partial<Record<Lang, ContactHubOverlay>> = {
   sv: {
     title: "Kom i kontakt.",
     titleAccent: "Vi hjälper gärna till.",
-    lead: "Boka en demo, prata med försäljning, hitta en befintlig kunds help center eller ansök om att bli partner.",
+    lead: "Boka en demo, prata med försäljning, hitta en befintlig kunds helpcenter eller ansök om att bli partner.",
     leaves: {
       "book-demo": {
         title: "Boka en demo.",
@@ -128,14 +125,13 @@ const contactHubI18n: Partial<Record<Lang, ContactHubOverlay>> = {
       },
       sales: {
         title: "Prata med försäljning.",
-        titleAccent: "Dorthe och Lars Q.",
         lead: "Ett kort samtal med vårt säljteam för att förstå din uppsättning, omfattning och tidsplan.",
       },
       "support-info": {
         title: "Supportinformation.",
         titleAccent: "Redan kund?",
-        lead: "Vårt help center, serviceavtal och snabbaste vägen till support.",
-        primaryCtaLabel: "Gå till help center",
+        lead: "Använd helpcentret för guider, dokumentation och serviceavtal. För direkt support kan du ringa eller mejla oss via uppgifterna nedan.",
+        primaryCtaLabel: "Gå till helpcenter",
       },
       "become-partner": {
         title: "Bli partner.",

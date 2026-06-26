@@ -1,0 +1,32 @@
+---
+interface Props {
+  eyebrow: string;
+  heading: string;
+  lead?: string;
+  /** Background behind the eyebrow pill — matches section surface. */
+  surface?: "stone" | "white";
+  class?: string;
+}
+
+const { eyebrow, heading, lead, surface = "white", class: className } = Astro.props;
+
+const eyebrowClass =
+  surface === "stone"
+    ? "bg-white text-navy-500 border border-stone-100"
+    : "bg-stone-100 text-navy-500";
+---
+
+<div class:list={["reveal max-w-2xl", className]}>
+  <p
+    class:list={[
+      "inline-block px-3 py-1 rounded-md text-xs font-semibold uppercase tracking-wider mb-5",
+      eyebrowClass,
+    ]}
+  >
+    {eyebrow}
+  </p>
+  <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
+    {heading}
+  </h2>
+  {lead && <p class="mt-5 text-lg text-stone-900/70 leading-relaxed">{lead}</p>}
+</div>
