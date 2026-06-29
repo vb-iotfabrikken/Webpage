@@ -6,7 +6,17 @@
  * else still builds, but is treated as hidden so it can be gated/excluded and
  * kept out of search engines until it is ready.
  *
- * Approved live set (per the deployment brief):
+ * Planned updates — Railway soft-launch deployment:
+ *   • Header: utility bar, nav links, isLivePath gating, demo CTA
+ *   • Homepage: localized hero (incl. German Plattform copy), logo marquee caption
+ *   • Stats: updated "Numbers that matter" figures
+ *   • Sensors: compare matrix, filters, scroll UX, head-to-head duel; full catalogue
+ *     and product pages with localized product sheets
+ *   • Contact: photo cards, support section; locale-specific phone and email
+ *   • i18n: resolveLang, link localization, translated module landing pages
+ *   • Footer: Integrations link removed; Evaluate column (industries, compare, ROI)
+ *
+ * Approved live set (pages on the allowlist):
  *   • Homepage
  *   • Products      → Modules (hub + indoor climate, space management, water
  *                     detection, preservation), Sensors (incl. compare + product sheets)
