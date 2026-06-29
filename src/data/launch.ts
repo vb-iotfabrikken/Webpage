@@ -8,22 +8,28 @@
  *
  * Approved live set (per the deployment brief):
  *   • Homepage
- *   • Products      → Modules, Sensors (incl. compare + product sheets)
+ *   • Products      → Four modules (indoor climate, space management, water
+ *                     detection, preservation) + modules hub index; Sensors
+ *                     (incl. compare + product sheets)
  *   • Resources     → Cases (case studies)
  *   • Company       → About (incl. Story, Team, Press, Trust center), Careers, Partners
- *   • Contact       → Book a demo, Sales, Become a partner, Support info
+ *   • Contact       → Book a demo, Sales, Become a partner, Support info,
+ *                     Archivistica (DE)
+ *   • Events        → Events hub + Archivistica landing (DE)
  *   • Get an offer  → Quote request form (CTA target from sensors + modules)
  *   • Support/Legal → Privacy policy, Impressum
  *   • Helpcenter + Log in are external links (no internal page to gate)
  *
  * Also live via LIVE_EXACT: sensor compare matrix + head-to-head at /compare/.
+ * Module pages are matched via LIVE_MODULE_SLUGS (not the whole /modules/ tree).
  *
  * Hidden for now: Platform, Industries (sector hubs + per-sector article
  * lists), Integrations, Pricing, competitive compare articles
  * (vs-manual-logging, etc. — data kept in hubs/compare.ts), ROI, FAQ,
  * Whitepapers, Shop, Glossary, Articles (the renamed library catalogue),
- * Solutions/landing pages, and the remaining Legal pages (Cookies, Terms,
- * Security, Accessibility, SLA) plus the Legal hub index.
+ * Solutions/landing pages, the remaining Legal pages (Cookies, Terms,
+ * Security, Accessibility, SLA) plus the Legal hub index, and the other
+ * module pages (push buttons, lockers/doors, usage/cleaning).
  *
  * Matching is locale-agnostic: the leading `/en|da|de|sv/` prefix is stripped
  * before a path is compared, so a rule covers every locale at once.
@@ -43,12 +49,22 @@ export const LAUNCH_LIVE_ONLY = false;
  * starts with `${prefix}/`. Values are locale-stripped (no leading slash).
  */
 export const LIVE_PREFIXES: readonly string[] = [
-  "modules",
   "sensors",
   "case-studies",
   "about",
   "contact",
   "events",
+];
+
+/**
+ * Module landing pages that are live during soft launch. The modules hub index
+ * (`modules`) is also live so breadcrumbs resolve. Other module slugs stay hidden.
+ */
+export const LIVE_MODULE_SLUGS: readonly string[] = [
+  "indoor-climate",
+  "space-management",
+  "water-detection",
+  "preservation",
 ];
 
 /**
@@ -103,6 +119,14 @@ export function isLivePath(pathname: string): boolean {
 
   if (ALWAYS_ALLOWED.includes(path)) return true;
   if (LIVE_EXACT.includes(path)) return true;
+  if (path === "modules") return true;
+  if (
+    LIVE_MODULE_SLUGS.some(
+      (slug) => path === `modules/${slug}` || path.startsWith(`modules/${slug}/`),
+    )
+  ) {
+    return true;
+  }
 
   return LIVE_PREFIXES.some(
     (prefix) => path === prefix || path.startsWith(`${prefix}/`),

@@ -3,7 +3,7 @@ import type { IndustryPageContent } from "./types";
 
 /**
  * Per-locale overlays for industry detail-page body copy. English lives in
- * `industries.ts`; overlays cover the four homepage sectors (da/de/sv).
+ * `industries.ts`; overlays cover all 15 sectors (da/de/sv).
  */
 
 export type IndustryContentOverlay = Partial<
@@ -93,6 +93,523 @@ const da: Record<string, IndustryContentOverlay> = {
     closing:
       "Kommunale sensorprogrammer er normalt dyre og langsomme. RoomAlyzer installeres på minutter pr. lokale, kræver ikke Wi-Fi pr. bygning, og skalerer fra én skole til en hel kommune.",
   },
+  schools: {
+    cardTitle: "Skoler",
+    cardSummary:
+      "Dokumentér CO2, temperatur og fugt i hvert klasseværelse for at beskytte elevernes fokus og sundhed.",
+    focus:
+      "Skoler har brug for objektive indeklimadata i hvert læringsrum — ikke kun for at opfylde retningslinjer, men for at bevise, at ventilation og opvarmning faktisk understøtter koncentration, når lokalerne er fyldte. Lærere og pedeller træffer daglige udluftningsbeslutninger uden et fælles billede af CO2, fugt eller om lokaler faktisk er i brug efter skoletid.",
+    challenges: [
+      "CO2 over 1.000 ppm i fyldte klasseværelser: forskning knytter forhøjet CO2 til reduceret koncentration — alligevel reagerer de fleste skoler først, når nogen klager.",
+      "Ventilation efter vane, ikke data: rutiner med vinduesudluftning og mekaniske systemer afspejler sjældent faktisk belægning eller udendørs forhold.",
+      "Energi brugt på tomme bygninger: sportshaller, auditorier og fløje opvarmes om natten, fordi skemaer antager, at lokaler er i brug.",
+      "Ingen sporbarhed for forældre eller inspektører: når luftkvaliteten udfordres, har skoler brug for kontinuerlige logfiler — ikke et konsulentbesøg én gang om året.",
+    ],
+    solution: [
+      "RoomAlyzer giver live CO2-, temperatur-, fugt- og VOC-data i hvert klasseværelse med alarmer før retningslinjer overskrides — så lærere får et klart signal til at udlufte, og ledelsen har dokumentation for, at forholdene håndteres.",
+      "Belægningssensorer kortlægger reel brug i haller og specialrum, så varme og ventilation kan trække sig tilbage, når bygninger er tomme. En Outdoor Sensor giver en vejrreference, så beslutninger om naturlig ventilation matcher forholdene udenfor.",
+    ],
+    smarterTogether:
+      "Indeklima- og belægningsdata sammen viser ikke kun, hvornår luftkvaliteten falder, men også hvornår energi spildes på at opvarme lokaler, ingen bruger.",
+    closing:
+      "Klasseværelsesovervågning behøver ikke betyde kabler, gateways eller måneders planlægning. RoomAlyzer-sensorer installeres på minutter og skalerer fra én skole til et helt skoledistrikt.",
+    sensorRecommendations: [
+      {
+        name: "CO2 Sensor",
+        badge: "Klasseværelsesbaseline",
+        body: "Live CO2-niveauer med alarmer før klasseværelser passerer retningslinjen på 1.000 ppm — den hurtigste måde at vide, hvornår det er tid til at udlufte.",
+        sensorSlugs: ["co2"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Det fulde billede",
+        body: "Tilføjer temperatur, fugt og VOC til CO2-billedet i én diskret enhed pr. klasseværelse eller specialrum.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Mini+ PIR / Motion Sensor",
+        badge: "Besparelser uden for skoletid",
+        body: "Kortlægger reel belægning i klasseværelser, sportshaller og auditorier, så varme og ventilation kan trække sig tilbage, når lokaler er tomme.",
+        sensorSlugs: ["mini-plus-pir", "motion"],
+      },
+      {
+        name: "Outdoor Sensor",
+        badge: "Smartere udluftning",
+        body: "Giver lærere og pedeller en udendørs reference, så vinduesudluftningsrutiner afspejler faktiske vejrforhold.",
+        sensorSlugs: ["outdoor"],
+      },
+    ],
+  },
+  hospitals: {
+    cardTitle: "Hospitaler",
+    cardSummary:
+      "Overvåg afdelinger, lager og laboratorier med revisionsklare klimadata, hvor hver grad tæller.",
+    focus:
+      "Hospitaler skal balancere patientkomfort, infektionskontrol og strenge lagerforhold — ofte på tværs af afdelinger, apoteker, laboratorier og kølerum, der hver især har egne tærskler. Et enkelt udsving i et apotekskøleskab eller en vedvarende tør afdeling kan få kliniske, regulatoriske og omdømmemæssige konsekvenser.",
+    challenges: [
+      "Snævre temperaturbånd uden kontinuerlig dokumentation: medicinlager, blodbanker og kølerum har brug for revisionsklare logfiler — clipboard-runder er huller, der venter på at blive hændelser.",
+      "Tvister om luftkvalitet på afdelinger: patienter og personale rapporterer tung luft eller tørhed, men driftsteams mangler data på lokale-niveau til at finjustere ventilation.",
+      "Fugt, der påvirker både patienter og udstyr: for tør eller for fugtig luft i behandlingsområder har kliniske og tekniske følgevirkninger.",
+      "Vandindtrængning nær kritiske zoner: maskinrum og servicekanaler kan oversvømme kliniske eller elektriske områder, før nogen opdager det.",
+    ],
+    solution: [
+      "RoomAlyzer Indeklima overvåger CO2, temperatur, fugt og VOC i patientvendte områder med kontinuerlig historik — så diskussioner om luftkvalitet bygger på data, ikke indtryk.",
+      "Dedikerede Temperature Sensor og Humidity Sensor dækker apoteker, laboratorier og kølelager med alarmer, før lager er i fare. Water Detector i maskin- og serviceområder fanger lækager, før de når kliniske zoner.",
+    ],
+    smarterTogether:
+      "Klimalogning og lækagedetektion på én platform giver ejendomsteams ét overblik over komfort, compliance og infrastrukturrisk på tværs af hospitalets arealer.",
+    closing:
+      "Hospitalers ejendomme har brug for pålidelig, lavforstyrrende overvågning. RoomAlyzer installeres uden at trække kabler gennem kliniske områder og holder revisionslogfiler klar, når inspektører spørger.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Afdelinger og klinikker",
+        body: "Kontinuerlig overvågning af CO2, temperatur, fugt og VOC i patientvendte områder for at dokumentere luftkvalitet og komfort.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Temperature Sensor",
+        badge: "Kritisk lager",
+        body: "Dedikerede loggere til medicinskabe, blodbanker og kølerum, hvor snævre temperaturbånd kræver dokumentation på anmodning.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Humidity Sensor",
+        badge: "Infektionskontrol",
+        body: "Sporer relativ fugt på afdelinger og i behandlingsrum, hvor tør eller fugtig luft påvirker både patienter og udstyr.",
+        sensorSlugs: ["humidity"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Tidlig advarsel",
+        body: "Øjeblikkelige alarmer i maskinrum, kanaler og serviceområder, før en lækage når kliniske eller elektriske zoner.",
+        sensorSlugs: ["water-detector"],
+      },
+    ],
+  },
+  "elderly-care": {
+    cardTitle: "Ældrepleje",
+    cardSummary:
+      "Stabilt indeklima og enkle servicekald, der gør den daglige pleje tryggere og roligere.",
+    focus:
+      "Plejehjem og plejefaciliteter betjener sårbare beboere døgnet rundt — stabil temperatur og fugt reducerer ubehag og sundhedsrisiko, mens personalet har brug for hurtige måder at reagere på, når noget kræver opmærksomhed. Familier forventer rolige, komfortable værelser; operatører har brug for tidlig advarsel, når forholdene driver, eller vand opdages.",
+    challenges: [
+      "Langsom reaktion på komfortproblemer: beboere rapporterer måske ikke, at de er for varme eller kolde, før problemer har varet i timer.",
+      "Køkkener, vaskerier og maskinrum, der kører varmt: sekundære zoner driver ofte uden for det interval, der overvåges på beboerværelser.",
+      "Servicekald, der afhænger af at finde en telefon: personalet spilder tid på at viderestille simple anmodninger fra toiletter og spisesale.",
+      "Lækager i badeværelser og køkkener: fugt spreder sig til beboerområder, før en natrunde opdager det.",
+    ],
+    solution: [
+      "RoomAlyzer Indeklima holder temperatur, fugt, CO2 og VOC stabile i fællesområder og beboerværelser med alarmer, når forholdene bevæger sig uden for aftalte bånd.",
+      "Touch Sensor giver servicekald med ét tryk fra toiletter og spisesale. Temperature Sensor tilføjer præcision i køkkener og vaskerier, mens Water Detector fanger lækager i vådrum og maskinområder tidligt.",
+    ],
+    smarterTogether:
+      "Klimaovervågning og øjeblikkelige servicekald på én platform hjælper personalet med at prioritere både komfort og responstid uden at tilføje kompleksitet til daglige runder.",
+    closing:
+      "Plejeindstillinger har brug for diskret, pålidelig overvågning, som personalet stoler på. RoomAlyzer installeres hurtigt, undgår Wi-Fi-afhængighed og skalerer på tværs af fløje og lokationer.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Beboerkomfort",
+        body: "Overvåger CO2, temperatur, fugt og VOC i fællesområder og beboerværelser for at holde forholdene stabile dag og nat.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Temperature Sensor",
+        badge: "Spotcheck-zoner",
+        body: "Nyttig i vaskerier, køkkener og dårligt isolerede fløje, hvor en dedikeret logger tilføjer præcision.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Touch Sensor",
+        badge: "Personale og beboere",
+        body: "Servicekald med ét tryk fra toiletter, spisesale eller beboerværelser — ingen telefoner, ingen jagt på den rigtige lokal.",
+        sensorSlugs: ["touch"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Beskyt bygningen",
+        body: "Tidlig lækagedetektion i badeværelser, køkkener og maskinområder, før fugt spreder sig til beboerområder.",
+        sensorSlugs: ["water-detector"],
+      },
+    ],
+  },
+  retail: {
+    cardTitle: "Detailhandel",
+    cardSummary:
+      "Overvåg butikskomfort, kølekædeudstyr og kundestrømsmønstre i enkelte butikker eller kæder.",
+    focus:
+      "Detailhandel balancerer shopperkomfort, medarbejdertrivsel og udstyrsoppetid — køleskabe, der fejler stille, butikker der overophedes på travle lørdage, og energi brugt på at opvarme tomme etager efter lukketid. Kædeoperatører har brug for sammenlignelige data på tværs af lokationer, ikke butikschefer, der gætter ud fra termostater alene.",
+    challenges: [
+      "Kølekædefejl opdaget for sent: udstillingskøleskabe og baglokale-køleskabe kan drive uden for intervallet natten over uden at nogen ved det, før varer er tabt.",
+      "Butikskomfort versus energi: lange åbningstider betyder, at HVAC kører hårdt — men uden belægningsdata kan den ikke følge reel kundestrøm.",
+      "Døde zoner og myldretid: samme plantegning føles forskelligt time for time og sæson for sæson, men klimastyring tilpasser sig sjældent.",
+      "Sikkerhed uden for åbningstid uden gennemgang: lastbryggere og indvendige døre, der står åbne, spilder energi og skaber risiko.",
+    ],
+    solution: [
+      "Temperature Sensor leverer kontinuerlig logning og alarmer for køleskabe, fryser og udstillingskøleskabe — med historik klar til fødevaresikkerhed og forsikringsgennemgange.",
+      "Mini+ og Full+ sensorer sporer butiksgulvets CO2, temperatur, fugt og VOC, så komfort og energi kan balanceres på tværs af lange åbningstider. Motion Sensor kortlægger kundestrøm; Open/Close Sensor bekræfter, at døre og bryggere er lukket, når butikken lukker.",
+    ],
+    smarterTogether:
+      "Kundestrøm og indeklimadata sammen viser, hvor der skal ventileres i myldretid, og hvor der kan skæres ned, når zoner er tomme.",
+    closing:
+      "Detailhandel med flere lokationer har brug for overvågning, der rulles hurtigt ud og sammenlignes konsekvent. RoomAlyzer skalerer på tværs af butikker uden et separat IT-projekt pr. lokation.",
+    sensorRecommendations: [
+      {
+        name: "Temperature Sensor",
+        badge: "Kølekæde",
+        body: "Kontinuerlig overvågning af køleskabe, fryser og udstillingskøleskabe med alarmer, før varer er tabt.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Butiksklima",
+        body: "Sporer CO2, temperatur, fugt og VOC på salgsgulvet for at balancere komfort med energiforbrug på tværs af lange åbningstider.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Motion Sensor",
+        badge: "Kundestrømsmønstre",
+        body: "Kortlægger tilstedeværelse på lokale-niveau for at forstå myldretid, døde zoner og hvor klimastyring bør følge faktisk trafik.",
+        sensorSlugs: ["motion"],
+      },
+      {
+        name: "Open/Close Sensor",
+        badge: "Sikkerhed uden for åbningstid",
+        body: "Bekræfter, at døre, lastbryggere og skabe er lukket, når butikken lukker — uden natlige gennemgange.",
+        sensorSlugs: ["open-close"],
+      },
+    ],
+  },
+  hotels: {
+    cardTitle: "Hoteller",
+    cardSummary:
+      "Belægningsstyret klima og service i gæsteværelser, mødelokaler og fællesarealer.",
+    focus:
+      "Hoteller har brug for gæstekomfort uden spild — værelser opvarmet til udeblivelser, mødesuiter ventileret til aflyste bookinger, og housekeeping udsendt kun, hvor det faktisk er nødvendigt. Anmeldelser og genbookinger afhænger af lobbyer og konferencelokaler, der føles friske, men baglokaleområder kører ofte efter faste skemaer.",
+    challenges: [
+      "Gæsteværelser konditioneret til tomme nætter: HVAC kører til udeblivelser og tidlige afrejser, fordi PMS ikke fortæller maskinrum, hvem der faktisk er i bygningen.",
+      "CO2-spidser i konferencelokaler: halvdagsarrangementer kan presse mødelokaler forbi komfortgrænser, før personalet opdager det.",
+      "Energiblindhed i baglokalet: vaskeri, køkkener og personaleområder ventileres og opvarmes efter timere uden relation til reel brug.",
+      "Langsomme gæstefeedback-loops: problemer på toiletter eller i receptionen dukker op på anmeldelsessider, før driften hører om dem.",
+    ],
+    solution: [
+      "Mini+ PIR sensorer kombinerer klima og belægning i gæsteværelser — ideelt til setback-strategier, når værelser er tomme, uden at gå på kompromis med komfort ved ankomst.",
+      "Mini+ og Full+ sensorer overvåger lobbyer, restauranter og konferencelokaler, hvor luftkvalitet driver gæsteoplevelsen. Motion Sensor tilpasser ventilation og rengøring i personaleområder; Touch Sensor giver øjeblikkelig servicefeedback på toiletter og i reception.",
+    ],
+    smarterTogether:
+      "Belægnings- og klimadata på værelsesniveau lader hoteller trimme energi i tomme værelser, mens ventilation prioriteres, hvor gæster er samlet.",
+    closing:
+      "Hotelporteføljer har brug for overvågning, der respekterer gæsternes privatliv, installeres uden forstyrrelse og virker uden gæste-Wi-Fi. RoomAlyzer passer til den profil på tværs af ejendomme.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ PIR",
+        badge: "Gæsteværelser",
+        body: "Kombinerer klimaovervågning med belægning i én enhed — ideelt til setback-strategier, når værelser er tomme.",
+        sensorSlugs: ["mini-plus-pir"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Møde- og fællesarealer",
+        body: "Overvåger CO2, temperatur, fugt og VOC i lobbyer, restauranter og konferencelokaler, hvor komfort driver anmeldelser.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Motion Sensor",
+        badge: "Baglokale",
+        body: "Sporer brug i personaleområder, vaskeri og mødelokaler for at tilpasse ventilation og rengøring til reel aktivitet.",
+        sensorSlugs: ["motion"],
+      },
+      {
+        name: "Touch Sensor",
+        badge: "Gæstefeedback",
+        body: "Enkle tilfredsheds- eller serviceknapper på toiletter og i reception for øjeblikkelig respons, når noget skal rettes.",
+        sensorSlugs: ["touch"],
+      },
+    ],
+  },
+  "warehouses-logistics": {
+    cardTitle: "Lagre og logistik",
+    cardSummary:
+      "Beskyt lager med temperatur-, fugt- og vanddetektion på tværs af lager- og lasteområder.",
+    focus:
+      "Lagre og logistiksteder opbevarer varer, der fordærves, korroderer eller vrides, når forholdene driver — ofte på tværs af store gulvflader, kølerum og lastbryggere, hvor en enkelt uopdaget lækage kan stoppe driften. Compliance og forsikring forventer i stigende grad kontinuerlige logfiler, ikke stikprøvekontrol på clipboard.",
+    challenges: [
+      "Kølerum, der driver uden for intervallet: kølelager kan fejle stille, indtil produkt kasseres.",
+      "Fugt, der skader lager: pap, elektronik og hygroskopiske varer har brug for stabil RH på tværs af store, ujævnt konditionerede rum.",
+      "Lækager langs lange stræk: rør, fodlister og lastbryggere har brug for linjedækning, som en enkelt punktsensor ikke kan levere.",
+      "Maskinudstyr og kondensbakker: lokale vandkilder spreder sig hurtigt på tværs af åbne gulvflader.",
+    ],
+    solution: [
+      "Temperature Sensor giver revisionsklar logning for kølerum, fryser og følsomme varer med alarmer, før tærskler overskrides.",
+      "Humidity Sensor sporer RH i lagerzoner, hvor materialer er fugtfølsomme. Water Rope dækker lineær risiko langs rør og bryggegulve; Water Detector beskytter under vask, bakker og maskinudstyr.",
+    ],
+    smarterTogether:
+      "Temperatur, fugt og vanddetektion på én platform giver drift og QA ét dashboard til lagerbeskyttelse og hændelseshåndtering.",
+    closing:
+      "Industrielle sites har brug for robust, lavvedligeholdelses-overvågning uden at kable kilometer af gulvplade. RoomAlyzer udrulles hurtigt og skalerer med faciliteten.",
+    sensorRecommendations: [
+      {
+        name: "Temperature Sensor",
+        badge: "Kølelager",
+        body: "Pålidelig logning for kølerum, fryser og temperaturfølsomme varer med revisionsklar historik.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Humidity Sensor",
+        badge: "Lagerbeskyttelse",
+        body: "Sporer relativ fugt i lagerzoner, hvor pap, elektronik eller hygroskopiske materialer har brug for stabile forhold.",
+        sensorSlugs: ["humidity"],
+      },
+      {
+        name: "Water Rope",
+        badge: "Linjedækning",
+        body: "Sensorkabel langs rør, fodlister og lastbryggegulve, hvor en punktsensor ikke rækker.",
+        sensorSlugs: ["water-rope"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Punktbeskyttelse",
+        body: "Øjeblikkelige alarmer under vask, kondensbakker og maskinudstyr, før vand spreder sig over gulvet.",
+        sensorSlugs: ["water-detector"],
+      },
+    ],
+  },
+  "archives-libraries": {
+    cardTitle: "Arkiver og biblioteker",
+    cardSummary:
+      "Kontinuerlig klimaprotokollering og alarmer for sjældne bøger, manuskripter og papirarkiver.",
+    focus:
+      "Arkiver og biblioteker opbevarer papirsamlinger, der forringes, når temperatur og fugt svinger — ofte på tværs af læsesale, magasiner og kølelager, der hver især har brug for dokumenterede, stabile forhold. Udlångivere og fondsmodtagere forventer dokumentation; konservatorer har brug for tidlig advarsel, før bindinger, film eller manuskripter er i fare.",
+    challenges: [
+      "RH-svingninger i magasinområder: relativ fugt er den første forsvarslinje for papir — alligevel kontrolleres mange lagre højst månedligt.",
+      "Læsesale versus lager: komfort for besøgende må ikke kompromittere samlingens forhold i nærheden.",
+      "Kølelager til film og fotografier: samlinger under rumtemperatur har brug for dedikeret, kontinuerlig logning.",
+      "HVAC reagerer på vejrgætteri: befugtning og affugtning uden udendørs reference over- eller underskyder.",
+    ],
+    solution: [
+      "Humidity Sensor leverer kontinuerlig RH-logning for magasiner, manuskriptlager og sjældne-bogrum med alarmer, før forholdene forlader bevaringsbånd.",
+      "Mini+ og Full+ sensorer overvåger læsesale diskret. Temperature Sensor dækker kølelager; en Outdoor Sensor adskiller indendørstendenser fra vejr, så HVAC reagerer på reel behov.",
+    ],
+    smarterTogether:
+      "Kontinuerlig logning på tværs af offentlige og lagerzoner giver konservatorer og driftsteams det samme datasæt til bevaringsbeslutninger og daglig drift.",
+    closing:
+      "Arkivniveau klimamåling bør ikke kræve invasiv installation. RoomAlyzer er trådløst, diskret og producerer rapporter klar til udlångivere og forsikring.",
+    sensorRecommendations: [
+      {
+        name: "Humidity Sensor",
+        badge: "Papirbevaring",
+        body: "Kontinuerlig relativ-fugt-logning — den første forsvarslinje for bindinger, manuskripter og historiske magasiner.",
+        sensorSlugs: ["humidity"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Læsesale",
+        body: "Diskret klimaovervågning, hvor personale og besøgende har brug for komfort uden at kompromittere samlingens forhold i nærheden.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Temperature Sensor",
+        badge: "Kølelager",
+        body: "Dedikerede loggere til film, fotografiske og særlige samlinger opbevaret under rumtemperatur.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Outdoor Sensor",
+        badge: "HVAC-reference",
+        body: "Adskiller indendørstendenser fra udendørs vejr, så befugtning og affugtning reagerer på reel behov, ikke gætværk.",
+        sensorSlugs: ["outdoor"],
+      },
+    ],
+  },
+  "manors-castles": {
+    cardTitle: "Herregårde og slotte",
+    cardSummary:
+      "Overvåg fugt og temperatur i uopvarmede sale, kældre og lager uden at skade overflader.",
+    focus:
+      "Herregårde og slotte kombinerer uvurderlige interiører med bygninger, der aldrig var designet til moderne opvarmning — sporadisk brug, turistbølger og uopvarmede fløje stresser træ, tekstiler og overflader. Massivt murværk bremser den indendørs reaktion på vejret, så indendørs aflæsninger uden udendørs baseline er lette at misfortolke.",
+    challenges: [
+      "Sæsonbestemt RH, der skader paneler og forgyldning: sale og trapper svinger med besøgssæsoner og opvarmningsmønstre.",
+      "Eventdrevne varme- og fugtbelastninger: turistgrupper og bryllupper presser forholdene hurtigere, end HVAC kan kompensere.",
+      "Trådløs overvågning uden historisk skade: kabler gennem panelerede rum og gobeliner er sjældent acceptable.",
+      "Uopvarmede fløje, der driver ukontrolleret: fjerne rum kan forringes, mens personalet fokuserer på hovedruter for besøgende.",
+    ],
+    solution: [
+      "Humidity Sensor sporer RH i sale, trapper og panelerede rum med alarmer, før sæsonbestemte svingninger forårsager revner, forvridning eller tab af forgyldning.",
+      "Mini+ og Full+ sensorer logger trådløst i udstillingsrum åbne for besøgende. Motion Sensor korrelerer fugt- og varmebelastninger med turplaner; en Outdoor Sensor er essentiel, hvor indeklima halter timer bag vejret.",
+    ],
+    smarterTogether:
+      "Besøgertilstedeværelse og klimadata sammen forklarer pludselige fugtstigninger — så teams kan udlufte eller justere opvarmning, før interiører lider skade.",
+    closing:
+      "Kulturarvshuse har brug for overvågning, der respekterer bygningsstof og installeres uden forstyrrelse. RoomAlyzer passer diskret ind i rum, besøgende aldrig bemærker.",
+    sensorRecommendations: [
+      {
+        name: "Humidity Sensor",
+        badge: "Interiørbeskyttelse",
+        body: "Sporer RH i sale, trapper og panelerede rum, hvor sæsonbestemte svingninger forårsager revner, forvridning og tab af forgyldning.",
+        sensorSlugs: ["humidity"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Udstillingsrum",
+        body: "Trådløs temperatur- og fugtlogning i rum åbne for besøgende uden at trække kabler gennem historisk stof.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Motion Sensor",
+        badge: "Besøgspåvirkning",
+        body: "Kortlægger tilstedeværelse, så driftsteams kan korrelere fugt- og varmebelastninger med turistgrupper og eventplaner.",
+        sensorSlugs: ["motion"],
+      },
+      {
+        name: "Outdoor Sensor",
+        badge: "Vejrbaseline",
+        body: "Essentiel reference for massive murstensbygninger, hvor indeklima halter timer bag udendørs ændringer.",
+        sensorSlugs: ["outdoor"],
+      },
+    ],
+  },
+  "property-management": {
+    cardTitle: "Ejendomsadministration",
+    cardSummary:
+      "Dokumentér indeklima for lejere og fang lækager tidligt på tværs af en bolig- eller erhvervsportefølje.",
+    focus:
+      "Ejendomsadministratorer besvarer komfortklager med begrænset indsigt — og en enkelt uopdaget lækage kan blive til forsikringssager på tværs af flere enheder, før nogen opdager det. Porteføljeteams har brug for sammenlignelige data på tværs af bygninger, ikke ad-hoc-aflæsninger, når en lejer eskalerer.",
+    challenges: [
+      "'For varmt' eller 'for tung luft' uden dokumentation: lejertvister trækker ud, fordi HVAC-indstillinger ikke kan knyttes til målte forhold i enheden.",
+      "Lækager, der rejser mellem enheder: stigledninger, kedler og badeværelser kan skade nabolejligheder, før kilden findes.",
+      "Kældre og maskinrum med linerisiko: en punktsensor overser vand, der følger rør på tværs af en hel blok.",
+      "Tekniske rum overvåget reaktivt: kedelrum og varmevekslere får først opmærksomhed efter et nedbrud.",
+    ],
+    solution: [
+      "Mini+ og Full+ sensorer leverer objektive CO2-, temperatur-, fugt- og VOC-data i lejerarealer — så komfortklager løses med dokumentation i stedet for debat.",
+      "Water Detector under vask, kedler og stigledninger fanger lækager tidligt. Water Rope dækker kældre og maskinområder; Temperature Sensor overvåger tekniske rum på tværs af porteføljen fra ét dashboard.",
+    ],
+    smarterTogether:
+      "Klimadata og lækagedetektion sammen reducerer både lejeromsætning og akutte udkald — de to omkostningsdrivere, ejendomsteams mærker mest.",
+    closing:
+      "Porteføljeovervågning bør ikke betyde et skræddersyet projekt pr. bygning. RoomAlyzer rulles ud bygning for bygning på cellulær forbindelse uden lejer-Wi-Fi.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Lejerarealer",
+        body: "Objektive CO2-, temperatur-, fugt- og VOC-data til at løse 'for varmt' eller 'for tung luft'-klager med dokumentation.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Lækageforebyggelse",
+        body: "Tidlige advarsler under vask, kedler og stigledninger, før vand når naboenheder.",
+        sensorSlugs: ["water-detector"],
+      },
+      {
+        name: "Water Rope",
+        badge: "Maskinrum og kælder",
+        body: "Linjedækning langs rør og kældergulve i større blokke, hvor en punktsensor ikke er nok.",
+        sensorSlugs: ["water-rope"],
+      },
+      {
+        name: "Temperature Sensor",
+        badge: "Tekniske rum",
+        body: "Overvåger kedelrum, varmevekslere og sekundære HVAC-zoner på tværs af porteføljen.",
+        sensorSlugs: ["temperature"],
+      },
+    ],
+  },
+  "fm-companies": {
+    cardTitle: "FM-virksomheder",
+    cardSummary:
+      "Tilføj et målbart, datadrevet IoT-lag oven på jeres eksisterende facility-management-tjenester.",
+    focus:
+      "FM-udbydere vinder og beholder kontrakter med målbare resultater — men sensorudrulning på tværs af forskellige kundelokationer kræver en platform, der skalerer, white-labels rent og dækker klima, areal og vand ét sted. Kunder forventer dokumentation for besparelser og komfort, ikke præsentationer om, hvad der måske er muligt.",
+    challenges: [
+      "Hver kundelokation er forskellig: skoler, kontorer og offentlige bygninger beder om forskellige parametre — men FM-teams kan ikke køre en separat stack pr. kontrakt.",
+      "Påstande om arealudnyttelse har brug for data: konsolidering, rengøringsskemaer og energitilbagetrækning kræver belægningsdokumentation, kunder stoler på.",
+      "Lækagedetektion som lav-friktion upsell: vandskade er en top forsikringsdriver, men traditionelle systemer er langsomme at tilbyde og installere.",
+      "Forbindelse uden kunde-IT-projekter: gæste-Wi-Fi og virksomheds-firewalls blokerer mange IoT-udrulninger, før de starter.",
+    ],
+    solution: [
+      "Mini+ og Full+ sensorer er standardudrulningen for indeklima — én enhed dækker de parametre, kunder spørger mest om, med dashboards FM-teams kan brande pr. kontrakt.",
+      "Motion og Desk sensorer understøtter anbefalinger om arealudnyttelse med fakta. Water Detector tilføjer risikoreduktion til lav marginalomkostning. Cloud Connector bringer data til platformen over cellulær — intet kunde-Wi-Fi pr. bygning.",
+    ],
+    smarterTogether:
+      "Klima, belægning og vand på én platform lader FM-udbydere mersælge tjenester med ét installationsbesøg og ét løbende dataforhold.",
+    closing:
+      "FM-marginer afhænger af hurtig udrulning og dokumenterbare resultater. RoomAlyzer er designet til multi-site-udrulninger uden gateway-sprawl eller IT-tickets pr. bygning.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Indeklima",
+        body: "Standardudrulningssensoren til kontorer, skoler og offentlige bygninger — én enhed dækker de parametre, kunder spørger mest om.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Motion / Desk Sensor",
+        badge: "Arealudnyttelse",
+        body: "Belægning på lokale- og skrivebordsniveau, der understøtter konsolidering, rengøringsskemaer og energitilbagetrækning med fakta.",
+        sensorSlugs: ["motion", "desk"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Risikoreduktion",
+        body: "Et lavpris-upsell, der fanger lækager, før de bliver akutte udkald og forsikringshændelser.",
+        sensorSlugs: ["water-detector"],
+      },
+      {
+        name: "Cloud Connector",
+        badge: "Lokationsforbindelse",
+        body: "Bringer sensordata til platformen over cellulær uplink — intet kunde-Wi-Fi, intet IT-projekt pr. bygning.",
+        sensorSlugs: ["cloud-connector"],
+      },
+    ],
+  },
+  "consulting-engineers": {
+    cardTitle: "Rådgivende ingeniører",
+    cardSummary:
+      "Midlertidige og permanente målinger, der understøtter commissioning, audits og renoveringsrådgivning.",
+    focus:
+      "Rådgivende ingeniører har brug for forsvarlige måledata til commissioning-rapporter, energiaudits og renoveringsforslag — ofte over et kort projektvindue, derefter eventuelt efterladt til kunden. Håndholdte stikprøvemålinger overlever sjældent granskning, når belægning, vejr og HVAC-cyklusser er i spil.",
+    challenges: [
+      "Post-occupancy-studier uden kontinuerlige logfiler: en uge med stikprøvekontrol overser, hvordan lokaler opfører sig på tværs af sæsoner og belastningsmønstre.",
+      "Indendørstendenser forvekslet med vejr: rapporter uden udendørs reference er svære at forsvare i peer review eller kundegodkendelse.",
+      "Problemzoner, der har brug for målrettede loggere: krybekældre og klimaskalsundersøgelser retfærdiggør ikke altid en fuld multi-sensorsenhed.",
+      "Belægningsantagelser indbygget i ventilationsdesign: skemaer og headcount-estimater har brug for validering mod reel tilstedeværelse.",
+    ],
+    solution: [
+      "Mini+ og Full+ sensorer giver multi-parameter-logning til post-occupancy-evaluering, ventilationsverifikation og indeklimastudier — med eksporterbar historik til rapporter.",
+      "En Outdoor Sensor giver den baseline, seriøse audits forventer. Dedikerede Temperature og Humidity Sensor dækker problemzoner; Motion Sensor validerer belægningsantagelser bag ventilations- og opvarmningsskemaer.",
+    ],
+    smarterTogether:
+      "Udendørs reference, indendørs multi-parameter-logning og kortsigtet belægningskortlægning giver ingeniører et komplet evidensgrundlag i én udrulning.",
+    closing:
+      "Midlertidige studier og permanent overvågning bør bruge samme hardware. RoomAlyzer installeres på minutter og forbliver på plads, når kunden ønsker løbende tilsyn.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Baseline-undersøgelser",
+        body: "Multi-parameter-logning til post-occupancy-evaluering, ventilationsverifikation og indeklimastudier.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Outdoor Sensor",
+        badge: "Referenceenhed",
+        body: "Udendørs baseline, så indendørstendenser i rapporter adskilles fra vejr — forventet i enhver seriøs audit.",
+        sensorSlugs: ["outdoor"],
+      },
+      {
+        name: "Temperature / Humidity Sensor",
+        badge: "Målrettet logning",
+        body: "Dedikerede loggere til problemzoner, krybekældre og klimaskalsundersøgelser, hvor en fuld multi-sensorsenhed er overkill.",
+        sensorSlugs: ["temperature", "humidity"],
+      },
+      {
+        name: "Motion Sensor",
+        badge: "Belægningsstudier",
+        body: "Kortsigtet tilstedeværelseskortlægning til at validere ventilationshastigheder, opvarmningsskemaer og rumprogrammeringsantagelser.",
+        sensorSlugs: ["motion"],
+      },
+    ],
+  },
 };
 
 const de: Record<string, IndustryContentOverlay> = {
@@ -178,6 +695,523 @@ const de: Record<string, IndustryContentOverlay> = {
     closing:
       "Kommunale Sensorprogramme sind normalerweise teuer und langsam. RoomAlyzer installiert sich in Minuten pro Raum, braucht kein Wi-Fi pro Gebäude und skaliert von einer Schule bis zur ganzen Kommune.",
   },
+  schools: {
+    cardTitle: "Schulen",
+    cardSummary:
+      "CO2, Temperatur und Feuchte in jedem Klassenzimmer dokumentieren — für Konzentration und Gesundheit der Schüler.",
+    focus:
+      "Schulen brauchen objektive Raumklimadaten in jedem Lernraum — nicht nur zur Einhaltung von Richtlinien, sondern um zu belegen, dass Lüftung und Heizung die Konzentration tatsächlich unterstützen, wenn Räume voll sind. Lehrkräfte und Hausmeister treffen tägliche Lüftungsentscheidungen ohne ein gemeinsames Bild von CO2, Feuchte oder ob Räume nach Unterricht wirklich genutzt werden.",
+    challenges: [
+      "CO2 über 1.000 ppm in vollen Klassenzimmern: Forschung verbindet erhöhtes CO2 mit reduzierter Konzentration — doch die meisten Schulen reagieren erst, wenn jemand sich beschwert.",
+      "Lüftung nach Gewohnheit, nicht nach Daten: Fensterlüftungsroutinen und mechanische Systeme spiegeln selten tatsächliche Belegung oder Außenbedingungen wider.",
+      "Energie für leere Gebäude: Sporthallen, Aula und Flügel werden über Nacht beheizt, weil Zeitpläne Nutzung voraussetzen.",
+      "Keine Nachverfolgung für Eltern oder Prüfer: wenn die Luftqualität infrage gestellt wird, brauchen Schulen kontinuierliche Protokolle — keinen Beraterbesuch einmal im Jahr.",
+    ],
+    solution: [
+      "RoomAlyzer liefert Live-CO2-, Temperatur-, Feuchte- und VOC-Daten in jedem Klassenzimmer mit Alarmen vor Richtlinienüberschreitung — Lehrkräfte erhalten ein klares Signal zum Lüften, die Leitung Nachweise, dass Bedingungen gemanagt werden.",
+      "Belegungssensoren kartieren echte Nutzung in Hallen und Fachräumen, damit Heizung und Lüftung zurückfahren, wenn Gebäude leer sind. Ein Outdoor Sensor liefert eine Wetterreferenz, damit natürliche Lüftung zu den Bedingungen draußen passt.",
+    ],
+    smarterTogether:
+      "Raumklima- und Belegungsdaten zeigen nicht nur, wann die Luftqualität nachlässt, sondern auch, wann Energie verschwendet wird, leere Räume zu heizen.",
+    closing:
+      "Klassenzimmer-Monitoring muss kein Verkabelungs-, Gateway- oder Monatsplanungsprojekt sein. RoomAlyzer-Sensoren installieren sich in Minuten und skalieren von einer Schule bis zum ganzen Schulbezirk.",
+    sensorRecommendations: [
+      {
+        name: "CO2 Sensor",
+        badge: "Klassenzimmer-Baseline",
+        body: "Live-CO2-Werte mit Alarmen, bevor Klassenzimmer die 1.000-ppm-Richtlinie überschreiten — der schnellste Weg zu wissen, wann gelüftet werden muss.",
+        sensorSlugs: ["co2"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Vollständiges Bild",
+        body: "Ergänzt Temperatur, Feuchte und VOC zum CO2-Bild in einer diskreten Einheit pro Klassenzimmer oder Fachraum.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Mini+ PIR / Motion Sensor",
+        badge: "Einsparung außerhalb der Schulzeit",
+        body: "Kartiert echte Belegung in Klassenzimmern, Sporthallen und Aula, damit Heizung und Lüftung zurückfahren, wenn Räume leer sind.",
+        sensorSlugs: ["mini-plus-pir", "motion"],
+      },
+      {
+        name: "Outdoor Sensor",
+        badge: "Intelligenteres Lüften",
+        body: "Gibt Lehrkräften und Hausmeistern eine Außenreferenz, damit Fensterlüftungsroutinen echte Wetterbedingungen widerspiegeln.",
+        sensorSlugs: ["outdoor"],
+      },
+    ],
+  },
+  hospitals: {
+    cardTitle: "Krankenhäuser",
+    cardSummary:
+      "Stationen, Lager und Labore mit prüffähigen Klimadaten überwachen — wo jeder Grad zählt.",
+    focus:
+      "Krankenhäuser müssen Patientenkomfort, Infektionskontrolle und strenge Lagerbedingungen ausbalancieren — oft über Stationen, Apotheken, Labore und Kühlräume mit jeweils eigenen Schwellenwerten. Ein einzelner Ausreißer in einer Apothekenkühlung oder eine dauerhaft trockene Station kann klinische, regulatorische und reputative Folgen haben.",
+    challenges: [
+      "Enge Temperaturbänder ohne kontinuierlichen Nachweis: Medikamentenlager, Blutbanken und Kühlräume brauchen prüffähige Protokolle — Klemmbrett-Runden sind Lücken, die zu Vorfällen werden.",
+      "Streit um Luftqualität auf Stationen: Patienten und Personal melden stickige oder trockene Luft, doch Gebäudeteams fehlen Raumdaten zur Lüftungsoptimierung.",
+      "Feuchte, die Patienten und Geräte betrifft: zu trockene oder zu feuchte Luft in Behandlungsbereichen hat klinische und technische Folgen.",
+      "Wassereintritt nahe kritischer Zonen: Technikräume und Schächte können klinische oder elektrische Bereiche überfluten, bevor jemand es bemerkt.",
+    ],
+    solution: [
+      "RoomAlyzer Raumklima überwacht CO2, Temperatur, Feuchte und VOC in patientennahen Bereichen mit kontinuierlicher Historie — Luftqualitätsdiskussionen basieren auf Daten, nicht Eindrücken.",
+      "Dedizierte Temperature Sensor und Humidity Sensor decken Apotheken, Labore und Kühlung mit Alarmen ab, bevor Bestände gefährdet sind. Water Detector in Technik- und Servicebereichen erkennt Lecks, bevor sie klinische Zonen erreichen.",
+    ],
+    smarterTogether:
+      "Klimaprotokollierung und Leckerkennung auf einer Plattform geben Gebäudeteams eine Gesamtsicht auf Komfort, Compliance und Infrastrukturrisiko im Krankenhaus.",
+    closing:
+      "Krankenhaus-Gebäude brauchen zuverlässiges, störungsarmes Monitoring. RoomAlyzer installiert sich ohne Kabel durch klinische Bereiche und hält Prüfprotokolle bereit, wenn Inspektoren fragen.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Stationen und Kliniken",
+        body: "Kontinuierliches CO2-, Temperatur-, Feuchte- und VOC-Monitoring in patientennahen Bereichen zur Dokumentation von Luftqualität und Komfort.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Temperature Sensor",
+        badge: "Kritische Lagerung",
+        body: "Dedizierte Logger für Medikamentenschränke, Blutbanken und Kühlräume, wo enge Temperaturbänder Nachweis auf Abruf erfordern.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Humidity Sensor",
+        badge: "Infektionskontrolle",
+        body: "Erfasst relative Feuchte auf Stationen und in Behandlungsräumen, wo trockene oder feuchte Luft Patienten und Geräte betrifft.",
+        sensorSlugs: ["humidity"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Frühwarnung",
+        body: "Sofortalarme in Technikräumen, Schächten und Servicebereichen, bevor ein Leck klinische oder elektrische Zonen erreicht.",
+        sensorSlugs: ["water-detector"],
+      },
+    ],
+  },
+  "elderly-care": {
+    cardTitle: "Altenpflege",
+    cardSummary:
+      "Stabiles Raumklima und einfache Serviceanfragen für einen sichereren, ruhigeren Pflegealltag.",
+    focus:
+      "Pflegeheime und Einrichtungen betreuen vulnerable Bewohner rund um die Uhr — stabile Temperatur und Feuchte reduzieren Unbehagen und Gesundheitsrisiken, während Personal schnell reagieren muss, wenn etwas Aufmerksamkeit braucht. Familien erwarten ruhige, komfortable Zimmer; Betreiber brauchen Frühwarnung, wenn Bedingungen abweichen oder Wasser auftaucht.",
+    challenges: [
+      "Langsame Reaktion auf Komfortprobleme: Bewohner melden vielleicht nicht, dass ihnen zu heiß oder kalt ist, bis Probleme stundenlang bestanden haben.",
+      "Küchen, Wäschereien und Technikräume laufen heiß: Nebenzonen driften oft außerhalb des in Bewohnerzimmern überwachten Bereichs.",
+      "Serviceanfragen hängen vom Telefon ab: Personal verschwendet Zeit, einfache Anfragen aus Sanitärräumen und Speisesälen weiterzuleiten.",
+      "Lecks in Bädern und Küchen: Feuchtigkeit breitet sich in Bewohnerbereiche aus, bevor eine Nachtrunde es entdeckt.",
+    ],
+    solution: [
+      "RoomAlyzer Raumklima hält Temperatur, Feuchte, CO2 und VOC in Gemeinschaftsbereichen und Bewohnerzimmern stabil — mit Alarmen bei Abweichung von vereinbarten Bändern.",
+      "Touch Sensor ermöglicht Serviceanfragen mit einem Tipp aus Sanitärräumen und Speisesälen. Temperature Sensor ergänzt Präzision in Küchen und Wäschereien; Water Detector erkennt Lecks in Nassräumen und Technikbereichen früh.",
+    ],
+    smarterTogether:
+      "Klimamonitoring und sofortige Serviceanfragen auf einer Plattform helfen dem Personal, Komfort und Reaktionszeit zu priorisieren — ohne die täglichen Runden zu verkomplizieren.",
+    closing:
+      "Pflegeeinrichtungen brauchen diskretes, zuverlässiges Monitoring, dem Personal vertraut. RoomAlyzer installiert sich schnell, vermeidet Wi-Fi-Abhängigkeit und skaliert über Flügel und Standorte.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Bewohnerkomfort",
+        body: "Überwacht CO2, Temperatur, Feuchte und VOC in Gemeinschaftsbereichen und Bewohnerzimmern für stabile Bedingungen Tag und Nacht.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Temperature Sensor",
+        badge: "Spot-Check-Zonen",
+        body: "Nützlich in Wäschereien, Küchen und schlecht isolierten Flügeln, wo ein dedizierter Logger Präzision ergänzt.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Touch Sensor",
+        badge: "Personal und Bewohner",
+        body: "Serviceanfragen mit einem Tipp aus Sanitärräumen, Speisesälen oder Bewohnerzimmern — kein Telefon, keine Suche nach der richtigen Durchwahl.",
+        sensorSlugs: ["touch"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Gebäudeschutz",
+        body: "Frühe Leckerkennung in Bädern, Küchen und Technikbereichen, bevor Feuchtigkeit Bewohnerbereiche erreicht.",
+        sensorSlugs: ["water-detector"],
+      },
+    ],
+  },
+  retail: {
+    cardTitle: "Einzelhandel",
+    cardSummary:
+      "Shop-Komfort, Kühlkette und Kundenfrequenz in Einzelgeschäften oder Ketten überwachen.",
+    focus:
+      "Einzelhandel jongliert mit Einkaufskomfort, Mitarbeiterwohlbefinden und Geräteverfügbarkeit — Kühlschränke, die leise ausfallen, Geschäfte, die an vollen Samstagen überhitzen, und Energie für leere Etagen nach Ladenschluss. Kettenbetreiber brauchen vergleichbare Daten über Standorte — nicht Filialleiter, die allein nach Thermostaten raten.",
+    challenges: [
+      "Kühlkettenausfälle zu spät entdeckt: Kühltheken und Hinterhaus-Kühlschränke können über Nacht aus dem Bereich driften, ohne dass jemand es merkt, bis Ware verloren ist.",
+      "Shop-Komfort versus Energie: lange Öffnungszeiten bedeuten harte HVAC-Last — ohne Belegungsdaten folgt sie nicht der echten Kundenfrequenz.",
+      "Tote Zonen und Stoßzeiten: derselbe Grundriss fühlt sich stündlich und saisonal anders an, doch Klimaregelung passt sich selten an.",
+      "Sicherheit nach Ladenschluss ohne Rundgänge: offene Laderampen und Innentüren verschwenden Energie und schaffen Risiko.",
+    ],
+    solution: [
+      "Temperature Sensor liefert kontinuierliche Protokollierung und Alarme für Kühlschränke, Gefrierschränke und Kühltheken — mit Historie für Lebensmittelsicherheit und Versicherungsprüfungen.",
+      "Mini+ und Full+ Sensoren erfassen CO2, Temperatur, Feuchte und VOC im Verkaufsbereich, damit Komfort und Energie über lange Öffnungszeiten ausbalanciert werden. Motion Sensor kartiert Kundenfrequenz; Open/Close Sensor bestätigt, dass Türen und Rampen bei Ladenschluss geschlossen sind.",
+    ],
+    smarterTogether:
+      "Kundenfrequenz und Raumklimadaten zeigen, wo in Stoßzeiten gelüftet werden muss und wo zurückgefahren werden kann, wenn Zonen leer sind.",
+    closing:
+      "Multi-Site-Einzelhandel braucht Monitoring, das schnell ausgerollt und konsistent verglichen wird. RoomAlyzer skaliert über Filialen ohne separates IT-Projekt pro Standort.",
+    sensorRecommendations: [
+      {
+        name: "Temperature Sensor",
+        badge: "Kühlkette",
+        body: "Kontinuierliches Monitoring von Kühlschränken, Gefrierschränken und Kühltheken mit Alarmen, bevor Ware verloren geht.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Shop-Klima",
+        body: "Erfasst CO2, Temperatur, Feuchte und VOC im Verkaufsbereich, um Komfort und Energie über lange Öffnungszeiten auszubalancieren.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Motion Sensor",
+        badge: "Kundenfrequenz",
+        body: "Kartiert Präsenz auf Raumebene, um Stoßzeiten, tote Zonen und wo Klimaregelung der tatsächlichen Frequenz folgen sollte zu verstehen.",
+        sensorSlugs: ["motion"],
+      },
+      {
+        name: "Open/Close Sensor",
+        badge: "Sicherheit nach Ladenschluss",
+        body: "Bestätigt, dass Türen, Laderampen und Schränke bei Ladenschluss geschlossen sind — ohne nächtliche Rundgänge.",
+        sensorSlugs: ["open-close"],
+      },
+    ],
+  },
+  hotels: {
+    cardTitle: "Hotels",
+    cardSummary:
+      "Belegungsgesteuertes Klima und Service in Gästezimmern, Tagungsräumen und öffentlichen Bereichen.",
+    focus:
+      "Hotels brauchen Gästekomfort ohne Verschwendung — Zimmer beheizt für No-Shows, Tagungssuiten belüftet für abgesagte Buchungen, Housekeeping nur dort eingesetzt, wo es wirklich nötig ist. Bewertungen und Wiederbuchungen hängen an Lobby und Konferenzräumen, die frisch wirken — Hinterhaus-Bereiche laufen oft nach festen Zeitplänen.",
+    challenges: [
+      "Gästezimmer konditioniert für leere Nächte: HVAC läuft für No-Shows und frühe Abreisen, weil das PMS dem Technikraum nicht sagt, wer tatsächlich im Haus ist.",
+      "CO2-Spitzen in Konferenzräumen: Halbtages-Events können Tagungsräume über Komfortgrenzen drücken, bevor Personal es bemerkt.",
+      "Energie-Blindspots im Hinterhaus: Wäscherei, Küchen und Personalbereiche lüften und heizen nach Timern ohne Bezug zur echten Nutzung.",
+      "Langsame Gäste-Feedback-Schleifen: Probleme in Sanitärräumen oder an der Rezeption erscheinen auf Bewertungsportalen, bevor der Betrieb davon hört.",
+    ],
+    solution: [
+      "Mini+ PIR Sensoren kombinieren Klima und Belegung in Gästezimmern — ideal für Absenkstrategien bei leeren Zimmern ohne Kompromiss beim Ankunftskomfort.",
+      "Mini+ und Full+ Sensoren überwachen Lobby, Restaurants und Konferenzräume, wo Luftqualität die Gästewahrnehmung prägt. Motion Sensor passt Lüftung und Reinigung in Personalbereichen an; Touch Sensor liefert sofortiges Service-Feedback in Sanitärräumen und an der Rezeption.",
+    ],
+    smarterTogether:
+      "Zimmerbelegung und Klimadaten ermöglichen Energieeinsparung in leeren Zimmern bei priorisierter Lüftung dort, wo Gäste versammelt sind.",
+    closing:
+      "Hotelportfolios brauchen Monitoring, das Gästeprivatsphäre respektiert, störungsarm installiert und ohne Gäste-Wi-Fi funktioniert. RoomAlyzer passt über Objekte hinweg.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ PIR",
+        badge: "Gästezimmer",
+        body: "Kombiniert Klimamonitoring mit Belegung in einer Einheit — ideal für Absenkstrategien bei leeren Zimmern.",
+        sensorSlugs: ["mini-plus-pir"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Tagungs- und öffentliche Bereiche",
+        body: "Überwacht CO2, Temperatur, Feuchte und VOC in Lobby, Restaurants und Konferenzräumen, wo Komfort Bewertungen prägt.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Motion Sensor",
+        badge: "Hinterhaus",
+        body: "Erfasst Nutzung in Personalbereichen, Wäscherei und Tagungsräumen, um Lüftung und Reinigung an echte Aktivität anzupassen.",
+        sensorSlugs: ["motion"],
+      },
+      {
+        name: "Touch Sensor",
+        badge: "Gäste-Feedback",
+        body: "Einfache Zufriedenheits- oder Service-Tasten in Sanitärräumen und an der Rezeption für sofortige Reaktion bei Reparaturbedarf.",
+        sensorSlugs: ["touch"],
+      },
+    ],
+  },
+  "warehouses-logistics": {
+    cardTitle: "Lager und Logistik",
+    cardSummary:
+      "Bestand mit Temperatur-, Feuchte- und Wassererkennung in Lager- und Ladebereichen schützen.",
+    focus:
+      "Lager und Logistikstandorte bewahren Güter, die bei abweichenden Bedingungen verderben, korrodieren oder verziehen — oft über große Flächen, Kühlräume und Laderampen, wo ein unentdecktes Leck den Betrieb stoppen kann. Compliance und Versicherung erwarten zunehmend kontinuierliche Protokolle, keine Klemmbrett-Stichproben.",
+    challenges: [
+      "Kühlräume driften aus dem Bereich: gekühlte Lagerung kann leise ausfallen, bis Ware vernichtet wird.",
+      "Feuchte schädigt Bestand: Karton, Elektronik und hygroskopische Güter brauchen stabile RH über große, ungleichmäßig konditionierte Flächen.",
+      "Lecks entlang langer Strecken: Rohre, Sockelleisten und Laderampen brauchen Linienabdeckung, die ein Punktsensor nicht leisten kann.",
+      "Anlagentechnik und Kondensattropfen: lokale Wasserquellen breiten sich schnell über offene Flächen aus.",
+    ],
+    solution: [
+      "Temperature Sensor liefert prüffähige Protokollierung für Kühlräume, Gefrierschränke und empfindliche Güter mit Alarmen vor Schwellenüberschreitung.",
+      "Humidity Sensor erfasst RH in Lagerzonen mit feuchteempfindlichen Materialien. Water Rope deckt Linienrisiko entlang Rohre und Rampenböden; Water Detector schützt unter Spülen, Tropfen und Anlagentechnik.",
+    ],
+    smarterTogether:
+      "Temperatur, Feuchte und Wassererkennung auf einer Plattform geben Betrieb und QA ein Dashboard für Bestandsschutz und Incident Response.",
+    closing:
+      "Industriestandorte brauchen robustes, wartungsarmes Monitoring ohne Kilometer Kabelverlegung. RoomAlyzer deployt schnell und skaliert mit der Anlage.",
+    sensorRecommendations: [
+      {
+        name: "Temperature Sensor",
+        badge: "Kühlung",
+        body: "Zuverlässige Protokollierung für Kühlräume, Gefrierschränke und temperaturempfindliche Güter mit prüffähiger Historie.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Humidity Sensor",
+        badge: "Bestandsschutz",
+        body: "Erfasst relative Feuchte in Lagerzonen, wo Karton, Elektronik oder hygroskopische Materialien stabile Bedingungen brauchen.",
+        sensorSlugs: ["humidity"],
+      },
+      {
+        name: "Water Rope",
+        badge: "Linienabdeckung",
+        body: "Sensorkabel entlang Rohre, Sockelleisten und Laderampenböden, wo ein Punktsensor nicht reicht.",
+        sensorSlugs: ["water-rope"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Punktschutz",
+        body: "Sofortalarme unter Spülen, Kondensattropfen und Anlagentechnik, bevor Wasser sich über den Boden ausbreitet.",
+        sensorSlugs: ["water-detector"],
+      },
+    ],
+  },
+  "archives-libraries": {
+    cardTitle: "Archive und Bibliotheken",
+    cardSummary:
+      "Kontinuierliche Klimaprotokollierung und Alarme für seltene Bücher, Manuskripte und Papierarchive.",
+    focus:
+      "Archive und Bibliotheken bewahren Papierbestände, die bei Temperatur- und Feuchteschwankungen verfallen — oft über Lesesäle, Magazine und Kühlräume mit jeweils dokumentierten, stabilen Bedingungen. Leihgeber und Förderer erwarten Nachweise; Konservatoren brauchen Frühwarnung, bevor Einbände, Film oder Manuskripte gefährdet sind.",
+    challenges: [
+      "RH-Schwankungen in Magazinbereichen: relative Feuchte ist die erste Verteidigungslinie für Papier — doch viele Lager werden höchstens monatlich geprüft.",
+      "Lesesäle versus Lager: Besucherkomfort darf nahegelegene Bestandsbedingungen nicht gefährden.",
+      "Kühlung für Film und Fotografie: unter Raumtemperatur gelagerte Bestände brauchen dedizierte, kontinuierliche Protokollierung.",
+      "HVAC reagiert auf Wetterschätzung: Befeuchtung und Entfeuchtung ohne Außenreferenz über- oder unterschießen.",
+    ],
+    solution: [
+      "Humidity Sensor liefert kontinuierliche RH-Protokollierung für Magazine, Manuskriptlager und Seltenheitenräume mit Alarmen vor Verlassen der Erhaltungsbänder.",
+      "Mini+ und Full+ Sensoren überwachen Lesesäle diskret. Temperature Sensor deckt Kühlräume; ein Outdoor Sensor trennt Innentrends vom Wetter, damit HVAC auf echten Bedarf reagiert.",
+    ],
+    smarterTogether:
+      "Kontinuierliche Protokollierung über öffentliche und Lagerzonen gibt Konservatoren und Gebäudeteams denselben Datensatz für Erhaltungsentscheidungen und Tagesbetrieb.",
+    closing:
+      "Archivreifes Monitoring sollte keine invasive Installation erfordern. RoomAlyzer ist drahtlos, diskret und erzeugt Berichte für Leihgeber und Versicherer.",
+    sensorRecommendations: [
+      {
+        name: "Humidity Sensor",
+        badge: "Papiererhaltung",
+        body: "Kontinuierliche RH-Protokollierung — die erste Verteidigungslinie für Einbände, Manuskripte und historische Magazine.",
+        sensorSlugs: ["humidity"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Lesesäle",
+        body: "Diskretes Klimamonitoring, wo Personal und Besucher Komfort brauchen, ohne nahegelegene Bestandsbedingungen zu gefährden.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Temperature Sensor",
+        badge: "Kühlung",
+        body: "Dedizierte Logger für Film-, Foto- und Sonderbestände unter Raumtemperatur.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Outdoor Sensor",
+        badge: "HVAC-Referenz",
+        body: "Trennt Innentrends von Außenwetter, damit Befeuchtung und Entfeuchtung auf echten Bedarf reagieren — nicht auf Schätzung.",
+        sensorSlugs: ["outdoor"],
+      },
+    ],
+  },
+  "manors-castles": {
+    cardTitle: "Herrenhäuser und Schlösser",
+    cardSummary:
+      "Feuchte und Temperatur in unbeheizten Sälen, Kellern und Lagern überwachen — ohne Oberflächenschäden.",
+    focus:
+      "Herrenhäuser und Schlösser verbinden unschätzbare Innenräume mit Gebäuden, die nie für moderne Heizung konzipiert wurden — sporadische Nutzung, Besucherwellen und unbeheizte Flügel belasten Holz, Textilien und Oberflächen. Massives Mauerwerk verlangsamt die Innenreaktion auf Wetter — Innenmessungen ohne Außenbaseline sind leicht falsch zu deuten.",
+    challenges: [
+      "Saisonale RH schädigt Vertäfelung und Vergoldung: Säle und Treppen schwanken mit Besuchersaisons und Heizmuster.",
+      "Eventgetriebene Wärme- und Feuchtelasten: Tourgruppen und Hochzeiten treiben Bedingungen schneller, als HVAC kompensieren kann.",
+      "Drahtloses Monitoring ohne historischen Schaden: Kabel durch vertäfelte Räume und Wandteppiche sind selten akzeptabel.",
+      "Unbeheizte Flügel driften unbeaufsichtigt: entfernte Räume verfallen, während Personal sich auf Hauptbesucherrouten konzentriert.",
+    ],
+    solution: [
+      "Humidity Sensor erfasst RH in Sälen, Treppen und vertäfelten Räumen mit Alarmen vor saisonalen Schwankungen, die Risse, Verwerfungen oder Vergoldungsverlust verursachen.",
+      "Mini+ und Full+ Sensoren protokollieren drahtlos in für Besucher geöffneten Ausstellungsräumen. Motion Sensor korreliert Feuchte- und Wärmelasten mit Tourplänen; ein Outdoor Sensor ist essenziell, wo Raumklima stundenlang dem Wetter hinterherhinkt.",
+    ],
+    smarterTogether:
+      "Besucherpräsenz und Klimadaten erklären plötzliche Feuchteanstiege — Teams können lüften oder heizen anpassen, bevor Innenräume Schaden nehmen.",
+    closing:
+      "Denkmalhäuser brauchen Monitoring, das Baustoff respektiert und störungsarm installiert. RoomAlyzer fügt sich diskret in Räume ein, die Besucher nie bemerken.",
+    sensorRecommendations: [
+      {
+        name: "Humidity Sensor",
+        badge: "Innenschutz",
+        body: "Erfasst RH in Sälen, Treppen und vertäfelten Räumen, wo saisonale Schwankungen Risse, Verwerfungen und Vergoldungsverlust verursachen.",
+        sensorSlugs: ["humidity"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Ausstellungsräume",
+        body: "Drahtlose Temperatur- und Feuchteprotokollierung in für Besucher geöffneten Räumen ohne Kabel durch historisches Gewebe.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Motion Sensor",
+        badge: "Besuchereinfluss",
+        body: "Kartiert Präsenz, damit Gebäudeteams Feuchte- und Wärmelasten mit Tourgruppen und Eventplänen korrelieren können.",
+        sensorSlugs: ["motion"],
+      },
+      {
+        name: "Outdoor Sensor",
+        badge: "Wetter-Baseline",
+        body: "Essenzielle Referenz für massive Mauerwerkgebäude, wo Raumklima stundenlang hinter Außenänderungen zurückbleibt.",
+        sensorSlugs: ["outdoor"],
+      },
+    ],
+  },
+  "property-management": {
+    cardTitle: "Immobilienverwaltung",
+    cardSummary:
+      "Raumklima für Mieter dokumentieren und Lecks früh in Wohn- oder Gewerbeportfolios erkennen.",
+    focus:
+      "Immobilienverwalter beantworten Komfortbeschwerden mit begrenzter Sicht — ein unentdecktes Leck kann zu Versicherungsfällen über mehrere Einheiten werden, bevor jemand es bemerkt. Portfolioteams brauchen vergleichbare Daten über Gebäude, keine Ad-hoc-Messungen bei Mietereskalation.",
+    challenges: [
+      "'Zu heiß' oder 'zu stickig' ohne Beleg: Mieterstreitigkeiten ziehen sich hin, weil HVAC-Einstellungen nicht an gemessene Bedingungen in der Einheit geknüpft werden können.",
+      "Lecks wandern zwischen Einheiten: Steigleitungen, Boiler und Bäder können Nachbarwohnungen schädigen, bevor die Quelle gefunden wird.",
+      "Keller und Technikräume mit Linienrisiko: ein Punktsensor übersieht Wasser entlang Rohre durch einen ganzen Block.",
+      "Technikräume reaktiv überwacht: Heizungsräume und Wärmetauscher bekommen erst nach Ausfall Aufmerksamkeit.",
+    ],
+    solution: [
+      "Mini+ und Full+ Sensoren liefern objektive CO2-, Temperatur-, Feuchte- und VOC-Daten in Mieterbereichen — Komfortbeschwerden werden mit Nachweis statt Debatte gelöst.",
+      "Water Detector unter Spülen, Boilern und Steigleitungen erkennt Lecks früh. Water Rope deckt Keller und Technikbereiche; Temperature Sensor überwacht Technikräume im Portfolio von einem Dashboard.",
+    ],
+    smarterTogether:
+      "Klimadaten und Leckerkennung reduzieren Mieterfluktuation und Notfalleinsätze — die zwei Kostentreiber, die Immobilienteams am stärksten spüren.",
+    closing:
+      "Portfolio-Monitoring sollte kein Maßprojekt pro Gebäude bedeuten. RoomAlyzer rollt gebäudeweise über Mobilfunk aus — ohne Mieter-Wi-Fi.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Mieterbereiche",
+        body: "Objektive CO2-, Temperatur-, Feuchte- und VOC-Daten zur Klärung von 'zu heiß' oder 'zu stickig' mit Nachweis.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Leckprävention",
+        body: "Frühwarnung unter Spülen, Boilern und Steigleitungen, bevor Wasser Nachbareinheiten erreicht.",
+        sensorSlugs: ["water-detector"],
+      },
+      {
+        name: "Water Rope",
+        badge: "Technik und Keller",
+        body: "Linienabdeckung entlang Rohre und Kellerböden in größeren Blöcken, wo ein Punktsensor nicht reicht.",
+        sensorSlugs: ["water-rope"],
+      },
+      {
+        name: "Temperature Sensor",
+        badge: "Technikräume",
+        body: "Überwacht Heizungsräume, Wärmetauscher und sekundäre HVAC-Zonen im Portfolio.",
+        sensorSlugs: ["temperature"],
+      },
+    ],
+  },
+  "fm-companies": {
+    cardTitle: "FM-Unternehmen",
+    cardSummary:
+      "Eine messbare, datengetriebene IoT-Schicht auf bestehende Facility-Management-Leistungen legen.",
+    focus:
+      "FM-Anbieter gewinnen und halten Verträge mit messbaren Ergebnissen — doch Sensor-Rollouts über diverse Kundenstandorte brauchen eine Plattform, die skaliert, sauber white-labelt und Klima, Fläche und Wasser an einem Ort abdeckt. Kunden erwarten Nachweis von Einsparungen und Komfort, keine Folien über Möglichkeiten.",
+    challenges: [
+      "Jeder Kundenstandort ist anders: Schulen, Büros und öffentliche Gebäude verlangen unterschiedliche Parameter — FM-Teams können keinen separaten Stack pro Vertrag betreiben.",
+      "Flächennutzungsbehauptungen brauchen Daten: Konsolidierung, Reinigungspläne und Energierücknahme erfordern Belegungsnachweise, denen Kunden vertrauen.",
+      "Leckerkennung als Low-Friction-Upsell: Wasserschaden ist ein Top-Versicherungstreiber, doch traditionelle Systeme sind langsam zu kalkulieren und zu installieren.",
+      "Konnektivität ohne Kunden-IT-Projekte: Gast-Wi-Fi und Unternehmens-Firewalls blockieren viele IoT-Rollouts, bevor sie starten.",
+    ],
+    solution: [
+      "Mini+ und Full+ Sensoren sind der Standard-Rollout für Raumklima — eine Einheit deckt die Parameter ab, nach denen Kunden am häufigsten fragen, mit Dashboards, die FM-Teams pro Vertrag branden können.",
+      "Motion und Desk Sensoren untermauern Flächennutzungsempfehlungen mit Fakten. Water Detector ergänzt Risikominderung zu geringen Grenzkosten. Cloud Connector bringt Daten über Mobilfunk zur Plattform — kein Kunden-Wi-Fi pro Gebäude.",
+    ],
+    smarterTogether:
+      "Klima, Belegung und Wasser auf einer Plattform ermöglichen FM-Anbietern Cross-Selling mit einem Installationsbesuch und einer laufenden Datenbeziehung.",
+    closing:
+      "FM-Margen hängen an schnellem Deployment und nachweisbaren Ergebnissen. RoomAlyzer ist für Multi-Site-Rollouts ohne Gateway-Sprawl oder IT-Tickets pro Gebäude konzipiert.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Raumklima",
+        body: "Der Standard-Rollout-Sensor für Büros, Schulen und öffentliche Gebäude — eine Einheit deckt die Parameter ab, nach denen Kunden am häufigsten fragen.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Motion / Desk Sensor",
+        badge: "Flächennutzung",
+        body: "Raum- und Schreibtischbelegung, die Konsolidierung, Reinigungspläne und Energierücknahme mit Fakten untermauert.",
+        sensorSlugs: ["motion", "desk"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Risikominderung",
+        body: "Ein günstiges Upsell, das Lecks erkennt, bevor sie zu Notfalleinsätzen und Versicherungsfällen werden.",
+        sensorSlugs: ["water-detector"],
+      },
+      {
+        name: "Cloud Connector",
+        badge: "Standort-Konnektivität",
+        body: "Bringt Sensordaten über Mobilfunk-Uplink zur Plattform — kein Kunden-Wi-Fi, kein IT-Projekt pro Gebäude.",
+        sensorSlugs: ["cloud-connector"],
+      },
+    ],
+  },
+  "consulting-engineers": {
+    cardTitle: "Beratende Ingenieure",
+    cardSummary:
+      "Temporäre und permanente Messungen für Inbetriebnahme, Audits und Sanierungsberatung.",
+    focus:
+      "Beratende Ingenieure brauchen belastbare Messdaten für Inbetriebnahmeberichte, Energieaudits und Sanierungsvorschläge — oft in einem kurzen Projektfenster, optional dauerhaft beim Kunden verbleibend. Handmessungen überstehen selten Prüfung, wenn Belegung, Wetter und HVAC-Zyklen eine Rolle spielen.",
+    challenges: [
+      "Post-Occupancy-Studien ohne kontinuierliche Protokolle: eine Woche Stichproben verpasst, wie Räume über Saisons und Lastmuster reagieren.",
+      "Innentrends verwechselt mit Wetter: Berichte ohne Außenreferenz sind in Peer Review oder Kundenfreigabe schwer zu verteidigen.",
+      "Problemzonen brauchen gezielte Logger: Kriechkeller und Hülluntersuchungen rechtfertigen nicht immer eine volle Multi-Sensor-Einheit.",
+      "Belegungsannahmen in Lüftungsdesign: Zeitpläne und Kopfzahl-Schätzungen brauchen Validierung gegen echte Präsenz.",
+    ],
+    solution: [
+      "Mini+ und Full+ Sensoren liefern Multi-Parameter-Protokollierung für Post-Occupancy-Bewertung, Lüftungsverifikation und Raumklimastudien — mit exportierbarer Historie für Berichte.",
+      "Ein Outdoor Sensor liefert die Baseline, die seriöse Audits erwarten. Dedizierte Temperature und Humidity Sensor decken Problemzonen; Motion Sensor validiert Belegungsannahmen hinter Lüftungs- und Heizplänen.",
+    ],
+    smarterTogether:
+      "Außenreferenz, innere Multi-Parameter-Protokollierung und kurzfristige Belegungskartierung geben Ingenieuren eine vollständige Evidenzbasis in einem Deployment.",
+    closing:
+      "Temporäre Studien und dauerhaftes Monitoring sollten dieselbe Hardware nutzen. RoomAlyzer installiert sich in Minuten und bleibt, wenn der Kunde laufende Überwachung wünscht.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Baseline-Erhebungen",
+        body: "Multi-Parameter-Protokollierung für Post-Occupancy-Bewertung, Lüftungsverifikation und Raumklimastudien.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Outdoor Sensor",
+        badge: "Referenzeinheit",
+        body: "Außen-Baseline, damit Innentrends in Berichten vom Wetter getrennt werden — in jedem seriösen Audit erwartet.",
+        sensorSlugs: ["outdoor"],
+      },
+      {
+        name: "Temperature / Humidity Sensor",
+        badge: "Gezielte Protokollierung",
+        body: "Dedizierte Logger für Problemzonen, Kriechkeller und Hülluntersuchungen, wo eine volle Multi-Sensor-Einheit Overkill ist.",
+        sensorSlugs: ["temperature", "humidity"],
+      },
+      {
+        name: "Motion Sensor",
+        badge: "Belegungsstudien",
+        body: "Kurzfristige Präsenzkartierung zur Validierung von Lüftungsraten, Heizplänen und Raumprogrammierungsannahmen.",
+        sensorSlugs: ["motion"],
+      },
+    ],
+  },
 };
 
 const sv: Record<string, IndustryContentOverlay> = {
@@ -262,6 +1296,523 @@ const sv: Record<string, IndustryContentOverlay> = {
       "Inomhusklimat och Space management tillsammans låter kommuner finjustera ventilation efter faktisk headcount och minska energi i byggnader som står tomma utanför skoltid.",
     closing:
       "Kommunala sensorprogram är normalt dyra och långsamma. RoomAlyzer installeras på minuter per rum, kräver inget Wi-Fi per byggnad och skalar från en skola till en hel kommun.",
+  },
+  schools: {
+    cardTitle: "Skolor",
+    cardSummary:
+      "Dokumentera CO2, temperatur och fukt i varje klassrum för att skydda elevers fokus och hälsa.",
+    focus:
+      "Skolor behöver objektiva inomhusklimatdata i varje lärmiljö — inte bara för att uppfylla riktlinjer, utan för att bevisa att ventilation och värme faktiskt stödjer koncentration när rum är fulla. Lärare och vaktmästare fattar dagliga ventilationsbeslut utan en gemensam bild av CO2, fukt eller om rum faktiskt används efter skoltid.",
+    challenges: [
+      "CO2 över 1 000 ppm i fulla klassrum: forskning kopplar förhöjt CO2 till minskad koncentration — ändå reagerar de flesta skolor först när någon klagar.",
+      "Ventilation efter vana, inte data: rutiner med fönstervädring och mekaniska system speglar sällan faktisk beläggning eller utomhusförhållanden.",
+      "Energi spenderad på tomma byggnader: idrottshallar, aula och flyglar värms över natten eftersom scheman antar att rum används.",
+      "Ingen spårbarhet för föräldrar eller inspektörer: när luftkvalitet ifrågasätts behöver skolor kontinuerliga loggar — inte ett konsultbesök en gång om året.",
+    ],
+    solution: [
+      "RoomAlyzer ger live CO2-, temperatur-, fukt- och VOC-data i varje klassrum med larm innan riktlinjer överskrids — så lärare får en tydlig signal att vädra och ledningen bevis att förhållanden hanteras.",
+      "Beläggningssensorer kartlägger verklig användning i hallar och specialrum så värme och ventilation kan dra tillbaka när byggnader är tomma. En Outdoor Sensor ger en väderreferens så beslut om naturlig ventilation matchar förhållanden utomhus.",
+    ],
+    smarterTogether:
+      "Inomhusklimat- och beläggningsdata visar inte bara när luftkvaliteten sjunker, utan när energi slösas på att värma rum ingen använder.",
+    closing:
+      "Klassrumsövervakning behöver inte innebära kablar, gateways eller månaders planering. RoomAlyzer-sensorer installeras på minuter och skalar från en skola till ett helt skolområde.",
+    sensorRecommendations: [
+      {
+        name: "CO2 Sensor",
+        badge: "Klassrumsbaslinje",
+        body: "Live CO2-nivåer med larm innan klassrum passerar riktlinjen på 1 000 ppm — det snabbaste sättet att veta när det är dags att vädra.",
+        sensorSlugs: ["co2"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Hela bilden",
+        body: "Lägger till temperatur, fukt och VOC till CO2-bilden i en diskret enhet per klassrum eller specialrum.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Mini+ PIR / Motion Sensor",
+        badge: "Besparingar utanför skoltid",
+        body: "Kartlägger verklig beläggning i klassrum, idrottshallar och aula så värme och ventilation kan dra tillbaka när rum är tomma.",
+        sensorSlugs: ["mini-plus-pir", "motion"],
+      },
+      {
+        name: "Outdoor Sensor",
+        badge: "Smartare vädring",
+        body: "Ger lärare och vaktmästare en utomhusreferens så fönstervädringsrutiner speglar faktiska väderförhållanden.",
+        sensorSlugs: ["outdoor"],
+      },
+    ],
+  },
+  hospitals: {
+    cardTitle: "Sjukhus",
+    cardSummary:
+      "Övervaka avdelningar, lager och laboratorier med revisionsklara klimatdata där varje grad räknas.",
+    focus:
+      "Sjukhus måste balansera patientkomfort, infektionskontroll och strikta lagringsförhållanden — ofta över avdelningar, apotek, laboratorier och kylrum som var och en har egna trösklar. Ett enda avvikelse i ett apotekskylskåp eller en ihållande torr avdelning kan få kliniska, regulatoriska och ryktesmässiga konsekvenser.",
+    challenges: [
+      "Smala temperaturband utan kontinuerligt bevis: medicinlager, blodbanker och kylrum behöver revisionsklara loggar — clipboard-rundor är luckor som väntar på att bli incidenter.",
+      "Tvister om luftkvalitet på avdelningar: patienter och personal rapporterar tung luft eller torrhet, men fastighetsteam saknar data på rumsnivå för att finjustera ventilation.",
+      "Fukt som påverkar både patienter och utrustning: för torr eller för fuktig luft i behandlingsområden har kliniska och tekniska följdeffekter.",
+      "Vatteninträngning nära kritiska zoner: maskinrum och servicekanaler kan översvämma kliniska eller elektriska områden innan någon märker det.",
+    ],
+    solution: [
+      "RoomAlyzer Inomhusklimat övervakar CO2, temperatur, fukt och VOC i patientnära områden med kontinuerlig historik — så luftkvalitetsdiskussioner bygger på data, inte intryck.",
+      "Dedikerade Temperature Sensor och Humidity Sensor täcker apotek, laboratorier och kyllager med larm innan lager är i fara. Water Detector i maskin- och serviceområden fångar läckor innan de når kliniska zoner.",
+    ],
+    smarterTogether:
+      "Klimatloggning och läckagedetektering på en plattform ger fastighetsteam en samlad bild av komfort, efterlevnad och infrastrukturrisk över sjukhusets lokaler.",
+    closing:
+      "Sjukhusfastigheter behöver pålitlig, lågstörande övervakning. RoomAlyzer installeras utan att dra kablar genom kliniska områden och håller revisionsloggar redo när inspektörer frågar.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Avdelningar och kliniker",
+        body: "Kontinuerlig övervakning av CO2, temperatur, fukt och VOC i patientnära områden för att dokumentera luftkvalitet och komfort.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Temperature Sensor",
+        badge: "Kritiskt lager",
+        body: "Dedikerade loggare för medicinskåp, blodbanker och kylrum där smala temperaturband kräver bevis på begäran.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Humidity Sensor",
+        badge: "Infektionskontroll",
+        body: "Spårar relativ fukt på avdelningar och i behandlingsrum där torr eller fuktig luft påverkar både patienter och utrustning.",
+        sensorSlugs: ["humidity"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Tidig varning",
+        body: "Omedelbara larm i maskinrum, schakt och serviceområden innan en läcka når kliniska eller elektriska zoner.",
+        sensorSlugs: ["water-detector"],
+      },
+    ],
+  },
+  "elderly-care": {
+    cardTitle: "Äldreomsorg",
+    cardSummary:
+      "Stabilt inomhusklimat och enkla serviceanrop som gör den dagliga omsorgen tryggare och lugnare.",
+    focus:
+      "Vårdhem och omsorgsboenden betjänar sårbara boende dygnet runt — stabil temperatur och fukt minskar obehag och hälsorisker, medan personal behöver snabba sätt att reagera när något kräver uppmärksamhet. Familjer förväntar sig lugna, bekväma rum; operatörer behöver tidig varning när förhållanden avviker eller vatten upptäcks.",
+    challenges: [
+      "Långsam reaktion på komfortproblem: boende kanske inte rapporterar att de är för varma eller kalla förrän problem pågått i timmar.",
+      "Kök, tvätterier och maskinrum som kör varmt: sekundära zoner driver ofta utanför det intervall som övervakas i boenderum.",
+      "Serviceanrop som kräver att hitta en telefon: personal slösar tid på att vidarebefordra enkla förfrågningar från toaletter och matsalar.",
+      "Läckor i badrum och kök: fukt sprider sig till boendeutrymmen innan en nattrunda upptäcker det.",
+    ],
+    solution: [
+      "RoomAlyzer Inomhusklimat håller temperatur, fukt, CO2 och VOC stabila i gemensamma utrymmen och boenderum med larm när förhållanden rör sig utanför överenskomna band.",
+      "Touch Sensor ger serviceanrop med ett tryck från toaletter och matsalar. Temperature Sensor tillför precision i kök och tvätterier; Water Detector fångar läckor i våtutrymmen och maskinområden tidigt.",
+    ],
+    smarterTogether:
+      "Klimaövervakning och omedelbara serviceanrop på en plattform hjälper personal prioritera både komfort och svarstid utan att lägga till komplexitet i dagliga rundor.",
+    closing:
+      "Vårdmiljöer behöver diskret, pålitlig övervakning som personalen litar på. RoomAlyzer installeras snabbt, undviker Wi-Fi-beroende och skalar över flyglar och platser.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Boendekomfort",
+        body: "Övervakar CO2, temperatur, fukt och VOC i gemensamma utrymmen och boenderum för att hålla förhållanden stabila dag och natt.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Temperature Sensor",
+        badge: "Spotkontrollzoner",
+        body: "Användbar i tvätterier, kök och dåligt isolerade flyglar där en dedikerad loggare tillför precision.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Touch Sensor",
+        badge: "Personal och boende",
+        body: "Serviceanrop med ett tryck från toaletter, matsalar eller boenderum — inga telefoner, ingen jakt på rätt anknytning.",
+        sensorSlugs: ["touch"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Skydda byggnaden",
+        body: "Tidig läckagedetektering i badrum, kök och maskinområden innan fukt sprider sig till boendeutrymmen.",
+        sensorSlugs: ["water-detector"],
+      },
+    ],
+  },
+  retail: {
+    cardTitle: "Detaljhandel",
+    cardSummary:
+      "Övervaka butikskomfort, kylkedjeutrustning och kundflödesmönster i enskilda butiker eller kedjor.",
+    focus:
+      "Detaljhandel balanserar shopparkomfort, medarbetarvälmående och utrustningsdrift — kylskåp som tyst misslyckas, butiker som överhettas på hektiska lördagar och energi spenderad på att värma tomma våningar efter stängning. Kedjeoperatörer behöver jämförbar data över platser, inte butikschefer som gissar utifrån termostater ensamma.",
+    challenges: [
+      "Kylkedjefel upptäckta för sent: displykyl och bakrums-kylskåp kan driva utanför intervallet över natten utan att någon vet det förrän varor är förlorade.",
+      "Butikskomfort versus energi: långa öppettider innebär att HVAC kör hårt — men utan beläggningsdata kan den inte följa verkligt kundflöde.",
+      "Döda zoner och rusningstid: samma planlösning känns olika timme för timme och säsong för säsong, men klimatstyrning anpassar sig sällan.",
+      "Säkerhet efter stängning utan rundgångar: lastkajer och innert dörrar lämnade öppna slösar energi och skapar risk.",
+    ],
+    solution: [
+      "Temperature Sensor levererar kontinuerlig loggning och larm för kylskåp, frysar och displykyl — med historik redo för livsmedelssäkerhet och försäkringsgranskningar.",
+      "Mini+ och Full+ sensorer spårar butiksgolvets CO2, temperatur, fukt och VOC så komfort och energi kan balanseras över långa öppettider. Motion Sensor kartlägger kundflöde; Open/Close Sensor bekräftar att dörrar och kajer är stängda när butiken stänger.",
+    ],
+    smarterTogether:
+      "Kundflöde och inomhusklimatdata visar var ventilation behövs under rusningstid och var det kan skäras ned när zoner är tomma.",
+    closing:
+      "Detaljhandel med flera platser behöver övervakning som rullas ut snabbt och jämförs konsekvent. RoomAlyzer skalar över butiker utan ett separat IT-projekt per plats.",
+    sensorRecommendations: [
+      {
+        name: "Temperature Sensor",
+        badge: "Kylkedja",
+        body: "Kontinuerlig övervakning av kylskåp, frysar och displykyl med larm innan varor går förlorade.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Butiksklimat",
+        body: "Spårar CO2, temperatur, fukt och VOC på försäljningsgolvet för att balansera komfort med energianvändning över långa öppettider.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Motion Sensor",
+        badge: "Kundflödesmönster",
+        body: "Kartlägger närvaro på rumsnivå för att förstå rusningstid, döda zoner och var klimatstyrning bör följa faktisk trafik.",
+        sensorSlugs: ["motion"],
+      },
+      {
+        name: "Open/Close Sensor",
+        badge: "Säkerhet efter stängning",
+        body: "Bekräftar att dörrar, lastkajer och skåp är stängda när butiken stänger — utan nattliga rundgångar.",
+        sensorSlugs: ["open-close"],
+      },
+    ],
+  },
+  hotels: {
+    cardTitle: "Hotell",
+    cardSummary:
+      "Beläggningsstyrt klimat och service i gästrum, möteslokaler och allmänna utrymmen.",
+    focus:
+      "Hotell behöver gästkomfort utan slöseri — rum uppvärmda för uteblivna gäster, konferensvåningar ventilerade för inställda bokningar och städning utskickad bara där det faktiskt behövs. Recensioner och återbokningar hänger på lobbyer och konferensrum som känns fräscha, men bakom kulisserna körs områden ofta efter fasta scheman.",
+    challenges: [
+      "Gästrum konditionerade för tomma nätter: HVAC kör för uteblivna gäster och tidiga avresor eftersom PMS inte berättar för maskinrummet vem som faktiskt är i byggnaden.",
+      "CO2-toppar i konferensrum: halvdagsevent kan pressa möteslokaler förbi komfortgränser innan personal märker det.",
+      "Energiblinda fläckar bakom kulisserna: tvätt, kök och personalutrymmen ventileras och värms efter timers utan koppling till verklig användning.",
+      "Långsamma gästfeedback-loopar: problem på toaletter eller i receptionen dyker upp på recensionssajter innan driften hör om dem.",
+    ],
+    solution: [
+      "Mini+ PIR sensorer kombinerar klimat och beläggning i gästrum — idealiskt för setback-strategier när rum är tomma utan att kompromissa med komfort vid ankomst.",
+      "Mini+ och Full+ sensorer övervakar lobbyer, restauranger och konferensrum där luftkvalitet driver gästupplevelsen. Motion Sensor anpassar ventilation och städning i personalutrymmen; Touch Sensor ger omedelbar servicefeedback på toaletter och i reception.",
+    ],
+    smarterTogether:
+      "Beläggnings- och klimatdata på rumsnivå låter hotell trimma energi i tomma rum samtidigt som ventilation prioriteras där gäster samlas.",
+    closing:
+      "Hotellportföljer behöver övervakning som respekterar gästintegritet, installeras utan störning och fungerar utan gäst-Wi-Fi. RoomAlyzer passar den profilen över fastigheter.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ PIR",
+        badge: "Gästrum",
+        body: "Kombinerar klimatövervakning med beläggning i en enhet — idealiskt för setback-strategier när rum är tomma.",
+        sensorSlugs: ["mini-plus-pir"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Mötes- och allmänna utrymmen",
+        body: "Övervakar CO2, temperatur, fukt och VOC i lobbyer, restauranger och konferensrum där komfort driver recensioner.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Motion Sensor",
+        badge: "Bakom kulisserna",
+        body: "Spårar användning i personalutrymmen, tvätt och möteslokaler för att anpassa ventilation och städning till verklig aktivitet.",
+        sensorSlugs: ["motion"],
+      },
+      {
+        name: "Touch Sensor",
+        badge: "Gästfeedback",
+        body: "Enkla nöjdhets- eller serviceknappar på toaletter och i reception för omedelbar respons när något behöver åtgärdas.",
+        sensorSlugs: ["touch"],
+      },
+    ],
+  },
+  "warehouses-logistics": {
+    cardTitle: "Lager och logistik",
+    cardSummary:
+      "Skydda lager med temperatur-, fukt- och vattendetektion över lager- och lastområden.",
+    focus:
+      "Lager och logistikplatser förvarar varor som förstörs, korroderar eller vrider sig när förhållanden avviker — ofta över stora golvytor, kylrum och lastkajer där en enda oupptäckt läcka kan stoppa driften. Efterlevnad och försäkring förväntar sig allt oftare kontinuerliga loggar, inte stickprovskontroll på clipboard.",
+    challenges: [
+      "Kylrum som driver utanför intervallet: kyld lagring kan misslyckas tyst tills produkt kasseras.",
+      "Fukt som skadar lager: kartong, elektronik och hygroskopiska varor behöver stabil RH över stora, ojämnt konditionerade ytor.",
+      "Läckor längs långa sträckor: rör, golvlister och lastkajer behöver linjetäckning som en enskild punktsensor inte kan ge.",
+      "Maskinutrustning och kondensbrickor: lokala vattenkällor sprider sig snabbt över öppna golvytor.",
+    ],
+    solution: [
+      "Temperature Sensor ger revisionsklar loggning för kylrum, frysar och känsliga varor med larm innan trösklar överskrids.",
+      "Humidity Sensor spårar RH i lagerzoner där material är fuktkänsliga. Water Rope täcker linjär risk längs rör och kajgolv; Water Detector skyddar under handfat, brickor och maskinutrustning.",
+    ],
+    smarterTogether:
+      "Temperatur, fukt och vattendetektion på en plattform ger drift och QA en instrumentpanel för lagerskydd och incidenthantering.",
+    closing:
+      "Industriella anläggningar behöver robust, lågunderhållsövervakning utan att kabela kilometer av golv. RoomAlyzer driftsätts snabbt och skalar med anläggningen.",
+    sensorRecommendations: [
+      {
+        name: "Temperature Sensor",
+        badge: "Kyllagring",
+        body: "Pålitlig loggning för kylrum, frysar och temperaturkänsliga varor med revisionsklar historik.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Humidity Sensor",
+        badge: "Lagerskydd",
+        body: "Spårar relativ fukt i lagerzoner där kartong, elektronik eller hygroskopiska material behöver stabila förhållanden.",
+        sensorSlugs: ["humidity"],
+      },
+      {
+        name: "Water Rope",
+        badge: "Linjetäckning",
+        body: "Sensorkabel längs rör, golvlister och lastkajgolv där en punktsensor inte räcker.",
+        sensorSlugs: ["water-rope"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Punktskydd",
+        body: "Omedelbara larm under handfat, kondensbrickor och maskinutrustning innan vatten sprider sig över golvet.",
+        sensorSlugs: ["water-detector"],
+      },
+    ],
+  },
+  "archives-libraries": {
+    cardTitle: "Arkiv och bibliotek",
+    cardSummary:
+      "Kontinuerlig klimatloggning och larm för sällsynta böcker, manuskript och pappersarkiv.",
+    focus:
+      "Arkiv och bibliotek förvarar papperssamlingar som försämras när temperatur och fukt svänger — ofta över läsesalar, magasin och kylförvaring som var och en behöver dokumenterade, stabila förhållanden. Långivare och bidragsgivare förväntar sig bevis; konservatorer behöver tidig varning innan bindningar, film eller manuskript är i fara.",
+    challenges: [
+      "RH-svängningar i magasinområden: relativ fukt är den första försvarslinjen för papper — ändå kontrolleras många lager högst månadsvis.",
+      "Läsesalar versus lager: komfort för besökare får inte kompromissa samlingens förhållanden i närheten.",
+      "Kylförvaring för film och fotografier: samlingar under rumstemperatur behöver dedikerad, kontinuerlig loggning.",
+      "HVAC reagerar på vädergissning: fuktning och avfuktning utan utomhusreferens över- eller underskjuter.",
+    ],
+    solution: [
+      "Humidity Sensor levererar kontinuerlig RH-loggning för magasin, manuskriptlager och sällsynta bokrum med larm innan förhållanden lämnar bevarandeband.",
+      "Mini+ och Full+ sensorer övervakar läsesalar diskret. Temperature Sensor täcker kylförvaring; en Outdoor Sensor separerar inomhustrender från väder så HVAC svarar på verkligt behov.",
+    ],
+    smarterTogether:
+      "Kontinuerlig loggning över offentliga och lagerzoner ger konservatorer och driftteam samma dataset för bevarandebeslut och daglig drift.",
+    closing:
+      "Arkivnivå klimatövervakning bör inte kräva invasiv installation. RoomAlyzer är trådlöst, diskret och producerar rapporter redo för långivare och försäkringsbolag.",
+    sensorRecommendations: [
+      {
+        name: "Humidity Sensor",
+        badge: "Pappersbevaring",
+        body: "Kontinuerlig relativ-fukt-loggning — den första försvarslinjen för bindningar, manuskript och historiska magasin.",
+        sensorSlugs: ["humidity"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Läsesalar",
+        body: "Diskret klimatövervakning där personal och besökare behöver komfort utan att kompromissa samlingens förhållanden i närheten.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Temperature Sensor",
+        badge: "Kylförvaring",
+        body: "Dedikerade loggare för film, fotografiska och specialsamlingar förvarade under rumstemperatur.",
+        sensorSlugs: ["temperature"],
+      },
+      {
+        name: "Outdoor Sensor",
+        badge: "HVAC-referens",
+        body: "Separerar inomhustrender från utomhusväder så fuktning och avfuktning svarar på verkligt behov, inte gissning.",
+        sensorSlugs: ["outdoor"],
+      },
+    ],
+  },
+  "manors-castles": {
+    cardTitle: "Herrgårdar och slott",
+    cardSummary:
+      "Övervaka fukt och temperatur i ouppvärmda salar, källare och lager utan att skada ytor.",
+    focus:
+      "Herrgårdar och slott kombinerar ovärderliga interiörer med byggnader som aldrig designades för modern uppvärmning — sporadisk användning, turisttoppar och ouppvärmda flyglar stressar trä, textilier och ytor. Massivt murverk bromsar den inomhus reaktion på väder — inomhusavläsningar utan utomhusbaslinje är lätta att misstolka.",
+    challenges: [
+      "Säsongsbetonad RH som skadar paneler och förgyllning: salar och trappor svänger med besökssäsonger och uppvärmningsmönster.",
+      "Eventdrivna värme- och fuktbelastningar: turistgrupper och bröllop pressar förhållanden snabbare än HVAC kan kompensera.",
+      "Trådlös övervakning utan historisk skada: kablar genom panelerade rum och gobelänger är sällan acceptabla.",
+      "Ouppvärmda flyglar som driver okontrollerat: avlägsna rum kan försämras medan personal fokuserar på huvudbesöksrutter.",
+    ],
+    solution: [
+      "Humidity Sensor spårar RH i salar, trappor och panelerade rum med larm innan säsongsbetonade svängningar orsakar sprickor, vridning eller förlust av förgyllning.",
+      "Mini+ och Full+ sensorer loggar trådlöst i utställningsrum öppna för besökare. Motion Sensor korrelerar fukt- och värmebelastningar med turscheman; en Outdoor Sensor är essentiell där inomhusklimat släpar timmar efter vädret.",
+    ],
+    smarterTogether:
+      "Besökarnärvaro och klimatdata förklarar plötsliga fuktökningar — så team kan vädra eller justera värme innan interiörer skadas.",
+    closing:
+      "Kulturarvshus behöver övervakning som respekterar byggnadsstoff och installeras utan störning. RoomAlyzer passar diskret in i rum besökare aldrig märker.",
+    sensorRecommendations: [
+      {
+        name: "Humidity Sensor",
+        badge: "Interiörskydd",
+        body: "Spårar RH i salar, trappor och panelerade rum där säsongsbetonade svängningar orsakar sprickor, vridning och förlust av förgyllning.",
+        sensorSlugs: ["humidity"],
+      },
+      {
+        name: "Mini+ / Full+",
+        badge: "Utställningsrum",
+        body: "Trådlös temperatur- och fuktloggning i rum öppna för besökare utan att dra kablar genom historiskt tyg.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Motion Sensor",
+        badge: "Besökarpåverkan",
+        body: "Kartlägger närvaro så driftteam kan korrelera fukt- och värmebelastningar med turistgrupper och eventscheman.",
+        sensorSlugs: ["motion"],
+      },
+      {
+        name: "Outdoor Sensor",
+        badge: "Väderbaslinje",
+        body: "Essentiell referens för massiva murverksbyggnader där inomhusklimat släpar timmar efter utomhusförändringar.",
+        sensorSlugs: ["outdoor"],
+      },
+    ],
+  },
+  "property-management": {
+    cardTitle: "Fastighetsförvaltning",
+    cardSummary:
+      "Dokumentera inomhusklimat för hyresgäster och fånga läckor tidigt över en bostads- eller kommersiell portfölj.",
+    focus:
+      "Fastighetsförvaltare besvarar komfortklagomål med begränsad insyn — och en enda oupptäckt läcka kan bli försäkringsärenden över flera enheter innan någon märker det. Portföljteam behöver jämförbar data över byggnader, inte ad-hoc-avläsningar när en hyresgäst eskalerar.",
+    challenges: [
+      "'För varmt' eller 'för tung luft' utan bevis: hyresgästtvister drar ut eftersom HVAC-inställningar inte kan kopplas till uppmätta förhållanden i enheten.",
+      "Läckor som rör sig mellan enheter: stigledningar, pannor och badrum kan skada grannlägenheter innan källan hittas.",
+      "Källare och maskinrum med linjerisk: en punktsensor missar vatten som följer rör genom en hel block.",
+      "Tekniska rum övervakade reaktivt: pannrum och värmeväxlare får uppmärksamhet först efter ett fel.",
+    ],
+    solution: [
+      "Mini+ och Full+ sensorer levererar objektiva CO2-, temperatur-, fukt- och VOC-data i hyresgästutrymmen — så komfortklagomål löses med bevis istället för debatt.",
+      "Water Detector under handfat, pannor och stigledningar fångar läckor tidigt. Water Rope täcker källare och maskinområden; Temperature Sensor övervakar tekniska rum över portföljen från en instrumentpanel.",
+    ],
+    smarterTogether:
+      "Klimatdata och läckagedetektering minskar både hyresgästomsättning och akuta utryckningar — de två kostnadsdrivarna fastighetsteam känner mest.",
+    closing:
+      "Portföljövervakning bör inte innebära ett skräddarsytt projekt per byggnad. RoomAlyzer rullas ut byggnad för byggnad på cellulär uppkoppling utan hyresgäst-Wi-Fi.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Hyresgästutrymmen",
+        body: "Objektiva CO2-, temperatur-, fukt- och VOC-data för att lösa 'för varmt' eller 'för tung luft'-klagomål med bevis.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Läckageförebyggande",
+        body: "Tidiga varningar under handfat, pannor och stigledningar innan vatten når grannlägenheter.",
+        sensorSlugs: ["water-detector"],
+      },
+      {
+        name: "Water Rope",
+        badge: "Maskinrum och källare",
+        body: "Linjetäckning längs rör och källargolv i större block där en punktsensor inte räcker.",
+        sensorSlugs: ["water-rope"],
+      },
+      {
+        name: "Temperature Sensor",
+        badge: "Tekniska rum",
+        body: "Övervakar pannrum, värmeväxlare och sekundära HVAC-zoner över portföljen.",
+        sensorSlugs: ["temperature"],
+      },
+    ],
+  },
+  "fm-companies": {
+    cardTitle: "FM-företag",
+    cardSummary:
+      "Lägg till ett mätbart, datadrivet IoT-lager ovanpå era befintliga facility management-tjänster.",
+    focus:
+      "FM-leverantörer vinner och behåller kontrakt med mätbara resultat — men sensorutrullning över olika kundplatser kräver en plattform som skalar, white-labelar rent och täcker klimat, yta och vatten på ett ställe. Kunder förväntar sig bevis på besparingar och komfort, inte presentationer om vad som kanske är möjligt.",
+    challenges: [
+      "Varje kundplats är annorlunda: skolor, kontor och offentliga byggnader begär olika parametrar — men FM-team kan inte köra en separat stack per kontrakt.",
+      "Påståenden om ytanvändning behöver data: konsolidering, städscheman och energiåterställning kräver beläggningsbevis kunder litar på.",
+      "Läckagedetektering som låg-friktion-upsell: vattenskada är en topp försäkringsdrivare, men traditionella system är långsamma att offerera och installera.",
+      "Uppkoppling utan kund-IT-projekt: gäst-Wi-Fi och företagsbrandväggar blockerar många IoT-utrullningar innan de startar.",
+    ],
+    solution: [
+      "Mini+ och Full+ sensorer är standardutrullningen för inomhusklimat — en enhet täcker de parametrar kunder frågar mest om, med instrumentpaneler FM-team kan branda per kontrakt.",
+      "Motion och Desk sensorer stödjer rekommendationer om ytanvändning med fakta. Water Detector tillför riskreducering till låg marginalkostnad. Cloud Connector för data till plattformen över cellulär — inget kund-Wi-Fi per byggnad.",
+    ],
+    smarterTogether:
+      "Klimat, beläggning och vatten på en plattform låter FM-leverantörer merförsälja tjänster med ett installationsbesök och ett pågående dataförhållande.",
+    closing:
+      "FM-marginaler beror på snabb driftsättning och påvisbara resultat. RoomAlyzer är designad för multi-site-utrullningar utan gateway-spridning eller IT-ärenden per byggnad.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Inomhusklimat",
+        body: "Standardutrullningssensorn för kontor, skolor och offentliga byggnader — en enhet täcker de parametrar kunder frågar mest om.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Motion / Desk Sensor",
+        badge: "Ytanvändning",
+        body: "Beläggning på rums- och skrivbordsnivå som stödjer konsolidering, städscheman och energiåterställning med fakta.",
+        sensorSlugs: ["motion", "desk"],
+      },
+      {
+        name: "Water Detector",
+        badge: "Riskreducering",
+        body: "Ett lågpris-upsell som fångar läckor innan de blir akuta utryckningar och försäkringshändelser.",
+        sensorSlugs: ["water-detector"],
+      },
+      {
+        name: "Cloud Connector",
+        badge: "Platsuppkoppling",
+        body: "För sensordata till plattformen över cellulär uppkoppling — inget kund-Wi-Fi, inget IT-projekt per byggnad.",
+        sensorSlugs: ["cloud-connector"],
+      },
+    ],
+  },
+  "consulting-engineers": {
+    cardTitle: "Konsultingingenjörer",
+    cardSummary:
+      "Tillfälliga och permanenta mätningar som stödjer commissioning, revisioner och renoveringsrådgivning.",
+    focus:
+      "Konsultingingenjörer behöver försvarbara mätdata för commissioning-rapporter, energirevisioner och renoveringsförslag — ofta under ett kort projektfönster, sedan eventuellt kvar hos kunden. Handhållna stickprovsmätningar överlever sällan granskning när beläggning, väder och HVAC-cykler spelar in.",
+    challenges: [
+      "Post-occupancy-studier utan kontinuerliga loggar: en vecka med stickprov missar hur rum beter sig över säsonger och belastningsmönster.",
+      "Inomhustrender förväxlas med väder: rapporter utan utomhusreferens är svåra att försvara i peer review eller kundgodkännande.",
+      "Problemzoner som behöver riktade loggare: kryputrymmen och klimatskalundersökningar motiverar inte alltid en full multi-sensorenhet.",
+      "Beläggningsantaganden inbyggda i ventilationsdesign: scheman och headcount-uppskattningar behöver validering mot verklig närvaro.",
+    ],
+    solution: [
+      "Mini+ och Full+ sensorer ger multi-parameter-loggning för post-occupancy-utvärdering, ventilationsverifiering och inomhusklimatstudier — med exporterbar historik för rapporter.",
+      "En Outdoor Sensor ger den baslinje seriösa revisioner förväntar sig. Dedikerade Temperature och Humidity Sensor täcker problemzoner; Motion Sensor validerar beläggningsantaganden bakom ventilations- och värmescheman.",
+    ],
+    smarterTogether:
+      "Utomhusreferens, inomhus multi-parameter-loggning och kortsiktig beläggningskartläggning ger ingenjörer en komplett evidensbas i en utrullning.",
+    closing:
+      "Tillfälliga studier och permanent övervakning bör använda samma hårdvara. RoomAlyzer installeras på minuter och stannar kvar när kunden vill ha löpande tillsyn.",
+    sensorRecommendations: [
+      {
+        name: "Mini+ / Full+",
+        badge: "Baslinjeundersökningar",
+        body: "Multi-parameter-loggning för post-occupancy-utvärdering, ventilationsverifiering och inomhusklimatstudier.",
+        sensorSlugs: ["mini-plus", "full-plus"],
+      },
+      {
+        name: "Outdoor Sensor",
+        badge: "Referensenhet",
+        body: "Utomhusbaslinje så inomhustrender i rapporter separeras från väder — förväntat i varje seriös revision.",
+        sensorSlugs: ["outdoor"],
+      },
+      {
+        name: "Temperature / Humidity Sensor",
+        badge: "Riktad loggning",
+        body: "Dedikerade loggare för problemzoner, kryputrymmen och klimatskalundersökningar där en full multi-sensorenhet är overkill.",
+        sensorSlugs: ["temperature", "humidity"],
+      },
+      {
+        name: "Motion Sensor",
+        badge: "Beläggningsstudier",
+        body: "Kortsiktig närvarokartläggning för att validera ventilationshastigheter, värmescheman och rumsprogrammeringsantaganden.",
+        sensorSlugs: ["motion"],
+      },
+    ],
   },
 };
 
