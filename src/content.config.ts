@@ -59,6 +59,8 @@ const landingpages = defineCollection({
 
     heroImage: z.string().optional(),
     heroImageAlt: z.string().optional(),
+    cardImage: z.string().optional(),
+    cardImageAlt: z.string().optional(),
 
     primaryCta: linkSchema.optional(),
     secondaryCta: linkSchema.optional(),

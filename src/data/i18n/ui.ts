@@ -77,6 +77,7 @@ export interface NavStrings {
     platform: string;
     modules: string;
     sensors: string;
+    library: string;
   };
   cta: {
     allSensors: string;
@@ -224,6 +225,9 @@ export interface ModuleStrings {
     getAnOffer: string;
   };
   index: {
+    sectionEyebrow: string;
+    sectionHeading: string;
+    sectionIntro: string;
     ctaTitle: string;
     ctaSubtitle: string;
   };
@@ -339,6 +343,7 @@ const en: UiStrings = {
       platform: "Platform",
       modules: "Modules",
       sensors: "Sensors",
+      library: "Articles",
     },
     cta: {
       allSensors: "All sensors",
@@ -489,6 +494,10 @@ const en: UiStrings = {
       getAnOffer: "Get an offer",
     },
     index: {
+      sectionEyebrow: "Modules",
+      sectionHeading: "Solve real building problems.",
+      sectionIntro:
+        "Indoor climate, space management, water detection and more — each module runs on the same RoomAlyzer platform and sensor network.",
       ctaTitle: "Want a guided walk-through?",
       ctaSubtitle: "Book a 30-minute demo and we'll tailor it to your building.",
     },
@@ -600,6 +609,7 @@ const da: UiStrings = {
       platform: "Platform",
       modules: "Moduler",
       sensors: "Sensorer",
+      library: "Artikler",
     },
     cta: {
       allSensors: "Alle sensorer",
@@ -750,6 +760,10 @@ const da: UiStrings = {
       getAnOffer: "Få et tilbud",
     },
     index: {
+      sectionEyebrow: "Moduler",
+      sectionHeading: "Løs reelle bygningsudfordringer.",
+      sectionIntro:
+        "Indeklima, pladsudnyttelse, vanddetektion og mere — hvert modul kører på den samme RoomAlyzer-platform og sensornetværk.",
       ctaTitle: "Vil du have en guidet gennemgang?",
       ctaSubtitle: "Book en demo på 30 minutter, så tilpasser vi den til din bygning.",
     },
@@ -861,6 +875,7 @@ const de: UiStrings = {
       platform: "Plattform",
       modules: "Module",
       sensors: "Sensoren",
+      library: "Artikel",
     },
     cta: {
       allSensors: "Alle Sensoren",
@@ -1011,6 +1026,10 @@ const de: UiStrings = {
       getAnOffer: "Angebot anfordern",
     },
     index: {
+      sectionEyebrow: "Module",
+      sectionHeading: "Echte Gebäudeprobleme lösen.",
+      sectionIntro:
+        "Innenklima, Raumnutzung, Wassermonitoring und mehr — jedes Modul läuft auf derselben RoomAlyzer-Plattform und demselben Sensornetzwerk.",
       ctaTitle: "Möchten Sie eine geführte Tour?",
       ctaSubtitle: "Buchen Sie eine 30-minütige Demo, die wir auf Ihr Gebäude zuschneiden.",
     },
@@ -1122,6 +1141,7 @@ const sv: UiStrings = {
       platform: "Plattform",
       modules: "Moduler",
       sensors: "Sensorer",
+      library: "Artiklar",
     },
     cta: {
       allSensors: "Alla sensorer",
@@ -1272,6 +1292,10 @@ const sv: UiStrings = {
       getAnOffer: "Få en offert",
     },
     index: {
+      sectionEyebrow: "Moduler",
+      sectionHeading: "Lös verkliga byggnadsutmaningar.",
+      sectionIntro:
+        "Inomhusklimat, ytanvändning, vattendetektering och mer — varje modul körs på samma RoomAlyzer-plattform och sensornätverk.",
       ctaTitle: "Vill du ha en guidad genomgång?",
       ctaSubtitle: "Boka en 30-minuters demo så skräddarsyr vi den efter din byggnad.",
     },

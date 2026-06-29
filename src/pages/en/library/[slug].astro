@@ -1,15 +1,18 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import LandingPageLayout from "../../../layouts/LandingPageLayout.astro";
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
 import ArticlePlaceholderBody from "../../../components/articles/ArticlePlaceholderBody.astro";
 import { articles as catalog } from "../../../data/library/catalog";
 import {
   articlePageFromCatalog,
   articlePageFromMdx,
   resolveRelatedCards,
+  type ArticlePageData,
 } from "../../../data/articles/articlePage";
-import { buildArticleCards } from "../../../data/articles/query";
+import { buildArticleCards, type ArticleCard } from "../../../data/articles/query";
 import { industriesHub } from "../../../data/site";
+import { landingCategories } from "../../../data/landingCategories";
 
 export async function getStaticPaths() {
   const industryHubSlugs = industriesHub.leaves.map((l) => l.slug);
@@ -68,18 +71,38 @@ const props = Astro.props as
   | {
       kind: "mdx";
       entry: CollectionEntry<"landingpages">;
-      article: ReturnType<typeof articlePageFromMdx>;
-      relatedCards: ReturnType<typeof buildArticleCards>;
+      article: ArticlePageData;
+      relatedCards: ArticleCard[];
     }
   | {
       kind: "stub";
-      article: ReturnType<typeof articlePageFromCatalog>;
-      relatedCards: ReturnType<typeof buildArticleCards>;
+      article: ArticlePageData;
+      relatedCards: ArticleCard[];
     };
 
 let rendered: Awaited<ReturnType<typeof render>> | null = null;
 if (props.kind === "mdx") {
   rendered = await render(props.entry);
+}
+
+let stubMeta = null as
+  | null
+  | {
+      title: string;
+      lead: string;
+      categoryName: string;
+      categorySlug: string;
+      tags: string[];
+    };
+if (props.kind === "stub") {
+  const cat = landingCategories[props.article.category];
+  stubMeta = {
+    title: props.article.title,
+    lead: props.article.description,
+    categoryName: cat.name,
+    categorySlug: cat.slug,
+    tags: props.article.tags ?? [],
+  };
 }
 ---
 
@@ -89,8 +112,61 @@ if (props.kind === "mdx") {
   </LandingPageLayout>
 )}
 
-{props.kind === "stub" && (
-  <LandingPageLayout article={props.article} relatedCards={props.relatedCards}>
+{props.kind === "stub" && stubMeta && (
+  <PlaceholderPage
+    title={`${stubMeta.title} | Library | IoT Fabrikken`}
+    description={stubMeta.lead}
+    heroTitle={stubMeta.title}
+    heroLead={stubMeta.lead}
+    breadcrumbs={[
+      { label: "Home", href: "/en/" },
+      { label: "Library", href: "/en/library/" },
+      { label: stubMeta.categoryName, href: `/en/library/#${stubMeta.categorySlug}` },
+      { label: stubMeta.title },
+    ]}
+    primaryCta={{ label: "Book a free demo", href: "/en/contact/book-demo/" }}
+    secondaryCta={{ label: `More ${stubMeta.categoryName.toLowerCase()} articles`, href: `/en/library/#${stubMeta.categorySlug}` }}
+    hideNotice={true}
+  >
     <ArticlePlaceholderBody article={props.article} />
-  </LandingPageLayout>
+
+    {stubMeta.tags.length > 0 && (
+      <div class="mt-8">
+        <p class="text-xs font-semibold uppercase tracking-wider text-stone-300">Tags</p>
+        <div class="mt-2 flex flex-wrap gap-1.5">
+          {stubMeta.tags.map((t) => {
+            const parts = t.split(":");
+            const dim = parts[0];
+            const value = parts.slice(1).join(":");
+            if (!value) {
+              return (
+                <span class="inline-block px-2 py-0.5 rounded bg-stone-50 text-[11px] font-medium text-stone-900/70 border border-stone-100">
+                  {t}
+                </span>
+              );
+            }
+            return (
+              <a
+                href={`/en/library/tags/${dim}/${value}/`}
+                class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-stone-50 hover:bg-sky-50 text-[11px] font-medium text-navy-500 border border-stone-100 hover:border-sky-500 transition-colors"
+              >
+                <span class="text-stone-300">{dim}</span>
+                <span>{value}</span>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    )}
+
+    <div class="mt-8 flex flex-wrap gap-3 text-sm">
+      <a href="/en/contact/" class="text-navy-500 underline underline-offset-4 hover:text-coral-500">
+        Want to co-author this article?
+      </a>
+      <span class="text-stone-300">·</span>
+      <a href="/en/library/" class="text-navy-500 underline underline-offset-4 hover:text-coral-500">
+        Browse the full library
+      </a>
+    </div>
+  </PlaceholderPage>
 )}

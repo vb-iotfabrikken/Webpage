@@ -1,0 +1,66 @@
+---
+import ArticleCard from "../articles/ArticleCard.astro";
+import { industryArticlesPath } from "../../data/lang";
+import type { ArticleCard as ArticleCardModel } from "../../data/articles/query";
+import type { Lang } from "../../data/lang";
+
+interface Props {
+  /** Cards to spotlight (already curated/limited by the caller). */
+  cards: ArticleCardModel[];
+  /** Total number of articles available for this sector (for the CTA count). */
+  totalCount: number;
+  industrySlug: string;
+  sectorLabel: string;
+  lang?: Lang;
+}
+
+const { cards, totalCount, industrySlug, sectorLabel, lang = "en" } = Astro.props;
+
+if (cards.length === 0) {
+  return;
+}
+
+const allHref = industryArticlesPath(industrySlug, lang);
+---
+
+<section class="space-y-6">
+  <div class="flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-3">
+        Articles for {sectorLabel}
+      </p>
+      <h2 class="text-2xl md:text-3xl font-bold text-navy-500 tracking-tight">
+        Reading for {sectorLabel.toLowerCase()}.
+      </h2>
+    </div>
+    {totalCount > cards.length && (
+      <a
+        href={allHref}
+        class="inline-flex items-center gap-1 text-sm font-semibold text-navy-500 hover:text-coral-500 underline underline-offset-4 transition-colors"
+      >
+        View all {totalCount} articles for {sectorLabel.toLowerCase()}
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    )}
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+    {cards.map((card) => (
+      <ArticleCard card={card} lang={lang} />
+    ))}
+  </div>
+
+  <div>
+    <a
+      href={allHref}
+      class="inline-flex items-center justify-between gap-2 p-3 rounded-lg bg-stone-50 text-[15px] font-semibold text-navy-500 hover:bg-stone-100 hover:text-coral-500 transition-colors"
+    >
+      Browse all articles for {sectorLabel.toLowerCase()}
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0" aria-hidden="true">
+        <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
+  </div>
+</section>

@@ -1,4 +1,7 @@
+import type { Lang } from "../lang";
+import { defaultLang } from "../lang";
 import type { IndustryPageContent } from "./types";
+import { industryContentI18n } from "./industryContent.i18n";
 
 export const industryPageContent: IndustryPageContent[] = [
   {
@@ -484,8 +487,14 @@ export const industryPageContent: IndustryPageContent[] = [
   },
 ];
 
-export function getIndustryContent(slug: string): IndustryPageContent | undefined {
-  return industryPageContent.find((entry) => entry.slug === slug);
+export function getIndustryContent(
+  slug: string,
+  lang: Lang = defaultLang,
+): IndustryPageContent | undefined {
+  const base = industryPageContent.find((entry) => entry.slug === slug);
+  if (!base) return undefined;
+  const overlay = industryContentI18n[lang]?.[slug];
+  return overlay ? { ...base, ...overlay } : base;
 }
 
 /** First sentence of focus, or an explicit cardSummary when set. */

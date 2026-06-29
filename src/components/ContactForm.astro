@@ -7,9 +7,11 @@ interface Props {
   title?: string;
   subtitle?: string;
   lang?: Lang;
+  /** Zoho lead-source label for this form instance. */
+  source?: string;
 }
 
-const { title, subtitle, lang = defaultLang } = Astro.props;
+const { title, subtitle, lang = defaultLang, source } = Astro.props;
 const c = getContact(lang);
 const f = c.form;
 const heading = title ?? c.bookDemo.formTitle;
@@ -47,6 +49,7 @@ const validationMessages = JSON.stringify(c.validation);
         method="post"
         data-contact-form
         data-contact-messages={validationMessages}
+        {...source ? { "data-contact-source": source } : {}}
         novalidate
       >
         <div class="form-honeypot" aria-hidden="true">
