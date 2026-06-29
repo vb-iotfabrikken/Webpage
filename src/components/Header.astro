@@ -250,7 +250,6 @@ const showIndustries =
             <div class="bg-white rounded-xl shadow-xl border border-stone-100 p-6">
               <div class:list={["grid gap-6", showPlatform ? "grid-cols-3" : "grid-cols-2"]}>
                 {showPlatform && (
-                  <!-- Platform -->
                   <div>
                     <a
                       href={lp("platform")}
@@ -330,7 +329,6 @@ const showIndustries =
         </div>
 
         {showIndustries && (
-        <!-- Industries dropdown — four sector columns -->
         <div class="group relative" data-nav-industries>
           <a
             href={lp("industries")}
@@ -385,7 +383,6 @@ const showIndustries =
         )}
 
         {showPricing && (
-        <!-- Pricing dropdown -->
         <div class="group relative">
           <button
             type="button"
@@ -420,7 +417,6 @@ const showIndustries =
         )}
 
         {showResources && (
-        <!-- Resources dropdown -->
         <div class="group relative">
           <button
             type="button"
@@ -613,7 +609,6 @@ const showIndustries =
       </details>
 
       {showIndustries && (
-      <!-- Industries group -->
       <details class="group">
         <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
           <a
@@ -656,7 +651,6 @@ const showIndustries =
       )}
 
       {showPricing && (
-      <!-- Pricing group -->
       <details class="group">
         <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
           {nav.top.pricing}
@@ -679,7 +673,6 @@ const showIndustries =
       )}
 
       {showResources && (
-      <!-- Resources group -->
       <details class="group">
         <summary class="flex items-center justify-between px-2 py-3 text-base font-medium text-navy-500 cursor-pointer list-none">
           {nav.top.resources}

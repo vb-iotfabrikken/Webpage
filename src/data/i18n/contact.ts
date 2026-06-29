@@ -50,6 +50,7 @@ export interface ContactStrings {
   form: {
     eyebrow: string;
     bullets: [string, string, string];
+    name: string;
     firstName: string;
     lastName: string;
     company: string;
@@ -131,6 +132,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
         "A walk-through of the sensors that fit your case",
         "A price estimate and a timeline for getting started",
       ],
+      name: "Name",
       firstName: "First name",
       lastName: "Last name",
       company: "Company",
@@ -213,6 +215,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
         "En gennemgang af de sensorer, der passer til din case",
         "Et prisestimat og en tidsplan for at komme i gang",
       ],
+      name: "Navn",
       firstName: "Fornavn",
       lastName: "Efternavn",
       company: "Virksomhed",
@@ -296,6 +299,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
         "Ein Überblick über die Sensoren, die zu Ihrem Anwendungsfall passen",
         "Eine Preisschätzung und ein Zeitplan für den Start",
       ],
+      name: "Name",
       firstName: "Vorname",
       lastName: "Nachname",
       company: "Unternehmen",
@@ -381,6 +385,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
         "En genomgång av de sensorer som passar ditt case",
         "En prisuppskattning och en tidsplan för att komma igång",
       ],
+      name: "Namn",
       firstName: "Förnamn",
       lastName: "Efternamn",
       company: "Företag",

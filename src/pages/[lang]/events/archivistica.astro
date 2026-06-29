@@ -1,0 +1,252 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import SectionIntro from "../../../components/SectionIntro.astro";
+import LogoMarquee from "../../../components/LogoMarquee.astro";
+import ArchivisticaPhotoCollage from "../../../components/events/ArchivisticaPhotoCollage.astro";
+import { getArchivistica } from "../../../data/i18n/archivistica";
+import { archivisticaImages } from "../../../data/archivisticaImages";
+import { breadcrumbSchema } from "../../../lib/seo/schema";
+import { langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "de" as Lang } }];
+}
+
+const lang = Astro.params.lang as Lang;
+const t = getArchivistica(lang);
+
+const featureStyles = {
+  shield: { card: "bg-coral-50/40 border-coral-100/60", chip: "text-coral-500" },
+  bolt: { card: "bg-sky-50/40 border-sky-100/60", chip: "text-sky-500" },
+  chart: { card: "bg-forest-50/15 border-forest-50/40", chip: "text-forest-500" },
+} as const;
+
+const fairCollagePhotos = [
+  {
+    src: archivisticaImages.fairPhotos[0],
+    alt: t.fairPhotos[0].caption,
+    caption: t.fairPhotos[0].caption,
+  },
+  {
+    src: archivisticaImages.fairPhotos[1],
+    alt: t.fairPhotos[1].caption,
+    caption: t.fairPhotos[1].caption,
+  },
+  {
+    src: archivisticaImages.fairPhotos[2],
+    alt: t.fairPhotos[2].caption,
+    caption: t.fairPhotos[2].caption,
+  },
+] as const;
+
+const pageJsonLd = [
+  breadcrumbSchema([
+    { name: t.breadcrumbHome, href: langPath("/", lang) },
+    { name: t.breadcrumbEvents, href: langPath("/events/archivistica/", lang) },
+    { name: t.breadcrumbCurrent, href: langPath("/events/archivistica/", lang) },
+  ]),
+].filter(Boolean) as Array<Record<string, unknown>>;
+---
+
+<Layout title={t.metaTitle} description={t.metaDescription} jsonLd={pageJsonLd}>
+  <Hero
+    title={t.heroTitle}
+    titleAccent={t.heroTitleAccent}
+    lead={t.heroLead}
+    eyebrow={t.heroEyebrow}
+    align="left"
+    compactTop
+    splitVisual
+    dark
+    noPattern
+  >
+    <ol slot="breadcrumb" class="flex flex-wrap items-center gap-1.5 text-sm text-white/60">
+      <li><a href={langPath("/", lang)} class="hover:text-coral-100 transition-colors">{t.breadcrumbHome}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><span class="text-white">{t.breadcrumbCurrent}</span></li>
+    </ol>
+
+    <Button href={langPath("/contact/archivistica/", lang)} variant="primary" size="lg" slot="cta">{t.heroPrimaryCta}</Button>
+    <Button href={langPath("/contact/book-demo/", lang)} variant="secondary-light" size="lg" slot="cta">{t.heroSecondaryCta}</Button>
+
+    <div slot="visual" class="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
+      <a
+        href="https://www.vda.archiv.net/archivistica.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group block rounded-2xl overflow-hidden shadow-xl shadow-navy-500/15 border border-stone-100 bg-white transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral-500 focus-visible:ring-offset-2"
+        aria-label="ARCHIVISTICA 2026 auf vda.archiv.net öffnen"
+      >
+        <img
+          src={archivisticaImages.standInfo}
+          alt="ARCHIVISTICA 2026 — Standinformation folgt"
+          width="800"
+          height="600"
+          class="w-full h-auto object-cover"
+          loading="eager"
+        />
+      </a>
+      <ul class="mt-4 flex flex-wrap gap-2" aria-label="Messe-Details">
+        {t.heroMeta.map((item) => (
+          <li class="rounded-md border border-stone-200 bg-white px-3 py-1.5 text-sm">
+            <span class="text-stone-500">{item.label}:</span>{" "}
+            <span class="font-medium text-navy-500">{item.value}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Hero>
+
+  <section class="py-20 md:py-24">
+    <div class="container-page">
+      <SectionIntro
+        eyebrow={t.featuresEyebrow}
+        heading={t.featuresHeading}
+        lead={t.featuresLead}
+        surface="white"
+        class="mb-12 md:mb-14"
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {t.features.map((feature) => {
+          const style = featureStyles[feature.icon];
+          return (
+            <article class:list={["reveal rounded-2xl border p-8", style.card]}>
+              <span class:list={["mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm", style.chip]}>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  {feature.icon === "shield" && (
+                    <>
+                      <path d="M12 2.75 4.75 5.5v5.55c0 4.2 3.05 8.12 7.25 9.2 4.2-1.08 7.25-5 7.25-9.2V5.5L12 2.75Z" />
+                      <path d="m9 11.75 2.1 2.1 4-4.2" />
+                    </>
+                  )}
+                  {feature.icon === "bolt" && (
+                    <path d="M13 2.75 4.75 13.5H10.5L11 21.25 19.25 10.5H13.5L13 2.75Z" />
+                  )}
+                  {feature.icon === "chart" && (
+                    <>
+                      <path d="M4 20.25h16" />
+                      <path d="M6.5 20.25v-6.5" />
+                      <path d="M12 20.25V4.75" />
+                      <path d="M17.5 20.25v-9.5" />
+                    </>
+                  )}
+                </svg>
+              </span>
+              <h3 class="text-xl font-semibold text-navy-500">{feature.title}</h3>
+              <p class="mt-3 text-navy-500/70 leading-relaxed">{feature.body}</p>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="relative overflow-hidden bg-navy-500 py-20 md:py-28 text-white">
+    <span
+      class="pointer-events-none absolute -top-10 left-6 select-none font-serif leading-none text-coral-500/15"
+      style="font-size:18rem"
+      aria-hidden="true"
+    >&ldquo;</span>
+    <div class="container-page relative">
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-coral-100">{t.quoteEyebrow}</p>
+      <h2 class="mt-3 max-w-3xl text-2xl md:text-4xl font-bold leading-tight text-white">{t.quoteHeading}</h2>
+
+      <div class="mt-6 max-w-3xl space-y-5 text-lg md:text-xl leading-relaxed text-white/90">
+        {t.quoteBody.map((p) => <p>{p}</p>)}
+      </div>
+
+      <figcaption class="mt-9 flex max-w-3xl items-center gap-5 border-t border-white/15 pt-7">
+        <span class="flex h-[88px] w-[88px] shrink-0 items-center justify-center rounded-2xl bg-white p-3">
+          <img
+            src={archivisticaImages.partners.erzFreiburg}
+            alt="Erzdiözese Freiburg"
+            width="200"
+            height="80"
+            class="max-h-full max-w-full object-contain"
+            loading="lazy"
+          />
+        </span>
+        <div>
+          <p class="font-bold text-white">{t.quoteName}</p>
+          <p class="text-sm text-white/75">{t.quoteRole}</p>
+        </div>
+      </figcaption>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-24">
+    <div class="container-page">
+      <SectionIntro
+        eyebrow={t.testimonialsEyebrow}
+        heading={t.testimonialsHeading}
+        lead={t.testimonialsLead}
+        surface="white"
+        class="mb-12 md:mb-14"
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {t.testimonials.map((item) => (
+          <figure class="reveal flex flex-col rounded-xl border border-stone-100 bg-white p-8 shadow-sm">
+            <blockquote class="flex-1 text-stone-900/80 leading-relaxed">
+              „{item.quote}"
+            </blockquote>
+            <figcaption class="mt-6 pt-6 border-t border-stone-100">
+              <img
+                src={item.logoSrc}
+                alt={item.logoAlt}
+                width="160"
+                height="48"
+                class="h-10 w-auto max-w-[10rem] object-contain object-left mb-3"
+                loading="lazy"
+              />
+              <p class="font-semibold text-navy-500">{item.name}</p>
+              <p class="text-sm text-stone-600">{item.org}</p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <ul class="mt-12 flex flex-wrap justify-center gap-2 md:gap-3" aria-label="Referenzen">
+        {t.references.map((ref) => (
+          <li class="rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-sm font-medium text-navy-500">
+            {ref}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="mt-12 md:mt-16">
+      <LogoMarquee caption={t.logoMarqueeCaption} />
+    </div>
+  </section>
+
+  <section class="py-20 md:py-24 bg-white">
+    <div class="container-page">
+      <SectionIntro
+        eyebrow={t.fairEyebrow}
+        heading={t.fairHeading}
+        lead={t.fairLead}
+        surface="white"
+        class="mb-10 md:mb-12"
+      />
+
+      <ArchivisticaPhotoCollage photos={fairCollagePhotos} />
+    </div>
+  </section>
+
+  <CtaBand
+    variant="featured"
+    title={t.ctaTitle}
+    subtitle={t.ctaLead}
+    primaryLabel={t.ctaPrimary}
+    primaryHref={langPath("/contact/archivistica/", lang) + "#kontakt"}
+    secondaryLabel={t.ctaSecondary}
+    secondaryHref={langPath("/contact/book-demo/", lang)}
+  />
+</Layout>

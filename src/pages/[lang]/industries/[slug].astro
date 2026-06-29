@@ -1,0 +1,83 @@
+---
+import { getCollection } from "astro:content";
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import IndustryPageContent from "../../../components/content/IndustryPageContent.astro";
+import IndustryArticlesSection from "../../../components/industries/IndustryArticlesSection.astro";
+import IndustryCasesSection from "../../../components/industries/IndustryCasesSection.astro";
+import { getIndustriesHub } from "../../../data/hubs/industries";
+import { getIndustryContent } from "../../../data/content/industries";
+import { getUi } from "../../../data/i18n/ui";
+import {
+  buildArticleCards,
+  cardsForIndustry,
+  featuredForIndustry,
+} from "../../../data/articles/query";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.flatMap((l) =>
+    getIndustriesHub(l.code).leaves.map((leaf) => ({
+      params: { lang: l.code, slug: leaf.slug },
+      props: { leaf },
+    })),
+  );
+}
+
+const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+const { leaf } = Astro.props;
+const hub = getIndustriesHub(lang);
+const localizedLeaf = hub.leaves.find((l) => l.slug === slug) ?? leaf;
+const content = getIndustryContent(slug, lang);
+const t = getUi(lang).industries;
+const sectorLabel = localizedLeaf.title.replace(/\.$/, "");
+
+const articleEntries = await getCollection("landingpages", ({ data }) => !data.draft);
+const articleCards = buildArticleCards(articleEntries);
+const featuredArticles = featuredForIndustry(
+  articleCards,
+  slug,
+  content?.featuredArticleSlugs ?? [],
+  4,
+);
+const totalArticles = cardsForIndustry(articleCards, slug).length;
+
+const homeHref = langPath("", lang);
+const industriesHref = langPath("industries", lang);
+---
+
+<PlaceholderPage
+  title={`${sectorLabel} | IoT Fabrikken`}
+  description={content ? content.focus : localizedLeaf.lead}
+  heroTitle={localizedLeaf.title}
+  heroTitleAccent={localizedLeaf.titleAccent}
+  heroLead={localizedLeaf.lead}
+  breadcrumbs={[
+    { label: t.breadcrumb.home, href: homeHref },
+    { label: t.breadcrumb.industries, href: industriesHref },
+    { label: sectorLabel },
+  ]}
+  primaryCta={localizedLeaf.primaryCta}
+  secondaryCta={localizedLeaf.secondaryCta}
+  hideNotice={!!content}
+  ctaBandTitle={t.detail.ctaBandTitle}
+  ctaBandSubtitle={t.detail.ctaBandSubtitle}
+>
+  {content && <IndustryPageContent content={content} />}
+  {content?.featuredCaseStudySlugs && content.featuredCaseStudySlugs.length > 0 && (
+    <IndustryCasesSection
+      slot="wide"
+      slugs={content.featuredCaseStudySlugs}
+      lang={lang}
+    />
+  )}
+  {featuredArticles.length > 0 && (
+    <IndustryArticlesSection
+      slot="wide"
+      cards={featuredArticles}
+      totalCount={totalArticles}
+      industrySlug={slug}
+      sectorLabel={sectorLabel}
+      lang={lang}
+    />
+  )}
+</PlaceholderPage>

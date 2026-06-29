@@ -67,6 +67,7 @@ export interface ProductSchemaInput {
   url: string;
   image?: string;
   brand?: string;
+  additionalProperty?: Array<{ name: string; value: string }>;
 }
 
 export function productSchema(input: ProductSchemaInput) {
@@ -78,6 +79,15 @@ export function productSchema(input: ProductSchemaInput) {
     url: absoluteUrl(input.url),
     ...(input.image ? { image: absoluteUrl(input.image) } : {}),
     brand: { "@type": "Brand", name: input.brand ?? SITE_NAME },
+    ...(input.additionalProperty?.length
+      ? {
+          additionalProperty: input.additionalProperty.map((prop) => ({
+            "@type": "PropertyValue",
+            name: prop.name,
+            value: prop.value,
+          })),
+        }
+      : {}),
   };
 }
 

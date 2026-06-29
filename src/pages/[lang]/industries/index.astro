@@ -1,0 +1,25 @@
+---
+import HubIndex from "../../../components/HubIndex.astro";
+import { getIndustriesHub } from "../../../data/hubs/industries";
+import { getUi } from "../../../data/i18n/ui";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const hub = getIndustriesHub(lang);
+const t = getUi(lang).industries;
+const homeHref = langPath("", lang);
+---
+
+<HubIndex
+  hub={hub}
+  basePath={langPath("industries", lang)}
+  lang={lang}
+  breadcrumbs={[
+    { label: t.breadcrumb.home, href: homeHref },
+    { label: t.breadcrumb.industries },
+  ]}
+/>

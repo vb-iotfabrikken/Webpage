@@ -1,0 +1,105 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../../../../layouts/Layout.astro";
+import Hero from "../../../../../components/Hero.astro";
+import Button from "../../../../../components/Button.astro";
+import CtaBand from "../../../../../components/CtaBand.astro";
+import ArticleCard from "../../../../../components/articles/ArticleCard.astro";
+import { getIndustriesHub } from "../../../../../data/hubs/industries";
+import { getUi } from "../../../../../data/i18n/ui";
+import {
+  buildArticleCards,
+  cardsForIndustry,
+  sortArticleCards,
+} from "../../../../../data/articles/query";
+import { articlesIndexPath, langPath, locales, type Lang } from "../../../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.flatMap((l) =>
+    getIndustriesHub(l.code).leaves.map((leaf) => ({
+      params: { lang: l.code, slug: leaf.slug },
+      props: { leaf },
+    })),
+  );
+}
+
+const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+const { leaf } = Astro.props;
+const hub = getIndustriesHub(lang);
+const localizedLeaf = hub.leaves.find((l) => l.slug === slug) ?? leaf;
+const sectorLabel = localizedLeaf.title.replace(/\.$/, "");
+const t = getUi(lang).industries;
+
+const entries = await getCollection("landingpages", ({ data }) => !data.draft);
+const cards = sortArticleCards(cardsForIndustry(buildArticleCards(entries), slug));
+
+const count = cards.length;
+const homeHref = langPath("", lang);
+const industriesHref = langPath("industries", lang);
+const sectorHref = langPath(`industries/${slug}`, lang);
+const articlesHref = articlesIndexPath(lang);
+const contactHref = langPath("contact", lang);
+const ui = getUi(lang);
+---
+
+<Layout
+  title={`${sectorLabel} articles | IoT Fabrikken`}
+  description={`Every IoT Fabrikken article, guide and use case for ${sectorLabel.toLowerCase()} — indoor climate, preservation, water detection, space management and more.`}
+>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href={homeHref} class="hover:text-coral-500 transition-colors">{t.breadcrumb.home}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><a href={industriesHref} class="hover:text-coral-500 transition-colors">{t.breadcrumb.industries}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><a href={sectorHref} class="hover:text-coral-500 transition-colors">{sectorLabel}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><span class="text-navy-500">{t.articles.eyebrow}</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    title={`${t.articles.heading.replace("this sector", sectorLabel.toLowerCase())}`}
+    titleAccent={`${count} ${count === 1 ? "article" : "articles"}`}
+    lead={`Guides, use cases and field notes relevant to ${sectorLabel.toLowerCase()} — drawn from the full IoT Fabrikken catalogue.`}
+    align="left"
+    compactTop
+  >
+    <Button href={sectorHref} variant="primary" size="lg" slot="cta">{sectorLabel}</Button>
+    <Button href={articlesHref} variant="secondary" size="lg" slot="cta">{ui.nav.columns.library}</Button>
+  </Hero>
+
+  <section class="py-16">
+    <div class="container-page">
+      {count > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {cards.map((card) => (
+            <ArticleCard card={card} lang={lang} />
+          ))}
+        </div>
+      ) : (
+        <div class="reveal bg-white border border-stone-100 rounded-xl p-10 text-center max-w-2xl mx-auto">
+          <h2 class="text-2xl font-semibold text-navy-500">No articles yet for this sector</h2>
+          <p class="mt-3 text-stone-900/70">
+            Browse the
+            <a href={articlesHref} class="underline text-sky-600 hover:text-coral-500">full catalogue</a>
+            or <a href={contactHref} class="underline text-sky-600 hover:text-coral-500">tell us what you'd like to read</a>.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CtaBand
+    title={t.detail.ctaBandTitle}
+    subtitle={t.detail.ctaBandSubtitle}
+    primaryLabel={ui.modules.common.bookDemo}
+    secondaryLabel={ui.modules.common.contactSales}
+  />
+</Layout>

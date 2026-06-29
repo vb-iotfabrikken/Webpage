@@ -428,6 +428,14 @@ export function getCaseStudiesHub(lang: Lang = "en"): Hub {
   };
 }
 
+/** Resolve a single case-study card by slug for industry cross-links. */
+export function resolveCaseStudyLeaf(
+  slug: string,
+  lang: Lang = defaultLang,
+): CaseStudyLeaf | undefined {
+  return getCaseStudiesContent(lang).cases.find((entry) => entry.slug === slug);
+}
+
 /** @deprecated Use `getCaseStudiesHub("en")` — kept for existing hub imports. */
 export const caseStudiesHub: Hub = getCaseStudiesHub("en");
 

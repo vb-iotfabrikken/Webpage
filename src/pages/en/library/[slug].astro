@@ -1,42 +1,68 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
 import LandingPageLayout from "../../../layouts/LandingPageLayout.astro";
 import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import ArticlePlaceholderBody from "../../../components/articles/ArticlePlaceholderBody.astro";
 import { articles as catalog } from "../../../data/library/catalog";
+import {
+  articlePageFromCatalog,
+  articlePageFromMdx,
+  resolveRelatedCards,
+  type ArticlePageData,
+} from "../../../data/articles/articlePage";
+import { buildArticleCards, type ArticleCard } from "../../../data/articles/query";
+import { industriesHub } from "../../../data/site";
 import { landingCategories } from "../../../data/landingCategories";
 
 export async function getStaticPaths() {
+  const industryHubSlugs = industriesHub.leaves.map((l) => l.slug);
   const entries = await getCollection("landingpages", ({ data }) => !data.draft);
   const mdxSlugs = new Set(entries.map((e) => e.id));
+  const articleCards = buildArticleCards(entries);
 
   const mdxPaths = entries.map((entry) => {
-    const related = (entry.data.related ?? [])
-      .map((slug) => entries.find((e) => e.id === slug))
-      .filter((e): e is (typeof entries)[number] => Boolean(e));
-
-    let fallback: typeof entries = [];
-    if (related.length === 0) {
-      fallback = entries
-        .filter((e) => e.id !== entry.id && e.data.category === entry.data.category)
-        .slice(0, 3);
-    }
+    const article = articlePageFromMdx(entry);
+    const relatedCards = resolveRelatedCards(
+      entry.id,
+      entry.data.tags,
+      entry.data.category,
+      articleCards,
+      industryHubSlugs,
+      entry.data.related ?? [],
+    );
 
     return {
       params: { slug: entry.id },
       props: {
         kind: "mdx" as const,
         entry,
-        relatedEntries: related.length > 0 ? related : fallback,
+        article,
+        relatedCards,
       },
     };
   });
 
   const catalogPaths = catalog
     .filter((a) => !mdxSlugs.has(a.slug))
-    .map((a) => ({
-      params: { slug: a.slug },
-      props: { kind: "stub" as const, stub: a },
-    }));
+    .map((stub) => {
+      const article = articlePageFromCatalog(stub);
+      const relatedCards = resolveRelatedCards(
+        stub.slug,
+        stub.tags,
+        stub.category,
+        articleCards,
+        industryHubSlugs,
+      );
+
+      return {
+        params: { slug: stub.slug },
+        props: {
+          kind: "stub" as const,
+          article,
+          relatedCards,
+        },
+      };
+    });
 
   return [...mdxPaths, ...catalogPaths];
 }
@@ -44,10 +70,15 @@ export async function getStaticPaths() {
 const props = Astro.props as
   | {
       kind: "mdx";
-      entry: Awaited<ReturnType<typeof getCollection<"landingpages">>>[number];
-      relatedEntries: Awaited<ReturnType<typeof getCollection<"landingpages">>>;
+      entry: CollectionEntry<"landingpages">;
+      article: ArticlePageData;
+      relatedCards: ArticleCard[];
     }
-  | { kind: "stub"; stub: (typeof catalog)[number] };
+  | {
+      kind: "stub";
+      article: ArticlePageData;
+      relatedCards: ArticleCard[];
+    };
 
 let rendered: Awaited<ReturnType<typeof render>> | null = null;
 if (props.kind === "mdx") {
@@ -64,19 +95,19 @@ let stubMeta = null as
       tags: string[];
     };
 if (props.kind === "stub") {
-  const cat = landingCategories[props.stub.category];
+  const cat = landingCategories[props.article.category];
   stubMeta = {
-    title: props.stub.title,
-    lead: props.stub.lead,
+    title: props.article.title,
+    lead: props.article.description,
     categoryName: cat.name,
     categorySlug: cat.slug,
-    tags: props.stub.tags,
+    tags: props.article.tags ?? [],
   };
 }
 ---
 
 {props.kind === "mdx" && rendered && (
-  <LandingPageLayout entry={props.entry} relatedEntries={props.relatedEntries}>
+  <LandingPageLayout article={props.article} relatedCards={props.relatedCards}>
     <rendered.Content />
   </LandingPageLayout>
 )}
@@ -97,13 +128,7 @@ if (props.kind === "stub") {
     secondaryCta={{ label: `More ${stubMeta.categoryName.toLowerCase()} articles`, href: `/en/library/#${stubMeta.categorySlug}` }}
     hideNotice={true}
   >
-    <h2 class="text-2xl font-bold text-navy-500 tracking-tight">Article coming soon</h2>
-    <p class="mt-3 text-stone-900/80 leading-relaxed">
-      This topic is part of the IoT Fabrikken library roadmap. The full
-      article — with real-world examples, data excerpts and a practical
-      checklist — is being written. In the meantime, the page is indexed so
-      you can link to it and so we can plan the knowledge base transparently.
-    </p>
+    <ArticlePlaceholderBody article={props.article} />
 
     {stubMeta.tags.length > 0 && (
       <div class="mt-8">
