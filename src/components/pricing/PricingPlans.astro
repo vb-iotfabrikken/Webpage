@@ -1,0 +1,177 @@
+---
+import Button from "../Button.astro";
+import type { PricingCell } from "../../data/i18n/pricing";
+import { getPricing, pricingEnterpriseSalesHref } from "../../data/i18n/pricing";
+import { langPath, type Lang } from "../../data/lang";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getPricing(lang);
+const bookDemoHref = langPath("contact/book-demo", lang);
+
+function planHref(kind: "demo" | "enterprise"): string {
+  return kind === "enterprise" ? pricingEnterpriseSalesHref(lang) : bookDemoHref;
+}
+
+/** Group feature rows by optional section heading. */
+const featureGroups: { heading?: string; rows: typeof t.features }[] = [];
+let currentGroup: (typeof featureGroups)[number] | null = null;
+
+for (const row of t.features) {
+  if (!currentGroup || currentGroup.heading !== row.group) {
+    currentGroup = { heading: row.group, rows: [] };
+    featureGroups.push(currentGroup);
+  }
+  currentGroup.rows.push(row);
+}
+
+function cellMarkup(value: PricingCell | undefined): { kind: "yes" | "no" | "text"; text?: string } {
+  if (value === true) return { kind: "yes" };
+  if (value === false) return { kind: "no" };
+  if (value === undefined) return { kind: "no" };
+  return { kind: "text", text: value };
+}
+---
+
+<section class="py-16 md:py-20 bg-white" aria-labelledby="pricing-matrix-heading">
+  <div class="container-page">
+    <div class="reveal max-w-3xl mb-10 md:mb-12">
+      <h2 id="pricing-matrix-heading" class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
+        {t.matrix.sectionTitle}
+      </h2>
+      <p class="mt-4 text-lg text-stone-900/70 leading-relaxed">{t.matrix.sectionLead}</p>
+    </div>
+
+    {/* Plan cards — stack on mobile, grid on desktop */}
+    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-5 mb-12 md:mb-14">
+      {t.plans.map((plan) => (
+        <article
+          class:list={[
+            "relative flex flex-col rounded-xl border p-6 md:p-7 h-full",
+            plan.highlighted
+              ? "border-navy-500 shadow-lg ring-1 ring-navy-500/10"
+              : "border-stone-100 bg-stone-50/40",
+          ]}
+        >
+          {plan.highlighted && (
+            <div class="absolute top-0 left-0 right-0 h-1 rounded-t-xl bg-sky-500" aria-hidden="true"></div>
+          )}
+          <h3 class="text-xl font-semibold text-navy-500">{plan.name}</h3>
+          <p class="mt-1 text-sm text-stone-900/70">{plan.tagline}</p>
+
+          <div class="mt-6 mb-6">
+            <p class="text-xs font-semibold uppercase tracking-wider text-stone-900/50">
+              {t.matrix.priceLabel}
+            </p>
+            {plan.price === null ? (
+              <p class="mt-2 text-3xl font-bold text-navy-500 tracking-tight">{t.matrix.customPrice}</p>
+            ) : (
+              <div class="mt-2">
+                <p class="text-3xl font-bold text-navy-500 tracking-tight">{plan.price}</p>
+                {plan.priceNote && (
+                  <p class="mt-1 text-sm text-stone-900/60">{plan.priceNote}</p>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div class="mt-auto pt-2">
+            <Button
+              href={planHref(plan.ctaKind)}
+              variant={plan.highlighted || plan.ctaKind === "enterprise" ? "primary" : "secondary"}
+              size="md"
+              class="w-full"
+            >
+              {plan.ctaLabel}
+            </Button>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {/* Feature comparison matrix */}
+    <div class="reveal">
+      <p class="sr-only">{t.matrix.scrollHint}</p>
+      <div class="overflow-x-auto rounded-xl border border-stone-100" tabindex="0" aria-label={t.matrix.scrollHint}>
+        <table class="w-full min-w-[44rem] text-sm">
+          <thead>
+            <tr class="border-b border-stone-200 bg-stone-50/80">
+              <th
+                scope="col"
+                class="sticky left-0 z-10 min-w-[12rem] bg-stone-50/95 px-4 py-4 text-left text-xs font-semibold uppercase tracking-wider text-stone-900/50"
+              >
+                {t.matrix.featureColumn}
+              </th>
+              {t.plans.map((plan) => (
+                <th
+                  scope="col"
+                  class:list={[
+                    "min-w-[9rem] px-4 py-4 text-center text-sm font-semibold text-navy-500",
+                    plan.highlighted ? "bg-sky-50/50" : "",
+                  ]}
+                >
+                  {plan.name}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {featureGroups.map((group) => (
+              <>
+                {group.heading && (
+                  <tr class="border-b border-stone-100 bg-white">
+                    <th
+                      scope="colgroup"
+                      colspan={t.plans.length + 1}
+                      class="sticky left-0 px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-sky-600 bg-white"
+                    >
+                      {group.heading}
+                    </th>
+                  </tr>
+                )}
+                {group.rows.map((row) => (
+                  <tr class="border-b border-stone-50 last:border-0">
+                    <th
+                      scope="row"
+                      class="sticky left-0 z-10 bg-white px-4 py-3.5 text-left font-medium text-navy-500 border-r border-stone-50"
+                    >
+                      {row.label}
+                    </th>
+                    {t.plans.map((plan) => {
+                      const cell = cellMarkup(row.values[plan.slug]);
+                      return (
+                        <td
+                          class:list={[
+                            "px-4 py-3.5 text-center text-stone-900/80",
+                            plan.highlighted ? "bg-sky-50/30" : "",
+                          ]}
+                        >
+                          {cell.kind === "yes" && (
+                            <span class="inline-flex w-6 h-6 items-center justify-center rounded-md bg-forest-500/10 text-forest-500" aria-label="Included">
+                              <svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                                <path d="M2.5 6L5 8.5L9.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                              </svg>
+                            </span>
+                          )}
+                          {cell.kind === "no" && (
+                            <span class="text-stone-300" aria-label="Not included">—</span>
+                          )}
+                          {cell.kind === "text" && <span class="font-medium">{cell.text}</span>}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mt-6 text-sm text-stone-900/60 leading-relaxed max-w-3xl">{t.footnote}</p>
+    </div>
+  </div>
+</section>

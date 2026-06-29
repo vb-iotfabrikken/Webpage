@@ -1,5 +1,9 @@
 ---
 import Button from "../Button.astro";
+import { astroLang, langPath } from "../../data/lang";
+
+const lang = astroLang(Astro);
+const privacyHref = langPath("legal/privacy", lang);
 ---
 
 <div data-roi-email-panel>
@@ -77,7 +81,7 @@ import Button from "../Button.astro";
       </Button>
       <p class="text-xs text-stone-300 leading-relaxed">
         By submitting you accept our
-        <a href="/en/legal/privacy/" class="underline hover:text-coral-500">privacy policy</a>.
+        <a href={privacyHref} class="underline hover:text-coral-500">privacy policy</a>.
         Use your company email — personal addresses are not accepted.
       </p>
     </form>

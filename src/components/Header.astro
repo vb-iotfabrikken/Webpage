@@ -95,28 +95,24 @@ const industryBySlug = Object.fromEntries(
   ]),
 );
 
-// Industries dropdown — four sector columns with a fixed sort order.
+// Industries dropdown — curated subset of sector hubs. The full catalogue
+// (15 industries) lives on the industries overview page.
 const industryColumns = [
   {
     title: nav.industryColumns.publicHealth,
-    slugs: ["municipalities", "schools", "hospitals", "elderly-care"],
+    slugs: ["municipalities", "schools", "hospitals"],
   },
   {
     title: nav.industryColumns.commercial,
-    slugs: ["offices", "retail", "hotels", "warehouses-logistics"],
+    slugs: ["offices", "warehouses-logistics"],
   },
   {
     title: nav.industryColumns.culture,
-    slugs: [
-      "museums-galleries",
-      "archives-libraries",
-      "churches",
-      "manors-castles",
-    ],
+    slugs: ["museums-galleries", "archives-libraries", "churches"],
   },
   {
     title: nav.industryColumns.property,
-    slugs: ["property-management", "fm-companies", "consulting-engineers"],
+    slugs: ["property-management"],
   },
 ].map((col) => ({
   title: col.title,

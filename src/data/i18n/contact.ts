@@ -65,6 +65,8 @@ export interface ContactStrings {
     submit: string;
     successTitle: string;
     successBody: string;
+    optional: string;
+    requiredLegend: string;
   };
   /** Client-side validation messages, keyed by ValidationCode + extras. */
   validation: {
@@ -149,6 +151,8 @@ const contactStrings: Record<Lang, ContactStrings> = {
       submit: "Send",
       successTitle: "Thanks — we've got it.",
       successBody: "We'll be in touch within one business day.",
+      optional: "optional",
+      requiredLegend: "Required",
     },
     validation: {
       name_required: "Please enter your first and last name.",
@@ -232,6 +236,8 @@ const contactStrings: Record<Lang, ContactStrings> = {
       submit: "Send",
       successTitle: "Tak — vi har modtaget din besked.",
       successBody: "Vi vender tilbage inden for én hverdag.",
+      optional: "valgfrit",
+      requiredLegend: "Påkrævet",
     },
     validation: {
       name_required: "Indtast dit for- og efternavn.",
@@ -316,6 +322,8 @@ const contactStrings: Record<Lang, ContactStrings> = {
       submit: "Senden",
       successTitle: "Danke — wir haben Ihre Nachricht erhalten.",
       successBody: "Wir melden uns innerhalb eines Werktags.",
+      optional: "optional",
+      requiredLegend: "Pflichtfeld",
     },
     validation: {
       name_required: "Bitte geben Sie Ihren Vor- und Nachnamen ein.",
@@ -402,6 +410,8 @@ const contactStrings: Record<Lang, ContactStrings> = {
       submit: "Skicka",
       successTitle: "Tack — vi har tagit emot ditt meddelande.",
       successBody: "Vi hör av oss inom en arbetsdag.",
+      optional: "valfritt",
+      requiredLegend: "Obligatoriskt",
     },
     validation: {
       name_required: "Ange ditt för- och efternamn.",

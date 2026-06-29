@@ -46,6 +46,7 @@ export interface FooterStrings {
     careers: string;
     partners: string;
     press: string;
+    events: string;
     contact: string;
     login: string;
     support: string;
@@ -313,6 +314,7 @@ const en: UiStrings = {
       careers: "Careers",
       partners: "Partners",
       press: "Press",
+      events: "Events",
       contact: "Contact",
       login: "Log in",
       support: "Support",
@@ -533,7 +535,7 @@ const en: UiStrings = {
     },
     articles: {
       eyebrow: "Articles",
-      heading: "Reading for this sector.",
+      heading: "This could interest you too.",
       viewAll: "View all articles",
     },
   },
@@ -579,6 +581,7 @@ const da: UiStrings = {
       careers: "Karriere",
       partners: "Partnere",
       press: "Presse",
+      events: "Arrangementer",
       contact: "Kontakt",
       login: "Log ind",
       support: "Support",
@@ -799,7 +802,7 @@ const da: UiStrings = {
     },
     articles: {
       eyebrow: "Artikler",
-      heading: "Læsning til denne branche.",
+      heading: "Dette kunne også interessere dig.",
       viewAll: "Se alle artikler",
     },
   },
@@ -845,6 +848,7 @@ const de: UiStrings = {
       careers: "Karriere",
       partners: "Partner",
       press: "Presse",
+      events: "Veranstaltungen",
       contact: "Kontakt",
       login: "Anmelden",
       support: "Support",
@@ -1065,7 +1069,7 @@ const de: UiStrings = {
     },
     articles: {
       eyebrow: "Artikel",
-      heading: "Lesestoff für diese Branche.",
+      heading: "Das könnte Sie auch interessieren.",
       viewAll: "Alle Artikel ansehen",
     },
   },
@@ -1111,6 +1115,7 @@ const sv: UiStrings = {
       careers: "Karriär",
       partners: "Partner",
       press: "Press",
+      events: "Event",
       contact: "Kontakt",
       login: "Logga in",
       support: "Support",
@@ -1331,7 +1336,7 @@ const sv: UiStrings = {
     },
     articles: {
       eyebrow: "Artiklar",
-      heading: "Läsning för den här branschen.",
+      heading: "Det här kan också intressera dig.",
       viewAll: "Visa alla artiklar",
     },
   },

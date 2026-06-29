@@ -1,0 +1,104 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import LandingPageLayout from "../../../layouts/LandingPageLayout.astro";
+import ArticlePlaceholderBody from "../../../components/articles/ArticlePlaceholderBody.astro";
+import { articles as catalog } from "../../../data/library/catalog";
+import {
+  articlePageFromCatalog,
+  articlePageFromMdx,
+  resolveRelatedCards,
+  type ArticlePageData,
+} from "../../../data/articles/articlePage";
+import { buildArticleCards, type ArticleCard } from "../../../data/articles/query";
+import { industriesHub } from "../../../data/site";
+import { locales } from "../../../data/lang";
+
+export async function getStaticPaths() {
+  const industryHubSlugs = industriesHub.leaves.map((l) => l.slug);
+  const entries = await getCollection("landingpages", ({ data }) => !data.draft);
+  const mdxSlugs = new Set(entries.map((e) => e.id));
+  const articleCards = buildArticleCards(entries);
+
+  const mdxPaths = entries.map((entry) => {
+    const article = articlePageFromMdx(entry);
+    const relatedCards = resolveRelatedCards(
+      entry.id,
+      entry.data.tags,
+      entry.data.category,
+      articleCards,
+      industryHubSlugs,
+      entry.data.related ?? [],
+    );
+
+    return {
+      params: { slug: entry.id },
+      props: {
+        kind: "mdx" as const,
+        entry,
+        article,
+        relatedCards,
+      },
+    };
+  });
+
+  const catalogPaths = catalog
+    .filter((a) => !mdxSlugs.has(a.slug))
+    .map((stub) => {
+      const article = articlePageFromCatalog(stub);
+      const relatedCards = resolveRelatedCards(
+        stub.slug,
+        stub.tags,
+        stub.category,
+        articleCards,
+        industryHubSlugs,
+      );
+
+      return {
+        params: { slug: stub.slug },
+        props: {
+          kind: "stub" as const,
+          article,
+          relatedCards,
+        },
+      };
+    });
+
+  const basePaths = [...mdxPaths, ...catalogPaths];
+  return locales.flatMap((l) =>
+    basePaths.map((p) => ({
+      params: { lang: l.code, slug: p.params.slug },
+      props: p.props,
+    })),
+  );
+}
+
+const props = Astro.props as
+  | {
+      kind: "mdx";
+      entry: CollectionEntry<"landingpages">;
+      article: ArticlePageData;
+      relatedCards: ArticleCard[];
+    }
+  | {
+      kind: "stub";
+      article: ArticlePageData;
+      relatedCards: ArticleCard[];
+    };
+
+let rendered: Awaited<ReturnType<typeof render>> | null = null;
+if (props.kind === "mdx") {
+  rendered = await render(props.entry);
+}
+---
+
+{props.kind === "mdx" && rendered && (
+  <LandingPageLayout article={props.article} relatedCards={props.relatedCards}>
+    <rendered.Content />
+  </LandingPageLayout>
+)}
+
+{props.kind === "stub" && (
+  <LandingPageLayout article={props.article} relatedCards={props.relatedCards}>
+    <ArticlePlaceholderBody article={props.article} />
+  </LandingPageLayout>
+)}

@@ -159,4 +159,19 @@
       padding-top: 5rem;
     }
   }
+
+  /* Compact page heroes on short laptop viewports (height-limited, not mobile). */
+  @media (max-height: 900px) and (min-width: 768px) {
+    [data-page-hero] h1 {
+      font-size: clamp(2rem, 1.25rem + 2vw, 2.75rem);
+    }
+
+    [data-page-hero][data-compact-top] .hero-lead {
+      margin-top: 1rem;
+    }
+
+    [data-page-hero][data-compact-top] .hero-cta {
+      margin-top: 1.25rem;
+    }
+  }
 }

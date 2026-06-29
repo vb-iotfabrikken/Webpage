@@ -1,0 +1,101 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import { whitepapersHub, getWhitepaperResources } from "../../../data/hubs/whitepapers";
+import { getLegal } from "../../../data/i18n/legal";
+import { langPath, locales, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = getLegal(lang).common;
+const homeHref = langPath("", lang);
+const bookDemoHref = langPath("contact/book-demo", lang);
+const salesHref = langPath("contact/sales", lang);
+const resources = getWhitepaperResources(lang);
+
+const pageTitle = "White papers | IoT Fabrikken";
+const metaDescription = whitepapersHub.lead;
+---
+
+<Layout title={pageTitle} description={metaDescription}>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li class="flex items-center gap-1.5">
+        <a href={homeHref} class="hover:text-coral-500 transition-colors">{t.home}</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </li>
+      <li><span class="text-navy-500">White papers</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    title={whitepapersHub.title}
+    titleAccent={whitepapersHub.titleAccent}
+    lead={whitepapersHub.lead}
+    align="left"
+    compactTop
+  >
+    <Button href={bookDemoHref} variant="primary" size="lg" slot="cta">Book a free demo</Button>
+    <Button href={salesHref} variant="secondary" size="lg" slot="cta">Contact sales</Button>
+  </Hero>
+
+  <section class="py-16 md:py-20">
+    <div class="container-page">
+      <div class="reveal max-w-3xl mb-10 md:mb-12">
+        <p class="inline-block px-2.5 py-1 rounded-md bg-sky-50 text-xs font-semibold uppercase tracking-wider text-sky-700 border border-sky-100 mb-4">
+          In preparation
+        </p>
+        <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
+          Official white papers are on the way.
+        </h2>
+        <p class="mt-4 text-lg text-stone-900/70 leading-relaxed">
+          We do not publish placeholder PDFs. The first white papers will cover indoor climate in schools,
+          hybrid workplaces, museum preservation and ESG reporting — with references, benchmarks and case numbers.
+          Use the resources below in the meantime.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {resources.map((resource) => (
+          <a
+            href={resource.href}
+            class="reveal group relative flex flex-col h-full p-6 md:p-7 bg-white border border-stone-100 rounded-xl hover:border-navy-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+          >
+            <p class="text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3">{resource.eyebrow}</p>
+
+            <h3 class="text-lg font-semibold text-navy-500 mb-2 leading-snug">
+              {resource.title}
+              {resource.titleAccent && (
+                <span class="block text-sky-600 text-base font-medium mt-0.5">{resource.titleAccent}</span>
+              )}
+            </h3>
+            <p class="text-sm text-stone-900/70 leading-relaxed flex-1">{resource.lead}</p>
+
+            <div class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-navy-500 group-hover:text-sky-600 transition-colors">
+              {resource.ctaLabel}
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="transition-transform group-hover:translate-x-1" aria-hidden="true">
+                <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Want a guided walk-through?"
+    subtitle="Book a 30-minute demo and we'll tailor it to your building."
+    primaryLabel="Book a free demo"
+    primaryHref={bookDemoHref}
+    secondaryLabel="Contact sales"
+    secondaryHref={salesHref}
+  />
+</Layout>

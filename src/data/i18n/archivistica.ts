@@ -45,7 +45,7 @@ const de: ArchivisticaStrings = {
   metaDescription:
     "Treffen Sie IoT Fabrikken vom 29. September bis 1. Oktober 2026 auf der ARCHIVISTICA in Hof. Sehen Sie, wie RoomAlyzer Kulturgut bewahrt und Energie spart.",
   breadcrumbHome: "Startseite",
-  breadcrumbEvents: "Messen",
+  breadcrumbEvents: "Veranstaltungen",
   breadcrumbCurrent: "ARCHIVISTICA 2026",
   heroEyebrow: "Wir sind dabei · ARCHIVISTICA 2026",
   heroTitle: "Kulturgut schützen.",

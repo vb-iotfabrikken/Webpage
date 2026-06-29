@@ -1,4 +1,6 @@
 import type { Hub } from "./types";
+import { defaultLang, type Lang } from "../lang";
+import { faqHubI18n } from "./faqHub.i18n";
 
 export const faqHub: Hub = {
   slug: "faq",
@@ -93,3 +95,29 @@ export const faqHub: Hub = {
     },
   ],
 };
+
+/** Localized FAQ hub with English fallback. */
+export function getFaqHub(lang: Lang = defaultLang): Hub {
+  if (lang === defaultLang) return faqHub;
+
+  const overlay = faqHubI18n[lang];
+
+  const leaves = faqHub.leaves.map((leaf) => {
+    const lo = overlay?.leaves?.[leaf.slug];
+    return {
+      ...leaf,
+      title: lo?.title ?? leaf.title,
+      titleAccent: lo?.titleAccent ?? leaf.titleAccent,
+      lead: lo?.lead ?? leaf.lead,
+    };
+  });
+
+  return {
+    ...faqHub,
+    title: overlay?.title ?? faqHub.title,
+    titleAccent: overlay?.titleAccent ?? faqHub.titleAccent,
+    eyebrow: overlay?.eyebrow ?? faqHub.eyebrow,
+    lead: overlay?.lead ?? faqHub.lead,
+    leaves,
+  };
+}

@@ -61,7 +61,7 @@ const da: Record<string, CaseDetailOverlay> = {
       "Sensorløsningen muliggør kontinuerlig måling af temperatur og luftfugtighed i kirkerum. Klimarisici kan opdages tidligt, og bevidstheden blandt frivillige styrkes — på en platform skræddersyet til kirkernes behov.",
     ],
     quote: {
-      heading: "Hvad siger Ærkebispedømmet Freiburg?",
+      heading: "Hvad siger Erzdiözese Freiburg?",
       body: "Mennesker har ikke en pålidelig fornemmelse af relativ luftfugtighed — alligevel spiller den en afgørende rolle for indeklimaet i vores kirker. Derfor måler vi med sensorer. Kontinuerlig registrering af temperatur og luftfugtighed hjælper os med at forstå forholdene på stedet præcist. Dataene hjælper os med at bevidstgøre frivillige om emnet og reagere i tide på mulige risici for bygninger og inventar. Det er en stor fordel for vores arbejde. Vi valgte IoT Fabrikken, fordi de tilbyder en meget overskuelig platform og er fleksible omkring vores behov — hvilket passer godt i en kirkelig sammenhæng.",
       attribution: "Claudia Dambacher, rådgiver, Kirkebeskyttelse",
     },
@@ -328,10 +328,10 @@ const sv: Record<string, CaseDetailOverlay> = {
   "gribskov-municipality": {
     titleAccent: "Data för att dimensionera ett nytt rådhus korrekt.",
     intro: [
-      "Inför byggandet av ett nytt rådhus mäter Gribskovs kommun användningen av det nuvarande med sensorer. Av hänsyn till både budgeten och den gröna omställningen vill kommunen säkerställa att den inte bygger mer än nödvändigt.",
+      "Inför byggandet av ett nytt rådhus mäter Gribskov kommun användningen av det nuvarande med sensorer. Av hänsyn till både budgeten och den gröna omställningen vill kommunen säkerställa att den inte bygger mer än nödvändigt.",
     ],
     quote: {
-      heading: "Vad säger Gribskovs kommun?",
+      heading: "Vad säger Gribskov kommun?",
       body: "Koncernledningen var oerhört entusiastisk över de data vi kan leverera för att kvalificera deras beslutsunderlag för flera olika beslut. Återkopplingen är att de nu kan gå vidare från åsikter och antaganden. Dessutom blev de mycket förvånade över hur lite vi faktiskt använder våra skrivbord — och den ineffektiva användningen av mötesrum (få deltagare i stora mötesrum). Det gav dem verkligen något att tänka på.",
     },
   },
@@ -347,7 +347,7 @@ const sv: Record<string, CaseDetailOverlay> = {
       "Sensorlösningen möjliggör kontinuerlig mätning av temperatur och luftfuktighet i kyrkorum. Klimatrisker kan upptäckas tidigt och medvetenheten bland volontärer stärkas — på en plattform anpassad efter kyrkornas behov.",
     ],
     quote: {
-      heading: "Vad säger Ärkestiftet Freiburg?",
+      heading: "Vad säger Erzdiözese Freiburg?",
       body: "Människor har ingen tillförlitlig känsla för relativ luftfuktighet — ändå spelar den en avgörande roll för inomhusklimatet i våra kyrkor. Därför mäter vi med sensorer. Kontinuerlig registrering av temperatur och luftfuktighet hjälper oss att förstå förhållandena på plats exakt. Datan hjälper oss att medvetandegöra volontärer om ämnet och reagera i tid på möjliga risker för byggnader och inventarier. Det är en stor fördel för vårt arbete. Vi valde IoT Fabrikken eftersom de erbjuder en mycket överskådlig plattform och är flexibla kring våra behov — vilket passar bra i ett kyrkligt sammanhang.",
       attribution: "Claudia Dambacher, rådgivare, Kyrkoskydd",
     },

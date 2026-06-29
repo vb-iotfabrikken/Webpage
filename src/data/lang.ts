@@ -1,3 +1,5 @@
+import { getRouteFallback, isRouteAvailableInLocale } from "./events";
+
 export const defaultLang = "en" as const;
 
 /** Locales with a matching page tree under /{code}/. */
@@ -230,4 +232,16 @@ export function switchLocalePath(pathname: string, targetLang: Lang): string {
   }
 
   return langPath(segments.join("/"), targetLang);
+}
+
+/**
+ * Resolve the URL to use when switching languages. Falls back to a parent hub
+ * when the equivalent page does not exist in the target locale.
+ */
+export function localeSwitchTarget(pathname: string, targetLang: Lang): string {
+  const routeKey = stripLocaleRoute(pathname);
+  if (isRouteAvailableInLocale(routeKey, targetLang)) {
+    return switchLocalePath(pathname, targetLang);
+  }
+  return getRouteFallback(routeKey, targetLang);
 }

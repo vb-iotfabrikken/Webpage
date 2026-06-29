@@ -51,7 +51,7 @@ const chunks = [];
 chunks.push(
   `# IoT Fabrikken — full library (${files.length} articles)`,
   "",
-  `Source: ${SITE}/en/library/`,
+  `Source: ${SITE}/en/articles/`,
   `Generated: ${new Date().toISOString()}`,
   "",
   "Every article in the IoT Fabrikken knowledge base, concatenated for",
@@ -76,7 +76,7 @@ for (const f of files) {
     "",
     `# ${title}`,
     "",
-    `URL: ${SITE}/en/library/${slug}/`,
+    `URL: ${SITE}/en/articles/${slug}/`,
     description ? `Description: ${description}` : "",
     category ? `Category: ${category}` : "",
     tags.length ? `Tags: ${tags.join(", ")}` : "",

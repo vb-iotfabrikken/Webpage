@@ -48,6 +48,7 @@ export const LIVE_PREFIXES: readonly string[] = [
   "case-studies",
   "about",
   "contact",
+  "events",
 ];
 
 /**

@@ -1,5 +1,5 @@
 import type { Lang } from "../lang";
-import { defaultLang } from "../lang";
+import { defaultLang, langPath } from "../lang";
 import { applyLocaleContactToHtml } from "../contact";
 
 /** Chrome + long-form prose for the Legal section (privacy + impressum). */
@@ -561,13 +561,24 @@ const sv: LegalStrings = {
 
 const dictionaries: Record<Lang, LegalStrings> = { en, da, de, sv };
 
+function applyLocaleLegalLinks(html: string, lang: Lang): string {
+  return html
+    .replace(/href="\/en\/legal\/cookies\/"/g, `href="${langPath("legal/cookies", lang)}"`)
+    .replace(/href="\/en\/legal\/terms\/"/g, `href="${langPath("legal/terms", lang)}"`)
+    .replace(/href="\/en\/legal\/security\/"/g, `href="${langPath("legal/security", lang)}"`);
+}
+
 export function getLegal(lang: Lang): LegalStrings {
   const base = dictionaries[lang] ?? dictionaries[defaultLang];
+  const privacyBody = applyLocaleLegalLinks(
+    applyLocaleContactToHtml(base.privacy.body, lang),
+    lang,
+  );
   return {
     ...base,
     privacy: {
       ...base.privacy,
-      body: applyLocaleContactToHtml(base.privacy.body, lang),
+      body: privacyBody,
     },
     impressum: {
       ...base.impressum,

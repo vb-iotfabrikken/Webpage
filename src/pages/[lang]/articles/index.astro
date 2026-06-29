@@ -1,0 +1,515 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import ArticlesIndexIntro from "../../../components/articles/ArticlesIndexIntro.astro";
+import ArticleImage from "../../../components/articles/ArticleImage.astro";
+import { getCollection } from "astro:content";
+import {
+  landingCategoryList,
+  landingCategories,
+  categoryColorClasses,
+  type LandingCategorySlug,
+} from "../../../data/landingCategories";
+import { buildArticleCards } from "../../../data/articles/query";
+import { articlePath, articlesIndexPath, langPath, locales, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const articlesTagsHref = langPath("articles/tags", lang);
+const contactHref = langPath("contact", lang);
+
+const entries = await getCollection("landingpages", ({ data }) => !data.draft);
+
+// Unified card model so the template can treat MDX articles and catalog stubs
+// the same way. MDX articles are flagged `isFull: true` and get a sparkle;
+// stubs are `isFull: false` and show the "in progress" badge.
+const cards = buildArticleCards(entries);
+
+const grouped = new Map<LandingCategorySlug, typeof cards>();
+for (const c of cards) {
+  const list = grouped.get(c.category) ?? [];
+  list.push(c);
+  grouped.set(c.category, list);
+}
+for (const list of grouped.values()) {
+  list.sort((a, b) => {
+    if (a.isFull !== b.isFull) return a.isFull ? -1 : 1; // published first
+    return a.title.localeCompare(b.title, "en");
+  });
+}
+
+const tagMap = new Map<string, { label: string; count: number }>();
+for (const c of cards) {
+  for (const t of c.tags) {
+    const key = t.toLowerCase();
+    const existing = tagMap.get(key);
+    if (existing) existing.count += 1;
+    else tagMap.set(key, { label: t, count: 1 });
+  }
+}
+const allTags = Array.from(tagMap.values()).sort((a, b) =>
+  a.label.localeCompare(b.label, "en"),
+);
+
+const totalPages = cards.length;
+const publishedCount = entries.length;
+const plannedCount = cards.length - publishedCount;
+---
+
+<Layout
+  title="Articles — every guide and use case | IoT Fabrikken"
+  description="Search every IoT Fabrikken article, use case, sensor, integration and industry solution. Filter by category or tag and find the right page for your need."
+>
+  <section class="relative overflow-hidden bg-stone-50 border-b border-stone-100">
+    <div class="absolute inset-0 pointer-events-none opacity-[0.05]" aria-hidden="true">
+      <div
+        class="w-full h-full"
+        style="background-image: radial-gradient(var(--color-navy-500) 1px, transparent 1px); background-size: 28px 28px;"
+      ></div>
+    </div>
+    <div class="relative container-page pt-6 md:pt-8 pb-10">
+      <h1 class="reveal text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight text-navy-500 max-w-3xl">
+        Every article, guide and use case <span class="text-sky-600">in one place.</span>
+      </h1>
+      <p class="reveal mt-5 text-lg md:text-xl text-stone-900/70 max-w-2xl">
+        Search across articles, sensors, integrations and industry solutions — or filter by category and tags.
+      </p>
+
+      <p class="reveal mt-3 text-sm text-stone-300">
+        <strong class="text-navy-500">{publishedCount}</strong> published · <strong class="text-navy-500">{plannedCount}</strong> planned · <strong class="text-navy-500">{totalPages}</strong> total topics indexed
+      </p>
+
+      <div class="reveal mt-6 flex flex-wrap items-center gap-3 text-sm">
+        <a href={articlesTagsHref} class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-white border border-stone-100 text-navy-500 hover:border-navy-500 transition-colors font-medium">
+          Browse by tag
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+
+      <ArticlesIndexIntro lang={lang} />
+    </div>
+  </section>
+
+  <section class="py-10 md:py-14">
+    <div class="container-page">
+      <div
+        id="solutions-filterbar"
+        class="sticky top-16 md:top-20 z-30 -mx-5 md:mx-0 px-5 md:px-0"
+      >
+        <div class="bg-white/90 backdrop-blur border border-stone-100 rounded-xl p-4 md:p-5 shadow-sm">
+          <div
+            id="solutions-active-tags"
+            class="hidden flex-wrap items-center gap-2 mb-3"
+            aria-label="Active tag filters"
+          ></div>
+
+          <label class="block">
+            <span class="sr-only">Search articles</span>
+            <div class="relative">
+              <svg
+                class="absolute left-3 top-[1.1rem] text-stone-300"
+                width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" />
+              </svg>
+              <input
+                id="solutions-search"
+                type="search"
+                autocomplete="off"
+                role="combobox"
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-controls="solutions-suggest"
+                placeholder="Search e.g. 'churches', 'CO2', 'mould', 'NB-IoT'…"
+                class="w-full pl-10 pr-24 py-3 text-base bg-stone-50 border border-stone-100 rounded-md focus:bg-white focus:outline-none focus:ring-2 focus:ring-sky-500/40 focus:border-sky-500"
+              />
+              <kbd
+                class="hidden md:inline-flex absolute right-3 top-[1.1rem] items-center gap-1 px-2 py-0.5 rounded border border-stone-100 text-[11px] font-medium text-stone-300"
+              >
+                <span>/</span>
+                <span>focus</span>
+              </kbd>
+
+              <div
+                id="solutions-suggest"
+                role="listbox"
+                class="hidden absolute left-0 right-0 top-full mt-2 bg-white border border-stone-100 rounded-md shadow-lg overflow-hidden z-40 max-h-[26rem] overflow-y-auto"
+              ></div>
+            </div>
+          </label>
+
+          <div class="flex items-center justify-between mt-3 gap-4">
+            <p
+              id="solutions-results"
+              class="text-sm text-stone-300"
+              aria-live="polite"
+            >
+              Showing <span id="solutions-count">{totalPages}</span> of {totalPages} articles.
+            </p>
+            <button
+              id="solutions-clear"
+              type="button"
+              class="hidden text-xs font-semibold text-coral-500 hover:underline"
+            >
+              Clear all filters
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <script
+        id="solutions-tag-data"
+        type="application/json"
+        set:html={JSON.stringify(allTags)}
+      />
+
+      <nav aria-label="Categories" class="reveal flex flex-wrap gap-2 mt-8 mb-10">
+        {landingCategoryList.map((cat) => {
+          const count = grouped.get(cat.slug)?.length ?? 0;
+          const cc = categoryColorClasses(cat.color);
+          return (
+            <a
+              href={`#${cat.slug}`}
+              class={`category-link inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium border border-stone-100 bg-white hover:border-navy-500 transition-colors ${count === 0 ? "opacity-40 pointer-events-none" : ""}`}
+              data-category={cat.slug}
+            >
+              <span class={`w-1.5 h-1.5 rounded-full ${cc.dot}`}></span>
+              <span class="text-navy-500">{cat.name}</span>
+              <span class="text-xs text-stone-300">{count}</span>
+            </a>
+          );
+        })}
+      </nav>
+
+      {landingCategoryList.map((cat) => {
+        const list = grouped.get(cat.slug) ?? [];
+        if (list.length === 0) return null;
+        return (
+          <div
+            id={cat.slug}
+            class="landing-group mb-14 scroll-mt-40"
+            data-category={cat.slug}
+          >
+            <div class="flex flex-wrap items-end justify-between gap-4 mb-6 pb-4 border-b border-stone-100">
+              <div>
+                <h2 class="text-2xl md:text-3xl font-bold text-navy-500 tracking-tight">
+                  {cat.name}
+                </h2>
+                <p class="mt-1 text-stone-900/70 max-w-2xl">{cat.description}</p>
+              </div>
+              {cat.module && (
+                <a
+                  href={langPath(`modules/${cat.module}`, lang)}
+                  class="text-sm font-semibold text-navy-500 hover:text-coral-500 underline underline-offset-4"
+                >
+                  Go to module page →
+                </a>
+              )}
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {list.map((c) => {
+                const entryTags = c.tags;
+                return (
+                  <a
+                    href={articlePath(c.id, lang)}
+                    class={`landing-card flex flex-col bg-white border rounded-xl overflow-hidden hover:border-navy-500 transition-colors group ${c.isFull ? "border-stone-100" : "border-dashed border-stone-200"}`}
+                    data-id={c.id}
+                    data-title={c.title}
+                    data-description={c.description}
+                    data-category={c.category}
+                    data-category-label={landingCategories[c.category].name}
+                    data-tags={entryTags.join("|")}
+                    data-status={c.isFull ? "published" : "planned"}
+                  >
+                    <ArticleImage
+                      src={c.image}
+                      alt={c.imageAlt ?? c.title}
+                      category={c.category}
+                      rounded="rounded-none"
+                      class="border-b border-stone-100"
+                    />
+                    <div class="p-5">
+                      <div class="flex items-start justify-between gap-3">
+                        <h3 class="text-base font-semibold text-navy-500 group-hover:text-coral-500 transition-colors leading-snug">
+                          <span class="landing-card-title">{c.title}</span>
+                        </h3>
+                        {!c.isFull && (
+                          <span class="shrink-0 inline-block px-1.5 py-0.5 rounded bg-stone-50 text-[10px] font-semibold uppercase tracking-wider text-stone-300 border border-stone-100">
+                            planned
+                          </span>
+                        )}
+                      </div>
+                      <p class="mt-2 text-sm text-stone-900/70 leading-relaxed line-clamp-3">
+                        <span class="landing-card-desc">{c.description}</span>
+                      </p>
+                      {entryTags.length > 0 && (
+                        <div class="mt-3 flex flex-wrap gap-1.5">
+                          {entryTags.slice(0, 4).map((t) => (
+                            <span class="inline-block px-2 py-0.5 rounded bg-stone-50 text-[11px] font-medium text-stone-900/70 border border-stone-100">
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+
+      <div
+        id="solutions-empty"
+        class="hidden reveal bg-white border border-stone-100 rounded-xl p-10 text-center max-w-2xl mx-auto"
+      >
+        <h2 class="text-2xl font-semibold text-navy-500">No results</h2>
+        <p class="mt-3 text-stone-900/70">
+          Try adjusting your search or removing a filter. Missing a specific use case?
+          <a href={contactHref} class="underline text-sky-600 hover:text-coral-500">Contact us</a> — we'd love to hear from you.
+        </p>
+      </div>
+
+      {totalPages === 0 && (
+        <div class="reveal bg-white border border-stone-100 rounded-xl p-10 text-center max-w-2xl mx-auto">
+          <h2 class="text-2xl font-semibold text-navy-500">No published articles yet</h2>
+          <p class="mt-3 text-stone-900/70">
+            Add a <code class="bg-stone-100 px-1.5 py-0.5 rounded">.mdx</code> file under
+            <code class="bg-stone-100 px-1.5 py-0.5 rounded">src/content/landingpages/</code>
+            to create a new article.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CtaBand
+    title="Missing a specific use case?"
+    subtitle="Contact us — we're happy to put together a tailored walk-through for your building."
+    primaryLabel="Book a free demo"
+    secondaryLabel="Contact sales"
+  />
+</Layout>
+
+<script>
+  type Card = HTMLAnchorElement;
+
+  const input = document.getElementById("solutions-search") as HTMLInputElement | null;
+  const clearBtn = document.getElementById("solutions-clear") as HTMLButtonElement | null;
+  const countEl = document.getElementById("solutions-count");
+  const emptyEl = document.getElementById("solutions-empty");
+  const cards = Array.from(document.querySelectorAll<Card>(".landing-card"));
+  const groups = Array.from(document.querySelectorAll<HTMLElement>(".landing-group"));
+  const categoryLinks = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>(".category-link"),
+  );
+
+  if (!input) {
+    // Nothing to wire up (no pages yet).
+  } else {
+    const state = {
+      query: "",
+      tags: new Set<string>(),
+      category: "" as string,
+    };
+
+    const tagButtons = Array.from(
+      document.querySelectorAll<HTMLButtonElement>(".tag-chip"),
+    );
+
+    // Lowercase, strip diacritics, normalise subscripts so "CO₂" ≈ "co2" and
+    // accented characters match their base letters.
+    const fold = (s: string) =>
+      s
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/₂/g, "2")
+        .replace(/₃/g, "3")
+        .replace(/[^\p{Letter}\p{Number}\s-]/gu, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    const matches = (card: Card) => {
+      if (state.category && card.dataset.category !== state.category) return false;
+
+      if (state.tags.size > 0) {
+        const cardTags = (card.dataset.tags ?? "")
+          .split("|")
+          .map((t) => t.toLowerCase());
+        for (const t of state.tags) {
+          if (!cardTags.includes(t.toLowerCase())) return false;
+        }
+      }
+
+      if (state.query) {
+        const haystack = fold(
+          [
+            card.dataset.title ?? "",
+            card.dataset.description ?? "",
+            card.dataset.categoryLabel ?? "",
+            (card.dataset.tags ?? "").replace(/\|/g, " "),
+          ].join(" "),
+        );
+        const needles = fold(state.query).split(" ").filter(Boolean);
+        for (const n of needles) if (!haystack.includes(n)) return false;
+      }
+
+      return true;
+    };
+
+    const escapeHtml = (s: string) =>
+      s
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+    const highlight = (text: string, query: string) => {
+      if (!query.trim()) return escapeHtml(text);
+      const parts = query.trim().split(/\s+/).filter(Boolean);
+      const pattern = parts
+        .map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+        .join("|");
+      if (!pattern) return escapeHtml(text);
+      const re = new RegExp(`(${pattern})`, "gi");
+      return escapeHtml(text).replace(
+        re,
+        '<mark class="bg-sky-50 text-sky-600 rounded-sm px-0.5">$1</mark>',
+      );
+    };
+
+    const apply = () => {
+      let visible = 0;
+      for (const card of cards) {
+        const ok = matches(card);
+        card.classList.toggle("hidden", !ok);
+        if (ok) visible++;
+
+        const titleEl = card.querySelector<HTMLElement>(".landing-card-title");
+        const descEl = card.querySelector<HTMLElement>(".landing-card-desc");
+        if (titleEl) titleEl.innerHTML = highlight(card.dataset.title ?? "", state.query);
+        if (descEl) descEl.innerHTML = highlight(card.dataset.description ?? "", state.query);
+      }
+
+      for (const group of groups) {
+        const hasVisible = group.querySelector(".landing-card:not(.hidden)");
+        group.classList.toggle("hidden", !hasVisible);
+      }
+
+      if (countEl) countEl.textContent = String(visible);
+      if (emptyEl) emptyEl.classList.toggle("hidden", visible > 0 || cards.length === 0);
+
+      const hasFilter =
+        state.query.length > 0 || state.tags.size > 0 || state.category.length > 0;
+      clearBtn?.classList.toggle("hidden", !hasFilter);
+
+      for (const link of categoryLinks) {
+        link.classList.toggle(
+          "ring-2",
+          state.category !== "" && link.dataset.category === state.category,
+        );
+        link.classList.toggle(
+          "ring-sky-500",
+          state.category !== "" && link.dataset.category === state.category,
+        );
+      }
+
+      for (const btn of tagButtons) {
+        const active = state.tags.has(btn.dataset.tag ?? "");
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+        btn.classList.toggle("bg-sky-500", active);
+        btn.classList.toggle("text-white", active);
+        btn.classList.toggle("border-sky-500", active);
+        btn.classList.toggle("bg-stone-50", !active);
+        btn.classList.toggle("text-navy-500", !active);
+      }
+
+      updateUrl();
+    };
+
+    const updateUrl = () => {
+      const params = new URLSearchParams();
+      if (state.query) params.set("q", state.query);
+      if (state.tags.size > 0) params.set("tag", Array.from(state.tags).join(","));
+      if (state.category) params.set("category", state.category);
+      const qs = params.toString();
+      const url = qs ? `?${qs}` : window.location.pathname;
+      window.history.replaceState(null, "", url + window.location.hash);
+    };
+
+    input.addEventListener("input", (e) => {
+      state.query = (e.target as HTMLInputElement).value;
+      apply();
+    });
+
+    for (const btn of tagButtons) {
+      btn.addEventListener("click", () => {
+        const t = btn.dataset.tag ?? "";
+        if (!t) return;
+        if (state.tags.has(t)) state.tags.delete(t);
+        else state.tags.add(t);
+        apply();
+      });
+    }
+
+    for (const link of categoryLinks) {
+      link.addEventListener("click", (e) => {
+        // Shift-click or ctrl-click toggles the filter instead of jumping to the anchor.
+        if (!e.shiftKey) return;
+        e.preventDefault();
+        const c = link.dataset.category ?? "";
+        state.category = state.category === c ? "" : c;
+        apply();
+      });
+    }
+
+    clearBtn?.addEventListener("click", () => {
+      state.query = "";
+      state.tags.clear();
+      state.category = "";
+      input.value = "";
+      apply();
+    });
+
+    // Keyboard shortcut: "/" focuses the search field (unless user is already typing).
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "/") return;
+      const active = document.activeElement;
+      const typing =
+        active instanceof HTMLElement &&
+        (active.tagName === "INPUT" ||
+          active.tagName === "TEXTAREA" ||
+          active.isContentEditable);
+      if (typing) return;
+      e.preventDefault();
+      input.focus();
+      input.select();
+    });
+
+    // Initialise from URL params (supports deep-links like /en/articles/?tag=Churches).
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get("q");
+    const tagParam = params.get("tag");
+    const catParam = params.get("category");
+    if (q) {
+      state.query = q;
+      input.value = q;
+    }
+    if (tagParam) {
+      for (const t of tagParam.split(",").map((x) => x.trim()).filter(Boolean)) {
+        state.tags.add(t);
+      }
+    }
+    if (catParam) state.category = catParam;
+
+    apply();
+  }
+</script>

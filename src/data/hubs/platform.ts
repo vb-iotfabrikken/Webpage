@@ -1,3 +1,6 @@
+import type { Lang } from "../lang";
+import { defaultLang } from "../lang";
+import { platformHubI18n } from "./platformHub.i18n";
 import type { Hub } from "./types";
 
 export const platformHub: Hub = {
@@ -79,3 +82,29 @@ export const platformHub: Hub = {
     },
   ],
 };
+
+/** Localized platform hub with English fallback. */
+export function getPlatformHub(lang: Lang = defaultLang): Hub {
+  if (lang === defaultLang) return platformHub;
+
+  const overlay = platformHubI18n[lang];
+
+  const leaves = platformHub.leaves.map((leaf) => {
+    const lo = overlay?.leaves?.[leaf.slug];
+    return {
+      ...leaf,
+      title: lo?.title ?? leaf.title,
+      titleAccent: lo?.titleAccent ?? leaf.titleAccent,
+      lead: lo?.lead ?? leaf.lead,
+    };
+  });
+
+  return {
+    ...platformHub,
+    title: overlay?.title ?? platformHub.title,
+    titleAccent: overlay?.titleAccent ?? platformHub.titleAccent,
+    eyebrow: overlay?.eyebrow ?? platformHub.eyebrow,
+    lead: overlay?.lead ?? platformHub.lead,
+    leaves,
+  };
+}

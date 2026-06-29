@@ -61,20 +61,20 @@ const pageJsonLd = [
     <Button href={langPath("/contact/book-demo/", lang)} variant="primary" size="lg" slot="cta">{t.heroPrimaryCta}</Button>
     <Button href={langPath("/get-an-offer/", lang)} variant="secondary" size="lg" slot="cta">{t.heroSecondaryCta}</Button>
 
-    {isDeFair && (
-      <ArchivisticaFairTeaser slot="visual" compact href={langPath("/events/archivistica/", lang)} />
-    )}
-    {!isDeFair && (
-      <ModuleDashboardFrame
-        slot="visual"
-        class="reveal max-w-5xl"
-        label={t.dashboardLabel}
-        src={indoorClimateDashboardSrc}
-        alt={t.dashboardAlt}
-        width={1903}
-        height={913}
-      />
-    )}
+    <Fragment slot="visual">
+      {isDeFair ? (
+        <ArchivisticaFairTeaser compact href={langPath("/events/archivistica/", lang)} />
+      ) : (
+        <ModuleDashboardFrame
+          class="reveal max-w-5xl"
+          label={t.dashboardLabel}
+          src={indoorClimateDashboardSrc}
+          alt={t.dashboardAlt}
+          width={1903}
+          height={913}
+        />
+      )}
+    </Fragment>
     {!isDeFair && (
       <div slot="belowVisual" class="max-w-5xl space-y-5">
         {t.intro.map((paragraph) => (

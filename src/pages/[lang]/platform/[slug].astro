@@ -1,0 +1,47 @@
+---
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import PlatformPageContent from "../../../components/content/PlatformPageContent.astro";
+import { getPlatformHub } from "../../../data/hubs/platform";
+import { getPlatformContent } from "../../../data/content/platform";
+import { getLegal } from "../../../data/i18n/legal";
+import { getUi } from "../../../data/i18n/ui";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.flatMap((l) =>
+    getPlatformHub(l.code).leaves.map((leaf) => ({
+      params: { lang: l.code, slug: leaf.slug },
+      props: { leaf },
+    })),
+  );
+}
+
+const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+const { leaf } = Astro.props;
+const hub = getPlatformHub(lang);
+const localizedLeaf = hub.leaves.find((l) => l.slug === slug) ?? leaf;
+const content = getPlatformContent(slug, lang);
+const t = getLegal(lang).common;
+const platformLabel = getUi(lang).footer.links.platform;
+const heroTitle = content?.heroTitle ?? localizedLeaf.title;
+const heroTitleAccent = content?.heroTitleAccent ?? localizedLeaf.titleAccent;
+const heroLead = content?.heroLead ?? localizedLeaf.lead;
+---
+
+<PlaceholderPage
+  title={`${heroTitle.replace(/\.$/, "")} | IoT Fabrikken`}
+  description={heroLead}
+  heroTitle={heroTitle}
+  heroTitleAccent={heroTitleAccent}
+  heroLead={heroLead}
+  breadcrumbs={[
+    { label: t.home, href: langPath("", lang) },
+    { label: platformLabel, href: langPath("platform", lang) },
+    { label: heroTitle.replace(/\.$/, "") },
+  ]}
+  primaryCta={leaf.primaryCta}
+  secondaryCta={leaf.secondaryCta}
+  hideNotice={!!content}
+>
+  {content && <PlatformPageContent content={content} />}
+</PlaceholderPage>

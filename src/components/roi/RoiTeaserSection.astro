@@ -1,5 +1,6 @@
 ---
 import Button from "../Button.astro";
+import { astroLang, langPath } from "../../data/lang";
 import { DEFAULTS, DESK_LIMITS, ENERGY_LIMITS } from "../../lib/roi/constants";
 import { formatMoney } from "../../lib/roi/format";
 import {
@@ -13,6 +14,9 @@ interface Props {
 }
 
 const { embedded = false } = Astro.props;
+
+const lang = astroLang(Astro);
+const calculatorBase = langPath("roi/calculator", lang);
 
 const deskDefaults = calculateDesk({
   currentDesks: DESK_LIMITS.defaultDesks,
@@ -35,7 +39,7 @@ const calculators = [
     id: "desk" as const,
     name: "Desk Optimizer",
     description: "Right-size hybrid offices from desk count, attendance and cost per desk.",
-    href: "/en/roi/calculator/#desk",
+    href: `${calculatorBase}#desk`,
     sliderLabel: "Peak attendance on your busiest day",
     sliderHint: "Slide down to reflect hybrid work — watch your savings grow.",
     min: DESK_LIMITS.minAttendance,
@@ -58,7 +62,7 @@ const calculators = [
     id: "energy" as const,
     name: "Energy Saver",
     description: "Estimate heating savings from indoor climate setbacks and building data.",
-    href: "/en/roi/calculator/#energy",
+    href: `${calculatorBase}#energy`,
     sliderLabel: "Average office temperature",
     sliderHint: "Each degree toward 20°C can save ~5% on heating (ENS.dk guideline).",
     min: ENERGY_LIMITS.minTemp,

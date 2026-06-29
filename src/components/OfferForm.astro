@@ -1,5 +1,6 @@
 ---
 import Button from "./Button.astro";
+import FormFieldLabel from "./FormFieldLabel.astro";
 import { defaultLang, type Lang } from "../data/lang";
 import { getGetOffer } from "../data/i18n/getOffer";
 import { getSensorsHub } from "../data/hubs/sensors";
@@ -66,32 +67,35 @@ const sensorOptions = getSensorsHub(lang)
               data-offer-honeypot
             />
           </div>
+          <p class="text-xs text-stone-300">
+            <span class="text-coral-500" aria-hidden="true">*</span> {f.requiredLegend}
+          </p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <label class="block">
-              <span class="text-sm font-medium text-navy-500">{f.firstName}</span>
+              <FormFieldLabel label={f.firstName} required />
               <input type="text" name="firstName" required autocomplete="given-name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
             </label>
             <label class="block">
-              <span class="text-sm font-medium text-navy-500">{f.lastName}</span>
+              <FormFieldLabel label={f.lastName} required />
               <input type="text" name="lastName" required autocomplete="family-name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
             </label>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <label class="block">
-              <span class="text-sm font-medium text-navy-500">{f.phone}</span>
+              <FormFieldLabel label={f.phone} optional optionalSuffix={f.optional} />
               <input type="tel" name="phone" autocomplete="tel" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
             </label>
             <label class="block">
-              <span class="text-sm font-medium text-navy-500">{f.email}</span>
+              <FormFieldLabel label={f.email} required />
               <input type="email" name="email" required autocomplete="work email" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
             </label>
           </div>
           <label class="block">
-            <span class="text-sm font-medium text-navy-500">{f.company}</span>
+            <FormFieldLabel label={f.company} required />
             <input type="text" name="company" required autocomplete="organization" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
           </label>
           <label class="block">
-            <span class="text-sm font-medium text-navy-500">{f.wishes}</span>
+            <FormFieldLabel label={f.wishes} optional optionalSuffix={f.optional} />
             <textarea name="wishes" rows="3" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500 resize-none"></textarea>
           </label>
 
@@ -151,7 +155,7 @@ const sensorOptions = getSensorsHub(lang)
           </fieldset>
 
           <label class="block">
-            <span class="text-sm font-medium text-navy-500">{f.comment}</span>
+            <FormFieldLabel label={f.comment} optional optionalSuffix={f.optional} />
             <textarea name="comment" rows="3" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500 resize-none"></textarea>
           </label>
           <label class="flex items-start gap-2.5 pt-1">
@@ -162,7 +166,10 @@ const sensorOptions = getSensorsHub(lang)
               class="mt-0.5 h-4 w-4 shrink-0 rounded border-stone-300 text-coral-500 focus:ring-coral-500"
               data-offer-consent
             />
-            <span class="text-xs text-stone-300 leading-relaxed">{f.consent}</span>
+            <span class="text-xs text-stone-300 leading-relaxed">
+              <span class="text-coral-500" aria-hidden="true">* </span>
+              {f.consent}
+            </span>
           </label>
           <p class="text-xs text-coral-600 hidden" role="alert" data-offer-error>
             {f.emailError}

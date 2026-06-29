@@ -1,14 +1,16 @@
 ---
 import Button from "./Button.astro";
+import FormFieldLabel from "./FormFieldLabel.astro";
 import { defaultLang, type Lang } from "../data/lang";
 import { getContact } from "../data/i18n/contact";
+import type { ZohoLeadSource } from "../data/zoho";
 
 interface Props {
   title?: string;
   subtitle?: string;
   lang?: Lang;
   /** Zoho lead-source label for this form instance. */
-  source?: string;
+  source?: ZohoLeadSource;
 }
 
 const { title, subtitle, lang = defaultLang, source } = Astro.props;
@@ -43,13 +45,14 @@ const validationMessages = JSON.stringify(c.validation);
         </ul>
       </div>
 
+      <div class="reveal">
       <form
-        class="reveal relative bg-stone-50 border border-stone-100 rounded-xl p-6 md:p-8 space-y-4"
+        class="relative bg-stone-50 border border-stone-100 rounded-xl p-6 md:p-8 space-y-4"
         action="#"
         method="post"
         data-contact-form
         data-contact-messages={validationMessages}
-        {...source ? { "data-contact-source": source } : {}}
+        data-contact-source={source ?? "Website - Contact"}
         novalidate
       >
         <div class="form-honeypot" aria-hidden="true">
@@ -63,28 +66,35 @@ const validationMessages = JSON.stringify(c.validation);
             data-contact-honeypot
           />
         </div>
+        <p class="text-xs text-stone-300">
+          <span class="text-coral-500" aria-hidden="true">*</span> {f.requiredLegend}
+        </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <label class="block">
-            <span class="text-sm font-medium text-navy-500">{f.name}</span>
-            <input type="text" name="name" required autocomplete="name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+            <FormFieldLabel label={f.firstName} required />
+            <input type="text" name="firstName" required autocomplete="given-name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
           </label>
           <label class="block">
-            <span class="text-sm font-medium text-navy-500">{f.company}</span>
-            <input type="text" name="company" autocomplete="organization" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+            <FormFieldLabel label={f.lastName} required />
+            <input type="text" name="lastName" required autocomplete="family-name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
           </label>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <label class="block">
-            <span class="text-sm font-medium text-navy-500">{f.email}</span>
+            <FormFieldLabel label={f.email} required />
             <input type="email" name="email" required autocomplete="work email" placeholder={f.emailPlaceholder} class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
           </label>
           <label class="block">
-            <span class="text-sm font-medium text-navy-500">{f.phone}</span>
+            <FormFieldLabel label={f.phone} optional optionalSuffix={f.optional} />
             <input type="tel" name="phone" autocomplete="tel" placeholder={f.phonePlaceholder} class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
           </label>
         </div>
         <label class="block">
-          <span class="text-sm font-medium text-navy-500">{f.message}</span>
+          <FormFieldLabel label={f.company} optional optionalSuffix={f.optional} />
+          <input type="text" name="company" autocomplete="organization" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+        </label>
+        <label class="block">
+          <FormFieldLabel label={f.message} optional optionalSuffix={f.optional} />
           <textarea name="message" rows="4" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500 resize-none"></textarea>
         </label>
         <p class="text-xs text-coral-600 hidden" role="alert" data-contact-error>
@@ -97,6 +107,25 @@ const validationMessages = JSON.stringify(c.validation);
           <Button type="submit" variant="primary" size="md">{f.submit}</Button>
         </div>
       </form>
+      <div
+        class="hidden bg-stone-50 border border-stone-100 rounded-xl p-6 md:p-8"
+        role="status"
+        aria-live="polite"
+        data-contact-success
+      >
+        <div class="flex items-start gap-3">
+          <span class="mt-0.5 w-6 h-6 inline-flex items-center justify-center rounded-md bg-forest-500 text-white shrink-0">
+            <svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+              <path d="M2.5 6L5 8.5L9.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div>
+            <p class="text-lg font-semibold text-navy-500">{f.successTitle}</p>
+            <p class="mt-1 text-stone-900/70">{f.successBody}</p>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
   </div>
 </section>

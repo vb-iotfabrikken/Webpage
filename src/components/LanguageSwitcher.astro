@@ -2,7 +2,7 @@
 import {
   pagePathname,
   resolveLang,
-  switchLocalePath,
+  localeSwitchTarget,
   type Lang,
 } from "../data/lang";
 
@@ -33,7 +33,7 @@ function getCurrentLocale(): DropdownLocale {
 
 function switchLocaleHref(pathname: string, target: DropdownLocale): string {
   if (liveLocales.has(target as Lang)) {
-    return switchLocalePath(pathname, target as Lang);
+    return localeSwitchTarget(pathname, target as Lang);
   }
 
   const prefixMatch = pathname.match(/^\/(en|da|de|sv)(\/.*)?$/);

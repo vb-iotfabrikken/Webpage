@@ -1,0 +1,31 @@
+---
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import { whitepapersHub } from "../../../data/site";
+import { locales, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.flatMap((l) =>
+    whitepapersHub.leaves.map((leaf) => ({
+      params: { lang: l.code, slug: leaf.slug },
+      props: { leaf },
+    })),
+  );
+}
+
+const { leaf } = Astro.props;
+---
+
+<PlaceholderPage
+  title={`${leaf.title.replace(/\.$/, "")} | IoT Fabrikken`}
+  description={leaf.lead}
+  heroTitle={leaf.title}
+  heroTitleAccent={leaf.titleAccent}
+  heroLead={leaf.lead}
+  breadcrumbs={[
+    { label: "Home", href: "/en/" },
+    { label: "White papers", href: "/en/whitepapers/" },
+    { label: leaf.title.replace(/\.$/, "") },
+  ]}
+  primaryCta={leaf.primaryCta}
+  secondaryCta={leaf.secondaryCta}
+/>

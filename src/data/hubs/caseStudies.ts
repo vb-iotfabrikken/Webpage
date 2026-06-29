@@ -428,12 +428,39 @@ export function getCaseStudiesHub(lang: Lang = "en"): Hub {
   };
 }
 
-/** Resolve a single case-study card by slug for industry cross-links. */
+/**
+ * Canonical (English) case slug → locale-specific slug, for locales whose case
+ * catalogue uses different slugs than the English source of truth. Only Danish
+ * diverges today (e.g. `-municipality` → `-kommune`). Industry pages reference
+ * the canonical English slugs; this keeps cross-links valid per locale.
+ */
+const caseStudySlugAliases: Partial<Record<Lang, Record<string, string>>> = {
+  da: {
+    "norddjurs-municipality": "norddjurs-kommune",
+    "varde-municipality": "varde-kommune",
+    "gribskov-municipality": "gribskov-kommune",
+    "gribskov-kommune": "gribskov-kommune-indoor-climate",
+  },
+};
+
+/**
+ * Resolve a single case-study card by slug for industry cross-links.
+ *
+ * Industry pages store canonical English slugs. We resolve them against the
+ * requested locale (via an alias when the localized slug differs) and fall back
+ * to the English catalogue so the card always renders, even before a locale's
+ * own catalogue is filled in.
+ */
 export function resolveCaseStudyLeaf(
   slug: string,
   lang: Lang = defaultLang,
 ): CaseStudyLeaf | undefined {
-  return getCaseStudiesContent(lang).cases.find((entry) => entry.slug === slug);
+  const cases = getCaseStudiesContent(lang).cases;
+  const localizedSlug = caseStudySlugAliases[lang]?.[slug] ?? slug;
+  return (
+    cases.find((entry) => entry.slug === localizedSlug) ??
+    getCaseStudiesContent(defaultLang).cases.find((entry) => entry.slug === slug)
+  );
 }
 
 /** @deprecated Use `getCaseStudiesHub("en")` — kept for existing hub imports. */
