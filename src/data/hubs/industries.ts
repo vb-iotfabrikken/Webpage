@@ -1,4 +1,6 @@
 import type { Hub } from "./types";
+import { defaultLang, type Lang } from "../lang";
+import { industriesHubI18n } from "./industryHub.i18n";
 
 export const industriesHub: Hub = {
   slug: "industries",
@@ -114,3 +116,29 @@ export const industriesHub: Hub = {
     },
   ],
 };
+
+/** Localized industries hub with English fallback. */
+export function getIndustriesHub(lang: Lang = defaultLang): Hub {
+  if (lang === defaultLang) return industriesHub;
+
+  const overlay = industriesHubI18n[lang];
+
+  const leaves = industriesHub.leaves.map((leaf) => {
+    const lo = overlay?.leaves?.[leaf.slug];
+    return {
+      ...leaf,
+      title: lo?.title ?? leaf.title,
+      titleAccent: lo?.titleAccent ?? leaf.titleAccent,
+      lead: lo?.lead ?? leaf.lead,
+    };
+  });
+
+  return {
+    ...industriesHub,
+    title: overlay?.title ?? industriesHub.title,
+    titleAccent: overlay?.titleAccent ?? industriesHub.titleAccent,
+    eyebrow: overlay?.eyebrow ?? industriesHub.eyebrow,
+    lead: overlay?.lead ?? industriesHub.lead,
+    leaves,
+  };
+}
