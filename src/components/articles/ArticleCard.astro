@@ -1,0 +1,50 @@
+---
+import { landingCategories, categoryColorClasses } from "../../data/landingCategories";
+import { articlePath, astroLang, type Lang } from "../../data/lang";
+import ArticleImage from "./ArticleImage.astro";
+import type { ArticleCard } from "../../data/articles/query";
+
+interface Props {
+  card: ArticleCard;
+  lang?: Lang;
+  /** Tighter card for horizontal industry spotlight rows. */
+  compact?: boolean;
+}
+
+const { card, lang: langProp, compact = false } = Astro.props;
+const lang = langProp ?? astroLang(Astro);
+const cat = landingCategories[card.category];
+const cc = categoryColorClasses(cat.color);
+---
+
+<a
+  href={articlePath(card.id, lang)}
+  class={`reveal flex flex-col bg-white border rounded-xl overflow-hidden hover:border-navy-500 transition-colors group ${card.isFull ? "border-stone-100" : "border-dashed border-stone-200"}`}
+>
+  <ArticleImage
+    src={card.image}
+    alt={card.imageAlt ?? card.title}
+    category={card.category}
+    rounded="rounded-none"
+    class="border-b border-stone-100"
+  />
+  <div class={compact ? "p-4" : "p-5"}>
+    <div class="flex items-start justify-between gap-3">
+      <span class={`inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-[11px] font-semibold uppercase tracking-wider ${cc.chip}`}>
+        <span class={`w-1.5 h-1.5 rounded-full ${cc.dot}`}></span>
+        {cat.name}
+      </span>
+      {!card.isFull && (
+        <span class="shrink-0 inline-block px-1.5 py-0.5 rounded bg-stone-50 text-[10px] font-semibold uppercase tracking-wider text-stone-300 border border-stone-100">
+          planned
+        </span>
+      )}
+    </div>
+    <h3 class={`mt-3 font-semibold text-navy-500 group-hover:text-coral-500 transition-colors leading-snug ${compact ? "text-sm" : "text-base"}`}>
+      {card.title}
+    </h3>
+    <p class={`mt-2 text-sm text-stone-900/70 leading-relaxed ${compact ? "line-clamp-2" : "line-clamp-3"}`}>
+      {card.description}
+    </p>
+  </div>
+</a>

@@ -1,0 +1,84 @@
+---
+import type { ArticlePageData } from "../../data/articles/articlePage";
+import { articlesIndexPath, langPath } from "../../data/lang";
+
+interface Props {
+  article: ArticlePageData;
+  lang?: "en" | "da" | "de" | "sv";
+}
+
+const { article, lang = "en" } = Astro.props;
+const contactHref = langPath("contact", lang);
+const articlesHref = articlesIndexPath(lang);
+---
+
+{article.isPlanned && (
+  <div class="mb-8 rounded-xl border border-dashed border-stone-200 bg-stone-50 px-5 py-4">
+    <p class="text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1">
+      Planned article
+    </p>
+    <p class="text-sm text-stone-900/70 leading-relaxed">
+      This topic is part of the IoT Fabrikken knowledge base. The outline below
+      introduces the subject — the full guide with examples, data and a
+      practical checklist is being written.
+    </p>
+  </div>
+)}
+
+<p>{article.heroLead}</p>
+
+<h2>Why this matters</h2>
+<p>
+  {article.description} RoomAlyzer gives facilities teams, caretakers and
+  management the objective data they need to act — not guess — when conditions
+  move outside acceptable limits.
+</p>
+
+<h2>What RoomAlyzer delivers</h2>
+<p>
+  {article.isPlanned ? (
+    <>
+      <strong>Full guide in progress.</strong> This section will cover how
+      RoomAlyzer sensors, the platform and reporting fit this use case — with
+      real deployment examples and recommended thresholds.{" "}
+      <a href={contactHref}>Contact us</a> if you need guidance on this topic now.
+    </>
+  ) : (
+    <>
+      Wireless sensors report continuously over NB-IoT or LoRaWAN — no WiFi or
+      cabling required in most buildings. The RoomAlyzer platform turns
+      readings into live dashboards, scheduled reports and configurable alarms
+      so the right people are notified at the right time.
+    </>
+  )}
+</p>
+
+<h2>Typical setup</h2>
+<p>
+  {article.isPlanned ? (
+    <>
+      <strong>Checklist coming soon.</strong> The finished article will include
+      a step-by-step rollout plan — sensor count, placement, thresholds and
+      stakeholder access. In the meantime,{" "}
+      <a href={langPath("contact/book-demo", lang)}>book a demo</a> and we will
+      walk through a setup tailored to your buildings.
+    </>
+  ) : (
+    <>
+      Most deployments start with one sensor per room or risk point, a single
+      gateway per building, and platform access for the people who need to act
+      on the data. We handle installation and help you tune thresholds so you
+      do not drown in alarms.
+    </>
+  )}
+</p>
+
+<div class="mt-10 flex flex-wrap gap-3 text-sm border-t border-stone-100 pt-8">
+  <a href={contactHref} class="text-navy-500 underline underline-offset-4 hover:text-coral-500">
+    Want to co-author this article?
+  </a>
+  <span class="text-stone-300" aria-hidden="true">·</span>
+  <a href={articlesHref} class="text-navy-500 underline underline-offset-4 hover:text-coral-500">
+    Browse all articles
+  </a>
+</div>
