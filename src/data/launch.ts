@@ -36,7 +36,7 @@ import { locales } from "./lang";
  * everything else is hidden. Flip to `false` to treat the whole site as live
  * (e.g. for the full public launch).
  */
-export const LAUNCH_LIVE_ONLY = false;
+export const LAUNCH_LIVE_ONLY = true;
 
 /**
  * Whole sections that are live. A path matches when it equals the prefix or
