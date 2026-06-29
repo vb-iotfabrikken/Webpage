@@ -8,7 +8,8 @@
  *
  * Approved live set (per the deployment brief):
  *   • Homepage
- *   • Products      → Modules, Sensors (incl. compare + product sheets)
+ *   • Products      → Modules (hub + indoor climate, space management, water
+ *                     detection, preservation), Sensors (incl. compare + product sheets)
  *   • Resources     → Cases (case studies)
  *   • Company       → About (incl. Story, Team, Press, Trust center), Careers, Partners
  *   • Contact       → Book a demo, Sales, Become a partner, Support info
@@ -45,8 +46,15 @@ export const LAUNCH_LIVE_ONLY = true;
  * Whole sections that are live. A path matches when it equals the prefix or
  * starts with `${prefix}/`. Values are locale-stripped (no leading slash).
  */
+/** Module product pages live during soft launch (hub index stays live for all). */
+export const LIVE_MODULE_SLUGS: readonly string[] = [
+  "indoor-climate",
+  "space-management",
+  "water-detection",
+  "preservation",
+];
+
 export const LIVE_PREFIXES: readonly string[] = [
-  "modules",
   "sensors",
   "case-studies",
   "about",
@@ -106,6 +114,12 @@ export function isLivePath(pathname: string): boolean {
 
   if (ALWAYS_ALLOWED.includes(path)) return true;
   if (LIVE_EXACT.includes(path)) return true;
+
+  if (path === "modules") return true;
+  if (path.startsWith("modules/")) {
+    const slug = path.slice("modules/".length).split("/")[0];
+    return LIVE_MODULE_SLUGS.includes(slug);
+  }
 
   return LIVE_PREFIXES.some(
     (prefix) => path === prefix || path.startsWith(`${prefix}/`),

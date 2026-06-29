@@ -22,7 +22,7 @@ const currentLang = resolveLang({
 });
 const loginUrl = getRoomAlyzerLoginUrl(currentLang);
 const nav = getUi(currentLang).nav;
-const modules = getModules(currentLang);
+const modules = getModules(currentLang).filter((m) => isLivePath(m.href));
 const lp = (path: string) => langPath(path, currentLang);
 const routeKey = stripLocaleRoute(pathname);
 const isActive = (segment: string) => {

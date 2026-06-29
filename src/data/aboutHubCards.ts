@@ -54,8 +54,8 @@ export const aboutHubCardImages: Record<string, AboutHubCardImage> = {
       { width: 1024, url: "/images/about/press-1024.webp" },
     ],
   },
-  "d-label": {
+  "trust-center": {
     placeholder: true,
-    imageAlt: "D-Label certification — image placeholder",
+    imageAlt: "Trust center — security, privacy and compliance",
   },
 };

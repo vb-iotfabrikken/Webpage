@@ -3,13 +3,14 @@ import ModuleCard from "./ModuleCard.astro";
 import { getModules } from "../data/modules";
 import { getUi } from "../data/i18n/ui";
 import { defaultLang, type Lang } from "../data/lang";
+import { isLivePath } from "../data/launch";
 
 interface Props {
   lang?: Lang;
 }
 
 const { lang = defaultLang } = Astro.props;
-const modules = getModules(lang);
+const modules = getModules(lang).filter((m) => isLivePath(m.href));
 const t = getUi(lang).modules;
 ---
 
