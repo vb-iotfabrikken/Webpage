@@ -90,29 +90,4 @@ const landingpages = defineCollection({
   }),
 });
 
-const blog = defineCollection({
-  loader: glob({
-    pattern: "**/*.{md,mdx}",
-    base: "./src/content/blog",
-  }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    pubDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
-    author: z.string().default("IoT Fabrikken"),
-    heroImage: z.string().optional(),
-    heroImageAlt: z.string().optional(),
-    tags: z.array(z.string()).optional(),
-
-    // SEO overrides — fall back to title/description when omitted.
-    seoTitle: z.string().optional(),
-    metaDescription: z.string().optional(),
-    ogImage: z.string().optional(),
-
-    draft: z.boolean().optional().default(false),
-    noindex: z.boolean().optional().default(false),
-  }),
-});
-
-export const collections = { landingpages, blog };
+export const collections = { landingpages };

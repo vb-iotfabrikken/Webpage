@@ -10,7 +10,7 @@ import ArticleImage from "../components/articles/ArticleImage.astro";
 import type { ArticleCard as ArticleCardModel } from "../data/articles/query";
 import type { ArticlePageData } from "../data/articles/articlePage";
 import { landingCategories, categoryColorClasses } from "../data/landingCategories";
-import { industriesHub } from "../data/site";
+import { getIndustriesHub } from "../data/hubs/industries";
 import { breadcrumbSchema, faqSchema, webPageSchema } from "../lib/seo/schema";
 import {
   articlePath,
@@ -55,18 +55,20 @@ const pagePath = articlePath(article.slug, lang);
 // (Home → Industries → Sector → Article); otherwise the topic-first trail
 // (Home → Articles → Category → Article).
 const hubLabelBySlug = new Map(
-  industriesHub.leaves.map((l) => [l.slug, l.title.replace(/\.$/, "")]),
+  getIndustriesHub(lang).leaves.map((l) => [l.slug, l.title.replace(/\.$/, "")]),
 );
 const industrySlugs = (d.tags ?? [])
   .filter((t) => t.toLowerCase().startsWith("industry:"))
   .map((t) => t.slice("industry:".length).toLowerCase())
   .filter((slug) => hubLabelBySlug.has(slug));
 const primaryIndustrySlug = industrySlugs.length === 1 ? industrySlugs[0] : null;
+const tIndustries = ui.industries.breadcrumb;
+const articlesLabel = ui.nav.resources.libraryLabel;
 
 const breadcrumbTrail = primaryIndustrySlug
   ? [
-      { name: "Home", href: langPath("", lang) },
-      { name: "Industries", href: langPath("industries", lang) },
+      { name: tIndustries.home, href: langPath("", lang) },
+      { name: tIndustries.industries, href: langPath("industries", lang) },
       {
         name: hubLabelBySlug.get(primaryIndustrySlug) as string,
         href: langPath(`industries/${primaryIndustrySlug}`, lang),
@@ -74,8 +76,8 @@ const breadcrumbTrail = primaryIndustrySlug
       { name: d.title, href: pagePath },
     ]
   : [
-      { name: "Home", href: langPath("", lang) },
-      { name: "Articles", href: articlesIndexPath(lang) },
+      { name: tIndustries.home, href: langPath("", lang) },
+      { name: articlesLabel, href: articlesIndexPath(lang) },
       {
         name: category.name,
         href: `${articlesIndexPath(lang)}?category=${category.slug}`,
@@ -98,7 +100,7 @@ const landingJsonLd = [
   jsonLd={landingJsonLd}
 >
 
-  <section data-page-hero class="relative overflow-hidden bg-stone-50 border-b border-stone-100">
+  <section data-page-hero data-compact-top class="relative overflow-hidden bg-stone-50 border-b border-stone-100">
     <div class="absolute inset-0 pointer-events-none opacity-[0.05]" aria-hidden="true">
       <div
         class="w-full h-full"
@@ -106,8 +108,8 @@ const landingJsonLd = [
       ></div>
     </div>
 
-    <div class="relative container-page pt-6 md:pt-8 pb-10 md:pb-14">
-      <nav aria-label="Breadcrumb" class="text-sm text-stone-300 mb-4 flex flex-wrap items-center gap-1.5">
+    <div class="relative container-page pt-6 md:pt-8 pb-6 md:pb-8 xl:pb-10">
+      <nav aria-label="Breadcrumb" class="text-sm text-stone-300 mb-3 md:mb-4 flex flex-wrap items-center gap-1.5">
         {breadcrumbTrail.map((crumb, i) =>
           i === breadcrumbTrail.length - 1 ? (
             <span class="text-navy-500" aria-current="page">{crumb.name}</span>
@@ -127,14 +129,14 @@ const landingJsonLd = [
               {d.eyebrow}
             </p>
           )}
-          <h1 class="reveal text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight text-navy-500">
+          <h1 class="reveal text-4xl md:text-5xl xl:text-6xl font-bold leading-[1.05] tracking-tight text-navy-500">
             {d.heroTitle}
             {d.heroTitleAccent && <span class={cat.accent}> {d.heroTitleAccent}</span>}
           </h1>
-          <p class="reveal mt-6 text-lg md:text-xl text-stone-900/70 leading-relaxed">
+          <p class="reveal hero-lead mt-4 md:mt-5 xl:mt-6 text-base md:text-lg xl:text-xl text-stone-900/70 leading-relaxed">
             {d.heroLead}
           </p>
-          <div class="reveal mt-8 flex flex-wrap gap-3">
+          <div class="reveal hero-cta mt-6 md:mt-7 xl:mt-8 flex flex-wrap gap-3">
             <Button href={primaryCta.href} variant="primary" size="lg">{primaryCta.label}</Button>
             <Button href={secondaryCta.href} variant="secondary" size="lg">{secondaryCta.label}</Button>
           </div>

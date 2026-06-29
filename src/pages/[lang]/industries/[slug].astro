@@ -4,6 +4,7 @@ import PlaceholderPage from "../../../components/PlaceholderPage.astro";
 import IndustryPageContent from "../../../components/content/IndustryPageContent.astro";
 import IndustryArticlesSection from "../../../components/industries/IndustryArticlesSection.astro";
 import IndustryCasesSection from "../../../components/industries/IndustryCasesSection.astro";
+import IndustrySensorsCard from "../../../components/industries/IndustrySensorsCard.astro";
 import { getIndustriesHub } from "../../../data/hubs/industries";
 import { getIndustryContent } from "../../../data/content/industries";
 import { getUi } from "../../../data/i18n/ui";
@@ -37,7 +38,7 @@ const featuredArticles = featuredForIndustry(
   articleCards,
   slug,
   content?.featuredArticleSlugs ?? [],
-  4,
+  3,
 );
 const totalArticles = cardsForIndustry(articleCards, slug).length;
 
@@ -62,13 +63,16 @@ const industriesHref = langPath("industries", lang);
   ctaBandTitle={t.detail.ctaBandTitle}
   ctaBandSubtitle={t.detail.ctaBandSubtitle}
 >
-  {content && <IndustryPageContent content={content} />}
-  {content?.featuredCaseStudySlugs && content.featuredCaseStudySlugs.length > 0 && (
-    <IndustryCasesSection
-      slot="wide"
-      slugs={content.featuredCaseStudySlugs}
-      lang={lang}
-    />
+  {content && <IndustryPageContent content={content} lang={lang} hideSensors />}
+  {content && (
+    <Fragment slot="aside">
+      {content.featuredCaseStudySlugs && content.featuredCaseStudySlugs.length > 0 && (
+        <IndustryCasesSection slugs={content.featuredCaseStudySlugs} lang={lang} />
+      )}
+      {content.sensorRecommendations.length > 0 && (
+        <IndustrySensorsCard recommendations={content.sensorRecommendations} lang={lang} />
+      )}
+    </Fragment>
   )}
   {featuredArticles.length > 0 && (
     <IndustryArticlesSection

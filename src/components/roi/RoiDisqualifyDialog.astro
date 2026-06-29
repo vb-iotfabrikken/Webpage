@@ -5,6 +5,10 @@
  * sales can propose a smaller bespoke solution. Logic lives in
  * `roi-calculator.ts`; this file is markup + scoped styles only.
  */
+import { astroLang, langPath } from "../../data/lang";
+
+const lang = astroLang(Astro);
+const privacyHref = langPath("legal/privacy", lang);
 ---
 
 <dialog class="roi-disqualify-dialog" data-roi-disqualify-dialog>
@@ -111,7 +115,7 @@
       </button>
       <p class="mt-2 text-xs text-stone-300 leading-relaxed">
         By submitting you accept our
-        <a href="/en/legal/privacy/" class="underline hover:text-coral-500">privacy policy</a>.
+        <a href={privacyHref} class="underline hover:text-coral-500">privacy policy</a>.
       </p>
     </div>
 

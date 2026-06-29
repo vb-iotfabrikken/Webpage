@@ -6,6 +6,7 @@ import EmailUnlockPanel from "./EmailUnlockPanel.astro";
 import RoiDisqualifyDialog from "./RoiDisqualifyDialog.astro";
 import RoiDeskHeatmap from "./RoiDeskHeatmap.astro";
 import Button from "../Button.astro";
+import { astroLang, langPath } from "../../data/lang";
 
 interface Props {
   id?: string;
@@ -29,12 +30,17 @@ const {
   afterPageHero = false,
   showEmailGate = true,
   salesCtaLabel = "Discuss your ROI with Sales",
-  salesCtaHref = "/en/contact/sales/",
+  salesCtaHref: salesCtaHrefProp,
   eyebrow = "ROI calculator",
   title = "See what you could",
   titleAccent = "save.",
   subtitle = "Desk Optimizer and Energy Saver — a full ROI picture with break-even and 3-year cash flow.",
 } = Astro.props;
+
+const lang = astroLang(Astro);
+const salesCtaHref = salesCtaHrefProp ?? langPath("contact/sales", lang);
+const spaceManagementHref = langPath("modules/space-management", lang);
+const indoorClimateHref = langPath("modules/indoor-climate", lang);
 ---
 
 <section
@@ -94,12 +100,12 @@ const {
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
         <div class="min-w-0">
           <p class="text-xs text-stone-300 mb-4" data-roi-module-link-desk>
-            <a href="/en/modules/space-management/" class="text-sky-600 hover:text-coral-500 font-medium">
+            <a href={spaceManagementHref} class="text-sky-600 hover:text-coral-500 font-medium">
               Space management →
             </a>
           </p>
           <p class="text-xs text-stone-300 mb-4 hidden" data-roi-module-link-energy>
-            <a href="/en/modules/indoor-climate/" class="text-sky-600 hover:text-coral-500 font-medium">
+            <a href={indoorClimateHref} class="text-sky-600 hover:text-coral-500 font-medium">
               Indoor climate →
             </a>
           </p>

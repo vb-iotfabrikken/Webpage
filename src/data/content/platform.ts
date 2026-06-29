@@ -1,3 +1,6 @@
+import type { Lang } from "../lang";
+import { defaultLang } from "../lang";
+import { platformContentI18n } from "./platform.i18n";
 import type { PlatformPageContent } from "./types";
 
 export const platformPageContent: PlatformPageContent[] = [
@@ -258,8 +261,46 @@ export const platformPageContent: PlatformPageContent[] = [
  },
  ],
  },
+ {
+ slug: "architecture",
+ heroTitle: "Architecture.",
+ heroTitleAccent: "Scalable, secure, European.",
+ heroLead:
+ "A multi-tenant SaaS built on EU infrastructure with a clear separation between ingestion, storage and presentation.",
+ sections: [],
+ },
+ {
+ slug: "maps-floorplans",
+ heroTitle: "Maps and floor plans.",
+ heroTitleAccent: "See your building at a glance.",
+ heroLead:
+ "Upload floor plans and place sensors on them. Live values and alarms colour the rooms as they change.",
+ sections: [],
+ },
+ {
+ slug: "mobile-tv",
+ heroTitle: "Mobile and TV views.",
+ heroTitleAccent: "The right data, on the right screen.",
+ heroLead:
+ "A responsive mobile app for the facility team and fullscreen TV dashboards for lobbies and control rooms.",
+ sections: [],
+ },
+ {
+ slug: "ai-analytics",
+ heroTitle: "AI and analytics.",
+ heroTitleAccent: "Patterns you would otherwise miss.",
+ heroLead:
+ "Anomaly detection, predictive alarms and natural-language queries across your full sensor history.",
+ sections: [],
+ },
 ];
 
-export function getPlatformContent(slug: string): PlatformPageContent | undefined {
- return platformPageContent.find((entry) => entry.slug === slug);
+export function getPlatformContent(
+ slug: string,
+ lang: Lang = defaultLang,
+): PlatformPageContent | undefined {
+ const base = platformPageContent.find((entry) => entry.slug === slug);
+ if (!base) return undefined;
+ const overlay = platformContentI18n[lang]?.[slug];
+ return overlay ? { ...base, ...overlay } : base;
 }

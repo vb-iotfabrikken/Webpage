@@ -4,6 +4,7 @@ import Hero from "./Hero.astro";
 import Button from "./Button.astro";
 import CtaBand from "./CtaBand.astro";
 import type { Qa } from "../data/faqContent";
+import { astroLang, langPath } from "../data/lang";
 
 interface Breadcrumb {
   label: string;
@@ -31,6 +32,10 @@ const {
   qa,
   relatedLinks = [],
 } = Astro.props;
+
+const lang = astroLang(Astro);
+const bookDemoHref = langPath("contact/book-demo", lang);
+const salesHref = langPath("contact/sales", lang);
 
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -84,8 +89,8 @@ const slugify = (s: string) =>
     align="left"
     compactTop={breadcrumbs.length > 0}
   >
-    <Button href="/en/contact/book-demo/" variant="primary" size="lg" slot="cta">Book a free demo</Button>
-    <Button href="/en/contact/sales/" variant="secondary" size="lg" slot="cta">Ask a question</Button>
+    <Button href={bookDemoHref} variant="primary" size="lg" slot="cta">Book a free demo</Button>
+    <Button href={salesHref} variant="secondary" size="lg" slot="cta">Ask a question</Button>
 
     <div slot="visual" class="reveal">
       <div class="bg-white border border-stone-100 rounded-xl p-6 md:p-8 max-w-md">
@@ -140,8 +145,8 @@ const slugify = (s: string) =>
     title="Didn't find your answer?"
     subtitle="Ask us directly — every question gets turned into future FAQ content."
     primaryLabel="Ask sales"
-    primaryHref="/en/contact/sales/"
+    primaryHref={salesHref}
     secondaryLabel="Book a free demo"
-    secondaryHref="/en/contact/book-demo/"
+    secondaryHref={bookDemoHref}
   />
 </Layout>

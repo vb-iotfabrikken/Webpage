@@ -106,7 +106,9 @@ async function removeEmptyDirs(/** @type {string} */ dir) {
   }
 }
 
-// The article catalogue moved from /en/library/ to /en/articles/. Enumerate an
+const SITE_LOCALES = ['en', 'da', 'de', 'sv'];
+
+// The article catalogue moved from /library/ to /articles/. Enumerate an
 // explicit 301 for every old article URL (catalogue stubs + published MDX) so
 // static hosts emit a real redirect stub for each — Astro does not reliably
 // prerender redirect stubs for spread/dynamic patterns in `output: 'static'`.
@@ -117,8 +119,18 @@ const landingSlugs = readdirSync(landingDir)
 const articleSlugs = Array.from(
   new Set([...articleCatalog.map((a) => a.slug), ...landingSlugs]),
 );
-const libraryRedirects = Object.fromEntries(
-  articleSlugs.map((slug) => [`/en/library/${slug}/`, `/en/articles/${slug}/`]),
+
+/** Legacy /library/ and /blog/ URLs → /articles/ for every locale prefix. */
+const legacyArticlesRedirects = Object.fromEntries(
+  SITE_LOCALES.flatMap((lang) => [
+    [`/${lang}/library/`, `/${lang}/articles/`],
+    [`/${lang}/library/tags/`, `/${lang}/articles/tags/`],
+    ...articleSlugs.map((slug) => [`/${lang}/library/${slug}/`, `/${lang}/articles/${slug}/`]),
+    [`/${lang}/blog/`, `/${lang}/articles/`],
+    [`/${lang}/blog/welcome-to-the-iot-fabrikken-blog/`, `/${lang}/articles/`],
+    [`/${lang}/blog/en-15757-in-practice/`, `/${lang}/articles/en-15757-in-practice/`],
+    [`/${lang}/blog/rollout-in-varde-municipality/`, `/${lang}/articles/rollout-in-varde-municipality/`],
+  ]),
 );
 
 // https://astro.build/config
@@ -194,16 +206,7 @@ export default defineConfig({
     '/sv/sensors/compare/': '/sv/compare/',
 
     // The Library was renamed to Articles (single canonical content catalogue).
-    '/en/library/': '/en/articles/',
-    '/en/library/tags/': '/en/articles/tags/',
-    ...libraryRedirects,
-
-    // The /blog/ section was retired and folded into Articles. The two real
-    // posts became articles; the welcome post is now intro copy on the index.
-    '/en/blog/': '/en/articles/',
-    '/en/blog/welcome-to-the-iot-fabrikken-blog/': '/en/articles/',
-    '/en/blog/en-15757-in-practice/': '/en/articles/en-15757-in-practice/',
-    '/en/blog/rollout-in-varde-municipality/': '/en/articles/rollout-in-varde-municipality/',
+    ...legacyArticlesRedirects,
 
     // Pricing plans and enterprise were merged into a single pricing page.
     '/en/pricing/plans/': '/en/pricing/',
@@ -214,6 +217,11 @@ export default defineConfig({
     '/de/pricing/enterprise/': '/de/pricing/',
     '/sv/pricing/plans/': '/sv/pricing/',
     '/sv/pricing/enterprise/': '/sv/pricing/',
+
+    // Locale-scoped event pages — detail exists in DE only; hub covers other locales.
+    '/en/events/archivistica/': '/en/events/',
+    '/da/events/archivistica/': '/da/events/',
+    '/sv/events/archivistica/': '/sv/events/',
   },
 
   vite: {

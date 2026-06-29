@@ -45,13 +45,20 @@ const fairCollagePhotos = [
 const pageJsonLd = [
   breadcrumbSchema([
     { name: t.breadcrumbHome, href: langPath("/", lang) },
-    { name: t.breadcrumbEvents, href: langPath("/events/archivistica/", lang) },
+    { name: t.breadcrumbEvents, href: langPath("/events/", lang) },
     { name: t.breadcrumbCurrent, href: langPath("/events/archivistica/", lang) },
   ]),
 ].filter(Boolean) as Array<Record<string, unknown>>;
 ---
 
-<Layout title={t.metaTitle} description={t.metaDescription} jsonLd={pageJsonLd}>
+<Layout
+  title={t.metaTitle}
+  description={t.metaDescription}
+  jsonLd={pageJsonLd}
+  canonicalPath={langPath("/events/archivistica/", "de")}
+  suppressHreflang
+  noindex
+>
   <Hero
     title={t.heroTitle}
     titleAccent={t.heroTitleAccent}
@@ -65,6 +72,10 @@ const pageJsonLd = [
   >
     <ol slot="breadcrumb" class="flex flex-wrap items-center gap-1.5 text-sm text-white/60">
       <li><a href={langPath("/", lang)} class="hover:text-coral-100 transition-colors">{t.breadcrumbHome}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><a href={langPath("/events/", lang)} class="hover:text-coral-100 transition-colors">{t.breadcrumbEvents}</a></li>
       <li aria-hidden="true">
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </li>

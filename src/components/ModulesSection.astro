@@ -1,8 +1,7 @@
 ---
 import ModuleCard from "./ModuleCard.astro";
-import { getModules } from "../data/modules";
-import { getUi } from "../data/i18n/ui";
-import { defaultLang, type Lang } from "../data/lang";
+import { getModulesHub } from "../data/hubs/modules";
+import { defaultLang, langPath, type Lang } from "../data/lang";
 import { isLivePath } from "../data/launch";
 
 interface Props {
@@ -10,26 +9,22 @@ interface Props {
 }
 
 const { lang = defaultLang } = Astro.props;
-const modules = getModules(lang).filter((m) => isLivePath(m.href));
-const t = getUi(lang).modules;
+const hub = getModulesHub(lang);
+
+const cards = hub.leaves
+  .map((leaf) => ({
+    slug: leaf.slug,
+    href: langPath(`/modules/${leaf.slug}/`, lang),
+    title: leaf.title.replace(/\.$/, ""),
+    titleAccent: leaf.titleAccent,
+  }))
+  .filter((item) => isLivePath(item.href));
 ---
 
-<section class="py-20 md:py-28">
+<section class="py-12 md:py-16">
   <div class="container-page">
-    <div class="reveal max-w-2xl mb-12 md:mb-16">
-      <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
-        {t.index.sectionEyebrow}
-      </p>
-      <h2 class="text-3xl md:text-5xl font-bold text-navy-500 tracking-tight">
-        {t.index.sectionHeading}
-      </h2>
-      <p class="mt-5 text-lg text-stone-900/70">
-        {t.index.sectionIntro}
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      {modules.map((m) => <ModuleCard module={m} readMore={t.common.readMore} />)}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {cards.map((m) => <ModuleCard module={m} />)}
     </div>
   </div>
 </section>

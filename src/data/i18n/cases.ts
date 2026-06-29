@@ -56,7 +56,7 @@ const da: CaseStrings = {
   readArticle: "Læs artikel",
   readFullCase: "Læs hele casen",
   loadMore: "Indlæs flere",
-  categories: { spaceManagement: "Space management", indoorClimate: "Indeklima" },
+  categories: { spaceManagement: "Arealforvaltning", indoorClimate: "Indeklima" },
   contactTitle: "Book et møde med os",
   contactSubtitle:
     "Har du spørgsmål? Vil du vide mere om indeklima og/eller space management? Så tag endelig fat i os. Vi taler altid gerne om dine muligheder — online eller fysisk.",
@@ -100,7 +100,7 @@ const sv: CaseStrings = {
   readArticle: "Läs artikel",
   readFullCase: "Läs hela caset",
   loadMore: "Ladda fler",
-  categories: { spaceManagement: "Space management", indoorClimate: "Inomhusklimat" },
+  categories: { spaceManagement: "Lokalhantering", indoorClimate: "Inomhusklimat" },
   contactTitle: "Boka ett möte med oss",
   contactSubtitle:
     "Har du frågor? Vill du veta mer om inomhusklimat och/eller space management? Hör gärna av dig. Vi pratar alltid gärna om dina möjligheter — online eller på plats.",

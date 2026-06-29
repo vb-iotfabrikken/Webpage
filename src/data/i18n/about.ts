@@ -338,7 +338,7 @@ const de: AboutStrings = {
   },
   team: {
     metaTitle: "Das Team | Über uns | IoT Fabrikken",
-    metaDescription: "Lernen Sie das IoT-Fabrikken-Team kennen — Führung, Vertrieb, Entwicklung, Customer Success und Betrieb.",
+    metaDescription: "Lernen Sie das IoT Fabrikken-Team kennen — Führung, Vertrieb, Entwicklung, Customer Success und Betrieb.",
     crumb: "Das Team",
     heroTitle: "Das Team.",
     heroTitleAccent: "Ein Produkt. Ein Team.",

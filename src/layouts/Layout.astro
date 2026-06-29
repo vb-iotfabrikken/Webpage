@@ -2,7 +2,8 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { locales, pagePathname, resolveLang, switchLocalePath, isPageIndexed } from "../data/lang";
+import { isRouteAvailableInLocale } from "../data/events";
+import { locales, pagePathname, resolveLang, localeSwitchTarget, isPageIndexed, stripLocaleRoute } from "../data/lang";
 import { DEFAULT_OG_IMAGE, SITE_NAME, organizationSchema, websiteSchema } from "../lib/seo/config";
 
 interface Props {
@@ -15,6 +16,8 @@ interface Props {
   noindex?: boolean;
   /** Canonical override (site-relative or absolute). Defaults to the current URL. */
   canonicalPath?: string;
+  /** Omit hreflang alternates (e.g. locale-only pages). */
+  suppressHreflang?: boolean;
   /** One or more JSON-LD objects rendered into <head> for this page. */
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
   /** Article timestamps for og:article meta. */
@@ -32,6 +35,7 @@ const {
   ogType = "website",
   noindex = false,
   canonicalPath,
+  suppressHreflang = false,
   jsonLd,
   publishedTime,
   modifiedTime,
@@ -55,14 +59,23 @@ const currentLang = resolveLang({
 const pageIndexed = !noindex && isPageIndexed(routePathname, currentLang);
 const robotsNoindex = !pageIndexed;
 
-// hreflang alternates — indexed locales plus any fully translated route.
-const alternates = locales
-  .filter((l) => isPageIndexed(routePathname, l.code))
-  .map((l) => ({
-    hreflang: l.code,
-    href: new URL(switchLocalePath(routePathname, l.code), siteOrigin).toString(),
-  }));
-const xDefaultHref = new URL(switchLocalePath(routePathname, "en"), siteOrigin).toString();
+// hreflang alternates — indexed locales where the equivalent route exists.
+const routeKey = stripLocaleRoute(routePathname);
+const alternates = suppressHreflang
+  ? []
+  : locales
+      .filter(
+        (l) =>
+          isPageIndexed(routePathname, l.code) &&
+          isRouteAvailableInLocale(routeKey, l.code),
+      )
+      .map((l) => ({
+        hreflang: l.code,
+        href: new URL(localeSwitchTarget(routePathname, l.code), siteOrigin).toString(),
+      }));
+const xDefaultHref = suppressHreflang
+  ? canonical.toString()
+  : new URL(localeSwitchTarget(routePathname, "en"), siteOrigin).toString();
 
 // BCP-47 / Open Graph locale tags per supported language.
 const ogLocaleByLang = {
@@ -91,10 +104,12 @@ const pageJsonLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <link rel="canonical" href={canonical.toString()} />
     {robotsNoindex && <meta name="robots" content="noindex,follow" />}
 
-    {alternates.map((alt) => (
+    {alternates.length > 0 && alternates.map((alt) => (
       <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+    {alternates.length > 0 && (
+      <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+    )}
 
     <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:title" content={title} />

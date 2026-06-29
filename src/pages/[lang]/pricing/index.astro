@@ -1,0 +1,55 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import PricingPlans from "../../../components/pricing/PricingPlans.astro";
+import { getPricing, pricingEnterpriseSalesHref } from "../../../data/i18n/pricing";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = getPricing(lang);
+const bookDemoHref = langPath("contact/book-demo", lang);
+const contactSalesHref = langPath("contact/sales", lang);
+---
+
+<Layout
+  title={`${t.metaTitle} | IoT Fabrikken`}
+  description={t.hero.lead}
+>
+  <Hero
+    title={t.hero.title}
+    titleAccent={t.hero.titleAccent}
+    lead={t.hero.lead}
+    align="left"
+    compactTop
+  >
+    <ol slot="breadcrumb" class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li class="flex items-center gap-1.5">
+        <a href={langPath("/", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumb.home}</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </li>
+      <li><span class="text-navy-500">{t.breadcrumb.pricing}</span></li>
+    </ol>
+
+    <Button href={bookDemoHref} variant="primary" size="lg" slot="cta">{t.common.bookDemo}</Button>
+    <Button href={pricingEnterpriseSalesHref(lang)} variant="secondary" size="lg" slot="cta">{t.common.contactSales}</Button>
+  </Hero>
+
+  <PricingPlans lang={lang} />
+
+  <CtaBand
+    title={t.ctaTitle}
+    subtitle={t.ctaSubtitle}
+    primaryLabel={t.common.bookDemo}
+    primaryHref={bookDemoHref}
+    secondaryLabel={t.common.contactSales}
+    secondaryHref={contactSalesHref}
+  />
+</Layout>

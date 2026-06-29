@@ -1,0 +1,89 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import EventCardActive from "../../../components/events/EventCardActive.astro";
+import EventCardNews from "../../../components/events/EventCardNews.astro";
+import { getEventsHub, getEventCardCopy } from "../../../data/i18n/events";
+import {
+  eventAssets,
+  getActiveEventsForLocale,
+  getNewsEventsForLocale,
+  hasEventDetailPage,
+  eventDetailPath,
+} from "../../../data/events";
+import { breadcrumbSchema } from "../../../lib/seo/schema";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = getEventsHub(lang);
+const activeEvents = getActiveEventsForLocale(lang);
+const newsEvents = getNewsEventsForLocale(lang);
+
+const pageJsonLd = [
+  breadcrumbSchema([
+    { name: t.breadcrumbHome, href: langPath("/", lang) },
+    { name: t.breadcrumbCurrent, href: langPath("/events/", lang) },
+  ]),
+].filter(Boolean) as Array<Record<string, unknown>>;
+---
+
+<Layout title={t.metaTitle} description={t.metaDescription} jsonLd={pageJsonLd}>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href={langPath("/", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumbHome}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><span class="text-navy-500">{t.breadcrumbCurrent}</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    title={t.heroTitle}
+    titleAccent={t.heroTitleAccent}
+    lead={t.heroLead}
+    align="left"
+    compactTop
+  />
+
+  <section class="py-16 pb-20 md:pb-24">
+    <div class="container-page space-y-6">
+      {activeEvents.length > 0 && (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl">
+          {activeEvents.map((event) => {
+            const copy = getEventCardCopy(event.slug, lang);
+            const assets = eventAssets[event.slug];
+            if (!copy || !assets) return null;
+
+            return (
+              <EventCardActive
+                href={
+                  hasEventDetailPage(event, lang)
+                    ? eventDetailPath(event.slug, lang)
+                    : langPath("/events/", lang)
+                }
+                logo={assets.logo}
+                logoAlt={assets.logoAlt}
+                copy={copy}
+              />
+            );
+          })}
+        </div>
+      )}
+
+      {newsEvents.map((event) => {
+        const copy = getEventCardCopy(event.slug, lang);
+        const assets = eventAssets[event.slug];
+        if (!copy || !assets || !copy.news.note) return null;
+
+        return (
+          <EventCardNews logo={assets.logo} logoAlt={assets.logoAlt} copy={copy} />
+        );
+      })}
+    </div>
+  </section>
+</Layout>

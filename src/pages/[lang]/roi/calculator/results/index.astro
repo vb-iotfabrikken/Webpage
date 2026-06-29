@@ -1,0 +1,10 @@
+---
+import { locales, langPath, type Lang } from "../../../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+return Astro.redirect(langPath("roi/calculator", lang));
+---

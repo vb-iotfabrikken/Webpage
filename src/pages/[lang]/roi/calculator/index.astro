@@ -1,0 +1,30 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Hero from "../../../../components/Hero.astro";
+import RoiCalculatorSection from "../../../../components/roi/RoiCalculatorSection.astro";
+import { locales } from "../../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+---
+
+<Layout
+  title="ROI calculator | IoT Fabrikken"
+  description="Estimate annual savings from space right-sizing and indoor climate optimisation — Desk Optimizer and Energy Saver calculators with instant results."
+>
+  <Hero
+    title="Your savings,"
+    titleAccent="your numbers."
+    lead="Desk Optimizer and Energy Saver — best-guess sliders, instant estimates."
+    align="left"
+    compactTop
+  />
+
+  <RoiCalculatorSection
+    id="roi-calculator"
+    showHeader={false}
+    compact
+    afterPageHero
+  />
+</Layout>

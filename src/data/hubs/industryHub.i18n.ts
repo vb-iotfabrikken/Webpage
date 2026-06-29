@@ -41,6 +41,61 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
         titleAccent: "Ét overblik, mange bygninger.",
         lead: "Skoler, daginstitutioner, administration og kulturinstitutioner — samlet på én platform.",
       },
+      schools: {
+        title: "Skoler.",
+        titleAccent: "Bedre luft, bedre fokus.",
+        lead: "CO2-, temperatur- og fugtovervågning, der dokumenterer indeklimaet i hvert klasseværelse.",
+      },
+      hospitals: {
+        title: "Hospitaler.",
+        titleAccent: "Hvor hver grad tæller.",
+        lead: "Overvågning af lager, medicinskabe, afdelinger og laboratorier med revisionsklare rapporter.",
+      },
+      "archives-libraries": {
+        title: "Arkiver og biblioteker.",
+        titleAccent: "Dokumentér bevaringen.",
+        lead: "Løbende klimaprotokollering og alarmer for sjældne bøger, manuskripter og følsomme papirarkiver.",
+      },
+      "manors-castles": {
+        title: "Herregårde og slotte.",
+        titleAccent: "Arv der holder.",
+        lead: "Overvåg fugt og temperatur i uopvarmede sale, kældre og lager — uden at skade overflader.",
+      },
+      hotels: {
+        title: "Hoteller.",
+        titleAccent: "Komfort uden spild.",
+        lead: "Belægningsstyret klima og rengøring i værelser, mødelokaler og fællesarealer.",
+      },
+      retail: {
+        title: "Detailhandel.",
+        titleAccent: "Butiksdrift, smartere.",
+        lead: "Kølemonitorering, butikskomfort og kundestrøm på tværs af enkelte butikker eller kæder.",
+      },
+      "warehouses-logistics": {
+        title: "Lagre og logistik.",
+        titleAccent: "Beskyt det på hylderne.",
+        lead: "Temperatur, fugt og vanddetektion til lager, kølekæde og lasteporte.",
+      },
+      "elderly-care": {
+        title: "Ældrepleje.",
+        titleAccent: "En tryggere, roligere hverdag.",
+        lead: "Indeklimaovervågning og serviceknapper, der gør den daglige pleje lettere for beboere og personale.",
+      },
+      "property-management": {
+        title: "Ejendomsadministration.",
+        titleAccent: "Færre klager, hurtigere løsninger.",
+        lead: "Dokumentation af indeklima i lejemål og tidlig advarsel ved lækager på tværs af porteføljen.",
+      },
+      "fm-companies": {
+        title: "FM-virksomheder.",
+        titleAccent: "White-label datalaget.",
+        lead: "Tilføj en målbar, datadrevet tjeneste oven på jeres eksisterende facility management.",
+      },
+      "consulting-engineers": {
+        title: "Rådgivende ingeniører.",
+        titleAccent: "Fakta til jeres rådgivning.",
+        lead: "Midlertidige og permanente målinger, der understøtter commissioning, energiaudits og renoveringsprojekter.",
+      },
     },
   },
   de: {
@@ -69,6 +124,61 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
         titleAccent: "Ein Überblick, viele Gebäude.",
         lead: "Schulen, Kitas, Verwaltung und Kultureinrichtungen — in einer Plattform gebündelt.",
       },
+      schools: {
+        title: "Schulen.",
+        titleAccent: "Bessere Luft, besserer Fokus.",
+        lead: "CO₂-, Temperatur- und Feuchteüberwachung, die das Raumklima in jedem Klassenzimmer dokumentiert.",
+      },
+      hospitals: {
+        title: "Krankenhäuser.",
+        titleAccent: "Wo jeder Grad zählt.",
+        lead: "Überwachung von Lagern, Medikamentenschränken, Stationen und Laboren mit prüffähigen Berichten.",
+      },
+      "archives-libraries": {
+        title: "Archive und Bibliotheken.",
+        titleAccent: "Erhaltung dokumentieren.",
+        lead: "Laufende Klimaprotokollierung und Alarme für seltene Bücher, Manuskripte und empfindliche Papierarchive.",
+      },
+      "manors-castles": {
+        title: "Herrenhäuser und Schlösser.",
+        titleAccent: "Erbe, das Bestand hat.",
+        lead: "Feuchte und Temperatur in unbeheizten Sälen, Kellern und Lagern überwachen — ohne Oberflächen zu schädigen.",
+      },
+      hotels: {
+        title: "Hotels.",
+        titleAccent: "Komfort ohne Verschwendung.",
+        lead: "Belegungsgesteuertes Klima und Reinigung in Zimmern, Tagungsräumen und Gemeinschaftsbereichen.",
+      },
+      retail: {
+        title: "Einzelhandel.",
+        titleAccent: "Filialbetrieb, smarter.",
+        lead: "Kühlüberwachung, Ladenkomfort und Kundenströme über einzelne Filialen oder Ketten hinweg.",
+      },
+      "warehouses-logistics": {
+        title: "Lager und Logistik.",
+        titleAccent: "Schützen, was auf den Regalen liegt.",
+        lead: "Temperatur, Feuchte und Wassererkennung für Lager, Kühlkette und Laderampen.",
+      },
+      "elderly-care": {
+        title: "Altenpflege.",
+        titleAccent: "Ein sichererer, ruhigerer Alltag.",
+        lead: "Raumklimaüberwachung und Serviceknöpfe, die die tägliche Pflege für Bewohner und Personal erleichtern.",
+      },
+      "property-management": {
+        title: "Immobilienverwaltung.",
+        titleAccent: "Weniger Beschwerden, schnellere Lösungen.",
+        lead: "Dokumentation des Raumklimas in Mietobjekten und frühe Warnung bei Leckagen über das Portfolio.",
+      },
+      "fm-companies": {
+        title: "FM-Unternehmen.",
+        titleAccent: "Die White-Label-Datenebene.",
+        lead: "Ergänzen Sie Ihr bestehendes Facility Management um einen messbaren, datengestützten Service.",
+      },
+      "consulting-engineers": {
+        title: "Beratende Ingenieure.",
+        titleAccent: "Fakten für Ihre Beratung.",
+        lead: "Temporäre und permanente Messungen für Inbetriebnahme, Energieaudits und Sanierungsprojekte.",
+      },
     },
   },
   sv: {
@@ -96,6 +206,61 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
         title: "Kommuner.",
         titleAccent: "En översikt, många byggnader.",
         lead: "Skolor, förskolor, förvaltning och kulturinstitutioner — samlade på en plattform.",
+      },
+      schools: {
+        title: "Skolor.",
+        titleAccent: "Bättre luft, bättre fokus.",
+        lead: "CO₂-, temperatur- och fuktövervakning som dokumenterar inomhusklimatet i varje klassrum.",
+      },
+      hospitals: {
+        title: "Sjukhus.",
+        titleAccent: "Där varje grad räknas.",
+        lead: "Övervakning av lager, medicinskåp, avdelningar och laboratorier med revisionsklara rapporter.",
+      },
+      "archives-libraries": {
+        title: "Arkiv och bibliotek.",
+        titleAccent: "Dokumentera bevarandet.",
+        lead: "Löpande klimaprotokoll och larm för sällsynta böcker, manuskript och känsliga pappersarkiv.",
+      },
+      "manors-castles": {
+        title: "Herrgårdar och slott.",
+        titleAccent: "Arv som håller.",
+        lead: "Övervaka fukt och temperatur i ouppvärmda salar, källare och lager — utan att skada ytor.",
+      },
+      hotels: {
+        title: "Hotell.",
+        titleAccent: "Komfort utan slöseri.",
+        lead: "Beläggningsstyrt klimat och städning i rum, möteslokaler och gemensamma ytor.",
+      },
+      retail: {
+        title: "Detaljhandel.",
+        titleAccent: "Butiksdrift, smartare.",
+        lead: "Kylövervakning, butikskomfort och kundflöden över enskilda butiker eller kedjor.",
+      },
+      "warehouses-logistics": {
+        title: "Lager och logistik.",
+        titleAccent: "Skydda det på hyllorna.",
+        lead: "Temperatur, fukt och vattendetektering för lager, kylkedja och lastportar.",
+      },
+      "elderly-care": {
+        title: "Äldreomsorg.",
+        titleAccent: "En tryggare, lugnare vardag.",
+        lead: "Inomhusklimatövervakning och serviceknappar som underlättar den dagliga omsorgen för boende och personal.",
+      },
+      "property-management": {
+        title: "Fastighetsförvaltning.",
+        titleAccent: "Färre klagomål, snabbare lösningar.",
+        lead: "Dokumentation av inomhusklimat i hyresobjekt och tidig varning vid läckage över portföljen.",
+      },
+      "fm-companies": {
+        title: "FM-företag.",
+        titleAccent: "White-label-datalagret.",
+        lead: "Lägg till en mätbar, datadriven tjänst ovanpå er befintliga facility management.",
+      },
+      "consulting-engineers": {
+        title: "Konsultingingenjörer.",
+        titleAccent: "Fakta för er rådgivning.",
+        lead: "Tillfälliga och permanenta mätningar som stödjer driftsättning, energirevisioner och renoveringsprojekt.",
       },
     },
   },

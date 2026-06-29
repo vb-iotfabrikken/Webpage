@@ -8,6 +8,9 @@
  * article and summarise here.
  */
 
+import { defaultLang, type Lang } from "./lang";
+import { faqContentI18n } from "./faqContent.i18n";
+
 export type Qa = { q: string; a: string };
 
 export const faqContent: Record<string, Qa[]> = {
@@ -114,3 +117,10 @@ export const faqContent: Record<string, Qa[]> = {
     { q: "Do you offer training?", a: "Yes. Every new customer gets a 90-minute kick-off session and we run quarterly webinars for admins. Enterprise customers get dedicated onboarding and yearly refresher training." },
   ],
 };
+
+/** Localized FAQ Q/A with English fallback. */
+export function getFaqContent(slug: string, lang: Lang = defaultLang): Qa[] {
+  if (lang === defaultLang) return faqContent[slug] ?? [];
+  const overlay = faqContentI18n[lang]?.[slug];
+  return overlay ?? faqContent[slug] ?? [];
+}

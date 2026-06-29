@@ -1,0 +1,36 @@
+---
+interface Props {
+  label: string;
+  required?: boolean;
+  optional?: boolean;
+  /** Localized "(optional)" word, e.g. from i18n `form.optional`. */
+  optionalSuffix?: string;
+}
+
+const {
+  label,
+  required = false,
+  optional = false,
+  optionalSuffix = "optional",
+} = Astro.props;
+---
+
+<span class="text-sm font-medium text-navy-500">
+  {label}
+  {
+    required && (
+      <span class="text-coral-500" aria-hidden="true">
+        {" "}
+        *
+      </span>
+    )
+  }
+  {
+    optional && (
+      <span class="font-normal text-stone-300">
+        {" "}
+        ({optionalSuffix})
+      </span>
+    )
+  }
+</span>

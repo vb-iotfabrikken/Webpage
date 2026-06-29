@@ -1,0 +1,26 @@
+---
+import PlatformCard from "./PlatformCard.astro";
+import { platformHub } from "../data/site";
+import { defaultLang, langPath, type Lang } from "../data/lang";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+
+const cards = platformHub.leaves.map((leaf) => ({
+  slug: leaf.slug,
+  href: langPath(`/platform/${leaf.slug}/`, lang),
+  title: leaf.title.replace(/\.$/, ""),
+  titleAccent: leaf.titleAccent,
+}));
+---
+
+<section class="py-12 md:py-16">
+  <div class="container-page">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {cards.map((p) => <PlatformCard platform={p} />)}
+    </div>
+  </div>
+</section>

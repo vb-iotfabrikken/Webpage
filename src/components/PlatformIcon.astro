@@ -1,0 +1,105 @@
+---
+/**
+ * Tiny, consistent line icon per platform slug — used in the platform
+ * catalogue cards. Shares its visual language (20x20 viewBox, 1.75 stroke,
+ * rounded line caps) with ModuleIcon and IndustryIcon.
+ */
+
+interface Props {
+  slug: string;
+  class?: string;
+}
+
+const { slug, class: className = "" } = Astro.props;
+
+const common = {
+  width: 20,
+  height: 20,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  "stroke-width": 1.75,
+  "stroke-linecap": "round" as const,
+  "stroke-linejoin": "round" as const,
+};
+---
+
+{slug === "how-it-works" && (
+  <svg {...common} class={className} aria-hidden="true">
+    <circle cx="5" cy="12" r="2.5" />
+    <circle cx="12" cy="12" r="2.5" />
+    <circle cx="19" cy="12" r="2.5" />
+    <path d="M7.5 12h2M14.5 12h2" />
+  </svg>
+)}
+
+{slug === "architecture" && (
+  <svg {...common} class={className} aria-hidden="true">
+    <rect x="4" y="4" width="16" height="5" rx="1" />
+    <rect x="4" y="11" width="16" height="5" rx="1" />
+    <rect x="4" y="18" width="16" height="2" rx="0.5" />
+  </svg>
+)}
+
+{slug === "dashboards" && (
+  <svg {...common} class={className} aria-hidden="true">
+    <rect x="3" y="3" width="8" height="8" rx="1" />
+    <rect x="13" y="3" width="8" height="5" rx="1" />
+    <rect x="13" y="10" width="8" height="11" rx="1" />
+    <rect x="3" y="13" width="8" height="8" rx="1" />
+  </svg>
+)}
+
+{slug === "reports" && (
+  <svg {...common} class={className} aria-hidden="true">
+    <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" />
+    <path d="M14 3v5h5" />
+    <path d="M9 13h6M9 17h4" />
+  </svg>
+)}
+
+{slug === "notifications" && (
+  <svg {...common} class={className} aria-hidden="true">
+    <path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8" />
+    <path d="M10.5 20a2 2 0 0 0 3 0" />
+  </svg>
+)}
+
+{slug === "maps-floorplans" && (
+  <svg {...common} class={className} aria-hidden="true">
+    <path d="M3 6l9-3 9 3v12l-9 3-9-3V6z" />
+    <path d="M12 3v18M12 9l9-3M12 15l9 3" />
+  </svg>
+)}
+
+{slug === "mobile-tv" && (
+  <svg {...common} class={className} aria-hidden="true">
+    <rect x="5" y="2" width="14" height="10" rx="1" />
+    <path d="M8 18h8M12 12v6" />
+    <rect x="7" y="4" width="10" height="6" rx="0.5" />
+  </svg>
+)}
+
+{slug === "ai-analytics" && (
+  <svg {...common} class={className} aria-hidden="true">
+    <path d="M12 3l1.2 3.6L17 8l-3.8 1.4L12 13l-1.2-3.6L7 8l3.8-1.4L12 3z" />
+    <path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8L19 14z" />
+    <path d="M5 14l.6 1.8L7.5 16l-1.9.7L5 18.5l-.6-1.8L2.5 16l1.9-.7L5 14z" />
+  </svg>
+)}
+
+{slug === "security" && (
+  <svg {...common} class={className} aria-hidden="true">
+    <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z" />
+    <rect x="9.5" y="11" width="5" height="4" rx="0.5" />
+    <path d="M10.5 11V9.5a1.5 1.5 0 0 1 3 0V11" />
+  </svg>
+)}
+
+{slug === "api" && (
+  <svg {...common} class={className} aria-hidden="true">
+    <path d="M8 9l-3 3 3 3" />
+    <path d="M16 9l3 3-3 3" />
+    <path d="M13 7l-2 10" />
+  </svg>
+)}

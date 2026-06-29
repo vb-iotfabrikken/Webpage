@@ -1,0 +1,24 @@
+---
+import HubIndex from "../../../components/HubIndex.astro";
+import { getFaqHub } from "../../../data/hubs/faq";
+import { getLegal } from "../../../data/i18n/legal";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = getLegal(lang).common;
+const hub = getFaqHub(lang);
+---
+
+<HubIndex
+  hub={hub}
+  lang={lang}
+  basePath={langPath("faq", lang)}
+  breadcrumbs={[
+    { label: t.home, href: langPath("", lang) },
+    { label: "FAQ" },
+  ]}
+/>

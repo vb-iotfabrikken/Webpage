@@ -23,6 +23,22 @@ alwaysApply: true
 - When adding new content, write the English version first, then provide the
   translations (or rely on the English fallback) for the other locales.
 
+### Localization content rules (names, places, standards)
+
+When translating or localizing copy (`da` / `de` / `sv`), follow these rules
+in addition to the product-name rules above:
+
+| Category | Rule |
+|----------|------|
+| **Person names** | Never translate (team, quotes, bylines). |
+| **Customer org / brand names** | Use the **official registered name** (e.g. `Erzdiözese Freiburg`, `Evangelische Kirche in Hessen und Nassau`, `Dansk Industri`, `Sweco`). Do not paraphrase into another language. |
+| **Danish municipalities (customers)** | Use **locale-appropriate government label + place name**: `Varde Kommune` (da), `Gemeinde Varde` (de), `Varde kommun` (sv). Keep geographic spelling (`Solrød`, `Holbæk`). No erroneous possessives (e.g. not `Gribskovs kommun`). |
+| **Geographic proper nouns** | Keep official spelling (`Freiburg`, `Roskilde`, `Hessen`). |
+| **Standards and acronyms** | Keep the **official identifier** unchanged: `EN 15757`, `GDPR`, `CO₂`, `ISO 27001`, `MQTT`, `BR18`, `DGNB`, etc. Translate only the explanatory prose around them. |
+| **Locale-specific regulations** | May name local rules (`BR18`, `APV`, `EHF`/`PEPPOL`) but on non-DK locales add jurisdiction context or “or your local equivalent” where relevant. |
+| **Glossary terms** | Keep `term` and `anchor` as canonical identifiers; translate `short` and `detail` only. |
+| **Sensor `heroTitle`** | Do not add “Sensor”/“sensor” suffixes in i18n overlays; use English catalogue titles + `localizedSensorName()` for approved DE exceptions only. |
+
 ## Excluded personnel
 
 - **Dennis Knudsen** must not appear anywhere on this website — team

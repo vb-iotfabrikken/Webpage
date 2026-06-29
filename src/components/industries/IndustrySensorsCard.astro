@@ -1,0 +1,81 @@
+---
+import type { IndustrySensorRecommendation } from "../../data/content/types";
+import { getUi } from "../../data/i18n/ui";
+import { getSensorProductImage } from "../../data/sensorProductImages";
+import { langPath, type Lang } from "../../data/lang";
+
+interface Props {
+  recommendations: IndustrySensorRecommendation[];
+  lang?: Lang;
+}
+
+const { recommendations, lang = "en" } = Astro.props;
+
+if (recommendations.length === 0) {
+  return;
+}
+
+const t = getUi(lang).industries.content;
+
+const items = recommendations.map((rec) => {
+  const primarySlug = rec.sensorSlugs[0];
+  return {
+    name: rec.name,
+    badge: rec.badge,
+    body: rec.body,
+    href: langPath(`/sensors/${primarySlug}/`, lang),
+    image: getSensorProductImage(primarySlug),
+  };
+});
+---
+
+<div class="reveal bg-white border border-stone-100 rounded-xl p-6 shadow-sm">
+  <h2 class="text-sm font-semibold uppercase tracking-wider text-navy-500 mb-4">
+    {t.sensorsEyebrow}
+  </h2>
+  <ul class="space-y-1.5" role="list">
+    {items.map((item) => (
+      <li>
+        <a
+          href={item.href}
+          class="group flex items-start gap-3.5 -mx-2 rounded-xl px-2 py-2.5 transition-colors hover:bg-stone-50"
+        >
+          <span class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-stone-100 bg-gradient-to-br from-white to-stone-100 transition-colors group-hover:border-sky-200">
+            {item.image ? (
+              <img
+                src={item.image.src}
+                alt=""
+                width="48"
+                height="48"
+                loading="lazy"
+                decoding="async"
+                class="h-9 w-9 object-contain transition-transform duration-300 group-hover:scale-110"
+              />
+            ) : (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="text-sky-500" aria-hidden="true">
+                <rect x="4" y="4" width="16" height="16" rx="4" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            )}
+          </span>
+          <span class="min-w-0 flex-1">
+            <span class="flex items-center justify-between gap-2">
+              <span class="font-semibold leading-snug text-navy-500 transition-colors group-hover:text-coral-500">
+                {item.name}
+              </span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0 text-stone-300 transition-all group-hover:translate-x-0.5 group-hover:text-coral-500" aria-hidden="true">
+                <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <span class="mt-1 inline-flex rounded-md bg-sky-50 px-2 py-0.5 text-[11px] font-semibold leading-tight text-sky-700">
+              {item.badge}
+            </span>
+            <span class="mt-1.5 block text-sm leading-relaxed text-stone-900/70">
+              {item.body}
+            </span>
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>

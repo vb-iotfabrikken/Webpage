@@ -1,55 +1,129 @@
 ---
 import type { IndustryPageContent } from "../../data/content/types";
-import { sensorsHub } from "../../data/hubs/sensors";
+import { getUi } from "../../data/i18n/ui";
+import { getIndustryImage } from "../../data/content/industryImages";
+import { langPath, type Lang } from "../../data/lang";
 
 interface Props {
   content: IndustryPageContent;
+  lang?: Lang;
+  /** Omit the recommended-sensors section (e.g. when shown in the sidebar). */
+  hideSensors?: boolean;
 }
 
-const { content } = Astro.props;
+const { content, lang = "en", hideSensors = false } = Astro.props;
+const t = getUi(lang).industries.content;
+const focusImage = getIndustryImage(content.slug);
 
-const sensorTitleBySlug = Object.fromEntries(
-  sensorsHub.leaves.map((leaf) => [leaf.slug, leaf.title.replace(/\.$/, "")]),
-);
+const linkClass = "hover:text-coral-500 transition-colors";
 ---
 
 <div class="space-y-16 md:space-y-20">
   <section>
-    <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
-      What matters in this sector
-    </p>
+    {focusImage ? (
+      <img
+        src={focusImage.src}
+        alt={focusImage.alt}
+        width="1280"
+        height="720"
+        loading="lazy"
+        decoding="async"
+        class="reveal mb-6 aspect-[16/9] w-full rounded-xl border border-stone-100 object-cover shadow-sm"
+      />
+    ) : (
+      <div
+        class="reveal mb-6 flex aspect-[16/9] w-full items-center justify-center rounded-xl border border-stone-100 bg-gradient-to-br from-stone-50 to-stone-100"
+        role="img"
+        aria-label="Sector image coming soon"
+      >
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="text-stone-300" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2" />
+          <circle cx="8.5" cy="8.5" r="1.5" />
+          <path d="M21 15l-5-5L5 21" />
+        </svg>
+      </div>
+    )}
     <p class="text-lg text-navy-500 leading-relaxed">{content.focus}</p>
   </section>
 
+  {content.challenges && content.challenges.length > 0 && (
+    <section>
+      <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
+        {t.challengesEyebrow}
+      </p>
+      <ul class="space-y-4">
+        {content.challenges.map((item) => (
+          <li class="flex items-start gap-3 text-navy-500">
+            <span class="mt-1.5 w-2 h-2 rounded-full bg-coral-500 shrink-0" aria-hidden="true"></span>
+            <span class="leading-relaxed">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {content.solution && content.solution.length > 0 && (
+    <section class="bg-stone-50 border border-stone-100 rounded-xl p-8 md:p-10">
+      <p class="inline-block px-3 py-1 rounded-md bg-white text-navy-500 border border-stone-100 text-xs font-semibold uppercase tracking-wider mb-5">
+        {t.solutionEyebrow}
+      </p>
+      <div class="space-y-4 text-stone-900/80 leading-relaxed">
+        {content.solution.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+      {content.smarterTogether && (
+        <p class="mt-6 pt-6 border-t border-stone-200 text-navy-500 leading-relaxed">
+          <span class="font-semibold">{t.smarterTogether}</span> {content.smarterTogether}
+        </p>
+      )}
+    </section>
+  )}
+
+  {content.closing && (
+    <p class="text-lg text-stone-900/70 leading-relaxed border-l-4 border-sky-500 pl-6">
+      {content.closing}
+    </p>
+  )}
+
+  {!hideSensors && (
   <section>
     <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
-      Recommended sensors
+      {t.sensorsEyebrow}
     </p>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      {content.sensorRecommendations.map((rec) => (
-        <div class="bg-white rounded-xl border border-stone-100 p-6 md:p-7 hover:border-navy-500 transition-colors">
-          <div class="flex flex-wrap items-center gap-2 mb-3">
-            <h3 class="text-lg font-semibold text-navy-500">{rec.name}</h3>
-            <span class="inline-flex px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-700 text-xs font-semibold">
-              {rec.badge}
-            </span>
-          </div>
-          <p class="text-stone-900/70 leading-relaxed">{rec.body}</p>
-          <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2">
-            {rec.sensorSlugs.map((slug) => (
-              <a
-                href={`/en/sensors/${slug}/`}
-                class="inline-flex items-center gap-1 text-sm font-medium text-sky-600 hover:text-coral-500 transition-colors"
-              >
-                {sensorTitleBySlug[slug] ?? slug}
-                <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </a>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
+    <ul class="divide-y divide-stone-100 rounded-xl border border-stone-100 bg-white">
+      {content.sensorRecommendations.map((rec) => {
+        const nameParts =
+          rec.sensorSlugs.length > 1 ? rec.name.split(" / ") : [rec.name];
+
+        return (
+          <li class="px-5 py-3.5 md:flex md:items-baseline md:gap-6">
+            <div class="flex flex-col items-start gap-1.5 md:w-52 shrink-0 mb-1 md:mb-0">
+              <h3 class="text-sm font-semibold text-navy-500">
+                {rec.sensorSlugs.length === 1 ? (
+                  <a href={langPath(`/sensors/${rec.sensorSlugs[0]}/`, lang)} class={linkClass}>
+                    {rec.name}
+                  </a>
+                ) : (
+                  rec.sensorSlugs.map((slug, index) => (
+                    <>
+                      {index > 0 && <span class="text-stone-300 font-normal"> / </span>}
+                      <a href={langPath(`/sensors/${slug}/`, lang)} class={linkClass}>
+                        {nameParts[index] ?? slug}
+                      </a>
+                    </>
+                  ))
+                )}
+              </h3>
+              <span class="inline-flex px-2 py-0.5 rounded-md bg-sky-50 text-sky-700 text-[11px] font-semibold leading-tight">
+                {rec.badge}
+              </span>
+            </div>
+            <p class="text-sm text-stone-900/70 leading-relaxed md:flex-1 md:min-w-0">{rec.body}</p>
+          </li>
+        );
+      })}
+    </ul>
   </section>
+  )}
 </div>

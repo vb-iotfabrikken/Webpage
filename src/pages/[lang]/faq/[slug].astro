@@ -1,0 +1,59 @@
+---
+import FaqPage from "../../../components/FaqPage.astro";
+import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import { getFaqHub } from "../../../data/hubs/faq";
+import { getFaqContent } from "../../../data/faqContent";
+import { getLegal } from "../../../data/i18n/legal";
+import { locales, langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return locales.flatMap((l) =>
+    getFaqHub(l.code).leaves.map((leaf) => ({
+      params: { lang: l.code, slug: leaf.slug },
+      props: { leaf },
+    })),
+  );
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const { leaf } = Astro.props;
+const hub = getFaqHub(lang);
+const localizedLeaf = hub.leaves.find((l) => l.slug === leaf.slug) ?? leaf;
+const qa = getFaqContent(localizedLeaf.slug, lang);
+const hasContent = Array.isArray(qa) && qa.length > 0;
+const t = getLegal(lang).common;
+const homeHref = langPath("", lang);
+const faqHref = langPath("faq", lang);
+const topicLabel = localizedLeaf.title.replace(/\.$/, "");
+---
+
+{hasContent ? (
+  <FaqPage
+    title={`${topicLabel} | FAQ | IoT Fabrikken`}
+    description={localizedLeaf.lead}
+    heroTitle={localizedLeaf.title}
+    heroTitleAccent={localizedLeaf.titleAccent}
+    heroLead={localizedLeaf.lead}
+    breadcrumbs={[
+      { label: t.home, href: homeHref },
+      { label: "FAQ", href: faqHref },
+      { label: topicLabel },
+    ]}
+    qa={qa}
+  />
+) : (
+  <PlaceholderPage
+    title={`${topicLabel} | IoT Fabrikken`}
+    description={localizedLeaf.lead}
+    heroTitle={localizedLeaf.title}
+    heroTitleAccent={localizedLeaf.titleAccent}
+    heroLead={localizedLeaf.lead}
+    breadcrumbs={[
+      { label: t.home, href: homeHref },
+      { label: "FAQ", href: faqHref },
+      { label: topicLabel },
+    ]}
+    primaryCta={localizedLeaf.primaryCta}
+    secondaryCta={localizedLeaf.secondaryCta}
+  />
+)}

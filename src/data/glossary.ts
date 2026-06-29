@@ -7,6 +7,9 @@
  * paragraph only when the short definition genuinely needs more context.
  */
 
+import { defaultLang, type Lang } from "./lang";
+import { glossaryI18n } from "./glossary.i18n";
+
 export type GlossaryEntry = {
   term: string;
   /** Shorter alternative forms (acronyms, plurals) listed next to the heading. */
@@ -306,6 +309,29 @@ export const glossary: GlossaryEntry[] = [
   },
 ];
 
+/** Localized glossary entries; terms and anchors stay English. */
+export function getGlossary(lang: Lang = defaultLang): GlossaryEntry[] {
+  if (lang === defaultLang) return glossary;
+
+  const overlay = glossaryI18n[lang];
+  if (!overlay) return glossary;
+
+  return glossary.map((entry) => {
+    const o = overlay[entry.anchor];
+    if (!o) return entry;
+    return {
+      ...entry,
+      short: o.short ?? entry.short,
+      detail: o.detail ?? entry.detail,
+    };
+  });
+}
+
 export const glossaryByAnchor: Record<string, GlossaryEntry> = Object.fromEntries(
   glossary.map((g) => [g.anchor, g]),
 );
+
+/** Localized glossary lookup by anchor. */
+export function getGlossaryByAnchor(lang: Lang = defaultLang): Record<string, GlossaryEntry> {
+  return Object.fromEntries(getGlossary(lang).map((g) => [g.anchor, g]));
+}

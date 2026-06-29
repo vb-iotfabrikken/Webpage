@@ -30,6 +30,8 @@ export interface GetOfferStrings {
     successTitle: string;
     successBody: string;
     emailError: string;
+    optional: string;
+    requiredLegend: string;
   };
   validation: {
     name_required: string;
@@ -81,6 +83,8 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       successTitle: "Thanks — we've got it.",
       successBody: "We'll be in touch as soon as we've reviewed your enquiry.",
       emailError: "Please enter a valid work email address.",
+      optional: "optional",
+      requiredLegend: "Required",
     },
     validation: {
       name_required: "Please enter your first and last name.",
@@ -132,6 +136,8 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       successTitle: "Tak — vi har modtaget din henvendelse.",
       successBody: "Vi vender tilbage, så snart vi har gennemgået din forespørgsel.",
       emailError: "Indtast en gyldig arbejdsmail.",
+      optional: "valgfrit",
+      requiredLegend: "Påkrævet",
     },
     validation: {
       name_required: "Indtast dit for- og efternavn.",
@@ -183,6 +189,8 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       successTitle: "Danke — wir haben Ihre Anfrage erhalten.",
       successBody: "Wir melden uns, sobald wir Ihre Anfrage geprüft haben.",
       emailError: "Bitte geben Sie eine gültige geschäftliche E-Mail-Adresse ein.",
+      optional: "optional",
+      requiredLegend: "Pflichtfeld",
     },
     validation: {
       name_required: "Bitte geben Sie Ihren Vor- und Nachnamen ein.",
@@ -237,6 +245,8 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       successTitle: "Tack — vi har tagit emot din förfrågan.",
       successBody: "Vi hör av oss så snart vi har gått igenom din förfrågan.",
       emailError: "Ange en giltig jobbmejladress.",
+      optional: "valfritt",
+      requiredLegend: "Obligatoriskt",
     },
     validation: {
       name_required: "Ange ditt för- och efternamn.",

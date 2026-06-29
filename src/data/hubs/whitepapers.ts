@@ -1,3 +1,5 @@
+import type { Lang } from "../lang";
+import { articlesIndexPath, langPath } from "../lang";
 import type { Hub } from "./types";
 
 export type WhitepaperResource = {
@@ -14,19 +16,18 @@ export const whitepapersHub: Hub = {
   title: "White papers.",
   titleAccent: "Long-form guides for decision makers.",
   eyebrow: "White papers",
-  lead: "We are preparing official white papers on the topics our customers ask about most. Until they are ready, explore our library, customer cases and blog — or book a briefing with our team.",
+  lead: "We are preparing official white papers on the topics our customers ask about most. Until they are ready, explore our articles and customer cases — or book a briefing with our team.",
   leaves: [],
 };
 
-/** Real pages visitors can use while official white papers are in production. */
-export const whitepaperResources: WhitepaperResource[] = [
+const whitepaperResourcesEn: WhitepaperResource[] = [
   {
-    href: "/en/library/",
-    eyebrow: "Library",
+    href: "/en/articles/",
+    eyebrow: "Articles",
     title: "Articles and use cases.",
     titleAccent: "Search by topic or industry.",
     lead: "Guides on indoor climate, preservation, space management, integrations and more — with filters for tags and categories.",
-    ctaLabel: "Browse the library",
+    ctaLabel: "Browse articles",
   },
   {
     href: "/en/case-studies/",
@@ -37,14 +38,6 @@ export const whitepaperResources: WhitepaperResource[] = [
     ctaLabel: "Read customer cases",
   },
   {
-    href: "/en/blog/",
-    eyebrow: "Blog",
-    title: "Longer reads and field notes.",
-    titleAccent: "Rollouts, standards and lessons learned.",
-    lead: "In-depth posts from our team on preservation standards, municipal rollouts and what we would do differently next time.",
-    ctaLabel: "Visit the blog",
-  },
-  {
     href: "/en/contact/book-demo/",
     eyebrow: "Briefing",
     title: "Talk to us directly.",
@@ -53,3 +46,19 @@ export const whitepaperResources: WhitepaperResource[] = [
     ctaLabel: "Book a free demo",
   },
 ];
+
+/** Real pages visitors can use while official white papers are in production. */
+export function getWhitepaperResources(lang: Lang = "en"): WhitepaperResource[] {
+  return whitepaperResourcesEn.map((resource) => ({
+    ...resource,
+    href:
+      resource.href === "/en/articles/"
+        ? articlesIndexPath(lang)
+        : resource.href === "/en/case-studies/"
+          ? langPath("case-studies", lang)
+          : langPath("contact/book-demo", lang),
+  }));
+}
+
+/** @deprecated Use getWhitepaperResources(lang) */
+export const whitepaperResources = whitepaperResourcesEn;

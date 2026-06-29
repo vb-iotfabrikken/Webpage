@@ -6,38 +6,30 @@
  * else still builds, but is treated as hidden so it can be gated/excluded and
  * kept out of search engines until it is ready.
  *
- * Planned updates — Railway soft-launch deployment:
- *   • Header: utility bar, nav links, isLivePath gating, demo CTA
- *   • Homepage: localized hero (incl. German Plattform copy), logo marquee caption
- *   • Stats: updated "Numbers that matter" figures
- *   • Sensors: compare matrix, filters, scroll UX, head-to-head duel; full catalogue
- *     and product pages with localized product sheets
- *   • Contact: photo cards, support section; locale-specific phone and email
- *   • i18n: resolveLang, link localization, translated module landing pages
- *   • Footer: Integrations link removed; Evaluate column (industries, compare, ROI)
- *
- * Approved live set (pages on the allowlist):
+ * Approved live set (per the deployment brief):
  *   • Homepage
- *   • Products      → Modules (hub + indoor climate, space management, water
- *                     detection, preservation), Sensors (incl. compare + product sheets)
+ *   • Products      → Four modules (indoor climate, space management, water
+ *                     detection, preservation) + modules hub index; Sensors
+ *                     (incl. compare + product sheets)
  *   • Resources     → Cases (case studies)
  *   • Company       → About (incl. Story, Team, Press, Trust center), Careers, Partners
- *   • Contact       → Book a demo, Sales, Become a partner, Support info
+ *   • Contact       → Book a demo, Sales, Become a partner, Support info,
+ *                     Archivistica (DE)
+ *   • Events        → Events hub + Archivistica landing (DE)
  *   • Get an offer  → Quote request form (CTA target from sensors + modules)
- *   • Events        → ARCHIVISTICA 2026 landing (/events/archivistica/)
  *   • Support/Legal → Privacy policy, Impressum
  *   • Helpcenter + Log in are external links (no internal page to gate)
  *
- * Also live via LIVE_EXACT: sensor compare matrix at /compare/, quote form at
- * /get-an-offer/, and the ARCHIVISTICA fair landing at /events/archivistica/.
- * Contact/archivistica/ is live via the contact/* prefix.
+ * Also live via LIVE_EXACT: sensor compare matrix + head-to-head at /compare/.
+ * Module pages are matched via LIVE_MODULE_SLUGS (not the whole /modules/ tree).
  *
  * Hidden for now: Platform, Industries (sector hubs + per-sector article
  * lists), Integrations, Pricing, competitive compare articles
  * (vs-manual-logging, etc. — data kept in hubs/compare.ts), ROI, FAQ,
  * Whitepapers, Shop, Glossary, Articles (the renamed library catalogue),
- * Solutions/landing pages, and the remaining Legal pages (Cookies, Terms,
- * Security, Accessibility, SLA) plus the Legal hub index.
+ * Solutions/landing pages, the remaining Legal pages (Cookies, Terms,
+ * Security, Accessibility, SLA) plus the Legal hub index, and the other
+ * module pages (push buttons, lockers/doors, usage/cleaning).
  *
  * Matching is locale-agnostic: the leading `/en|da|de|sv/` prefix is stripped
  * before a path is compared, so a rule covers every locale at once.
@@ -56,19 +48,23 @@ export const LAUNCH_LIVE_ONLY = true;
  * Whole sections that are live. A path matches when it equals the prefix or
  * starts with `${prefix}/`. Values are locale-stripped (no leading slash).
  */
-/** Module product pages live during soft launch (hub index stays live for all). */
-export const LIVE_MODULE_SLUGS: readonly string[] = [
-  "indoor-climate",
-  "space-management",
-  "water-detection",
-  "preservation",
-];
-
 export const LIVE_PREFIXES: readonly string[] = [
   "sensors",
   "case-studies",
   "about",
   "contact",
+  "events",
+];
+
+/**
+ * Module landing pages that are live during soft launch. The modules hub index
+ * (`modules`) is also live so breadcrumbs resolve. Other module slugs stay hidden.
+ */
+export const LIVE_MODULE_SLUGS: readonly string[] = [
+  "indoor-climate",
+  "space-management",
+  "water-detection",
+  "preservation",
 ];
 
 /**
@@ -80,7 +76,6 @@ export const LIVE_EXACT: readonly string[] = [
   "cases", // legacy redirect → case-studies; keep reachable
   "compare", // sensor compare matrix + head-to-head
   "get-an-offer",
-  "events/archivistica", // ARCHIVISTICA 2026 fair landing (DE indoor-climate teaser)
   "legal/privacy",
   "legal/impressum",
 ];
@@ -124,11 +119,13 @@ export function isLivePath(pathname: string): boolean {
 
   if (ALWAYS_ALLOWED.includes(path)) return true;
   if (LIVE_EXACT.includes(path)) return true;
-
   if (path === "modules") return true;
-  if (path.startsWith("modules/")) {
-    const slug = path.slice("modules/".length).split("/")[0];
-    return LIVE_MODULE_SLUGS.includes(slug);
+  if (
+    LIVE_MODULE_SLUGS.some(
+      (slug) => path === `modules/${slug}` || path.startsWith(`modules/${slug}/`),
+    )
+  ) {
+    return true;
   }
 
   return LIVE_PREFIXES.some(

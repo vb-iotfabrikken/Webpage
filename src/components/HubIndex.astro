@@ -12,6 +12,7 @@ import {
   localizeCrumbs,
   type Lang,
 } from "../data/lang";
+import { isLivePath } from "../data/launch";
 
 interface Breadcrumb {
   label: string;
@@ -47,6 +48,9 @@ const metaDescription = description ?? hub.lead;
 const localizedBreadcrumbs = localizeCrumbs(breadcrumbs, lang);
 const bookDemoHref = langPath("contact/book-demo", lang);
 const contactSalesHref = langPath("contact/sales", lang);
+const liveLeaves = hub.leaves.filter((leaf) =>
+  isLivePath(langPath(`${hub.slug}/${leaf.slug}`, lang)),
+);
 ---
 
 <Layout title={pageTitle} description={metaDescription}>
@@ -93,7 +97,7 @@ const contactSalesHref = langPath("contact/sales", lang);
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         <slot name="before-leaves" />
 
-        {hub.leaves.map((leaf) => (
+        {liveLeaves.map((leaf) => (
           <a
             href={langPath(`${hub.slug}/${leaf.slug}`, lang)}
             class="reveal group relative flex flex-col h-full p-6 md:p-7 bg-white border border-stone-100 rounded-xl hover:border-navy-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
