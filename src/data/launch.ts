@@ -13,10 +13,13 @@
  *   • Company       → About (incl. Story, Team, Press, Trust center), Careers, Partners
  *   • Contact       → Book a demo, Sales, Become a partner, Support info
  *   • Get an offer  → Quote request form (CTA target from sensors + modules)
+ *   • Events        → ARCHIVISTICA 2026 landing (/events/archivistica/)
  *   • Support/Legal → Privacy policy, Impressum
  *   • Helpcenter + Log in are external links (no internal page to gate)
  *
- * Also live via LIVE_EXACT: sensor compare matrix + head-to-head at /compare/.
+ * Also live via LIVE_EXACT: sensor compare matrix at /compare/, quote form at
+ * /get-an-offer/, and the ARCHIVISTICA fair landing at /events/archivistica/.
+ * Contact/archivistica/ is live via the contact/* prefix.
  *
  * Hidden for now: Platform, Industries (sector hubs + per-sector article
  * lists), Integrations, Pricing, competitive compare articles
@@ -59,6 +62,7 @@ export const LIVE_EXACT: readonly string[] = [
   "cases", // legacy redirect → case-studies; keep reachable
   "compare", // sensor compare matrix + head-to-head
   "get-an-offer",
+  "events/archivistica", // ARCHIVISTICA 2026 fair landing (DE indoor-climate teaser)
   "legal/privacy",
   "legal/impressum",
 ];
