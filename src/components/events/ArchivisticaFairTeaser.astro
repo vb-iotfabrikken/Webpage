@@ -1,0 +1,160 @@
+---
+import { archivisticaImages } from "../../data/archivisticaImages";
+
+interface Props {
+  href: string;
+  label?: string;
+  headline?: string;
+  date?: string;
+  location?: string;
+  cta?: string;
+  /** Slightly smaller layout for side-by-side module heroes. */
+  compact?: boolean;
+}
+
+const {
+  href,
+  label = "Wir sind dabei",
+  headline = "Treffen Sie uns auf der",
+  date = "29. September – 1. Oktober 2026",
+  location = "Hof (Saale) · Deutschland",
+  cta = "Mehr erfahren",
+  compact = false,
+} = Astro.props;
+
+const shortDate = "29.09.–01.10.2026";
+const linkClass =
+  "group block rounded-xl overflow-hidden shadow-xl border border-stone-100 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral-500 focus-visible:ring-offset-2";
+const gradientClass =
+  "relative bg-gradient-to-br from-navy-500 via-navy-500 to-sky-600 text-white";
+const glowClass =
+  "pointer-events-none absolute inset-0 opacity-30";
+const glowStyle =
+  "background: radial-gradient(circle at 20% 0%, rgba(85,161,194,0.45), transparent 55%);";
+---
+
+{compact ? (
+  <a
+    href={href}
+    aria-label={`${headline} ARCHIVISTICA 2026 — ${cta}`}
+    class:list={[linkClass, "w-full lg:max-w-[16.5rem] lg:ml-[calc((100%-16.5rem)*0.9)]"]}
+  >
+    {/* Horizontal banner — mobile and tablet */}
+    <div class:list={[gradientClass, "lg:hidden p-4 sm:p-5"]}>
+      <div class={glowClass} style={glowStyle} aria-hidden="true"></div>
+      <div class="relative flex items-center gap-3 sm:gap-4">
+        <div class="shrink-0 rounded-lg bg-white px-2.5 py-2 sm:px-3 sm:py-2.5 shadow-md">
+          <img
+            src={archivisticaImages.logo}
+            alt="ARCHIVISTICA Logo"
+            width="280"
+            height="80"
+            class="h-8 sm:h-9 w-auto max-w-[4.5rem] sm:max-w-[5.5rem] object-contain"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="min-w-0 flex-1">
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider">
+            <span class="h-1.5 w-1.5 rounded-full bg-coral-500" aria-hidden="true"></span>
+            {label}
+          </span>
+          <p class="mt-1.5 text-sm sm:text-base font-bold leading-snug">
+            {headline}{" "}
+            <span class="text-coral-200">ARCHIVISTICA 2026</span>
+          </p>
+          <p class="mt-1 text-xs sm:text-sm text-white/85 leading-snug">
+            <span class="font-medium text-white">{shortDate}</span>
+            <span class="text-white/60"> · </span>
+            {location}
+          </p>
+        </div>
+
+        <span
+          class="shrink-0 inline-flex items-center justify-center rounded-full bg-coral-500 p-2.5 sm:px-3 sm:py-2 text-white transition-colors group-hover:bg-coral-600"
+          aria-hidden="true"
+        >
+          <span class="sm:hidden text-base leading-none">→</span>
+          <span class="hidden sm:inline text-xs font-semibold">{cta}</span>
+        </span>
+      </div>
+    </div>
+
+    {/* Portrait card — desktop */}
+    <div class:list={[gradientClass, "hidden lg:flex min-h-[17rem] flex-col justify-between p-5"]}>
+      <div class={glowClass} style={glowStyle} aria-hidden="true"></div>
+
+      <div class="relative">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider">
+          <span class="h-1.5 w-1.5 rounded-full bg-coral-500" aria-hidden="true"></span>
+          {label}
+        </span>
+
+        <div class="mt-3 rounded-xl bg-white px-3 py-3 shadow-lg">
+          <img
+            src={archivisticaImages.logo}
+            alt="ARCHIVISTICA Logo"
+            width="280"
+            height="80"
+            class="mx-auto block h-10 w-auto max-w-full object-contain"
+            loading="lazy"
+          />
+        </div>
+
+        <p class="mt-3 text-lg font-bold leading-tight">
+          {headline}
+          <span class="mt-0.5 block text-coral-200">ARCHIVISTICA 2026</span>
+        </p>
+
+        <p class="mt-3 border-l-4 border-coral-500 pl-3 text-xs leading-relaxed text-white/90">
+          <strong class="block text-white">{date}</strong>
+          {location}
+        </p>
+      </div>
+
+      <span class="relative mt-4 inline-flex items-center gap-2 self-start rounded-full bg-coral-500 px-3 py-2 text-xs font-semibold transition-colors group-hover:bg-coral-600">
+        {cta}
+        <span aria-hidden="true">→</span>
+      </span>
+    </div>
+  </a>
+) : (
+  <a href={href} class:list={[linkClass, "w-full"]}>
+    <div class:list={[gradientClass, "flex min-h-[20rem] lg:min-h-[22rem] flex-col justify-between p-6"]}>
+      <div class={glowClass} style={glowStyle} aria-hidden="true"></div>
+
+      <div class="relative">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider">
+          <span class="h-1.5 w-1.5 rounded-full bg-coral-500" aria-hidden="true"></span>
+          {label}
+        </span>
+
+        <div class="mt-5 rounded-xl bg-white px-4 py-4 shadow-lg">
+          <img
+            src={archivisticaImages.logo}
+            alt="ARCHIVISTICA Logo"
+            width="280"
+            height="80"
+            class="mx-auto block h-14 w-auto max-w-full object-contain"
+            loading="lazy"
+          />
+        </div>
+
+        <p class="mt-5 text-2xl font-bold leading-tight">
+          {headline}
+          <span class="mt-1 block text-coral-200">ARCHIVISTICA 2026</span>
+        </p>
+
+        <p class="mt-4 border-l-4 border-coral-500 pl-3 text-sm leading-relaxed text-white/90">
+          <strong class="block text-white">{date}</strong>
+          {location}
+        </p>
+      </div>
+
+      <span class="relative inline-flex items-center gap-2 self-start rounded-full bg-coral-500 px-4 py-2.5 text-sm font-semibold transition-colors group-hover:bg-coral-600">
+        {cta}
+        <span aria-hidden="true">→</span>
+      </span>
+    </div>
+  </a>
+)}
