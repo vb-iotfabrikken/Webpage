@@ -33,6 +33,12 @@
  *
  * Matching is locale-agnostic: the leading `/en|da|de|sv/` prefix is stripped
  * before a path is compared, so a rule covers every locale at once.
+ *
+ * Branch workflow:
+ *   • master — LAUNCH_LIVE_ONLY stays false; full site for day-to-day development.
+ *   • soft-launch — LAUNCH_LIVE_ONLY true; Railway deploys this branch only.
+ *   • Feed soft-launch from master deliberately (cherry-pick or targeted merge),
+ *     not by auto-syncing whole master.
  */
 
 import { locales } from "./lang";
