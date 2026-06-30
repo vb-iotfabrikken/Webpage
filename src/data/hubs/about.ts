@@ -4,7 +4,7 @@ import { defaultLang, type Lang } from "../lang";
 export const aboutHub: Hub = {
   slug: "about",
   title: "About IoT Fabrikken.",
-  titleAccent: "Built in Denmark. Used across Europe.",
+  titleAccent: "Built in Denmark — used across Europe.",
   eyebrow: "About",
   lead: "A 100% Danish-owned SaaS and IoT company, founded by people with 25 years of experience in measurement, SaaS and facility management.",
   leaves: [
@@ -64,7 +64,7 @@ type HubOverlay = {
 const aboutHubI18n: Partial<Record<Lang, HubOverlay>> = {
   da: {
     title: "Om IoT Fabrikken.",
-    titleAccent: "Bygget i Danmark. Brugt i hele Europa.",
+    titleAccent: "Bygget i Danmark — brugt i hele Europa.",
     eyebrow: "Om os",
     lead: "En 100% dansk-ejet SaaS- og IoT-virksomhed, grundlagt af folk med 25 års erfaring inden for måling, SaaS og facility management.",
     leaves: {
@@ -78,7 +78,7 @@ const aboutHubI18n: Partial<Record<Lang, HubOverlay>> = {
   },
   de: {
     title: "Über IoT Fabrikken.",
-    titleAccent: "In Dänemark gebaut. In ganz Europa im Einsatz.",
+    titleAccent: "In Dänemark gebaut — in ganz Europa im Einsatz.",
     eyebrow: "Über uns",
     lead: "Ein zu 100% in dänischem Besitz befindliches SaaS- und IoT-Unternehmen, gegründet von Menschen mit 25 Jahren Erfahrung in Messtechnik, SaaS und Facility Management.",
     leaves: {
@@ -92,7 +92,7 @@ const aboutHubI18n: Partial<Record<Lang, HubOverlay>> = {
   },
   sv: {
     title: "Om IoT Fabrikken.",
-    titleAccent: "Byggt i Danmark. Använt i hela Europa.",
+    titleAccent: "Byggt i Danmark — använt i hela Europa.",
     eyebrow: "Om oss",
     lead: "Ett till 100% danskägt SaaS- och IoT-företag, grundat av personer med 25 års erfarenhet inom mätning, SaaS och facility management.",
     leaves: {

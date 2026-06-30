@@ -27,10 +27,6 @@ export type CaseStudyLeaf = HubLeaf & {
 
 export type CaseStudiesContent = {
   hub: Pick<Hub, "title" | "titleAccent" | "eyebrow" | "lead">;
-  intro: {
-    title: string;
-    paragraphs: string[];
-  };
   cases: CaseStudyLeaf[];
   /** Cards visible on first paint (matches iot-fabrikken.* listing pages). */
   initialVisible: number;
@@ -38,14 +34,6 @@ export type CaseStudiesContent = {
 
 /** Show every case on first paint until we add category filters or pagination. */
 const INITIAL_VISIBLE = 24;
-
-const sharedIntro = {
-  title: "Customer cases.",
-  paragraphs: [
-    "When we deliver a solution to you — whether it's for indoor climate, space management, cleaning or a mix — you don't have to go out and buy anything else. Nor do you have to worry about how to get started: we put a lot of effort into start-up and training, and we always respond quickly to support enquiries.",
-    "Here's what some of our customers have to say about our partnership.",
-  ],
-};
 
 function leaf(
   entry: Omit<CaseStudyLeaf, "eyebrow"> & { eyebrow?: string },
@@ -401,7 +389,6 @@ function buildContent(lang: Lang, baseCases: CaseStudyLeaf[]): CaseStudiesConten
         });
   return {
     hub: caseStudiesI18n.hub[lang] ?? enHub,
-    intro: caseStudiesI18n.intro[lang] ?? sharedIntro,
     cases,
     initialVisible: INITIAL_VISIBLE,
   };
@@ -465,8 +452,6 @@ export function resolveCaseStudyLeaf(
 
 /** @deprecated Use `getCaseStudiesHub("en")` — kept for existing hub imports. */
 export const caseStudiesHub: Hub = getCaseStudiesHub("en");
-
-export const caseStudiesIntro = byLang.en.intro;
 
 /**
  * German-market cases (iot-fabrikken.de/projekte/) — for a future `/de/` locale.

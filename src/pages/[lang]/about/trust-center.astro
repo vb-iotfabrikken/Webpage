@@ -48,11 +48,6 @@ const pillars = tc.pillars.map((pillar) => {
 
   <section class="py-14 md:py-20 bg-white">
     <div class="container-page">
-      <div class="reveal max-w-2xl mb-10 md:mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">{tc.pillarsHeading}</h2>
-        <p class="mt-4 text-lg text-stone-900/70 leading-relaxed">{tc.pillarsLead}</p>
-      </div>
-
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         {pillars.map((pillar) => {
           const Tag = pillar.live ? "a" : "div";

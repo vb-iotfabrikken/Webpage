@@ -23,8 +23,6 @@ export interface TrustCenterContent {
   heroTitle: string;
   heroTitleAccent: string;
   heroLead: string;
-  pillarsHeading: string;
-  pillarsLead: string;
   pillars: TrustPillar[];
   certification: {
     eyebrow: string;
@@ -45,9 +43,6 @@ const en: TrustCenterContent = {
   heroTitleAccent: "Security, privacy and compliance in one place.",
   heroLead:
     "RoomAlyzer is built by a 100% Danish-owned company. Here you'll find our security posture, data-processing terms, service commitments and product certifications — everything you need to evaluate us with confidence.",
-  pillarsHeading: "Security and compliance",
-  pillarsLead:
-    "The documentation procurement, IT and legal teams ask for — in one place.",
   pillars: [
     {
       slug: "legal/security",
@@ -98,9 +93,6 @@ const da: TrustCenterContent = {
   heroTitleAccent: "Sikkerhed, privatliv og compliance ét sted.",
   heroLead:
     "RoomAlyzer er bygget af en 100% dansk-ejet virksomhed. Her finder du vores sikkerhed, databehandlingsvilkår, serviceforpligtelser og produktcertificeringer — alt, hvad du skal bruge for at vurdere os med tryghed.",
-  pillarsHeading: "Sikkerhed og compliance",
-  pillarsLead:
-    "Den dokumentation, som indkøbs-, it- og juridiske afdelinger beder om — samlet ét sted.",
   pillars: [
     {
       slug: "legal/security",
@@ -151,9 +143,6 @@ const de: TrustCenterContent = {
   heroTitleAccent: "Sicherheit, Datenschutz und Compliance an einem Ort.",
   heroLead:
     "RoomAlyzer wird von einem zu 100% in dänischem Besitz befindlichen Unternehmen entwickelt. Hier finden Sie unsere Sicherheitslage, Datenverarbeitungsbedingungen, Serviceverpflichtungen und Produktzertifizierungen — alles, was Sie brauchen, um uns mit Vertrauen zu bewerten.",
-  pillarsHeading: "Sicherheit und Compliance",
-  pillarsLead:
-    "Die Dokumentation, die Einkauf, IT und Recht anfordern — an einem Ort.",
   pillars: [
     {
       slug: "legal/security",
@@ -204,9 +193,6 @@ const sv: TrustCenterContent = {
   heroTitleAccent: "Säkerhet, integritet och compliance på ett ställe.",
   heroLead:
     "RoomAlyzer byggs av ett till 100% danskägt företag. Här hittar du vår säkerhet, databehandlingsvillkor, serviceåtaganden och produktcertifieringar — allt du behöver för att utvärdera oss med trygghet.",
-  pillarsHeading: "Säkerhet och compliance",
-  pillarsLead:
-    "Den dokumentation som inköps-, it- och juridikavdelningar efterfrågar — samlat på ett ställe.",
   pillars: [
     {
       slug: "legal/security",

@@ -30,6 +30,8 @@ interface Props {
   description?: string;
   /** Locale for chrome strings (CTAs, headings). Defaults to English. */
   lang?: Lang;
+  /** Skip the "Explore …" section heading before the card grid. */
+  hideSectionIntro?: boolean;
 }
 
 const {
@@ -39,6 +41,7 @@ const {
   title,
   description,
   lang: langProp,
+  hideSectionIntro = false,
 } = Astro.props;
 
 const lang = langProp ?? astroLang(Astro);
@@ -88,11 +91,13 @@ const liveLeaves = hub.leaves.filter((leaf) =>
 
   <section class="py-16 md:py-20">
     <div class="container-page">
-      <div class="reveal max-w-2xl mb-10 md:mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
-          {t.common.explore} {hub.title.replace(/\.$/, "").toLowerCase()}.
-        </h2>
-      </div>
+      {!hideSectionIntro && (
+        <div class="reveal max-w-2xl mb-10 md:mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
+            {t.common.explore} {hub.title.replace(/\.$/, "").toLowerCase()}.
+          </h2>
+        </div>
+      )}
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         <slot name="before-leaves" />

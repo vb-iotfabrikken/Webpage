@@ -13,7 +13,7 @@ interface Props {
 }
 
 const { lang } = Astro.props;
-const { hub, intro, cases, initialVisible } = getCaseStudiesContent(lang);
+const { hub, cases, initialVisible } = getCaseStudiesContent(lang);
 const basePath = langPath("case-studies", lang);
 const t = getCases(lang);
 ---
@@ -44,17 +44,8 @@ const t = getCases(lang);
     </Button>
   </Hero>
 
-  <section class="py-14 md:py-20 bg-stone-50 border-y border-stone-100">
+  <section class="py-14 md:py-20">
     <div class="container-page">
-      <div class="reveal max-w-3xl mb-10 md:mb-14">
-        <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
-          {intro.title}
-        </h2>
-        {intro.paragraphs.map((paragraph) => (
-          <p class="mt-4 text-lg text-stone-900/70 leading-relaxed">{paragraph}</p>
-        ))}
-      </div>
-
       <CaseStudyGrid
         cases={cases}
         basePath={basePath}

@@ -1,7 +1,7 @@
 import type { Lang } from "../lang";
 
 /**
- * Per-locale overlays for the case-studies hub, intro and per-case
+ * Per-locale overlays for the case-studies hub and per-case
  * title/lead teasers. English lives in `caseStudies.ts`.
  *
  * Leaf overlays are keyed by that locale's own slug:
@@ -14,11 +14,6 @@ export interface CaseHubOverlay {
   titleAccent: string;
   eyebrow: string;
   lead: string;
-}
-
-export interface CaseIntroOverlay {
-  title: string;
-  paragraphs: string[];
 }
 
 export interface CaseLeafOverlay {
@@ -44,30 +39,6 @@ export const caseHubI18n: Partial<Record<Lang, CaseHubOverlay>> = {
     titleAccent: "Bli en av våra kunder i 15 länder.",
     eyebrow: "Kundcase",
     lead: "Ligg steget före inomhusklimat och space management med data i RoomAlyzer.",
-  },
-};
-
-export const caseIntroI18n: Partial<Record<Lang, CaseIntroOverlay>> = {
-  da: {
-    title: "Kundecases.",
-    paragraphs: [
-      "Når vi leverer en løsning til dig — uanset om det er til indeklima, space management, rengøring eller en blanding — behøver du ikke gå ud og købe andet. Du skal heller ikke bekymre dig om, hvordan du kommer i gang: vi lægger meget arbejde i opstart og oplæring, og vi svarer altid hurtigt på supporthenvendelser.",
-      "Her er, hvad nogle af vores kunder siger om vores samarbejde.",
-    ],
-  },
-  de: {
-    title: "Kundenreferenzen.",
-    paragraphs: [
-      "Wenn wir Ihnen eine Lösung liefern — ob für Raumklima, Space-Management, Reinigung oder eine Kombination — müssen Sie nichts weiter anschaffen. Sie müssen sich auch keine Gedanken über den Einstieg machen: Wir investieren viel in Inbetriebnahme und Schulung und reagieren stets schnell auf Supportanfragen.",
-      "Hier sagen einige unserer Kunden, was sie über unsere Zusammenarbeit denken.",
-    ],
-  },
-  sv: {
-    title: "Kundcase.",
-    paragraphs: [
-      "När vi levererar en lösning till dig — oavsett om det gäller inomhusklimat, space management, städning eller en blandning — behöver du inte köpa något mer. Du behöver inte heller oroa dig för hur du kommer igång: vi lägger mycket arbete på uppstart och utbildning och svarar alltid snabbt på supportärenden.",
-      "Här är vad några av våra kunder säger om vårt samarbete.",
-    ],
   },
 };
 
@@ -136,6 +107,5 @@ export const caseLeafI18n: Partial<Record<Lang, Record<string, CaseLeafOverlay>>
 
 export const caseStudiesI18n = {
   hub: caseHubI18n,
-  intro: caseIntroI18n,
   leaf: caseLeafI18n,
 };
