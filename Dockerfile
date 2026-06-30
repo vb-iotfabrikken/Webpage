@@ -6,6 +6,14 @@
 FROM node:22-alpine AS build
 WORKDIR /app
 
+# Railway injects RAILWAY_GIT_BRANCH on GitHub-triggered builds. Fail fast if
+# master (or any non-soft-launch branch) is cloned — see .cursor/rules/railway-soft-launch.mdc.
+ARG RAILWAY_GIT_BRANCH
+RUN if [ -n "${RAILWAY_GIT_BRANCH}" ]; then \
+      test "${RAILWAY_GIT_BRANCH}" = "soft-launch" || \
+      (echo "ERROR: Railway must build from soft-launch, got: ${RAILWAY_GIT_BRANCH}" && exit 1); \
+    fi
+
 COPY package.json package-lock.json ./
 RUN npm ci
 

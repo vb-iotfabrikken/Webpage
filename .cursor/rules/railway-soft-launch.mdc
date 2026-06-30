@@ -1,0 +1,65 @@
+---
+description: Railway soft-launch deploy workflow — branch pin, CLI pitfalls, and trust-center gating
+alwaysApply: true
+---
+
+# Railway soft-launch deployment
+
+## Project pin
+
+- **Project:** `iotfabrikken-softlaunch`
+- **Service:** `web` (must track GitHub repo `vb-iotfabrikken/Webpage`)
+- **Branch:** `soft-launch` only — **never** `master`
+- **URL:** https://web-production-52760.up.railway.app
+
+Railway deploys from the Dockerfile (`railway.json` → `DOCKERFILE`). The Dockerfile
+rejects non-`soft-launch` Railway builds and forces `LAUNCH_LIVE_ONLY = true` at
+build time regardless of branch source file.
+
+## Branch workflow
+
+| Branch | `LAUNCH_LIVE_ONLY` in source | Purpose |
+|--------|------------------------------|---------|
+| `master` | `false` | Full-site local dev |
+| `soft-launch` | `true` | Railway production soft launch |
+
+Feed `soft-launch` from `master` deliberately (cherry-pick or targeted merge), not
+by auto-syncing whole `master`.
+
+## How to deploy
+
+### Normal workflow
+
+1. Commit and push to `origin/soft-launch` — GitHub webhook auto-deploys.
+
+### Recovery (if the branch pin drifts or deploys show `master` commits)
+
+1. Reconnect the source branch:
+   `railway service source connect --repo vb-iotfabrikken/Webpage --branch soft-launch --service web`
+2. Confirm in the Railway dashboard: **web** → Settings → Source → branch =
+   `soft-launch`.
+3. Push to `origin/soft-launch` to trigger a fresh deploy.
+
+To redeploy an existing good build without rebuilding from git, use **Redeploy** on
+that deployment in the dashboard (redeploys the same commit/image).
+
+## CLI and dashboard pitfalls (learned 2026-06-30)
+
+Do **not** use these for soft-launch deploys — they pull `master` even when the
+dashboard is pinned to `soft-launch`:
+
+- **`railway redeploy --from-source`**
+- **Dashboard "Deploy Latest Commit"** (command palette) — uses the GitHub default
+  branch (`master`)
+
+Also avoid:
+
+- **`railway up`** — fails with 413 Payload Too Large (~1.2 GB) because the repo
+  archive is too big for CLI upload. Use GitHub-triggered deploys instead.
+
+## Trust center during soft launch
+
+- Security pillar slug: `platform/security` (links to Platform hub on full launch).
+- During soft launch, `platform/security` is in `SOFT_LAUNCH_HIDDEN_TRUST_PILLARS`
+  — the card is removed entirely (same as Terms and SLA).
+- Only **Privacy & GDPR** (`legal/privacy`) shows as a linked pillar.

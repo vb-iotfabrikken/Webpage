@@ -44,10 +44,11 @@
  *   • Feed soft-launch from master deliberately (cherry-pick or targeted merge),
  *     not by auto-syncing whole master.
  *   • Railway service `web` must track the `soft-launch` branch only — never master.
- *     Pushing to master must not trigger the soft-launch Railway project. Confirm the
- *     source branch before running `railway redeploy --from-source`.
- *   • Dockerfile forces LAUNCH_LIVE_ONLY on during Docker builds so an accidental
- *     master deploy still prunes; local `npm run build` on master stays unpruned.
+ *     Pushing to master must not trigger the soft-launch Railway project. Never use
+ *     `railway redeploy --from-source` or dashboard "Deploy Latest Commit" — both
+ *     pull `master`. Push to `origin/soft-launch` instead (see railway-soft-launch.mdc).
+ *   • Dockerfile rejects non-soft-launch Railway builds and forces LAUNCH_LIVE_ONLY
+ *     on during Docker builds; local `npm run build` on master stays unpruned.
  */
 
 import { locales } from "./lang";
