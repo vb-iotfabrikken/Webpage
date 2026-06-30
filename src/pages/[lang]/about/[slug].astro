@@ -6,7 +6,7 @@ import { locales, langPath, type Lang } from "../../../data/lang";
 import type { HubLeaf } from "../../../data/hubs/types";
 
 export function getStaticPaths() {
-  const handAuthored = new Set(["story", "team", "partners", "press", "careers"]);
+  const handAuthored = new Set(["story", "team", "partners", "press", "careers", "trust-center"]);
   return locales.flatMap((l) =>
     getAboutHub(l.code).leaves
       .filter((leaf) => !handAuthored.has(leaf.slug))

@@ -1,0 +1,122 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import { getAbout } from "../../../data/i18n/about";
+import { getTrustCenter } from "../../../data/trustCenter";
+import { locales, langPath, type Lang } from "../../../data/lang";
+import { isLivePath } from "../../../data/launch";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { lang: l.code } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = getAbout(lang);
+const tc = getTrustCenter(lang);
+const bookDemoHref = langPath("contact/book-demo", lang);
+const contactSalesHref = langPath("contact/sales", lang);
+
+const pillars = tc.pillars.map((pillar) => {
+  const href = langPath(pillar.slug, lang);
+  return { ...pillar, href, live: isLivePath(href) };
+});
+---
+
+<Layout title={tc.metaTitle} description={tc.metaDescription}>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href={langPath("", lang)} class="hover:text-coral-500 transition-colors">{t.common.home}</a></li>
+      <li aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+      <li><a href={langPath("about", lang)} class="hover:text-coral-500 transition-colors">{t.common.about}</a></li>
+      <li aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+      <li><span class="text-navy-500">{tc.crumb}</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    title={tc.heroTitle}
+    titleAccent={tc.heroTitleAccent}
+    lead={tc.heroLead}
+    align="left"
+    compactTop
+  >
+    <Button href={bookDemoHref} variant="primary" size="lg" slot="cta">{t.common.bookDemo}</Button>
+    <Button href={contactSalesHref} variant="secondary" size="lg" slot="cta">{t.common.contactSales}</Button>
+  </Hero>
+
+  <section class="py-14 md:py-20 bg-white">
+    <div class="container-page">
+      <div class="reveal max-w-2xl mb-10 md:mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">{tc.pillarsHeading}</h2>
+        <p class="mt-4 text-lg text-stone-900/70 leading-relaxed">{tc.pillarsLead}</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {pillars.map((pillar) => {
+          const Tag = pillar.live ? "a" : "div";
+          return (
+            <Tag
+              href={pillar.live ? pillar.href : undefined}
+              class:list={[
+                "reveal group flex flex-col h-full bg-white border border-stone-100 rounded-xl p-6 sm:p-7 transition-all duration-300",
+                pillar.live && "hover:border-navy-500 hover:-translate-y-0.5 hover:shadow-md",
+              ]}
+            >
+              <h3 class="text-lg font-semibold text-navy-500 mb-2">{pillar.title.replace(/\.$/, "")}</h3>
+              <p class="text-sm text-stone-900/70 leading-relaxed flex-1">{pillar.description}</p>
+              {pillar.live && (
+                <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-sky-600 group-hover:text-coral-500 transition-colors">
+                  {t.common.readMore}
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                    <path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              )}
+            </Tag>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-16 md:pb-20">
+    <div class="container-page">
+      <div class="reveal rounded-2xl border border-stone-100 bg-gradient-to-br from-sky-50/80 to-white p-8 md:p-12">
+        <div class="grid gap-8 md:grid-cols-[auto,1fr] md:items-start md:gap-10">
+          <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white border border-sky-100 text-sky-600 shadow-sm">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <path d="M9 12l2 2 4-4" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-sky-600">{tc.certification.eyebrow}</p>
+            <h2 class="mt-2 text-2xl md:text-3xl font-bold text-navy-500 tracking-tight">{tc.certification.title}</h2>
+            <p class="mt-3 max-w-2xl text-stone-900/80 leading-relaxed">{tc.certification.lead}</p>
+            <ul class="mt-6 space-y-3">
+              {tc.certification.points.map((point) => (
+                <li class="flex items-start gap-3 text-stone-900/80">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="mt-0.5 shrink-0 text-sky-600" aria-hidden="true">
+                    <path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span class="leading-relaxed">{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title={tc.ctaTitle}
+    subtitle={tc.ctaSubtitle}
+    primaryLabel={t.common.bookDemo}
+    primaryHref={bookDemoHref}
+    secondaryLabel={t.common.contactSales}
+    secondaryHref={contactSalesHref}
+  />
+</Layout>
