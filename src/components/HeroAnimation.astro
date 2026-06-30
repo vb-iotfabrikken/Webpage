@@ -13,6 +13,7 @@
 // never changes between locales, so the pictures and boxes never shift.
 // "RoomAlyzer" is a brand name and stays identical across locales.
 import { defaultLang, type Lang } from "../data/lang";
+import { heroBackdropImage, heroManImage } from "../data/heroImages";
 
 interface Props {
   lang?: Lang;
@@ -283,11 +284,14 @@ const t = scenes[lang] ?? scenes[defaultLang];
        midpoint; atrium fades in from that point toward the tablet. See
        .hero-backdrop. -->
   <img
-    src="/images/background-banner.png"
+    src={heroBackdropImage.src}
     alt=""
     class="hero-backdrop pointer-events-none absolute inset-0 z-0 h-full w-full"
-    width="2800"
-    height="1158"
+    width={heroBackdropImage.width}
+    height={heroBackdropImage.height}
+    srcset={heroBackdropImage.srcSet.map((entry) => `${entry.url} ${entry.width}w`).join(", ")}
+    sizes="100vw"
+    fetchpriority="high"
     decoding="async"
     aria-hidden="true"
   />
@@ -846,11 +850,11 @@ const t = scenes[lang] ?? scenes[defaultLang];
   </svg>
 
     <img
-      src="/images/man.png"
+      src={heroManImage.src}
       alt=""
       class="hero-overlay pointer-events-none absolute bottom-0 -right-[24.56%] z-10 h-auto w-[92%]"
-      width="1024"
-      height="870"
+      width={heroManImage.width}
+      height={heroManImage.height}
       decoding="async"
       aria-hidden="true"
     />

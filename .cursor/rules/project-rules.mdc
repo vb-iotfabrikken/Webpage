@@ -71,6 +71,45 @@ vendor names (e.g. Disruptive Technologies, Efento), or other alternate grouping
   the correct URL. Re-run the sync script whenever the source PDFs change.
 - Catalogue data: [`src/data/hubs/sensors.ts`](src/data/hubs/sensors.ts).
 
+## Event landing pages
+
+**Canonical template:** [`src/pages/[lang]/events/archivistica.astro`](src/pages/[lang]/events/archivistica.astro).
+Every event detail landing must follow the same page structure and section order.
+**Colours and accent tokens are per event** (e.g. Archivistica navy/coral/sky;
+WORKTECH zinc/violet) — reuse layout, spacing, and components; only swap the theme.
+
+### Required files when adding an event
+
+- Registry: [`src/data/events.ts`](src/data/events.ts) — `siteEvents`, `eventAssets`,
+  `LOCALE_SCOPED_ROUTES`, and redirects in `astro.config.mjs` for non-host locales.
+- Hub cards: [`src/data/i18n/events.ts`](src/data/i18n/events.ts) — Card 1 (active) and
+  Card 2 (news) copy per locale.
+- Landing copy: `src/data/i18n/{event}.ts` — all hero, section, and CTA strings.
+- Images: `src/data/{event}Images.ts` and assets under `public/images/events/{slug}/`.
+- Pages: `src/pages/[lang]/events/{slug}.astro` (host locale only) and matching
+  `src/pages/[lang]/contact/{slug}.astro`.
+
+### Page structure (fixed order)
+
+1. **Layout** — `suppressHreflang`, `noindex`, `canonicalPath` pinned to the host locale.
+2. **Hero** — `align="left"`, `compactTop`, `splitVisual`, `allowVisualOverflow`, `dark`,
+   event `darkTone` on `Hero`, `noPattern`; breadcrumb (Home → Events → event); primary CTA
+   to event contact, secondary to book demo; visual column: `EventCardActive` with `static`
+   (same card as the hub, with hover lift) plus `heroMeta` chips below.
+3. **Features** — white band, `SectionIntro`, three-column feature cards with per-event
+   `featureStyles`.
+4. **Quote** — full-width dark band, decorative quote mark, partner/customer quote block
+   (event-themed background and accents).
+5. **Testimonials** — white band, three testimonial cards, reference pills, then
+   `<LogoMarquee />` (position only — carousel itself stays locked).
+6. **Fair / venue photos** — white band, `SectionIntro`, event photo collage.
+7. **CtaBand** — `variant="featured"`; primary to event contact (`#kontakt` anchor),
+   secondary to book demo.
+
+Do not invent alternate hero layouts (e.g. standalone venue images) or skip sections
+without explicit approval. Optional section *content* may differ per event; section
+*slots* stay the same.
+
 ## General
 
 - Keep changes small and focused.

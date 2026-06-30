@@ -9,6 +9,7 @@ export interface ContactStrings {
     sales: string;
     partner: string;
     archivistica: string;
+    worktech26Stockholm: string;
   };
   eyebrow: string;
   index: {
@@ -41,6 +42,13 @@ export interface ContactStrings {
     formSubtitle: string;
   };
   archivistica: {
+    heroTitle: string;
+    heroTitleAccent: string;
+    heroLead: string;
+    formTitle: string;
+    formSubtitle: string;
+  };
+  worktech26Stockholm: {
     heroTitle: string;
     heroTitleAccent: string;
     heroLead: string;
@@ -84,7 +92,7 @@ export interface ContactStrings {
 
 const contactStrings: Record<Lang, ContactStrings> = {
   en: {
-    breadcrumb: { home: "Home", contact: "Contact", bookDemo: "Book demo", sales: "Sales", partner: "Partner", archivistica: "ARCHIVISTICA" },
+    breadcrumb: { home: "Home", contact: "Contact", bookDemo: "Book demo", sales: "Sales", partner: "Partner", archivistica: "ARCHIVISTICA", worktech26Stockholm: "WORKTECH26 Stockholm" },
     eyebrow: "Contact",
     index: {
       heroTitle: "Let's have",
@@ -126,6 +134,13 @@ const contactStrings: Record<Lang, ContactStrings> = {
         "Tell us when you plan to visit our stand at ARCHIVISTICA in Hof — we'll reserve time for you on site.",
       formTitle: "Reserve a stand visit",
       formSubtitle: "Fill out the form and we'll confirm a time slot at our stand.",
+    },
+    worktech26Stockholm: {
+      heroTitle: "Meet us at WORKTECH26.",
+      heroTitleAccent: "Book an on-site meeting.",
+      heroLead: "Tell us when you plan to meet us at WORKTECH26 in Stockholm.",
+      formTitle: "Book an on-site meeting",
+      formSubtitle: "Fill out the form and we'll confirm a time slot.",
     },
     form: {
       eyebrow: "Get started",
@@ -169,7 +184,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
     },
   },
   da: {
-    breadcrumb: { home: "Hjem", contact: "Kontakt", bookDemo: "Book demo", sales: "Salg", partner: "Partner", archivistica: "ARCHIVISTICA" },
+    breadcrumb: { home: "Hjem", contact: "Kontakt", bookDemo: "Book demo", sales: "Salg", partner: "Partner", archivistica: "ARCHIVISTICA", worktech26Stockholm: "WORKTECH26 Stockholm" },
     eyebrow: "Kontakt",
     index: {
       heroTitle: "Lad os tage",
@@ -211,6 +226,13 @@ const contactStrings: Record<Lang, ContactStrings> = {
         "Fortæl os, hvornår du planlægger at besøge vores stand på ARCHIVISTICA i Hof — så reserverer vi tid til dig.",
       formTitle: "Reserver et standbesøg",
       formSubtitle: "Udfyld formularen, så bekræfter vi et tidspunkt ved vores stand.",
+    },
+    worktech26Stockholm: {
+      heroTitle: "Mød os på WORKTECH26.",
+      heroTitleAccent: "Book et møde på stedet.",
+      heroLead: "Fortæl os, hvornår du planlægger at møde os på WORKTECH26 i Stockholm.",
+      formTitle: "Book et møde på stedet",
+      formSubtitle: "Udfyld formularen, så bekræfter vi et tidspunkt.",
     },
     form: {
       eyebrow: "Kom i gang",
@@ -254,7 +276,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
     },
   },
   de: {
-    breadcrumb: { home: "Startseite", contact: "Kontakt", bookDemo: "Demo buchen", sales: "Vertrieb", partner: "Partner", archivistica: "ARCHIVISTICA" },
+    breadcrumb: { home: "Startseite", contact: "Kontakt", bookDemo: "Demo buchen", sales: "Vertrieb", partner: "Partner", archivistica: "ARCHIVISTICA", worktech26Stockholm: "WORKTECH26 Stockholm" },
     eyebrow: "Kontakt",
     index: {
       heroTitle: "Lassen Sie uns",
@@ -297,6 +319,13 @@ const contactStrings: Record<Lang, ContactStrings> = {
       formTitle: "Termin am Messestand reservieren",
       formSubtitle:
         "Sagen Sie uns, wann Sie uns auf der ARCHIVISTICA besuchen möchten — wir reservieren Zeit für Sie am Stand.",
+    },
+    worktech26Stockholm: {
+      heroTitle: "Treffen Sie uns auf WORKTECH26.",
+      heroTitleAccent: "Termin vor Ort buchen.",
+      heroLead: "Sagen Sie uns, wann Sie uns auf WORKTECH26 in Stockholm treffen möchten.",
+      formTitle: "Termin vor Ort buchen",
+      formSubtitle: "Füllen Sie das Formular aus — wir bestätigen einen Zeitfenster.",
     },
     form: {
       eyebrow: "Loslegen",
@@ -343,7 +372,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
     },
   },
   sv: {
-    breadcrumb: { home: "Hem", contact: "Kontakt", bookDemo: "Boka demo", sales: "Försäljning", partner: "Partner", archivistica: "ARCHIVISTICA" },
+    breadcrumb: { home: "Hem", contact: "Kontakt", bookDemo: "Boka demo", sales: "Försäljning", partner: "Partner", archivistica: "ARCHIVISTICA", worktech26Stockholm: "WORKTECH26 Stockholm" },
     eyebrow: "Kontakt",
     index: {
       heroTitle: "Låt oss ta",
@@ -385,6 +414,14 @@ const contactStrings: Record<Lang, ContactStrings> = {
         "Berätta när du planerar att besöka vår monter på ARCHIVISTICA i Hof — så reserverar vi tid för dig.",
       formTitle: "Boka ett standbesök",
       formSubtitle: "Fyll i formuläret så bekräftar vi en tid vid vår monter.",
+    },
+    worktech26Stockholm: {
+      heroTitle: "Träffa oss på WORKTECH26.",
+      heroTitleAccent: "Boka möte på plats i Stockholm.",
+      heroLead:
+        "Berätta när du planerar att träffa oss på WORKTECH26 den 10 november 2026 i Epicenter, Stockholm — så reserverar vi tid för dig.",
+      formTitle: "Boka möte på plats",
+      formSubtitle: "Fyll i formuläret så bekräftar vi en tid på konferensen.",
     },
     form: {
       eyebrow: "Kom igång",

@@ -15,6 +15,24 @@ Built with **Astro 6 + Tailwind v4** and content collections.
 | `npm run dev`    | Start local dev server on `localhost:4321`   |
 | `npm run build`  | Build the production site to `./dist/`       |
 | `npm run preview`| Preview the production build locally         |
+| `npm run sync-sensor-in-use` | Sync in-use sensor photos from `Pictures/` to WebP |
+| `npm run sync-sensor-dimensions` | Sync dimension photos from `Pictures/` to WebP |
+| `npm run optimize-images` | Optimise homepage, module, and catalogue images to WebP |
+| `npm run sync-all-images` | Run all sync + optimise scripts in sequence |
+
+## Image optimisation
+
+Static images live in `public/` and are optimised **offline** with Sharp scripts
+under `scripts/`. After adding or replacing source photography in `Pictures/`,
+run:
+
+```bash
+npm run sync-all-images
+```
+
+This regenerates WebP assets, responsive `srcset` variants for homepage teasers
+and the hero backdrop, and updates `src/data/heroImages.json`,
+`src/data/sensorFinderImages.json`, and `src/data/sensorInUseImageSizes.json`.
 
 ## Project structure
 

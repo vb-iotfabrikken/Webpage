@@ -3,13 +3,13 @@ export const spaceManagementFeatureImages: Record<
   string,
   { src: string; width: number; height: number }
 > = {
-  desks: { src: "/images/modules/space-management-desks.png", width: 963, height: 777 },
-  "meeting-rooms": { src: "/images/modules/space-management-meeting-rooms.png", width: 967, height: 561 },
-  heatmaps: { src: "/images/modules/space-management-heatmaps.png", width: 1734, height: 696 },
-  savings: { src: "/images/modules/space-management-savings.png", width: 540, height: 519 },
+  desks: { src: "/images/modules/space-management-desks.webp", width: 963, height: 777 },
+  "meeting-rooms": { src: "/images/modules/space-management-meeting-rooms.webp", width: 967, height: 561 },
+  heatmaps: { src: "/images/modules/space-management-heatmaps.webp", width: 1734, height: 696 },
+  savings: { src: "/images/modules/space-management-savings.webp", width: 540, height: 519 },
 };
 
-export const spaceManagementDashboardSrc = "/images/modules/space-management-dashboard.png";
+export const spaceManagementDashboardSrc = "/images/modules/space-management-dashboard.webp";
 
 /** Small editorial photo beside the capabilities section intro. */
 export const spaceManagementCapabilitiesContext = {

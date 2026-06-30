@@ -222,6 +222,11 @@ export default defineConfig({
     '/en/events/archivistica/': '/en/events/',
     '/da/events/archivistica/': '/da/events/',
     '/sv/events/archivistica/': '/sv/events/',
+
+    // Locale-scoped event pages — detail exists in one locale only; hub covers others.
+    '/en/events/worktech26-stockholm/': '/en/events/',
+    '/da/events/worktech26-stockholm/': '/da/events/',
+    '/de/events/worktech26-stockholm/': '/de/events/',
   },
 
   vite: {

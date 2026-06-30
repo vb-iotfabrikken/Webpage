@@ -22,6 +22,8 @@ interface Props {
   splitVisual?: boolean;
   /** Render the title band on a dark navy surface (like the footer) instead of grey. */
   dark?: boolean;
+  /** Accent palette when `dark` is true. */
+  darkTone?: "navy" | "worktech";
   /** Hide the decorative dot pattern in the title band. */
   noPattern?: boolean;
 }
@@ -40,6 +42,7 @@ const {
   visualOnWhite = false,
   splitVisual = false,
   dark = false,
+  darkTone = "navy",
   noPattern = false,
 } = Astro.props;
 
@@ -47,12 +50,24 @@ const hasVisual = Astro.slots.has("visual");
 const hasBelowVisual = Astro.slots.has("belowVisual");
 const visualInGreyBand = hasVisual && !visualOnWhite && !splitVisual;
 
+const isWorktechDark = dark && darkTone === "worktech";
+
 const surfaceClass = dark
-  ? "bg-navy-500 border-b border-navy-900"
+  ? isWorktechDark
+    ? "bg-zinc-900 border-b border-zinc-950"
+    : "bg-navy-500 border-b border-navy-900"
   : "bg-stone-50 border-b border-stone-100";
-const eyebrowClass = dark ? "text-coral-100" : "text-sky-600";
+const eyebrowClass = dark
+  ? isWorktechDark
+    ? "text-violet-200"
+    : "text-coral-100"
+  : "text-sky-600";
 const titleClass = dark ? "text-white" : "text-navy-500";
-const accentClass = dark ? "text-sky-100" : "text-sky-600";
+const accentClass = dark
+  ? isWorktechDark
+    ? "text-violet-300"
+    : "text-sky-100"
+  : "text-sky-600";
 const leadClass = dark ? "text-white/80" : "text-stone-900/70";
 const chipClass = dark
   ? "border-white/20 bg-white/10 text-white"

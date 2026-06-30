@@ -65,7 +65,7 @@ async function cropToLandscape(
         right: MAX_OUTPUT_WIDTH - fittedWidth - padLeft,
         background: { r: 250, g: 250, b: 249 },
       })
-      .png({ compressionLevel: 4 })
+      .webp({ quality: 80, effort: 6 })
       .toFile(targetPath);
 
     return { width: MAX_OUTPUT_WIDTH, height: MAX_OUTPUT_HEIGHT };
@@ -128,47 +128,47 @@ async function cropToLandscape(
     });
   }
 
-  await pipeline.png({ compressionLevel: 4 }).toFile(targetPath);
+  await pipeline.webp({ quality: 80, effort: 6 }).toFile(targetPath);
 
   return { width: outWidth, height: outHeight };
 }
 
 /**
  * @type {Array<{ source: string; target: string; focal?: readonly [number, number]; zoom?: number; fit?: "cover" | "contain" }>}
- * Two in-use images per slug (`{slug}-in-use.png`, `{slug}-in-use-2.png`).
+ * Two in-use images per slug (`{slug}-in-use.webp`, `{slug}-in-use-2.webp`).
  * Focal values match `inUseObjectPosition` in `sensorProductImages.ts`.
  */
 const mappings = [
-  { source: "CO2_use.png", target: "co2-in-use.png", focal: [0.5, 0.45] },
-  { source: "CO2_use 2.png", target: "co2-in-use-2.png", focal: [0.5, 0.5] },
-  { source: "Mini+_Full+_use.png", target: "full-plus-in-use.png", focal: [0.68, 0.4] },
-  { source: "Mini+_Full+_use 2.png", target: "full-plus-in-use-2.png", focal: [0.5, 0.5] },
-  { source: "Humidity_use 3.png", target: "humidity-in-use.png", focal: [0.5, 0.45] },
-  { source: "Humidity_use 2.png", target: "humidity-in-use-2.png", focal: [0.5, 0.5] },
-  { source: "Mini+_use 3.jpeg", target: "mini-plus-in-use.png", focal: [0.72, 0.42] },
-  { source: "Mini+_Full+_use 2.png", target: "mini-plus-in-use-2.png", focal: [0.5, 0.5] },
-  { source: "Mini+ PIR use.png", target: "mini-plus-pir-in-use.png", focal: [0.5, 0] },
-  { source: "Mini+ PIR use 2.png", target: "mini-plus-pir-in-use-2.png", focal: [0.55, 0.5] },
-  { source: "Outdoor_use 3.png", target: "outdoor-in-use.png", focal: [0.58, 0.48] },
-  { source: "Outdoor_use 2.png", target: "outdoor-in-use-2.png", focal: [0.5, 0.5] },
-  { source: "Temp_use 3.png", target: "temperature-in-use.png", focal: [0.5, 0.45] },
-  { source: "Temp_use.png", target: "temperature-in-use-2.png", focal: [0.5, 0.5] },
-  { source: "Desk_use 3.png", target: "desk-in-use.png", focal: [0.5, 0.45] },
-  { source: "Desk_use 2.jpg", target: "desk-in-use-2.png", focal: [0.5, 0.5] },
-  { source: "Motion_use.png", target: "motion-in-use.png", focal: [0.5, 0.45] },
-  { source: "Motion_use 2.png", target: "motion-in-use-2.png", focal: [0.5, 0] },
-  { source: "Open close_use.png", target: "open-close-in-use.png", focal: [0.5, 0.45] },
-  { source: "Open close_use 2.png", target: "open-close-in-use-2.png", focal: [0.5, 0.5] },
-  { source: "Touch_use_EN.png", target: "touch-in-use.png", focal: [0.5, 0.45] },
-  { source: "Touch_use 3.jpg", target: "touch-in-use-2.png", focal: [0.5, 0.5] },
-  { source: "Water detector_use.png", target: "water-detector-in-use.png", focal: [0.5, 0.45] },
-  { source: "Water detector_use 2.png", target: "water-detector-in-use-2.png", focal: [0.5, 0.5] },
-  { source: "Water rope_use.png", target: "water-rope-in-use.png", focal: [0.5, 0] },
-  { source: "Water rope_use 2.png", target: "water-rope-in-use-2.png", focal: [0.5, 0.5] },
-  { source: "Cloud connector_use.jpg", target: "cloud-connector-in-use.png", focal: [0.5, 0.45] },
-  { source: "Cloud connector_use 4.png", target: "cloud-connector-in-use-2.png", focal: [0.5, 0] },
-  { source: "Range extender_use.png", target: "range-extender-and-bracket-in-use.png", focal: [0.5, 0.45] },
-  { source: "Bracket_use 2.png", target: "range-extender-and-bracket-in-use-2.png", focal: [0.5, 0.5] },
+  { source: "CO2_use.png", target: "co2-in-use.webp", focal: [0.5, 0.45] },
+  { source: "CO2_use 2.png", target: "co2-in-use-2.webp", focal: [0.5, 0.5] },
+  { source: "Mini+_Full+_use.png", target: "full-plus-in-use.webp", focal: [0.68, 0.4] },
+  { source: "Mini+_Full+_use 2.png", target: "full-plus-in-use-2.webp", focal: [0.5, 0.5] },
+  { source: "Humidity_use 3.png", target: "humidity-in-use.webp", focal: [0.5, 0.45] },
+  { source: "Humidity_use 2.png", target: "humidity-in-use-2.webp", focal: [0.5, 0.5] },
+  { source: "Mini+_use 3.jpeg", target: "mini-plus-in-use.webp", focal: [0.72, 0.42] },
+  { source: "Mini+_Full+_use 2.png", target: "mini-plus-in-use-2.webp", focal: [0.5, 0.5] },
+  { source: "Mini+ PIR use.png", target: "mini-plus-pir-in-use.webp", focal: [0.5, 0] },
+  { source: "Mini+ PIR use 2.png", target: "mini-plus-pir-in-use-2.webp", focal: [0.55, 0.5] },
+  { source: "Outdoor_use 3.png", target: "outdoor-in-use.webp", focal: [0.58, 0.48] },
+  { source: "Outdoor_use 2.png", target: "outdoor-in-use-2.webp", focal: [0.5, 0.5] },
+  { source: "Temp_use 3.png", target: "temperature-in-use.webp", focal: [0.5, 0.45] },
+  { source: "Temp_use.png", target: "temperature-in-use-2.webp", focal: [0.5, 0.5] },
+  { source: "Desk_use 3.png", target: "desk-in-use.webp", focal: [0.5, 0.45] },
+  { source: "Desk_use 2.jpg", target: "desk-in-use-2.webp", focal: [0.5, 0.5] },
+  { source: "Motion_use.png", target: "motion-in-use.webp", focal: [0.5, 0.45] },
+  { source: "Motion_use 2.png", target: "motion-in-use-2.webp", focal: [0.5, 0] },
+  { source: "Open close_use.png", target: "open-close-in-use.webp", focal: [0.5, 0.45] },
+  { source: "Open close_use 2.png", target: "open-close-in-use-2.webp", focal: [0.5, 0.5] },
+  { source: "Touch_use_EN.png", target: "touch-in-use.webp", focal: [0.5, 0.45] },
+  { source: "Touch_use 3.jpg", target: "touch-in-use-2.webp", focal: [0.5, 0.5] },
+  { source: "Water detector_use.png", target: "water-detector-in-use.webp", focal: [0.5, 0.45] },
+  { source: "Water detector_use 2.png", target: "water-detector-in-use-2.webp", focal: [0.5, 0.5] },
+  { source: "Water rope_use.png", target: "water-rope-in-use.webp", focal: [0.5, 0] },
+  { source: "Water rope_use 2.png", target: "water-rope-in-use-2.webp", focal: [0.5, 0.5] },
+  { source: "Cloud connector_use.jpg", target: "cloud-connector-in-use.webp", focal: [0.5, 0.45] },
+  { source: "Cloud connector_use 4.png", target: "cloud-connector-in-use-2.webp", focal: [0.5, 0] },
+  { source: "Range extender_use.png", target: "range-extender-and-bracket-in-use.webp", focal: [0.5, 0.45] },
+  { source: "Bracket_use 2.png", target: "range-extender-and-bracket-in-use-2.webp", focal: [0.5, 0.5] },
 ];
 
 await mkdir(outDir, { recursive: true });
@@ -205,4 +205,16 @@ await writeFile(
 );
 
 console.log(`Wrote ${sizesManifestPath}`);
+
+// Remove legacy PNG exports superseded by WebP.
+for (const { target } of mappings) {
+  const legacyPath = join(outDir, target.replace(/\.webp$/i, ".png"));
+  try {
+    await import("node:fs/promises").then(({ unlink }) => unlink(legacyPath));
+    console.log(`removed legacy ${target.replace(/\.webp$/i, ".png")}`);
+  } catch {
+    // Not present.
+  }
+}
+
 console.log("In-use images synced.");

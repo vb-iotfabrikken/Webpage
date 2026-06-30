@@ -48,6 +48,16 @@ const en: EventsHubStrings = {
         note: "ARCHIVISTICA is a trade fair for archives, libraries and cultural heritage. Switch to Deutsch (DE) in the menu for fair details and on-site appointments.",
       },
     },
+    "worktech26-stockholm": {
+      title: "WORKTECH26 Stockholm",
+      date: "10 November 2026",
+      location: "Epicenter, Stockholm",
+      active: { eyebrow: "Upcoming", cta: "Learn more" },
+      news: {
+        eyebrow: "Exhibiting in Sweden",
+        note: "WORKTECH26 is a senior-level conference on the future of work and the workplace. Switch to Svenska (SV) in the menu for event details and on-site meetings.",
+      },
+    },
   },
 };
 
@@ -70,6 +80,16 @@ const da: EventsHubStrings = {
       news: {
         eyebrow: "Udstilling i Tyskland",
         note: "ARCHIVISTICA er en fagmesse for arkiver, biblioteker og kulturarv. Skift til Deutsch (DE) i menuen for messedetaljer og tider på standen.",
+      },
+    },
+    "worktech26-stockholm": {
+      title: "WORKTECH26 Stockholm",
+      date: "10. november 2026",
+      location: "Epicenter, Stockholm",
+      active: { eyebrow: "Kommende", cta: "Læs mere" },
+      news: {
+        eyebrow: "Udstilling i Sverige",
+        note: "WORKTECH26 er en konference om fremtidens arbejde og arbejdsplads. Skift til Svenska (SV) i menuen for eventdetaljer og møder på stedet.",
       },
     },
   },
@@ -96,6 +116,16 @@ const de: EventsHubStrings = {
         note: "",
       },
     },
+    "worktech26-stockholm": {
+      title: "WORKTECH26 Stockholm",
+      date: "10. November 2026",
+      location: "Epicenter, Stockholm",
+      active: { eyebrow: "Demnächst", cta: "Mehr erfahren" },
+      news: {
+        eyebrow: "Messe in Schweden",
+        note: "WORKTECH26 ist eine Konferenz über die Zukunft der Arbeit und des Arbeitsplatzes. Wechseln Sie im Menü zu Svenska (SV) für Messedetails und Termine vor Ort.",
+      },
+    },
   },
 };
 
@@ -118,6 +148,16 @@ const sv: EventsHubStrings = {
       news: {
         eyebrow: "Utställning i Tyskland",
         note: "ARCHIVISTICA är en fackmässa för arkiv, bibliotek och kulturarv. Byt till Deutsch (DE) i menyn för mässinformation och tider vid vår monter.",
+      },
+    },
+    "worktech26-stockholm": {
+      title: "WORKTECH26 Stockholm",
+      date: "10 november 2026",
+      location: "Epicenter, Stockholm",
+      active: { eyebrow: "Kommande", cta: "Läs mer" },
+      news: {
+        eyebrow: "Konferens i Sverige",
+        note: "",
       },
     },
   },

@@ -1,0 +1,78 @@
+{
+  "offices": {
+    "image": "/images/sensor-finder/offices.webp",
+    "width": 960,
+    "height": 720,
+    "srcSet": [
+      {
+        "width": 480,
+        "url": "/images/sensor-finder/offices-480.webp"
+      },
+      {
+        "width": 720,
+        "url": "/images/sensor-finder/offices-720.webp"
+      },
+      {
+        "width": 960,
+        "url": "/images/sensor-finder/offices-960.webp"
+      }
+    ]
+  },
+  "churches": {
+    "image": "/images/sensor-finder/churches.webp",
+    "width": 960,
+    "height": 720,
+    "srcSet": [
+      {
+        "width": 480,
+        "url": "/images/sensor-finder/churches-480.webp"
+      },
+      {
+        "width": 720,
+        "url": "/images/sensor-finder/churches-720.webp"
+      },
+      {
+        "width": 960,
+        "url": "/images/sensor-finder/churches-960.webp"
+      }
+    ]
+  },
+  "museums-galleries": {
+    "image": "/images/sensor-finder/museums-galleries.webp",
+    "width": 960,
+    "height": 720,
+    "srcSet": [
+      {
+        "width": 480,
+        "url": "/images/sensor-finder/museums-galleries-480.webp"
+      },
+      {
+        "width": 720,
+        "url": "/images/sensor-finder/museums-galleries-720.webp"
+      },
+      {
+        "width": 960,
+        "url": "/images/sensor-finder/museums-galleries-960.webp"
+      }
+    ]
+  },
+  "municipalities": {
+    "image": "/images/sensor-finder/municipalities.webp",
+    "width": 960,
+    "height": 720,
+    "srcSet": [
+      {
+        "width": 480,
+        "url": "/images/sensor-finder/municipalities-480.webp"
+      },
+      {
+        "width": 720,
+        "url": "/images/sensor-finder/municipalities-720.webp"
+      },
+      {
+        "width": 960,
+        "url": "/images/sensor-finder/municipalities-960.webp"
+      }
+    ]
+  }
+}

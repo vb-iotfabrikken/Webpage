@@ -81,6 +81,7 @@ export type ZohoLeadSource =
   | "Website - ROI report"
   | "Website - ROI consult"
   | "Website - Archivistica on-site"
+  | "Website - WORKTECH26 Stockholm on-site"
   | "Website - Pricing enterprise";
 
 /** Fallback for Zoho's mandatory Company field when a form does not collect it. */

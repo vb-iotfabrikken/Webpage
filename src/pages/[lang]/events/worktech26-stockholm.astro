@@ -1,0 +1,180 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import SectionIntro from "../../../components/SectionIntro.astro";
+import EventCardActive from "../../../components/events/EventCardActive.astro";
+import { getWorktech } from "../../../data/i18n/worktech26Stockholm";
+import { getEventCardCopy } from "../../../data/i18n/events";
+import { eventAssets } from "../../../data/events";
+import { breadcrumbSchema } from "../../../lib/seo/schema";
+import { langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "sv" as Lang } }];
+}
+
+const lang = Astro.params.lang as Lang;
+const t = getWorktech(lang);
+const cardCopy = getEventCardCopy("worktech26-stockholm", lang);
+const cardAssets = eventAssets["worktech26-stockholm"];
+
+const featureStyles = {
+  people: { card: "bg-violet-50/50 border-violet-100/70", chip: "text-violet-600" },
+  place: { card: "bg-zinc-50 border-zinc-200/80", chip: "text-zinc-700" },
+  technology: { card: "bg-fuchsia-50/40 border-fuchsia-100/60", chip: "text-fuchsia-600" },
+} as const;
+
+const pageJsonLd = [
+  breadcrumbSchema([
+    { name: t.breadcrumbHome, href: langPath("/", lang) },
+    { name: t.breadcrumbEvents, href: langPath("/events/", lang) },
+    { name: t.breadcrumbCurrent, href: langPath("/events/worktech26-stockholm/", lang) },
+  ]),
+].filter(Boolean) as Array<Record<string, unknown>>;
+---
+
+<Layout
+  title={t.metaTitle}
+  description={t.metaDescription}
+  jsonLd={pageJsonLd}
+  canonicalPath={langPath("/events/worktech26-stockholm/", "sv")}
+  suppressHreflang
+  noindex
+>
+  <Hero
+    title={t.heroTitle}
+    titleAccent={t.heroTitleAccent}
+    lead={t.heroLead}
+    eyebrow={t.heroEyebrow}
+    align="left"
+    compactTop
+    splitVisual
+    allowVisualOverflow
+    dark
+    darkTone="worktech"
+    noPattern
+  >
+    <ol slot="breadcrumb" class="flex flex-wrap items-center gap-1.5 text-sm text-white/60">
+      <li><a href={langPath("/", lang)} class="hover:text-violet-200 transition-colors">{t.breadcrumbHome}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><a href={langPath("/events/", lang)} class="hover:text-violet-200 transition-colors">{t.breadcrumbEvents}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><span class="text-white">{t.breadcrumbCurrent}</span></li>
+    </ol>
+
+    <Button href={langPath("/contact/worktech26-stockholm/", lang)} variant="primary" size="lg" slot="cta">{t.heroPrimaryCta}</Button>
+    <Button href={langPath("/contact/book-demo/", lang)} variant="secondary-light" size="lg" slot="cta">{t.heroSecondaryCta}</Button>
+
+    <div slot="visual" class="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
+      {cardCopy && cardAssets && (
+        <EventCardActive
+          logo={cardAssets.logo}
+          logoAlt={cardAssets.logoAlt}
+          copy={cardCopy}
+          theme={cardAssets.cardTheme}
+          static
+        />
+      )}
+      <ul class="mt-4 flex flex-wrap gap-2" aria-label="Eventdetaljer">
+        {t.heroMeta.map((item) => (
+          <li class="rounded-md border border-stone-200 bg-white px-3 py-1.5 text-sm">
+            <span class="text-stone-500">{item.label}:</span>{" "}
+            <span class="font-medium text-navy-500">{item.value}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Hero>
+
+  <section class="py-20 md:py-24">
+    <div class="container-page">
+      <SectionIntro
+        eyebrow={t.featuresEyebrow}
+        heading={t.featuresHeading}
+        lead={t.featuresLead}
+        surface="white"
+        class="mb-12 md:mb-14"
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {t.features.map((feature) => {
+          const style = featureStyles[feature.icon];
+          return (
+            <article class:list={["reveal rounded-2xl border p-8", style.card]}>
+              <span class:list={["mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm", style.chip]}>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  {feature.icon === "people" && (
+                    <>
+                      <path d="M16 20v-1a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v1" />
+                      <circle cx="9" cy="7" r="3.5" />
+                      <path d="M22 20v-1a3.5 3.5 0 0 0-2.8-3.4" />
+                      <path d="M16 4.1a3.5 3.5 0 0 1 0 6.8" />
+                    </>
+                  )}
+                  {feature.icon === "place" && (
+                    <>
+                      <path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z" />
+                      <circle cx="12" cy="10" r="2.5" />
+                    </>
+                  )}
+                  {feature.icon === "technology" && (
+                    <>
+                      <rect x="3.5" y="4.5" width="17" height="12" rx="2" />
+                      <path d="M8 20.5h8" />
+                      <path d="M12 16.5v4" />
+                      <path d="M7.5 9h9M7.5 12h5" />
+                    </>
+                  )}
+                </svg>
+              </span>
+              <h3 class="text-xl font-semibold text-navy-500">{feature.title}</h3>
+              <p class="mt-3 text-navy-500/70 leading-relaxed">{feature.body}</p>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="relative overflow-hidden bg-zinc-900 py-20 md:py-28 text-white">
+    <span
+      class="pointer-events-none absolute -top-10 left-6 select-none font-serif leading-none text-violet-500/15"
+      style="font-size:18rem"
+      aria-hidden="true"
+    >&ldquo;</span>
+    <div class="container-page relative">
+      <div class="reveal max-w-3xl mb-10 md:mb-12">
+        <p class="inline-block px-3 py-1 rounded-md text-xs font-semibold uppercase tracking-wider mb-5 border border-white/15 bg-white/10 text-violet-200">
+          {t.topicsEyebrow}
+        </p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">{t.topicsHeading}</h2>
+        <p class="mt-5 text-lg text-white/75 leading-relaxed">{t.topicsLead}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {t.topics.map((topic) => (
+          <article class="reveal rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
+            <h3 class="text-lg font-semibold text-violet-200">{topic.title}</h3>
+            <p class="mt-3 text-white/80 leading-relaxed">{topic.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    variant="featured"
+    title={t.ctaTitle}
+    subtitle={t.ctaLead}
+    primaryLabel={t.ctaPrimary}
+    primaryHref={langPath("/contact/worktech26-stockholm/", lang) + "#kontakt"}
+    secondaryLabel={t.ctaSecondary}
+    secondaryHref={langPath("/contact/book-demo/", lang)}
+  />
+</Layout>

@@ -27,11 +27,17 @@ export interface SiteEvent {
 }
 
 export const eventAssets: Readonly<
-  Record<string, { logo: string; logoAlt: string }>
+  Record<string, { logo: string; logoAlt: string; cardTheme?: "navy" | "worktech" }>
 > = {
   archivistica: {
     logo: "/images/events/archivistica/archivistica-logo.jpg",
     logoAlt: "ARCHIVISTICA Logo",
+    cardTheme: "navy",
+  },
+  "worktech26-stockholm": {
+    logo: "/images/events/worktech/worktech26-stockholm-logo.svg",
+    logoAlt: "WORKTECH26 Stockholm",
+    cardTheme: "worktech",
   },
 };
 
@@ -39,6 +45,8 @@ export const eventAssets: Readonly<
 export const LOCALE_SCOPED_ROUTES: Readonly<Record<string, readonly Lang[]>> = {
   "events/archivistica": ["de"],
   "contact/archivistica": ["de"],
+  "events/worktech26-stockholm": ["sv"],
+  "contact/worktech26-stockholm": ["sv"],
 };
 
 export const siteEvents: readonly SiteEvent[] = [
@@ -49,16 +57,27 @@ export const siteEvents: readonly SiteEvent[] = [
     startDate: "2026-09-29",
     endDate: "2026-10-01",
   },
+  {
+    slug: "worktech26-stockholm",
+    hostLocale: "sv",
+    detailLocales: ["sv"],
+    startDate: "2026-11-10",
+    endDate: "2026-11-10",
+  },
 ];
 
 /** Active (Card 1) events on this locale's hub — fair runs in this market. */
 export function getActiveEventsForLocale(lang: Lang): SiteEvent[] {
-  return siteEvents.filter((event) => event.hostLocale === lang);
+  return siteEvents
+    .filter((event) => event.hostLocale === lang)
+    .sort((a, b) => a.startDate.localeCompare(b.startDate));
 }
 
 /** News (Card 2) events on this locale's hub — we exhibit abroad. */
 export function getNewsEventsForLocale(lang: Lang): SiteEvent[] {
-  return siteEvents.filter((event) => event.hostLocale !== lang);
+  return siteEvents
+    .filter((event) => event.hostLocale !== lang)
+    .sort((a, b) => a.startDate.localeCompare(b.startDate));
 }
 
 export function hasEventDetailPage(event: SiteEvent, lang: Lang): boolean {

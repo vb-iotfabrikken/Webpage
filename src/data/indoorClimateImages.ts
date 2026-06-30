@@ -1,5 +1,5 @@
 /** Hero and capability screenshot metadata for the indoor-climate module page. */
-export const indoorClimateDashboardSrc = "/images/modules/indoor-climate-dashboard.png";
+export const indoorClimateDashboardSrc = "/images/modules/indoor-climate-dashboard.webp";
 
 /** Small editorial photo beside the capabilities section intro. */
 export const indoorClimateCapabilitiesContext = {
