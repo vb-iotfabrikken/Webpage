@@ -31,6 +31,10 @@
  * Security, Accessibility, SLA) plus the Legal hub index, and the other
  * module pages (push buttons, lockers/doors, usage/cleaning).
  *
+ * Trust center (`about/trust-center`) stays live but prunes Security (links to
+ * hidden Platform), Terms & DPA, Service levels, and the D-Label certification
+ * block — see {@link SOFT_LAUNCH_HIDDEN_TRUST_PILLARS}.
+ *
  * Matching is locale-agnostic: the leading `/en|da|de|sv/` prefix is stripped
  * before a path is compared, so a rule covers every locale at once.
  *
@@ -101,6 +105,16 @@ export const ALWAYS_ALLOWED: readonly string[] = [
   "thanks",
 ];
 
+/**
+ * Trust center pillar slugs removed entirely during soft launch (not shown as
+ * non-linked teasers). Locale-stripped route keys, e.g. `legal/terms`.
+ */
+export const SOFT_LAUNCH_HIDDEN_TRUST_PILLARS: readonly string[] = [
+  "platform/security",
+  "legal/terms",
+  "legal/sla",
+];
+
 const localePrefix = new RegExp(`^/(?:${locales.map((l) => l.code).join("|")})(?:/|$)`);
 
 /**
@@ -148,3 +162,4 @@ export function isLivePath(pathname: string): boolean {
 export function isHiddenPath(pathname: string): boolean {
   return !isLivePath(pathname);
 }
+
