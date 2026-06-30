@@ -15,6 +15,7 @@ COPY . .
 # allowlist gate on regardless of which git branch was cloned — master keeps
 # LAUNCH_LIVE_ONLY = false for local dev, but Docker/Railway must always prune.
 RUN sed -i 's/export const LAUNCH_LIVE_ONLY = \(true\|false\)/export const LAUNCH_LIVE_ONLY = true/' src/data/launch.ts
+RUN grep -q 'export const LAUNCH_LIVE_ONLY = true' src/data/launch.ts
 
 RUN npm run build
 
