@@ -7,7 +7,7 @@ export const industryPageContent: IndustryPageContent[] = [
   {
     slug: "offices",
     featuredCaseStudySlugs: ["dansk-industri"],
-    cardTitle: "Offices & Workplaces",
+    cardTitle: "Offices & workplaces",
     cardSummary:
       "Balance space utilisation in hybrid workplaces with employee productivity and comfort.",
     focus:
@@ -59,7 +59,7 @@ export const industryPageContent: IndustryPageContent[] = [
       "archdiocese-of-freiburg",
       "evangelische-kirche-in-hessen-und-nassau",
     ],
-    cardTitle: "Churches & Heritage",
+    cardTitle: "Churches & heritage",
     cardSummary:
       "Protect historic interiors with precise humidity and temperature control in large, unevenly heated buildings.",
     focus:
@@ -102,7 +102,7 @@ export const industryPageContent: IndustryPageContent[] = [
   {
     slug: "museums-galleries",
     featuredCaseStudySlugs: ["rudersdal-museer", "faaborg-museum"],
-    cardTitle: "Museums & Culture",
+    cardTitle: "Museums & culture",
     cardSummary:
       "Mitigate risk and preserve sensitive collections with continuous climate monitoring aligned to preservation standards.",
     focus:
@@ -143,7 +143,7 @@ export const industryPageContent: IndustryPageContent[] = [
   {
     slug: "municipalities",
     featuredCaseStudySlugs: ["norddjurs-municipality", "varde-municipality"],
-    cardTitle: "Schools & Municipalities",
+    cardTitle: "Schools & municipalities",
     cardSummary:
       "Prioritise student health, concentration, and energy setbacks across schools, administration, and cultural buildings.",
     focus:

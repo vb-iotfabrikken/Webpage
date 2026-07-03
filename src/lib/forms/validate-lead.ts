@@ -111,10 +111,17 @@ export type ContactFormFields = {
 /** Stable identifiers for validation failures, so the UI can localize them. */
 export type ValidationCode =
   | "name_required"
+  | "first_name_required"
+  | "last_name_required"
+  | "email_required"
   | "email_invalid"
   | "email_personal"
   | "email_disposable"
-  | "phone_invalid";
+  | "phone_invalid"
+  | "company_required"
+  | "consent_required";
+
+export type LeadFormFieldKey = "firstName" | "lastName" | "email" | "phone";
 
 export type FormValidation<T> =
   | { valid: true; data: T }
@@ -213,29 +220,56 @@ function validateWorkEmail(
   return { valid: true, email: normalised };
 }
 
-export function validateLeadForm(input: LeadFormFields): LeadFormValidation {
+export function collectLeadFormFieldErrors(
+  input: LeadFormFields,
+): Partial<Record<LeadFormFieldKey, ValidationCode>> {
+  const errors: Partial<Record<LeadFormFieldKey, ValidationCode>> = {};
+  const firstName = input.firstName.trim();
+  const lastName = input.lastName.trim();
+  const email = input.email.trim();
+  const phoneRaw = (input.phone ?? "").trim();
+
+  if (!firstName) errors.firstName = "first_name_required";
+  if (!lastName) errors.lastName = "last_name_required";
+
+  if (!email) {
+    errors.email = "email_required";
+  } else {
+    const emailResult = validateWorkEmail(email);
+    if (!emailResult.valid) errors.email = emailResult.code;
+  }
+
+  if (phoneRaw) {
+    const phone = normalisePhone(phoneRaw);
+    if (!isValidPhone(phone)) errors.phone = "phone_invalid";
+  }
+
+  return errors;
+}
+
+export type LeadFormFieldsValidation =
+  | {
+      valid: true;
+      data: Required<Pick<LeadFormFields, "firstName" | "lastName" | "email">> & {
+        phone?: string;
+      };
+    }
+  | { valid: false; fieldErrors: Partial<Record<LeadFormFieldKey, ValidationCode>> };
+
+export function validateLeadFormFields(input: LeadFormFields): LeadFormFieldsValidation {
+  const fieldErrors = collectLeadFormFieldErrors(input);
+  if (Object.keys(fieldErrors).length > 0) {
+    return { valid: false, fieldErrors };
+  }
+
   const firstName = input.firstName.trim();
   const lastName = input.lastName.trim();
   const phoneRaw = (input.phone ?? "").trim();
   const phone = phoneRaw ? normalisePhone(phoneRaw) : "";
-
-  if (!firstName || !lastName) {
-    return {
-      valid: false,
-      code: "name_required",
-      message: "Please enter your first and last name.",
-    };
-  }
-
   const emailResult = validateWorkEmail(input.email);
-  if (!emailResult.valid) return emailResult;
 
-  if (phone && !isValidPhone(phone)) {
-    return {
-      valid: false,
-      code: "phone_invalid",
-      message: "Please enter a valid phone number, or leave the field empty.",
-    };
+  if (!emailResult.valid) {
+    return { valid: false, fieldErrors: { email: emailResult.code } };
   }
 
   return {
@@ -247,6 +281,34 @@ export function validateLeadForm(input: LeadFormFields): LeadFormValidation {
       phone: phone || undefined,
     },
   };
+}
+
+export function validateLeadForm(input: LeadFormFields): LeadFormValidation {
+  const fieldResult = validateLeadFormFields(input);
+  if (!fieldResult.valid) {
+    const firstCode = Object.values(fieldResult.fieldErrors)[0] ?? "name_required";
+    const fallbackMessages: Record<ValidationCode, string> = {
+      name_required: "Please enter your first and last name.",
+      first_name_required: "Please enter your first name.",
+      last_name_required: "Please enter your last name.",
+      email_required: "Please enter your work email.",
+      email_invalid: "Please enter a valid work email address.",
+      email_personal:
+        "Please use your work email. Personal addresses (Gmail, Outlook, Yahoo, etc.) are not accepted.",
+      email_disposable:
+        "Please use a permanent work email. Temporary or disposable addresses are not accepted.",
+      phone_invalid: "Please enter a valid phone number, or leave the field empty.",
+      company_required: "Please enter your company name.",
+      consent_required: "Please accept the privacy policy to continue.",
+    };
+    return {
+      valid: false,
+      code: firstCode,
+      message: fallbackMessages[firstCode],
+    };
+  }
+
+  return { valid: true, data: fieldResult.data };
 }
 
 export function validateContactForm(

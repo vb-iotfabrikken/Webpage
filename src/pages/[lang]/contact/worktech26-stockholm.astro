@@ -1,0 +1,39 @@
+---
+
+import EventOnSiteContactPage from "../../../components/events/EventOnSiteContactPage.astro";
+
+import { getContact } from "../../../data/i18n/contact";
+
+import { eventContactLeadSources } from "../../../data/eventContactSources";
+
+import { getEventStaticPaths } from "../../../data/events";
+
+import { langPath, type Lang } from "../../../data/lang";
+
+
+
+export function getStaticPaths() {
+
+  return getEventStaticPaths("worktech26-stockholm");
+
+}
+
+
+
+const lang = Astro.params.lang as Lang;
+
+const t = getContact(lang);
+
+---
+
+
+
+<EventOnSiteContactPage
+  lang={lang}
+  breadcrumbLabel={t.breadcrumb.worktech26Stockholm}
+  pageTitle={t.breadcrumb.worktech26Stockholm}
+  canonicalPath={langPath("/contact/worktech26-stockholm/", "sv")}
+  source={eventContactLeadSources["worktech26-stockholm"]}
+  eventSlug="worktech26-stockholm"
+/>
+

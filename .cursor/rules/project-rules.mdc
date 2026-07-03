@@ -23,6 +23,18 @@ alwaysApply: true
 - When adding new content, write the English version first, then provide the
   translations (or rely on the English fallback) for the other locales.
 
+### English copy style (`en`)
+
+English user-facing copy uses **British English** and **sentence case**:
+
+| Rule | Do | Don't |
+|------|----|-------|
+| **Spelling** | `optimise`, `licence` (noun), `centre`, `defence`, `utilisation`, `organised`, `anonymised` | American `-ize`, `-or` where `-ise`/`-our` is standard |
+| **Capitalisation** | Capitalise only the first word and proper nouns/acronyms | Title Case on multi-word headings |
+| **Product names** | Keep RoomAlyzer lines and catalogue names unchanged | Translate or re-case product names |
+| **Plan tiers** | Single-word tier names stay as-is: `Building`, `Portfolio`, `Enterprise` | — |
+| **URL slugs** | English slugs unchanged (`trust-center`, etc.) | Rename routes for spelling |
+
 ### Localization content rules (names, places, standards)
 
 When translating or localizing copy (`da` / `de` / `sv`), follow these rules
@@ -70,6 +82,113 @@ vendor names (e.g. Disruptive Technologies, Efento), or other alternate grouping
   Use `productSheetPath(slug, lang)` (`src/data/sensorCategories.ts`) to resolve
   the correct URL. Re-run the sync script whenever the source PDFs change.
 - Catalogue data: [`src/data/hubs/sensors.ts`](src/data/hubs/sensors.ts).
+
+## Events hub and landing pages
+
+Events are **temporary**. Hub cards and landing pages hide after `endDate` +
+`EVENT_ARCHIVE_GRACE_DAYS` in [`src/data/events.ts`](src/data/events.ts). Structure and
+templates stay permanent — see [`src/data/events/README.md`](src/data/events/README.md)
+and [`archive/events/`](archive/events/).
+
+Authoritative registry: [`src/data/events.ts`](src/data/events.ts). Card themes:
+[`src/data/eventCardThemes.ts`](src/data/eventCardThemes.ts).
+
+### Live vs template vs archive
+
+| Layer | What persists |
+|-------|----------------|
+| **Live** | `siteEvents` rows; hub cards; landing + contact pages (only while `isEventLive`) |
+| **Template** | [`EventLandingLayout.astro`](src/components/events/EventLandingLayout.astro), `EventCardActive`, themes, project rules |
+| **Archive** | [`archive/events/{slug}/`](archive/events/) — snapshots after retirement; no public pages |
+
+Filter helpers: `isEventLive`, `getLiveEvents`, `getEventStaticPaths`. No public
+“past events” list — retired fairs disappear from the hub; old URLs 301 to `/events/`.
+
+### Events hub (`/[lang]/events/`)
+
+**Card 1 — active** ([`EventCardActive.astro`](src/components/events/EventCardActive.astro))
+
+- Shown when `event.hostLocale ===` current locale **and** `isEventLive(event)`.
+- **One colour theme per fair** (`eventAssets.cardTheme`). Extend
+  [`eventCardThemes.ts`](src/data/eventCardThemes.ts) for new palettes.
+- **Fixed markup:** status eyebrow (green dot) → logo → title → date/location with
+  left border accent → CTA row with arrow (hub only).
+- **Logos:** official assets in `eventAssets.logo` (`public/images/events/{slug}/`).
+  Presentation is uniform via **`logoPreset`** in [`eventCardLogo.ts`](src/data/eventCardLogo.ts)
+  (referenced from [`eventCardThemes.ts`](src/data/eventCardThemes.ts)) — same on hub Card 1
+  and landing venue cards. Pick a preset when adding a fair; do not hand-roll shell classes.
+  | Preset | Use when |
+  |--------|----------|
+  | `rectangle` | Default horizontal wordmark (ARCHIVISTICA) |
+  | `rectangleLg` | Slightly taller horizontal mark (WORKTECH) |
+  | `roundel` | Compact circular seal in a white roundel when a wide rectangle would leave too much empty space |
+  | `bleed` | Asset includes its own background — clipped plate on the card gradient (MUTEC) |
+- **Status dot:** the eyebrow dot on Card 1 is **always green** (`emerald-400`), regardless of
+  fair theme — including next to “Demnächst” on the German hub.
+- **Links to our landing page** — every Card 1 event **must** ship a host-locale landing
+  page; hub cards always link there (never directly to the official event site).
+- **Hover:** `hover:-translate-y-0.5 hover:shadow-2xl` on the card; `reveal` on an outer
+  wrapper.
+
+**Card 2 — news** ([`EventCardNews.astro`](src/components/events/EventCardNews.astro))
+
+- Shown on other locale hubs while the event is live; no foreign landing link.
+
+**Hub layout**
+
+- Card 1 grid → **stone divider** → Card 2 stack; both sorted by `startDate`.
+- Empty state copy when no live events (`emptyTitle` / `emptyLead` in `i18n/events.ts`).
+
+| Fair | `cardTheme` | Palette |
+|------|-------------|---------|
+| ARCHIVISTICA | `navy` | navy / coral / sky |
+| WORKTECH26 Stockholm | `worktech` | zinc / violet |
+| MUTEC | `mutec` | zinc / amber gradient; logo `bleed` |
+| DHBV Verbandstag | `dhbv` | forest green; logo `rectangle` (small seal centred in panel) |
+
+### Event landing pages
+
+**Canonical structure:** [`EventLandingLayout.astro`](src/components/events/EventLandingLayout.astro)
+(seven named slots: `hero`, `features`, `quote`, `testimonials`, `photos`, `cta`).
+Example implementation: [`archivistica.astro`](src/pages/[lang]/events/archivistica.astro).
+
+- **Required** for every Card 1 event: landing + contact in `hostLocale`; use
+  `getEventStaticPaths(slug)` in `getStaticPaths`.
+- **Colour:** same `cardTheme` on landing (`Hero` `darkTone` + section accents).
+- **Venue card:** `EventCardActive` with `static` + `externalHref` from `officialUrl`;
+  `allowVisualOverflow`; always links to the **official event site** in a new tab; same
+  hover as hub. When stand/booth info is known, pass `booth={{ label, detail }}` on the
+  landing venue card — bold themed headline (e.g. “Besuchen Sie uns”) and light detail line
+  (e.g. stand number/hall). Omit `booth` until the stand is confirmed.
+  Use `venueCardCopyFromHeroMeta(hubCopy, heroMeta)` so the card shows **Termin** and **Ort**
+  from landing i18n (not hub card date/location strings).
+- **Termin format:** `formatEventTermin()` in [`eventVenueCard.ts`](src/data/eventVenueCard.ts)
+  from `siteEvents` dates — single day `DD.MM.YYYY`; range `DD.MM. – DD.MM.YYYY`; optional
+  `terminTime` in landing i18n as ` · HH:MM–HH:MM`. Never spell out month names on the card.
+- **Hero meta chips:** [`EventHeroMeta.astro`](src/components/events/EventHeroMeta.astro)
+  below the venue card on **every** landing page. Build with `buildLandingHeroMeta(slug,
+  heroMetaFields)` — three items: date (`Termin` / localized), city (`Ort` / localized), and
+  event name (third row, full width). Layout: row 1 = date + city (two columns); row 2 = event
+  name (full width). City only — no country on the `Ort` chip.
+
+**Module teasers:** register `moduleTeasers` on `SiteEvent`; use
+`getModuleEventTeaser()` — never hardcode fair links on module pages.
+
+### Adding an event
+
+1. `siteEvents` + `eventAssets` (+ theme if new).
+2. Hub copy in `i18n/events.ts`.
+3. Landing i18n, images, thin pages via `EventLandingLayout`.
+4. `detailLocales` includes host locale; redirects via `getEventRedirectMap()`.
+
+### Retiring an event
+
+1. After `endDate + EVENT_ARCHIVE_GRACE_DAYS` (or `status: "archived"`).
+2. Add `{ slug, hostLocale }` to `archivedEvents` (301: landing → `/events/`, contact → `/contact/`).
+3. Remove hub copy; snapshot to `archive/events/{slug}/`.
+4. Verify build: no hub card; old URLs redirect.
+
+Do not invent alternate hero layouts or skip landing sections without approval.
 
 ## General
 

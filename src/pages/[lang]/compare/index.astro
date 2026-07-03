@@ -141,6 +141,7 @@ const duelStrings = {
                 type="button"
                 class="use-case-btn px-3 py-1.5 rounded-full border border-stone-200 bg-stone-50 text-xs font-medium text-navy-500 hover:border-navy-500 transition-colors"
                 data-slugs={useCase.slugs.join(",")}
+                data-use-case-id={useCase.id}
                 data-categories={useCase.categories.join(",")}
                 aria-pressed="false"
                 title={useCase.description}
@@ -350,6 +351,17 @@ const duelStrings = {
     if (useCaseClear.hasAttribute("disabled")) return;
     setUseCaseHighlight([]);
   });
+
+  const useCaseParam = new URLSearchParams(window.location.search).get("useCase");
+  if (useCaseParam) {
+    const matchBtn = Array.from(useCaseButtons).find(
+      (btn) => btn.dataset.useCaseId === useCaseParam,
+    );
+    if (matchBtn && !matchBtn.disabled) {
+      const slugs = matchBtn.dataset.slugs?.split(",") ?? [];
+      setUseCaseHighlight(slugs);
+    }
+  }
 
   function formatCell(value) {
     if (value === true) return { kind: "yes", text: duelStrings.yes };

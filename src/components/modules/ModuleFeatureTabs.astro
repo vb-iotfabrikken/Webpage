@@ -1,10 +1,14 @@
 ---
 import ModuleScreenshotPlaceholder from "./ModuleScreenshotPlaceholder.astro";
+import ModuleSensorLinkText from "./ModuleSensorLinkText.astro";
+import type { ModuleProseWithLinks } from "../../data/i18n/modulePageTypes";
+import type { Lang } from "../../data/lang";
 
 interface Feature {
   id: string;
   title: string;
   body: string;
+  bodyWithSensorLinks?: ModuleProseWithLinks;
   unit: string;
   imageAlt: string;
 }
@@ -23,102 +27,165 @@ interface Props {
   tabId: string;
   /** Optional per-feature image object-position / layout classes. */
   imageClass?: Record<string, string>;
+  lang?: Lang;
+  /** Side-by-side tabs (default) or stacked cards — use stack in narrow panels. */
+  layout?: "tabs" | "stack";
+  /** Show full tab body only on the selected tab (desktop tab list). */
+  revealBodyOnSelect?: boolean;
 }
 
-const { features, images, tabId, imageClass = {} } = Astro.props;
+const { features, images, tabId, imageClass = {}, lang, layout = "tabs", revealBodyOnSelect = false } = Astro.props;
+
+const useStack = layout === "stack";
 
 const unitChipClass = "bg-stone-100 text-navy-500 ring-stone-200";
 ---
 
 <div data-module-feature-tabs={tabId}>
-  <div
-    class="hidden lg:grid lg:grid-cols-[minmax(0,34rem)_1fr] gap-10 xl:gap-14 items-start"
-    data-feature-tabs-layout
-  >
-    <div
-      role="tablist"
-      aria-label="Capabilities"
-      class="flex flex-col gap-1 min-h-0 overflow-y-auto pr-1"
-      data-feature-tablist
-    >
-      {
-        features.map((feature, index) => (
-          <button
-            type="button"
-            role="tab"
-            id={`${tabId}-tab-${feature.id}`}
-            aria-selected={index === 0 ? "true" : "false"}
-            aria-controls={`${tabId}-panel-${feature.id}`}
-            tabindex={index === 0 ? 0 : -1}
-            data-feature-tab={feature.id}
-            class:list={[
-              "feature-tab text-left rounded-r-md border-l-4 px-4 py-3 transition-colors",
-              index === 0
-                ? "border-coral-500 bg-white shadow-sm"
-                : "border-transparent text-stone-900/70 hover:text-navy-500 hover:bg-white/60",
-            ]}
-          >
-            <span
-              class:list={[
-                "inline-flex rounded-md px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ring-1 ring-inset",
-                unitChipClass,
-              ]}
-            >
-              {feature.unit}
-            </span>
-            <span class="mt-2 block text-base font-semibold text-navy-500 leading-snug">{feature.title}</span>
-            <span class="mt-2 block text-sm leading-relaxed text-stone-900/70">{feature.body}</span>
-          </button>
-        ))
-      }
-    </div>
+  {
+    !useStack && (
+      <div
+        class="hidden lg:grid lg:grid-cols-[minmax(0,34rem)_1fr] gap-10 xl:gap-14 items-start"
+        data-feature-tabs-layout
+      >
+        <div
+          role="tablist"
+          aria-label="Capabilities"
+          class="flex flex-col gap-1 min-h-0 overflow-y-auto pr-1"
+          data-feature-tablist
+        >
+          {
+            features.map((feature, index) => (
+              <button
+                type="button"
+                role="tab"
+                id={`${tabId}-tab-${feature.id}`}
+                aria-selected={index === 0 ? "true" : "false"}
+                aria-controls={`${tabId}-panel-${feature.id}`}
+                tabindex={index === 0 ? 0 : -1}
+                data-feature-tab={feature.id}
+                class:list={[
+                  "feature-tab text-left rounded-r-md border-l-4 px-4 py-3 transition-colors",
+                  index === 0
+                    ? "border-coral-500 bg-white shadow-sm"
+                    : "border-transparent text-stone-900/70 hover:text-navy-500 hover:bg-white/60",
+                ]}
+              >
+                <span
+                  class:list={[
+                    "inline-flex rounded-md px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ring-1 ring-inset",
+                    unitChipClass,
+                  ]}
+                >
+                  {feature.unit}
+                </span>
+                <span class="mt-2 block text-base font-semibold text-navy-500 leading-snug">{feature.title}</span>
+                <div
+                  class:list={[
+                    "feature-tab-body mt-2 text-sm leading-relaxed text-stone-900/70",
+                    revealBodyOnSelect && index !== 0 && "hidden",
+                  ]}
+                  data-feature-tab-body={feature.id}
+                >
+                  {feature.bodyWithSensorLinks && lang ? (
+                    <ModuleSensorLinkText lang={lang} text={feature.bodyWithSensorLinks} />
+                  ) : (
+                    feature.body
+                  )}
+                </div>
+              </button>
+            ))
+          }
+        </div>
 
-    <div class="relative w-full" data-feature-panels>
-      {
-        features.map((feature, index) => {
-          const image = images[feature.id];
-          const focus = imageClass[feature.id] ?? "object-top";
-          const placeholderLabel = image?.placeholderLabel ?? feature.imageAlt;
+        <div class="relative w-full" data-feature-panels>
+          {
+            features.map((feature, index) => {
+              const image = images[feature.id];
+              const imgFitClass = imageClass[feature.id] ?? "object-cover object-top";
+              const placeholderLabel = image?.placeholderLabel ?? feature.imageAlt;
 
-          return (
-            <figure
-              role="tabpanel"
-              id={`${tabId}-panel-${feature.id}`}
-              aria-labelledby={`${tabId}-tab-${feature.id}`}
-              data-feature-panel={feature.id}
-              class:list={[
-                "overflow-hidden rounded-2xl border border-stone-100 bg-white shadow-lg shadow-navy-500/5",
-                index !== 0 && "hidden",
-              ]}
-            >
+              return (
+                <figure
+                  role="tabpanel"
+                  id={`${tabId}-panel-${feature.id}`}
+                  aria-labelledby={`${tabId}-tab-${feature.id}`}
+                  data-feature-panel={feature.id}
+                  class:list={[
+                    "overflow-hidden rounded-2xl border border-stone-100 bg-white shadow-lg shadow-navy-500/5",
+                    index !== 0 && "hidden",
+                  ]}
+                >
+                  {image?.src ? (
+                    <img
+                      src={image.src}
+                      alt={feature.imageAlt}
+                      width={image.width}
+                      height={image.height}
+                      class:list={["aspect-[16/10] w-full", imgFitClass]}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      decoding="async"
+                    />
+                  ) : (
+                    <ModuleScreenshotPlaceholder label={placeholderLabel} />
+                  )}
+                </figure>
+              );
+            })
+          }
+        </div>
+      </div>
+    )
+  }
+
+  <div class:list={[useStack ? "space-y-6 md:space-y-8" : "lg:hidden space-y-8"]}>
+    {
+      features.map((feature) => {
+        const image = images[feature.id];
+        const imgFitClass = imageClass[feature.id] ?? "object-cover object-top";
+        const placeholderLabel = image?.placeholderLabel ?? feature.imageAlt;
+
+        return revealBodyOnSelect ? (
+          <details class="reveal group rounded-xl border border-stone-100 bg-stone-50 open:shadow-sm">
+            <summary class="cursor-pointer list-none p-6 [&::-webkit-details-marker]:hidden">
+              <span
+                class:list={[
+                  "inline-flex rounded-md px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ring-1 ring-inset",
+                  unitChipClass,
+                ]}
+              >
+                {feature.unit}
+              </span>
+              <h3 class="mt-4 text-xl font-bold text-navy-500">{feature.title}</h3>
+            </summary>
+            <div class="px-6 pb-6">
+              {feature.bodyWithSensorLinks && lang ? (
+                <ModuleSensorLinkText
+                  lang={lang}
+                  text={feature.bodyWithSensorLinks}
+                  class="text-base leading-relaxed text-stone-900/75"
+                />
+              ) : (
+                <p class="text-base leading-relaxed text-stone-900/75">{feature.body}</p>
+              )}
+              <figure class="mt-6 overflow-hidden rounded-xl border border-stone-100 bg-white shadow-md">
               {image?.src ? (
                 <img
                   src={image.src}
                   alt={feature.imageAlt}
                   width={image.width}
                   height={image.height}
-                  class:list={["aspect-[16/10] w-full object-cover", focus]}
-                  loading={index === 0 ? "eager" : "lazy"}
+                  class:list={["aspect-[16/10] w-full", imgFitClass]}
+                  loading="lazy"
                   decoding="async"
                 />
               ) : (
                 <ModuleScreenshotPlaceholder label={placeholderLabel} />
               )}
             </figure>
-          );
-        })
-      }
-    </div>
-  </div>
-
-  <div class="lg:hidden space-y-8">
-    {
-      features.map((feature) => {
-        const image = images[feature.id];
-        const focus = imageClass[feature.id] ?? "object-top";
-        const placeholderLabel = image?.placeholderLabel ?? feature.imageAlt;
-
-        return (
+            </div>
+          </details>
+        ) : (
           <article class="reveal rounded-xl border border-stone-100 bg-stone-50 p-6">
             <span
               class:list={[
@@ -129,7 +196,15 @@ const unitChipClass = "bg-stone-100 text-navy-500 ring-stone-200";
               {feature.unit}
             </span>
             <h3 class="mt-4 text-xl font-bold text-navy-500">{feature.title}</h3>
-            <p class="mt-3 text-base leading-relaxed text-stone-900/75">{feature.body}</p>
+            {feature.bodyWithSensorLinks && lang ? (
+              <ModuleSensorLinkText
+                lang={lang}
+                text={feature.bodyWithSensorLinks}
+                class="mt-3 text-base leading-relaxed text-stone-900/75"
+              />
+            ) : (
+              <p class="mt-3 text-base leading-relaxed text-stone-900/75">{feature.body}</p>
+            )}
             <figure class="mt-6 overflow-hidden rounded-xl border border-stone-100 bg-white shadow-md">
               {image?.src ? (
                 <img
@@ -137,7 +212,7 @@ const unitChipClass = "bg-stone-100 text-navy-500 ring-stone-200";
                   alt={feature.imageAlt}
                   width={image.width}
                   height={image.height}
-                  class:list={["aspect-[16/10] w-full object-cover", focus]}
+                  class:list={["aspect-[16/10] w-full", imgFitClass]}
                   loading="lazy"
                   decoding="async"
                 />
@@ -180,6 +255,8 @@ const unitChipClass = "bg-stone-100 text-navy-500 ring-stone-200";
           tab.classList.toggle("shadow-sm", active);
           tab.classList.toggle("border-transparent", !active);
           tab.classList.toggle("text-stone-900/70", !active);
+          const body = tab.querySelector<HTMLElement>("[data-feature-tab-body]");
+          if (body) body.classList.toggle("hidden", !active);
         });
         panels.forEach((panel) => {
           panel.classList.toggle("hidden", panel.dataset.featurePanel !== id);

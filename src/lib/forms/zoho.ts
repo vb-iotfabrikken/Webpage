@@ -70,8 +70,7 @@ function addHidden(form: HTMLFormElement, name: string, value: string): void {
  *
  * Builds a detached form (tokens + mapped fields), submits it into a hidden
  * iframe so the page never navigates, and resolves once Zoho responds (or after
- * a short timeout). The source is recorded both as the Lead Source field and as
- * a prefix on the Description for resilience against picklist mismatches.
+ * a short timeout). The source is recorded as a prefix on the Description.
  *
  * Rejects if the Zoho tokens are still placeholders, so callers show their error
  * state instead of a false success.
@@ -120,7 +119,6 @@ export function submitLeadToZoho(
     .filter(Boolean)
     .join("\n\n");
   addHidden(form, ZOHO_FIELDS.description, description);
-  addHidden(form, ZOHO_FIELDS.leadSource, source);
 
   document.body.appendChild(form);
 

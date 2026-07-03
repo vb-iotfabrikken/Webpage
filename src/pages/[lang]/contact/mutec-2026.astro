@@ -1,0 +1,39 @@
+---
+
+import EventOnSiteContactPage from "../../../components/events/EventOnSiteContactPage.astro";
+
+import { getContact } from "../../../data/i18n/contact";
+
+import { eventContactLeadSources } from "../../../data/eventContactSources";
+
+import { getEventStaticPaths } from "../../../data/events";
+
+import { langPath, type Lang } from "../../../data/lang";
+
+
+
+export function getStaticPaths() {
+
+  return getEventStaticPaths("mutec-2026");
+
+}
+
+
+
+const lang = Astro.params.lang as Lang;
+
+const t = getContact(lang);
+
+---
+
+
+
+<EventOnSiteContactPage
+  lang={lang}
+  breadcrumbLabel={t.breadcrumb.mutec2026}
+  pageTitle={t.breadcrumb.mutec2026}
+  canonicalPath={langPath("/contact/mutec-2026/", "de")}
+  source={eventContactLeadSources["mutec-2026"]}
+  eventSlug="mutec-2026"
+/>
+

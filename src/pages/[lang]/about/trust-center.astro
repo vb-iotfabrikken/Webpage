@@ -6,11 +6,7 @@ import CtaBand from "../../../components/CtaBand.astro";
 import { getAbout } from "../../../data/i18n/about";
 import { getTrustCenter } from "../../../data/trustCenter";
 import { locales, langPath, type Lang } from "../../../data/lang";
-import {
-  isLivePath,
-  LAUNCH_LIVE_ONLY,
-  SOFT_LAUNCH_HIDDEN_TRUST_PILLARS,
-} from "../../../data/launch";
+import { isLivePath } from "../../../data/launch";
 
 export function getStaticPaths() {
   return locales.map((l) => ({ params: { lang: l.code } }));
@@ -22,17 +18,10 @@ const tc = getTrustCenter(lang);
 const bookDemoHref = langPath("contact/book-demo", lang);
 const contactSalesHref = langPath("contact/sales", lang);
 
-const pillars = tc.pillars
-  .filter(
-    (pillar) =>
-      !LAUNCH_LIVE_ONLY || !SOFT_LAUNCH_HIDDEN_TRUST_PILLARS.includes(pillar.slug),
-  )
-  .map((pillar) => {
-    const href = langPath(pillar.slug, lang);
-    return { ...pillar, href, live: isLivePath(href) };
-  });
-
-const showCertification = !LAUNCH_LIVE_ONLY;
+const pillars = tc.pillars.map((pillar) => {
+  const href = langPath(pillar.slug, lang);
+  return { ...pillar, href, live: isLivePath(href) };
+});
 ---
 
 <Layout title={tc.metaTitle} description={tc.metaDescription}>
@@ -87,7 +76,6 @@ const showCertification = !LAUNCH_LIVE_ONLY;
     </div>
   </section>
 
-  {showCertification && (
   <section class="pb-16 md:pb-20">
     <div class="container-page">
       <div class="reveal rounded-2xl border border-stone-100 bg-gradient-to-br from-sky-50/80 to-white p-8 md:p-12">
@@ -117,7 +105,6 @@ const showCertification = !LAUNCH_LIVE_ONLY;
       </div>
     </div>
   </section>
-  )}
 
   <CtaBand
     title={tc.ctaTitle}

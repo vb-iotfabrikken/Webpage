@@ -12,10 +12,9 @@ const en: ModulePageStrings = {
   heroTitle: "Feedback with",
   heroTitleAccent: "a single tap.",
   heroLead:
-    "Wireless push buttons let staff and guests report issues with one tap — cleaning, restocking, maintenance or feedback routed straight to the right team.",
+    "Real-time user feedback that turns problems into instant service requests",
   intro: [
-    "Facility teams often learn about problems too late — empty soap dispensers, messy restrooms or broken equipment noticed only after complaints pile up.",
-    "RoomAlyzer push buttons close the loop. A single press creates a timestamped alert with room context, so service teams can respond before it becomes a guest experience issue.",
+    "User feedback usually arrives too late — as a complaint, after the coffee machine has been broken all morning or the washroom has been out of paper for hours. By the time you hear about it, the damage to the experience is already done.",
   ],
   heroPrimaryCta: "Book a free demo",
   heroSecondaryCta: "Get an offer",
@@ -42,12 +41,30 @@ const en: ModulePageStrings = {
   capabilitiesHeading: "One press from the floor to the right team.",
   solutionLead:
     "RoomAlyzer Push buttons turn a physical tap into a routed, trackable service request — built for facility managers who need visibility and service teams who need clarity.",
+  solutionLeadWithSensorLinks: [
+    { type: "text", value: "RoomAlyzer Push buttons turn the " },
+    { type: "sensor", slug: "touch", label: "Touch" },
+    {
+      type: "text",
+      value:
+        " sensor into a routed, trackable service request — built for facility managers who need visibility and service teams who need clarity.",
+    },
+  ],
   capabilitiesContextAlt: "Employee submitting feedback with a RoomAlyzer touch button",
   features: [
     {
       id: "one-tap",
       title: "One-tap feedback",
       body: "Staff or guests press once — no app download, no login and no long form to fill in.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "The " },
+        { type: "sensor", slug: "touch", label: "Touch" },
+        {
+          type: "text",
+          value:
+            " sensor lets staff or guests press once — no app download, no login and no long form to fill in.",
+        },
+      ],
       unit: "One press",
       imageAlt: "Wall-mounted push button for one-tap service feedback",
     },
@@ -81,14 +98,14 @@ const en: ModulePageStrings = {
   audiencesHeading: "Visibility for managers, clarity for the teams on the floor",
   audiencesLead:
     "The same tap serves the colleague who needs soap restocked and the facility manager who needs proof that service levels are met.",
-  primaryAudienceHeading: "For Facility Managers",
+  primaryAudienceHeading: "For facility managers",
   primaryAudienceItems: [
     "See every open request on one dashboard",
     "Set routing rules by building, floor and button role",
     "Track response times for SLA and vendor contracts",
     "Reduce complaint volume with proactive service",
   ],
-  secondaryAudienceHeading: "For Service Teams",
+  secondaryAudienceHeading: "For service teams",
   secondaryAudienceItems: [
     "Get mobile alerts with room and issue type",
     "Close tasks in the field without paperwork",
@@ -135,10 +152,9 @@ const da: ModulePageStrings = {
   heroTitle: "Feedback med",
   heroTitleAccent: "et enkelt tryk.",
   heroLead:
-    "Trådløse trykknapper lader medarbejdere og gæster melde problemer med ét tryk — rengøring, genopfyldning, vedligehold eller feedback sendes direkte til det rigtige team.",
+    "Brugerfeedback i realtid, der gør problemer til øjeblikkelige serviceanmodninger",
   intro: [
-    "Facility-teams opdager ofte problemer for sent — tomme sæbedispensere, beskidte toiletter eller defekt udstyr først når klagerne hober sig op.",
-    "RoomAlyzer trykknapper lukker loopet. Ét tryk skaber en tidsstemplet alarm med rumkontekst, så serviceteams kan reagere, før det bliver en dårlig gæsteoplevelse.",
+    "Brugerfeedback kommer som regel for sent — som en klage, efter kaffemaskinen har været i stykker hele morgenen, eller toilettet har været uden papir i timevis. Når I hører om det, er skaden på oplevelsen allerede sket.",
   ],
   heroPrimaryCta: "Book en gratis demo",
   heroSecondaryCta: "Få et tilbud",
@@ -165,12 +181,30 @@ const da: ModulePageStrings = {
   capabilitiesHeading: "Ét tryk fra gulvet til det rigtige team.",
   solutionLead:
     "RoomAlyzer Trykknapper gør et fysisk tryk til en routed, sporbar serviceanmodning — bygget til facility managers, der skal have overblik, og serviceteams, der skal have klarhed.",
+  solutionLeadWithSensorLinks: [
+    { type: "text", value: "RoomAlyzer Trykknapper gør " },
+    { type: "sensor", slug: "touch", label: "Touch" },
+    {
+      type: "text",
+      value:
+        "-sensoren til en routed, sporbar serviceanmodning — bygget til facility managers, der skal have overblik, og serviceteams, der skal have klarhed.",
+    },
+  ],
   capabilitiesContextAlt: "Medarbejder der sender feedback med en RoomAlyzer-trykknap",
   features: [
     {
       id: "one-tap",
       title: "Feedback med ét tryk",
       body: "Medarbejdere eller gæster trykker én gang — ingen app, ingen login og ingen lang formular.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "Med " },
+        { type: "sensor", slug: "touch", label: "Touch" },
+        {
+          type: "text",
+          value:
+            "-sensoren trykker medarbejdere eller gæster én gang — ingen app, ingen login og ingen lang formular.",
+        },
+      ],
       unit: "Ét tryk",
       imageAlt: "Væghængt tryknap til servicefeedback med ét tryk",
     },
@@ -258,10 +292,9 @@ const de: ModulePageStrings = {
   heroTitle: "Feedback mit",
   heroTitleAccent: "einem einzigen Tipp.",
   heroLead:
-    "Drahtlose Drucktasten lassen Mitarbeitende und Gäste Probleme mit einem Tipp melden — Reinigung, Nachfüllung, Wartung oder Feedback gehen direkt an das richtige Team.",
+    "Echtzeit-Feedback, das Probleme in sofortige Serviceanfragen verwandelt",
   intro: [
-    "Facility-Teams erfahren Probleme oft zu spät — leere Seifenspender, unsaubere Toiletten oder defekte Ausstattung erst, wenn sich Beschwerden häufen.",
-    "RoomAlyzer Drucktasten schließen den Kreis. Ein Tastendruck erzeugt einen zeitgestempelten Alarm mit Raumkontext, damit Serviceteams reagieren können, bevor es zum Gästeproblem wird.",
+    "Nutzerfeedback kommt meist zu spät — als Beschwerde, nachdem die Kaffeemaschine den ganzen Morgen defekt war oder die Toilette stundenlang kein Papier hatte. Wenn Sie davon hören, ist der Schaden für die Erfahrung bereits entstanden.",
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
@@ -288,12 +321,30 @@ const de: ModulePageStrings = {
   capabilitiesHeading: "Ein Tipp vom Boden bis zum richtigen Team.",
   solutionLead:
     "RoomAlyzer Drucktasten machen aus einem physischen Tipp eine geroutete, nachverfolgbare Serviceanfrage — für Facility Manager mit Überblick und Serviceteams mit Klarheit.",
+  solutionLeadWithSensorLinks: [
+    { type: "text", value: "RoomAlyzer Drucktasten machen aus dem " },
+    { type: "sensor", slug: "touch", label: "Touch" },
+    {
+      type: "text",
+      value:
+        "-Sensor eine geroutete, nachverfolgbare Serviceanfrage — für Facility Manager mit Überblick und Serviceteams mit Klarheit.",
+    },
+  ],
   capabilitiesContextAlt: "Mitarbeitende geben Feedback über eine RoomAlyzer-Touch-Taste",
   features: [
     {
       id: "one-tap",
       title: "Feedback mit einem Tipp",
       body: "Mitarbeitende oder Gäste drücken einmal — kein App-Download, kein Login und kein langes Formular.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "Mit dem " },
+        { type: "sensor", slug: "touch", label: "Touch" },
+        {
+          type: "text",
+          value:
+            "-Sensor drücken Mitarbeitende oder Gäste einmal — kein App-Download, kein Login und kein langes Formular.",
+        },
+      ],
       unit: "Ein Tipp",
       imageAlt: "Wandmontierte Drucktaste für Service-Feedback mit einem Tipp",
     },
@@ -381,10 +432,9 @@ const sv: ModulePageStrings = {
   heroTitle: "Feedback med",
   heroTitleAccent: "ett enda tryck.",
   heroLead:
-    "Trådlösa tryckknappar låter medarbetare och gäster rapportera problem med ett tryck — städning, påfyllning, underhåll eller feedback skickas direkt till rätt team.",
+    "Användarfeedback i realtid som förvandlar problem till omedelbara serviceförfrågningar",
   intro: [
-    "Facility-team upptäcker ofta problem för sent — tomma tvåldispensrar, smutsiga toaletter eller trasig utrustning först när klagomålen hopar sig.",
-    "RoomAlyzer tryckknappar stänger loopen. Ett tryck skapar ett tidsstämplat larm med rums kontext, så serviceteam kan agera innan det blir en dålig gästupplevelse.",
+    "Användarfeedback kommer oftast för sent — som ett klagomål, efter att kaffemaskinen varit trasig hela morgonen eller toaletten saknat papper i timmar. När ni hör om det är skadan på upplevelsen redan skedd.",
   ],
   heroPrimaryCta: "Boka en gratis demo",
   heroSecondaryCta: "Få en offert",
@@ -411,12 +461,30 @@ const sv: ModulePageStrings = {
   capabilitiesHeading: "Ett tryck från golvet till rätt team.",
   solutionLead:
     "RoomAlyzer Tryckknappar gör ett fysiskt tryck till en dirigerad, spårbar serviceförfrågan — byggd för facility managers som behöver överblick och serviceteam som behöver tydlighet.",
+  solutionLeadWithSensorLinks: [
+    { type: "text", value: "RoomAlyzer Tryckknappar gör " },
+    { type: "sensor", slug: "touch", label: "Touch" },
+    {
+      type: "text",
+      value:
+        "-sensorn till en dirigerad, spårbar serviceförfrågan — byggd för facility managers som behöver överblick och serviceteam som behöver tydlighet.",
+    },
+  ],
   capabilitiesContextAlt: "Medarbetare som skickar feedback med en RoomAlyzer-tryckknapp",
   features: [
     {
       id: "one-tap",
       title: "Feedback med ett tryck",
       body: "Medarbetare eller gäster trycker en gång — ingen app, ingen inloggning och inget långt formulär.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "Med " },
+        { type: "sensor", slug: "touch", label: "Touch" },
+        {
+          type: "text",
+          value:
+            "-sensorn trycker medarbetare eller gäster en gång — ingen app, ingen inloggning och inget långt formulär.",
+        },
+      ],
       unit: "Ett tryck",
       imageAlt: "Väggmonterad tryckknapp för servicefeedback med ett tryck",
     },

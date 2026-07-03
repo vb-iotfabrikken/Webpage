@@ -49,7 +49,6 @@ const cellClass = "relative aspect-[16/10] min-h-[10rem] overflow-hidden bg-ston
           height={image.height}
           class={imageClass}
           style={`object-position: ${image.objectPosition}`}
-          sizes="(min-width: 640px) 384px, 100vw"
           loading={index === 0 ? loading : "lazy"}
           decoding="async"
         />

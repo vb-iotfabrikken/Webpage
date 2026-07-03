@@ -1,0 +1,83 @@
+---
+import type { ModuleSpotlight } from "../../data/i18n/modulePageTypes";
+import { langPath, type Lang } from "../../data/lang";
+import ModuleScreenshotPlaceholder from "./ModuleScreenshotPlaceholder.astro";
+
+interface SpotlightImage {
+  src?: string;
+  width: number;
+  height: number;
+  placeholderLabel?: string;
+}
+
+interface Props {
+  lang: Lang;
+  spotlight: ModuleSpotlight;
+  images: Record<"compact" | "pro", SpotlightImage>;
+  spotlightImageClass?: Partial<Record<"compact" | "pro", string>>;
+}
+
+const { lang, spotlight, images, spotlightImageClass = {} } = Astro.props;
+
+const cardClass =
+  "reveal group block overflow-hidden rounded-2xl border border-stone-100 bg-white shadow-lg shadow-navy-500/5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
+---
+
+<div class="reveal max-w-6xl">
+  <h2 class="text-3xl md:text-4xl font-bold text-navy-500 tracking-tight">
+    {spotlight.heading}
+  </h2>
+
+  <div class="mt-8 md:mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+    {
+      spotlight.variants.map((variant) => {
+        const image = images[variant.key];
+        const href = langPath(`/sensors/${variant.hrefSlug}/`, lang);
+        const imgClass = spotlightImageClass[variant.key] ?? "object-cover object-center";
+
+        return (
+          <a href={href} class={cardClass}>
+            <figure class="overflow-hidden">
+              {image?.src ? (
+                <img
+                  src={image.src}
+                  alt={variant.alt}
+                  width={image.width}
+                  height={image.height}
+                  class:list={["aspect-[3/2] w-full transition-transform duration-200 group-hover:scale-[1.02]", imgClass]}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <ModuleScreenshotPlaceholder label={image?.placeholderLabel ?? variant.alt} />
+              )}
+            </figure>
+            <div class="px-5 py-4 md:px-6 md:py-5">
+              <p class="text-lg font-semibold text-navy-500">{variant.label}</p>
+              <p class="mt-1 text-sm leading-relaxed text-stone-900/70">{variant.caption}</p>
+            </div>
+          </a>
+        );
+      })
+    }
+  </div>
+
+  <div class="mt-12 md:mt-14">
+    <h3 class="text-xl md:text-2xl font-bold text-navy-500 tracking-tight">
+      {spotlight.useCasesHeading}
+    </h3>
+    <ul class="mt-6 md:mt-8 space-y-5">
+      {
+        spotlight.useCases.map((useCase) => (
+          <li class="border-l-4 border-coral-500 pl-4 md:pl-5">
+            <p class="text-base leading-relaxed text-stone-900/80">
+              <span class="font-semibold text-navy-500">{useCase.title}</span>
+              {" — "}
+              {useCase.body}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>

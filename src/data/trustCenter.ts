@@ -2,16 +2,15 @@
  * Trust center content for `/{lang}/about/trust-center/`.
  *
  * The Trust center is the buyer-facing front door for security, privacy and
- * compliance. Most pillars link into the Legal hub; Security links to the
- * Platform hub. The
+ * compliance. The pillars link into the existing Legal hub pages; the
  * certification block surfaces the Danish D-Label hardware certification.
  */
 
 import { defaultLang, type Lang } from "./lang";
 
-/** A trust pillar that links to an internal page (locale-stripped slug). */
+/** A trust pillar that links to a Legal hub page (locale-stripped slug). */
 export interface TrustPillar {
-  /** Internal route, e.g. `platform/security` or `legal/privacy`. */
+  /** Internal route, e.g. `legal/security`. */
   slug: string;
   title: string;
   description: string;
@@ -36,17 +35,17 @@ export interface TrustCenterContent {
 }
 
 const en: TrustCenterContent = {
-  metaTitle: "Trust center | About | IoT Fabrikken",
+  metaTitle: "Trust centre | About | IoT Fabrikken",
   metaDescription:
     "Security, privacy, compliance and certifications for RoomAlyzer — everything you need to evaluate IoT Fabrikken with confidence.",
-  crumb: "Trust center",
-  heroTitle: "Trust center.",
+  crumb: "Trust centre",
+  heroTitle: "Trust centre.",
   heroTitleAccent: "Security, privacy and compliance in one place.",
   heroLead:
     "RoomAlyzer is built by a 100% Danish-owned company. Here you'll find our security posture, data-processing terms, service commitments and product certifications — everything you need to evaluate us with confidence.",
   pillars: [
     {
-      slug: "platform/security",
+      slug: "legal/security",
       title: "Security.",
       description:
         "Encryption, access controls and the architectural choices behind RoomAlyzer's security posture.",
@@ -96,7 +95,7 @@ const da: TrustCenterContent = {
     "RoomAlyzer er bygget af en 100% dansk-ejet virksomhed. Her finder du vores sikkerhed, databehandlingsvilkår, serviceforpligtelser og produktcertificeringer — alt, hvad du skal bruge for at vurdere os med tryghed.",
   pillars: [
     {
-      slug: "platform/security",
+      slug: "legal/security",
       title: "Sikkerhed.",
       description:
         "Kryptering, adgangskontroller og de arkitektoniske valg bag RoomAlyzers sikkerhed.",
@@ -146,7 +145,7 @@ const de: TrustCenterContent = {
     "RoomAlyzer wird von einem zu 100% in dänischem Besitz befindlichen Unternehmen entwickelt. Hier finden Sie unsere Sicherheitslage, Datenverarbeitungsbedingungen, Serviceverpflichtungen und Produktzertifizierungen — alles, was Sie brauchen, um uns mit Vertrauen zu bewerten.",
   pillars: [
     {
-      slug: "platform/security",
+      slug: "legal/security",
       title: "Sicherheit.",
       description:
         "Verschlüsselung, Zugriffskontrollen und die architektonischen Entscheidungen hinter der Sicherheit von RoomAlyzer.",
@@ -196,7 +195,7 @@ const sv: TrustCenterContent = {
     "RoomAlyzer byggs av ett till 100% danskägt företag. Här hittar du vår säkerhet, databehandlingsvillkor, serviceåtaganden och produktcertifieringar — allt du behöver för att utvärdera oss med trygghet.",
   pillars: [
     {
-      slug: "platform/security",
+      slug: "legal/security",
       title: "Säkerhet.",
       description:
         "Kryptering, åtkomstkontroller och de arkitekturval som ligger bakom RoomAlyzers säkerhet.",

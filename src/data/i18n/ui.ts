@@ -295,7 +295,7 @@ const en: UiStrings = {
       evaluate: "Evaluate",
       resources: "Resources",
       company: "Company",
-      supportLegal: "Support & Legal",
+      supportLegal: "Support & legal",
     },
     links: {
       platform: "Platform",
@@ -337,7 +337,7 @@ const en: UiStrings = {
       pricing: "Pricing",
       resources: "Resources",
       company: "Company",
-      helpcenter: "Helpcenter",
+      helpcenter: "Help centre",
       login: "Log in",
       bookDemo: "Book a free demo",
     },
@@ -353,10 +353,10 @@ const en: UiStrings = {
       allIndustries: "All industries",
     },
     industryColumns: {
-      publicHealth: "Public Sector & Healthcare",
-      commercial: "Commercial & Enterprise",
-      culture: "Culture & Heritage",
-      property: "Property & Facility Services",
+      publicHealth: "Public sector & healthcare",
+      commercial: "Commercial & enterprise",
+      culture: "Culture & heritage",
+      property: "Property & facility services",
     },
     pricing: {
       modelsLabel: "Pricing models",
@@ -373,7 +373,7 @@ const en: UiStrings = {
       whitepapersDesc: "In-depth reports for decision makers.",
     },
     company: {
-      aboutLabel: "About Us",
+      aboutLabel: "About us",
       aboutDesc: "Our story, team and Danish roots.",
       careersLabel: "Careers",
       careersDesc: "Open roles and life at IoT Fabrikken.",

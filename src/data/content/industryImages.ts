@@ -1,16 +1,12 @@
 /**
  * Hero photography for industry detail pages.
  *
- * Dedicated sector photos live in `public/images/industries/`. Museums and
- * municipalities still reuse the homepage sector teaser images
- * (`public/images/sensor-finder/`) until dedicated shots exist. Industries
+ * Dedicated sector photos live in `public/images/industries/`. Industries
  * without any photo fall back to a placeholder rendered by the consuming
  * component.
  */
 
 const BASE = "/images/industries";
-const TEASER_BASE = "/images/sensor-finder";
-
 export type IndustryImage = {
   src: string;
   alt: string;
@@ -45,12 +41,36 @@ export const industryImages: Record<string, IndustryImage> = {
     src: `${BASE}/hotels.webp`,
     alt: "Comfortable hotel room with a welcoming interior",
   },
+  retail: {
+    src: `${BASE}/retail.webp`,
+    alt: "Bright retail store interior with stocked shelves",
+  },
+  "elderly-care": {
+    src: `${BASE}/elderly-care.webp`,
+    alt: "Calm, comfortable elderly-care living space",
+  },
+  "manors-castles": {
+    src: `${BASE}/manors-castles.webp`,
+    alt: "Historic manor house with heritage interiors",
+  },
+  "property-management": {
+    src: `${BASE}/property-management.webp`,
+    alt: "Modern residential property managed across a portfolio",
+  },
+  "fm-companies": {
+    src: `${BASE}/fm-companies.webp`,
+    alt: "Facility-management team maintaining a commercial building",
+  },
+  "consulting-engineers": {
+    src: `${BASE}/consulting-engineers.webp`,
+    alt: "Consulting engineer reviewing building measurements on site",
+  },
   "museums-galleries": {
-    src: `${TEASER_BASE}/municipalities.png`,
+    src: `${BASE}/museums-galleries.webp`,
     alt: "Visitors viewing art in a museum gallery",
   },
   municipalities: {
-    src: `${TEASER_BASE}/schools.png`,
+    src: `${BASE}/municipalities.webp`,
     alt: "A municipal building serving the local community",
   },
 };

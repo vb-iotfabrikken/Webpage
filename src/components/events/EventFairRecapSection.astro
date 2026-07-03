@@ -1,0 +1,28 @@
+---
+import SectionIntro from "../SectionIntro.astro";
+import ArchivisticaPhotoCollage from "./ArchivisticaPhotoCollage.astro";
+import { buildFairCollagePhotos, getEventFairRecap } from "../../data/i18n/eventFairRecap";
+import type { Lang } from "../../data/lang";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getEventFairRecap(lang);
+const photos = buildFairCollagePhotos(t);
+---
+
+<section class="py-20 md:py-24 bg-white">
+  <div class="container-page">
+    <SectionIntro
+      eyebrow={t.fairEyebrow}
+      heading={t.fairHeading}
+      lead={t.fairLead}
+      surface="white"
+      class="mb-10 md:mb-12"
+    />
+
+    <ArchivisticaPhotoCollage photos={photos} />
+  </div>
+</section>

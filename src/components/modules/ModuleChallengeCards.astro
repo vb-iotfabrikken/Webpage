@@ -19,7 +19,12 @@ const stroke = {
 };
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+<div
+  class:list={[
+    "grid grid-cols-1 gap-6 lg:gap-8",
+    challenges.length >= 4 ? "md:grid-cols-2" : "md:grid-cols-3",
+  ]}
+>
   {
     challenges.map((challenge, index) => (
       <article class="reveal bg-white border border-stone-100 rounded-xl p-6 md:p-8">
@@ -54,6 +59,11 @@ const stroke = {
           {iconSet === "climate" && index === 2 && (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
               <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" />
+            </svg>
+          )}
+          {iconSet === "climate" && index === 3 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke.width} stroke-linecap={stroke.cap} stroke-linejoin={stroke.join} aria-hidden="true">
+              <path d="M3 3v18h18" /><path d="M7 16l4-8 4 5 5-9" />
             </svg>
           )}
           {iconSet === "heritage" && index === 0 && (

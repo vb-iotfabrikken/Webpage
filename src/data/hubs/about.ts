@@ -39,7 +39,7 @@ export const aboutHub: Hub = {
     {
       slug: "trust-center",
       eyebrow: "About",
-      title: "Trust center.",
+      title: "Trust centre.",
       titleAccent: "Security, privacy and compliance in one place.",
       lead: "Security posture, data-processing terms, service commitments and product certifications — everything you need to evaluate us with confidence.",
     },

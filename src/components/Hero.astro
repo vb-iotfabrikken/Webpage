@@ -18,10 +18,16 @@ interface Props {
   inlineTitleAccent?: boolean;
   /** Render the visual slot on a white band below the grey title/CTA hero (standard split layout). */
   visualOnWhite?: boolean;
+  /** Grey-band bottom padding (pb-8/md:pb-10) without a white visual section below. */
+  visualBottomPadding?: boolean;
+  /** Bottom border on the white visual band (default true). */
+  visualOnWhiteBorder?: boolean;
   /** Place title/lead/CTAs and the visual slot side-by-side in the grey band (article-style). */
   splitVisual?: boolean;
   /** Render the title band on a dark navy surface (like the footer) instead of grey. */
   dark?: boolean;
+  /** Accent palette when `dark` is true. */
+  darkTone?: "navy" | "worktech" | "mutec" | "dhbv";
   /** Hide the decorative dot pattern in the title band. */
   noPattern?: boolean;
 }
@@ -38,21 +44,47 @@ const {
   compactBottom = false,
   inlineTitleAccent = false,
   visualOnWhite = false,
+  visualBottomPadding = false,
+  visualOnWhiteBorder = true,
   splitVisual = false,
   dark = false,
+  darkTone = "navy",
   noPattern = false,
 } = Astro.props;
 
 const hasVisual = Astro.slots.has("visual");
 const hasBelowVisual = Astro.slots.has("belowVisual");
-const visualInGreyBand = hasVisual && !visualOnWhite && !splitVisual;
+const visualInGreyBand = hasVisual && !visualOnWhite && !splitVisual && !visualBottomPadding;
 
-const surfaceClass = dark
-  ? "bg-navy-500 border-b border-navy-900"
-  : "bg-stone-50 border-b border-stone-100";
-const eyebrowClass = dark ? "text-coral-100" : "text-sky-600";
+const darkToneStyles = {
+  navy: {
+    surface: "bg-navy-500 border-b border-navy-900",
+    eyebrow: "text-coral-100",
+    accent: "text-sky-100",
+  },
+  worktech: {
+    surface: "bg-zinc-900 border-b border-zinc-950",
+    eyebrow: "text-violet-200",
+    accent: "text-violet-300",
+  },
+  mutec: {
+    surface: "bg-gradient-to-br from-zinc-950 via-zinc-900 to-amber-950 border-b border-zinc-950",
+    eyebrow: "text-yellow-300",
+    accent: "text-yellow-400",
+  },
+  dhbv: {
+    surface: "bg-gradient-to-br from-green-800 via-emerald-700 to-emerald-600 border-b border-green-900",
+    eyebrow: "text-emerald-100",
+    accent: "text-white",
+  },
+} as const;
+
+const tone = darkToneStyles[darkTone];
+
+const surfaceClass = dark ? tone.surface : "bg-stone-50 border-b border-stone-100";
+const eyebrowClass = dark ? tone.eyebrow : "text-sky-600";
 const titleClass = dark ? "text-white" : "text-navy-500";
-const accentClass = dark ? "text-sky-100" : "text-sky-600";
+const accentClass = dark ? tone.accent : "text-sky-600";
 const leadClass = dark ? "text-white/80" : "text-stone-900/70";
 const chipClass = dark
   ? "border-white/20 bg-white/10 text-white"
@@ -60,11 +92,13 @@ const chipClass = dark
 const dotColor = dark ? "#FFFFFF" : "var(--color-navy-500)";
 const dotOpacityClass = dark ? "opacity-[0.08]" : "opacity-[0.05]";
 
+const useGreyVisualPadding = visualOnWhite || visualBottomPadding;
+
 const containerPaddingClass = [
   compactTop ? "pt-6 md:pt-8" : "pt-16 md:pt-24",
-  compactBottom && !visualOnWhite
+  compactBottom && !useGreyVisualPadding
     ? "pb-0"
-    : visualOnWhite
+    : useGreyVisualPadding
       ? "pb-8 md:pb-10"
       : compactTop
         ? "pb-6 md:pb-8 xl:pb-10"
@@ -82,7 +116,7 @@ const leadSizeClass = "text-base md:text-lg xl:text-xl";
 <section
   data-page-hero
   data-compact-top={compactTop || undefined}
-  data-compact-bottom={(compactBottom || visualOnWhite) || undefined}
+  data-compact-bottom={compactBottom || useGreyVisualPadding ? true : undefined}
   class:list={[
     "relative",
     surfaceClass,
@@ -214,7 +248,7 @@ const leadSizeClass = "text-base md:text-lg xl:text-xl";
 
 {
   (hasVisual || hasBelowVisual) && visualOnWhite && (
-    <section class="bg-white border-b border-stone-100">
+    <section class:list={["bg-white", visualOnWhiteBorder && "border-b border-stone-100"]}>
       <div
         class:list={[
           "container-page pt-8 md:pt-10",

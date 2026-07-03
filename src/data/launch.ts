@@ -2,53 +2,35 @@
  * Soft-launch allowlist — the single source of truth for what is "online" vs.
  * "hidden" during the phased Railway launch.
  *
- * Only the pages in the approved live set are considered online. Everything
- * else still builds, but is treated as hidden so it can be gated/excluded and
- * kept out of search engines until it is ready.
+ * Full inventory (nav, pages, hidden sections): `launch/README.md`.
  *
- * Approved live set (per the deployment brief):
+ * Only allowlisted pages are considered online. Everything else still builds,
+ * but is treated as hidden so it can be pruned from dist and kept out of
+ * search engines until ready.
+ *
+ * Approved live set (summary):
  *   • Homepage
- *   • Products      → Four modules (indoor climate, space management, water
- *                     detection, preservation) + modules hub index; Sensors
- *                     (incl. compare + product sheets)
- *   • Resources     → Cases (case studies)
- *   • Company       → About (incl. Story, Team, Press, Trust center), Careers, Partners
- *   • Contact       → Book a demo, Sales, Become a partner, Support info,
- *                     Archivistica (DE)
- *   • Events        → Events hub + Archivistica landing (DE)
- *   • Get an offer  → Quote request form (CTA target from sensors + modules)
- *   • Support/Legal → Privacy policy, Impressum
- *   • Helpcenter + Log in are external links (no internal page to gate)
+ *   • Products      → Four modules + modules hub; Sensors (incl. product sheets);
+ *                     compare matrix + head-to-head at /compare/ (LIVE_EXACT)
+ *   • Resources     → Case studies
+ *   • Company       → About (story, team, careers, press, trust center, partners)
+ *   • Contact       → Hub, book-demo, sales, become-partner, support-info; event
+ *                     contact forms in each live event's detailLocales
+ *   • Events        → Hub + landing pages in detailLocales (see events.ts)
+ *   • Get an offer  → Quote request form
+ *   • Legal         → Privacy, Impressum only
+ *   • Helpcenter + Log in are external (no internal page to gate)
  *
- * Also live via LIVE_EXACT: sensor compare matrix + head-to-head at /compare/.
  * Module pages are matched via LIVE_MODULE_SLUGS (not the whole /modules/ tree).
  *
- * Hidden for now: Platform, Industries (sector hubs + per-sector article
- * lists), Integrations, Pricing, competitive compare articles
- * (vs-manual-logging, etc. — data kept in hubs/compare.ts), ROI, FAQ,
- * Whitepapers, Shop, Glossary, Articles (the renamed library catalogue),
- * Solutions/landing pages, the remaining Legal pages (Cookies, Terms,
- * Security, Accessibility, SLA) plus the Legal hub index, and the other
- * module pages (push buttons, lockers/doors, usage/cleaning).
+ * Hidden for now: Platform, Industries, Integrations, Pricing, competitive
+ * compare articles (vs-manual-logging, etc. — data in hubs/compare.ts), ROI,
+ * FAQ, Whitepapers, Shop, Glossary, Articles, Solutions/landing pages, most
+ * Legal pages, and module pages push-buttons, lockers-doors, usage-cleaning.
  *
- * Trust center (`about/trust-center`) stays live but prunes Security (links to
- * hidden Platform), Terms & DPA, Service levels, and the D-Label certification
- * block — see {@link SOFT_LAUNCH_HIDDEN_TRUST_PILLARS}.
+ * Matching is locale-agnostic: strip `/en|da|de|sv/` before comparing.
  *
- * Matching is locale-agnostic: the leading `/en|da|de|sv/` prefix is stripped
- * before a path is compared, so a rule covers every locale at once.
- *
- * Branch workflow:
- *   • master — LAUNCH_LIVE_ONLY stays false; full site for day-to-day development.
- *   • soft-launch — LAUNCH_LIVE_ONLY true; Railway deploys this branch only.
- *   • Feed soft-launch from master deliberately (cherry-pick or targeted merge),
- *     not by auto-syncing whole master.
- *   • Railway service `web` must track the `soft-launch` branch only — never master.
- *     Pushing to master must not trigger the soft-launch Railway project. Never use
- *     `railway redeploy --from-source` or dashboard "Deploy Latest Commit" — both
- *     pull `master`. Push to `origin/soft-launch` instead (see railway-soft-launch.mdc).
- *   • Dockerfile rejects non-soft-launch Railway builds and forces LAUNCH_LIVE_ONLY
- *     on during Docker builds; local `npm run build` on master stays unpruned.
+ * Branch workflow: see `launch/README.md`.
  */
 
 import { locales } from "./lang";
@@ -106,16 +88,6 @@ export const ALWAYS_ALLOWED: readonly string[] = [
   "thanks",
 ];
 
-/**
- * Trust center pillar slugs removed entirely during soft launch (not shown as
- * non-linked teasers). Locale-stripped route keys, e.g. `legal/terms`.
- */
-export const SOFT_LAUNCH_HIDDEN_TRUST_PILLARS: readonly string[] = [
-  "platform/security",
-  "legal/terms",
-  "legal/sla",
-];
-
 const localePrefix = new RegExp(`^/(?:${locales.map((l) => l.code).join("|")})(?:/|$)`);
 
 /**
@@ -163,4 +135,3 @@ export function isLivePath(pathname: string): boolean {
 export function isHiddenPath(pathname: string): boolean {
   return !isLivePath(pathname);
 }
-

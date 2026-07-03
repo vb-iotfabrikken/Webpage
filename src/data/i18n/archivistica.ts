@@ -11,7 +11,11 @@ export interface ArchivisticaStrings {
   heroTitle: string;
   heroTitleAccent: string;
   heroLead: string;
-  heroMeta: { label: string; value: string }[];
+  heroMetaFields: {
+    labels: { termin: string; ort: string; detail: string };
+    ort: string;
+    detail: string;
+  };
   heroPrimaryCta: string;
   heroSecondaryCta: string;
   usps: { value: string; label: string }[];
@@ -30,14 +34,13 @@ export interface ArchivisticaStrings {
   testimonials: { quote: string; name: string; org: string; logoAlt: string; logoSrc: string }[];
   references: string[];
   logoMarqueeCaption: string;
-  fairEyebrow: string;
-  fairHeading: string;
-  fairLead: string;
-  fairPhotos: { caption: string }[];
   ctaTitle: string;
   ctaLead: string;
   ctaPrimary: string;
   ctaSecondary: string;
+  officialEventLabel: string;
+  /** Optional stand/booth line on the landing-page venue card. */
+  venueBooth?: { label: string; detail: string };
 }
 
 const de: ArchivisticaStrings = {
@@ -52,13 +55,17 @@ const de: ArchivisticaStrings = {
   heroTitleAccent: "Energie sparen.",
   heroLead:
     "Treffen Sie IoT Fabrikken auf der ARCHIVISTICA in Hof und erleben Sie, wie RoomAlyzer Kulturgut zuverlässig schützt und gleichzeitig Heizkosten messbar reduziert. Live am Stand, oder vorab in einer kostenlosen Online-Demo.",
-  heroMeta: [
-    { label: "Termin", value: "29.09. – 01.10.2026" },
-    { label: "Ort", value: "Hof (Saale)" },
-    { label: "Fachmesse", value: "ARCHIVISTICA & Deutscher Archivtag" },
-  ],
+  heroMetaFields: {
+    labels: { termin: "Termin", ort: "Ort", detail: "Fachmesse" },
+    ort: "Hof (Saale)",
+    detail: "ARCHIVISTICA & Deutscher Archivtag",
+  },
   heroPrimaryCta: "Termin am Messestand reservieren",
   heroSecondaryCta: "Online-Demo buchen",
+  venueBooth: {
+    label: "Besuchen Sie uns",
+    detail: "Stand 1 - Oberes Festsaalfoyer E + 1",
+  },
   usps: [
     { value: "Bis zu 10 Jahre", label: "Batterielaufzeit" },
     { value: "Ohne WLAN & Kabel", label: "NB-IoT-Mobilfunk" },
@@ -134,20 +141,12 @@ const de: ArchivisticaStrings = {
     "Museen & Kommunen",
   ],
   logoMarqueeCaption: "Vertraut von Kommunen, Unternehmen und Kulturinstitutionen",
-  fairEyebrow: "Vor zwei Wochen in Münster",
-  fairHeading: "Wir sind unterwegs — und freuen uns auf Hof.",
-  fairLead:
-    "Im Mai 2026 waren wir Gast auf der Tagung des Deutschen Museumsbundes in Münster. Drei Tage lang haben wir mit Restauratorinnen, Konservatoren und Museumsleitungen über Bewahrung und Energieeffizienz gesprochen. Auf der ARCHIVISTICA in Hof setzen wir das Gespräch fort — gerne auch mit Ihnen.",
-  fairPhotos: [
-    { caption: "Unser Stand in Münster" },
-    { caption: "Deutscher Museumsbund · Mai 2026" },
-    { caption: "Bis bald in Hof" },
-  ],
   ctaTitle: "Bereit für ein Gespräch auf der ARCHIVISTICA?",
   ctaLead:
     "Reservieren Sie einen Termin am Messestand oder buchen Sie vorab eine Online-Demo — wir freuen uns auf Sie in Hof.",
   ctaPrimary: "Termin am Messestand reservieren",
   ctaSecondary: "Online-Demo buchen",
+  officialEventLabel: "Offizielle ARCHIVISTICA-Website öffnen",
 };
 
 const dictionaries: Partial<Record<Lang, ArchivisticaStrings>> = { de };

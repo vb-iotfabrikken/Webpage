@@ -12,10 +12,9 @@ const en: ModulePageStrings = {
   heroTitle: "Clean where",
   heroTitleAccent: "it is actually needed.",
   heroLead:
-    "Demand-based cleaning answers a question every operations team recognises: why clean a room no one has used while a busy space waits its turn?",
+    "Data-driven cleaning that follows actual use, not a fixed schedule",
   intro: [
-    "Fixed cleaning rotas treat every room the same — effort goes where it is not needed and too little where footfall is highest.",
-    "RoomAlyzer shows which spaces have actually been used, so cleaning follows real demand instead of a fixed timetable.",
+    "Demand-based cleaning answers a question every operations team recognises: why clean a room that no one has used, while a heavily used space waits its turn? Fixed cleaning rotas treat every room the same, which means effort spent where it isn't needed and too little where it is.",
   ],
   heroPrimaryCta: "Book a free demo",
   heroSecondaryCta: "Get an offer",
@@ -41,12 +40,34 @@ const en: ModulePageStrings = {
   capabilitiesHeading: "Occupancy data that drives cleaning the same day.",
   solutionLead:
     "RoomAlyzer Usage and cleaning turns occupancy into clear priorities — built for cleaning teams and facility managers who need to defend where effort goes.",
+  solutionLeadWithSensorLinks: [
+    { type: "text", value: "RoomAlyzer Usage and cleaning uses " },
+    { type: "sensor", slug: "motion", label: "Motion" },
+    { type: "text", value: " and " },
+    { type: "sensor", slug: "mini-plus-pir", label: "Mini+ PIR" },
+    {
+      type: "text",
+      value:
+        " sensors to turn occupancy into clear priorities — built for cleaning teams and facility managers who need to defend where effort goes.",
+    },
+  ],
   capabilitiesContextAlt: "Cleaning team planning routes from occupancy data",
   features: [
     {
       id: "usage-visibility",
       title: "Usage visibility",
       body: "See which rooms, zones and floors were actually used — today, this week, or over a custom period.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "The " },
+        { type: "sensor", slug: "motion", label: "Motion" },
+        { type: "text", value: " and " },
+        { type: "sensor", slug: "mini-plus-pir", label: "Mini+ PIR" },
+        {
+          type: "text",
+          value:
+            " sensors show which rooms, zones and floors were actually used — today, this week, or over a custom period.",
+        },
+      ],
       unit: "Occupancy",
       imageAlt: "Space usage visibility dashboard in RoomAlyzer",
     },
@@ -80,13 +101,13 @@ const en: ModulePageStrings = {
   audiencesHeading: "Cleaning teams and the facility managers who steer them",
   audiencesLead:
     "The same occupancy data helps the cleaner know which floors need attention today and the facility manager prove where the budget should go tomorrow.",
-  primaryAudienceHeading: "For Cleaning Teams",
+  primaryAudienceHeading: "For cleaning teams",
   primaryAudienceItems: [
     "See which rooms were used since the last round",
     "Prioritise busy washrooms and high-traffic zones",
     "Skip spaces that are already clean and untouched",
   ],
-  secondaryAudienceHeading: "For Facility Managers",
+  secondaryAudienceHeading: "For facility managers",
   secondaryAudienceItems: [
     "Cut wasted cleaning hours on empty rooms",
     "Share objective usage data with contractors",
@@ -132,10 +153,9 @@ const da: ModulePageStrings = {
   heroTitle: "Gør rent dér,",
   heroTitleAccent: "hvor det faktisk er nødvendigt.",
   heroLead:
-    "Behovsbaseret rengøring besvarer et spørgsmål, ethvert driftsteam kender: hvorfor gøre et rum rent, som ingen har brugt, mens et stærkt benyttet lokale venter på tur?",
+    "Datadrevet rengøring, der følger faktisk brug — ikke en fast plan",
   intro: [
-    "Faste rengøringsplaner behandler alle rum ens — indsats går derhen, hvor der ikke er behov, og for lidt dér, hvor fodtrafikken er størst.",
-    "RoomAlyzer viser, hvilke rum der faktisk er blevet brugt, så rengøringen følger reel efterspørgsel i stedet for et fast skema.",
+    "Behovsbaseret rengøring besvarer et spørgsmål, ethvert driftsteam kender: hvorfor gøre et rum rent, som ingen har brugt, mens et stærkt benyttet lokale venter på tur? Faste rengøringsplaner behandler alle rum ens, hvilket betyder indsats dér, hvor den ikke er nødvendig, og for lidt dér, hvor den er.",
   ],
   heroPrimaryCta: "Book en gratis demo",
   heroSecondaryCta: "Få et tilbud",
@@ -161,12 +181,34 @@ const da: ModulePageStrings = {
   capabilitiesHeading: "Belægningsdata, der driver rengøring samme dag.",
   solutionLead:
     "RoomAlyzer Brug og rengøring omsætter belægning til klare prioriteter — bygget til rengøringsteams og facility managers, der skal kunne forsvare, hvor indsatsen lægges.",
+  solutionLeadWithSensorLinks: [
+    { type: "text", value: "RoomAlyzer Brug og rengøring bruger " },
+    { type: "sensor", slug: "motion", label: "Motion" },
+    { type: "text", value: " og " },
+    { type: "sensor", slug: "mini-plus-pir", label: "Mini+ PIR" },
+    {
+      type: "text",
+      value:
+        "-sensorer til at omsætte belægning til klare prioriteter — bygget til rengøringsteams og facility managers, der skal kunne forsvare, hvor indsatsen lægges.",
+    },
+  ],
   capabilitiesContextAlt: "Rengøringsteam der planlægger ruter ud fra belægningsdata",
   features: [
     {
       id: "usage-visibility",
       title: "Brugsoverblik",
       body: "Se, hvilke rum, zoner og etager der faktisk er blevet brugt — i dag, denne uge eller over en valgfri periode.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "Sensoren " },
+        { type: "sensor", slug: "motion", label: "Motion" },
+        { type: "text", value: " og " },
+        { type: "sensor", slug: "mini-plus-pir", label: "Mini+ PIR" },
+        {
+          type: "text",
+          value:
+            " viser, hvilke rum, zoner og etager der faktisk er blevet brugt — i dag, denne uge eller over en valgfri periode.",
+        },
+      ],
       unit: "Belægning",
       imageAlt: "Dashboard med rumbrug i RoomAlyzer",
     },
@@ -252,10 +294,9 @@ const de: ModulePageStrings = {
   heroTitle: "Reinigen, wo",
   heroTitleAccent: "es wirklich nötig ist.",
   heroLead:
-    "Bedarfsorientierte Reinigung beantwortet eine Frage, die jedes Betriebsteam kennt: Warum einen Raum reinigen, den niemand genutzt hat, während ein stark frequentierter Raum wartet?",
+    "Datengesteuerte Reinigung nach tatsächlicher Nutzung — nicht nach festem Plan",
   intro: [
-    "Feste Reinigungspläne behandeln jeden Raum gleich — Aufwand geht dorthin, wo er nicht gebraucht wird, und zu wenig dorthin, wo die Frequenz am höchsten ist.",
-    "RoomAlyzer zeigt, welche Räume tatsächlich genutzt wurden, sodass die Reinigung der realen Nachfrage statt einem festen Zeitplan folgt.",
+    "Bedarfsorientierte Reinigung beantwortet eine Frage, die jedes Betriebsteam kennt: Warum einen Raum reinigen, den niemand genutzt hat, während ein stark frequentierter Raum wartet? Feste Reinigungspläne behandeln jeden Raum gleich — Aufwand geht dorthin, wo er nicht gebraucht wird, und zu wenig dorthin, wo er gebraucht wird.",
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
@@ -281,12 +322,34 @@ const de: ModulePageStrings = {
   capabilitiesHeading: "Belegungsdaten, die die Reinigung noch am selben Tag steuern.",
   solutionLead:
     "RoomAlyzer Nutzung und Reinigung macht aus Belegung klare Prioritäten — entwickelt für Reinigungsteams und Facility Manager, die belegen müssen, wohin der Aufwand geht.",
+  solutionLeadWithSensorLinks: [
+    { type: "text", value: "RoomAlyzer Nutzung und Reinigung nutzt " },
+    { type: "sensor", slug: "motion", label: "Motion" },
+    { type: "text", value: " und " },
+    { type: "sensor", slug: "mini-plus-pir", label: "Mini+ PIR" },
+    {
+      type: "text",
+      value:
+        "-Sensoren, um aus Belegung klare Prioritäten zu machen — entwickelt für Reinigungsteams und Facility Manager, die belegen müssen, wohin der Aufwand geht.",
+    },
+  ],
   capabilitiesContextAlt: "Reinigungsteam plant Routen anhand von Belegungsdaten",
   features: [
     {
       id: "usage-visibility",
       title: "Nutzungssicht",
       body: "Sehen Sie, welche Räume, Zonen und Etagen tatsächlich genutzt wurden — heute, diese Woche oder über einen frei wählbaren Zeitraum.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "Die Sensoren " },
+        { type: "sensor", slug: "motion", label: "Motion" },
+        { type: "text", value: " und " },
+        { type: "sensor", slug: "mini-plus-pir", label: "Mini+ PIR" },
+        {
+          type: "text",
+          value:
+            " zeigen, welche Räume, Zonen und Etagen tatsächlich genutzt wurden — heute, diese Woche oder über einen frei wählbaren Zeitraum.",
+        },
+      ],
       unit: "Belegung",
       imageAlt: "Dashboard zur Raumnutzung in RoomAlyzer",
     },
@@ -372,10 +435,9 @@ const sv: ModulePageStrings = {
   heroTitle: "Städa där",
   heroTitleAccent: "det faktiskt behövs.",
   heroLead:
-    "Behovsbaserad städning besvarar en fråga som varje driftteam känner igen: varför städa ett rum ingen har använt medan ett hårt använt utrymme väntar på sin tur?",
+    "Datadriven städning efter faktisk användning — inte ett fast schema",
   intro: [
-    "Fasta städscheman behandlar varje rum likadant — insats går dit den inte behövs och för lite dit fottrafiken är som störst.",
-    "RoomAlyzer visar vilka utrymmen som faktiskt har använts, så städningen följer verklig efterfrågan i stället för ett fast schema.",
+    "Behovsbaserad städning besvarar en fråga som varje driftteam känner igen: varför städa ett rum ingen har använt medan ett hårt använt utrymme väntar på sin tur? Fasta städscheman behandlar varje rum likadant — insats går dit den inte behövs och för lite dit den behövs.",
   ],
   heroPrimaryCta: "Boka en gratis demo",
   heroSecondaryCta: "Få en offert",
@@ -401,12 +463,34 @@ const sv: ModulePageStrings = {
   capabilitiesHeading: "Beläggningsdata som driver städning samma dag.",
   solutionLead:
     "RoomAlyzer Användning och städning omvandlar beläggning till tydliga prioriteringar — byggt för städteam och facility managers som behöver försvara var insatsen läggs.",
+  solutionLeadWithSensorLinks: [
+    { type: "text", value: "RoomAlyzer Användning och städning använder " },
+    { type: "sensor", slug: "motion", label: "Motion" },
+    { type: "text", value: " och " },
+    { type: "sensor", slug: "mini-plus-pir", label: "Mini+ PIR" },
+    {
+      type: "text",
+      value:
+        "-sensorer för att omvandla beläggning till tydliga prioriteringar — byggt för städteam och facility managers som behöver försvara var insatsen läggs.",
+    },
+  ],
   capabilitiesContextAlt: "Städteam som planerar rutter utifrån beläggningsdata",
   features: [
     {
       id: "usage-visibility",
       title: "Användningsöversikt",
       body: "Se vilka rum, zoner och våningar som faktiskt använts — idag, denna vecka eller över en valfri period.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "Sensorerna " },
+        { type: "sensor", slug: "motion", label: "Motion" },
+        { type: "text", value: " och " },
+        { type: "sensor", slug: "mini-plus-pir", label: "Mini+ PIR" },
+        {
+          type: "text",
+          value:
+            " visar vilka rum, zoner och våningar som faktiskt använts — idag, denna vecka eller över en valfri period.",
+        },
+      ],
       unit: "Beläggning",
       imageAlt: "Dashboard för rumsanvändning i RoomAlyzer",
     },

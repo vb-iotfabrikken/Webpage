@@ -67,9 +67,9 @@ const en: HomeStrings = {
       "Market-leading Danish platform for indoor climate, space management and water-leak detection. Plug and play sensors, long battery life and no installation.",
   },
   hero: {
-    title: "Data-driven decisions for facility and",
+    title: "Market-leading software for indoor climate and",
     titleAccent: "space management.",
-    lead: "Wireless sensors and a single platform that turns data about indoor climate, space utilisation and water leaks into something you can actually use — no cables, no hassle.",
+    lead: "Wireless sensors and a single platform that turns data about indoor climate, space utilisation and water leaks into something you can actually use — plug and play.",
     ctaPrimary: "Book a free demo",
     ctaSecondary: "Contact sales",
   },
@@ -84,19 +84,19 @@ const en: HomeStrings = {
       "Built and quality-checked in-house — every sensor shipped from our team in Denmark.",
     items: [
       {
-        title: "Up to 10-Year Battery",
+        title: "Up to 10-year battery",
         body: "Mount in two minutes with no cables or Wi-Fi. Runs seamlessly for up to 10 years.",
       },
       {
-        title: "Advice, Not Just Data",
+        title: "Advice, not just data",
         body: "Skip the complex graphs. Our AI gives you simple advice you act on instantly.",
       },
       {
-        title: "End the Debates",
-        body: "Replace gut feelings with hard data to confidently optimize your indoor climate.",
+        title: "End the debates",
+        body: "Replace gut feelings with hard data to confidently optimise your indoor climate.",
       },
       {
-        title: "Smart Deployment",
+        title: "Smart deployment",
         body: "End alarm fatigue. The system alerts your team exactly when and where they are actually needed.",
       },
     ],
@@ -107,22 +107,22 @@ const en: HomeStrings = {
     ctaLabel: "See recommended sensors",
     cards: {
       offices: {
-        title: "Offices & Workplaces",
+        title: "Offices & workplaces",
         description:
           "Balance space utilisation in hybrid workplaces with employee productivity and comfort.",
       },
       churches: {
-        title: "Churches & Heritage",
+        title: "Churches & heritage",
         description:
           "Protect historic interiors with precise humidity and temperature control in large, unevenly heated buildings.",
       },
       "museums-galleries": {
-        title: "Museums & Culture",
+        title: "Museums & culture",
         description:
           "Mitigate risk and preserve sensitive collections with continuous climate monitoring aligned to preservation standards.",
       },
       municipalities: {
-        title: "Schools & Municipalities",
+        title: "Schools & municipalities",
         description:
           "Prioritise student health, concentration, and energy setbacks across schools, administration, and cultural buildings.",
       },
@@ -155,9 +155,9 @@ const da: HomeStrings = {
       "Markedsledende dansk platform til indeklima, space management og detektion af vandlækager. Plug and play-sensorer, lang batterilevetid og ingen installation.",
   },
   hero: {
-    title: "Datadrevne beslutninger til facility- og",
+    title: "Markedsledende software til indeklima og",
     titleAccent: "space management.",
-    lead: "Trådløse sensorer og én samlet platform, der gør data om indeklima, arealudnyttelse og vandlækager til noget, du faktisk kan bruge — ingen kabler, intet besvær.",
+    lead: "Trådløse sensorer og én samlet platform, der gør data om indeklima, arealudnyttelse og vandlækager til noget, du faktisk kan bruge — plug and play.",
     ctaPrimary: "Book en gratis demo",
     ctaSecondary: "Kontakt salg",
   },
@@ -243,9 +243,9 @@ const de: HomeStrings = {
       "Marktführende dänische Plattform für Raumklima, Space-Management und Wasserleckerkennung. Plug-and-Play-Sensoren, lange Batterielaufzeit und keine Installation.",
   },
   hero: {
-    title: "Datenbasierte Entscheidungen für Facility- und",
+    title: "Marktführende Software für Raumklima und",
     titleAccent: "Space-Management.",
-    lead: "Drahtlose Sensoren und eine einzige Plattform, die Daten zu Raumklima, Flächennutzung und Wasserlecks in echten Mehrwert verwandelt — ohne Kabel, ohne Aufwand.",
+    lead: "Drahtlose Sensoren und eine einzige Plattform, die Daten zu Raumklima, Flächennutzung und Wasserlecks in echten Mehrwert verwandelt — Plug-and-Play.",
     ctaPrimary: "Kostenlose Demo buchen",
     ctaSecondary: "Vertrieb kontaktieren",
   },
@@ -331,9 +331,9 @@ const sv: HomeStrings = {
       "Marknadsledande dansk plattform för inomhusklimat, space management och detektering av vattenläckor. Plug and play-sensorer, lång batteritid och ingen installation.",
   },
   hero: {
-    title: "Datadrivna beslut för facility- och",
+    title: "Marknadsledande mjukvara för inomhusklimat och",
     titleAccent: "space management.",
-    lead: "Trådlösa sensorer och en enda plattform som förvandlar data om inomhusklimat, ytutnyttjande och vattenläckor till något du faktiskt kan använda — inga kablar, inget krångel.",
+    lead: "Trådlösa sensorer och en enda plattform som förvandlar data om inomhusklimat, ytutnyttjande och vattenläckor till något du faktiskt kan använda — plug and play.",
     ctaPrimary: "Boka en gratis demo",
     ctaSecondary: "Kontakta försäljning",
   },

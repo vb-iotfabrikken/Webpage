@@ -1,0 +1,188 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Hero from "../../../components/Hero.astro";
+import Button from "../../../components/Button.astro";
+import EventFairRecapSection from "../../../components/events/EventFairRecapSection.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import SectionIntro from "../../../components/SectionIntro.astro";
+import EventCardActive from "../../../components/events/EventCardActive.astro";
+import EventHeroMeta from "../../../components/events/EventHeroMeta.astro";
+import { getMutec } from "../../../data/i18n/mutec2026";
+import { getEventCardCopy } from "../../../data/i18n/events";
+import { buildLandingHeroMeta, venueCardCopyFromHeroMeta } from "../../../data/eventVenueCard";
+import { eventAssets, getEventStaticPaths } from "../../../data/events";
+import { breadcrumbSchema } from "../../../lib/seo/schema";
+import { langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return getEventStaticPaths("mutec-2026");
+}
+
+const lang = Astro.params.lang as Lang;
+const t = getMutec(lang);
+const cardCopy = getEventCardCopy("mutec-2026", lang);
+const heroMeta = buildLandingHeroMeta("mutec-2026", t.heroMetaFields);
+const venueCopy = cardCopy ? venueCardCopyFromHeroMeta(cardCopy, heroMeta) : null;
+const cardAssets = eventAssets["mutec-2026"];
+
+const featureStyles = {
+  museum: { card: "bg-yellow-50/60 border-yellow-200/70", chip: "text-yellow-700" },
+  climate: { card: "bg-zinc-50 border-zinc-200/80", chip: "text-zinc-700" },
+  security: { card: "bg-amber-50/50 border-amber-100/60", chip: "text-amber-700" },
+} as const;
+
+const pageJsonLd = [
+  breadcrumbSchema([
+    { name: t.breadcrumbHome, href: langPath("/", lang) },
+    { name: t.breadcrumbEvents, href: langPath("/events/", lang) },
+    { name: t.breadcrumbCurrent, href: langPath("/events/mutec-2026/", lang) },
+  ]),
+].filter(Boolean) as Array<Record<string, unknown>>;
+---
+
+<Layout
+  title={t.metaTitle}
+  description={t.metaDescription}
+  jsonLd={pageJsonLd}
+  canonicalPath={langPath("/events/mutec-2026/", "de")}
+  suppressHreflang
+  noindex
+>
+  <Hero
+    title={t.heroTitle}
+    titleAccent={t.heroTitleAccent}
+    lead={t.heroLead}
+    eyebrow={t.heroEyebrow}
+    align="left"
+    compactTop
+    splitVisual
+    allowVisualOverflow
+    dark
+    darkTone="mutec"
+    noPattern
+  >
+    <ol slot="breadcrumb" class="flex flex-wrap items-center gap-1.5 text-sm text-white/60">
+      <li><a href={langPath("/", lang)} class="hover:text-yellow-300 transition-colors">{t.breadcrumbHome}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><a href={langPath("/events/", lang)} class="hover:text-yellow-300 transition-colors">{t.breadcrumbEvents}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><span class="text-white">{t.breadcrumbCurrent}</span></li>
+    </ol>
+
+    <Button href={langPath("/contact/mutec-2026/", lang)} variant="primary" size="lg" slot="cta">{t.heroPrimaryCta}</Button>
+    <Button href={langPath("/contact/book-demo/", lang)} variant="secondary-light" size="lg" slot="cta">{t.heroSecondaryCta}</Button>
+
+    <div slot="visual" class="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
+      {venueCopy && cardAssets && (
+        <EventCardActive
+          logo={cardAssets.logo}
+          logoAlt={cardAssets.logoAlt}
+          copy={venueCopy}
+          theme={cardAssets.cardTheme}
+          static
+          externalHref={cardAssets.officialUrl}
+          externalAriaLabel={t.officialEventLabel}
+        />
+      )}
+      <EventHeroMeta items={heroMeta} ariaLabel="Messedetails" />
+    </div>
+  </Hero>
+
+  <section class="py-20 md:py-24">
+    <div class="container-page">
+      <SectionIntro
+        eyebrow={t.featuresEyebrow}
+        heading={t.featuresHeading}
+        lead={t.featuresLead}
+        surface="white"
+        class="mb-12 md:mb-14"
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {t.features.map((feature) => {
+          const style = featureStyles[feature.icon];
+          return (
+            <article class:list={["reveal rounded-2xl border p-8", style.card]}>
+              <span class:list={["mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm", style.chip]}>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  {feature.icon === "museum" && (
+                    <>
+                      <path d="M3 21h18" />
+                      <path d="M6 21V9l6-5 6 5v12" />
+                      <path d="M10 13h4" />
+                      <path d="M12 13v8" />
+                    </>
+                  )}
+                  {feature.icon === "climate" && (
+                    <>
+                      <path d="M12 3v3" />
+                      <path d="M12 18v3" />
+                      <path d="M4.5 4.5l2.1 2.1" />
+                      <path d="M17.4 17.4l2.1 2.1" />
+                      <path d="M3 12h3" />
+                      <path d="M18 12h3" />
+                      <path d="M4.5 19.5l2.1-2.1" />
+                      <path d="M17.4 6.6l2.1-2.1" />
+                      <circle cx="12" cy="12" r="3.5" />
+                    </>
+                  )}
+                  {feature.icon === "security" && (
+                    <>
+                      <path d="M12 2.75 4.75 5.5v5.55c0 4.2 3.05 8.12 7.25 9.2 4.2-1.08 7.25-5 7.25-9.2V5.5L12 2.75Z" />
+                      <path d="M12 11v3" />
+                      <circle cx="12" cy="8.25" r="0.75" fill="currentColor" stroke="none" />
+                    </>
+                  )}
+                </svg>
+              </span>
+              <h3 class="text-xl font-semibold text-navy-500">{feature.title}</h3>
+              <p class="mt-3 text-navy-500/70 leading-relaxed">{feature.body}</p>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-amber-950 py-20 md:py-28 text-white">
+    <span
+      class="pointer-events-none absolute -top-10 left-6 select-none font-serif leading-none text-yellow-400/15"
+      style="font-size:18rem"
+      aria-hidden="true"
+    >&ldquo;</span>
+    <div class="container-page relative">
+      <div class="reveal max-w-3xl mb-10 md:mb-12">
+        <p class="inline-block px-3 py-1 rounded-md text-xs font-semibold uppercase tracking-wider mb-5 border border-white/15 bg-white/10 text-yellow-300">
+          {t.topicsEyebrow}
+        </p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">{t.topicsHeading}</h2>
+        <p class="mt-5 text-lg text-white/75 leading-relaxed">{t.topicsLead}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {t.topics.map((topic) => (
+          <article class="reveal rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
+            <h3 class="text-lg font-semibold text-yellow-300">{topic.title}</h3>
+            <p class="mt-3 text-white/80 leading-relaxed">{topic.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <EventFairRecapSection lang={lang} />
+
+  <CtaBand
+    variant="featured"
+    title={t.ctaTitle}
+    subtitle={t.ctaLead}
+    primaryLabel={t.ctaPrimary}
+    primaryHref={langPath("/contact/mutec-2026/", lang) + "#kontakt"}
+    secondaryLabel={t.ctaSecondary}
+    secondaryHref={langPath("/contact/book-demo/", lang)}
+  />
+</Layout>

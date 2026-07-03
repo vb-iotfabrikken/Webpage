@@ -30,10 +30,10 @@ export const ZOHO_WEBTOLEAD_ENDPOINT = "https://crm.zoho.eu/crm/WebToLeadForm";
 /** Hidden form tokens, copied verbatim from the generated Zoho web form. */
 export const ZOHO_TOKENS = {
   /** Encrypted form identifier (Zoho field name: `xnQsjsdp`). */
-  xnQsjsdp: "6efbefda98a45779432bd8ccc5c073aa152b671740ab0fe11dfc9157df3c19fa",
+  xnQsjsdp: "387dc32cc7aed2be23cb208cac913cc2909d8acf063ca2067589f20de1ff5397",
   /** Secondary form token (Zoho field name: `xmIwtLD`). */
   xmIwtLD:
-    "149b386108a877dbe7e64912b5ab5fb4623c6951a58ce8f3d3448a68835d738b21836c47e86ef9c2930200b100ee09ec",
+    "c7d440154e1992da67015306cae3296253073dab73a64322cc551d880611056bebe79580a9006f5a065142a41e4e6a2f",
   /** base64("Leads"). Copy the exact value from the generated form. */
   actionType: "TGVhZHM=",
 } as const;
@@ -52,9 +52,8 @@ export const ZOHO_RETURN_URL = "https://iot-fabrikken.com/";
  * module's organisation field is `Company` and it is mandatory — if this name
  * is wrong the submission is rejected. Custom fields look like `LEADCF6`.
  *
- * `leadSource` maps to the Leads module's standard Lead Source picklist; the
- * source is also written into the Description, so it is never lost even if the
- * exact picklist option does not exist.
+ * Lead source is written into Description only (the Zoho web form has no Lead
+ * Source field). Re-enable `ZOHO_FIELDS.leadSource` if that field is added back.
  */
 export const ZOHO_FIELDS = {
   firstName: "First Name",
@@ -63,14 +62,11 @@ export const ZOHO_FIELDS = {
   phone: "Phone",
   company: "Company",
   description: "Description",
-  leadSource: "Lead Source",
 } as const;
 
 /**
- * Lead-source labels per form. If you map these to the Zoho "Lead Source"
- * picklist, the exact strings must already exist as picklist options, otherwise
- * Zoho ignores the value. The source is also prepended to the Description, so
- * it is never lost regardless of picklist configuration.
+ * Lead-source labels per form. Written into the Zoho Description field as
+ * `Lead source: …` — the web form has no Lead Source picklist field for now.
  */
 export type ZohoLeadSource =
   | "Website - Book demo"
@@ -81,6 +77,9 @@ export type ZohoLeadSource =
   | "Website - ROI report"
   | "Website - ROI consult"
   | "Website - Archivistica on-site"
+  | "Website - WORKTECH26 Stockholm on-site"
+  | "Website - DHBV Verbandstag on-site"
+  | "Website - MUTEC on-site"
   | "Website - Pricing enterprise";
 
 /** Fallback for Zoho's mandatory Company field when a form does not collect it. */

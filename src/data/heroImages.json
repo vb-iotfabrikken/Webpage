@@ -1,0 +1,22 @@
+{
+  "backdrop": {
+    "src": "/images/background-banner.webp",
+    "width": 1400,
+    "height": 579,
+    "srcSet": [
+      {
+        "width": 1400,
+        "url": "/images/background-banner.webp"
+      },
+      {
+        "width": 2800,
+        "url": "/images/background-banner-2800.webp"
+      }
+    ]
+  },
+  "man": {
+    "src": "/images/man.webp",
+    "width": 1024,
+    "height": 870
+  }
+}

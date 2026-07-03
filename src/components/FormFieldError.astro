@@ -1,0 +1,14 @@
+---
+interface Props {
+  /** Matches `name` on the control, or `data-field-control` for non-standard fields. */
+  field: string;
+}
+
+const { field } = Astro.props;
+---
+
+<p
+  class="mt-1 hidden text-xs text-coral-600"
+  role="alert"
+  data-field-error={field}
+></p>

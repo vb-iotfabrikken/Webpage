@@ -11,7 +11,13 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "llms-full": "node scripts/build-llms-full.mjs"
+    "llms-full": "node scripts/build-llms-full.mjs",
+    "sync-sensor-in-use": "node scripts/sync-sensor-in-use-images.mjs",
+    "sync-sensor-dimensions": "node scripts/sync-sensor-dimension-images.mjs",
+    "optimize-images": "node scripts/optimize-sensor-finder-images.mjs && node scripts/optimize-hero-images.mjs && node scripts/optimize-module-images.mjs && node scripts/optimize-sensor-product-images.mjs && node scripts/optimize-sensor-dimension-images.mjs && node scripts/optimize-sensor-in-use-images.mjs",
+    "optimize-water-detection-images": "node scripts/optimize-water-detection-images.mjs",
+    "sync-all-images": "npm run sync-sensor-in-use && npm run sync-sensor-dimensions && npm run optimize-images",
+    "generate-favicon": "node scripts/generate-favicon.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.0",
@@ -24,6 +30,9 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "pdf-lib": "^1.17.1",
+    "playwright": "^1.61.1",
+    "sharp": "^0.34.5",
     "typescript": "^6.0.3"
   }
 }

@@ -12,7 +12,7 @@ export const roiHub: Hub = {
       eyebrow: "ROI",
       title: "ROI calculator.",
       titleAccent: "Your case, your numbers.",
-      lead: "Desk Optimizer and Energy Saver — gamified sliders that estimate annual savings from space right-sizing and heating setbacks, with a full breakdown by email.",
+      lead: "Desk optimiser and Energy saver — gamified sliders that estimate annual savings from space right-sizing and heating setbacks, with a full breakdown by email.",
     },
     {
       slug: "schools",

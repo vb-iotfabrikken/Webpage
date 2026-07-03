@@ -6,10 +6,9 @@ import EventCardNews from "../../../components/events/EventCardNews.astro";
 import { getEventsHub, getEventCardCopy } from "../../../data/i18n/events";
 import {
   eventAssets,
+  eventCardHref,
   getActiveEventsForLocale,
   getNewsEventsForLocale,
-  hasEventDetailPage,
-  eventDetailPath,
 } from "../../../data/events";
 import { breadcrumbSchema } from "../../../lib/seo/schema";
 import { locales, langPath, type Lang } from "../../../data/lang";
@@ -22,6 +21,11 @@ const { lang } = Astro.params as { lang: Lang };
 const t = getEventsHub(lang);
 const activeEvents = getActiveEventsForLocale(lang);
 const newsEvents = getNewsEventsForLocale(lang);
+const showDivider = activeEvents.length > 0 && newsEvents.length > 0;
+const hasLiveEvents = activeEvents.length > 0 || newsEvents.some((event) => {
+  const copy = getEventCardCopy(event.slug, lang);
+  return copy?.news.note;
+});
 
 const pageJsonLd = [
   breadcrumbSchema([
@@ -51,7 +55,7 @@ const pageJsonLd = [
   />
 
   <section class="py-16 pb-20 md:pb-24">
-    <div class="container-page space-y-6">
+    <div class="container-page space-y-8">
       {activeEvents.length > 0 && (
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl">
           {activeEvents.map((event) => {
@@ -61,29 +65,41 @@ const pageJsonLd = [
 
             return (
               <EventCardActive
-                href={
-                  hasEventDetailPage(event, lang)
-                    ? eventDetailPath(event.slug, lang)
-                    : langPath("/events/", lang)
-                }
+                href={eventCardHref(event, lang)}
                 logo={assets.logo}
                 logoAlt={assets.logoAlt}
                 copy={copy}
+                theme={assets.cardTheme}
               />
             );
           })}
         </div>
       )}
 
-      {newsEvents.map((event) => {
-        const copy = getEventCardCopy(event.slug, lang);
-        const assets = eventAssets[event.slug];
-        if (!copy || !assets || !copy.news.note) return null;
+      {showDivider && (
+        <div class="max-w-4xl border-t border-stone-200" role="separator" aria-hidden="true"></div>
+      )}
 
-        return (
-          <EventCardNews logo={assets.logo} logoAlt={assets.logoAlt} copy={copy} />
-        );
-      })}
+      {newsEvents.length > 0 && (
+        <div class="space-y-4 max-w-4xl">
+          {newsEvents.map((event) => {
+            const copy = getEventCardCopy(event.slug, lang);
+            const assets = eventAssets[event.slug];
+            if (!copy || !assets || !copy.news.note) return null;
+
+            return (
+              <EventCardNews logo={assets.logo} logoAlt={assets.logoAlt} copy={copy} />
+            );
+          })}
+        </div>
+      )}
+
+      {!hasLiveEvents && (
+        <div class="max-w-2xl rounded-xl border border-stone-100 bg-stone-50 px-6 py-8 md:px-8 md:py-10">
+          <h2 class="text-xl font-semibold text-navy-500">{t.emptyTitle}</h2>
+          <p class="mt-3 text-stone-600 leading-relaxed">{t.emptyLead}</p>
+        </div>
+      )}
     </div>
   </section>
 </Layout>

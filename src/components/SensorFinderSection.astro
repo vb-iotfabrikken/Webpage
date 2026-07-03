@@ -2,6 +2,7 @@
 import { type Lang, defaultLang, langPath } from "../data/lang";
 import { getHome, type FeaturedIndustrySlug } from "../data/i18n/home";
 import { isLivePath } from "../data/launch";
+import { getSensorFinderCardImage } from "../data/sensorFinderImages";
 
 interface Props {
   lang?: Lang;
@@ -17,42 +18,31 @@ const featuredSlugs: readonly FeaturedIndustrySlug[] = [
   "municipalities",
 ];
 
-const cardImages: Record<FeaturedIndustrySlug, { src: string; alt: string }> = {
-  offices: {
-    src: "/images/sensor-finder/offices.png",
-    alt: "People collaborating in a bright modern open-plan office",
-  },
-  churches: {
-    src: "/images/sensor-finder/property-management.png",
-    alt: "Caretaker maintaining wooden pews inside a historic church building",
-  },
-  "museums-galleries": {
-    src: "/images/sensor-finder/municipalities.png",
-    alt: "Visitors viewing art in a museum gallery",
-  },
-  municipalities: {
-    src: "/images/sensor-finder/schools.png",
-    alt: "Students walking on a school campus in front of a brick school building",
-  },
+const cardAlts: Record<FeaturedIndustrySlug, string> = {
+  offices: "People collaborating in a bright modern open-plan office",
+  churches: "Caretaker maintaining wooden pews inside a historic church building",
+  "museums-galleries": "Visitors viewing art in a museum gallery",
+  municipalities: "Students walking on a school campus in front of a brick school building",
 };
 
 const useCases = featuredSlugs
   .map((slug) => {
     const card = t.cards[slug];
-    const image = cardImages[slug];
+    const media = getSensorFinderCardImage(slug);
 
     return {
       slug,
       title: card.title,
       description: card.description,
       href: langPath(`industries/${slug}`, lang),
-      image: image.src,
-      imageAlt: image.alt,
+      image: media?.image,
+      imageAlt: cardAlts[slug],
+      width: media?.width ?? 640,
+      height: media?.height ?? 480,
+      srcSet: media?.srcSet,
     };
   })
-  // Soft-launch: industry pages are hidden, so drop cards that would 404.
-  // The whole section disappears until those destinations go live.
-  .filter((item) => isLivePath(item.href));
+  .filter((item) => item.image && isLivePath(item.href));
 ---
 
 {useCases.length > 0 && (
@@ -77,8 +67,10 @@ const useCases = featuredSlugs
             <img
               src={item.image}
               alt={item.imageAlt}
-              width={640}
-              height={480}
+              width={item.width}
+              height={item.height}
+              srcset={item.srcSet?.map((entry) => `${entry.url} ${entry.width}w`).join(", ")}
+              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
               class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
               loading="lazy"
               decoding="async"

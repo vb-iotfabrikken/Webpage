@@ -53,9 +53,9 @@ export const GOAL_LABELS: Record<DeskGoal, string> = {
 };
 
 export const FACILITY_LABELS: Record<EnergyFacility, string> = {
-  office: "Office / Workplace",
+  office: "Office / workplace",
   heritage: "Church / Museum / Heritage",
-  school: "School / Municipality",
+  school: "School / municipality",
 };
 
 export const FACILITY_SOCIAL_PROOF: Record<EnergyFacility, string> = {
@@ -196,7 +196,7 @@ export function buildReportDisplayMeta(payload: LeadPayload): ReportDisplayMeta 
         ? `You could right-size ~${formatNumber(results.reducibleDesks)} desks (${formatPct(results.savingsPctOfCapacity, 0)} of capacity) — goals: ${goalLabels}.`
         : "Your peak attendance matches your desk count — try lowering the attendance slider.";
     return {
-      calcLabel: "Desk Optimizer",
+      calcLabel: "Desk optimiser",
       useCase: "Space management",
       teaser,
       headlineSavings: report.grossSavings,
@@ -222,7 +222,7 @@ export function buildReportDisplayMeta(payload: LeadPayload): ReportDisplayMeta 
   }
 
   return {
-    calcLabel: `Energy Saver — ${FACILITY_LABELS[facility]}`,
+    calcLabel: `Energy saver — ${FACILITY_LABELS[facility]}`,
     useCase:
       facility === "heritage"
         ? "Preservation / indoor climate"
@@ -429,7 +429,7 @@ export function formatReportAsText(
     phone?: string;
   },
 ): string {
-  const calcLabel = report.calculator === "desk" ? "Desk Optimizer" : "Energy Saver";
+  const calcLabel = report.calculator === "desk" ? "Desk optimiser" : "Energy saver";
   const lines = [
     "IoT Fabrikken — ROI breakdown (illustrative)",
     "",

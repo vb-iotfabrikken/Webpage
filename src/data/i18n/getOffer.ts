@@ -27,6 +27,7 @@ export interface GetOfferStrings {
     disclaimer: string;
     consent: string;
     submit: string;
+    sending: string;
     successTitle: string;
     successBody: string;
     emailError: string;
@@ -35,6 +36,9 @@ export interface GetOfferStrings {
   };
   validation: {
     name_required: string;
+    first_name_required: string;
+    last_name_required: string;
+    email_required: string;
     email_invalid: string;
     email_personal: string;
     email_disposable: string;
@@ -80,6 +84,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       consent:
         "I agree that IoT Fabrikken may store and use my details to respond to my enquiry, in line with the privacy policy.",
       submit: "Get an offer",
+      sending: "Sending…",
       successTitle: "Thanks — we've got it.",
       successBody: "We'll be in touch as soon as we've reviewed your enquiry.",
       emailError: "Please enter a valid work email address.",
@@ -88,6 +93,9 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     },
     validation: {
       name_required: "Please enter your first and last name.",
+      first_name_required: "Please enter your first name.",
+      last_name_required: "Please enter your last name.",
+      email_required: "Please enter your work email.",
       email_invalid: "Please enter a valid work email address.",
       email_personal:
         "Please use your work email. Personal addresses (Gmail, Outlook, Yahoo, etc.) are not accepted.",
@@ -133,6 +141,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       consent:
         "Jeg accepterer, at IoT Fabrikken må gemme og bruge mine oplysninger til at besvare min henvendelse i overensstemmelse med privatlivspolitikken.",
       submit: "Få et tilbud",
+      sending: "Sender…",
       successTitle: "Tak — vi har modtaget din henvendelse.",
       successBody: "Vi vender tilbage, så snart vi har gennemgået din forespørgsel.",
       emailError: "Indtast en gyldig arbejdsmail.",
@@ -141,6 +150,9 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     },
     validation: {
       name_required: "Indtast dit for- og efternavn.",
+      first_name_required: "Indtast dit fornavn.",
+      last_name_required: "Indtast dit efternavn.",
+      email_required: "Indtast din arbejdsmail.",
       email_invalid: "Indtast en gyldig arbejdsmail.",
       email_personal:
         "Brug din arbejdsmail. Personlige adresser (Gmail, Outlook, Yahoo osv.) accepteres ikke.",
@@ -186,6 +198,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       consent:
         "Ich bin damit einverstanden, dass IoT Fabrikken meine Angaben speichert und verwendet, um meine Anfrage gemäß der Datenschutzerklärung zu beantworten.",
       submit: "Angebot anfordern",
+      sending: "Wird gesendet…",
       successTitle: "Danke — wir haben Ihre Anfrage erhalten.",
       successBody: "Wir melden uns, sobald wir Ihre Anfrage geprüft haben.",
       emailError: "Bitte geben Sie eine gültige geschäftliche E-Mail-Adresse ein.",
@@ -194,6 +207,9 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     },
     validation: {
       name_required: "Bitte geben Sie Ihren Vor- und Nachnamen ein.",
+      first_name_required: "Bitte geben Sie Ihren Vornamen ein.",
+      last_name_required: "Bitte geben Sie Ihren Nachnamen ein.",
+      email_required: "Bitte geben Sie Ihre geschäftliche E-Mail-Adresse ein.",
       email_invalid: "Bitte geben Sie eine gültige geschäftliche E-Mail-Adresse ein.",
       email_personal:
         "Bitte verwenden Sie Ihre geschäftliche E-Mail. Private Adressen (Gmail, Outlook, Yahoo usw.) werden nicht akzeptiert.",
@@ -242,6 +258,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       consent:
         "Jag godkänner att IoT Fabrikken lagrar och använder mina uppgifter för att besvara min förfrågan i enlighet med integritetspolicyn.",
       submit: "Få en offert",
+      sending: "Skickar…",
       successTitle: "Tack — vi har tagit emot din förfrågan.",
       successBody: "Vi hör av oss så snart vi har gått igenom din förfrågan.",
       emailError: "Ange en giltig jobbmejladress.",
@@ -250,6 +267,9 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     },
     validation: {
       name_required: "Ange ditt för- och efternamn.",
+      first_name_required: "Ange ditt förnamn.",
+      last_name_required: "Ange ditt efternamn.",
+      email_required: "Ange din jobbmejl.",
       email_invalid: "Ange en giltig jobbmejladress.",
       email_personal:
         "Använd din jobbmejl. Personliga adresser (Gmail, Outlook, Yahoo osv.) accepteras inte.",

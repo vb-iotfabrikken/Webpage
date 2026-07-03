@@ -1,8 +1,10 @@
 ---
 import Button from "./Button.astro";
+import FormFieldError from "./FormFieldError.astro";
 import FormFieldLabel from "./FormFieldLabel.astro";
 import { defaultLang, type Lang } from "../data/lang";
 import { getContact } from "../data/i18n/contact";
+import type { ContactCardImage } from "../data/contactCardImages";
 import type { ZohoLeadSource } from "../data/zoho";
 
 interface Props {
@@ -11,20 +13,26 @@ interface Props {
   lang?: Lang;
   /** Zoho lead-source label for this form instance. */
   source?: ZohoLeadSource;
+  /** Optional image shown below the marketing bullets on the left column. */
+  sideImage?: ContactCardImage;
 }
 
-const { title, subtitle, lang = defaultLang, source } = Astro.props;
+const { title, subtitle, lang = defaultLang, source, sideImage } = Astro.props;
 const c = getContact(lang);
 const f = c.form;
 const heading = title ?? c.bookDemo.formTitle;
 const sub = subtitle ?? c.bookDemo.formSubtitle;
-const validationMessages = JSON.stringify(c.validation);
+const validationMessages = JSON.stringify({ ...c.validation, sending: c.form.sending });
+const alignWithSideImage = Boolean(sideImage);
 ---
 
-<section class="py-20 md:py-24 bg-white">
+<section
+  class="py-20 md:py-24 bg-white"
+  data-contact-form-layout={alignWithSideImage || undefined}
+>
   <div class="container-page">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-      <div class="reveal">
+      <div class="reveal" data-contact-form-left={alignWithSideImage || undefined}>
         <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
           {f.eyebrow}
         </p>
@@ -43,26 +51,53 @@ const validationMessages = JSON.stringify(c.validation);
             </li>
           ))}
         </ul>
+
+        {sideImage && (
+          <div class="mt-8 aspect-[2/1] overflow-hidden rounded-xl bg-stone-50">
+            <img
+              src={sideImage.image}
+              alt={sideImage.imageAlt}
+              width={sideImage.width ?? 640}
+              height={sideImage.height ?? 400}
+              class="w-full h-full object-cover"
+              style={sideImage.objectPosition ? `object-position: ${sideImage.objectPosition}` : undefined}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        )}
       </div>
 
-      <div class="reveal">
-      <form
-        class="relative bg-stone-50 border border-stone-100 rounded-xl p-6 md:p-8 space-y-4"
+      <div
+        class:list={["reveal", alignWithSideImage && "lg:flex lg:flex-col lg:min-h-0"]}
+        data-contact-form-right={alignWithSideImage || undefined}
+      >
+        <div
+          class:list={[
+            "relative bg-stone-50 border border-stone-100 rounded-xl",
+            alignWithSideImage && "lg:h-full lg:flex lg:flex-col lg:min-h-0",
+          ]}
+        >
+        <form
+        class:list={[
+          "p-6 md:p-8 space-y-4",
+          alignWithSideImage && "contact-form-aligned lg:flex-1 lg:flex lg:flex-col lg:min-h-0",
+        ]}
         action="#"
         method="post"
+        autocomplete="off"
         data-contact-form
         data-contact-messages={validationMessages}
         data-contact-source={source ?? "Website - Contact"}
         novalidate
       >
         <div class="form-honeypot" aria-hidden="true">
-          <label for="contact-website" class="form-honeypot-label">Website</label>
           <input
-            type="text"
-            id="contact-website"
-            name="website"
+            type="search"
+            name="company_fax"
             tabindex="-1"
-            autocomplete="off"
+            autocomplete="nope"
+            inputmode="none"
             data-contact-honeypot
           />
         </div>
@@ -72,20 +107,24 @@ const validationMessages = JSON.stringify(c.validation);
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <label class="block">
             <FormFieldLabel label={f.firstName} required />
-            <input type="text" name="firstName" required autocomplete="given-name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+            <FormFieldError field="firstName" />
+            <input type="text" name="firstName" aria-required="true" autocomplete="given-name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
           </label>
           <label class="block">
             <FormFieldLabel label={f.lastName} required />
-            <input type="text" name="lastName" required autocomplete="family-name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+            <FormFieldError field="lastName" />
+            <input type="text" name="lastName" aria-required="true" autocomplete="family-name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
           </label>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <label class="block">
             <FormFieldLabel label={f.email} required />
-            <input type="email" name="email" required autocomplete="work email" placeholder={f.emailPlaceholder} class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+            <FormFieldError field="email" />
+            <input type="email" name="email" aria-required="true" autocomplete="work email" placeholder={f.emailPlaceholder} class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
           </label>
           <label class="block">
             <FormFieldLabel label={f.phone} optional optionalSuffix={f.optional} />
+            <FormFieldError field="phone" />
             <input type="tel" name="phone" autocomplete="tel" placeholder={f.phonePlaceholder} class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
           </label>
         </div>
@@ -93,14 +132,21 @@ const validationMessages = JSON.stringify(c.validation);
           <FormFieldLabel label={f.company} optional optionalSuffix={f.optional} />
           <input type="text" name="company" autocomplete="organization" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
         </label>
-        <label class="block">
+        <label class:list={["block", alignWithSideImage && "contact-form-message lg:flex-1 lg:flex lg:flex-col lg:min-h-0"]}>
           <FormFieldLabel label={f.message} optional optionalSuffix={f.optional} />
-          <textarea name="message" rows="4" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500 resize-none"></textarea>
+          <textarea
+            name="message"
+            rows={alignWithSideImage ? 3 : 4}
+            class:list={[
+              "mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500 resize-none",
+              alignWithSideImage && "contact-form-message-input lg:flex-1 lg:min-h-[4.5rem]",
+            ]}
+          ></textarea>
         </label>
-        <p class="text-xs text-coral-600 hidden" role="alert" data-contact-error>
+        <p class="text-xs text-coral-600 hidden shrink-0" role="alert" data-contact-error>
           {f.emailError}
         </p>
-        <div class="flex items-center justify-between gap-4 pt-2">
+        <div class:list={["flex items-center justify-between gap-4 pt-2", alignWithSideImage && "shrink-0"]}>
           <p class="text-xs text-stone-300 leading-relaxed">
             {f.disclaimer}
           </p>
@@ -108,7 +154,11 @@ const validationMessages = JSON.stringify(c.validation);
         </div>
       </form>
       <div
-        class="hidden bg-stone-50 border border-stone-100 rounded-xl p-6 md:p-8"
+        hidden
+        class:list={[
+          "p-6 md:p-8",
+          alignWithSideImage && "lg:flex-1 lg:flex lg:items-center lg:min-h-0",
+        ]}
         role="status"
         aria-live="polite"
         data-contact-success
@@ -125,10 +175,23 @@ const validationMessages = JSON.stringify(c.validation);
           </div>
         </div>
       </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  import { initContactForms } from "./contact-form";
+
+  function bindContactForms() {
+    initContactForms();
+  }
+
+  bindContactForms();
+  document.addEventListener("DOMContentLoaded", bindContactForms);
+  document.addEventListener("astro:page-load", bindContactForms);
+</script>
 
 <style>
   .form-honeypot {
@@ -158,7 +221,3 @@ const validationMessages = JSON.stringify(c.validation);
     border: 0;
   }
 </style>
-
-<script>
-  import "./contact-form.ts";
-</script>

@@ -49,7 +49,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
     overlay: "bracketSideStandard",
     images: {
       kind: "single",
-      src: `${BASE}/co2-dimensions.png`,
+      src: `${BASE}/co2-dimensions.webp`,
       alt: "RoomAlyzer Air CO2 sensor — side view for physical dimensions",
     },
   },
@@ -58,7 +58,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
     overlay: "bracketSideWide",
     images: {
       kind: "single",
-      src: `${BASE}/full-plus-dimensions.png`,
+      src: `${BASE}/full-plus-dimensions.webp`,
       alt: "RoomAlyzer Air Full+ sensor — side view for physical dimensions",
     },
   },
@@ -67,7 +67,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
     overlay: "bracketSideHumidity",
     images: {
       kind: "single",
-      src: `${BASE}/humidity-dimensions.png`,
+      src: `${BASE}/humidity-dimensions.webp`,
       alt: "RoomAlyzer Air Humidity sensor — side view for physical dimensions",
     },
   },
@@ -76,7 +76,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
     overlay: "bracketSideWide",
     images: {
       kind: "single",
-      src: `${BASE}/mini-plus-dimensions.png`,
+      src: `${BASE}/mini-plus-dimensions.webp`,
       alt: "RoomAlyzer Air Mini+ sensor — side view with height and width dimensions (124 × 60 × 26 mm)",
     },
   },
@@ -85,7 +85,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
     overlay: "bracketSideWide",
     images: {
       kind: "single",
-      src: `${BASE}/mini-plus-pir-dimensions.png`,
+      src: `${BASE}/mini-plus-pir-dimensions.webp`,
       alt: "RoomAlyzer Air Mini+ PIR sensor — side view for physical dimensions",
     },
   },
@@ -94,7 +94,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
     overlay: "bracketSideStandard",
     images: {
       kind: "single",
-      src: `${BASE}/outdoor-dimensions.png`,
+      src: `${BASE}/outdoor-dimensions.webp`,
       alt: "RoomAlyzer Air Outdoor sensor — side view for physical dimensions",
     },
   },
@@ -103,7 +103,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
     overlay: "bracketIsometric",
     images: {
       kind: "single",
-      src: `${BASE}/temperature-dimensions.png`,
+      src: `${BASE}/temperature-dimensions.webp`,
       alt: "RoomAlyzer Air Temperature sensor — side view for physical dimensions",
     },
   },
@@ -112,7 +112,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
     overlay: "bracketIsometric",
     images: {
       kind: "single",
-      src: `${BASE}/desk-dimensions.png`,
+      src: `${BASE}/desk-dimensions.webp`,
       alt: "RoomAlyzer Space Desk sensor — side view for physical dimensions",
     },
   },
@@ -121,7 +121,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
     overlay: "bracketSideMotion",
     images: {
       kind: "single",
-      src: `${BASE}/motion-dimensions.png`,
+      src: `${BASE}/motion-dimensions.webp`,
       alt: "RoomAlyzer Space Motion sensor — side view for physical dimensions",
     },
   },
@@ -130,7 +130,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
     overlay: "bracketSideStandard",
     images: {
       kind: "single",
-      src: `${BASE}/open-close-dimensions.png`,
+      src: `${BASE}/open-close-dimensions.webp`,
       alt: "RoomAlyzer Space Open/Close sensor — side view for physical dimensions",
     },
   },
@@ -139,7 +139,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
     overlay: "bracketSideMid",
     images: {
       kind: "single",
-      src: `${BASE}/touch-dimensions.png`,
+      src: `${BASE}/touch-dimensions.webp`,
       alt: "RoomAlyzer Space Touch sensor — side view for physical dimensions",
     },
   },
@@ -155,11 +155,11 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
     images: {
       kind: "variants",
       compact: {
-        src: `${BASE}/water-detector-dimensions-compact.png`,
+        src: `${BASE}/water-detector-dimensions-compact.webp`,
         alt: "RoomAlyzer Water detector Compact (IP30) — side view for physical dimensions",
       },
       pro: {
-        src: `${BASE}/water-detector-dimensions-pro.png`,
+        src: `${BASE}/water-detector-dimensions-pro.webp`,
         alt: "RoomAlyzer Water detector Pro (IP67) — side view for physical dimensions",
       },
     },
@@ -176,11 +176,11 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
     images: {
       kind: "variants",
       compact: {
-        src: `${BASE}/water-rope-dimensions-compact.png`,
+        src: `${BASE}/water-rope-dimensions-compact.webp`,
         alt: "RoomAlyzer Water rope Compact (IP30) — side view for physical dimensions",
       },
       pro: {
-        src: `${BASE}/water-rope-dimensions-pro.png`,
+        src: `${BASE}/water-rope-dimensions-pro.webp`,
         alt: "RoomAlyzer Water rope Pro (IP67) — side view for physical dimensions",
       },
     },
@@ -190,7 +190,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
     overlay: "bracketSideStandard",
     images: {
       kind: "single",
-      src: `${BASE}/cloud-connector-dimensions.png`,
+      src: `${BASE}/cloud-connector-dimensions.webp`,
       alt: "RoomAlyzer Cloud connector — side view for physical dimensions",
     },
   },
@@ -207,12 +207,12 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
       kind: "kit",
       parts: [
         {
-          src: `${BASE}/range-extender-dimensions.png`,
+          src: `${BASE}/range-extender-dimensions.webp`,
           alt: "RoomAlyzer range extender — side view for physical dimensions",
           labelKey: "rangeExtender",
         },
         {
-          src: `${BASE}/bracket-dimensions.png`,
+          src: `${BASE}/bracket-dimensions.webp`,
           alt: "RoomAlyzer mounting bracket — side view for physical dimensions",
           labelKey: "bracket",
         },
