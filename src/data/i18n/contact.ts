@@ -10,6 +10,8 @@ export interface ContactStrings {
     partner: string;
     archivistica: string;
     worktech26Stockholm: string;
+    dhbvVerbandstag2026: string;
+    mutec2026: string;
   };
   eyebrow: string;
   index: {
@@ -41,14 +43,8 @@ export interface ContactStrings {
     formTitle: string;
     formSubtitle: string;
   };
-  archivistica: {
-    heroTitle: string;
-    heroTitleAccent: string;
-    heroLead: string;
-    formTitle: string;
-    formSubtitle: string;
-  };
-  worktech26Stockholm: {
+  /** Generic copy for event on-site contact forms (lead source identifies the fair). */
+  eventOnSite: {
     heroTitle: string;
     heroTitleAccent: string;
     heroLead: string;
@@ -71,6 +67,7 @@ export interface ContactStrings {
     disclaimer: string;
     consent: string;
     submit: string;
+    sending: string;
     successTitle: string;
     successBody: string;
     optional: string;
@@ -79,6 +76,9 @@ export interface ContactStrings {
   /** Client-side validation messages, keyed by ValidationCode + extras. */
   validation: {
     name_required: string;
+    first_name_required: string;
+    last_name_required: string;
+    email_required: string;
     email_invalid: string;
     email_personal: string;
     email_disposable: string;
@@ -92,7 +92,7 @@ export interface ContactStrings {
 
 const contactStrings: Record<Lang, ContactStrings> = {
   en: {
-    breadcrumb: { home: "Home", contact: "Contact", bookDemo: "Book demo", sales: "Sales", partner: "Partner", archivistica: "ARCHIVISTICA", worktech26Stockholm: "WORKTECH26 Stockholm" },
+    breadcrumb: { home: "Home", contact: "Contact", bookDemo: "Book demo", sales: "Sales", partner: "Partner", archivistica: "ARCHIVISTICA", worktech26Stockholm: "WORKTECH26 Stockholm", dhbvVerbandstag2026: "DHBV Verbandstag", mutec2026: "MUTEC" },
     eyebrow: "Contact",
     index: {
       heroTitle: "Let's have",
@@ -127,20 +127,13 @@ const contactStrings: Record<Lang, ContactStrings> = {
       formTitle: "Tell us about your partnership",
       formSubtitle: "Fill out the form and we'll get back to you within one business day.",
     },
-    archivistica: {
-      heroTitle: "Meet us at ARCHIVISTICA.",
-      heroTitleAccent: "Reserve a stand visit.",
+    eventOnSite: {
+      heroTitle: "Reserve a stand visit.",
+      heroTitleAccent: "We look forward to meeting you.",
       heroLead:
-        "Tell us when you plan to visit our stand at ARCHIVISTICA in Hof — we'll reserve time for you on site.",
+        "Book a personal meeting at our trade-fair stand. Tell us when you plan to visit — we'll set aside time for your questions.",
       formTitle: "Reserve a stand visit",
-      formSubtitle: "Fill out the form and we'll confirm a time slot at our stand.",
-    },
-    worktech26Stockholm: {
-      heroTitle: "Meet us at WORKTECH26.",
-      heroTitleAccent: "Book an on-site meeting.",
-      heroLead: "Tell us when you plan to meet us at WORKTECH26 in Stockholm.",
-      formTitle: "Book an on-site meeting",
-      formSubtitle: "Fill out the form and we'll confirm a time slot.",
+      formSubtitle: "Fill out the form and we'll get back to you with a suggested time slot.",
     },
     form: {
       eyebrow: "Get started",
@@ -164,6 +157,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       consent:
         "I agree that IoT Fabrikken may store and use my details to respond to my enquiry, in line with the privacy policy.",
       submit: "Send",
+      sending: "Sending…",
       successTitle: "Thanks — we've got it.",
       successBody: "We'll be in touch within one business day.",
       optional: "optional",
@@ -171,6 +165,9 @@ const contactStrings: Record<Lang, ContactStrings> = {
     },
     validation: {
       name_required: "Please enter your first and last name.",
+      first_name_required: "Please enter your first name.",
+      last_name_required: "Please enter your last name.",
+      email_required: "Please enter your work email.",
       email_invalid: "Please enter a valid work email address.",
       email_personal:
         "Please use your work email. Personal addresses (Gmail, Outlook, Yahoo, etc.) are not accepted.",
@@ -184,7 +181,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
     },
   },
   da: {
-    breadcrumb: { home: "Hjem", contact: "Kontakt", bookDemo: "Book demo", sales: "Salg", partner: "Partner", archivistica: "ARCHIVISTICA", worktech26Stockholm: "WORKTECH26 Stockholm" },
+    breadcrumb: { home: "Hjem", contact: "Kontakt", bookDemo: "Book demo", sales: "Salg", partner: "Partner", archivistica: "ARCHIVISTICA", worktech26Stockholm: "WORKTECH26 Stockholm", dhbvVerbandstag2026: "DHBV Verbandstag", mutec2026: "MUTEC" },
     eyebrow: "Kontakt",
     index: {
       heroTitle: "Lad os tage",
@@ -219,20 +216,13 @@ const contactStrings: Record<Lang, ContactStrings> = {
       formTitle: "Fortæl os om jeres partnerskab",
       formSubtitle: "Udfyld formularen, så vender vi tilbage inden for én hverdag.",
     },
-    archivistica: {
-      heroTitle: "Mød os på ARCHIVISTICA.",
-      heroTitleAccent: "Reserver et standbesøg.",
+    eventOnSite: {
+      heroTitle: "Reserver et standbesøg.",
+      heroTitleAccent: "Vi glæder os til at møde dig.",
       heroLead:
-        "Fortæl os, hvornår du planlægger at besøge vores stand på ARCHIVISTICA i Hof — så reserverer vi tid til dig.",
+        "Book et personligt møde ved vores messestand. Fortæl os, hvornår du planlægger at besøge os — så afsætter vi tid til dine spørgsmål.",
       formTitle: "Reserver et standbesøg",
-      formSubtitle: "Udfyld formularen, så bekræfter vi et tidspunkt ved vores stand.",
-    },
-    worktech26Stockholm: {
-      heroTitle: "Mød os på WORKTECH26.",
-      heroTitleAccent: "Book et møde på stedet.",
-      heroLead: "Fortæl os, hvornår du planlægger at møde os på WORKTECH26 i Stockholm.",
-      formTitle: "Book et møde på stedet",
-      formSubtitle: "Udfyld formularen, så bekræfter vi et tidspunkt.",
+      formSubtitle: "Udfyld formularen, så vender vi tilbage med et foreslået tidspunkt.",
     },
     form: {
       eyebrow: "Kom i gang",
@@ -256,6 +246,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       consent:
         "Jeg accepterer, at IoT Fabrikken må gemme og bruge mine oplysninger til at besvare min henvendelse i overensstemmelse med privatlivspolitikken.",
       submit: "Send",
+      sending: "Sender…",
       successTitle: "Tak — vi har modtaget din besked.",
       successBody: "Vi vender tilbage inden for én hverdag.",
       optional: "valgfrit",
@@ -263,6 +254,9 @@ const contactStrings: Record<Lang, ContactStrings> = {
     },
     validation: {
       name_required: "Indtast dit for- og efternavn.",
+      first_name_required: "Indtast dit fornavn.",
+      last_name_required: "Indtast dit efternavn.",
+      email_required: "Indtast din arbejdsmail.",
       email_invalid: "Indtast en gyldig arbejdsmail.",
       email_personal:
         "Brug din arbejdsmail. Personlige adresser (Gmail, Outlook, Yahoo osv.) accepteres ikke.",
@@ -276,7 +270,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
     },
   },
   de: {
-    breadcrumb: { home: "Startseite", contact: "Kontakt", bookDemo: "Demo buchen", sales: "Vertrieb", partner: "Partner", archivistica: "ARCHIVISTICA", worktech26Stockholm: "WORKTECH26 Stockholm" },
+    breadcrumb: { home: "Startseite", contact: "Kontakt", bookDemo: "Demo buchen", sales: "Vertrieb", partner: "Partner", archivistica: "ARCHIVISTICA", worktech26Stockholm: "WORKTECH26 Stockholm", dhbvVerbandstag2026: "DHBV-Verbandstag", mutec2026: "MUTEC" },
     eyebrow: "Kontakt",
     index: {
       heroTitle: "Lassen Sie uns",
@@ -311,21 +305,13 @@ const contactStrings: Record<Lang, ContactStrings> = {
       formTitle: "Erzählen Sie uns von Ihrer Partnerschaft",
       formSubtitle: "Füllen Sie das Formular aus und wir melden uns innerhalb eines Werktags.",
     },
-    archivistica: {
+    eventOnSite: {
       heroTitle: "Termin am Messestand.",
-      heroTitleAccent: "ARCHIVISTICA 2026 in Hof.",
+      heroTitleAccent: "Wir freuen uns auf Sie.",
       heroLead:
-        "Reservieren Sie einen persönlichen Termin an unserem Stand auf der ARCHIVISTICA vom 29. September bis 1. Oktober 2026 in Hof (Saale). Wir nehmen uns Zeit für Ihre Fragen zu Bewahrung, Raumklima und Energieeinsparung.",
+        "Reservieren Sie einen persönlichen Termin an unserem Messestand. Sagen Sie uns, wann Sie vorbeikommen möchten — wir nehmen uns Zeit für Ihre Fragen.",
       formTitle: "Termin am Messestand reservieren",
-      formSubtitle:
-        "Sagen Sie uns, wann Sie uns auf der ARCHIVISTICA besuchen möchten — wir reservieren Zeit für Sie am Stand.",
-    },
-    worktech26Stockholm: {
-      heroTitle: "Treffen Sie uns auf WORKTECH26.",
-      heroTitleAccent: "Termin vor Ort buchen.",
-      heroLead: "Sagen Sie uns, wann Sie uns auf WORKTECH26 in Stockholm treffen möchten.",
-      formTitle: "Termin vor Ort buchen",
-      formSubtitle: "Füllen Sie das Formular aus — wir bestätigen einen Zeitfenster.",
+      formSubtitle: "Füllen Sie das Formular aus — wir melden uns mit einem Terminvorschlag.",
     },
     form: {
       eyebrow: "Loslegen",
@@ -349,6 +335,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       consent:
         "Ich bin damit einverstanden, dass IoT Fabrikken meine Angaben speichert und verwendet, um meine Anfrage gemäß der Datenschutzerklärung zu beantworten.",
       submit: "Senden",
+      sending: "Wird gesendet…",
       successTitle: "Danke — wir haben Ihre Nachricht erhalten.",
       successBody: "Wir melden uns innerhalb eines Werktags.",
       optional: "optional",
@@ -356,6 +343,9 @@ const contactStrings: Record<Lang, ContactStrings> = {
     },
     validation: {
       name_required: "Bitte geben Sie Ihren Vor- und Nachnamen ein.",
+      first_name_required: "Bitte geben Sie Ihren Vornamen ein.",
+      last_name_required: "Bitte geben Sie Ihren Nachnamen ein.",
+      email_required: "Bitte geben Sie Ihre geschäftliche E-Mail-Adresse ein.",
       email_invalid: "Bitte geben Sie eine gültige geschäftliche E-Mail-Adresse ein.",
       email_personal:
         "Bitte verwenden Sie Ihre geschäftliche E-Mail. Private Adressen (Gmail, Outlook, Yahoo usw.) werden nicht akzeptiert.",
@@ -372,7 +362,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
     },
   },
   sv: {
-    breadcrumb: { home: "Hem", contact: "Kontakt", bookDemo: "Boka demo", sales: "Försäljning", partner: "Partner", archivistica: "ARCHIVISTICA", worktech26Stockholm: "WORKTECH26 Stockholm" },
+    breadcrumb: { home: "Hem", contact: "Kontakt", bookDemo: "Boka demo", sales: "Försäljning", partner: "Partner", archivistica: "ARCHIVISTICA", worktech26Stockholm: "WORKTECH26 Stockholm", dhbvVerbandstag2026: "DHBV Verbandstag", mutec2026: "MUTEC" },
     eyebrow: "Kontakt",
     index: {
       heroTitle: "Låt oss ta",
@@ -407,21 +397,13 @@ const contactStrings: Record<Lang, ContactStrings> = {
       formTitle: "Berätta om ert partnerskap",
       formSubtitle: "Fyll i formuläret så återkommer vi inom en arbetsdag.",
     },
-    archivistica: {
-      heroTitle: "Träffa oss på ARCHIVISTICA.",
-      heroTitleAccent: "Boka ett standbesök.",
+    eventOnSite: {
+      heroTitle: "Boka möte på plats.",
+      heroTitleAccent: "Vi ser fram emot att träffa dig.",
       heroLead:
-        "Berätta när du planerar att besöka vår monter på ARCHIVISTICA i Hof — så reserverar vi tid för dig.",
-      formTitle: "Boka ett standbesök",
-      formSubtitle: "Fyll i formuläret så bekräftar vi en tid vid vår monter.",
-    },
-    worktech26Stockholm: {
-      heroTitle: "Träffa oss på WORKTECH26.",
-      heroTitleAccent: "Boka möte på plats i Stockholm.",
-      heroLead:
-        "Berätta när du planerar att träffa oss på WORKTECH26 den 10 november 2026 i Epicenter, Stockholm — så reserverar vi tid för dig.",
+        "Boka ett personligt möte vid vår mässmonter. Berätta när du planerar att besöka oss — så reserverar vi tid för dina frågor.",
       formTitle: "Boka möte på plats",
-      formSubtitle: "Fyll i formuläret så bekräftar vi en tid på konferensen.",
+      formSubtitle: "Fyll i formuläret så återkommer vi med ett föreslaget tidsspann.",
     },
     form: {
       eyebrow: "Kom igång",
@@ -445,6 +427,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       consent:
         "Jag godkänner att IoT Fabrikken lagrar och använder mina uppgifter för att besvara min förfrågan i enlighet med integritetspolicyn.",
       submit: "Skicka",
+      sending: "Skickar…",
       successTitle: "Tack — vi har tagit emot ditt meddelande.",
       successBody: "Vi hör av oss inom en arbetsdag.",
       optional: "valfritt",
@@ -452,6 +435,9 @@ const contactStrings: Record<Lang, ContactStrings> = {
     },
     validation: {
       name_required: "Ange ditt för- och efternamn.",
+      first_name_required: "Ange ditt förnamn.",
+      last_name_required: "Ange ditt efternamn.",
+      email_required: "Ange din jobbmejl.",
       email_invalid: "Ange en giltig jobbmejladress.",
       email_personal:
         "Använd din jobbmejl. Personliga adresser (Gmail, Outlook, Yahoo osv.) accepteras inte.",

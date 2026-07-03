@@ -3,7 +3,7 @@ import type { Hub } from "./types";
 export const pricingHub: Hub = {
   slug: "pricing",
   title: "Pricing you can plan with.",
-  titleAccent: "No per-sensor license fees.",
+  titleAccent: "No per-sensor licence fees.",
   eyebrow: "Pricing",
   lead: "A simple, predictable subscription that scales with your building — not with every new device you add.",
   leaves: [

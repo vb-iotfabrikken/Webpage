@@ -1,7 +1,12 @@
 ---
 import ModuleLandingPage from "../../../components/modules/ModuleLandingPage.astro";
 import { getWaterDetection } from "../../../data/i18n/waterDetection";
-import { waterDetectionDashboard, waterDetectionFeatureImages, waterDetectionCapabilitiesContext } from "../../../data/waterDetectionImages";
+import {
+  waterDetectionDashboard,
+  waterDetectionFeatureImages,
+  waterDetectionCapabilitiesContext,
+  waterDetectionSpotlightImages,
+} from "../../../data/waterDetectionImages";
 import { locales, langPath, type Lang } from "../../../data/lang";
 
 export function getStaticPaths() {
@@ -23,4 +28,16 @@ const t = getWaterDetection(lang);
   challengeIconSet="water"
   secondaryAudienceIcon="housing"
   capabilitiesContext={waterDetectionCapabilitiesContext}
+  heroInlineTitleAccent={true}
+  capabilitiesBeforeChallenges={true}
+  heroVisual="none"
+  spotlightImages={waterDetectionSpotlightImages}
+  spotlightImageClass={{
+    compact: "object-cover object-top",
+    pro: "object-cover object-bottom",
+  }}
+  capabilitiesContextImageClass="object-cover object-top"
+  imageClass={{
+    "smart-notifications": "object-cover object-[center_32%]",
+  }}
 />

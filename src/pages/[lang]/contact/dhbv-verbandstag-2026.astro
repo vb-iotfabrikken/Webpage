@@ -1,0 +1,23 @@
+---
+import EventOnSiteContactPage from "../../../components/events/EventOnSiteContactPage.astro";
+import { getContact } from "../../../data/i18n/contact";
+import { eventContactLeadSources } from "../../../data/eventContactSources";
+import { getEventStaticPaths } from "../../../data/events";
+import { langPath, type Lang } from "../../../data/lang";
+
+export function getStaticPaths() {
+  return getEventStaticPaths("dhbv-verbandstag-2026");
+}
+
+const lang = Astro.params.lang as Lang;
+const t = getContact(lang);
+---
+
+<EventOnSiteContactPage
+  lang={lang}
+  breadcrumbLabel={t.breadcrumb.dhbvVerbandstag2026}
+  pageTitle={t.breadcrumb.dhbvVerbandstag2026}
+  canonicalPath={langPath("/contact/dhbv-verbandstag-2026/", "de")}
+  source={eventContactLeadSources["dhbv-verbandstag-2026"]}
+  eventSlug="dhbv-verbandstag-2026"
+/>

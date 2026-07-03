@@ -7,7 +7,7 @@ export const contactHub: Hub = {
   title: "Get in touch.",
   titleAccent: "We are happy to help.",
   eyebrow: "Contact",
-  lead: "Book a demo, talk to sales, find an existing customer's helpcenter or apply to become a partner.",
+  lead: "Book a demo, talk to sales, find an existing customer's help centre or apply to become a partner.",
   leaves: [
     {
       slug: "book-demo",
@@ -28,8 +28,8 @@ export const contactHub: Hub = {
       eyebrow: "Contact",
       title: "Support information.",
       titleAccent: "Already a customer?",
-      lead: "Use the helpcenter for guides, documentation and service levels. For direct support, call or write to us using the details below.",
-      primaryCta: { label: "Go to the helpcenter", href: "https://support.iot-fabrikken.com" },
+      lead: "Use the help centre for guides, documentation and service levels. For direct support, call or write to us using the details below.",
+      primaryCta: { label: "Go to the help centre", href: "https://support.iot-fabrikken.com" },
     },
     {
       slug: "become-partner",

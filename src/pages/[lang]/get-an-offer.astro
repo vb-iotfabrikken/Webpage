@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import OfferForm from "../../components/OfferForm.astro";
+import { contactCardImages } from "../../data/contactCardImages";
 import { getGetOffer } from "../../data/i18n/getOffer";
 import { locales, langPath, type Lang } from "../../data/lang";
 
@@ -35,5 +36,5 @@ const t = getGetOffer(lang);
     compactTop
   />
 
-  <OfferForm lang={lang} />
+  <OfferForm lang={lang} sideImage={contactCardImages.sales} />
 </Layout>

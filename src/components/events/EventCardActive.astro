@@ -1,109 +1,166 @@
 ---
+
 import type { EventCardCopy } from "../../data/i18n/events";
 
+import {
+
+  eventCardThemeStyles,
+
+  type EventCardTheme,
+
+} from "../../data/eventCardThemes";
+
+import EventActiveCardBody, { type EventVenueBooth } from "./EventActiveCardBody.astro";
+
+
+
 interface Props {
+
   href?: string;
+
   logo: string;
+
   logoAlt: string;
+
   copy: EventCardCopy;
-  theme?: "navy" | "worktech";
-  /** Render as a static card (no link) — for event detail page heroes. */
+
+  theme?: EventCardTheme;
+
+  /**
+
+   * Landing-page venue card — same markup as the hub card but links to the
+
+   * official event site (`externalHref`) instead of our detail page.
+
+   */
+
   static?: boolean;
+
+  externalHref?: string;
+
+  externalAriaLabel?: string;
+
+  /** Booth line on landing venue cards when stand info is known. */
+
+  booth?: EventVenueBooth;
+
+  /** @deprecated Hub Card 1 links to our landing page; external only for venue cards. */
+
+  external?: boolean;
+
 }
 
-const { href = "#", logo, logoAlt, copy, theme = "navy", static: isStatic = false } = Astro.props;
 
-const isWorktech = theme === "worktech";
-const shellClass = isWorktech
-  ? "bg-gradient-to-br from-zinc-900 via-zinc-800 to-violet-900 focus-visible:ring-violet-500"
-  : "bg-gradient-to-br from-navy-500 via-navy-500 to-sky-600 focus-visible:ring-coral-500";
-const glowStyle = isWorktech
-  ? "background: radial-gradient(circle at 20% 0%, rgba(139,92,246,0.42), transparent 55%);"
-  : "background: radial-gradient(circle at 20% 0%, rgba(85,161,194,0.45), transparent 55%);";
-const dotClass = isWorktech ? "bg-violet-400" : "bg-coral-500";
-const borderAccentClass = isWorktech ? "border-violet-400" : "border-coral-500";
-const ctaClass = isWorktech
-  ? "text-violet-200 group-hover:text-white"
-  : "text-coral-200 group-hover:text-white";
+
+const {
+
+  href = "#",
+
+  logo,
+
+  logoAlt,
+
+  copy,
+
+  theme = "navy",
+
+  static: isStatic = false,
+
+  externalHref,
+
+  externalAriaLabel,
+
+  booth,
+
+  external = false,
+
+} = Astro.props;
+
+
+
+const palette = eventCardThemeStyles[theme];
+
+/** Card 1 status eyebrow dot — always green (e.g. “Demnächst”). */
+
+const statusDotClass = "bg-emerald-400";
+
+const isExternalVenue = isStatic && Boolean(externalHref);
+
 const cardClass = [
+
   "group relative flex flex-col h-full rounded-xl overflow-hidden border border-stone-100 text-white shadow-xl",
+
   "transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-2xl",
-  !isStatic && "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-  shellClass,
+
+  (!isStatic || isExternalVenue) &&
+
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+
+  palette.shell,
+
 ];
+
+
+
+const bodyProps = { logo, logoAlt, copy, theme, statusDotClass, booth };
+
 ---
 
+
+
 <div class="reveal h-full">
-  {isStatic ? (
-    <div class:list={cardClass}>
-      <div class="absolute inset-0 opacity-30 pointer-events-none" style={glowStyle} aria-hidden="true"></div>
 
-      <div class="relative flex flex-col flex-1 p-5 sm:p-6">
-        <span class="inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider">
-          <span class:list={["h-1.5 w-1.5 rounded-full", dotClass]} aria-hidden="true"></span>
-          {copy.active.eyebrow}
-        </span>
+  {isExternalVenue ? (
 
-        <div class="mt-4 rounded-xl bg-white px-3 py-3 shadow-lg w-fit">
-          <img
-            src={logo}
-            alt={logoAlt}
-            width="280"
-            height="80"
-            class:list={[
-              "w-auto max-w-[10rem] object-contain",
-              isWorktech ? "h-11" : "h-10",
-            ]}
-            loading="lazy"
-          />
-        </div>
+    <a
 
-        <h2 class="mt-4 text-2xl font-bold leading-tight text-white">{copy.title}</h2>
+      href={externalHref}
 
-        <p class:list={["mt-3 border-l-4 pl-3 text-sm leading-relaxed text-white/90", borderAccentClass]}>
-          <strong class="block text-white">{copy.date}</strong>
-          {copy.location}
-        </p>
-      </div>
-    </div>
-  ) : (
-    <a href={href} class:list={cardClass}>
-      <div class="absolute inset-0 opacity-30 pointer-events-none" style={glowStyle} aria-hidden="true"></div>
+      target="_blank"
 
-      <div class="relative flex flex-col flex-1 p-5 sm:p-6">
-        <span class="inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider">
-          <span class:list={["h-1.5 w-1.5 rounded-full", dotClass]} aria-hidden="true"></span>
-          {copy.active.eyebrow}
-        </span>
+      rel="noopener noreferrer"
 
-        <div class="mt-4 rounded-xl bg-white px-3 py-3 shadow-lg w-fit">
-          <img
-            src={logo}
-            alt={logoAlt}
-            width="280"
-            height="80"
-            class:list={[
-              "w-auto max-w-[10rem] object-contain",
-              isWorktech ? "h-11" : "h-10",
-            ]}
-            loading="lazy"
-          />
-        </div>
+      aria-label={externalAriaLabel}
 
-        <h2 class="mt-4 text-2xl font-bold leading-tight text-white">{copy.title}</h2>
+      class:list={cardClass}
 
-        <p class:list={["mt-3 border-l-4 pl-3 text-sm leading-relaxed text-white/90", borderAccentClass]}>
-          <strong class="block text-white">{copy.date}</strong>
-          {copy.location}
-        </p>
+    >
 
-        <div class:list={["mt-5 inline-flex items-center gap-1 text-sm font-semibold transition-colors", ctaClass]}>
-          {copy.active.cta}
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="transition-transform group-hover:translate-x-1" aria-hidden="true">
-            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </div>
-      </div>
+      <div class="absolute inset-0 opacity-30 pointer-events-none" style={palette.glow} aria-hidden="true"></div>
+
+      <EventActiveCardBody {...bodyProps} />
+
     </a>
+
+  ) : isStatic ? (
+
+    <div class:list={cardClass}>
+
+      <div class="absolute inset-0 opacity-30 pointer-events-none" style={palette.glow} aria-hidden="true"></div>
+
+      <EventActiveCardBody {...bodyProps} />
+
+    </div>
+
+  ) : (
+
+    <a
+
+      href={href}
+
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+
+      class:list={cardClass}
+
+    >
+
+      <div class="absolute inset-0 opacity-30 pointer-events-none" style={palette.glow} aria-hidden="true"></div>
+
+      <EventActiveCardBody {...bodyProps} showCta />
+
+    </a>
+
   )}
+
 </div>
+

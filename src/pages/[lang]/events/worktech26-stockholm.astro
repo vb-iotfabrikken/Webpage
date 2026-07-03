@@ -2,22 +2,27 @@
 import Layout from "../../../layouts/Layout.astro";
 import Hero from "../../../components/Hero.astro";
 import Button from "../../../components/Button.astro";
+import EventFairRecapSection from "../../../components/events/EventFairRecapSection.astro";
 import CtaBand from "../../../components/CtaBand.astro";
 import SectionIntro from "../../../components/SectionIntro.astro";
 import EventCardActive from "../../../components/events/EventCardActive.astro";
+import EventHeroMeta from "../../../components/events/EventHeroMeta.astro";
 import { getWorktech } from "../../../data/i18n/worktech26Stockholm";
 import { getEventCardCopy } from "../../../data/i18n/events";
-import { eventAssets } from "../../../data/events";
+import { buildLandingHeroMeta, venueCardCopyFromHeroMeta } from "../../../data/eventVenueCard";
+import { eventAssets, getEventStaticPaths } from "../../../data/events";
 import { breadcrumbSchema } from "../../../lib/seo/schema";
 import { langPath, type Lang } from "../../../data/lang";
 
 export function getStaticPaths() {
-  return [{ params: { lang: "sv" as Lang } }];
+  return getEventStaticPaths("worktech26-stockholm");
 }
 
 const lang = Astro.params.lang as Lang;
 const t = getWorktech(lang);
 const cardCopy = getEventCardCopy("worktech26-stockholm", lang);
+const heroMeta = buildLandingHeroMeta("worktech26-stockholm", t.heroMetaFields);
+const venueCopy = cardCopy ? venueCardCopyFromHeroMeta(cardCopy, heroMeta) : null;
 const cardAssets = eventAssets["worktech26-stockholm"];
 
 const featureStyles = {
@@ -72,23 +77,18 @@ const pageJsonLd = [
     <Button href={langPath("/contact/book-demo/", lang)} variant="secondary-light" size="lg" slot="cta">{t.heroSecondaryCta}</Button>
 
     <div slot="visual" class="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
-      {cardCopy && cardAssets && (
+      {venueCopy && cardAssets && (
         <EventCardActive
           logo={cardAssets.logo}
           logoAlt={cardAssets.logoAlt}
-          copy={cardCopy}
+          copy={venueCopy}
           theme={cardAssets.cardTheme}
           static
+          externalHref={cardAssets.officialUrl}
+          externalAriaLabel={t.officialEventLabel}
         />
       )}
-      <ul class="mt-4 flex flex-wrap gap-2" aria-label="Eventdetaljer">
-        {t.heroMeta.map((item) => (
-          <li class="rounded-md border border-stone-200 bg-white px-3 py-1.5 text-sm">
-            <span class="text-stone-500">{item.label}:</span>{" "}
-            <span class="font-medium text-navy-500">{item.value}</span>
-          </li>
-        ))}
-      </ul>
+      <EventHeroMeta items={heroMeta} ariaLabel="Eventdetaljer" />
     </div>
   </Hero>
 
@@ -167,6 +167,8 @@ const pageJsonLd = [
       </div>
     </div>
   </section>
+
+  <EventFairRecapSection lang={lang} />
 
   <CtaBand
     variant="featured"

@@ -1,0 +1,37 @@
+---
+import type { ModuleProseWithLinks } from "../../data/i18n/modulePageTypes";
+import { langPath, type Lang } from "../../data/lang";
+
+interface Props {
+  lang: Lang;
+  segments: ModuleProseWithLinks;
+  class?: string;
+}
+
+const { lang, segments, class: className } = Astro.props;
+
+const linkClass =
+  "text-sky-600 hover:text-coral-500 underline underline-offset-2 transition-colors font-medium";
+---
+
+<p class:list={className}>
+  {
+    segments.map((segment) => {
+      if (segment.type === "text") {
+        return segment.value;
+      }
+      if (segment.type === "sensor") {
+        return (
+          <a href={langPath(`/sensors/${segment.slug}/`, lang)} class={linkClass}>
+            {segment.label}
+          </a>
+        );
+      }
+      return (
+        <a href={langPath(`/compare/?useCase=${segment.useCaseId}`, lang)} class={linkClass}>
+          {segment.label}
+        </a>
+      );
+    })
+  }
+</p>

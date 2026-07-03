@@ -335,7 +335,7 @@ export const sensorPageContent: SensorPageContent[] = [
  benefits: [
  {
  title: "Continuous zone protection",
- body: "Route the sensor cable smoothly along entire pipelines, under raised floors, or wrapped directly around critical server racks to create a seamless zone of defense.",
+ body: "Route the sensor cable smoothly along entire pipelines, under raised floors, or wrapped directly around critical server racks to create a seamless zone of defence.",
  },
  {
  title: "Instant notification & rapid auto-reset",

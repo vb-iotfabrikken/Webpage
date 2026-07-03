@@ -9,11 +9,16 @@ import SectionIntro from "../../../components/SectionIntro.astro";
 import ModuleChallengeCards from "../../../components/modules/ModuleChallengeCards.astro";
 import ModuleFeatureTabs from "../../../components/modules/ModuleFeatureTabs.astro";
 import ModuleCrossLink from "../../../components/modules/ModuleCrossLink.astro";
-import ModuleDashboardFrame from "../../../components/modules/ModuleDashboardFrame.astro";
 import ArchivisticaFairTeaser from "../../../components/events/ArchivisticaFairTeaser.astro";
 import { getIndoorClimate } from "../../../data/i18n/indoorClimate";
+import { getModuleEventTeaser } from "../../../data/events";
 import ModuleCapabilitiesIntro from "../../../components/modules/ModuleCapabilitiesIntro.astro";
-import { indoorClimateFeatureImages, indoorClimateDashboardSrc, indoorClimateCapabilitiesContext } from "../../../data/indoorClimateImages";
+import {
+  indoorClimateFeatureImages,
+  indoorClimateDashboardSrc,
+  indoorClimateDashboardSize,
+  indoorClimateCapabilitiesContext,
+} from "../../../data/indoorClimateImages";
 import { breadcrumbSchema, faqSchema } from "../../../lib/seo/schema";
 import { locales, langPath, type Lang } from "../../../data/lang";
 
@@ -23,7 +28,8 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params as { lang: Lang };
 const t = getIndoorClimate(lang);
-const isDeFair = lang === "de";
+const archivisticaTeaser = getModuleEventTeaser("archivistica", "modules/indoor-climate", lang);
+const isDeFair = Boolean(archivisticaTeaser);
 
 const pageJsonLd = [
   breadcrumbSchema([
@@ -63,43 +69,37 @@ const pageJsonLd = [
 
     <Fragment slot="visual">
       {isDeFair ? (
-        <ArchivisticaFairTeaser compact href={langPath("/events/archivistica/", lang)} />
+        <ArchivisticaFairTeaser compact href={archivisticaTeaser!.href} />
       ) : (
-        <ModuleDashboardFrame
-          class="reveal max-w-5xl"
-          label={t.dashboardLabel}
-          src={indoorClimateDashboardSrc}
-          alt={t.dashboardAlt}
-          width={1903}
-          height={913}
-        />
+        <figure class="reveal max-w-5xl overflow-hidden rounded-2xl border border-stone-100 bg-white shadow-lg shadow-navy-500/5">
+          <img
+            src={indoorClimateDashboardSrc}
+            alt={t.dashboardAlt}
+            width={indoorClimateDashboardSize.width}
+            height={indoorClimateDashboardSize.height}
+            class="w-full h-auto block object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
       )}
     </Fragment>
-    {!isDeFair && (
-      <div slot="belowVisual" class="max-w-5xl space-y-5">
-        {t.intro.map((paragraph) => (
-          <p class="reveal text-lg text-stone-900/80 leading-relaxed">{paragraph}</p>
-        ))}
-      </div>
-    )}
   </Hero>
 
   {isDeFair && (
     <section class="bg-white border-b border-stone-100">
       <div class="container-page pt-8 md:pt-10 pb-12 md:pb-16">
-        <ModuleDashboardFrame
-          class="reveal max-w-5xl"
-          label={t.dashboardLabel}
-          src={indoorClimateDashboardSrc}
-          alt={t.dashboardAlt}
-          width={1903}
-          height={913}
-        />
-        <div class="max-w-5xl mt-8 md:mt-10 space-y-5">
-          {t.intro.map((paragraph) => (
-            <p class="reveal text-lg text-stone-900/80 leading-relaxed">{paragraph}</p>
-          ))}
-        </div>
+        <figure class="reveal max-w-5xl overflow-hidden rounded-2xl border border-stone-100 bg-white shadow-lg shadow-navy-500/5">
+          <img
+            src={indoorClimateDashboardSrc}
+            alt={t.dashboardAlt}
+            width={indoorClimateDashboardSize.width}
+            height={indoorClimateDashboardSize.height}
+            class="w-full h-auto block object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
       </div>
     </section>
   )}
@@ -113,6 +113,14 @@ const pageJsonLd = [
         class="mb-12"
       />
 
+      {t.intro.length > 0 && (
+        <div class="max-w-5xl space-y-5 mb-12 md:mb-14">
+          {t.intro.map((paragraph) => (
+            <p class="reveal text-lg text-stone-900/80 leading-relaxed">{paragraph}</p>
+          ))}
+        </div>
+      )}
+
       <ModuleChallengeCards challenges={t.challenges} iconSet="climate" />
     </div>
   </section>
@@ -123,6 +131,8 @@ const pageJsonLd = [
         eyebrow={t.capabilitiesEyebrow}
         heading={t.capabilitiesHeading}
         lead={t.solutionLead}
+        leadWithSensorLinks={t.solutionLeadWithSensorLinks}
+        lang={lang}
         contextAlt={t.capabilitiesContextAlt}
         context={indoorClimateCapabilitiesContext}
       />
@@ -131,6 +141,8 @@ const pageJsonLd = [
         features={t.features}
         images={indoorClimateFeatureImages}
         tabId="indoor-climate-features"
+        lang={lang}
+        revealBodyOnSelect
       />
     </div>
   </section>

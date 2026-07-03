@@ -14,7 +14,7 @@ export const spaceManagementDashboardSrc = "/images/modules/space-management-das
 /** Small editorial photo beside the capabilities section intro. */
 export const spaceManagementCapabilitiesContext = {
   src: "/images/modules/space-management-capabilities-context.webp",
-  width: 960,
-  height: 695,
+  width: 1200,
+  height: 799,
   placeholderLabel: "Space management in use photo",
 } as const;

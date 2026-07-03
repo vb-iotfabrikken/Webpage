@@ -86,7 +86,7 @@ export const team: TeamMember[] = [
   },
   {
     name: "Jeanette Christensen",
-    role: "Space management",
+    role: "Customer success and Implementation",
     email: "jc@iot-fabrikken.com",
     phone: "+45 93 99 16 76",
     photo: "/team/jeanette-christensen.webp",
@@ -131,8 +131,8 @@ export const departments: Record<
     blurb: "The people who build and maintain the platform, integrations and product experience.",
   },
   "customer-success": {
-    label: "Customer success",
-    blurb: "Specialists who help customers get lasting value from space management and indoor climate.",
+    label: "Customer success and Implementation",
+    blurb: "Onboarding, rollout and ongoing support so customers get lasting value from indoor climate and space management.",
   },
   sales: {
     label: "Sales",
@@ -156,7 +156,7 @@ const departmentsI18n: Partial<
   da: {
     leadership: { label: "Ledelse", blurb: "Retning, partnerskaber og den langsigtede vision bag IoT Fabrikken." },
     engineering: { label: "Udvikling", blurb: "Dem, der bygger og vedligeholder platformen, integrationerne og produktoplevelsen." },
-    "customer-success": { label: "Customer success", blurb: "Specialister, der hjælper kunder med at få varig værdi af space management og indeklima." },
+    "customer-success": { label: "Customer success og implementering", blurb: "Onboarding, udrulning og løbende support, så kunder får varig værdi af indeklima og space management." },
     sales: { label: "Salg", blurb: "Første kontakt for nye kunder — i Danmark, Sverige og Tyskland." },
     operations: { label: "Drift", blurb: "Administration og logistik, der får virksomheden til at køre gnidningsfrit." },
     communications: { label: "Kommunikation & marketing", blurb: "Sådan fortæller vi vores historie — presse, nyhedsbreve, website og kampagner." },
@@ -164,7 +164,7 @@ const departmentsI18n: Partial<
   de: {
     leadership: { label: "Führung", blurb: "Ausrichtung, Partnerschaften und die langfristige Vision hinter IoT Fabrikken." },
     engineering: { label: "Entwicklung", blurb: "Die Menschen, die die Plattform, Integrationen und das Produkterlebnis bauen und pflegen." },
-    "customer-success": { label: "Customer Success", blurb: "Spezialisten, die Kunden helfen, dauerhaften Nutzen aus Space-Management und Raumklima zu ziehen." },
+    "customer-success": { label: "Customer Success und Implementierung", blurb: "Onboarding, Rollout und laufender Support, damit Kunden dauerhaften Nutzen aus Raumklima und Space-Management ziehen." },
     sales: { label: "Vertrieb", blurb: "Erster Kontakt für neue Kunden — in Dänemark, Schweden und Deutschland." },
     operations: { label: "Betrieb", blurb: "Verwaltung und Logistik, die das Unternehmen reibungslos am Laufen halten." },
     communications: { label: "Kommunikation & Marketing", blurb: "Wie wir unsere Geschichte erzählen — Presse, Newsletter, Website und Kampagnen." },
@@ -172,7 +172,7 @@ const departmentsI18n: Partial<
   sv: {
     leadership: { label: "Ledning", blurb: "Inriktning, partnerskap och den långsiktiga visionen bakom IoT Fabrikken." },
     engineering: { label: "Utveckling", blurb: "De som bygger och underhåller plattformen, integrationerna och produktupplevelsen." },
-    "customer-success": { label: "Customer success", blurb: "Specialister som hjälper kunder att få bestående värde av space management och inomhusklimat." },
+    "customer-success": { label: "Customer success och implementering", blurb: "Onboarding, utrullning och löpande support så att kunder får bestående värde av inomhusklimat och space management." },
     sales: { label: "Försäljning", blurb: "Första kontakten för nya kunder — i Danmark, Sverige och Tyskland." },
     operations: { label: "Drift", blurb: "Administration och logistik som får företaget att fungera smidigt." },
     communications: { label: "Kommunikation & marknad", blurb: "Så berättar vi vår historia — press, nyhetsbrev, webbplats och kampanjer." },
@@ -186,6 +186,7 @@ const roleI18n: Record<Lang, Record<string, string>> = {
     "Head of sales, East": "Salgschef, Øst",
     "Internal sales & support": "Intern salg & support",
     "Software developer": "Softwareudvikler",
+    "Customer success and Implementation": "Customer success og implementering",
     "Office coordinator": "Kontorkoordinator",
     Communications: "Kommunikation",
     "Marketing coordinator": "Marketingkoordinator",
@@ -195,7 +196,7 @@ const roleI18n: Record<Lang, Record<string, string>> = {
     "Head of sales, East": "Vertriebsleiter, Ost",
     "Internal sales & support": "Innendienst & Support",
     "Software developer": "Softwareentwickler",
-    "Space management": "Space-Management",
+    "Customer success and Implementation": "Customer Success und Implementierung",
     "Office coordinator": "Büromanagement",
     Communications: "Kommunikation",
     "Marketing coordinator": "Marketingkoordination",
@@ -205,6 +206,7 @@ const roleI18n: Record<Lang, Record<string, string>> = {
     "Head of sales, East": "Försäljningschef, Öst",
     "Internal sales & support": "Innesälj & support",
     "Software developer": "Mjukvaruutvecklare",
+    "Customer success and Implementation": "Customer success och implementering",
     "Office coordinator": "Kontorskoordinator",
     Communications: "Kommunikation",
     "Marketing coordinator": "Marknadskoordinator",

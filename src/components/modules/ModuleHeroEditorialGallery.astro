@@ -1,0 +1,46 @@
+---
+import type { ModuleHeroGallery } from "../../data/i18n/modulePageTypes";
+
+interface Props {
+  gallery: ModuleHeroGallery;
+  compact?: boolean;
+  part?: "all" | "heading" | "paragraphs";
+  surface?: "light" | "dark";
+}
+
+const { gallery, compact = false, part = "all", surface = "light" } = Astro.props;
+
+const showHeading = part === "all" || part === "heading";
+const showParagraphs = part === "all" || part === "paragraphs";
+const onDark = surface === "dark";
+---
+
+<div class="w-full">
+  {
+    showHeading && (
+      <h2
+        class:list={[
+          "reveal font-bold tracking-tight",
+          compact ? "text-2xl md:text-3xl" : "text-3xl md:text-4xl",
+          onDark ? "text-white" : "text-navy-500",
+        ]}
+      >
+        {gallery.intro.heading}
+      </h2>
+    )
+  }
+  {
+    showParagraphs &&
+      gallery.intro.paragraphs.map((paragraph) => (
+        <p
+          class:list={[
+            "reveal leading-relaxed",
+            compact ? "mt-3 text-base md:text-[1.0625rem]" : "mt-5 text-lg",
+            onDark ? "text-white/80" : "text-stone-900/80",
+          ]}
+        >
+          {paragraph}
+        </p>
+      ))
+  }
+</div>

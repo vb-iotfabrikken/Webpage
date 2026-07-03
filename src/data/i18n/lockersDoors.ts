@@ -12,10 +12,9 @@ const en: ModulePageStrings = {
   heroTitle: "See what is open.",
   heroTitleAccent: "Close the gaps.",
   heroLead:
-    "Open/close monitoring turns everyday uncertainty into facts — which lockers are in use, whether windows are left ajar after hours, and how access points across the building are really used.",
+    "Open/close monitoring that brings transparency to lockers, windows, and doors",
   intro: [
-    "Without live status, locker capacity is managed by guesswork and windows are checked on foot — while energy leaks and security gaps go unnoticed until someone happens to spot them.",
-    "RoomAlyzer gives facility teams a real-time overview of lockers, doors, windows and cabinets, plus usage trends you can plan from.",
+    "Open/close monitoring turns everyday uncertainty into facts: which lockers are actually in use, whether windows are left open after hours, and how access points across the building are really being used. Without it, you are managing lockers by guesswork and checking windows on foot.",
   ],
   heroPrimaryCta: "Book a free demo",
   heroSecondaryCta: "Get an offer",
@@ -41,12 +40,30 @@ const en: ModulePageStrings = {
   capabilitiesHeading: "Live open/close status you can act on the same day.",
   solutionLead:
     "RoomAlyzer Lockers and doors gives you a real-time overview of what is open or closed — and turns it into usage patterns for facility managers and workplace planners.",
+  solutionLeadWithSensorLinks: [
+    { type: "text", value: "RoomAlyzer Lockers and doors uses the " },
+    { type: "sensor", slug: "open-close", label: "Open/Close" },
+    {
+      type: "text",
+      value:
+        " sensor to give you a real-time overview of what is open or closed — and turns it into usage patterns for facility managers and workplace planners.",
+    },
+  ],
   capabilitiesContextAlt: "Staff checking locker and door status in a workplace",
   features: [
     {
       id: "live-status",
       title: "Live status",
       body: "See which lockers, doors and windows are open or closed right now — across floors and locations.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "The " },
+        { type: "sensor", slug: "open-close", label: "Open/Close" },
+        {
+          type: "text",
+          value:
+            " sensor shows which lockers, doors and windows are open or closed right now — across floors and locations.",
+        },
+      ],
       unit: "Real time",
       imageAlt: "Live open and closed status for lockers and doors in RoomAlyzer",
     },
@@ -80,13 +97,13 @@ const en: ModulePageStrings = {
   audiencesHeading: "Day-to-day operations and workplace planning",
   audiencesLead:
     "The same open/close data helps the facility manager secure the building tonight and the workplace planner decide how locker capacity should grow next quarter.",
-  primaryAudienceHeading: "For Facility Managers",
+  primaryAudienceHeading: "For facility managers",
   primaryAudienceItems: [
     "See live open/close status across lockers, doors and windows",
     "Get after-hours alerts when access points are left open",
     "Audit cabinet and storage access without manual rounds",
   ],
-  secondaryAudienceHeading: "For Workplace Planning",
+  secondaryAudienceHeading: "For workplace planning",
   secondaryAudienceItems: [
     "Identify unused locker capacity before ordering more",
     "Support shared-desk and clean-desk concepts with usage data",
@@ -132,10 +149,9 @@ const da: ModulePageStrings = {
   heroTitle: "Se, hvad der er åbent.",
   heroTitleAccent: "Luk hullerne.",
   heroLead:
-    "Åbn/luk-overvågning gør hverdagens usikkerhed til fakta — hvilke skabe der er i brug, om vinduer står på klem uden for åbningstid, og hvordan adgangspunkter i hele bygningen reelt bruges.",
+    "Åbn/luk-overvågning, der giver gennemsigtighed i skabe, vinduer og døre",
   intro: [
-    "Uden live status styres skabskapacitet på gætværk, og vinduer tjekkes til fods — mens energispild og sikkerhedshuller forbliver usynlige, indtil nogen tilfældigvis opdager dem.",
-    "RoomAlyzer giver facility-teams et realtidsoverblik over skabe, døre, vinduer og skuffer — plus brugsmønstre, I kan planlægge ud fra.",
+    "Åbn/luk-overvågning gør hverdagens usikkerhed til fakta: hvilke skabe der faktisk er i brug, om vinduer står åbne efter lukketid, og hvordan adgangspunkter i hele bygningen reelt bruges. Uden det styrer I skabe på mavefornemmelse og tjekker vinduer til fods.",
   ],
   heroPrimaryCta: "Book en gratis demo",
   heroSecondaryCta: "Få et tilbud",
@@ -161,12 +177,30 @@ const da: ModulePageStrings = {
   capabilitiesHeading: "Live åbn/luk-status, I kan handle på samme dag.",
   solutionLead:
     "RoomAlyzer Skabe og døre giver jer et realtidsoverblik over, hvad der er åbent eller lukket — og omsætter det til brugsmønstre for facility management og arbejdspladsplanlægning.",
+  solutionLeadWithSensorLinks: [
+    { type: "text", value: "RoomAlyzer Skabe og døre bruger " },
+    { type: "sensor", slug: "open-close", label: "Open/Close" },
+    {
+      type: "text",
+      value:
+        "-sensoren til et realtidsoverblik over, hvad der er åbent eller lukket — og omsætter det til brugsmønstre for facility management og arbejdspladsplanlægning.",
+    },
+  ],
   capabilitiesContextAlt: "Medarbejdere der tjekker status på skabe og døre på en arbejdsplads",
   features: [
     {
       id: "live-status",
       title: "Live status",
       body: "Se, hvilke skabe, døre og vinduer der er åbne eller lukkede lige nu — på tværs af etager og lokationer.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "Sensoren " },
+        { type: "sensor", slug: "open-close", label: "Open/Close" },
+        {
+          type: "text",
+          value:
+            " viser, hvilke skabe, døre og vinduer der er åbne eller lukkede lige nu — på tværs af etager og lokationer.",
+        },
+      ],
       unit: "Realtid",
       imageAlt: "Live åben/luk-status for skabe og døre i RoomAlyzer",
     },
@@ -252,10 +286,9 @@ const de: ModulePageStrings = {
   heroTitle: "Sehen Sie, was offen ist.",
   heroTitleAccent: "Schließen Sie die Lücken.",
   heroLead:
-    "Öffnen/Schließen-Überwachung verwandelt alltägliche Unsicherheit in Fakten — welche Schließfächer genutzt werden, ob Fenster außerhalb der Öffnungszeiten offen stehen und wie Zugangspunkte im Gebäude wirklich genutzt werden.",
+    "Öffnen/Schließen-Überwachung für Transparenz bei Schließfächern, Fenstern und Türen",
   intro: [
-    "Ohne Live-Status wird Schließfachkapazität nach Bauchgefühl verwaltet und Fenster werden zu Fuß kontrolliert — während Energieverluste und Sicherheitslücken unbemerkt bleiben, bis sie zufällig entdeckt werden.",
-    "RoomAlyzer gibt Facility-Teams einen Echtzeitüberblick über Schließfächer, Türen, Fenster und Schränke — plus Nutzungstrends, mit denen Sie planen können.",
+    "Öffnen/Schließen-Überwachung verwandelt alltägliche Unsicherheit in Fakten: welche Schließfächer tatsächlich genutzt werden, ob Fenster nach Feierabend offen stehen und wie Zugangspunkte im Gebäude wirklich genutzt werden. Ohne sie verwalten Sie Schließfächer nach Bauchgefühl und kontrollieren Fenster zu Fuß.",
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
@@ -281,12 +314,30 @@ const de: ModulePageStrings = {
   capabilitiesHeading: "Live-Offen/Geschlossen-Status, den Sie noch am selben Tag nutzen können.",
   solutionLead:
     "RoomAlyzer Schließfächer und Türen gibt Ihnen einen Echtzeitüberblick darüber, was offen oder geschlossen ist — und macht daraus Nutzungsmuster für Facility Management und Arbeitsplatzplanung.",
+  solutionLeadWithSensorLinks: [
+    { type: "text", value: "RoomAlyzer Schließfächer und Türen nutzt den " },
+    { type: "sensor", slug: "open-close", label: "Open/Close" },
+    {
+      type: "text",
+      value:
+        "-Sensor für einen Echtzeitüberblick darüber, was offen oder geschlossen ist — und macht daraus Nutzungsmuster für Facility Management und Arbeitsplatzplanung.",
+    },
+  ],
   capabilitiesContextAlt: "Mitarbeitende prüfen den Status von Schließfächern und Türen am Arbeitsplatz",
   features: [
     {
       id: "live-status",
       title: "Live-Status",
       body: "Sehen Sie, welche Schließfächer, Türen und Fenster gerade offen oder geschlossen sind — über Etagen und Standorte hinweg.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "Der " },
+        { type: "sensor", slug: "open-close", label: "Open/Close" },
+        {
+          type: "text",
+          value:
+            "-Sensor zeigt, welche Schließfächer, Türen und Fenster gerade offen oder geschlossen sind — über Etagen und Standorte hinweg.",
+        },
+      ],
       unit: "Echtzeit",
       imageAlt: "Live Offen/Geschlossen-Status für Schließfächer und Türen in RoomAlyzer",
     },
@@ -372,10 +423,9 @@ const sv: ModulePageStrings = {
   heroTitle: "Se vad som är öppet.",
   heroTitleAccent: "Stäng luckorna.",
   heroLead:
-    "Öppna/stäng-övervakning gör vardagens osäkerhet till fakta — vilka skåp som används, om fönster står på glänt utanför öppettider och hur åtkomstpunkter i hela byggnaden faktiskt används.",
+    "Öppna/stäng-övervakning som ger transparens kring skåp, fönster och dörrar",
   intro: [
-    "Utan livestatus hanteras skåpkapacitet på gissning och fönster kontrolleras till fots — medan energiläckor och säkerhetsluckor förblir osynliga tills någon råkar upptäcka dem.",
-    "RoomAlyzer ger facility-team ett realtidsöverblick över skåp, dörrar, fönster och förråd — plus användningstrender att planera utifrån.",
+    "Öppna/stäng-övervakning förvandlar vardagens osäkerhet till fakta: vilka skåp som faktiskt används, om fönster lämnas öppna efter stängning och hur åtkomstpunkter i hela byggnaden verkligen används. Utan det hanterar ni skåp på magkänsla och kontrollerar fönster till fots.",
   ],
   heroPrimaryCta: "Boka en gratis demo",
   heroSecondaryCta: "Få en offert",
@@ -401,12 +451,30 @@ const sv: ModulePageStrings = {
   capabilitiesHeading: "Live öppen/stängd-status ni kan agera på samma dag.",
   solutionLead:
     "RoomAlyzer Skåp och dörrar ger er en realtidsöverblick över vad som är öppet eller stängt — och omvandlar det till användningsmönster för facility management och arbetsplatsplanering.",
+  solutionLeadWithSensorLinks: [
+    { type: "text", value: "RoomAlyzer Skåp och dörrar använder " },
+    { type: "sensor", slug: "open-close", label: "Open/Close" },
+    {
+      type: "text",
+      value:
+        "-sensorn för en realtidsöverblick över vad som är öppet eller stängt — och omvandlar det till användningsmönster för facility management och arbetsplatsplanering.",
+    },
+  ],
   capabilitiesContextAlt: "Personal som kontrollerar status på skåp och dörrar på en arbetsplats",
   features: [
     {
       id: "live-status",
       title: "Livestatus",
       body: "Se vilka skåp, dörrar och fönster som är öppna eller stängda just nu — över våningar och platser.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "Sensorn " },
+        { type: "sensor", slug: "open-close", label: "Open/Close" },
+        {
+          type: "text",
+          value:
+            " visar vilka skåp, dörrar och fönster som är öppna eller stängda just nu — över våningar och platser.",
+        },
+      ],
       unit: "Realtid",
       imageAlt: "Live öppen/stängd-status för skåp och dörrar i RoomAlyzer",
     },

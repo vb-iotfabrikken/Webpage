@@ -1,0 +1,40 @@
+---
+/** Uniform meta chips below the landing-page venue card (Termin + Ort row, detail full width). */
+import type { EventHeroMetaItem } from "../../data/eventVenueCard";
+
+interface Props {
+  items: readonly EventHeroMetaItem[];
+  ariaLabel?: string;
+}
+
+const { items, ariaLabel = "Event details" } = Astro.props;
+
+const [primary, secondary, ...detailRows] = items;
+---
+
+<div class="mt-4 flex flex-col gap-2" aria-label={ariaLabel}>
+  {primary && secondary && (
+    <div class="grid grid-cols-2 gap-2">
+      <div class="rounded-md border border-stone-200 bg-white px-3 py-1.5 text-sm">
+        <span class="text-stone-500">{primary.label}:</span>{" "}
+        <span class="font-medium text-navy-500">{primary.value}</span>
+      </div>
+      <div class="rounded-md border border-stone-200 bg-white px-3 py-1.5 text-sm">
+        <span class="text-stone-500">{secondary.label}:</span>{" "}
+        <span class="font-medium text-navy-500">{secondary.value}</span>
+      </div>
+    </div>
+  )}
+  {primary && !secondary && (
+    <div class="rounded-md border border-stone-200 bg-white px-3 py-1.5 text-sm">
+      <span class="text-stone-500">{primary.label}:</span>{" "}
+      <span class="font-medium text-navy-500">{primary.value}</span>
+    </div>
+  )}
+  {detailRows.map((item) => (
+    <div class="rounded-md border border-stone-200 bg-white px-3 py-1.5 text-sm">
+      <span class="text-stone-500">{item.label}:</span>{" "}
+      <span class="font-medium text-navy-500">{item.value}</span>
+    </div>
+  ))}
+</div>

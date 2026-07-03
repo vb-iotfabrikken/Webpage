@@ -3,7 +3,7 @@ import Layout from "../../../layouts/Layout.astro";
 import Hero from "../../../components/Hero.astro";
 import Button from "../../../components/Button.astro";
 import CtaBand from "../../../components/CtaBand.astro";
-import { getKeyFacts, pressContact, releases, mentions } from "../../../data/press";
+import { getKeyFacts, getPressMentions, pressContact, releases } from "../../../data/press";
 import { getAbout } from "../../../data/i18n/about";
 import { locales, langPath, type Lang } from "../../../data/lang";
 
@@ -14,6 +14,7 @@ export function getStaticPaths() {
 const { lang } = Astro.params as { lang: Lang };
 const t = getAbout(lang);
 const keyFacts = getKeyFacts(lang);
+const mentions = getPressMentions(lang);
 
 const dateLocale: Record<Lang, string> = {
   en: "en-GB",
@@ -81,11 +82,11 @@ const formatDate = (iso: string) =>
         </aside>
       </div>
 
+      {releases.length > 0 && (
       <div class="mt-12">
         <h2 class="text-xl font-bold text-navy-500 tracking-tight pb-3 border-b border-stone-100">
           {t.press.releasesHeading}
         </h2>
-        {releases.length > 0 ? (
           <ol class="mt-6 space-y-5">
             {releases.map((r) => (
               <li class="bg-white border border-stone-100 rounded-xl p-5">
@@ -102,12 +103,8 @@ const formatDate = (iso: string) =>
               </li>
             ))}
           </ol>
-        ) : (
-          <p class="mt-6 rounded-xl border border-dashed border-stone-100 bg-white px-5 py-8 text-sm text-stone-900/70 leading-relaxed">
-            {t.press.releasesEmpty}
-          </p>
-        )}
       </div>
+      )}
 
       <div class="mt-12">
         <h2 class="text-xl font-bold text-navy-500 tracking-tight pb-3 border-b border-stone-100">

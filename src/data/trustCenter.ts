@@ -35,11 +35,11 @@ export interface TrustCenterContent {
 }
 
 const en: TrustCenterContent = {
-  metaTitle: "Trust center | About | IoT Fabrikken",
+  metaTitle: "Trust centre | About | IoT Fabrikken",
   metaDescription:
     "Security, privacy, compliance and certifications for RoomAlyzer — everything you need to evaluate IoT Fabrikken with confidence.",
-  crumb: "Trust center",
-  heroTitle: "Trust center.",
+  crumb: "Trust centre",
+  heroTitle: "Trust centre.",
   heroTitleAccent: "Security, privacy and compliance in one place.",
   heroLead:
     "RoomAlyzer is built by a 100% Danish-owned company. Here you'll find our security posture, data-processing terms, service commitments and product certifications — everything you need to evaluate us with confidence.",

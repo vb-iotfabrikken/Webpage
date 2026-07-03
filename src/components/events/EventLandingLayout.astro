@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  jsonLd?: Array<Record<string, unknown>>;
+  suppressHreflang?: boolean;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonicalPath,
+  jsonLd,
+  suppressHreflang = false,
+  noindex = false,
+} = Astro.props;
+---
+
+<Layout
+  title={title}
+  description={description}
+  jsonLd={jsonLd}
+  canonicalPath={canonicalPath}
+  suppressHreflang={suppressHreflang}
+  noindex={noindex}
+>
+  <slot name="hero" />
+  <slot name="features" />
+  <slot name="quote" />
+  <slot name="testimonials" />
+  <slot name="photos" />
+  <slot name="cta" />
+</Layout>

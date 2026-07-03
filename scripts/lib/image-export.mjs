@@ -123,3 +123,64 @@ export async function exportAspectVariants(
 
   return variants;
 }
+
+/**
+ * Export a focal crop at a fixed aspect ratio, then resize to target width.
+ *
+ * @param {string} inputPath
+ * @param {string} outputPath
+ * @param {{ width: number; aspect: number; focal?: readonly [number, number]; quality?: number; zoom?: number }} options
+ */
+export async function exportWebpFocalCrop(inputPath, outputPath, options) {
+  const { width: targetWidth, aspect, focal = [0.5, 0.5], quality = WEBP_QUALITY, zoom = 1 } = options;
+  const [focalX, focalY] = focal;
+  const zoomFactor = Math.min(1, Math.max(0.1, zoom));
+  const image = sharp(inputPath, { failOn: "none" }).rotate();
+  const { width, height } = await image.metadata();
+
+  if (!width || !height) {
+    throw new Error(`Missing dimensions: ${inputPath}`);
+  }
+
+  const sourceAR = width / height;
+  let extractWidth;
+  let extractHeight;
+  let left;
+  let top;
+
+  if (sourceAR > aspect) {
+    extractHeight = height;
+    extractWidth = Math.round(height * aspect);
+    left = Math.round((width - extractWidth) * focalX);
+    top = 0;
+  } else {
+    extractWidth = width;
+    extractHeight = Math.round(width / aspect);
+    left = 0;
+    top = Math.round((height - extractHeight) * focalY);
+  }
+
+  left = Math.max(0, Math.min(left, width - extractWidth));
+  top = Math.max(0, Math.min(top, height - extractHeight));
+
+  if (zoomFactor < 1) {
+    const zoomedWidth = Math.max(1, Math.round(extractWidth * zoomFactor));
+    const zoomedHeight = Math.max(1, Math.round(extractHeight * zoomFactor));
+    left = Math.max(0, Math.min(Math.round(left + (extractWidth - zoomedWidth) * focalX), width - zoomedWidth));
+    top = Math.max(0, Math.min(Math.round(top + (extractHeight - zoomedHeight) * focalY), height - zoomedHeight));
+    extractWidth = zoomedWidth;
+    extractHeight = zoomedHeight;
+  }
+
+  await image
+    .extract({ left, top, width: extractWidth, height: extractHeight })
+    .resize(targetWidth, Math.round(targetWidth / aspect), {
+      fit: "fill",
+      kernel: sharp.kernel.lanczos3,
+    })
+    .webp({ quality, effort: 6 })
+    .toFile(outputPath);
+
+  const meta = await sharp(outputPath).metadata();
+  return { width: meta.width ?? 0, height: meta.height ?? 0 };
+}

@@ -1,5 +1,6 @@
 ---
 import Button from "../Button.astro";
+import FormFieldError from "../FormFieldError.astro";
 import { astroLang, langPath } from "../../data/lang";
 
 const lang = astroLang(Astro);
@@ -16,23 +17,23 @@ const privacyHref = langPath("legal/privacy", lang);
     </p>
     <form class="space-y-3 relative" data-roi-email-form novalidate>
       <div class="roi-honeypot" aria-hidden="true">
-        <label for="roi-website" class="roi-honeypot-label">Website</label>
         <input
-          type="text"
-          id="roi-website"
-          name="website"
+          type="search"
+          name="company_fax"
           tabindex="-1"
-          autocomplete="off"
+          autocomplete="nope"
+          inputmode="none"
           data-roi-honeypot
         />
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <label class="block">
           <span class="text-xs font-medium text-stone-300">First name</span>
+          <FormFieldError field="firstName" />
           <input
             type="text"
             name="firstName"
-            required
+            aria-required="true"
             autocomplete="given-name"
             placeholder="Jane"
             class="mt-1 w-full rounded-md border border-stone-100 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
@@ -41,10 +42,11 @@ const privacyHref = langPath("legal/privacy", lang);
         </label>
         <label class="block">
           <span class="text-xs font-medium text-stone-300">Last name</span>
+          <FormFieldError field="lastName" />
           <input
             type="text"
             name="lastName"
-            required
+            aria-required="true"
             autocomplete="family-name"
             placeholder="Smith"
             class="mt-1 w-full rounded-md border border-stone-100 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
@@ -54,10 +56,11 @@ const privacyHref = langPath("legal/privacy", lang);
       </div>
       <label class="block">
         <span class="text-xs font-medium text-stone-300">Work email</span>
+        <FormFieldError field="email" />
         <input
           type="email"
           name="email"
-          required
+          aria-required="true"
           autocomplete="work email"
           placeholder="you@company.com"
           class="mt-1 w-full rounded-md border border-stone-100 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
@@ -66,6 +69,7 @@ const privacyHref = langPath("legal/privacy", lang);
       </label>
       <label class="block">
         <span class="text-xs font-medium text-stone-300">Phone (optional)</span>
+        <FormFieldError field="phone" />
         <input
           type="tel"
           name="phone"

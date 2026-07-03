@@ -33,4 +33,11 @@ export const contactCardImages: Record<string, ContactCardImage> = {
     height: 500,
     objectPosition: "58% 30%",
   },
+  "dhbv-on-site": {
+    image: "/images/events/dhbv-on-site.webp",
+    imageAlt: "IoT Fabrikken team at a trade fair stand",
+    width: 800,
+    height: 500,
+    objectPosition: "50% 35%",
+  },
 };

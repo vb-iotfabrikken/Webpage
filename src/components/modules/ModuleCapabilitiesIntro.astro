@@ -1,6 +1,9 @@
 ---
 import SectionIntro from "../SectionIntro.astro";
 import ModuleScreenshotPlaceholder from "./ModuleScreenshotPlaceholder.astro";
+import ModuleProseWithLinks from "./ModuleProseWithLinks.astro";
+import type { ModuleProseWithLinks as ModuleProseWithLinksType } from "../../data/i18n/modulePageTypes";
+import type { Lang } from "../../data/lang";
 
 export interface ModuleCapabilitiesContextImage {
   src?: string;
@@ -13,17 +16,35 @@ interface Props {
   eyebrow: string;
   heading: string;
   lead?: string;
+  leadWithSensorLinks?: ModuleProseWithLinksType;
+  lang?: Lang;
   contextAlt: string;
   context: ModuleCapabilitiesContextImage;
   class?: string;
+  contextImageClass?: string;
+  proofPoints?: readonly { value: string; label: string }[];
 }
 
-const { eyebrow, heading, lead, contextAlt, context, class: className } = Astro.props;
+const {
+  eyebrow,
+  heading,
+  lead,
+  leadWithSensorLinks,
+  lang,
+  contextAlt,
+  context,
+  class: className,
+  contextImageClass,
+  proofPoints,
+} = Astro.props;
 
 const figureClass =
   "reveal order-2 lg:order-1 overflow-hidden rounded-2xl border border-stone-100 bg-white shadow-lg shadow-navy-500/5 lg:self-stretch";
-const imageClass =
-  "w-full h-full min-h-[12rem] max-h-56 sm:max-h-64 lg:max-h-none object-cover object-center";
+const baseImageClass = "w-full h-full min-h-[12rem] max-h-56 sm:max-h-64 lg:max-h-none";
+const defaultFitClass = "object-cover object-center";
+const imageClass = contextImageClass
+  ? `${baseImageClass} ${contextImageClass}`
+  : `${baseImageClass} ${defaultFitClass}`;
 ---
 
 <div
@@ -49,11 +70,30 @@ const imageClass =
       )
     }
   </figure>
-  <SectionIntro
-    eyebrow={eyebrow}
-    heading={heading}
-    lead={lead}
-    surface="white"
-    class="order-1 lg:order-2 !max-w-none min-w-0"
-  />
+  <div class="order-1 lg:order-2 !max-w-none min-w-0">
+    <SectionIntro eyebrow={eyebrow} heading={heading} surface="white" class="!max-w-none" />
+    {leadWithSensorLinks && lang ? (
+      <ModuleProseWithLinks
+        lang={lang}
+        segments={leadWithSensorLinks}
+        class="mt-5 text-lg text-stone-900/70 leading-relaxed"
+      />
+    ) : (
+      lead && <p class="mt-5 text-lg text-stone-900/70 leading-relaxed">{lead}</p>
+    )}
+    {
+      proofPoints && proofPoints.length > 0 && (
+        <dl class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {
+            proofPoints.map((point) => (
+              <div class="rounded-xl border border-stone-100 bg-stone-50 px-5 py-4">
+                <dt class="text-lg font-bold text-navy-500 leading-snug">{point.value}</dt>
+                <dd class="mt-1.5 text-sm text-stone-600 leading-snug">{point.label}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      )
+    }
+  </div>
 </div>

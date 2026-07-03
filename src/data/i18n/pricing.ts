@@ -55,7 +55,7 @@ const en: PricingStrings = {
   metaTitle: "Pricing you can plan with",
   hero: {
     title: "Pricing you can plan with.",
-    titleAccent: "No per-sensor license fees.",
+    titleAccent: "No per-sensor licence fees.",
     lead: "A simple, predictable subscription that scales with your building — not with every new device you add.",
   },
   matrix: {

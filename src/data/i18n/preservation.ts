@@ -12,18 +12,33 @@ const en: PreservationStrings = {
   breadcrumbHome: "Home",
   breadcrumbModules: "Modules",
   breadcrumbCurrent: "Preservation",
-  heroTitle: "Protect collections with data.",
-  heroTitleAccent: "Not guesswork.",
+  heroTitle: "Flawless preservation",
+  heroTitleAccent: "meets energy optimisation",
   heroLead:
-    "Wireless sensors monitor temperature and humidity around irreplaceable objects — with the precision conservators require.",
-  intro: [
-    "RoomAlyzer monitors temperature and humidity and turns it into clear documentation of the exact conditions your objects are kept in. Our sensors are known for their high precision — something conservators rightly insist on — so you can trust the figures you preserve your collection by.",
-    "Whether you care for altars and organs in a historic church, paintings in a museum gallery, or records in an archive, the same platform gives you room-level and display-case coverage — built for museums, churches, archives and heritage conservation.",
-  ],
+    "Our smart module secures the ideal climate while actively reducing unnecessary energy consumption",
+  intro: [],
   heroPrimaryCta: "Book a free demo",
   heroSecondaryCta: "Get an offer",
   dashboardLabel: "RoomAlyzer — Preservation",
   dashboardAlt: "RoomAlyzer dashboard showing heritage climate data across rooms and display cases",
+  heroGallery: {
+    images: [
+      {
+        alt: "RoomAlyzer sensor monitoring climate in an archive stack with bound volumes and storage boxes",
+        caption: "Monitoring in archive stacks, storage rooms, and bound volumes",
+      },
+      {
+        alt: "Open manuscript in a display case with a RoomAlyzer climate sensor",
+        caption: "Object-level monitoring in vitrines and display cases",
+      },
+    ],
+    intro: {
+      heading: "Object-level insight for conservators",
+      paragraphs: [
+        "Most climate hardware is built for HVAC teams — not for conservators, archivists, and church wardens. You balance fragile collections against energy mandates without object-level proof, while building-wide sensors miss the vitrine, the nave, and the loan you never get to inspect.",
+      ],
+    },
+  },
   challengesEyebrow: "The challenges you know",
   challengesHeading: "When you cannot prove the climate, every object is at risk.",
   challenges: [
@@ -41,38 +56,85 @@ const en: PreservationStrings = {
     },
   ],
   capabilitiesEyebrow: "How RoomAlyzer solves it",
-  capabilitiesHeading: "Precision climate monitoring built for heritage.",
+  capabilitiesHeading: "The specific analysis tools you need. The standards you trust.",
   solutionLead:
-    "RoomAlyzer Preservation turns wireless sensor readings into zoned dashboards, drift alerts and audit-ready reports — so conservators and facility teams work from the same facts.",
-  capabilitiesContextAlt: "Conservators reviewing climate conditions in a collection store",
+    "Stop guessing and start optimising. RoomAlyzer Preservation provides a complete suite of specialised analysis tools and turns wireless sensor readings into zoned dashboards, drift alerts and audit-ready reports — so you can balance flawless preservation with energy efficiency.",
+  solutionLeadWithSensorLinks: [
+    {
+      type: "text",
+      value:
+        "Stop guessing and start optimising. RoomAlyzer Preservation provides specialised analysis tools and turns wireless ",
+    },
+    { type: "sensor", slug: "humidity", label: "Humidity" },
+    { type: "text", value: " and " },
+    { type: "sensor", slug: "mini-plus", label: "Mini+" },
+    { type: "text", value: " sensor readings (with " },
+    { type: "sensor", slug: "outdoor", label: "Outdoor" },
+    {
+      type: "text",
+      value:
+        " for façades) into zoned dashboards, drift alerts and audit-ready reports — so you can balance flawless preservation with energy efficiency. ",
+    },
+    { type: "compare", label: "Compare heritage sensors", useCaseId: "heritage" },
+  ],
+  solutionProofPoints: [
+    { value: "±0.1 °C · ±1 % RH", label: "Sensor precision" },
+    { value: "7–10 yr", label: "Battery life" },
+  ],
+  capabilitiesContextAlt: "Specialist maintaining a historic pipe organ",
   features: [
     {
-      id: "precision",
-      title: "High-precision RH & temperature",
-      body: "Discreet wireless sensors deliver the tight tolerances conservators need — in galleries, storage rooms and display cases alike.",
-      unit: "±0.3 °C / ±2 % RH",
-      imageAlt: "High-precision temperature and humidity readings in RoomAlyzer",
+      id: "mould-risk",
+      title: "Mould risk (VTT)",
+      body: "Advanced predictive modelling to identify and prevent mould growth before it threatens your assets.",
+      unit: "Predictive",
+      imageAlt: "Mould risk (VTT) analysis in RoomAlyzer",
     },
     {
-      id: "documentation",
-      title: "Climate history & reports",
-      body: "Continuous logs and exportable reports document exactly how your collection has been stored — ready for audits, insurers and grant applications.",
-      unit: "Audit-ready",
-      imageAlt: "Climate history and preservation reports in RoomAlyzer",
+      id: "bizot-green",
+      title: "Bizot Green",
+      body: "Compliance scoring against the Bizot Green protocol — temperature, humidity and fluctuation bands in one report.",
+      unit: "Compliance",
+      imageAlt: "Bizot Green compliance analysis in RoomAlyzer",
     },
     {
-      id: "drift-alerts",
-      title: "Setpoint drift detection",
-      body: "HVAC setpoints creep over the years. Automated drift detection warns you before conditions slip outside the bands your objects need.",
-      unit: "Early warning",
-      imageAlt: "Setpoint drift alert in RoomAlyzer",
+      id: "ashrae",
+      title: "ASHRAE",
+      body: "Climate class analysis with achieved class scores and a full-year view for audit-ready documentation.",
+      unit: "Compliance",
+      imageAlt: "ASHRAE climate class analysis in RoomAlyzer",
     },
     {
-      id: "multi-zone",
-      title: "Every room and display case",
-      body: "Monitor naves, storage racks, vitrines and archives in one zoned view — from a single church to a multi-building museum campus.",
-      unit: "Zoned view",
-      imageAlt: "Multi-zone preservation climate overview in RoomAlyzer",
+      id: "preservation-index",
+      title: "Preservation Index",
+      body: "A clear, actionable rating of how well your current environment is protecting your valuables.",
+      unit: "PI / TWPI",
+      imageAlt: "Preservation Index rating in RoomAlyzer",
+    },
+    {
+      id: "fluctuations",
+      title: "Fluctuations tracking",
+      body: "Monitor temperature and humidity shifts against EN 15757, with exportable logs ready for audits, insurers and grant reviews.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "The " },
+        { type: "sensor", slug: "humidity", label: "Humidity" },
+        { type: "text", value: " and " },
+        { type: "sensor", slug: "mini-plus", label: "Mini+" },
+        {
+          type: "text",
+          value:
+            " sensors monitor temperature and humidity shifts against EN 15757, with exportable logs ready for audits, insurers and grant reviews.",
+        },
+      ],
+      unit: "EN 15757",
+      imageAlt: "EN 15757 fluctuations tracking in RoomAlyzer",
+    },
+    {
+      id: "heat-ventilation",
+      title: "Preservation heat & ventilation analysis",
+      body: "Deep insights to help you stabilise your climate while actively reducing unnecessary energy consumption.",
+      unit: "Energy",
+      imageAlt: "Preservation heat and ventilation analysis in RoomAlyzer",
     },
   ],
   relatedModuleLabel: "Smarter together",
@@ -83,14 +145,14 @@ const en: PreservationStrings = {
   audiencesHeading: "For conservators and facility teams — with data everyone can trust.",
   audiencesLead:
     "The same objective climate baseline serves the conservator protecting the collection and the facility manager running the building.",
-  primaryAudienceHeading: "For Conservators",
+  primaryAudienceHeading: "For conservators and specialists",
   primaryAudienceItems: [
     "Monitor RH and temperature at collection level",
     "Document conditions for EN 15757, insurers and funders",
     "Trust high-precision readings conservators require",
     "See climate history for every display case and storage zone",
   ],
-  secondaryAudienceHeading: "For Facility Managers",
+  secondaryAudienceHeading: "For facility managers",
   secondaryAudienceItems: [
     "Balance preservation with heating and energy costs",
     "Get early warnings when HVAC drifts off setpoint",
@@ -106,7 +168,7 @@ const en: PreservationStrings = {
     },
     {
       q: "How precise are the sensors, and do they need calibration?",
-      a: "RoomAlyzer Air humidity and temperature sensors deliver ±0.3 °C and ±2 % RH — the tolerances conservators expect. Each sensor is factory-calibrated; the platform flags any unit that drifts outside spec.",
+      a: "RoomAlyzer Air humidity and temperature sensors deliver ±0.1 °C and ±1 % RH — the tolerances conservators expect. Each sensor is factory-calibrated; the platform flags any unit that drifts outside spec.",
     },
     {
       q: "Can this work in historic buildings without WiFi?",
@@ -134,18 +196,33 @@ const da: PreservationStrings = {
   breadcrumbHome: "Hjem",
   breadcrumbModules: "Moduler",
   breadcrumbCurrent: "Bevaring",
-  heroTitle: "Beskyt samlinger med data.",
-  heroTitleAccent: "Ikke gætværk.",
+  heroTitle: "Fejlfri bevaring",
+  heroTitleAccent: "møder energioptimering",
   heroLead:
-    "Trådløse sensorer overvåger temperatur og luftfugtighed omkring uerstattelige genstande — med den præcision, konservatorer kræver.",
-  intro: [
-    "RoomAlyzer overvåger temperatur og luftfugtighed og omsætter det til klar dokumentation af de præcise forhold, jeres genstande opbevares i. Vores sensorer er kendt for deres høje præcision — noget konservatorer med rette insisterer på — så I kan stole på de tal, I bevarer jeres samling efter.",
-    "Uanset om I passer altre og orgler i en historisk kirke, malerier i et museum eller arkivalier i et arkiv, giver den samme platform dækning på rum- og montreniveau — bygget til museer, kirker, arkiver og bevaring af kulturarv.",
-  ],
+    "Vores smarte modul sikrer det ideelle klima, mens det aktivt reducerer unødvendigt energiforbrug",
+  intro: [],
   heroPrimaryCta: "Book en gratis demo",
   heroSecondaryCta: "Få et tilbud",
   dashboardLabel: "RoomAlyzer — Bevaring",
   dashboardAlt: "RoomAlyzer-dashboard, der viser kulturarvsklimadata på tværs af rum og montrer",
+  heroGallery: {
+    images: [
+      {
+        alt: "RoomAlyzer-sensor, der overvåger klima i et arkivmagasin med bind og opbevaringskasser",
+        caption: "Overvågning i arkivmagasiner, depoter og bind",
+      },
+      {
+        alt: "Åben håndskrift i montre med RoomAlyzer-klimasensor",
+        caption: "Objektniveau-overvågning i montrer og vitriner",
+      },
+    ],
+    intro: {
+      heading: "Indsigt på objektniveau for konservatorer",
+      paragraphs: [
+        "Det meste klimahardware er bygget til HVAC-teams — ikke til konservatorer, arkivarer og kirkeværger. I balancerer skrøbelige samlinger mod energikrav uden objektniveaudata, mens bygningsomfattende sensorer overser montren, skibet og udlånet, I aldrig får inspiceret.",
+      ],
+    },
+  },
   challengesEyebrow: "Udfordringerne, I kender",
   challengesHeading: "Når I ikke kan dokumentere klimaet, er enhver genstand i risiko.",
   challenges: [
@@ -163,38 +240,85 @@ const da: PreservationStrings = {
     },
   ],
   capabilitiesEyebrow: "Sådan løser RoomAlyzer det",
-  capabilitiesHeading: "Præcis klimaovervågning bygget til kulturarv.",
+  capabilitiesHeading: "De specifikke analyseværktøjer, I har brug for. Standarderne, I stoler på.",
   solutionLead:
-    "RoomAlyzer Bevaring omsætter trådløse sensordata til zonede dashboards, driftalarmer og revisionsklare rapporter — så konservatorer og facility-teams arbejder ud fra de samme fakta.",
-  capabilitiesContextAlt: "Konservatorer der gennemgår klimatiske forhold i et magasin",
+    "Stop gætteriet og begynd at optimere. RoomAlyzer Bevaring giver en komplet pakke af specialiserede analyseværktøjer og omsætter trådløse sensordata til zonede dashboards, driftalarmer og revisionsklare rapporter — så I kan balancere fejlfri bevaring med energieffektivitet.",
+  solutionLeadWithSensorLinks: [
+    {
+      type: "text",
+      value:
+        "Stop gætteriet og begynd at optimere. RoomAlyzer Bevaring giver specialiserede analyseværktøjer og omsætter trådløse ",
+    },
+    { type: "sensor", slug: "humidity", label: "Humidity" },
+    { type: "text", value: " og " },
+    { type: "sensor", slug: "mini-plus", label: "Mini+" },
+    { type: "text", value: "-sensordata (med " },
+    { type: "sensor", slug: "outdoor", label: "Outdoor" },
+    {
+      type: "text",
+      value:
+        " til facader) til zonede dashboards, driftalarmer og revisionsklare rapporter — så I kan balancere fejlfri bevaring med energieffektivitet. ",
+    },
+    { type: "compare", label: "Sammenlign kulturarvsensorer", useCaseId: "heritage" },
+  ],
+  solutionProofPoints: [
+    { value: "±0,1 °C · ±1 % RH", label: "Sensorpræcision" },
+    { value: "7–10 år", label: "Batterilevetid" },
+  ],
+  capabilitiesContextAlt: "Specialist vedligeholder et historisk orgel",
   features: [
     {
-      id: "precision",
-      title: "Højpræcis RH og temperatur",
-      body: "Diskrete trådløse sensorer leverer de snævre tolerancer, konservatorer har brug for — i gallerier, magasiner og montrer.",
-      unit: "±0,3 °C / ±2 % RH",
-      imageAlt: "Højpræcise temperatur- og luftfugtighedsmålinger i RoomAlyzer",
+      id: "mould-risk",
+      title: "Skimmelrisiko (VTT)",
+      body: "Avanceret prædiktiv modellering, der identificerer og forebygger skimmelvækst, før den truer jeres værdier.",
+      unit: "Prædiktiv",
+      imageAlt: "Skimmelrisiko (VTT)-analyse i RoomAlyzer",
     },
     {
-      id: "documentation",
-      title: "Klimahistorik og rapporter",
-      body: "Løbende logning og eksportérbare rapporter dokumenterer præcis, hvordan jeres samling har været opbevaret — klar til audits, forsikring og ansøgninger.",
-      unit: "Revisionsklar",
-      imageAlt: "Klimahistorik og bevaringsrapporter i RoomAlyzer",
+      id: "bizot-green",
+      title: "Bizot Green",
+      body: "Compliance-scoring mod Bizot Green-protokollen — temperatur, luftfugtighed og svingningsbånd i én rapport.",
+      unit: "Compliance",
+      imageAlt: "Bizot Green-complianceanalyse i RoomAlyzer",
     },
     {
-      id: "drift-alerts",
-      title: "Detektion af setpoint-drift",
-      body: "HVAC-setpoints glider over årene. Automatisk driftdetektion advarer jer, før forholdene glider uden for de bånd, jeres genstande har brug for.",
-      unit: "Tidlig advarsel",
-      imageAlt: "Setpoint-driftalarm i RoomAlyzer",
+      id: "ashrae",
+      title: "ASHRAE",
+      body: "Klimaklasseanalyse med opnåede klassescores og helårsvisning til revisionsklar dokumentation.",
+      unit: "Compliance",
+      imageAlt: "ASHRAE-klimaklasseanalyse i RoomAlyzer",
     },
     {
-      id: "multi-zone",
-      title: "Hvert rum og hver montre",
-      body: "Overvåg skib, magasinreoler, vitriner og arkiver i ét zonet overblik — fra én kirke til et museums campus på flere bygninger.",
-      unit: "Zoneoverblik",
-      imageAlt: "Multi-zone bevaringsklima i RoomAlyzer",
+      id: "preservation-index",
+      title: "Preservation Index",
+      body: "En klar, handlingsorienteret vurdering af, hvor godt jeres nuværende miljø beskytter jeres værdier.",
+      unit: "PI / TWPI",
+      imageAlt: "Preservation Index-vurdering i RoomAlyzer",
+    },
+    {
+      id: "fluctuations",
+      title: "Svingningssporing",
+      body: "Overvåg temperatur- og luftfugtighedsskift mod EN 15757 med eksportérbare logs klar til revision, forsikring og fondsansøgninger.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "Sensoren " },
+        { type: "sensor", slug: "humidity", label: "Humidity" },
+        { type: "text", value: " og " },
+        { type: "sensor", slug: "mini-plus", label: "Mini+" },
+        {
+          type: "text",
+          value:
+            " overvåger temperatur- og luftfugtighedsskift mod EN 15757 med eksportérbare logs klar til revision, forsikring og fondsansøgninger.",
+        },
+      ],
+      unit: "EN 15757",
+      imageAlt: "EN 15757-svingningssporing i RoomAlyzer",
+    },
+    {
+      id: "heat-ventilation",
+      title: "Bevaringsvarme- og ventilationsanalyse",
+      body: "Dyb indsigt, der hjælper jer med at stabilisere klimaet, mens I aktivt reducerer unødvendigt energiforbrug.",
+      unit: "Energi",
+      imageAlt: "Bevaringsvarme- og ventilationsanalyse i RoomAlyzer",
     },
   ],
   relatedModuleLabel: "Smartere sammen",
@@ -205,7 +329,7 @@ const da: PreservationStrings = {
   audiencesHeading: "Til konservatorer og facility-teams — med data, alle kan stole på.",
   audiencesLead:
     "Det samme objektive klimagrundlag tjener konservatoren, der beskytter samlingen, og facility manageren, der driver bygningen.",
-  primaryAudienceHeading: "Til konservatorer",
+  primaryAudienceHeading: "Til konservatorer og specialister",
   primaryAudienceItems: [
     "Overvåg RH og temperatur på samlingsniveau",
     "Dokumentér forhold til EN 15757, forsikring og fonde",
@@ -228,7 +352,7 @@ const da: PreservationStrings = {
     },
     {
       q: "Hvor præcise er sensorerne, og skal de kalibreres?",
-      a: "RoomAlyzer Air-fugt- og temperatursensorer leverer ±0,3 °C og ±2 % RH — de tolerancer, konservatorer forventer. Hver sensor er fabrikskalibreret; platformen markerer enheder, der glider uden for spec.",
+      a: "RoomAlyzer Air-fugt- og temperatursensorer leverer ±0,1 °C og ±1 % RH — de tolerancer, konservatorer forventer. Hver sensor er fabrikskalibreret; platformen markerer enheder, der glider uden for spec.",
     },
     {
       q: "Kan det fungere i historiske bygninger uden WiFi?",
@@ -256,18 +380,33 @@ const de: PreservationStrings = {
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
   breadcrumbCurrent: "Konservierung",
-  heroTitle: "Schützen Sie Sammlungen mit Daten.",
-  heroTitleAccent: "Nicht mit Vermutungen.",
+  heroTitle: "Makellose Konservierung",
+  heroTitleAccent: "trifft auf Energieoptimierung",
   heroLead:
-    "Drahtlose Sensoren überwachen Temperatur und Luftfeuchtigkeit rund um unersetzliche Objekte — mit der Präzision, die Restauratoren verlangen.",
-  intro: [
-    "RoomAlyzer überwacht Temperatur und Luftfeuchtigkeit und macht daraus eine klare Dokumentation der genauen Bedingungen, in denen Ihre Objekte aufbewahrt werden. Unsere Sensoren sind für ihre hohe Präzision bekannt — worauf Restauratoren zu Recht bestehen — sodass Sie den Werten vertrauen können, nach denen Sie Ihre Sammlung bewahren.",
-    "Ob Sie Altäre und Orgeln in einer historischen Kirche, Gemälde in einem Museum oder Akten in einem Archiv betreuen — dieselbe Plattform liefert Abdeckung auf Raum- und Vitrinenebene, entwickelt für Museen, Kirchen, Archive und die Denkmalpflege.",
-  ],
+    "Unser intelligentes Modul sichert das ideale Klima und reduziert gleichzeitig unnötigen Energieverbrauch",
+  intro: [],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
   dashboardLabel: "RoomAlyzer — Konservierung",
   dashboardAlt: "RoomAlyzer-Dashboard mit Klimadaten für Kulturgut in Räumen und Vitrinen",
+  heroGallery: {
+    images: [
+      {
+        alt: "RoomAlyzer-Sensor überwacht das Klima in einem Archivmagazin mit Bänden und Lagerkisten",
+        caption: "Überwachung in Archivmagazinen, Depots und Bänden",
+      },
+      {
+        alt: "Offenes Manuskript in einer Vitrine mit RoomAlyzer-Klimasensor",
+        caption: "Objektbezogene Überwachung in Vitrinen und Schaukästen",
+      },
+    ],
+    intro: {
+      heading: "Einblicke auf Objektebene für Restauratoren",
+      paragraphs: [
+        "Die meiste Klimahardware ist für HVAC-Teams gebaut — nicht für Restauratoren, Archivare und Kirchenverwalter. Sie balancieren empfindliche Sammlungen gegen Energievorgaben ohne Objektdaten, während gebäudeweite Sensoren Vitrine, Kirchenschiff und Leihgaben übersehen, die Sie nie prüfen können.",
+      ],
+    },
+  },
   challengesEyebrow: "Die Herausforderungen, die Sie kennen",
   challengesHeading: "Wenn Sie das Klima nicht belegen können, ist jedes Objekt gefährdet.",
   challenges: [
@@ -285,38 +424,85 @@ const de: PreservationStrings = {
     },
   ],
   capabilitiesEyebrow: "So löst RoomAlyzer das",
-  capabilitiesHeading: "Präzise Klimaüberwachung für Kulturgut.",
+  capabilitiesHeading: "Die spezifischen Analysewerkzeuge, die Sie brauchen. Die Standards, denen Sie vertrauen.",
   solutionLead:
-    "RoomAlyzer Konservierung verwandelt drahtlose Sensordaten in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte — damit Restauratoren und Facility-Teams mit denselben Fakten arbeiten.",
-  capabilitiesContextAlt: "Restauratoren prüfen Klimabedingungen in einem Depots",
+    "Schluss mit Vermutungen — starten Sie mit Optimierung. RoomAlyzer Konservierung bietet eine vollständige Suite spezialisierter Analysewerkzeuge und verwandelt drahtlose Sensordaten in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte — damit Sie makellose Konservierung mit Energieeffizienz in Einklang bringen.",
+  solutionLeadWithSensorLinks: [
+    {
+      type: "text",
+      value:
+        "Schluss mit Vermutungen — starten Sie mit Optimierung. RoomAlyzer Konservierung bietet spezialisierte Analysewerkzeuge und verwandelt drahtlose ",
+    },
+    { type: "sensor", slug: "humidity", label: "Humidity" },
+    { type: "text", value: " und " },
+    { type: "sensor", slug: "mini-plus", label: "Mini+" },
+    { type: "text", value: "-Sensordaten (mit " },
+    { type: "sensor", slug: "outdoor", label: "Outdoor" },
+    {
+      type: "text",
+      value:
+        " für Fassaden) in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte — damit Sie makellose Konservierung mit Energieeffizienz in Einklang bringen. ",
+    },
+    { type: "compare", label: "Kulturerbe-Sensoren vergleichen", useCaseId: "heritage" },
+  ],
+  solutionProofPoints: [
+    { value: "±0,1 °C · ±1 % rF", label: "Sensorpräzision" },
+    { value: "7–10 J.", label: "Batterielaufzeit" },
+  ],
+  capabilitiesContextAlt: "Spezialist wartet an einer historischen Orgel",
   features: [
     {
-      id: "precision",
-      title: "Hochpräzise RH & Temperatur",
-      body: "Diskrete drahtlose Sensoren liefern die engen Toleranzen, die Restauratoren brauchen — in Galerien, Depots und Vitrinen gleichermaßen.",
-      unit: "±0,3 °C / ±2 % RH",
-      imageAlt: "Hochpräzise Temperatur- und Luftfeuchtigkeitswerte in RoomAlyzer",
+      id: "mould-risk",
+      title: "Schimmelrisiko (VTT)",
+      body: "Fortschrittliche prädiktive Modellierung, um Schimmelwachstum zu erkennen und zu verhindern, bevor es Ihre Werte gefährdet.",
+      unit: "Prädiktiv",
+      imageAlt: "Schimmelrisiko (VTT)-Analyse in RoomAlyzer",
     },
     {
-      id: "documentation",
-      title: "Klimaverlauf & Berichte",
-      body: "Kontinuierliche Protokolle und exportierbare Berichte dokumentieren genau, wie Ihre Sammlung gelagert wurde — bereit für Audits, Versicherer und Förderanträge.",
-      unit: "Prüffähig",
-      imageAlt: "Klimaverlauf und Konservierungsberichte in RoomAlyzer",
+      id: "bizot-green",
+      title: "Bizot Green",
+      body: "Compliance-Bewertung nach dem Bizot-Green-Protokoll — Temperatur, Luftfeuchtigkeit und Schwankungsbänder in einem Bericht.",
+      unit: "Compliance",
+      imageAlt: "Bizot-Green-Compliance-Analyse in RoomAlyzer",
     },
     {
-      id: "drift-alerts",
-      title: "Setpoint-Drift-Erkennung",
-      body: "HVAC-Sollwerte verschieben sich über die Jahre. Automatische Drift-Erkennung warnt Sie, bevor die Bedingungen außerhalb der Bänder geraten, die Ihre Objekte brauchen.",
-      unit: "Frühwarnung",
-      imageAlt: "Setpoint-Drift-Alarm in RoomAlyzer",
+      id: "ashrae",
+      title: "ASHRAE",
+      body: "Klimaklassen-Analyse mit erreichten Klassen-Scores und Jahresübersicht für prüffähige Dokumentation.",
+      unit: "Compliance",
+      imageAlt: "ASHRAE-Klimaklassen-Analyse in RoomAlyzer",
     },
     {
-      id: "multi-zone",
-      title: "Jeder Raum und jede Vitrine",
-      body: "Überwachen Sie Schiffe, Regalmagazine, Vitrinen und Archive in einer Zonenansicht — von einer einzelnen Kirche bis zu einem mehrgebäudigen Museumscampus.",
-      unit: "Zonenansicht",
-      imageAlt: "Mehrzonen-Klimaübersicht für Kulturgut in RoomAlyzer",
+      id: "preservation-index",
+      title: "Preservation Index",
+      body: "Eine klare, umsetzbare Bewertung, wie gut Ihre aktuelle Umgebung Ihre Werte schützt.",
+      unit: "PI / TWPI",
+      imageAlt: "Preservation Index-Bewertung in RoomAlyzer",
+    },
+    {
+      id: "fluctuations",
+      title: "Schwankungsüberwachung",
+      body: "Temperatur- und Feuchtigkeitsschwankungen nach EN 15757 überwachen — mit exportierbaren Protokollen für Prüfungen, Versicherer und Förderanträge.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "Die Sensoren " },
+        { type: "sensor", slug: "humidity", label: "Humidity" },
+        { type: "text", value: " und " },
+        { type: "sensor", slug: "mini-plus", label: "Mini+" },
+        {
+          type: "text",
+          value:
+            " überwachen Temperatur- und Feuchtigkeitsschwankungen nach EN 15757 — mit exportierbaren Protokollen für Prüfungen, Versicherer und Förderanträge.",
+        },
+      ],
+      unit: "EN 15757",
+      imageAlt: "EN 15757-Schwankungsüberwachung in RoomAlyzer",
+    },
+    {
+      id: "heat-ventilation",
+      title: "Konservierungsheiz- und Lüftungsanalyse",
+      body: "Tiefe Einblicke, die Ihnen helfen, Ihr Klima zu stabilisieren und gleichzeitig unnötigen Energieverbrauch zu reduzieren.",
+      unit: "Energie",
+      imageAlt: "Konservierungsheiz- und Lüftungsanalyse in RoomAlyzer",
     },
   ],
   relatedModuleLabel: "Smarter zusammen",
@@ -327,7 +513,7 @@ const de: PreservationStrings = {
   audiencesHeading: "Für Restauratoren und Facility-Teams — mit Daten, denen alle vertrauen können.",
   audiencesLead:
     "Dieselbe objektive Klimabasis dient dem Restaurator, der die Sammlung schützt, und dem Facility Manager, der das Gebäude betreibt.",
-  primaryAudienceHeading: "Für Restauratoren",
+  primaryAudienceHeading: "Für Restauratoren und Spezialisten",
   primaryAudienceItems: [
     "RH und Temperatur auf Sammlungsebene überwachen",
     "Bedingungen für EN 15757, Versicherer und Förderer dokumentieren",
@@ -350,7 +536,7 @@ const de: PreservationStrings = {
     },
     {
       q: "Wie präzise sind die Sensoren, und müssen sie kalibriert werden?",
-      a: "RoomAlyzer Air Feuchtigkeits- und Temperatursensoren liefern ±0,3 °C und ±2 % RH — die Toleranzen, die Restauratoren erwarten. Jeder Sensor ist werkskalibriert; die Plattform markiert Geräte, die außerhalb der Spezifikation geraten.",
+      a: "RoomAlyzer Air Feuchtigkeits- und Temperatursensoren liefern ±0,1 °C und ±1 % rF — die Toleranzen, die Restauratoren erwarten. Jeder Sensor ist werkskalibriert; die Plattform markiert Geräte, die außerhalb der Spezifikation geraten.",
     },
     {
       q: "Funktioniert das in historischen Gebäuden ohne WLAN?",
@@ -378,18 +564,33 @@ const sv: PreservationStrings = {
   breadcrumbHome: "Hem",
   breadcrumbModules: "Moduler",
   breadcrumbCurrent: "Bevarande",
-  heroTitle: "Skydda samlingar med data.",
-  heroTitleAccent: "Inte gissningar.",
+  heroTitle: "Felfri bevaring",
+  heroTitleAccent: "möter energioptimering",
   heroLead:
-    "Trådlösa sensorer övervakar temperatur och luftfuktighet kring oersättliga föremål — med den precision konservatorer kräver.",
-  intro: [
-    "RoomAlyzer övervakar temperatur och luftfuktighet och omvandlar det till tydlig dokumentation av de exakta förhållanden era föremål förvaras i. Våra sensorer är kända för sin höga precision — något konservatorer med rätta insisterar på — så att ni kan lita på de siffror ni bevarar er samling efter.",
-    "Oavsett om ni vårdar altaren och orglar i en historisk kyrka, målningar i ett museum eller arkivhandlingar i ett arkiv ger samma plattform täckning på rums- och monternivå — byggd för museer, kyrkor, arkiv och kulturarvsvård.",
-  ],
+    "Vår smarta modul säkrar det idealiska klimatet och minskar samtidigt onödig energiförbrukning",
+  intro: [],
   heroPrimaryCta: "Boka en gratis demo",
   heroSecondaryCta: "Få en offert",
   dashboardLabel: "RoomAlyzer — Bevarande",
   dashboardAlt: "RoomAlyzer-dashboard som visar kulturarvsklimatdata över rum och montrar",
+  heroGallery: {
+    images: [
+      {
+        alt: "RoomAlyzer-sensor som övervakar klimat i ett arkivmagasin med band och förvaringslådor",
+        caption: "Övervakning i arkivmagasin, depåer och band",
+      },
+      {
+        alt: "Öppet manuskript i monter med RoomAlyzer-klimatsensor",
+        caption: "Objektnivåövervakning i montrar och vitriner",
+      },
+    ],
+    intro: {
+      heading: "Insikt på objektnivå för konservatorer",
+      paragraphs: [
+        "Det mesta klimathårdvaran är byggd för HVAC-team — inte för konservatorer, arkivarier och kyrkvärdar. Ni balanserar ömtåliga samlingar mot energikrav utan objektnivådata, medan byggnadsomfattande sensorer missar montern, långhuset och utlånet ni aldrig hinner inspektera.",
+      ],
+    },
+  },
   challengesEyebrow: "Utmaningarna ni känner igen",
   challengesHeading: "När ni inte kan bevisa klimatet är varje föremål i riskzonen.",
   challenges: [
@@ -407,38 +608,85 @@ const sv: PreservationStrings = {
     },
   ],
   capabilitiesEyebrow: "Så löser RoomAlyzer det",
-  capabilitiesHeading: "Precis klimatövervakning byggd för kulturarv.",
+  capabilitiesHeading: "De specifika analysverktyg ni behöver. Standarderna ni litar på.",
   solutionLead:
-    "RoomAlyzer Bevarande omvandlar trådlösa sensordata till zonerade dashboards, driftlarm och revisionsklara rapporter — så konservatorer och facility-team arbetar utifrån samma fakta.",
-  capabilitiesContextAlt: "Konservatorer som granskar klimatförhållanden i ett magasin",
+    "Sluta gissa och börja optimera. RoomAlyzer Bevarande erbjuder en komplett svit av specialiserade analysverktyg och omvandlar trådlösa sensordata till zonerade dashboards, driftlarm och revisionsklara rapporter — så att ni kan balansera felfritt bevarande med energieffektivitet.",
+  solutionLeadWithSensorLinks: [
+    {
+      type: "text",
+      value:
+        "Sluta gissa och börja optimera. RoomAlyzer Bevarande erbjuder specialiserade analysverktyg och omvandlar trådlösa ",
+    },
+    { type: "sensor", slug: "humidity", label: "Humidity" },
+    { type: "text", value: " och " },
+    { type: "sensor", slug: "mini-plus", label: "Mini+" },
+    { type: "text", value: "-sensordata (med " },
+    { type: "sensor", slug: "outdoor", label: "Outdoor" },
+    {
+      type: "text",
+      value:
+        " för fasader) till zonerade dashboards, driftlarm och revisionsklara rapporter — så att ni kan balansera felfritt bevarande med energieffektivitet. ",
+    },
+    { type: "compare", label: "Jämför kulturarvsensorer", useCaseId: "heritage" },
+  ],
+  solutionProofPoints: [
+    { value: "±0,1 °C · ±1 % RF", label: "Sensorprecision" },
+    { value: "7–10 år", label: "Batteritid" },
+  ],
+  capabilitiesContextAlt: "Specialist underhåller ett historiskt orgel",
   features: [
     {
-      id: "precision",
-      title: "Högprecision RH och temperatur",
-      body: "Diskreta trådlösa sensorer levererar de snäva toleranser konservatorer behöver — i gallerier, magasin och montrar.",
-      unit: "±0,3 °C / ±2 % RH",
-      imageAlt: "Högprecisa temperatur- och luftfuktighetsmätningar i RoomAlyzer",
+      id: "mould-risk",
+      title: "Mögelrisk (VTT)",
+      body: "Avancerad prediktiv modellering för att identifiera och förebygga mögelväxt innan den hotar era tillgångar.",
+      unit: "Prediktiv",
+      imageAlt: "Mögelrisk (VTT)-analys i RoomAlyzer",
     },
     {
-      id: "documentation",
-      title: "Klimathistorik och rapporter",
-      body: "Kontinuerlig loggning och exporterbara rapporter dokumenterar exakt hur er samling har förvarats — redo för revisioner, försäkring och ansökningar.",
-      unit: "Revisionsklar",
-      imageAlt: "Klimathistorik och bevaranderapporter i RoomAlyzer",
+      id: "bizot-green",
+      title: "Bizot Green",
+      body: "Compliance-poäng enligt Bizot Green-protokollet — temperatur, luftfuktighet och fluktuationsband i en rapport.",
+      unit: "Compliance",
+      imageAlt: "Bizot Green-complianceanalys i RoomAlyzer",
     },
     {
-      id: "drift-alerts",
-      title: "Detektion av setpoint-drift",
-      body: "HVAC-setpoints glider över åren. Automatisk driftdetektering varnar er innan förhållandena glider utanför de band era föremål behöver.",
-      unit: "Tidig varning",
-      imageAlt: "Setpoint-driftlarm i RoomAlyzer",
+      id: "ashrae",
+      title: "ASHRAE",
+      body: "Klimaklassanalys med uppnådda klasspoäng och helårsvy för revisionsklar dokumentation.",
+      unit: "Compliance",
+      imageAlt: "ASHRAE-klimaklassanalys i RoomAlyzer",
     },
     {
-      id: "multi-zone",
-      title: "Varje rum och varje monter",
-      body: "Övervaka långhus, magasinhyllor, vitriner och arkiv i en zonerad vy — från en enskild kyrka till ett museums campus med flera byggnader.",
-      unit: "Zonvy",
-      imageAlt: "Flerzons bevarandeklimatöversikt i RoomAlyzer",
+      id: "preservation-index",
+      title: "Preservation Index",
+      body: "En tydlig, handlingsbar bedömning av hur väl er nuvarande miljö skyddar era värden.",
+      unit: "PI / TWPI",
+      imageAlt: "Preservation Index-bedömning i RoomAlyzer",
+    },
+    {
+      id: "fluctuations",
+      title: "Fluktuationsspårning",
+      body: "Övervaka temperatur- och fuktförskjutningar mot EN 15757, med exporterbara loggar redo för revision, försäkringsbolag och bidragsansökningar.",
+      bodyWithSensorLinks: [
+        { type: "text", value: "Sensorerna " },
+        { type: "sensor", slug: "humidity", label: "Humidity" },
+        { type: "text", value: " och " },
+        { type: "sensor", slug: "mini-plus", label: "Mini+" },
+        {
+          type: "text",
+          value:
+            " övervakar temperatur- och fuktförskjutningar mot EN 15757, med exporterbara loggar redo för revision, försäkringsbolag och bidragsansökningar.",
+        },
+      ],
+      unit: "EN 15757",
+      imageAlt: "EN 15757-fluktuationsspårning i RoomAlyzer",
+    },
+    {
+      id: "heat-ventilation",
+      title: "Bevarande värme- och ventilationsanalys",
+      body: "Djupa insikter som hjälper er stabilisera klimatet medan ni aktivt minskar onödig energiförbrukning.",
+      unit: "Energi",
+      imageAlt: "Bevarande värme- och ventilationsanalys i RoomAlyzer",
     },
   ],
   relatedModuleLabel: "Smartare tillsammans",
@@ -449,7 +697,7 @@ const sv: PreservationStrings = {
   audiencesHeading: "För konservatorer och facility-team — med data alla kan lita på.",
   audiencesLead:
     "Samma objektiva klimatbas tjänar konservatorn som skyddar samlingen och facility managern som driver byggnaden.",
-  primaryAudienceHeading: "För konservatorer",
+  primaryAudienceHeading: "För konservatorer och specialister",
   primaryAudienceItems: [
     "Övervaka RH och temperatur på samlingsnivå",
     "Dokumentera förhållanden för EN 15757, försäkring och finansiärer",
@@ -472,7 +720,7 @@ const sv: PreservationStrings = {
     },
     {
       q: "Hur precisa är sensorerna, och behöver de kalibreras?",
-      a: "RoomAlyzer Air fukt- och temperatursensorer levererar ±0,3 °C och ±2 % RH — de toleranser konservatorer förväntar sig. Varje sensor är fabrikskalibrerad; plattformen flaggar enheter som glider utanför specifikationen.",
+      a: "RoomAlyzer Air fukt- och temperatursensorer levererar ±0,1 °C och ±1 % RF — de toleranser konservatorer förväntar sig. Varje sensor är fabrikskalibrerad; plattformen flaggar enheter som glider utanför specifikationen.",
     },
     {
       q: "Fungerar det i historiska byggnader utan wifi?",

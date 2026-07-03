@@ -1,0 +1,61 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../Hero.astro";
+import ContactForm from "../ContactForm.astro";
+import { getContact } from "../../data/i18n/contact";
+import { getEventContactImage, type EventContactSlug } from "../../data/eventContactImages";
+import { langPath, type Lang } from "../../data/lang";
+import type { ZohoLeadSource } from "../../data/zoho";
+
+interface Props {
+  lang: Lang;
+  breadcrumbLabel: string;
+  pageTitle: string;
+  canonicalPath: string;
+  source: ZohoLeadSource;
+  eventSlug: EventContactSlug;
+}
+
+const { lang, breadcrumbLabel, pageTitle, canonicalPath, source, eventSlug } = Astro.props;
+const t = getContact(lang);
+const onSite = t.eventOnSite;
+const sideImage = getEventContactImage(eventSlug);
+---
+
+<Layout
+  title={`${pageTitle} | IoT Fabrikken`}
+  description={onSite.heroLead}
+  canonicalPath={canonicalPath}
+  suppressHreflang
+  noindex
+>
+  <nav class="container-page pt-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+      <li><a href={langPath("", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumb.home}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><a href={langPath("contact", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumb.contact}</a></li>
+      <li aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </li>
+      <li><span class="text-navy-500">{breadcrumbLabel}</span></li>
+    </ol>
+  </nav>
+
+  <Hero
+    title={onSite.heroTitle}
+    titleAccent={onSite.heroTitleAccent}
+    lead={onSite.heroLead}
+    align="left"
+    compactTop
+  />
+
+  <ContactForm
+    lang={lang}
+    title={onSite.formTitle}
+    subtitle={onSite.formSubtitle}
+    source={source}
+    sideImage={sideImage}
+  />
+</Layout>

@@ -1,46 +1,37 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
 import Hero from "../../../components/Hero.astro";
 import Button from "../../../components/Button.astro";
 import CtaBand from "../../../components/CtaBand.astro";
 import SectionIntro from "../../../components/SectionIntro.astro";
 import LogoMarquee from "../../../components/LogoMarquee.astro";
-import ArchivisticaPhotoCollage from "../../../components/events/ArchivisticaPhotoCollage.astro";
+import EventLandingLayout from "../../../components/events/EventLandingLayout.astro";
+import EventCardActive from "../../../components/events/EventCardActive.astro";
+import EventHeroMeta from "../../../components/events/EventHeroMeta.astro";
+import EventFairRecapSection from "../../../components/events/EventFairRecapSection.astro";
 import { getArchivistica } from "../../../data/i18n/archivistica";
+import { getEventCardCopy } from "../../../data/i18n/events";
+import { buildLandingHeroMeta, venueCardCopyFromHeroMeta } from "../../../data/eventVenueCard";
 import { archivisticaImages } from "../../../data/archivisticaImages";
+import { eventAssets, getEventStaticPaths } from "../../../data/events";
 import { breadcrumbSchema } from "../../../lib/seo/schema";
 import { langPath, type Lang } from "../../../data/lang";
 
 export function getStaticPaths() {
-  return [{ params: { lang: "de" as Lang } }];
+  return getEventStaticPaths("archivistica");
 }
 
 const lang = Astro.params.lang as Lang;
 const t = getArchivistica(lang);
+const cardCopy = getEventCardCopy("archivistica", lang);
+const heroMeta = buildLandingHeroMeta("archivistica", t.heroMetaFields);
+const venueCopy = cardCopy ? venueCardCopyFromHeroMeta(cardCopy, heroMeta) : null;
+const cardAssets = eventAssets.archivistica;
 
 const featureStyles = {
   shield: { card: "bg-coral-50/40 border-coral-100/60", chip: "text-coral-500" },
   bolt: { card: "bg-sky-50/40 border-sky-100/60", chip: "text-sky-500" },
   chart: { card: "bg-forest-50/15 border-forest-50/40", chip: "text-forest-500" },
 } as const;
-
-const fairCollagePhotos = [
-  {
-    src: archivisticaImages.fairPhotos[0],
-    alt: t.fairPhotos[0].caption,
-    caption: t.fairPhotos[0].caption,
-  },
-  {
-    src: archivisticaImages.fairPhotos[1],
-    alt: t.fairPhotos[1].caption,
-    caption: t.fairPhotos[1].caption,
-  },
-  {
-    src: archivisticaImages.fairPhotos[2],
-    alt: t.fairPhotos[2].caption,
-    caption: t.fairPhotos[2].caption,
-  },
-] as const;
 
 const pageJsonLd = [
   breadcrumbSchema([
@@ -51,7 +42,7 @@ const pageJsonLd = [
 ].filter(Boolean) as Array<Record<string, unknown>>;
 ---
 
-<Layout
+<EventLandingLayout
   title={t.metaTitle}
   description={t.metaDescription}
   jsonLd={pageJsonLd}
@@ -60,6 +51,7 @@ const pageJsonLd = [
   noindex
 >
   <Hero
+    slot="hero"
     title={t.heroTitle}
     titleAccent={t.heroTitleAccent}
     lead={t.heroLead}
@@ -67,6 +59,7 @@ const pageJsonLd = [
     align="left"
     compactTop
     splitVisual
+    allowVisualOverflow
     dark
     noPattern
   >
@@ -86,34 +79,23 @@ const pageJsonLd = [
     <Button href={langPath("/contact/book-demo/", lang)} variant="secondary-light" size="lg" slot="cta">{t.heroSecondaryCta}</Button>
 
     <div slot="visual" class="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
-      <a
-        href="https://www.vda.archiv.net/archivistica.html"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group block rounded-2xl overflow-hidden shadow-xl shadow-navy-500/15 border border-stone-100 bg-white transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral-500 focus-visible:ring-offset-2"
-        aria-label="ARCHIVISTICA 2026 auf vda.archiv.net öffnen"
-      >
-        <img
-          src={archivisticaImages.standInfo}
-          alt="ARCHIVISTICA 2026 — Standinformation folgt"
-          width="800"
-          height="600"
-          class="w-full h-auto object-cover"
-          loading="eager"
+      {venueCopy && cardAssets && (
+        <EventCardActive
+          logo={cardAssets.logo}
+          logoAlt={cardAssets.logoAlt}
+          copy={venueCopy}
+          theme={cardAssets.cardTheme}
+          static
+          externalHref={cardAssets.officialUrl}
+          externalAriaLabel={t.officialEventLabel}
+          booth={t.venueBooth}
         />
-      </a>
-      <ul class="mt-4 flex flex-wrap gap-2" aria-label="Messe-Details">
-        {t.heroMeta.map((item) => (
-          <li class="rounded-md border border-stone-200 bg-white px-3 py-1.5 text-sm">
-            <span class="text-stone-500">{item.label}:</span>{" "}
-            <span class="font-medium text-navy-500">{item.value}</span>
-          </li>
-        ))}
-      </ul>
+      )}
+      <EventHeroMeta items={heroMeta} ariaLabel="Messe-Details" />
     </div>
   </Hero>
 
-  <section class="py-20 md:py-24">
+  <section slot="features" class="py-20 md:py-24">
     <div class="container-page">
       <SectionIntro
         eyebrow={t.featuresEyebrow}
@@ -158,7 +140,7 @@ const pageJsonLd = [
     </div>
   </section>
 
-  <section class="relative overflow-hidden bg-navy-500 py-20 md:py-28 text-white">
+  <section slot="quote" class="relative overflow-hidden bg-navy-500 py-20 md:py-28 text-white">
     <span
       class="pointer-events-none absolute -top-10 left-6 select-none font-serif leading-none text-coral-500/15"
       style="font-size:18rem"
@@ -191,7 +173,7 @@ const pageJsonLd = [
     </div>
   </section>
 
-  <section class="py-20 md:py-24">
+  <section slot="testimonials" class="py-20 md:py-24">
     <div class="container-page">
       <SectionIntro
         eyebrow={t.testimonialsEyebrow}
@@ -237,21 +219,10 @@ const pageJsonLd = [
     </div>
   </section>
 
-  <section class="py-20 md:py-24 bg-white">
-    <div class="container-page">
-      <SectionIntro
-        eyebrow={t.fairEyebrow}
-        heading={t.fairHeading}
-        lead={t.fairLead}
-        surface="white"
-        class="mb-10 md:mb-12"
-      />
-
-      <ArchivisticaPhotoCollage photos={fairCollagePhotos} />
-    </div>
-  </section>
+  <EventFairRecapSection slot="photos" lang={lang} />
 
   <CtaBand
+    slot="cta"
     variant="featured"
     title={t.ctaTitle}
     subtitle={t.ctaLead}
@@ -260,4 +231,4 @@ const pageJsonLd = [
     secondaryLabel={t.ctaSecondary}
     secondaryHref={langPath("/contact/book-demo/", lang)}
   />
-</Layout>
+</EventLandingLayout>

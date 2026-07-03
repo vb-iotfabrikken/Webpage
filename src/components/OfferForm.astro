@@ -1,18 +1,22 @@
 ---
 import Button from "./Button.astro";
+import FormFieldError from "./FormFieldError.astro";
 import FormFieldLabel from "./FormFieldLabel.astro";
 import { defaultLang, type Lang } from "../data/lang";
 import { getGetOffer } from "../data/i18n/getOffer";
 import { getSensorsHub } from "../data/hubs/sensors";
+import type { ContactCardImage } from "../data/contactCardImages";
 
 interface Props {
   lang?: Lang;
+  /** Optional image shown below the marketing bullets on the left column. */
+  sideImage?: ContactCardImage;
 }
 
-const { lang = defaultLang } = Astro.props;
+const { lang = defaultLang, sideImage } = Astro.props;
 const t = getGetOffer(lang);
 const f = t.form;
-const validationMessages = JSON.stringify(t.validation);
+const validationMessages = JSON.stringify({ ...t.validation, sending: t.form.sending });
 
 // Dropdown options come straight from the catalogue (localized names, with the
 // approved `de` "Wasserdetektor" override). Exclude the "compare" helper leaf.
@@ -44,26 +48,42 @@ const sensorOptions = getSensorsHub(lang)
           ))}
         </ul>
 
+        {sideImage && (
+          <div class="mt-8 aspect-[2/1] overflow-hidden rounded-xl bg-stone-50">
+            <img
+              src={sideImage.image}
+              alt={sideImage.imageAlt}
+              width={sideImage.width ?? 640}
+              height={sideImage.height ?? 400}
+              class="w-full h-full object-cover"
+              style={sideImage.objectPosition ? `object-position: ${sideImage.objectPosition}` : undefined}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        )}
+
         <p class="mt-8 text-navy-500">{t.contactNote}</p>
       </div>
 
       <div class="reveal">
+        <div class="relative bg-stone-50 border border-stone-100 rounded-xl">
         <form
-          class="relative bg-stone-50 border border-stone-100 rounded-xl p-6 md:p-8 space-y-4"
+          class="relative p-6 md:p-8 space-y-4"
           action="#"
           method="post"
+          autocomplete="off"
           data-offer-form
           data-offer-messages={validationMessages}
           novalidate
         >
           <div class="form-honeypot" aria-hidden="true">
-            <label for="offer-website" class="form-honeypot-label">Website</label>
             <input
-              type="text"
-              id="offer-website"
-              name="website"
+              type="search"
+              name="company_fax"
               tabindex="-1"
-              autocomplete="off"
+              autocomplete="nope"
+              inputmode="none"
               data-offer-honeypot
             />
           </div>
@@ -73,26 +93,31 @@ const sensorOptions = getSensorsHub(lang)
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <label class="block">
               <FormFieldLabel label={f.firstName} required />
-              <input type="text" name="firstName" required autocomplete="given-name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+              <FormFieldError field="firstName" />
+              <input type="text" name="firstName" aria-required="true" autocomplete="given-name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
             </label>
             <label class="block">
               <FormFieldLabel label={f.lastName} required />
-              <input type="text" name="lastName" required autocomplete="family-name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+              <FormFieldError field="lastName" />
+              <input type="text" name="lastName" aria-required="true" autocomplete="family-name" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
             </label>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <label class="block">
               <FormFieldLabel label={f.phone} optional optionalSuffix={f.optional} />
+              <FormFieldError field="phone" />
               <input type="tel" name="phone" autocomplete="tel" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
             </label>
             <label class="block">
               <FormFieldLabel label={f.email} required />
-              <input type="email" name="email" required autocomplete="work email" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+              <FormFieldError field="email" />
+              <input type="email" name="email" aria-required="true" autocomplete="work email" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
             </label>
           </div>
           <label class="block">
             <FormFieldLabel label={f.company} required />
-            <input type="text" name="company" required autocomplete="organization" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
+            <FormFieldError field="company" />
+            <input type="text" name="company" aria-required="true" autocomplete="organization" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500" />
           </label>
           <label class="block">
             <FormFieldLabel label={f.wishes} optional optionalSuffix={f.optional} />
@@ -158,19 +183,23 @@ const sensorOptions = getSensorsHub(lang)
             <FormFieldLabel label={f.comment} optional optionalSuffix={f.optional} />
             <textarea name="comment" rows="3" class="mt-1.5 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500 resize-none"></textarea>
           </label>
-          <label class="flex items-start gap-2.5 pt-1">
+          <div class="pt-1">
+            <FormFieldError field="consent" />
+            <label class="flex items-start gap-2.5">
             <input
               type="checkbox"
               name="consent"
-              required
+              aria-required="true"
               class="mt-0.5 h-4 w-4 shrink-0 rounded border-stone-300 text-coral-500 focus:ring-coral-500"
               data-offer-consent
+              data-field-control="consent"
             />
             <span class="text-xs text-stone-300 leading-relaxed">
               <span class="text-coral-500" aria-hidden="true">* </span>
               {f.consent}
             </span>
           </label>
+          </div>
           <p class="text-xs text-coral-600 hidden" role="alert" data-offer-error>
             {f.emailError}
           </p>
@@ -178,11 +207,12 @@ const sensorOptions = getSensorsHub(lang)
             <p class="text-xs text-stone-300 leading-relaxed">
               {f.disclaimer}
             </p>
-            <Button type="submit" variant="primary" size="md">{f.submit}</Button>
+            <Button type="submit" variant="primary" size="md" class="shrink-0 whitespace-nowrap">{f.submit}</Button>
           </div>
         </form>
         <div
-          class="hidden bg-stone-50 border border-stone-100 rounded-xl p-6 md:p-8"
+          hidden
+          class="p-6 md:p-8"
           role="status"
           aria-live="polite"
           data-offer-success
@@ -198,6 +228,7 @@ const sensorOptions = getSensorsHub(lang)
               <p class="mt-1 text-stone-900/70">{f.successBody}</p>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -234,5 +265,13 @@ const sensorOptions = getSensorsHub(lang)
 </style>
 
 <script>
-  import "./offer-form.ts";
+  import { initOfferForms } from "./offer-form";
+
+  function bindOfferForms() {
+    initOfferForms();
+  }
+
+  bindOfferForms();
+  document.addEventListener("DOMContentLoaded", bindOfferForms);
+  document.addEventListener("astro:page-load", bindOfferForms);
 </script>

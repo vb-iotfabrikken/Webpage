@@ -2,6 +2,7 @@
 import Layout from "../../../layouts/Layout.astro";
 import Hero from "../../../components/Hero.astro";
 import ContactForm from "../../../components/ContactForm.astro";
+import { contactCardImages } from "../../../data/contactCardImages";
 import { getContact } from "../../../data/i18n/contact";
 import { locales, langPath, type Lang } from "../../../data/lang";
 
@@ -39,5 +40,5 @@ const t = getContact(lang);
     compactTop
   />
 
-  <ContactForm lang={lang} title={t.bookDemo.formTitle} subtitle={t.bookDemo.formSubtitle} source="Website - Book demo" />
+  <ContactForm lang={lang} title={t.bookDemo.formTitle} subtitle={t.bookDemo.formSubtitle} source="Website - Book demo" sideImage={contactCardImages["book-demo"]} />
 </Layout>

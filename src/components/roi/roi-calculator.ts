@@ -37,16 +37,34 @@ import {
   type LeadPayload,
 } from "../../lib/roi/submit-lead";
 import {
+  applyFieldErrors,
+  bindFieldErrorClear,
+  clearFieldErrors,
+  resolveFieldErrorMessages,
+} from "../../lib/forms/field-errors";
+import {
   isHoneypotFilled,
   isSubmitTooSoon,
-  isWorkEmail,
-  validateLeadForm,
+  validateLeadFormFields,
 } from "../../lib/forms/validate-lead";
 import {
   calculateDeskInvestment,
   calculateEnergyInvestment,
   type InvestmentSummary,
 } from "../../lib/roi/investment";
+
+const ROI_FIELD_FALLBACKS: Record<string, string> = {
+  first_name_required: "Please enter your first name.",
+  last_name_required: "Please enter your last name.",
+  email_required: "Please enter your work email.",
+  email_invalid: "Please enter a valid work email address.",
+  email_personal:
+    "Please use your work email. Personal addresses (Gmail, Outlook, Yahoo, etc.) are not accepted.",
+  email_disposable:
+    "Please use a permanent work email. Temporary or disposable addresses are not accepted.",
+  phone_invalid: "Please enter a valid phone number, or leave the field empty.",
+  phone_required: "A phone number is required so sales can reach you.",
+};
 
 /** Heatmap caps at this many cells; above it one cell represents N desks. */
 const HEATMAP_MAX_CELLS = 200;
@@ -231,7 +249,7 @@ function initCalculator(root: HTMLElement) {
   }
 
   function readLeadFromForm() {
-    return validateLeadForm({
+    return validateLeadFormFields({
       firstName: firstNameInput?.value ?? "",
       lastName: lastNameInput?.value ?? "",
       email: emailInput?.value ?? "",
@@ -488,24 +506,11 @@ function initCalculator(root: HTMLElement) {
   }
 
   function clearEmailFieldErrors() {
-    firstNameInput?.classList.remove("roi-field-error");
-    lastNameInput?.classList.remove("roi-field-error");
-    emailInput?.classList.remove("roi-field-error");
+    if (emailForm) clearFieldErrors(emailForm);
   }
 
-  function markEmailFieldErrors(fields: {
-    firstName: string;
-    lastName: string;
-    email: string;
-  }) {
-    clearEmailFieldErrors();
-    if (!fields.firstName.trim()) firstNameInput?.classList.add("roi-field-error");
-    if (!fields.lastName.trim()) lastNameInput?.classList.add("roi-field-error");
-    const emailTrim = fields.email.trim();
-    if (!emailTrim || !isWorkEmail(emailTrim)) {
-      emailInput?.classList.add("roi-field-error");
-    }
-  }
+  if (emailForm) bindFieldErrorClear(emailForm);
+  if (disqualifyForm) bindFieldErrorClear(disqualifyForm);
 
   function syncPaywallState() {
     const zone = root.querySelector<HTMLElement>("[data-roi-paywall-zone]");
@@ -922,18 +927,15 @@ function initCalculator(root: HTMLElement) {
       email: emailInput?.value ?? "",
       phone: phoneInput?.value ?? "",
     };
-    const result = validateLeadForm(formFields);
+    const result = validateLeadFormFields(formFields);
     if (!result.valid) {
-      markEmailFieldErrors(formFields);
-      if (emailError) emailError.textContent = result.message;
-      emailError?.classList.remove("hidden");
-      emailError?.scrollIntoView({
-        behavior: prefersReducedMotion ? "auto" : "smooth",
-        block: "nearest",
-      });
-      if (!formFields.firstName.trim()) firstNameInput?.focus();
-      else if (!formFields.lastName.trim()) lastNameInput?.focus();
-      else emailInput?.focus();
+      if (emailForm) {
+        applyFieldErrors(
+          emailForm,
+          resolveFieldErrorMessages(result.fieldErrors, {}, ROI_FIELD_FALLBACKS),
+        );
+      }
+      emailError?.classList.add("hidden");
       return;
     }
     emailError?.classList.add("hidden");
@@ -997,7 +999,8 @@ function initCalculator(root: HTMLElement) {
     // Anti-spam gates temporarily disabled (see emailForm handler above).
     void disqualifyHoneypot;
 
-    const validation = validateLeadForm({
+    const fieldErrors: Record<string, string> = {};
+    const validation = validateLeadFormFields({
       firstName: disqualifyFirstName?.value ?? "",
       lastName: disqualifyLastName?.value ?? "",
       email: disqualifyEmail?.value ?? "",
@@ -1005,15 +1008,25 @@ function initCalculator(root: HTMLElement) {
     });
     const phoneRaw = disqualifyPhone?.value.trim() ?? "";
 
-    if (!validation.valid || !phoneRaw) {
-      if (disqualifyError) {
-        disqualifyError.textContent = validation.valid
-          ? "A phone number is required so sales can reach you."
-          : validation.message;
+    if (!validation.valid) {
+      Object.assign(fieldErrors, validation.fieldErrors);
+    }
+    if (!phoneRaw) {
+      fieldErrors.phone = "phone_required";
+    }
+
+    if (Object.keys(fieldErrors).length > 0) {
+      if (disqualifyForm) {
+        applyFieldErrors(
+          disqualifyForm,
+          resolveFieldErrorMessages(fieldErrors, {}, ROI_FIELD_FALLBACKS),
+        );
       }
-      disqualifyError?.classList.remove("hidden");
+      disqualifyError?.classList.add("hidden");
       return;
     }
+    if (!validation.valid) return;
+
     disqualifyError?.classList.add("hidden");
 
     persistLead(

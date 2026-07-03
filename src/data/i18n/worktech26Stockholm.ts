@@ -11,7 +11,12 @@ export interface WorktechStrings {
   heroTitle: string;
   heroTitleAccent: string;
   heroLead: string;
-  heroMeta: { label: string; value: string }[];
+  heroMetaFields: {
+    labels: { termin: string; ort: string; detail: string };
+    ort: string;
+    detail: string;
+    terminTime?: string;
+  };
   heroPrimaryCta: string;
   heroSecondaryCta: string;
   featuresEyebrow: string;
@@ -41,11 +46,12 @@ const sv: WorktechStrings = {
   heroTitleAccent: "Med data som grund.",
   heroLead:
     "Träffa IoT Fabrikken på WORKTECH26 i Stockholm och se hur RoomAlyzer hjälper workplace-, fastighets- och facility-team att fatta beslut om utrymme, närvaro och inomhusklimat — med trådlösa sensorer och en plattform byggd för nordiska organisationer.",
-  heroMeta: [
-    { label: "Datum", value: "10 november 2026" },
-    { label: "Tid", value: "09:00–17:00" },
-    { label: "Plats", value: "Epicenter, Stockholm" },
-  ],
+  heroMetaFields: {
+    labels: { termin: "Datum", ort: "Plats", detail: "Event" },
+    ort: "Stockholm",
+    detail: "WORKTECH26 Stockholm",
+    terminTime: "09:00–17:00",
+  },
   heroPrimaryCta: "Boka möte på plats",
   heroSecondaryCta: "Boka online-demo",
   featuresEyebrow: "Vad du kan se hos oss",

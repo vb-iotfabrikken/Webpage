@@ -13,11 +13,28 @@ import ModuleCapabilitiesIntro, {
   type ModuleCapabilitiesContextImage,
 } from "./ModuleCapabilitiesIntro.astro";
 import ModuleFaqSection from "./ModuleFaqSection.astro";
+import ModuleSensorSpotlight from "./ModuleSensorSpotlight.astro";
+import ModuleHeroGallerySplit from "./ModuleHeroGallerySplit.astro";
+import ModuleScreenshotPlaceholder from "./ModuleScreenshotPlaceholder.astro";
 import type { ModulePageStrings } from "../../data/i18n/modulePageTypes";
 import { breadcrumbSchema, faqSchema } from "../../lib/seo/schema";
 import { langPath, type Lang } from "../../data/lang";
 
 interface ImageMeta {
+  src?: string;
+  width: number;
+  height: number;
+  placeholderLabel?: string;
+}
+
+interface SpotlightImage {
+  src?: string;
+  width: number;
+  height: number;
+  placeholderLabel?: string;
+}
+
+interface HeroGalleryImage {
   src?: string;
   width: number;
   height: number;
@@ -38,6 +55,17 @@ interface Props {
   secondaryAudienceIcon?: "compliance" | "chart" | "heritage" | "housing" | "service" | "workspace";
   imageClass?: Record<string, string>;
   capabilitiesContext: ModuleCapabilitiesContextImage;
+  capabilitiesBeforeChallenges?: boolean;
+  spotlightImages?: Record<"compact" | "pro", SpotlightImage>;
+  spotlightImageClass?: Partial<Record<"compact" | "pro", string>>;
+  capabilitiesContextImageClass?: string;
+  /** Hero visual: dashboard screenshot (default), editorial gallery, or none. */
+  heroVisual?: "dashboard" | "gallery" | "none";
+  heroGalleryImages?: {
+    archive: HeroGalleryImage;
+    manuscript: HeroGalleryImage;
+  };
+  heroGalleryImageClass?: Partial<Record<"archive" | "manuscript", string>>;
 }
 
 const {
@@ -54,7 +82,22 @@ const {
   secondaryAudienceIcon = "compliance",
   imageClass,
   capabilitiesContext,
+  capabilitiesBeforeChallenges = false,
+  spotlightImages,
+  spotlightImageClass,
+  capabilitiesContextImageClass,
+  heroVisual = "dashboard",
+  heroGalleryImages,
+  heroGalleryImageClass,
 } = Astro.props;
+
+const showHeroDashboard = heroVisual === "dashboard";
+const showHeroGallery = Boolean(
+  heroVisual === "gallery" && t.heroGallery && heroGalleryImages,
+);
+const showSpotlightInHero = showHeroDashboard && t.spotlight && spotlightImages;
+const showSpotlightSection = !showHeroDashboard && !showHeroGallery && t.spotlight && spotlightImages;
+const tightGalleryToCapabilities = showHeroGallery && capabilitiesBeforeChallenges;
 
 const pageJsonLd = [
   breadcrumbSchema([
@@ -73,8 +116,10 @@ const pageJsonLd = [
     lead={t.heroLead}
     align="left"
     inlineTitleAccent={heroInlineTitleAccent}
-    visualOnWhite
+    visualOnWhite={showHeroDashboard}
+    visualBottomPadding={showHeroGallery}
     compactTop
+    compactBottom={!showHeroDashboard && !showHeroGallery}
   >
     <ol slot="breadcrumb" class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
       <li><a href={langPath("/", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumbHome}</a></li>
@@ -91,55 +136,167 @@ const pageJsonLd = [
     <Button href={langPath("/contact/book-demo/", lang)} variant="primary" size="lg" slot="cta">{t.heroPrimaryCta}</Button>
     <Button href={langPath("/get-an-offer/", lang)} variant="secondary" size="lg" slot="cta">{t.heroSecondaryCta}</Button>
 
-    <ModuleDashboardFrame
-      slot="visual"
-      class="reveal max-w-5xl"
-      label={t.dashboardLabel}
-      src={dashboard.src}
-      placeholderLabel={dashboard.placeholderLabel ?? t.dashboardAlt}
-      alt={t.dashboardAlt}
-      width={dashboard.width}
-      height={dashboard.height}
-    />
+    {showHeroDashboard && (
+      <ModuleDashboardFrame
+        slot="visual"
+        class="reveal max-w-5xl"
+        label={t.dashboardLabel}
+        src={dashboard.src}
+        placeholderLabel={dashboard.placeholderLabel ?? t.dashboardAlt}
+        alt={t.dashboardAlt}
+        width={dashboard.width}
+        height={dashboard.height}
+      />
+    )}
 
-    <div slot="belowVisual" class="max-w-5xl space-y-5">
-      {t.intro.map((paragraph) => (
-        <p class="reveal text-lg text-stone-900/80 leading-relaxed">{paragraph}</p>
-      ))}
-    </div>
+    {showSpotlightInHero && (
+      <ModuleSensorSpotlight
+        slot="belowVisual"
+        lang={lang}
+        spotlight={t.spotlight!}
+        images={spotlightImages!}
+        spotlightImageClass={spotlightImageClass}
+      />
+    )}
+
   </Hero>
 
-  <section class="py-20 md:py-24 bg-stone-50">
-    <div class="container-page">
-      <SectionIntro
-        eyebrow={t.challengesEyebrow}
-        heading={t.challengesHeading}
-        surface="stone"
-        class="mb-12"
-      />
+  {showSpotlightSection && (
+    <section class="py-20 md:py-24 bg-stone-50 border-b border-stone-100">
+      <div class="container-page">
+        <ModuleSensorSpotlight
+          lang={lang}
+          spotlight={t.spotlight!}
+          images={spotlightImages!}
+          spotlightImageClass={spotlightImageClass}
+        />
+      </div>
+    </section>
+  )}
 
-      <ModuleChallengeCards challenges={t.challenges} iconSet={challengeIconSet} />
-    </div>
-  </section>
+  {showHeroGallery && (
+    <section
+      class:list={[
+        "bg-navy-500 border-b border-navy-900",
+        tightGalleryToCapabilities ? "pb-12 md:pb-14" : "py-20 md:py-24",
+      ]}
+    >
+      <div class:list={["container-page", tightGalleryToCapabilities && "pt-8 md:pt-10"]}>
+        <div class="max-w-6xl">
+          <ModuleHeroGallerySplit
+            gallery={t.heroGallery!}
+            images={heroGalleryImages!}
+            imageClass={heroGalleryImageClass}
+          />
+        </div>
+      </div>
+    </section>
+  )}
 
-  <section class="py-20 md:py-24">
-    <div class="container-page">
-      <ModuleCapabilitiesIntro
-        eyebrow={t.capabilitiesEyebrow}
-        heading={t.capabilitiesHeading}
-        lead={t.solutionLead}
-        contextAlt={t.capabilitiesContextAlt}
-        context={capabilitiesContext}
-      />
+  {
+    capabilitiesBeforeChallenges ? (
+      <>
+        <section
+          class:list={[
+            "border-b border-stone-100",
+            tightGalleryToCapabilities
+              ? "pt-16 md:pt-20 pb-20 md:pb-24 bg-white"
+              : "py-20 md:py-24",
+          ]}
+        >
+          <div class="container-page">
+            <ModuleCapabilitiesIntro
+              eyebrow={t.capabilitiesEyebrow}
+              heading={t.capabilitiesHeading}
+              lead={t.solutionLead}
+              leadWithSensorLinks={t.solutionLeadWithSensorLinks}
+              lang={lang}
+              contextAlt={t.capabilitiesContextAlt}
+              context={capabilitiesContext}
+              contextImageClass={capabilitiesContextImageClass}
+              proofPoints={t.solutionProofPoints}
+            />
 
-      <ModuleFeatureTabs
-        features={t.features}
-        images={featureImages}
-        tabId={featureTabId}
-        imageClass={imageClass}
-      />
-    </div>
-  </section>
+            <ModuleFeatureTabs
+              features={t.features}
+              images={featureImages}
+              tabId={featureTabId}
+              imageClass={imageClass}
+              lang={lang}
+            />
+          </div>
+        </section>
+
+        <section class="py-20 md:py-24 bg-stone-50">
+          <div class="container-page">
+            <SectionIntro
+              eyebrow={t.challengesEyebrow}
+              heading={t.challengesHeading}
+              surface="stone"
+              class="mb-12"
+            />
+
+            {t.intro.length > 0 && (
+              <div class="max-w-5xl space-y-5 mb-12 md:mb-14">
+                {t.intro.map((paragraph) => (
+                  <p class="reveal text-lg text-stone-900/80 leading-relaxed">{paragraph}</p>
+                ))}
+              </div>
+            )}
+
+            <ModuleChallengeCards challenges={t.challenges} iconSet={challengeIconSet} />
+          </div>
+        </section>
+      </>
+    ) : (
+      <>
+        <section class="py-20 md:py-24 bg-stone-50">
+          <div class="container-page">
+            <SectionIntro
+              eyebrow={t.challengesEyebrow}
+              heading={t.challengesHeading}
+              surface="stone"
+              class="mb-12"
+            />
+
+            {t.intro.length > 0 && (
+              <div class="max-w-5xl space-y-5 mb-12 md:mb-14">
+                {t.intro.map((paragraph) => (
+                  <p class="reveal text-lg text-stone-900/80 leading-relaxed">{paragraph}</p>
+                ))}
+              </div>
+            )}
+
+            <ModuleChallengeCards challenges={t.challenges} iconSet={challengeIconSet} />
+          </div>
+        </section>
+
+        <section class="py-20 md:py-24">
+          <div class="container-page">
+            <ModuleCapabilitiesIntro
+              eyebrow={t.capabilitiesEyebrow}
+              heading={t.capabilitiesHeading}
+              lead={t.solutionLead}
+              leadWithSensorLinks={t.solutionLeadWithSensorLinks}
+              lang={lang}
+              contextAlt={t.capabilitiesContextAlt}
+              context={capabilitiesContext}
+              contextImageClass={capabilitiesContextImageClass}
+              proofPoints={t.solutionProofPoints}
+            />
+
+            <ModuleFeatureTabs
+              features={t.features}
+              images={featureImages}
+              tabId={featureTabId}
+              imageClass={imageClass}
+              lang={lang}
+            />
+          </div>
+        </section>
+      </>
+    )
+  }
 
   <section class:list={["py-20 md:py-24", audiencesOnStone && "bg-stone-50"]}>
     <div class="container-page">

@@ -17,6 +17,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 import { isHiddenPath, isLivePath, LAUNCH_LIVE_ONLY } from './src/data/launch';
+import { getEventRedirectMap } from './src/data/events';
 import { getLangFromPath, isPageIndexed } from './src/data/lang';
 
 // Soft-launch gate: after the build completes, delete every page that is not
@@ -218,15 +219,8 @@ export default defineConfig({
     '/sv/pricing/plans/': '/sv/pricing/',
     '/sv/pricing/enterprise/': '/sv/pricing/',
 
-    // Locale-scoped event pages — detail exists in DE only; hub covers other locales.
-    '/en/events/archivistica/': '/en/events/',
-    '/da/events/archivistica/': '/da/events/',
-    '/sv/events/archivistica/': '/sv/events/',
-
-    // Locale-scoped event pages — detail exists in one locale only; hub covers others.
-    '/en/events/worktech26-stockholm/': '/en/events/',
-    '/da/events/worktech26-stockholm/': '/da/events/',
-    '/de/events/worktech26-stockholm/': '/de/events/',
+    // Locale-scoped and archived event pages (see src/data/events.ts).
+    ...getEventRedirectMap(),
   },
 
   vite: {

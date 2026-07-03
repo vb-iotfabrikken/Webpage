@@ -5,6 +5,7 @@
  * sales can propose a smaller bespoke solution. Logic lives in
  * `roi-calculator.ts`; this file is markup + scoped styles only.
  */
+import FormFieldError from "../FormFieldError.astro";
 import { astroLang, langPath } from "../../data/lang";
 
 const lang = astroLang(Astro);
@@ -19,13 +20,12 @@ const privacyHref = langPath("legal/privacy", lang);
     novalidate
   >
     <div class="roi-honeypot" aria-hidden="true">
-      <label for="roi-disqualify-website" class="roi-honeypot-label">Website</label>
       <input
-        type="text"
-        id="roi-disqualify-website"
-        name="website"
+        type="search"
+        name="company_fax"
         tabindex="-1"
-        autocomplete="off"
+        autocomplete="nope"
+        inputmode="none"
         data-roi-disqualify-honeypot
       />
     </div>
@@ -54,10 +54,11 @@ const privacyHref = langPath("legal/privacy", lang);
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <label class="block">
           <span class="text-xs font-medium text-stone-300">First name</span>
+          <FormFieldError field="firstName" />
           <input
             type="text"
             name="firstName"
-            required
+            aria-required="true"
             autocomplete="given-name"
             class="mt-1 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
             data-roi-disqualify-first-name
@@ -65,10 +66,11 @@ const privacyHref = langPath("legal/privacy", lang);
         </label>
         <label class="block">
           <span class="text-xs font-medium text-stone-300">Last name</span>
+          <FormFieldError field="lastName" />
           <input
             type="text"
             name="lastName"
-            required
+            aria-required="true"
             autocomplete="family-name"
             class="mt-1 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
             data-roi-disqualify-last-name
@@ -77,10 +79,11 @@ const privacyHref = langPath("legal/privacy", lang);
       </div>
       <label class="block mt-3">
         <span class="text-xs font-medium text-stone-300">Work email</span>
+        <FormFieldError field="email" />
         <input
           type="email"
           name="email"
-          required
+          aria-required="true"
           autocomplete="work email"
           class="mt-1 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
           data-roi-disqualify-email
@@ -88,10 +91,11 @@ const privacyHref = langPath("legal/privacy", lang);
       </label>
       <label class="block mt-3">
         <span class="text-xs font-medium text-stone-300">Phone</span>
+        <FormFieldError field="phone" />
         <input
           type="tel"
           name="phone"
-          required
+          aria-required="true"
           autocomplete="tel"
           placeholder="+45 12 34 56 78"
           class="mt-1 w-full rounded-md border border-stone-100 bg-white px-3 py-2.5 text-[15px] focus:outline-none focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
