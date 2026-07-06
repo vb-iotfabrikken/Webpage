@@ -35,18 +35,18 @@ export const modulesI18n: Partial<Record<Lang, Record<string, ModuleOverlay>>> =
     },
     "usage-cleaning": {
       name: "Brug og rengøring",
-      short: "Gør rent efter behov — ikke efter en plan.",
+      short: "Gør rent efter behov, ikke efter en plan.",
       long: "Brug belægningsdata til at sende rengøringen derhen, hvor den reelt gør en forskel.",
     },
     "push-buttons": {
       name: "Trykknapper",
       short: "Realtidsfeedback fra dine brugere.",
-      long: "Lad medarbejdere og gæster give input med et enkelt tryk — sendt direkte til facility-teamet.",
+      long: "Lad medarbejdere og gæster give input med et enkelt tryk, sendt direkte til facility-teamet.",
     },
     "lockers-doors": {
       name: "Skabe og døre",
       short: "Åbnet, lukket, stået på klem.",
-      long: "Trådløse åbn/luk-sensorer til døre, skabe, vinduer og aflåste skabe — uden nogen kabling.",
+      long: "Trådløse åbn/luk-sensorer til døre, skabe, vinduer og aflåste skabe, uden nogen kabling.",
     },
   },
   de: {
@@ -72,18 +72,18 @@ export const modulesI18n: Partial<Record<Lang, Record<string, ModuleOverlay>>> =
     },
     "usage-cleaning": {
       name: "Nutzung und Reinigung",
-      short: "Reinigen nach Bedarf — nicht nach Zeitplan.",
+      short: "Reinigen nach Bedarf, nicht nach Zeitplan.",
       long: "Nutzen Sie Belegungsdaten, um die Reinigung dorthin zu lenken, wo sie wirklich etwas bewirkt.",
     },
     "push-buttons": {
       name: "Drucktasten",
       short: "Echtzeit-Feedback von Ihren Nutzern.",
-      long: "Lassen Sie Mitarbeitende und Gäste mit einem einzigen Tastendruck Rückmeldung geben — direkt an das Facility-Team.",
+      long: "Lassen Sie Mitarbeitende und Gäste mit einem einzigen Tastendruck Rückmeldung geben, direkt an das Facility-Team.",
     },
     "lockers-doors": {
       name: "Schließfächer und Türen",
       short: "Offen, geschlossen, angelehnt.",
-      long: "Drahtlose Öffnen/Schließen-Sensoren für Türen, Schränke, Fenster und Schließfächer — ganz ohne Verkabelung.",
+      long: "Drahtlose Öffnen/Schließen-Sensoren für Türen, Schränke, Fenster und Schließfächer, ganz ohne Verkabelung.",
     },
   },
   sv: {
@@ -109,18 +109,18 @@ export const modulesI18n: Partial<Record<Lang, Record<string, ModuleOverlay>>> =
     },
     "usage-cleaning": {
       name: "Användning och städning",
-      short: "Städa vid behov — inte efter ett schema.",
+      short: "Städa vid behov, inte efter ett schema.",
       long: "Använd beläggningsdata för att rikta städningen dit den faktiskt gör skillnad.",
     },
     "push-buttons": {
       name: "Tryckknappar",
       short: "Realtidsfeedback från dina användare.",
-      long: "Låt medarbetare och gäster ge input med ett enda tryck — skickat direkt till facility-teamet.",
+      long: "Låt medarbetare och gäster ge input med ett enda tryck, skickat direkt till facility-teamet.",
     },
     "lockers-doors": {
       name: "Skåp och dörrar",
       short: "Öppnat, stängt, på glänt.",
-      long: "Trådlösa öppna/stäng-sensorer för dörrar, skåp, fönster och förvaringsskåp — helt utan kablar.",
+      long: "Trådlösa öppna/stäng-sensorer för dörrar, skåp, fönster och förvaringsskåp, helt utan kablar.",
     },
   },
 };

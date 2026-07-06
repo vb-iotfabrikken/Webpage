@@ -37,12 +37,12 @@ export interface TrustCenterContent {
 const en: TrustCenterContent = {
   metaTitle: "Trust centre | About | IoT Fabrikken",
   metaDescription:
-    "Security, privacy, compliance and certifications for RoomAlyzer — everything you need to evaluate IoT Fabrikken with confidence.",
+    "Security, privacy, compliance and certifications for RoomAlyzer: everything you need to evaluate IoT Fabrikken with confidence.",
   crumb: "Trust centre",
   heroTitle: "Trust centre.",
   heroTitleAccent: "Security, privacy and compliance in one place.",
   heroLead:
-    "RoomAlyzer is built by a 100% Danish-owned company. Here you'll find our security posture, data-processing terms, service commitments and product certifications — everything you need to evaluate us with confidence.",
+    "RoomAlyzer is built by a 100% Danish-owned company. Here you'll find our security posture, data-processing terms, service commitments and product certifications: everything you need to evaluate us with confidence.",
   pillars: [
     {
       slug: "legal/security",
@@ -72,7 +72,7 @@ const en: TrustCenterContent = {
   certification: {
     eyebrow: "Certification",
     title: "D-Label certified hardware.",
-    lead: "Our hardware carries the Danish D-Label — a recognition of design, durability and sustainability.",
+    lead: "Our hardware carries the Danish D-Label: a recognition of design, durability and sustainability.",
     points: [
       "An independently assessed Danish design certification.",
       "Built to last, with longevity and repairability in mind.",
@@ -87,12 +87,12 @@ const en: TrustCenterContent = {
 const da: TrustCenterContent = {
   metaTitle: "Trust center | Om os | IoT Fabrikken",
   metaDescription:
-    "Sikkerhed, privatliv, compliance og certificeringer for RoomAlyzer — alt, hvad du skal bruge for at vurdere IoT Fabrikken med tryghed.",
+    "Sikkerhed, privatliv, compliance og certificeringer for RoomAlyzer: alt, hvad du skal bruge for at vurdere IoT Fabrikken med tryghed.",
   crumb: "Trust center",
   heroTitle: "Trust center.",
   heroTitleAccent: "Sikkerhed, privatliv og compliance ét sted.",
   heroLead:
-    "RoomAlyzer er bygget af en 100% dansk-ejet virksomhed. Her finder du vores sikkerhed, databehandlingsvilkår, serviceforpligtelser og produktcertificeringer — alt, hvad du skal bruge for at vurdere os med tryghed.",
+    "RoomAlyzer er bygget af en 100% dansk-ejet virksomhed. Her finder du vores sikkerhed, databehandlingsvilkår, serviceforpligtelser og produktcertificeringer: alt, hvad du skal bruge for at vurdere os med tryghed.",
   pillars: [
     {
       slug: "legal/security",
@@ -122,7 +122,7 @@ const da: TrustCenterContent = {
   certification: {
     eyebrow: "Certificering",
     title: "D-mærket certificeret hardware.",
-    lead: "Vores hardware bærer det danske D-mærke — en anerkendelse af design, holdbarhed og bæredygtighed.",
+    lead: "Vores hardware bærer det danske D-mærke: en anerkendelse af design, holdbarhed og bæredygtighed.",
     points: [
       "En uafhængigt vurderet dansk designcertificering.",
       "Bygget til at holde, med fokus på levetid og reparerbarhed.",
@@ -137,12 +137,12 @@ const da: TrustCenterContent = {
 const de: TrustCenterContent = {
   metaTitle: "Trust Center | Über uns | IoT Fabrikken",
   metaDescription:
-    "Sicherheit, Datenschutz, Compliance und Zertifizierungen für RoomAlyzer — alles, was Sie brauchen, um IoT Fabrikken mit Vertrauen zu bewerten.",
+    "Sicherheit, Datenschutz, Compliance und Zertifizierungen für RoomAlyzer: alles, was Sie brauchen, um IoT Fabrikken mit Vertrauen zu bewerten.",
   crumb: "Trust Center",
   heroTitle: "Trust Center.",
   heroTitleAccent: "Sicherheit, Datenschutz und Compliance an einem Ort.",
   heroLead:
-    "RoomAlyzer wird von einem zu 100% in dänischem Besitz befindlichen Unternehmen entwickelt. Hier finden Sie unsere Sicherheitslage, Datenverarbeitungsbedingungen, Serviceverpflichtungen und Produktzertifizierungen — alles, was Sie brauchen, um uns mit Vertrauen zu bewerten.",
+    "RoomAlyzer wird von einem zu 100% in dänischem Besitz befindlichen Unternehmen entwickelt. Hier finden Sie unsere Sicherheitslage, Datenverarbeitungsbedingungen, Serviceverpflichtungen und Produktzertifizierungen: alles, was Sie brauchen, um uns mit Vertrauen zu bewerten.",
   pillars: [
     {
       slug: "legal/security",
@@ -172,7 +172,7 @@ const de: TrustCenterContent = {
   certification: {
     eyebrow: "Zertifizierung",
     title: "D-Label-zertifizierte Hardware.",
-    lead: "Unsere Hardware trägt das dänische D-Label — eine Anerkennung für Design, Langlebigkeit und Nachhaltigkeit.",
+    lead: "Unsere Hardware trägt das dänische D-Label: eine Anerkennung für Design, Langlebigkeit und Nachhaltigkeit.",
     points: [
       "Eine unabhängig geprüfte dänische Designzertifizierung.",
       "Auf Langlebigkeit und Reparierbarkeit ausgelegt.",
@@ -187,12 +187,12 @@ const de: TrustCenterContent = {
 const sv: TrustCenterContent = {
   metaTitle: "Trust center | Om oss | IoT Fabrikken",
   metaDescription:
-    "Säkerhet, integritet, compliance och certifieringar för RoomAlyzer — allt du behöver för att utvärdera IoT Fabrikken med trygghet.",
+    "Säkerhet, integritet, compliance och certifieringar för RoomAlyzer: allt du behöver för att utvärdera IoT Fabrikken med trygghet.",
   crumb: "Trust center",
   heroTitle: "Trust center.",
   heroTitleAccent: "Säkerhet, integritet och compliance på ett ställe.",
   heroLead:
-    "RoomAlyzer byggs av ett till 100% danskägt företag. Här hittar du vår säkerhet, databehandlingsvillkor, serviceåtaganden och produktcertifieringar — allt du behöver för att utvärdera oss med trygghet.",
+    "RoomAlyzer byggs av ett till 100% danskägt företag. Här hittar du vår säkerhet, databehandlingsvillkor, serviceåtaganden och produktcertifieringar: allt du behöver för att utvärdera oss med trygghet.",
   pillars: [
     {
       slug: "legal/security",
@@ -222,7 +222,7 @@ const sv: TrustCenterContent = {
   certification: {
     eyebrow: "Certifiering",
     title: "D-Label-certifierad hårdvara.",
-    lead: "Vår hårdvara bär det danska D-Label — ett erkännande av design, hållbarhet och hållbar utveckling.",
+    lead: "Vår hårdvara bär det danska D-Label: ett erkännande av design, hållbarhet och hållbar utveckling.",
     points: [
       "En oberoende bedömd dansk designcertifiering.",
       "Byggd för att hålla, med fokus på livslängd och reparerbarhet.",

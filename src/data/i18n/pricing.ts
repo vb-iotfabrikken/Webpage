@@ -56,12 +56,12 @@ const en: PricingStrings = {
   hero: {
     title: "Pricing you can plan with.",
     titleAccent: "No per-sensor licence fees.",
-    lead: "A simple, predictable subscription that scales with your building — not with every new device you add.",
+    lead: "A simple, predictable subscription that scales with your building, not with every new device you add.",
   },
   matrix: {
     sectionTitle: "Compare plans.",
     sectionLead:
-      "Three tiers for single sites and portfolios, plus enterprise terms for large rollouts. Published prices are on the way — the matrix below shows what each plan includes.",
+      "Three tiers for single sites and portfolios, plus enterprise terms for large rollouts. Published prices are on the way, the matrix below shows what each plan includes.",
     priceLabel: "Annual subscription",
     customPrice: "Custom",
     featureColumn: "What's included",
@@ -187,7 +187,7 @@ const en: PricingStrings = {
   footnote:
     "Prices shown are placeholders until our published rate card is ready. Hardware is billed separately; enterprise agreements include tailored onboarding for organisations over 1,000 sensors.",
   ctaTitle: "Not sure which plan fits?",
-  ctaSubtitle: "Book a demo or talk to sales — we'll help you size a setup for your buildings.",
+  ctaSubtitle: "Book a demo or talk to sales, we'll help you size a setup for your buildings.",
 };
 
 const da: PricingStrings = {
@@ -197,12 +197,12 @@ const da: PricingStrings = {
   hero: {
     title: "Priser du kan planlægge efter.",
     titleAccent: "Ingen licens pr. sensor.",
-    lead: "Et enkelt, forudsigeligt abonnement, der skalerer med din bygning — ikke med hver ny enhed du tilføjer.",
+    lead: "Et enkelt, forudsigeligt abonnement, der skalerer med din bygning, ikke med hver ny enhed du tilføjer.",
   },
   matrix: {
     sectionTitle: "Sammenlign planer.",
     sectionLead:
-      "Tre niveauer til enkeltstående bygninger og porteføljer, plus enterprise-vilkår til store udrulninger. Offentlige priser kommer snart — matricen viser, hvad hver plan indeholder.",
+      "Tre niveauer til enkeltstående bygninger og porteføljer, plus enterprise-vilkår til store udrulninger. Offentlige priser kommer snart, matricen viser, hvad hver plan indeholder.",
     priceLabel: "Årligt abonnement",
     customPrice: "Tilpasset",
     featureColumn: "Det er inkluderet",
@@ -328,7 +328,7 @@ const da: PricingStrings = {
   footnote:
     "Viste priser er pladsholdere, indtil vores offentlige prisliste er klar. Hardware faktureres separat; enterprise-aftaler inkluderer skræddersyet onboarding til organisationer med over 1.000 sensorer.",
   ctaTitle: "Usikker på hvilken plan der passer?",
-  ctaSubtitle: "Book en demo eller tal med salg — vi hjælper dig med at dimensionere et setup til dine bygninger.",
+  ctaSubtitle: "Book en demo eller tal med salg, vi hjælper dig med at dimensionere et setup til dine bygninger.",
 };
 
 const de: PricingStrings = {
@@ -338,12 +338,12 @@ const de: PricingStrings = {
   hero: {
     title: "Preise, mit denen Sie planen können.",
     titleAccent: "Keine Lizenzgebühr pro Sensor.",
-    lead: "Ein einfaches, planbares Abonnement, das mit Ihrem Gebäude skaliert — nicht mit jedem neuen Gerät, das Sie hinzufügen.",
+    lead: "Ein einfaches, planbares Abonnement, das mit Ihrem Gebäude skaliert, nicht mit jedem neuen Gerät, das Sie hinzufügen.",
   },
   matrix: {
     sectionTitle: "Pläne vergleichen.",
     sectionLead:
-      "Drei Stufen für Einzelstandorte und Portfolios plus Enterprise-Bedingungen für große Rollouts. Veröffentlichte Preise folgen in Kürze — die Matrix zeigt, was jeder Plan enthält.",
+      "Drei Stufen für Einzelstandorte und Portfolios plus Enterprise-Bedingungen für große Rollouts. Veröffentlichte Preise folgen in Kürze, die Matrix zeigt, was jeder Plan enthält.",
     priceLabel: "Jahresabonnement",
     customPrice: "Individuell",
     featureColumn: "Enthalten",
@@ -469,7 +469,7 @@ const de: PricingStrings = {
   footnote:
     "Angezeigte Preise sind Platzhalter, bis unsere veröffentlichte Preisliste vorliegt. Hardware wird separat berechnet; Enterprise-Verträge beinhalten maßgeschneidetes Onboarding für Organisationen mit über 1.000 Sensoren.",
   ctaTitle: "Unsicher, welcher Plan passt?",
-  ctaSubtitle: "Buchen Sie eine Demo oder sprechen Sie mit dem Vertrieb — wir helfen Ihnen, ein Setup für Ihre Gebäude zu dimensionieren.",
+  ctaSubtitle: "Buchen Sie eine Demo oder sprechen Sie mit dem Vertrieb, wir helfen Ihnen, ein Setup für Ihre Gebäude zu dimensionieren.",
 };
 
 const sv: PricingStrings = {
@@ -479,12 +479,12 @@ const sv: PricingStrings = {
   hero: {
     title: "Priser du kan planera efter.",
     titleAccent: "Ingen licensavgift per sensor.",
-    lead: "En enkel, förutsägbar prenumeration som skalar med din byggnad — inte med varje ny enhet du lägger till.",
+    lead: "En enkel, förutsägbar prenumeration som skalar med din byggnad, inte med varje ny enhet du lägger till.",
   },
   matrix: {
     sectionTitle: "Jämför planer.",
     sectionLead:
-      "Tre nivåer för enskilda fastigheter och portföljer, plus enterprise-villkor för stora utrullningar. Publicerade priser kommer snart — matrisen visar vad varje plan innehåller.",
+      "Tre nivåer för enskilda fastigheter och portföljer, plus enterprise-villkor för stora utrullningar. Publicerade priser kommer snart, matrisen visar vad varje plan innehåller.",
     priceLabel: "Årlig prenumeration",
     customPrice: "Anpassat",
     featureColumn: "Det ingår",
@@ -610,7 +610,7 @@ const sv: PricingStrings = {
   footnote:
     "Visade priser är platshållare tills vår publicerade prislista är klar. Hårdvara faktureras separat; enterprise-avtal inkluderar skräddarsydd onboarding för organisationer med över 1 000 sensorer.",
   ctaTitle: "Osäker på vilken plan som passar?",
-  ctaSubtitle: "Boka en demo eller prata med sälj — vi hjälper dig att dimensionera en lösning för dina byggnader.",
+  ctaSubtitle: "Boka en demo eller prata med sälj, vi hjälper dig att dimensionera en lösning för dina byggnader.",
 };
 
 const pricingStrings: Record<Lang, PricingStrings> = { en, da, de, sv };

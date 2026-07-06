@@ -39,11 +39,11 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
       },
       "full-plus": {
         titleAccent: "Alles über Ihr Raumklima.",
-        lead: "CO₂, Temperatur, Luftfeuchtigkeit, VOC und mehr in einer einzigen, diskreten Einheit — das Arbeitstier der meisten Raumklima-Rollouts.",
+        lead: "CO₂, Temperatur, Luftfeuchtigkeit, VOC und mehr in einer einzigen, diskreten Einheit, das Arbeitstier der meisten Raumklima-Rollouts.",
       },
       humidity: {
         titleAccent: "Schutz vor Feuchtigkeit und Schimmel.",
-        lead: "Messen Sie Temperatur und Luftfeuchtigkeit diskret — ideal für Kriechkeller, Keller und Außenwände.",
+        lead: "Messen Sie Temperatur und Luftfeuchtigkeit diskret, ideal für Kriechkeller, Keller und Außenwände.",
       },
       "mini-plus": {
         titleAccent: "Kleiner Footprint, präzise Klimadaten.",
@@ -54,7 +54,7 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
       },
       "mini-plus-pir": {
         titleAccent: "Klima und Präsenz in einem.",
-        lead: "Kompakte Klimaüberwachung mit Belegungserkennung — perfekt für Besprechungsräume und flexible Arbeitsplätze.",
+        lead: "Kompakte Klimaüberwachung mit Belegungserkennung, perfekt für Besprechungsräume und flexible Arbeitsplätze.",
       },
       outdoor: {
         titleAccent: "Die Basis für jede Berechnung.",
@@ -66,23 +66,23 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
       },
       desk: {
         titleAccent: "Sehen Sie, welche Schreibtische wirklich genutzt werden.",
-        lead: "Flächenmanagement einfach gemacht — Sensorik unter dem Schreibtisch für Hot-Desking und Bürolayout-Entscheidungen.",
+        lead: "Flächenmanagement einfach gemacht: Sensorik unter dem Schreibtisch für Hot-Desking und Bürolayout-Entscheidungen.",
       },
       motion: {
         titleAccent: "Präsenz ohne Identität.",
-        lead: "Erfassen Sie die Raumnutzung in Echtzeit — ohne Kameras, WLAN-Sniffing oder andere identifizierende Technik.",
+        lead: "Erfassen Sie die Raumnutzung in Echtzeit, ohne Kameras, WLAN-Sniffing oder andere identifizierende Technik.",
       },
       "open-close": {
         titleAccent: "Türen, Fenster, Schränke, Schließfächer.",
-        lead: "Ein magnetischer Kontaktsensor für alles, was sich öffnet und schließt — mit langer Batterielaufzeit und sofortigen Alarmen.",
+        lead: "Ein magnetischer Kontaktsensor für alles, was sich öffnet und schließt, mit langer Batterielaufzeit und sofortigen Alarmen.",
       },
       touch: {
         titleAccent: "Ein Tipp, direkt ans Team.",
-        lead: "Lösen Sie Aktionen mit einem einzigen Klick aus — Reinigungsanfragen, Feedback, Serviceanrufe und mehr.",
+        lead: "Lösen Sie Aktionen mit einem einzigen Klick aus: Reinigungsanfragen, Feedback, Serviceanrufe und mehr.",
       },
       "water-detector": {
         titleAccent: "Die günstigste Versicherung in Ihrem Gebäude.",
-        lead: "Verhindern Sie Wasserschäden mit Daten — Alarme innerhalb von Sekunden, sobald Wasser erkannt wird.",
+        lead: "Verhindern Sie Wasserschäden mit Daten: Alarme innerhalb von Sekunden, sobald Wasser erkannt wird.",
       },
       "water-rope": {
         titleAccent: "Linienabdeckung dort, wo ein Punktsensor nicht hinreicht.",
@@ -115,11 +115,11 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
       },
       "full-plus": {
         titleAccent: "Alt om dit indeklima.",
-        lead: "CO₂, temperatur, luftfugtighed, VOC og mere i én enkelt, diskret enhed — arbejdshesten i de fleste indeklima-udrulninger.",
+        lead: "CO₂, temperatur, luftfugtighed, VOC og mere i én enkelt, diskret enhed, arbejdshesten i de fleste indeklima-udrulninger.",
       },
       humidity: {
         titleAccent: "Beskyt mod fugt og skimmel.",
-        lead: "Mål temperatur og luftfugtighed diskret — ideel til krybekældre, kældre og ydervægge.",
+        lead: "Mål temperatur og luftfugtighed diskret, ideel til krybekældre, kældre og ydervægge.",
       },
       "mini-plus": {
         titleAccent: "Lille fodaftryk, præcise klimadata.",
@@ -130,7 +130,7 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
       },
       "mini-plus-pir": {
         titleAccent: "Klima og tilstedeværelse i én.",
-        lead: "Kompakt klimaovervågning med tilstedeværelsesregistrering — perfekt til mødelokaler og fleksible arbejdspladser.",
+        lead: "Kompakt klimaovervågning med tilstedeværelsesregistrering, perfekt til mødelokaler og fleksible arbejdspladser.",
       },
       outdoor: {
         titleAccent: "Grundlaget for enhver beregning.",
@@ -142,23 +142,23 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
       },
       desk: {
         titleAccent: "Se, hvilke skriveborde der reelt bruges.",
-        lead: "Arealstyring gjort enkel — sensorer under skrivebordet til hot-desking og beslutninger om kontorindretning.",
+        lead: "Arealstyring gjort enkel, sensorer under skrivebordet til hot-desking og beslutninger om kontorindretning.",
       },
       motion: {
         titleAccent: "Tilstedeværelse uden identitet.",
-        lead: "Følg rumforbruget i realtid — uden kameraer, Wi-Fi-sniffing eller anden identificerende teknologi.",
+        lead: "Følg rumforbruget i realtid, uden kameraer, Wi-Fi-sniffing eller anden identificerende teknologi.",
       },
       "open-close": {
         titleAccent: "Døre, vinduer, skabe, skabsrum.",
-        lead: "En magnetisk kontaktsensor til alt, der åbner og lukker — med lang batterilevetid og øjeblikkelige alarmer.",
+        lead: "En magnetisk kontaktsensor til alt, der åbner og lukker, med lang batterilevetid og øjeblikkelige alarmer.",
       },
       touch: {
         titleAccent: "Et tryk, direkte til teamet.",
-        lead: "Udløs handlinger med et enkelt klik — rengøringsanmodninger, feedback, serviceopkald og mere.",
+        lead: "Udløs handlinger med et enkelt klik, rengøringsanmodninger, feedback, serviceopkald og mere.",
       },
       "water-detector": {
         titleAccent: "Den billigste forsikring i din bygning.",
-        lead: "Forebyg vandskader med data — alarmer inden for sekunder, når der registreres vand.",
+        lead: "Forebyg vandskader med data, alarmer inden for sekunder, når der registreres vand.",
       },
       "water-rope": {
         titleAccent: "Liniedækning, hvor en punktsensor ikke kan nå.",
@@ -191,11 +191,11 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
       },
       "full-plus": {
         titleAccent: "Allt om ditt inomhusklimat.",
-        lead: "CO₂, temperatur, luftfuktighet, VOC och mer i en enda, diskret enhet — arbetshästen i de flesta inomhusklimat-utrullningar.",
+        lead: "CO₂, temperatur, luftfuktighet, VOC och mer i en enda, diskret enhet, arbetshästen i de flesta inomhusklimat-utrullningar.",
       },
       humidity: {
         titleAccent: "Skydda mot fukt och mögel.",
-        lead: "Mät temperatur och luftfuktighet diskret — idealisk för kryputrymmen, källare och ytterväggar.",
+        lead: "Mät temperatur och luftfuktighet diskret, idealisk för kryputrymmen, källare och ytterväggar.",
       },
       "mini-plus": {
         titleAccent: "Litet fotavtryck, exakta klimatdata.",
@@ -206,7 +206,7 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
       },
       "mini-plus-pir": {
         titleAccent: "Klimat och närvaro i ett.",
-        lead: "Kompakt klimatövervakning med närvarodetektering — perfekt för mötesrum och flexibla arbetsplatser.",
+        lead: "Kompakt klimatövervakning med närvarodetektering, perfekt för mötesrum och flexibla arbetsplatser.",
       },
       outdoor: {
         titleAccent: "Grunden för varje beräkning.",
@@ -218,23 +218,23 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
       },
       desk: {
         titleAccent: "Se vilka skrivbord som faktiskt används.",
-        lead: "Ytstyrning gjord enkel — sensorer under skrivbordet för hot-desking och beslut om kontorslayout.",
+        lead: "Ytstyrning gjord enkel, sensorer under skrivbordet för hot-desking och beslut om kontorslayout.",
       },
       motion: {
         titleAccent: "Närvaro utan identitet.",
-        lead: "Följ rumsanvändningen i realtid — utan kameror, Wi-Fi-sniffning eller annan identifierande teknik.",
+        lead: "Följ rumsanvändningen i realtid, utan kameror, Wi-Fi-sniffning eller annan identifierande teknik.",
       },
       "open-close": {
         titleAccent: "Dörrar, fönster, skåp, förvaringsskåp.",
-        lead: "En magnetisk kontaktsensor för allt som öppnas och stängs — med lång batteritid och omedelbara larm.",
+        lead: "En magnetisk kontaktsensor för allt som öppnas och stängs, med lång batteritid och omedelbara larm.",
       },
       touch: {
         titleAccent: "Ett tryck, direkt till teamet.",
-        lead: "Utlös åtgärder med ett enda klick — städförfrågningar, feedback, serviceanrop och mer.",
+        lead: "Utlös åtgärder med ett enda klick, städförfrågningar, feedback, serviceanrop och mer.",
       },
       "water-detector": {
         titleAccent: "Den billigaste försäkringen i din byggnad.",
-        lead: "Förebygg vattenskador med data — larm inom sekunder när vatten upptäcks.",
+        lead: "Förebygg vattenskador med data, larm inom sekunder när vatten upptäcks.",
       },
       "water-rope": {
         titleAccent: "Linjetäckning där en punktsensor inte når.",

@@ -27,7 +27,7 @@ export const sensorsHub: Hub = {
       eyebrow: "RoomAlyzer Air",
       title: "Full+.",
       titleAccent: "Everything about your indoor climate.",
-      lead: "CO₂, temperature, humidity, VOC and more in a single, discreet unit — the workhorse of most indoor-climate rollouts.",
+      lead: "CO₂, temperature, humidity, VOC and more in a single, discreet unit, the workhorse of most indoor-climate rollouts.",
     },
     {
       slug: "humidity",
@@ -36,7 +36,7 @@ export const sensorsHub: Hub = {
       eyebrow: "RoomAlyzer Air",
       title: "Humidity.",
       titleAccent: "Protect against damp and mould.",
-      lead: "Measure temperature and humidity discreetly — ideal for crawl spaces, cellars and outer walls.",
+      lead: "Measure temperature and humidity discreetly, ideal for crawl spaces, cellars and outer walls.",
     },
     {
       slug: "mini-plus",
@@ -57,7 +57,7 @@ export const sensorsHub: Hub = {
       eyebrow: "RoomAlyzer Air",
       title: "Mini+ PIR.",
       titleAccent: "Climate and presence in one.",
-      lead: "Compact climate monitoring with occupancy sensing — perfect for meeting rooms and flexible workspaces.",
+      lead: "Compact climate monitoring with occupancy sensing, perfect for meeting rooms and flexible workspaces.",
     },
     {
       slug: "outdoor",
@@ -85,7 +85,7 @@ export const sensorsHub: Hub = {
       eyebrow: "RoomAlyzer Space",
       title: "Desk.",
       titleAccent: "See which desks are actually used.",
-      lead: "Space management made simple — under-desk sensing for hot-desking and office layout decisions.",
+      lead: "Space management made simple, under-desk sensing for hot-desking and office layout decisions.",
     },
     {
       slug: "motion",
@@ -94,7 +94,7 @@ export const sensorsHub: Hub = {
       eyebrow: "RoomAlyzer Space",
       title: "Motion.",
       titleAccent: "Presence without identity.",
-      lead: "Track room usage in real time — no cameras, Wi-Fi sniffing or other identifying technology.",
+      lead: "Track room usage in real time, no cameras, Wi-Fi sniffing or other identifying technology.",
     },
     {
       slug: "open-close",
@@ -103,7 +103,7 @@ export const sensorsHub: Hub = {
       eyebrow: "RoomAlyzer Space",
       title: "Open/Close.",
       titleAccent: "Doors, windows, cabinets, lockers.",
-      lead: "A magnetic contact sensor for anything that opens and closes — with long battery life and instant alarms.",
+      lead: "A magnetic contact sensor for anything that opens and closes, with long battery life and instant alarms.",
     },
     {
       slug: "touch",
@@ -112,7 +112,7 @@ export const sensorsHub: Hub = {
       eyebrow: "RoomAlyzer Space",
       title: "Touch.",
       titleAccent: "One tap, straight to the team.",
-      lead: "Trigger actions with a single click — cleaning requests, feedback, service calls and more.",
+      lead: "Trigger actions with a single click, cleaning requests, feedback, service calls and more.",
     },
     // ── RoomAlyzer Water ──────────────────────────────────────────────────────
     {
@@ -122,7 +122,7 @@ export const sensorsHub: Hub = {
       eyebrow: "RoomAlyzer Water",
       title: "Water detector.",
       titleAccent: "The cheapest insurance in your building.",
-      lead: "Prevent water damage with data — alarms within seconds when water is detected.",
+      lead: "Prevent water damage with data, alarms within seconds when water is detected.",
     },
     {
       slug: "water-rope",

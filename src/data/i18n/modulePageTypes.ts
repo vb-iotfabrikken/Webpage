@@ -1,7 +1,8 @@
 export type ModuleProseSegment =
   | { type: "text"; value: string }
   | { type: "sensor"; slug: string; label: string }
-  | { type: "compare"; label: string; useCaseId: string };
+  | { type: "compare"; label: string; useCaseId: string }
+  | { type: "caseStudy"; slug: string; label: string };
 
 export type ModuleProseWithLinks = ModuleProseSegment[];
 
@@ -10,7 +11,7 @@ export interface ModuleSpotlightVariant {
   label: string;
   caption: string;
   alt: string;
-  hrefSlug: "water-detector";
+  hrefSlug: "water-detector" | "water-rope";
 }
 
 export interface ModuleSpotlight {

@@ -2,7 +2,7 @@
 import CaseStudyDetailPage from "../../../components/CaseStudyDetailPage.astro";
 import { getCaseStudiesHub } from "../../../data/hubs/caseStudies";
 import { getCases } from "../../../data/i18n/cases";
-import { locales, langPath, type Lang } from "../../../data/lang";
+import { locales, langPath, canonicalizeSegment, type Lang } from "../../../data/lang";
 import type { CaseStudyLeaf } from "../../../data/hubs/caseStudies";
 
 export function getStaticPaths() {
@@ -18,11 +18,24 @@ const { lang } = Astro.params as { lang: Lang; slug: string };
 const { leaf } = Astro.props as { leaf: CaseStudyLeaf };
 const t = getCases(lang);
 const casesHref = langPath("case-studies", lang);
+
+// A case study exists only in the locales that publish it (each locale ships
+// its own leaf list, sometimes with locale-specific slugs). Advertise hreflang
+// only when the same case is available in more than one locale, so single-
+// locale cases (e.g. a Danish-only reference) do not point at 404s.
+const canonicalSlug = canonicalizeSegment(leaf.slug, lang);
+const availableLocaleCount = locales.filter((l) =>
+  getCaseStudiesHub(l.code).leaves.some(
+    (other) => canonicalizeSegment(other.slug, l.code) === canonicalSlug,
+  ),
+).length;
+const suppressHreflang = availableLocaleCount <= 1;
 ---
 
 <CaseStudyDetailPage
   lang={lang}
   leaf={leaf}
+  suppressHreflang={suppressHreflang}
   breadcrumbs={[
     { label: t.breadcrumbHome, href: langPath("", lang) },
     { label: t.breadcrumbCases, href: casesHref },

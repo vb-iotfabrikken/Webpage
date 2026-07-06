@@ -12,7 +12,12 @@ import ModuleCrossLink from "../../../components/modules/ModuleCrossLink.astro";
 import ModuleDashboardFrame from "../../../components/modules/ModuleDashboardFrame.astro";
 import { getSpaceManagement } from "../../../data/i18n/spaceManagement";
 import ModuleCapabilitiesIntro from "../../../components/modules/ModuleCapabilitiesIntro.astro";
-import { spaceManagementFeatureImages, spaceManagementDashboardSrc, spaceManagementCapabilitiesContext } from "../../../data/spaceManagementImages";
+import {
+  spaceManagementFeatureImages,
+  spaceManagementDashboardSrc,
+  spaceManagementCapabilitiesContext,
+  spaceManagementHeroHand,
+} from "../../../data/spaceManagementImages";
 import { breadcrumbSchema, faqSchema } from "../../../lib/seo/schema";
 import { locales, langPath, type Lang } from "../../../data/lang";
 
@@ -44,7 +49,10 @@ const pageJsonLd = [
     lead={t.heroLead}
     align="left"
     inlineTitleAccent
-    visualOnWhite
+    splitVisual
+    splitVisualBleedRight
+    splitVisualGapless
+    visualBottomPadding
     compactTop
   >
     <ol slot="breadcrumb" class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
@@ -62,16 +70,31 @@ const pageJsonLd = [
     <Button href={langPath("/contact/book-demo/", lang)} variant="primary" size="lg" slot="cta">{t.heroPrimaryCta}</Button>
     <Button href={langPath("/get-an-offer/", lang)} variant="secondary" size="lg" slot="cta">{t.heroSecondaryCta}</Button>
 
-    <ModuleDashboardFrame
-      slot="visual"
-      class="reveal max-w-5xl"
-      label={t.dashboardLabel}
-      src={spaceManagementDashboardSrc}
-      alt={t.dashboardAlt}
-      width={1903}
-      height={913}
-    />
+    <div slot="visual" class="relative h-full w-full overflow-hidden">
+      <img
+        src={spaceManagementHeroHand.src}
+        alt={t.heroTitleImageAlt}
+        width={spaceManagementHeroHand.width}
+        height={spaceManagementHeroHand.height}
+        class="absolute bottom-0 right-0 block h-[118%] w-auto max-w-none translate-x-[6%] translate-y-[10%]"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
   </Hero>
+
+  <section class="bg-white border-b border-stone-100">
+    <div class="container-page pt-8 md:pt-10 pb-0">
+      <ModuleDashboardFrame
+        class="reveal max-w-5xl"
+        label={t.dashboardLabel}
+        src={spaceManagementDashboardSrc}
+        alt={t.dashboardAlt}
+        width={1903}
+        height={913}
+      />
+    </div>
+  </section>
 
   <section class="py-20 md:py-24 bg-stone-50">
     <div class="container-page">
@@ -90,7 +113,7 @@ const pageJsonLd = [
         </div>
       )}
 
-      <ModuleChallengeCards challenges={t.challenges} />
+      <ModuleChallengeCards challenges={t.challenges} layout="horizontal" />
     </div>
   </section>
 

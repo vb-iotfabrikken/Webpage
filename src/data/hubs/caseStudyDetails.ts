@@ -47,7 +47,7 @@ const details: Record<string, CaseStudyDetail> = {
     },
   },
   "dansk-industri": {
-    titleAccent: "Space management with sensors freed up 650 square metres — and that makes a difference on the bottom line.",
+    titleAccent: "Space management with sensors freed up 650 square metres, and that makes a difference on the bottom line.",
     intro: [
       "Jimmy Holk has been on a long journey with workplace design. Measuring desks and meeting rooms with sensors has provided the documentation to cut many square metres.",
     ],
@@ -63,7 +63,7 @@ const details: Record<string, CaseStudyDetail> = {
     ],
     quote: {
       heading: "What do Gribskov Municipality say?",
-      body: "The group management was extremely enthusiastic about the data we can provide to qualify their decision-making basis for several different decisions. The response is that they can now move on from opinions and assumptions. Then they were very surprised at how little we actually use our desks — and the inefficient use of meeting rooms (few participants in large meeting rooms). It really gave them food for thought.",
+      body: "The group management was extremely enthusiastic about the data we can provide to qualify their decision-making basis for several different decisions. The response is that they can now move on from opinions and assumptions. Then they were very surprised at how little we actually use our desks, and the inefficient use of meeting rooms (few participants in large meeting rooms). It really gave them food for thought.",
     },
   },
   "gribskov-kommune": {
@@ -75,11 +75,11 @@ const details: Record<string, CaseStudyDetail> = {
   "archdiocese-of-freiburg": {
     titleAccent: "Sensitising volunteers through data-driven indoor climate understanding.",
     intro: [
-      "The sensor solution enables continuous measurement of temperature and humidity in church spaces. Climate risks can be detected early and awareness among volunteers strengthened — on a platform tailored to church requirements.",
+      "The sensor solution enables continuous measurement of temperature and humidity in church spaces. Climate risks can be detected early and awareness among volunteers strengthened, on a platform tailored to church requirements.",
     ],
     quote: {
       heading: "What does the Archdiocese of Freiburg say?",
-      body: "People do not have a reliable sense of relative humidity — yet it plays a decisive role for indoor climate in our churches. That is why we measure with sensors. Continuous capture of temperature and humidity helps us understand conditions on site precisely. The data helps us sensitise volunteers to the topic and react in time to potential risks to buildings and furnishings. That is a major benefit for our work. We chose IoT Fabrikken because they offer a very clear platform and are flexible about our needs — which fits well in a church context.",
+      body: "People do not have a reliable sense of relative humidity, yet it plays a decisive role for indoor climate in our churches. That is why we measure with sensors. Continuous capture of temperature and humidity helps us understand conditions on site precisely. The data helps us sensitise volunteers to the topic and react in time to potential risks to buildings and furnishings. That is a major benefit for our work. We chose IoT Fabrikken because they offer a very clear platform and are flexible about our needs, which fits well in a church context.",
       attribution: "Claudia Dambacher, advisor, Church protection",
     },
   },

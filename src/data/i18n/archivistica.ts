@@ -73,39 +73,39 @@ const de: ArchivisticaStrings = {
     { value: "DGNB-fähig", label: "automatische Berichte" },
   ],
   featuresEyebrow: "Was Sie an unserem Stand erwartet",
-  featuresHeading: "Bewahrung und Energieoptimierung — in einer Lösung.",
+  featuresHeading: "Bewahrung und Energieoptimierung, in einer Lösung.",
   featuresLead:
     "Auf der ARCHIVISTICA zeigen wir Ihnen, wie unsere drahtlosen Sensoren und die RoomAlyzer-Plattform historisches Kulturgut schützen und gleichzeitig dabei helfen, Heizenergie systematisch zu reduzieren.",
   features: [
     {
       title: "Bewahrung von Kulturgut",
       icon: "shield",
-      body: "Präzise Messung von Temperatur, Luftfeuchtigkeit, CO₂ und TVOC (Ausgasungen). Bereits eine Schwankung der relativen Luftfeuchtigkeit um 5 % kann Papier verziehen und Pergament reißen lassen — RoomAlyzer warnt Sie rechtzeitig, bevor Schäden entstehen.",
+      body: "Präzise Messung von Temperatur, Luftfeuchtigkeit, CO₂ und TVOC (Ausgasungen). Bereits eine Schwankung der relativen Luftfeuchtigkeit um 5 % kann Papier verziehen und Pergament reißen lassen: RoomAlyzer warnt Sie rechtzeitig, bevor Schäden entstehen.",
     },
     {
       title: "Energie sparen mit Daten",
       icon: "bolt",
-      body: "Ein Grad weniger spart bis zu 5 % Heizkosten. Mit datenbasierten Berichten und DGNB-Auswertungen passen Sie Heizkurven und CTS-Anlagen so an, dass die Bewahrung gesichert ist — ohne Energie zu verschwenden.",
+      body: "Ein Grad weniger spart bis zu 5 % Heizkosten. Mit datenbasierten Berichten und DGNB-Auswertungen passen Sie Heizkurven und CTS-Anlagen so an, dass die Bewahrung gesichert ist, ohne Energie zu verschwenden.",
     },
     {
       title: "Live-Demo RoomAlyzer",
       icon: "chart",
-      body: "Erleben Sie die Plattform zum Anfassen: Dashboard, Karte, Schimmelmodul und mobile Ansicht. Keine WLAN-, Kabel- oder IT-Eingriffe nötig — die Sensoren übertragen sicher und unabhängig über das Mobilfunknetz.",
+      body: "Erleben Sie die Plattform zum Anfassen: Dashboard, Karte, Schimmelmodul und mobile Ansicht. Keine WLAN-, Kabel- oder IT-Eingriffe nötig, die Sensoren übertragen sicher und unabhängig über das Mobilfunknetz.",
     },
   ],
   quoteEyebrow: "Stimme aus der Praxis",
   quoteHeading:
-    "„Das ist für uns essenziell — eine zuverlässige und präzise Überwachung, auf die wir zählen können.“",
+    "„Das ist für uns essenziell, eine zuverlässige und präzise Überwachung, auf die wir zählen können.“",
   quoteBody: [
     "In einem historischen Archiv wie dem unseren ist das Raumklima von entscheidender Bedeutung für die langfristige Bewahrung unwiederbringlicher Kulturschätze. Alte Papierdokumente und empfindliche Pergamente reagieren sensibel auf Schwankungen der Luftfeuchtigkeit. Eine Veränderung der relativen Luftfeuchtigkeit um 5 % kann dazu führen, dass sich Papier verzieht und Pergament reißt.",
-    "Was für uns im Alltag den entscheidenden Unterschied macht, ist die hohe Messgenauigkeit und die Langzeitstabilität der Sensoren. Das gesamte System ist zudem unglaublich einfach und zeitsparend in der Handhabung. Die Echtzeit-Alarmierung des Systems fungiert dabei als unser digitaler Wächter — kombiniert mit einer langen Batterielaufzeit und Sensoren, die sich problemlos in Ausstellungen und Archivboxen platzieren lassen.",
+    "Was für uns im Alltag den entscheidenden Unterschied macht, ist die hohe Messgenauigkeit und die Langzeitstabilität der Sensoren. Das gesamte System ist zudem unglaublich einfach und zeitsparend in der Handhabung. Die Echtzeit-Alarmierung des Systems fungiert dabei als unser digitaler Wächter, kombiniert mit einer langen Batterielaufzeit und Sensoren, die sich problemlos in Ausstellungen und Archivboxen platzieren lassen.",
   ],
   quoteName: "Martin Eckert",
   quoteRole: "Leitung Archivstelle Sigmaringen · Erzdiözese Freiburg",
   testimonialsEyebrow: "Was unsere Kunden sagen",
   testimonialsHeading: "Vertrauen aus Kirchen, Museen und Kommunen.",
   testimonialsLead:
-    "Kirchen, Diözesen und Museen in ganz Deutschland setzen auf RoomAlyzer — vom kleinen Pfarrarchiv bis zum überregionalen Diözesanarchiv.",
+    "Kirchen, Diözesen und Museen in ganz Deutschland setzen auf RoomAlyzer: vom kleinen Pfarrarchiv bis zum überregionalen Diözesanarchiv.",
   testimonials: [
     {
       quote:
@@ -143,7 +143,7 @@ const de: ArchivisticaStrings = {
   logoMarqueeCaption: "Vertraut von Kommunen, Unternehmen und Kulturinstitutionen",
   ctaTitle: "Bereit für ein Gespräch auf der ARCHIVISTICA?",
   ctaLead:
-    "Reservieren Sie einen Termin am Messestand oder buchen Sie vorab eine Online-Demo — wir freuen uns auf Sie in Hof.",
+    "Reservieren Sie einen Termin am Messestand oder buchen Sie vorab eine Online-Demo, wir freuen uns auf Sie in Hof.",
   ctaPrimary: "Termin am Messestand reservieren",
   ctaSecondary: "Online-Demo buchen",
   officialEventLabel: "Offizielle ARCHIVISTICA-Website öffnen",

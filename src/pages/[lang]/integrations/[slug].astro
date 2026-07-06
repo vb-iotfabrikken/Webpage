@@ -1,12 +1,12 @@
 ---
 import PlaceholderPage from "../../../components/PlaceholderPage.astro";
 import { integrationsHub } from "../../../data/site";
-import { locales } from "../../../data/lang";
+import { locales, localizeSegment } from "../../../data/lang";
 
 export function getStaticPaths() {
   return locales.flatMap((l) =>
     integrationsHub.leaves.map((leaf) => ({
-      params: { lang: l.code, slug: leaf.slug },
+      params: { lang: l.code, slug: localizeSegment(leaf.slug, l.code) },
       props: { leaf },
     })),
   );

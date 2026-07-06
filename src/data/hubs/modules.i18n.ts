@@ -32,7 +32,7 @@ export const modulesHubI18n: Partial<Record<Lang, ModulesHubOverlay>> = {
       "indoor-climate": {
         title: "Indeklima.",
         titleAccent: "Data i stedet for fornemmelser.",
-        lead: "CO2, temperatur, fugt og VOC i realtid — og tidlige advarsler om skimmel og fugt, før de skader bygningen.",
+        lead: "CO2, temperatur, fugt og VOC i realtid, og tidlige advarsler om skimmel og fugt, før de skader bygningen.",
       },
       preservation: {
         title: "Bevaring.",
@@ -40,7 +40,7 @@ export const modulesHubI18n: Partial<Record<Lang, ModulesHubOverlay>> = {
         lead: "Kontinuerlig overvågning af klimaet omkring samlinger, kunst, arkiver og følsomme materialer.",
       },
       "space-management": {
-        title: "Space management.",
+        title: "Space-management.",
         titleAccent: "Sådan bliver dine rum reelt brugt.",
         lead: "Belægning, booking kontra faktisk brug og udnyttelsesmønstre for mødelokaler, skriveborde og fællesarealer.",
       },
@@ -52,12 +52,12 @@ export const modulesHubI18n: Partial<Record<Lang, ModulesHubOverlay>> = {
       "push-buttons": {
         title: "Trykknapper.",
         titleAccent: "Feedback med et enkelt tryk.",
-        lead: "Servicekald, rengøringsanmodninger og tilfredshedsinput fra medarbejdere og gæster — sendt direkte til det rette team.",
+        lead: "Servicekald, rengøringsanmodninger og tilfredshedsinput fra medarbejdere og gæster, sendt direkte til det rette team.",
       },
       "lockers-doors": {
         title: "Skabe og døre.",
         titleAccent: "Åbnet, lukket, stået på klem.",
-        lead: "Trådløse åbn/luk-sensorer til døre, skabe, vinduer og aflåste skabe — uden nogen kabling.",
+        lead: "Trådløse åbn/luk-sensorer til døre, skabe, vinduer og aflåste skabe, uden nogen kabling.",
       },
       "usage-cleaning": {
         title: "Brug og rengøring.",
@@ -75,7 +75,7 @@ export const modulesHubI18n: Partial<Record<Lang, ModulesHubOverlay>> = {
       "indoor-climate": {
         title: "Raumklima.",
         titleAccent: "Daten statt Bauchgefühl.",
-        lead: "CO2, Temperatur, Luftfeuchtigkeit und VOC in Echtzeit — und frühzeitige Warnungen vor Schimmel und Feuchtigkeit, bevor sie dem Gebäude schaden.",
+        lead: "CO2, Temperatur, Luftfeuchtigkeit und VOC in Echtzeit, und frühzeitige Warnungen vor Schimmel und Feuchtigkeit, bevor sie dem Gebäude schaden.",
       },
       preservation: {
         title: "Konservierung.",
@@ -95,12 +95,12 @@ export const modulesHubI18n: Partial<Record<Lang, ModulesHubOverlay>> = {
       "push-buttons": {
         title: "Drucktasten.",
         titleAccent: "Feedback mit einem einzigen Tastendruck.",
-        lead: "Serviceanfragen, Reinigungswünsche und Zufriedenheitsfeedback von Mitarbeitenden und Gästen — direkt an das richtige Team.",
+        lead: "Serviceanfragen, Reinigungswünsche und Zufriedenheitsfeedback von Mitarbeitenden und Gästen, direkt an das richtige Team.",
       },
       "lockers-doors": {
         title: "Schließfächer und Türen.",
         titleAccent: "Offen, geschlossen, angelehnt.",
-        lead: "Drahtlose Öffnen/Schließen-Sensoren für Türen, Schränke, Fenster und Schließfächer — ganz ohne Verkabelung.",
+        lead: "Drahtlose Öffnen/Schließen-Sensoren für Türen, Schränke, Fenster und Schließfächer, ganz ohne Verkabelung.",
       },
       "usage-cleaning": {
         title: "Nutzung und Reinigung.",
@@ -118,7 +118,7 @@ export const modulesHubI18n: Partial<Record<Lang, ModulesHubOverlay>> = {
       "indoor-climate": {
         title: "Inomhusklimat.",
         titleAccent: "Data i stället för känslor.",
-        lead: "CO2, temperatur, fukt och VOC i realtid — och tidiga varningar om mögel och fukt innan de skadar byggnaden.",
+        lead: "CO2, temperatur, fukt och VOC i realtid, och tidiga varningar om mögel och fukt innan de skadar byggnaden.",
       },
       preservation: {
         title: "Bevarande.",
@@ -126,7 +126,7 @@ export const modulesHubI18n: Partial<Record<Lang, ModulesHubOverlay>> = {
         lead: "Kontinuerlig övervakning av klimatet kring samlingar, konst, arkiv och känsliga material.",
       },
       "space-management": {
-        title: "Space management.",
+        title: "Space-management.",
         titleAccent: "Så används dina rum i verkligheten.",
         lead: "Beläggning, bokning kontra faktisk användning och nyttjandemönster för mötesrum, skrivbord och gemensamma ytor.",
       },
@@ -138,12 +138,12 @@ export const modulesHubI18n: Partial<Record<Lang, ModulesHubOverlay>> = {
       "push-buttons": {
         title: "Tryckknappar.",
         titleAccent: "Feedback med ett enda tryck.",
-        lead: "Serviceanrop, städförfrågningar och nöjdhetsinput från medarbetare och gäster — skickat direkt till rätt team.",
+        lead: "Serviceanrop, städförfrågningar och nöjdhetsinput från medarbetare och gäster, skickat direkt till rätt team.",
       },
       "lockers-doors": {
         title: "Skåp och dörrar.",
         titleAccent: "Öppnat, stängt, på glänt.",
-        lead: "Trådlösa öppna/stäng-sensorer för dörrar, skåp, fönster och förvaringsskåp — helt utan kablar.",
+        lead: "Trådlösa öppna/stäng-sensorer för dörrar, skåp, fönster och förvaringsskåp, helt utan kablar.",
       },
       "usage-cleaning": {
         title: "Användning och städning.",

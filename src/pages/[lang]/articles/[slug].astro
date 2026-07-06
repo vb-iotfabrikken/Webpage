@@ -11,7 +11,7 @@ import {
 } from "../../../data/articles/articlePage";
 import { buildArticleCards, type ArticleCard } from "../../../data/articles/query";
 import { industriesHub } from "../../../data/site";
-import { locales } from "../../../data/lang";
+import { locales, localizeSegment } from "../../../data/lang";
 
 export async function getStaticPaths() {
   const industryHubSlugs = industriesHub.leaves.map((l) => l.slug);
@@ -66,7 +66,7 @@ export async function getStaticPaths() {
   const basePaths = [...mdxPaths, ...catalogPaths];
   return locales.flatMap((l) =>
     basePaths.map((p) => ({
-      params: { lang: l.code, slug: p.params.slug },
+      params: { lang: l.code, slug: localizeSegment(p.params.slug, l.code) },
       props: p.props,
     })),
   );

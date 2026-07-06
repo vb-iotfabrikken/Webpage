@@ -6,7 +6,7 @@ import type { ModulePageStrings } from "./modulePageTypes";
 export type PreservationStrings = ModulePageStrings;
 
 const en: PreservationStrings = {
-  metaTitle: "Preservation — heritage climate monitoring | IoT Fabrikken",
+  metaTitle: "Preservation: heritage climate monitoring | IoT Fabrikken",
   metaDescription:
     "Wireless sensors monitor temperature and humidity around irreplaceable collections — with the precision conservators require and documentation for EN 15757.",
   breadcrumbHome: "Home",
@@ -19,7 +19,7 @@ const en: PreservationStrings = {
   intro: [],
   heroPrimaryCta: "Book a free demo",
   heroSecondaryCta: "Get an offer",
-  dashboardLabel: "RoomAlyzer — Preservation",
+  dashboardLabel: "RoomAlyzer: Preservation",
   dashboardAlt: "RoomAlyzer dashboard showing heritage climate data across rooms and display cases",
   heroGallery: {
     images: [
@@ -48,7 +48,7 @@ const en: PreservationStrings = {
     },
     {
       title: "No documentation of conditions",
-      body: "You cannot prove the climate your collection has been kept in — for insurers, funders, or conservation requirements — when readings live in notebooks or not at all.",
+      body: "You cannot prove the climate your collection has been kept in (for insurers, funders, or conservation requirements) when readings live in notebooks or not at all.",
     },
     {
       title: "Preservation versus energy bills",
@@ -58,7 +58,7 @@ const en: PreservationStrings = {
   capabilitiesEyebrow: "How RoomAlyzer solves it",
   capabilitiesHeading: "The specific analysis tools you need. The standards you trust.",
   solutionLead:
-    "Stop guessing and start optimising. RoomAlyzer Preservation provides a complete suite of specialised analysis tools and turns wireless sensor readings into zoned dashboards, drift alerts and audit-ready reports — so you can balance flawless preservation with energy efficiency.",
+    "Stop guessing and start optimising. RoomAlyzer Preservation provides a complete suite of specialised analysis tools and turns wireless sensor readings into zoned dashboards, drift alerts and audit-ready reports, so you can balance flawless preservation with energy efficiency.",
   solutionLeadWithSensorLinks: [
     {
       type: "text",
@@ -73,7 +73,7 @@ const en: PreservationStrings = {
     {
       type: "text",
       value:
-        " for façades) into zoned dashboards, drift alerts and audit-ready reports — so you can balance flawless preservation with energy efficiency. ",
+        " for façades) into zoned dashboards, drift alerts and audit-ready reports, so you can balance flawless preservation with energy efficiency. ",
     },
     { type: "compare", label: "Compare heritage sensors", useCaseId: "heritage" },
   ],
@@ -142,7 +142,7 @@ const en: PreservationStrings = {
     "Pair preservation monitoring with live indoor-climate data for occupied spaces.",
   relatedModuleLink: "Explore indoor climate",
   audiencesEyebrow: "Who it is for",
-  audiencesHeading: "For conservators and facility teams — with data everyone can trust.",
+  audiencesHeading: "For conservators and facility teams, with data everyone can trust.",
   audiencesLead:
     "The same objective climate baseline serves the conservator protecting the collection and the facility manager running the building.",
   primaryAudienceHeading: "For conservators and specialists",
@@ -190,9 +190,9 @@ const en: PreservationStrings = {
 };
 
 const da: PreservationStrings = {
-  metaTitle: "Bevaring — klimaovervågning af kulturarv | IoT Fabrikken",
+  metaTitle: "Bevaring: klimaovervågning af kulturarv | IoT Fabrikken",
   metaDescription:
-    "Trådløse sensorer overvåger temperatur og luftfugtighed omkring uerstattelige samlinger — med den præcision, konservatorer kræver, og dokumentation til EN 15757.",
+    "Trådløse sensorer overvåger temperatur og luftfugtighed omkring uerstattelige samlinger, med den præcision, konservatorer kræver, og dokumentation til EN 15757.",
   breadcrumbHome: "Hjem",
   breadcrumbModules: "Moduler",
   breadcrumbCurrent: "Bevaring",
@@ -203,7 +203,7 @@ const da: PreservationStrings = {
   intro: [],
   heroPrimaryCta: "Book en gratis demo",
   heroSecondaryCta: "Få et tilbud",
-  dashboardLabel: "RoomAlyzer — Bevaring",
+  dashboardLabel: "RoomAlyzer: Bevaring",
   dashboardAlt: "RoomAlyzer-dashboard, der viser kulturarvsklimadata på tværs af rum og montrer",
   heroGallery: {
     images: [
@@ -232,7 +232,7 @@ const da: PreservationStrings = {
     },
     {
       title: "Ingen dokumentation af forholdene",
-      body: "I kan ikke bevise, hvilket klima jeres samling har været opbevaret i — over for forsikringsselskaber, fonde eller bevaringskrav — når målinger lever i notesbøger eller slet ikke findes.",
+      body: "I kan ikke bevise, hvilket klima jeres samling har været opbevaret i (over for forsikringsselskaber, fonde eller bevaringskrav) når målinger lever i notesbøger eller slet ikke findes.",
     },
     {
       title: "Bevaring kontra energiregninger",
@@ -326,7 +326,7 @@ const da: PreservationStrings = {
     "Kombinér bevaringsovervågning med live indeklimadata for befolkede rum.",
   relatedModuleLink: "Udforsk indeklima",
   audiencesEyebrow: "Hvem det er til",
-  audiencesHeading: "Til konservatorer og facility-teams — med data, alle kan stole på.",
+  audiencesHeading: "Til konservatorer og facility-teams, med data, alle kan stole på.",
   audiencesLead:
     "Det samme objektive klimagrundlag tjener konservatoren, der beskytter samlingen, og facility manageren, der driver bygningen.",
   primaryAudienceHeading: "Til konservatorer og specialister",
@@ -374,9 +374,9 @@ const da: PreservationStrings = {
 };
 
 const de: PreservationStrings = {
-  metaTitle: "Konservierung — Klimaüberwachung für Kulturgut | IoT Fabrikken",
+  metaTitle: "Konservierung: Klimaüberwachung für Kulturgut | IoT Fabrikken",
   metaDescription:
-    "Drahtlose Sensoren überwachen Temperatur und Luftfeuchtigkeit rund um unersetzliche Sammlungen — mit der Präzision, die Restauratoren verlangen, und Dokumentation für EN 15757.",
+    "Drahtlose Sensoren überwachen Temperatur und Luftfeuchtigkeit rund um unersetzliche Sammlungen, mit der Präzision, die Restauratoren verlangen, und Dokumentation für EN 15757.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
   breadcrumbCurrent: "Konservierung",
@@ -387,7 +387,7 @@ const de: PreservationStrings = {
   intro: [],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer — Konservierung",
+  dashboardLabel: "RoomAlyzer: Konservierung",
   dashboardAlt: "RoomAlyzer-Dashboard mit Klimadaten für Kulturgut in Räumen und Vitrinen",
   heroGallery: {
     images: [
@@ -416,7 +416,7 @@ const de: PreservationStrings = {
     },
     {
       title: "Keine Dokumentation der Bedingungen",
-      body: "Sie können das Klima, in dem Ihre Sammlung aufbewahrt wurde, nicht belegen — gegenüber Versicherern, Fördergebern oder Konservierungsanforderungen — wenn Messwerte in Notizbüchern stehen oder gar nicht existieren.",
+      body: "Sie können das Klima, in dem Ihre Sammlung aufbewahrt wurde, nicht belegen (gegenüber Versicherern, Fördergebern oder Konservierungsanforderungen), wenn Messwerte in Notizbüchern stehen oder gar nicht existieren.",
     },
     {
       title: "Konservierung versus Energiekosten",
@@ -426,7 +426,7 @@ const de: PreservationStrings = {
   capabilitiesEyebrow: "So löst RoomAlyzer das",
   capabilitiesHeading: "Die spezifischen Analysewerkzeuge, die Sie brauchen. Die Standards, denen Sie vertrauen.",
   solutionLead:
-    "Schluss mit Vermutungen — starten Sie mit Optimierung. RoomAlyzer Konservierung bietet eine vollständige Suite spezialisierter Analysewerkzeuge und verwandelt drahtlose Sensordaten in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte — damit Sie makellose Konservierung mit Energieeffizienz in Einklang bringen.",
+    "Schluss mit Vermutungen — starten Sie mit Optimierung. RoomAlyzer Konservierung bietet eine vollständige Suite spezialisierter Analysewerkzeuge und verwandelt drahtlose Sensordaten in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte, damit Sie makellose Konservierung mit Energieeffizienz in Einklang bringen.",
   solutionLeadWithSensorLinks: [
     {
       type: "text",
@@ -437,11 +437,11 @@ const de: PreservationStrings = {
     { type: "text", value: " und " },
     { type: "sensor", slug: "mini-plus", label: "Mini+" },
     { type: "text", value: "-Sensordaten (mit " },
-    { type: "sensor", slug: "outdoor", label: "Outdoor" },
+    { type: "sensor", slug: "outdoor", label: "Außen" },
     {
       type: "text",
       value:
-        " für Fassaden) in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte — damit Sie makellose Konservierung mit Energieeffizienz in Einklang bringen. ",
+        " für Fassaden) in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte, damit Sie makellose Konservierung mit Energieeffizienz in Einklang bringen. ",
     },
     { type: "compare", label: "Kulturerbe-Sensoren vergleichen", useCaseId: "heritage" },
   ],
@@ -510,7 +510,7 @@ const de: PreservationStrings = {
     "Kombinieren Sie Konservierungsüberwachung mit Live-Raumklimadaten für bewohnte Bereiche.",
   relatedModuleLink: "Raumklima entdecken",
   audiencesEyebrow: "Für wen es gedacht ist",
-  audiencesHeading: "Für Restauratoren und Facility-Teams — mit Daten, denen alle vertrauen können.",
+  audiencesHeading: "Für Restauratoren und Facility-Teams, mit Daten, denen alle vertrauen können.",
   audiencesLead:
     "Dieselbe objektive Klimabasis dient dem Restaurator, der die Sammlung schützt, und dem Facility Manager, der das Gebäude betreibt.",
   primaryAudienceHeading: "Für Restauratoren und Spezialisten",
@@ -558,7 +558,7 @@ const de: PreservationStrings = {
 };
 
 const sv: PreservationStrings = {
-  metaTitle: "Bevarande — klimatövervakning för kulturarv | IoT Fabrikken",
+  metaTitle: "Bevarande: klimatövervakning för kulturarv | IoT Fabrikken",
   metaDescription:
     "Trådlösa sensorer övervakar temperatur och luftfuktighet kring oersättliga samlingar — med den precision konservatorer kräver och dokumentation för EN 15757.",
   breadcrumbHome: "Hem",
@@ -571,7 +571,7 @@ const sv: PreservationStrings = {
   intro: [],
   heroPrimaryCta: "Boka en gratis demo",
   heroSecondaryCta: "Få en offert",
-  dashboardLabel: "RoomAlyzer — Bevarande",
+  dashboardLabel: "RoomAlyzer: Bevarande",
   dashboardAlt: "RoomAlyzer-dashboard som visar kulturarvsklimatdata över rum och montrar",
   heroGallery: {
     images: [
@@ -600,7 +600,7 @@ const sv: PreservationStrings = {
     },
     {
       title: "Ingen dokumentation av förhållandena",
-      body: "Ni kan inte bevisa vilket klimat er samling har förvarats i — för försäkringsbolag, finansiärer eller bevarandekrav — när mätningar finns i anteckningsböcker eller inte alls.",
+      body: "Ni kan inte bevisa vilket klimat er samling har förvarats i (för försäkringsbolag, finansiärer eller bevarandekrav) när mätningar finns i anteckningsböcker eller inte alls.",
     },
     {
       title: "Bevarande kontra energiräkningar",

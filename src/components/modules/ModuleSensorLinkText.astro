@@ -27,6 +27,13 @@ const linkClass =
           </a>
         );
       }
+      if (segment.type === "caseStudy") {
+        return (
+          <a href={langPath(`/case-studies/${segment.slug}/`, lang)} class={linkClass}>
+            {segment.label}
+          </a>
+        );
+      }
       return (
         <a href={langPath(`/compare/?useCase=${segment.useCaseId}`, lang)} class={linkClass}>
           {segment.label}

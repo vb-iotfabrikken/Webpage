@@ -19,10 +19,10 @@ export interface ArticlesIntro {
 const intros: Record<Lang, Omit<ArticlesIntro, "elsewhere">> = {
   en: {
     title: "What you'll find here",
-    lead: "One place for everything we publish — practical how-tos, sector guides, standards explainers and longer reads from the field. Search or filter below, or start from your industry if you know your building type.",
+    lead: "One place for everything we publish, practical how-tos, sector guides, standards explainers and longer reads from the field. Search or filter below, or start from your industry if you know your building type.",
     includes: [
-      "How-tos and use cases by topic — indoor climate, preservation, water detection, space management and more.",
-      "Sector-specific guidance — or jump straight to Industries to start from your building type.",
+      "How-tos and use cases by topic, indoor climate, preservation, water detection, space management and more.",
+      "Sector-specific guidance, or jump straight to Industries to start from your building type.",
       "Standards, compliance and integration deep dives for technical readers.",
       "Longer reads and rollout stories from real customer projects.",
     ],
@@ -30,10 +30,10 @@ const intros: Record<Lang, Omit<ArticlesIntro, "elsewhere">> = {
   },
   da: {
     title: "Det finder I her",
-    lead: "Ét sted for alt, vi publicerer — praktiske how-tos, brancheguider, standardforklaringer og længere læsning fra feltet. Søg eller filtrer nedenfor, eller start fra jeres branche, hvis I kender jeres bygningstype.",
+    lead: "Ét sted for alt, vi publicerer, praktiske how-tos, brancheguider, standardforklaringer og længere læsning fra feltet. Søg eller filtrer nedenfor, eller start fra jeres branche, hvis I kender jeres bygningstype.",
     includes: [
-      "How-tos og use cases efter emne — indeklima, bevaring, vanddetektion, space management og mere.",
-      "Branchevejledning — eller spring direkte til Brancher for at starte fra jeres bygningstype.",
+      "How-tos og use cases efter emne, indeklima, bevaring, vanddetektion, space management og mere.",
+      "Branchevejledning, eller spring direkte til Brancher for at starte fra jeres bygningstype.",
       "Standarder, compliance og integrationsdyk for tekniske læsere.",
       "Længere læsning og udrulningshistorier fra rigtige kundeprojekter.",
     ],
@@ -41,10 +41,10 @@ const intros: Record<Lang, Omit<ArticlesIntro, "elsewhere">> = {
   },
   de: {
     title: "Was Sie hier finden",
-    lead: "Ein Ort für alles, was wir veröffentlichen — praktische Anleitungen, Branchenguides, Standard-Erklärungen und längere Lektüre aus der Praxis. Suchen oder filtern Sie unten, oder starten Sie von Ihrer Branche, wenn Sie Ihren Gebäudetyp kennen.",
+    lead: "Ein Ort für alles, was wir veröffentlichen, praktische Anleitungen, Branchenguides, Standard-Erklärungen und längere Lektüre aus der Praxis. Suchen oder filtern Sie unten, oder starten Sie von Ihrer Branche, wenn Sie Ihren Gebäudetyp kennen.",
     includes: [
-      "Anleitungen und Anwendungsfälle nach Thema — Raumklima, Konservierung, Wassererkennung, Space-Management und mehr.",
-      "Branchenspezifische Orientierung — oder springen Sie direkt zu Branchen, um von Ihrem Gebäudetyp zu starten.",
+      "Anleitungen und Anwendungsfälle nach Thema: Raumklima, Konservierung, Wassererkennung, Space-Management und mehr.",
+      "Branchenspezifische Orientierung, oder springen Sie direkt zu Branchen, um von Ihrem Gebäudetyp zu starten.",
       "Standards, Compliance und Integrations-Tiefenblicke für technische Leser.",
       "Längere Lektüre und Rollout-Geschichten aus echten Kundenprojekten.",
     ],
@@ -52,10 +52,10 @@ const intros: Record<Lang, Omit<ArticlesIntro, "elsewhere">> = {
   },
   sv: {
     title: "Det hittar ni här",
-    lead: "Ett ställe för allt vi publicerar — praktiska how-tos, branschguider, standardförklaringar och längre läsning från fältet. Sök eller filtrera nedan, eller börja från er bransch om ni känner till er byggnadstyp.",
+    lead: "Ett ställe för allt vi publicerar, praktiska how-tos, branschguider, standardförklaringar och längre läsning från fältet. Sök eller filtrera nedan, eller börja från er bransch om ni känner till er byggnadstyp.",
     includes: [
-      "How-tos och use cases per ämne — inomhusklimat, bevarande, vattendetektering, space management och mer.",
-      "Branschspecifik vägledning — eller hoppa direkt till Branscher för att börja från er byggnadstyp.",
+      "How-tos och use cases per ämne, inomhusklimat, bevarande, vattendetektering, space management och mer.",
+      "Branschspecifik vägledning, eller hoppa direkt till Branscher för att börja från er byggnadstyp.",
       "Standarder, compliance och integrationsdjupdykningar för tekniska läsare.",
       "Längre läsning och utrullningsberättelser från riktiga kundprojekt.",
     ],

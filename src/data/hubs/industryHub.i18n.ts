@@ -19,27 +19,27 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
     title: "Bygget til din branche.",
     titleAccent: "Fra den første sensor til den tusindende.",
     eyebrow: "Brancher",
-    lead: "Hver branche har sine egne rytmer, regler og udfordringer. Vi har udrullet IoT i dem alle — og flere.",
+    lead: "Hver branche har sine egne rytmer, regler og udfordringer. Vi har udrullet IoT i dem alle, og flere.",
     leaves: {
       offices: {
         title: "Kontorer.",
         titleAccent: "Hybrid arbejde, målt.",
-        lead: "Udnyttelse, komfort og energi i moderne kontorer — de tre greb, der afgør, om folk møder ind.",
+        lead: "Udnyttelse, komfort og energi i moderne kontorer, de tre greb, der afgør, om folk møder ind.",
       },
       churches: {
         title: "Kirker.",
         titleAccent: "Pas på orgler og fresker.",
-        lead: "Fugt, temperatur og kondensmåling, der beskytter historiske bygninger og deres indhold.",
+        lead: "Bevaringskvalitets fugt- og temperaturmåling, der beskytter historiske bygninger og deres indhold.",
       },
       "museums-galleries": {
         title: "Museer og gallerier.",
         titleAccent: "Bevar det, I udstiller.",
-        lead: "Klimadata i tråd med internationale bevaringsstandarder for samlinger og udlånsobjekter.",
+        lead: "Klimadata fra Bevaring-modulet i tråd med internationale bevaringsstandarder for samlinger og udlånsobjekter.",
       },
       municipalities: {
         title: "Kommuner.",
         titleAccent: "Ét overblik, mange bygninger.",
-        lead: "Skoler, daginstitutioner, administration og kulturinstitutioner — samlet på én platform.",
+        lead: "Skoler, daginstitutioner, administration og kulturinstitutioner, samlet på én platform.",
       },
       schools: {
         title: "Skoler.",
@@ -59,7 +59,7 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
       "manors-castles": {
         title: "Herregårde og slotte.",
         titleAccent: "Arv der holder.",
-        lead: "Overvåg fugt og temperatur i uopvarmede sale, kældre og lager — uden at skade overflader.",
+        lead: "Overvåg fugt og temperatur i uopvarmede sale, kældre og lager, uden at skade overflader.",
       },
       hotels: {
         title: "Hoteller.",
@@ -79,7 +79,7 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
       "elderly-care": {
         title: "Ældrepleje.",
         titleAccent: "En tryggere, roligere hverdag.",
-        lead: "Indeklimaovervågning og serviceknapper, der gør den daglige pleje lettere for beboere og personale.",
+        lead: "Indeklimaovervågning og trykknapper til serviceanmodninger, der gør den daglige pleje lettere for beboere og personale.",
       },
       "property-management": {
         title: "Ejendomsadministration.",
@@ -89,7 +89,7 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
       "fm-companies": {
         title: "FM-virksomheder.",
         titleAccent: "White-label datalaget.",
-        lead: "Tilføj en målbar, datadrevet tjeneste oven på jeres eksisterende facility management.",
+        lead: "Tilføj målbart indeklima, space management, rengøring og vanddetektering oven på jeres eksisterende facility management.",
       },
       "consulting-engineers": {
         title: "Rådgivende ingeniører.",
@@ -102,27 +102,27 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
     title: "Für Ihre Branche gebaut.",
     titleAccent: "Vom ersten Sensor bis zum tausendsten.",
     eyebrow: "Branchen",
-    lead: "Jede Branche hat eigene Rhythmen, Vorschriften und Schmerzpunkte. IoT haben wir in all diesen — und mehr — ausgerollt.",
+    lead: "Jede Branche hat eigene Rhythmen, Vorschriften und Schmerzpunkte. IoT haben wir in all diesen (und mehr) ausgerollt.",
     leaves: {
       offices: {
         title: "Büros.",
         titleAccent: "Hybrides Arbeiten, gemessen.",
-        lead: "Auslastung, Komfort und Energie in modernen Büros — die drei Hebel, die entscheiden, ob Menschen ins Büro kommen.",
+        lead: "Auslastung, Komfort und Energie in modernen Büros, die drei Hebel, die entscheiden, ob Menschen ins Büro kommen.",
       },
       churches: {
         title: "Kirchen.",
         titleAccent: "Orgeln und Fresken schützen.",
-        lead: "Feuchte-, Temperatur- und Kondensationsmonitoring, das historische Gebäude und ihr Inventar schützt.",
+        lead: "Erhaltungsgerechtes Feuchte- und Temperaturmonitoring, das historische Gebäude und ihr Inventar schützt.",
       },
       "museums-galleries": {
         title: "Museen und Galerien.",
         titleAccent: "Bewahren, was Sie ausstellen.",
-        lead: "Klimadaten nach internationalen Erhaltungsstandards für Sammlungen und Leihgaben.",
+        lead: "Klimadaten aus dem Modul Konservierung nach internationalen Erhaltungsstandards für Sammlungen und Leihgaben.",
       },
       municipalities: {
         title: "Kommunen.",
         titleAccent: "Ein Überblick, viele Gebäude.",
-        lead: "Schulen, Kitas, Verwaltung und Kultureinrichtungen — in einer Plattform gebündelt.",
+        lead: "Schulen, Kitas, Verwaltung und Kultureinrichtungen, in einer Plattform gebündelt.",
       },
       schools: {
         title: "Schulen.",
@@ -142,7 +142,7 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
       "manors-castles": {
         title: "Herrenhäuser und Schlösser.",
         titleAccent: "Erbe, das Bestand hat.",
-        lead: "Feuchte und Temperatur in unbeheizten Sälen, Kellern und Lagern überwachen — ohne Oberflächen zu schädigen.",
+        lead: "Feuchte und Temperatur in unbeheizten Sälen, Kellern und Lagern überwachen, ohne Oberflächen zu schädigen.",
       },
       hotels: {
         title: "Hotels.",
@@ -162,7 +162,7 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
       "elderly-care": {
         title: "Altenpflege.",
         titleAccent: "Ein sichererer, ruhigerer Alltag.",
-        lead: "Raumklimaüberwachung und Serviceknöpfe, die die tägliche Pflege für Bewohner und Personal erleichtern.",
+        lead: "Raumklimaüberwachung und Drucktasten für Serviceanfragen, die den täglichen Pflegealltag erleichtern.",
       },
       "property-management": {
         title: "Immobilienverwaltung.",
@@ -172,7 +172,7 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
       "fm-companies": {
         title: "FM-Unternehmen.",
         titleAccent: "Die White-Label-Datenebene.",
-        lead: "Ergänzen Sie Ihr bestehendes Facility Management um einen messbaren, datengestützten Service.",
+        lead: "Ergänzen Sie Ihr Facility Management um messbares Raumklima, Space-Management, Reinigung und Wassererkennung.",
       },
       "consulting-engineers": {
         title: "Beratende Ingenieure.",
@@ -185,27 +185,27 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
     title: "Byggt för er bransch.",
     titleAccent: "Från den första sensorn till den tusende.",
     eyebrow: "Branscher",
-    lead: "Varje bransch har sina egna rytmer, regler och utmaningar. Vi har rullat ut IoT i alla dessa — och fler.",
+    lead: "Varje bransch har sina egna rytmer, regler och utmaningar. Vi har rullat ut IoT i alla dessa, och fler.",
     leaves: {
       offices: {
         title: "Kontor.",
         titleAccent: "Hybridarbete, uppmätt.",
-        lead: "Utnyttjande, komfort och energi på moderna kontor — de tre spakarna som avgör om folk kommer in.",
+        lead: "Utnyttjande, komfort och energi på moderna kontor, de tre spakarna som avgör om folk kommer in.",
       },
       churches: {
         title: "Kyrkor.",
         titleAccent: "Vård om orglar och fresker.",
-        lead: "Fukt-, temperatur- och kondensationsövervakning som skyddar historiska byggnader och deras innehåll.",
+        lead: "Bevarandekvalitet för fukt- och temperaturövervakning som skyddar historiska byggnader och deras innehåll.",
       },
       "museums-galleries": {
         title: "Museer och gallerier.",
         titleAccent: "Bevara det ni ställer ut.",
-        lead: "Klimadata i linje med internationella bevarandestandarder för samlingar och låneföremål.",
+        lead: "Klimadata från Bevarande-modulen enligt internationella bevarandestandarder för samlingar och låneföremål.",
       },
       municipalities: {
         title: "Kommuner.",
         titleAccent: "En översikt, många byggnader.",
-        lead: "Skolor, förskolor, förvaltning och kulturinstitutioner — samlade på en plattform.",
+        lead: "Skolor, förskolor, förvaltning och kulturinstitutioner, samlade på en plattform.",
       },
       schools: {
         title: "Skolor.",
@@ -225,7 +225,7 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
       "manors-castles": {
         title: "Herrgårdar och slott.",
         titleAccent: "Arv som håller.",
-        lead: "Övervaka fukt och temperatur i ouppvärmda salar, källare och lager — utan att skada ytor.",
+        lead: "Övervaka fukt och temperatur i ouppvärmda salar, källare och lager, utan att skada ytor.",
       },
       hotels: {
         title: "Hotell.",
@@ -245,7 +245,7 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
       "elderly-care": {
         title: "Äldreomsorg.",
         titleAccent: "En tryggare, lugnare vardag.",
-        lead: "Inomhusklimatövervakning och serviceknappar som underlättar den dagliga omsorgen för boende och personal.",
+        lead: "Inomhusklimatövervakning och tryckknappar för serviceanrop som underlättar den dagliga omsorgen för boende och personal.",
       },
       "property-management": {
         title: "Fastighetsförvaltning.",
@@ -255,7 +255,7 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
       "fm-companies": {
         title: "FM-företag.",
         titleAccent: "White-label-datalagret.",
-        lead: "Lägg till en mätbar, datadriven tjänst ovanpå er befintliga facility management.",
+        lead: "Lägg till mätbart inomhusklimat, space management, städning och vattendetektering ovanpå er facility management.",
       },
       "consulting-engineers": {
         title: "Konsultingingenjörer.",

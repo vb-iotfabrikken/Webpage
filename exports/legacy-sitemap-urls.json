@@ -1,0 +1,1682 @@
+{
+  "generatedAt": "2026-07-06T10:24:58.690Z",
+  "domains": [
+    {
+      "host": "iot-fabrikken.uk",
+      "fetchedAt": "2026-07-06T10:24:53.300Z",
+      "sitemaps": [
+        "https://iot-fabrikken.uk/post-sitemap.xml",
+        "https://iot-fabrikken.uk/page-sitemap.xml",
+        "https://iot-fabrikken.uk/case-sitemap.xml",
+        "https://iot-fabrikken.uk/category-sitemap.xml",
+        "https://iot-fabrikken.uk/author-sitemap.xml"
+      ],
+      "urls": [
+        "https://iot-fabrikken.uk/",
+        "https://iot-fabrikken.uk/about-us/",
+        "https://iot-fabrikken.uk/author/acend/",
+        "https://iot-fabrikken.uk/book-a-demo/",
+        "https://iot-fabrikken.uk/cafm/",
+        "https://iot-fabrikken.uk/case/boligselskabet-sjaelland/",
+        "https://iot-fabrikken.uk/case/dansk-industri/",
+        "https://iot-fabrikken.uk/case/data-skal-dimensionere-nyt-raadhus-rigtigt/",
+        "https://iot-fabrikken.uk/case/deutches-museum-nordschleswig/",
+        "https://iot-fabrikken.uk/case/faaborg-museum/",
+        "https://iot-fabrikken.uk/case/gribskov-kommune/",
+        "https://iot-fabrikken.uk/case/hj-energi/",
+        "https://iot-fabrikken.uk/case/holbaek-kommune/",
+        "https://iot-fabrikken.uk/case/norddjurs-municipality/",
+        "https://iot-fabrikken.uk/case/rudersdal-museer/",
+        "https://iot-fabrikken.uk/case/skade-teknik/",
+        "https://iot-fabrikken.uk/case/solroed-kommune/",
+        "https://iot-fabrikken.uk/case/sweco-6/",
+        "https://iot-fabrikken.uk/case/varde-municipality/",
+        "https://iot-fabrikken.uk/case/vejen-kommune/",
+        "https://iot-fabrikken.uk/case/zealand-erhvervsakademi/",
+        "https://iot-fabrikken.uk/cases/",
+        "https://iot-fabrikken.uk/category/uncategorized/",
+        "https://iot-fabrikken.uk/contact/",
+        "https://iot-fabrikken.uk/cost-optimisation/",
+        "https://iot-fabrikken.uk/epbd/",
+        "https://iot-fabrikken.uk/general-conditions/",
+        "https://iot-fabrikken.uk/get-an-offer/",
+        "https://iot-fabrikken.uk/indoor-climate-in-churches/",
+        "https://iot-fabrikken.uk/indoor-climate-in-classrooms/",
+        "https://iot-fabrikken.uk/indoor-climate-in-educational-institutions/",
+        "https://iot-fabrikken.uk/indoor-climate-in-offices/",
+        "https://iot-fabrikken.uk/indoor-climate-sensor/",
+        "https://iot-fabrikken.uk/indoor-climate/",
+        "https://iot-fabrikken.uk/jobs-at-iot-fabrikken/",
+        "https://iot-fabrikken.uk/knowledge-hub/",
+        "https://iot-fabrikken.uk/partners/",
+        "https://iot-fabrikken.uk/privacy-policy/",
+        "https://iot-fabrikken.uk/product-sheets/",
+        "https://iot-fabrikken.uk/sitemap/",
+        "https://iot-fabrikken.uk/space-management-and-booking-systems/",
+        "https://iot-fabrikken.uk/space-management-in-meeting-rooms/",
+        "https://iot-fabrikken.uk/space-management-software/",
+        "https://iot-fabrikken.uk/space-management/",
+        "https://iot-fabrikken.uk/thank-you-for-your-inquiry/",
+        "https://iot-fabrikken.uk/the-hybrid-workplace/",
+        "https://iot-fabrikken.uk/vdi-6022-hygiene-standard-what-operators-need-to-know-and-how-digitalization-helps/",
+        "https://iot-fabrikken.uk/water-detection/",
+        "https://iot-fabrikken.uk/work-stations/"
+      ],
+      "error": null
+    },
+    {
+      "host": "iot-fabrikken.com",
+      "fetchedAt": "2026-07-06T10:24:53.772Z",
+      "sitemaps": [
+        "https://www.iot-fabrikken.com/page-sitemap.xml",
+        "https://www.iot-fabrikken.com/case-sitemap.xml",
+        "https://www.iot-fabrikken.com/jobopslag-sitemap.xml",
+        "https://www.iot-fabrikken.com/case-kategori-sitemap.xml",
+        "https://www.iot-fabrikken.com/l_kategori-sitemap.xml"
+      ],
+      "urls": [
+        "https://iot-fabrikken.com/",
+        "https://iot-fabrikken.com/arbejdsstationer/",
+        "https://iot-fabrikken.com/book-en-demo/",
+        "https://iot-fabrikken.com/cafm/",
+        "https://iot-fabrikken.com/case-kategori/indeklima/",
+        "https://iot-fabrikken.com/case-kategori/space-management/",
+        "https://iot-fabrikken.com/case/boligselskabet-sjaelland/",
+        "https://iot-fabrikken.com/case/dansk-industri/",
+        "https://iot-fabrikken.com/case/data-skal-dimensionere-nyt-raadhus-rigtigt/",
+        "https://iot-fabrikken.com/case/deutches-museum-nordschleswig/",
+        "https://iot-fabrikken.com/case/faaborg-museum/",
+        "https://iot-fabrikken.com/case/gribskov-kommune/",
+        "https://iot-fabrikken.com/case/hj-energi/",
+        "https://iot-fabrikken.com/case/holbaek-kommune/",
+        "https://iot-fabrikken.com/case/norddjurs-kommune/",
+        "https://iot-fabrikken.com/case/rudersdal-museer/",
+        "https://iot-fabrikken.com/case/skade-teknik/",
+        "https://iot-fabrikken.com/case/solroed-kommune/",
+        "https://iot-fabrikken.com/case/sweco-6/",
+        "https://iot-fabrikken.com/case/varde-kommune-3/",
+        "https://iot-fabrikken.com/case/vejen-kommune/",
+        "https://iot-fabrikken.com/case/zealand-erhvervsakademi/",
+        "https://iot-fabrikken.com/cases/",
+        "https://iot-fabrikken.com/epbd/",
+        "https://iot-fabrikken.com/faa-et-tilbud/",
+        "https://iot-fabrikken.com/funktioner/",
+        "https://iot-fabrikken.com/generelle-vilkaar/",
+        "https://iot-fabrikken.com/hybrid-arbejdsplads/",
+        "https://iot-fabrikken.com/hydbrid-arbejdsplads/",
+        "https://iot-fabrikken.com/indeklima-i-kirker/",
+        "https://iot-fabrikken.com/indeklima-maaler/",
+        "https://iot-fabrikken.com/indeklima-paa-kontor/",
+        "https://iot-fabrikken.com/indeklima-paa-uddannelsesinstitutioner/",
+        "https://iot-fabrikken.com/indeklima/",
+        "https://iot-fabrikken.com/integrationer/",
+        "https://iot-fabrikken.com/job/",
+        "https://iot-fabrikken.com/jobopslag/business-development-manager-tyskland/",
+        "https://iot-fabrikken.com/klasselokaler-og-institutioner/",
+        "https://iot-fabrikken.com/kontakt/",
+        "https://iot-fabrikken.com/l_kategori/use-cases/",
+        "https://iot-fabrikken.com/luftfugtighed-i-kirker/",
+        "https://iot-fabrikken.com/om-os/",
+        "https://iot-fabrikken.com/omkostningsoptimering/",
+        "https://iot-fabrikken.com/partnere/",
+        "https://iot-fabrikken.com/privacy-policy/",
+        "https://iot-fabrikken.com/produktark/",
+        "https://iot-fabrikken.com/ret-titlen-her/",
+        "https://iot-fabrikken.com/sensorer/",
+        "https://iot-fabrikken.com/sitemap/",
+        "https://iot-fabrikken.com/space-management-i-moedelokaler/",
+        "https://iot-fabrikken.com/space-management-ny/",
+        "https://iot-fabrikken.com/space-management-og-booking-system/",
+        "https://iot-fabrikken.com/space-management-software/",
+        "https://iot-fabrikken.com/space-management/",
+        "https://iot-fabrikken.com/tak-for-din-henvendelse/",
+        "https://iot-fabrikken.com/use-cases/",
+        "https://iot-fabrikken.com/water-detection/"
+      ],
+      "error": null
+    },
+    {
+      "host": "iot-fabrikken.de",
+      "fetchedAt": "2026-07-06T10:24:54.898Z",
+      "sitemaps": [
+        "https://iot-fabrikken.de/post-sitemap.xml",
+        "https://iot-fabrikken.de/page-sitemap.xml",
+        "https://iot-fabrikken.de/case-sitemap.xml",
+        "https://iot-fabrikken.de/category-sitemap.xml",
+        "https://iot-fabrikken.de/author-sitemap.xml"
+      ],
+      "urls": [
+        "https://iot-fabrikken.de/",
+        "https://iot-fabrikken.de/allgemeine-geschaeftsbedingungen/",
+        "https://iot-fabrikken.de/angebot-einholen/",
+        "https://iot-fabrikken.de/arbeitsstationen/",
+        "https://iot-fabrikken.de/archivistica/",
+        "https://iot-fabrikken.de/author/lars/",
+        "https://iot-fabrikken.de/cafm/",
+        "https://iot-fabrikken.de/case/boligselskabet-sjaelland/",
+        "https://iot-fabrikken.de/case/dansk-industri/",
+        "https://iot-fabrikken.de/case/data-skal-dimensionere-nyt-raadhus-rigtigt/",
+        "https://iot-fabrikken.de/case/deutches-museum-nordschleswig/",
+        "https://iot-fabrikken.de/case/erzdioezese-freiburg/",
+        "https://iot-fabrikken.de/case/evangelische-kirche-in-hessen-und-nassau/",
+        "https://iot-fabrikken.de/case/faaborg-museum/",
+        "https://iot-fabrikken.de/case/gribskov-kommune/",
+        "https://iot-fabrikken.de/case/hj-energi/",
+        "https://iot-fabrikken.de/case/holbaek-kommune/",
+        "https://iot-fabrikken.de/case/kommune-norddjurs/",
+        "https://iot-fabrikken.de/case/kommune-varde/",
+        "https://iot-fabrikken.de/case/rudersdal-museer/",
+        "https://iot-fabrikken.de/case/skade-teknik/",
+        "https://iot-fabrikken.de/case/solroed-kommune/",
+        "https://iot-fabrikken.de/case/sweco-6/",
+        "https://iot-fabrikken.de/case/vejen-kommune/",
+        "https://iot-fabrikken.de/case/zealand-erhvervsakademi/",
+        "https://iot-fabrikken.de/category/raumklima/",
+        "https://iot-fabrikken.de/danke-fuer-ihre-anfrage/",
+        "https://iot-fabrikken.de/demo-buchen/",
+        "https://iot-fabrikken.de/epbd/",
+        "https://iot-fabrikken.de/hybride-arbeitsplatz/",
+        "https://iot-fabrikken.de/impressum/",
+        "https://iot-fabrikken.de/innenraumklima-in-kirchen/",
+        "https://iot-fabrikken.de/jobs-bei-iot/",
+        "https://iot-fabrikken.de/klassenzimmern-und-einrichtungen/",
+        "https://iot-fabrikken.de/kontakt/",
+        "https://iot-fabrikken.de/kostenoptimierung/",
+        "https://iot-fabrikken.de/partner/",
+        "https://iot-fabrikken.de/privacy-policy/",
+        "https://iot-fabrikken.de/produktblaetter/",
+        "https://iot-fabrikken.de/projekte/",
+        "https://iot-fabrikken.de/raumklima-in-bildungseinrichtungen/",
+        "https://iot-fabrikken.de/raumklima-in-bueros/",
+        "https://iot-fabrikken.de/raumklima-messgerat/",
+        "https://iot-fabrikken.de/raumklima/",
+        "https://iot-fabrikken.de/sitemap/",
+        "https://iot-fabrikken.de/space-management-in-besprechungsraeumen/",
+        "https://iot-fabrikken.de/space-management-software/",
+        "https://iot-fabrikken.de/space-management-und-buchungssystem/",
+        "https://iot-fabrikken.de/space-management/",
+        "https://iot-fabrikken.de/uber-uns/",
+        "https://iot-fabrikken.de/vdi-6022-hygienestandard-was-betreiber-wissen-muessen-und-wie-digitalisierung-hilft/",
+        "https://iot-fabrikken.de/wissenszentrum/"
+      ],
+      "error": null
+    },
+    {
+      "host": "iot-fabrikken.se",
+      "fetchedAt": "2026-07-06T10:24:57.549Z",
+      "sitemaps": [
+        "https://iot-fabrikken.se/page-sitemap.xml",
+        "https://iot-fabrikken.se/case-sitemap.xml"
+      ],
+      "urls": [
+        "https://iot-fabrikken.se/",
+        "https://iot-fabrikken.se/allmanna-villkor/",
+        "https://iot-fabrikken.se/arbetsstation/",
+        "https://iot-fabrikken.se/boka-en-demo/",
+        "https://iot-fabrikken.se/cafm/",
+        "https://iot-fabrikken.se/case/boligselskabet-sjaelland/",
+        "https://iot-fabrikken.se/case/dansk-industri/",
+        "https://iot-fabrikken.se/case/data-skal-dimensionere-nyt-raadhus-rigtigt/",
+        "https://iot-fabrikken.se/case/deutches-museum-nordschleswig/",
+        "https://iot-fabrikken.se/case/faaborg-museum/",
+        "https://iot-fabrikken.se/case/gribskov-kommune/",
+        "https://iot-fabrikken.se/case/hj-energi/",
+        "https://iot-fabrikken.se/case/holbaek-kommune/",
+        "https://iot-fabrikken.se/case/norddjurs-kommun/",
+        "https://iot-fabrikken.se/case/rudersdal-museer/",
+        "https://iot-fabrikken.se/case/skade-teknik/",
+        "https://iot-fabrikken.se/case/solroed-kommune/",
+        "https://iot-fabrikken.se/case/sweco-6/",
+        "https://iot-fabrikken.se/case/varde-kommun/",
+        "https://iot-fabrikken.se/case/vejen-kommune/",
+        "https://iot-fabrikken.se/case/zealand-erhvervsakademi/",
+        "https://iot-fabrikken.se/epbd/",
+        "https://iot-fabrikken.se/faa-en-offert/",
+        "https://iot-fabrikken.se/hybrida-arbetsplatsen/",
+        "https://iot-fabrikken.se/inomhusklimat-i-kyrkor/",
+        "https://iot-fabrikken.se/inomhusklimat-pa-kontor/",
+        "https://iot-fabrikken.se/inomhusklimat-pa-utbildningsinstitutioner/",
+        "https://iot-fabrikken.se/inomhusklimat/",
+        "https://iot-fabrikken.se/inomhusklimatmatare/",
+        "https://iot-fabrikken.se/jobb-hos-iot-fabrikken/",
+        "https://iot-fabrikken.se/klassrum-och-institutioner/",
+        "https://iot-fabrikken.se/kontakt/",
+        "https://iot-fabrikken.se/kostnadsoptimering/",
+        "https://iot-fabrikken.se/om-oss/",
+        "https://iot-fabrikken.se/partner/",
+        "https://iot-fabrikken.se/privacy-policy/",
+        "https://iot-fabrikken.se/produktblad/",
+        "https://iot-fabrikken.se/projekt/",
+        "https://iot-fabrikken.se/sitemap/",
+        "https://iot-fabrikken.se/space-management-i-motesrum/",
+        "https://iot-fabrikken.se/space-management-och-bokningssystem/",
+        "https://iot-fabrikken.se/space-management-software/",
+        "https://iot-fabrikken.se/space-management/",
+        "https://iot-fabrikken.se/tack-for-din-forfragan/"
+      ],
+      "error": null
+    }
+  ],
+  "summary": {
+    "totalUrls": 202,
+    "mapped": 202,
+    "unmapped": 0
+  },
+  "mapped": [
+    {
+      "url": "https://iot-fabrikken.uk/",
+      "pathname": "/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/about-us/",
+      "pathname": "/about-us/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/about/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/author/acend/",
+      "pathname": "/author/acend/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/about/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/book-a-demo/",
+      "pathname": "/book-a-demo/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/contact/book-demo/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/cafm/",
+      "pathname": "/cafm/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/industries/fm-companies/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/boligselskabet-sjaelland/",
+      "pathname": "/case/boligselskabet-sjaelland/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/boligselskabet-sjaelland/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/dansk-industri/",
+      "pathname": "/case/dansk-industri/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/dansk-industri/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/data-skal-dimensionere-nyt-raadhus-rigtigt/",
+      "pathname": "/case/data-skal-dimensionere-nyt-raadhus-rigtigt/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/gribskov-municipality/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/deutches-museum-nordschleswig/",
+      "pathname": "/case/deutches-museum-nordschleswig/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/deutsches-museum-nordschleswig/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/faaborg-museum/",
+      "pathname": "/case/faaborg-museum/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/faaborg-museum/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/gribskov-kommune/",
+      "pathname": "/case/gribskov-kommune/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/gribskov-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/hj-energi/",
+      "pathname": "/case/hj-energi/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/hj-energi/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/holbaek-kommune/",
+      "pathname": "/case/holbaek-kommune/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/holbaek-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/norddjurs-municipality/",
+      "pathname": "/case/norddjurs-municipality/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/norddjurs-municipality/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/rudersdal-museer/",
+      "pathname": "/case/rudersdal-museer/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/rudersdal-museer/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/skade-teknik/",
+      "pathname": "/case/skade-teknik/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/skade-teknik/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/solroed-kommune/",
+      "pathname": "/case/solroed-kommune/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/solroed-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/sweco-6/",
+      "pathname": "/case/sweco-6/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/sweco/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/varde-municipality/",
+      "pathname": "/case/varde-municipality/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/varde-municipality/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/vejen-kommune/",
+      "pathname": "/case/vejen-kommune/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/vejen-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/case/zealand-erhvervsakademi/",
+      "pathname": "/case/zealand-erhvervsakademi/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/zealand-erhvervsakademi/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/cases/",
+      "pathname": "/cases/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/case-studies/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/category/uncategorized/",
+      "pathname": "/category/uncategorized/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/articles/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/contact/",
+      "pathname": "/contact/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/contact/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/cost-optimisation/",
+      "pathname": "/cost-optimisation/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/roi/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/epbd/",
+      "pathname": "/epbd/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/articles/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/general-conditions/",
+      "pathname": "/general-conditions/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/legal/terms/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/get-an-offer/",
+      "pathname": "/get-an-offer/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/get-an-offer/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/indoor-climate-in-churches/",
+      "pathname": "/indoor-climate-in-churches/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/industries/churches/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/indoor-climate-in-classrooms/",
+      "pathname": "/indoor-climate-in-classrooms/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/industries/schools/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/indoor-climate-in-educational-institutions/",
+      "pathname": "/indoor-climate-in-educational-institutions/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/industries/schools/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/indoor-climate-in-offices/",
+      "pathname": "/indoor-climate-in-offices/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/industries/offices/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/indoor-climate-sensor/",
+      "pathname": "/indoor-climate-sensor/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/sensors/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/indoor-climate/",
+      "pathname": "/indoor-climate/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/modules/indoor-climate/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/jobs-at-iot-fabrikken/",
+      "pathname": "/jobs-at-iot-fabrikken/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/about/careers/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/knowledge-hub/",
+      "pathname": "/knowledge-hub/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/articles/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/partners/",
+      "pathname": "/partners/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/about/partners/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/privacy-policy/",
+      "pathname": "/privacy-policy/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/legal/privacy/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/product-sheets/",
+      "pathname": "/product-sheets/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/sensors/product-sheets/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/sitemap/",
+      "pathname": "/sitemap/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/space-management-and-booking-systems/",
+      "pathname": "/space-management-and-booking-systems/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/modules/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/space-management-in-meeting-rooms/",
+      "pathname": "/space-management-in-meeting-rooms/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/modules/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/space-management-software/",
+      "pathname": "/space-management-software/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/modules/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/space-management/",
+      "pathname": "/space-management/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/modules/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/thank-you-for-your-inquiry/",
+      "pathname": "/thank-you-for-your-inquiry/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/contact/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/the-hybrid-workplace/",
+      "pathname": "/the-hybrid-workplace/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/modules/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/vdi-6022-hygiene-standard-what-operators-need-to-know-and-how-digitalization-helps/",
+      "pathname": "/vdi-6022-hygiene-standard-what-operators-need-to-know-and-how-digitalization-helps/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/articles/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/water-detection/",
+      "pathname": "/water-detection/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/modules/water-detection/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.uk/work-stations/",
+      "pathname": "/work-stations/",
+      "host": "iot-fabrikken.uk",
+      "target": "https://iot-fabrikken.com/en/modules/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/",
+      "pathname": "/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/arbejdsstationer/",
+      "pathname": "/arbejdsstationer/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/moduler/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/book-en-demo/",
+      "pathname": "/book-en-demo/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/kontakt/book-demo/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/cafm/",
+      "pathname": "/cafm/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/brancher/fm-companies/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case-kategori/indeklima/",
+      "pathname": "/case-kategori/indeklima/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case-kategori/space-management/",
+      "pathname": "/case-kategori/space-management/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/boligselskabet-sjaelland/",
+      "pathname": "/case/boligselskabet-sjaelland/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/boligselskabet-sjaelland/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/dansk-industri/",
+      "pathname": "/case/dansk-industri/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/dansk-industri/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/data-skal-dimensionere-nyt-raadhus-rigtigt/",
+      "pathname": "/case/data-skal-dimensionere-nyt-raadhus-rigtigt/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/gribskov-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/deutches-museum-nordschleswig/",
+      "pathname": "/case/deutches-museum-nordschleswig/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/deutsches-museum-nordschleswig/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/faaborg-museum/",
+      "pathname": "/case/faaborg-museum/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/faaborg-museum/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/gribskov-kommune/",
+      "pathname": "/case/gribskov-kommune/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/gribskov-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/hj-energi/",
+      "pathname": "/case/hj-energi/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/hj-energi/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/holbaek-kommune/",
+      "pathname": "/case/holbaek-kommune/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/holbaek-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/norddjurs-kommune/",
+      "pathname": "/case/norddjurs-kommune/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/norddjurs-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/rudersdal-museer/",
+      "pathname": "/case/rudersdal-museer/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/rudersdal-museer/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/skade-teknik/",
+      "pathname": "/case/skade-teknik/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/skade-teknik/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/solroed-kommune/",
+      "pathname": "/case/solroed-kommune/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/solroed-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/sweco-6/",
+      "pathname": "/case/sweco-6/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/sweco/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/varde-kommune-3/",
+      "pathname": "/case/varde-kommune-3/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/varde-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/vejen-kommune/",
+      "pathname": "/case/vejen-kommune/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/vejen-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/case/zealand-erhvervsakademi/",
+      "pathname": "/case/zealand-erhvervsakademi/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/zealand-erhvervsakademi/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.com/cases/",
+      "pathname": "/cases/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/case-studies/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/epbd/",
+      "pathname": "/epbd/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/artikler/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/faa-et-tilbud/",
+      "pathname": "/faa-et-tilbud/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/faa-et-tilbud/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/funktioner/",
+      "pathname": "/funktioner/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/platform/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/generelle-vilkaar/",
+      "pathname": "/generelle-vilkaar/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/juridisk/betingelser/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/hybrid-arbejdsplads/",
+      "pathname": "/hybrid-arbejdsplads/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/moduler/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/hydbrid-arbejdsplads/",
+      "pathname": "/hydbrid-arbejdsplads/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/moduler/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/indeklima-i-kirker/",
+      "pathname": "/indeklima-i-kirker/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/brancher/kirker/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/indeklima-maaler/",
+      "pathname": "/indeklima-maaler/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/sensorer/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/indeklima-paa-kontor/",
+      "pathname": "/indeklima-paa-kontor/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/brancher/kontorer/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/indeklima-paa-uddannelsesinstitutioner/",
+      "pathname": "/indeklima-paa-uddannelsesinstitutioner/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/brancher/skoler/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/indeklima/",
+      "pathname": "/indeklima/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/moduler/indeklima/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/integrationer/",
+      "pathname": "/integrationer/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/integrationer/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/job/",
+      "pathname": "/job/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/om-os/karriere/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/jobopslag/business-development-manager-tyskland/",
+      "pathname": "/jobopslag/business-development-manager-tyskland/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/om-os/karriere/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/klasselokaler-og-institutioner/",
+      "pathname": "/klasselokaler-og-institutioner/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/brancher/skoler/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/kontakt/",
+      "pathname": "/kontakt/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/kontakt/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/l_kategori/use-cases/",
+      "pathname": "/l_kategori/use-cases/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/artikler/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/luftfugtighed-i-kirker/",
+      "pathname": "/luftfugtighed-i-kirker/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/brancher/kirker/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/om-os/",
+      "pathname": "/om-os/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/om-os/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/omkostningsoptimering/",
+      "pathname": "/omkostningsoptimering/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/roi/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/partnere/",
+      "pathname": "/partnere/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/om-os/partnere/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/privacy-policy/",
+      "pathname": "/privacy-policy/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/juridisk/privatlivspolitik/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/produktark/",
+      "pathname": "/produktark/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/sensorer/produktark/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/ret-titlen-her/",
+      "pathname": "/ret-titlen-her/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/sensorer/",
+      "pathname": "/sensorer/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/sensorer/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/sitemap/",
+      "pathname": "/sitemap/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/space-management-i-moedelokaler/",
+      "pathname": "/space-management-i-moedelokaler/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/moduler/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/space-management-ny/",
+      "pathname": "/space-management-ny/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/moduler/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/space-management-og-booking-system/",
+      "pathname": "/space-management-og-booking-system/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/moduler/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/space-management-software/",
+      "pathname": "/space-management-software/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/moduler/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/space-management/",
+      "pathname": "/space-management/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/moduler/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/tak-for-din-henvendelse/",
+      "pathname": "/tak-for-din-henvendelse/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/kontakt/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/use-cases/",
+      "pathname": "/use-cases/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/artikler/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.com/water-detection/",
+      "pathname": "/water-detection/",
+      "host": "iot-fabrikken.com",
+      "target": "https://iot-fabrikken.com/da/moduler/water-detection/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/",
+      "pathname": "/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/allgemeine-geschaeftsbedingungen/",
+      "pathname": "/allgemeine-geschaeftsbedingungen/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/rechtliches/agb/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/angebot-einholen/",
+      "pathname": "/angebot-einholen/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/angebot-einholen/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/arbeitsstationen/",
+      "pathname": "/arbeitsstationen/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/module/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/archivistica/",
+      "pathname": "/archivistica/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/veranstaltungen/archivistica/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/author/lars/",
+      "pathname": "/author/lars/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/ueber-uns/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/cafm/",
+      "pathname": "/cafm/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/branchen/fm-companies/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/boligselskabet-sjaelland/",
+      "pathname": "/case/boligselskabet-sjaelland/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/boligselskabet-sjaelland/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/dansk-industri/",
+      "pathname": "/case/dansk-industri/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/dansk-industri/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/data-skal-dimensionere-nyt-raadhus-rigtigt/",
+      "pathname": "/case/data-skal-dimensionere-nyt-raadhus-rigtigt/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/gribskov-municipality/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/deutches-museum-nordschleswig/",
+      "pathname": "/case/deutches-museum-nordschleswig/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/deutsches-museum-nordschleswig/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/erzdioezese-freiburg/",
+      "pathname": "/case/erzdioezese-freiburg/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/archdiocese-of-freiburg/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/evangelische-kirche-in-hessen-und-nassau/",
+      "pathname": "/case/evangelische-kirche-in-hessen-und-nassau/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/evangelische-kirche-in-hessen-und-nassau/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/faaborg-museum/",
+      "pathname": "/case/faaborg-museum/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/faaborg-museum/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/gribskov-kommune/",
+      "pathname": "/case/gribskov-kommune/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/gribskov-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/hj-energi/",
+      "pathname": "/case/hj-energi/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/hj-energi/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/holbaek-kommune/",
+      "pathname": "/case/holbaek-kommune/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/holbaek-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/kommune-norddjurs/",
+      "pathname": "/case/kommune-norddjurs/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/norddjurs-municipality/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/kommune-varde/",
+      "pathname": "/case/kommune-varde/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/varde-municipality/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/rudersdal-museer/",
+      "pathname": "/case/rudersdal-museer/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/rudersdal-museer/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/skade-teknik/",
+      "pathname": "/case/skade-teknik/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/skade-teknik/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/solroed-kommune/",
+      "pathname": "/case/solroed-kommune/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/solroed-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/sweco-6/",
+      "pathname": "/case/sweco-6/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/sweco/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/vejen-kommune/",
+      "pathname": "/case/vejen-kommune/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/vejen-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/case/zealand-erhvervsakademi/",
+      "pathname": "/case/zealand-erhvervsakademi/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/zealand-erhvervsakademi/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.de/category/raumklima/",
+      "pathname": "/category/raumklima/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/module/raumklima/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/danke-fuer-ihre-anfrage/",
+      "pathname": "/danke-fuer-ihre-anfrage/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/kontakt/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/demo-buchen/",
+      "pathname": "/demo-buchen/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/kontakt/demo-buchen/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/epbd/",
+      "pathname": "/epbd/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/wissenszentrum/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/hybride-arbeitsplatz/",
+      "pathname": "/hybride-arbeitsplatz/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/module/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/impressum/",
+      "pathname": "/impressum/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/rechtliches/impressum/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/innenraumklima-in-kirchen/",
+      "pathname": "/innenraumklima-in-kirchen/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/branchen/kirchen/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/jobs-bei-iot/",
+      "pathname": "/jobs-bei-iot/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/ueber-uns/karriere/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/klassenzimmern-und-einrichtungen/",
+      "pathname": "/klassenzimmern-und-einrichtungen/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/branchen/schulen/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/kontakt/",
+      "pathname": "/kontakt/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/kontakt/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/kostenoptimierung/",
+      "pathname": "/kostenoptimierung/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/roi/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/partner/",
+      "pathname": "/partner/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/ueber-uns/partner/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/privacy-policy/",
+      "pathname": "/privacy-policy/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/rechtliches/datenschutz/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/produktblaetter/",
+      "pathname": "/produktblaetter/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/sensoren/produktdatenblaetter/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/projekte/",
+      "pathname": "/projekte/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/referenzen/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/raumklima-in-bildungseinrichtungen/",
+      "pathname": "/raumklima-in-bildungseinrichtungen/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/branchen/schulen/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/raumklima-in-bueros/",
+      "pathname": "/raumklima-in-bueros/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/branchen/bueros/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/raumklima-messgerat/",
+      "pathname": "/raumklima-messgerat/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/sensoren/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/raumklima/",
+      "pathname": "/raumklima/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/module/raumklima/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/sitemap/",
+      "pathname": "/sitemap/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/space-management-in-besprechungsraeumen/",
+      "pathname": "/space-management-in-besprechungsraeumen/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/module/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/space-management-software/",
+      "pathname": "/space-management-software/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/module/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/space-management-und-buchungssystem/",
+      "pathname": "/space-management-und-buchungssystem/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/module/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/space-management/",
+      "pathname": "/space-management/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/module/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/uber-uns/",
+      "pathname": "/uber-uns/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/ueber-uns/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/vdi-6022-hygienestandard-was-betreiber-wissen-muessen-und-wie-digitalisierung-hilft/",
+      "pathname": "/vdi-6022-hygienestandard-was-betreiber-wissen-muessen-und-wie-digitalisierung-hilft/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/wissenszentrum/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.de/wissenszentrum/",
+      "pathname": "/wissenszentrum/",
+      "host": "iot-fabrikken.de",
+      "target": "https://iot-fabrikken.com/de/wissenszentrum/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/",
+      "pathname": "/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/allmanna-villkor/",
+      "pathname": "/allmanna-villkor/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/juridik/villkor/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/arbetsstation/",
+      "pathname": "/arbetsstation/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/moduler/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/boka-en-demo/",
+      "pathname": "/boka-en-demo/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/kontakt/boka-demo/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/cafm/",
+      "pathname": "/cafm/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/branscher/fm-companies/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/boligselskabet-sjaelland/",
+      "pathname": "/case/boligselskabet-sjaelland/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/boligselskabet-sjaelland/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/dansk-industri/",
+      "pathname": "/case/dansk-industri/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/dansk-industri/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/data-skal-dimensionere-nyt-raadhus-rigtigt/",
+      "pathname": "/case/data-skal-dimensionere-nyt-raadhus-rigtigt/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/gribskov-municipality/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/deutches-museum-nordschleswig/",
+      "pathname": "/case/deutches-museum-nordschleswig/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/deutsches-museum-nordschleswig/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/faaborg-museum/",
+      "pathname": "/case/faaborg-museum/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/faaborg-museum/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/gribskov-kommune/",
+      "pathname": "/case/gribskov-kommune/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/gribskov-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/hj-energi/",
+      "pathname": "/case/hj-energi/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/hj-energi/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/holbaek-kommune/",
+      "pathname": "/case/holbaek-kommune/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/holbaek-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/norddjurs-kommun/",
+      "pathname": "/case/norddjurs-kommun/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/norddjurs-municipality/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/rudersdal-museer/",
+      "pathname": "/case/rudersdal-museer/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/rudersdal-museer/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/skade-teknik/",
+      "pathname": "/case/skade-teknik/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/skade-teknik/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/solroed-kommune/",
+      "pathname": "/case/solroed-kommune/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/solroed-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/sweco-6/",
+      "pathname": "/case/sweco-6/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/sweco/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/varde-kommun/",
+      "pathname": "/case/varde-kommun/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/varde-municipality/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/vejen-kommune/",
+      "pathname": "/case/vejen-kommune/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/vejen-kommune/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/case/zealand-erhvervsakademi/",
+      "pathname": "/case/zealand-erhvervsakademi/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/zealand-erhvervsakademi/",
+      "note": "case singular CPT"
+    },
+    {
+      "url": "https://iot-fabrikken.se/epbd/",
+      "pathname": "/epbd/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/artiklar/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/faa-en-offert/",
+      "pathname": "/faa-en-offert/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/faa-en-offert/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/hybrida-arbetsplatsen/",
+      "pathname": "/hybrida-arbetsplatsen/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/moduler/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/inomhusklimat-i-kyrkor/",
+      "pathname": "/inomhusklimat-i-kyrkor/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/branscher/kyrkor/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/inomhusklimat-pa-kontor/",
+      "pathname": "/inomhusklimat-pa-kontor/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/branscher/kontor/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/inomhusklimat-pa-utbildningsinstitutioner/",
+      "pathname": "/inomhusklimat-pa-utbildningsinstitutioner/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/branscher/skolor/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/inomhusklimat/",
+      "pathname": "/inomhusklimat/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/moduler/inomhusklimat/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/inomhusklimatmatare/",
+      "pathname": "/inomhusklimatmatare/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/sensorer/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/jobb-hos-iot-fabrikken/",
+      "pathname": "/jobb-hos-iot-fabrikken/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/om-oss/karriar/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/klassrum-och-institutioner/",
+      "pathname": "/klassrum-och-institutioner/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/branscher/skolor/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/kontakt/",
+      "pathname": "/kontakt/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/kontakt/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/kostnadsoptimering/",
+      "pathname": "/kostnadsoptimering/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/roi/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/om-oss/",
+      "pathname": "/om-oss/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/om-oss/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/partner/",
+      "pathname": "/partner/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/om-oss/partner/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/privacy-policy/",
+      "pathname": "/privacy-policy/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/juridik/integritetspolicy/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/produktblad/",
+      "pathname": "/produktblad/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/sensorer/produktblad/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/projekt/",
+      "pathname": "/projekt/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/projekt/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/sitemap/",
+      "pathname": "/sitemap/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/space-management-i-motesrum/",
+      "pathname": "/space-management-i-motesrum/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/moduler/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/space-management-och-bokningssystem/",
+      "pathname": "/space-management-och-bokningssystem/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/moduler/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/space-management-software/",
+      "pathname": "/space-management-software/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/moduler/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/space-management/",
+      "pathname": "/space-management/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/moduler/space-management/",
+      "note": "legacyWordPressPaths"
+    },
+    {
+      "url": "https://iot-fabrikken.se/tack-for-din-forfragan/",
+      "pathname": "/tack-for-din-forfragan/",
+      "host": "iot-fabrikken.se",
+      "target": "https://iot-fabrikken.com/sv/kontakt/",
+      "note": "legacyWordPressPaths"
+    }
+  ],
+  "unmapped": []
+}

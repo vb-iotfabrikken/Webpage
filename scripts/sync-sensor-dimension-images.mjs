@@ -21,7 +21,14 @@ const mappings = [
   { source: "Touch dim.png", targets: ["touch-dimensions.webp"] },
   { source: "Motion dim.png", targets: ["motion-dimensions.webp"] },
   { source: "Mini+ PIR dim.png", targets: ["mini-plus-pir-dimensions.webp"] },
-  { source: "Open close dim.png", targets: ["open-close-dimensions.webp"] },
+  {
+    source: "Open close dim small unit.png",
+    targets: ["open-close-dimensions-compact.webp"],
+  },
+  {
+    source: "Open close dim large unit.png",
+    targets: ["open-close-dimensions-pro.webp"],
+  },
   { source: "Outdoor dim.png", targets: ["outdoor-dimensions.webp"] },
   {
     source: "Mini+_Full+ dim.png",

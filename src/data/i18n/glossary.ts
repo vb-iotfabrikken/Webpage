@@ -44,7 +44,7 @@ const en: GlossaryChromeStrings = {
   jsonLdName: "IoT Fabrikken glossary",
   cta: {
     title: "Term missing?",
-    subtitle: "If we're using a piece of jargon we haven't defined here, tell us — we'll add it.",
+    subtitle: "If we're using a piece of jargon we haven't defined here, tell us, we'll add it.",
     primary: "Contact sales",
     secondary: "Book a free demo",
   },
@@ -71,7 +71,7 @@ const da: GlossaryChromeStrings = {
   jsonLdName: "IoT Fabrikken ordliste",
   cta: {
     title: "Mangler et begreb?",
-    subtitle: "Bruger vi jargon, vi ikke har defineret her, så sig til — vi tilføjer det.",
+    subtitle: "Bruger vi jargon, vi ikke har defineret her, så sig til, vi tilføjer det.",
     primary: "Kontakt salg",
     secondary: "Book en gratis demo",
   },
@@ -98,7 +98,7 @@ const de: GlossaryChromeStrings = {
   jsonLdName: "IoT Fabrikken Glossar",
   cta: {
     title: "Begriff fehlt?",
-    subtitle: "Wenn wir Fachjargon verwenden, der hier fehlt, sagen Sie Bescheid — wir ergänzen ihn.",
+    subtitle: "Wenn wir Fachjargon verwenden, der hier fehlt, sagen Sie Bescheid, wir ergänzen ihn.",
     primary: "Vertrieb kontaktieren",
     secondary: "Kostenlose Demo buchen",
   },
@@ -125,7 +125,7 @@ const sv: GlossaryChromeStrings = {
   jsonLdName: "IoT Fabrikken ordlista",
   cta: {
     title: "Saknas ett begrepp?",
-    subtitle: "Om vi använder jargong som inte finns här, hör av er — vi lägger till det.",
+    subtitle: "Om vi använder jargong som inte finns här, hör av er, vi lägger till det.",
     primary: "Kontakta försäljning",
     secondary: "Boka en gratis demo",
   },

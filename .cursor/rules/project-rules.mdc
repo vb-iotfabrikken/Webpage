@@ -17,9 +17,10 @@ alwaysApply: true
   slug-pair mechanism in `src/data/lang.ts`.
 - Product and brand names (the RoomAlyzer lines and product names) are NOT
   translated — they stay identical across all locales, with **one approved
-  exception**: "Water detector" is **"Wasserdetektor"** in German (`de`).
-  Per-locale name overrides live in `src/data/sensorCategories.ts`
-  (`localizedSensorName`); do not add others without explicit approval.
+  exceptions** in German (`de`): "Water detector" → **"Wasserdetektor"**;
+  "Outdoor" → **"Außen Sensor"**. Per-locale name overrides live in
+  `src/data/sensorCategories.ts` (`localizedSensorName`); do not add others
+  without explicit approval.
 - When adding new content, write the English version first, then provide the
   translations (or rely on the English fallback) for the other locales.
 
@@ -34,6 +35,54 @@ English user-facing copy uses **British English** and **sentence case**:
 | **Product names** | Keep RoomAlyzer lines and catalogue names unchanged | Translate or re-case product names |
 | **Plan tiers** | Single-word tier names stay as-is: `Building`, `Portfolio`, `Enterprise` | — |
 | **URL slugs** | English slugs unchanged (`trust-center`, etc.) | Rename routes for spelling |
+
+### Localization grammar (`da`, `de`, `sv`)
+
+Non-English locales follow locale-specific grammar in addition to the product-name
+rules below. Use `localizedSensorName()` and `formatProductLabel()` in
+`src/data/sensorCategories.ts` for product display names.
+
+| Locale | Rule | Do | Don't |
+|--------|------|----|-------|
+| **German (`de`)** | Standard noun capitalization | `Sensor`, `Sensoren`, `Entscheidungen`, `Open/Close Sensor` | Lowercase nouns (`sensor`, `entscheidungen`) |
+| **German (`de`)** | Product display names | English catalogue token + capitalized suffix (`Humidity Sensor`); approved overrides (`Wasserdetektor`, `Außen Sensor`) everywhere on `/de/` | `Outdoor Sensor`, `Open/Close sensor` |
+| **Danish / Swedish (`da` / `sv`)** | Sentence case (mirror `en`) | `sensor`, `sensorer`; hyphenated compounds (`Humidity-sensoren`, `CO2-sensor`) | English Title Case (`CO2 Sensor`, `Temperature Sensor`) |
+| **Danish / Swedish (`da` / `sv`)** | Product suffixes in prose | `Humidity-sensoren`, `CO2-sensorn` | `Humidity sensoren` (space before Scandinavian suffix) |
+
+### Em dashes (`en`, `da`, `de`, `sv`)
+
+Use em dashes (—) sparingly in **all locales**. At most **one em dash per
+sentence**; at most **two per paragraph**, and only when sentences are short
+and distinct. Stacking 2–3 dashes in one sentence or paragraph reads heavy on
+the page.
+
+| Rule | Do | Don't |
+|------|----|-------|
+| **Density** | One dash per sentence where it clearly adds emphasis or contrast | Paired asides (`— X —`), list-in-dash patterns, or 2–3 dashes in one sentence |
+| **Paired asides** | Commas, parentheses, or a sentence split | `when you order — Air, Space, or Water — you get…` |
+| **Lists in dashes** | Commas or parentheses: `(baseline, measure, analyse, remediate, verify)` | `baseline — measure, analyse — verify` |
+| **Product labels** | Colon: `RoomAlyzer Air: indoor climate` | `RoomAlyzer Air — indoor climate` |
+| **Product names** | Keep RoomAlyzer line and product names unchanged | Translate or re-case product names |
+| **Translations** | Mirror the reduced dash count; use locale-appropriate punctuation | Literal dash-for-dash copy from English |
+
+**Keep a single dash when it works:** a strong aside, contrast, or label where
+commas or parentheses read worse. One dash in an SEO `<title>` separator is
+fine if it is the only dash in that field (e.g. `Articles — every guide | …`).
+
+**Prefer instead of a second dash:** commas, parentheses, colons, or splitting
+into two sentences.
+
+**Examples (English):**
+
+| Before | After |
+|--------|-------|
+| `when you order — Air, Space, or Water — you get everything` | `when you order RoomAlyzer Air, Space, or Water, you get everything` |
+| `measures — PI/TWPI, mould risk, EN 15757 — for museums` | `measures (PI/TWPI, mould risk, EN 15757) for museums` |
+| `before a battery runs flat — not after — so you can plan` | `before a battery runs flat, not after, so you can plan` |
+| `The teams that champion — and approve — space decisions` | `The teams that champion and approve space decisions` |
+
+**Out of scope:** UI/data glyphs (e.g. `"—"` as a compare-table “no value”
+marker), code comments, and JSDoc unless they render on the public site.
 
 ### Localization content rules (names, places, standards)
 

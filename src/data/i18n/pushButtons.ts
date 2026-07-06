@@ -3,9 +3,9 @@ import { defaultLang } from "../lang";
 import type { ModulePageStrings } from "./modulePageTypes";
 
 const en: ModulePageStrings = {
-  metaTitle: "Push buttons — one-tap feedback and service requests | IoT Fabrikken",
+  metaTitle: "Push buttons: one-tap feedback and service requests | IoT Fabrikken",
   metaDescription:
-    "Wireless push buttons for cleaning requests, restocking and maintenance. Route alerts instantly to service teams — no apps, no login, no delay.",
+    "Wireless push buttons for cleaning requests, restocking and maintenance. Route alerts instantly to service teams, no apps, no login, no delay.",
   breadcrumbHome: "Home",
   breadcrumbModules: "Modules",
   breadcrumbCurrent: "Push buttons",
@@ -14,11 +14,11 @@ const en: ModulePageStrings = {
   heroLead:
     "Real-time user feedback that turns problems into instant service requests",
   intro: [
-    "User feedback usually arrives too late — as a complaint, after the coffee machine has been broken all morning or the washroom has been out of paper for hours. By the time you hear about it, the damage to the experience is already done.",
+    "User feedback usually arrives too late, as a complaint, after the coffee machine has been broken all morning or the washroom has been out of paper for hours. By the time you hear about it, the damage to the experience is already done.",
   ],
   heroPrimaryCta: "Book a free demo",
   heroSecondaryCta: "Get an offer",
-  dashboardLabel: "RoomAlyzer — Push buttons",
+  dashboardLabel: "RoomAlyzer: Push buttons",
   dashboardAlt:
     "RoomAlyzer dashboard showing push-button feedback, routing rules and response history",
   challengesEyebrow: "The challenges you know",
@@ -143,9 +143,9 @@ const en: ModulePageStrings = {
 };
 
 const da: ModulePageStrings = {
-  metaTitle: "Trykknapper — feedback og serviceanmodninger med ét tryk | IoT Fabrikken",
+  metaTitle: "Trykknapper: feedback og serviceanmodninger med ét tryk | IoT Fabrikken",
   metaDescription:
-    "Trådløse trykknapper til rengøringsanmodninger, genopfyldning og vedligehold. Send alarmer direkte til serviceteams — uden apps, login eller forsinkelse.",
+    "Trådløse trykknapper til rengøringsanmodninger, genopfyldning og vedligehold. Send alarmer direkte til serviceteams, uden apps, login eller forsinkelse.",
   breadcrumbHome: "Hjem",
   breadcrumbModules: "Moduler",
   breadcrumbCurrent: "Trykknapper",
@@ -154,11 +154,11 @@ const da: ModulePageStrings = {
   heroLead:
     "Brugerfeedback i realtid, der gør problemer til øjeblikkelige serviceanmodninger",
   intro: [
-    "Brugerfeedback kommer som regel for sent — som en klage, efter kaffemaskinen har været i stykker hele morgenen, eller toilettet har været uden papir i timevis. Når I hører om det, er skaden på oplevelsen allerede sket.",
+    "Brugerfeedback kommer som regel for sent, som en klage, efter kaffemaskinen har været i stykker hele morgenen, eller toilettet har været uden papir i timevis. Når I hører om det, er skaden på oplevelsen allerede sket.",
   ],
   heroPrimaryCta: "Book en gratis demo",
   heroSecondaryCta: "Få et tilbud",
-  dashboardLabel: "RoomAlyzer — Trykknapper",
+  dashboardLabel: "RoomAlyzer: Trykknapper",
   dashboardAlt:
     "RoomAlyzer-dashboard, der viser tryknap-feedback, routingregler og svarhistorik",
   challengesEyebrow: "Udfordringerne, I kender",
@@ -283,9 +283,9 @@ const da: ModulePageStrings = {
 };
 
 const de: ModulePageStrings = {
-  metaTitle: "Drucktasten — Feedback und Serviceanfragen mit einem Tipp | IoT Fabrikken",
+  metaTitle: "Drucktasten: Feedback und Serviceanfragen mit einem Tipp | IoT Fabrikken",
   metaDescription:
-    "Drahtlose Drucktasten für Reinigungsanfragen, Nachfüllungen und Wartung. Leiten Sie Alarme sofort an Serviceteams weiter — ohne Apps, Login oder Verzögerung.",
+    "Drahtlose Drucktasten für Reinigungsanfragen, Nachfüllungen und Wartung. Leiten Sie Alarme sofort an Serviceteams weiter, ohne Apps, Login oder Verzögerung.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
   breadcrumbCurrent: "Drucktasten",
@@ -298,7 +298,7 @@ const de: ModulePageStrings = {
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer — Drucktasten",
+  dashboardLabel: "RoomAlyzer: Drucktasten",
   dashboardAlt:
     "RoomAlyzer-Dashboard mit Drucktasten-Feedback, Routing-Regeln und Antwortverlauf",
   challengesEyebrow: "Die Herausforderungen, die Sie kennen",
@@ -405,7 +405,7 @@ const de: ModulePageStrings = {
     },
     {
       q: "Wie werden Alarme geroutet?",
-      a: "Jede Taste hat eine Rolle — Reinigung, Nachfüllung, Wartung, Feedback usw. RoomAlyzer leitet Events per Webhooks an das richtige Team, die E-Mail-Gruppe, die Mobile App oder das Ticketsystem — basierend auf Tastenrolle und Standort.",
+      a: "Jede Taste hat eine Rolle (Reinigung, Nachfüllung, Wartung, Feedback usw.). RoomAlyzer leitet Events per Webhooks an das richtige Team, die E-Mail-Gruppe, die Mobile App oder das Ticketsystem, basierend auf Tastenrolle und Standort.",
     },
     {
       q: "Ist die Lösung DSGVO-konform?",
@@ -423,9 +423,9 @@ const de: ModulePageStrings = {
 };
 
 const sv: ModulePageStrings = {
-  metaTitle: "Tryckknappar — feedback och serviceförfrågningar med ett tryck | IoT Fabrikken",
+  metaTitle: "Tryckknappar: feedback och serviceförfrågningar med ett tryck | IoT Fabrikken",
   metaDescription:
-    "Trådlösa tryckknappar för städförfrågningar, påfyllning och underhåll. Dirigera larm direkt till serviceteam — utan appar, inloggning eller fördröjning.",
+    "Trådlösa tryckknappar för städförfrågningar, påfyllning och underhåll. Dirigera larm direkt till serviceteam, utan appar, inloggning eller fördröjning.",
   breadcrumbHome: "Hem",
   breadcrumbModules: "Moduler",
   breadcrumbCurrent: "Tryckknappar",
@@ -438,7 +438,7 @@ const sv: ModulePageStrings = {
   ],
   heroPrimaryCta: "Boka en gratis demo",
   heroSecondaryCta: "Få en offert",
-  dashboardLabel: "RoomAlyzer — Tryckknappar",
+  dashboardLabel: "RoomAlyzer: Tryckknappar",
   dashboardAlt:
     "RoomAlyzer-dashboard som visar tryckknappsfeedback, routingregler och svarshistorik",
   challengesEyebrow: "Utmaningarna ni känner igen",

@@ -8,11 +8,11 @@
  * ## Adding a new product image
  *
  * **Single photo** (most sensors): one entry with `src` only. Preview uses the
- * standard full-square frame (`p-6 sm:p-8`, `object-contain`) — see Cloud connector.
+ * standard full-square frame (`p-6 sm:p-8`, `object-contain`); see Cloud connector.
  *
  * **Two-photo kit** (e.g. Range Extender and Bracket): set `src` to the top image
  * and `extraSrc: [`${BASE}/other-part.webp`]` for the bottom image. Preview stacks
- * them vertically with the same outer frame and kit zoom — see
+ * them vertically with the same outer frame and kit zoom; see
  * `SensorProductPreview.astro`; do not merge into one PNG.
  *
  * **Detail gallery** (sensor pages only): side views live in
@@ -21,7 +21,7 @@
  * (sourced from product sheets). In-use photos live in
  * `Sensor Product Pictures/In use/` → sync via `npm run sync-sensor-in-use`
  * into `{slug}-in-use.webp` (and optional `{slug}-in-use-2.webp`). Register
- * `inUseSrc` / `inUseAlt` on the entry — see `SensorProductGallery.astro`.
+ * `inUseSrc` / `inUseAlt` on the entry; see `SensorProductGallery.astro`.
  */
 
 const BASE = "/images/sensors";
@@ -48,11 +48,11 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
     src: `${BASE}/co2.webp`,
     inUseSrc: [`${BASE}/co2-in-use.webp`, `${BASE}/co2-in-use-2.webp`],
     inUseAlt: [
-      "RoomAlyzer Air CO2 sensor in a classroom — wireless air quality monitoring",
-      "RoomAlyzer Air CO2 sensor in a meeting room — CO₂, temperature and humidity monitoring",
+      "RoomAlyzer Air CO2 sensor in a classroom, wireless air quality monitoring",
+      "RoomAlyzer Air CO2 sensor in a meeting room: CO₂, temperature and humidity monitoring",
     ],
     imageAlt:
-      "RoomAlyzer Air CO2 sensor — wireless battery-powered indoor climate monitor",
+      "RoomAlyzer Air CO2 sensor, wireless battery-powered indoor climate monitor",
     width: 1080,
     height: 1080,
   },
@@ -60,11 +60,11 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
     src: `${BASE}/full-plus.webp`,
     inUseSrc: [`${BASE}/full-plus-in-use.webp`, `${BASE}/full-plus-in-use-2.webp`],
     inUseAlt: [
-      "RoomAlyzer Air Full+ sensor on a brick pillar in a modern office — wireless indoor climate monitoring",
+      "RoomAlyzer Air Full+ sensor on a brick pillar in a modern office, wireless indoor climate monitoring",
       "RoomAlyzer Air Full+ sensor installed on a wall in a commercial interior",
     ],
     imageAlt:
-      "RoomAlyzer Air Full+ sensor — all-in-one wireless indoor climate monitor",
+      "RoomAlyzer Air Full+ sensor, all-in-one wireless indoor climate monitor",
     width: 1080,
     height: 1080,
   },
@@ -72,11 +72,11 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
     src: `${BASE}/humidity.webp`,
     inUseSrc: [`${BASE}/humidity-in-use.webp`, `${BASE}/humidity-in-use-2.webp`],
     inUseAlt: [
-      "RoomAlyzer Air Humidity sensor discreetly mounted in a heritage interior — temperature and humidity monitoring",
-      "RoomAlyzer Air Humidity sensor in a museum or archive — wireless climate monitoring",
+      "RoomAlyzer Air Humidity sensor discreetly mounted in a heritage interior, temperature and humidity monitoring",
+      "RoomAlyzer Air Humidity sensor in a museum or archive, wireless climate monitoring",
     ],
     imageAlt:
-      "RoomAlyzer Air Humidity sensor — wireless temperature and humidity monitor",
+      "RoomAlyzer Air Humidity sensor, wireless temperature and humidity monitor",
     width: 1080,
     height: 1080,
   },
@@ -84,12 +84,12 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
     src: `${BASE}/mini-plus.webp`,
     inUseSrc: [`${BASE}/mini-plus-in-use.webp`, `${BASE}/mini-plus-in-use-2.webp`],
     inUseAlt: [
-      "RoomAlyzer Air Mini+ sensor mounted on a stone wall in a church — discreet wireless climate monitoring",
-      "RoomAlyzer Air Mini+ sensor installed on a wall in a commercial interior — compact wireless climate monitoring",
+      "RoomAlyzer Air Mini+ sensor mounted on a stone wall in a church, discreet wireless climate monitoring",
+      "RoomAlyzer Air Mini+ sensor installed on a wall in a commercial interior, compact wireless climate monitoring",
     ],
     inUseObjectPosition: ["72% 42%", "center"],
     imageAlt:
-      "RoomAlyzer Air Mini+ NB-IoT sensor — wireless temperature and humidity monitor, 124 × 60 × 26 mm",
+      "RoomAlyzer Air Mini+ NB-IoT sensor, wireless temperature and humidity monitor, 124 × 60 × 26 mm",
     width: 1080,
     height: 1080,
   },
@@ -97,12 +97,12 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
     src: `${BASE}/mini-plus-pir.webp`,
     inUseSrc: [`${BASE}/mini-plus-pir-in-use.webp`, `${BASE}/mini-plus-pir-in-use-2.webp`],
     inUseAlt: [
-      "RoomAlyzer Air Mini+ PIR sensor mounted on a wall in a cafe — climate and occupancy monitoring",
-      "RoomAlyzer Air Mini+ PIR sensor and meeting-room display — climate and occupancy monitoring",
+      "RoomAlyzer Air Mini+ PIR sensor mounted on a wall in a cafe, climate and occupancy monitoring",
+      "RoomAlyzer Air Mini+ PIR sensor and meeting-room display, climate and occupancy monitoring",
     ],
     inUseObjectPosition: ["center top", "55% center"],
     imageAlt:
-      "RoomAlyzer Air Mini+ PIR sensor — compact climate monitor with occupancy sensing",
+      "RoomAlyzer Air Mini+ PIR sensor, compact climate monitor with occupancy sensing",
     width: 1080,
     height: 1080,
   },
@@ -110,12 +110,12 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
     src: `${BASE}/outdoor.webp`,
     inUseSrc: [`${BASE}/outdoor-in-use.webp`, `${BASE}/outdoor-in-use-2.webp`],
     inUseAlt: [
-      "RoomAlyzer Air Outdoor sensor mounted on an exterior stone wall with cable probe — outdoor reference for indoor climate baselines",
-      "RoomAlyzer Air Outdoor sensor on an exterior wall — outdoor temperature and humidity reference",
+      "RoomAlyzer Air Outdoor sensor mounted on an exterior stone wall with cable probe, outdoor reference for indoor climate baselines",
+      "RoomAlyzer Air Outdoor sensor on an exterior wall, outdoor temperature and humidity reference",
     ],
     inUseObjectPosition: ["58% 48%", "center"],
     imageAlt:
-      "RoomAlyzer Air Outdoor sensor — wireless outdoor reference unit for indoor climate baselines",
+      "RoomAlyzer Air Outdoor sensor, wireless outdoor reference unit for indoor climate baselines",
     width: 1080,
     height: 1080,
   },
@@ -123,11 +123,11 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
     src: `${BASE}/temperature.webp`,
     inUseSrc: [`${BASE}/temperature-in-use.webp`, `${BASE}/temperature-in-use-2.webp`],
     inUseAlt: [
-      "RoomAlyzer Air Temperature sensor in a cold storage environment — wireless temperature monitoring",
-      "RoomAlyzer Air Temperature sensor mounted in a technical room — precise temperature tracking",
+      "RoomAlyzer Air Temperature sensor in a cold storage environment, wireless temperature monitoring",
+      "RoomAlyzer Air Temperature sensor mounted in a technical room, precise temperature tracking",
     ],
     imageAlt:
-      "RoomAlyzer Air Temperature sensor — wireless battery-powered temperature monitor",
+      "RoomAlyzer Air Temperature sensor, wireless battery-powered temperature monitor",
     width: 1080,
     height: 1080,
   },
@@ -135,11 +135,11 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
     src: `${BASE}/desk.webp`,
     inUseSrc: [`${BASE}/desk-in-use.webp`, `${BASE}/desk-in-use-2.webp`],
     inUseAlt: [
-      "RoomAlyzer Space Desk sensor under a desk in a flexible office — wireless occupancy monitoring",
-      "RoomAlyzer Space Desk sensor in a hot-desking workspace — desk utilisation tracking",
+      "RoomAlyzer Space Desk sensor under a desk in a flexible office, wireless occupancy monitoring",
+      "RoomAlyzer Space Desk sensor in a hot-desking workspace, desk utilisation tracking",
     ],
     imageAlt:
-      "RoomAlyzer Space Desk sensor — under-desk wireless occupancy monitor for hot-desking",
+      "RoomAlyzer Space Desk sensor, under-desk wireless occupancy monitor for hot-desking",
     width: 1080,
     height: 1080,
   },
@@ -147,12 +147,12 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
     src: `${BASE}/motion.webp`,
     inUseSrc: [`${BASE}/motion-in-use.webp`, `${BASE}/motion-in-use-2.webp`],
     inUseAlt: [
-      "RoomAlyzer Space Motion sensor in an office ceiling — wireless PIR presence monitoring",
-      "RoomAlyzer Space Motion sensor mounted on a ceiling — wireless PIR presence monitoring",
+      "RoomAlyzer Space Motion sensor in an office ceiling, wireless PIR presence monitoring",
+      "RoomAlyzer Space Motion sensor mounted on a ceiling, wireless PIR presence monitoring",
     ],
     inUseObjectPosition: ["center", "center top"],
     imageAlt:
-      "RoomAlyzer Space Motion sensor — wireless PIR presence monitor without cameras",
+      "RoomAlyzer Space Motion sensor, wireless PIR presence monitor without cameras",
     width: 1080,
     height: 1080,
   },
@@ -160,11 +160,11 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
     src: `${BASE}/open-close.webp`,
     inUseSrc: [`${BASE}/open-close-in-use.webp`, `${BASE}/open-close-in-use-2.webp`],
     inUseAlt: [
-      "RoomAlyzer Space Open/Close sensor on a cabinet door — magnetic contact monitoring",
-      "RoomAlyzer Space Open/Close sensor on a window — open and close detection",
+      "RoomAlyzer Space Open/Close sensor on a cabinet door, magnetic contact monitoring",
+      "RoomAlyzer Space Open/Close sensor on a window, open and close detection",
     ],
     imageAlt:
-      "RoomAlyzer Space Open/Close sensor — wireless magnetic contact sensor for doors and windows",
+      "RoomAlyzer Space Open/Close sensor, wireless magnetic contact sensor for doors and windows",
     width: 1080,
     height: 1080,
   },
@@ -172,11 +172,11 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
     src: `${BASE}/touch.webp`,
     inUseSrc: [`${BASE}/touch-in-use.webp`, `${BASE}/touch-in-use-2.webp`],
     inUseAlt: [
-      "RoomAlyzer Space Touch sensor on a wall in a washroom — one-tap service requests",
-      "RoomAlyzer Space Touch sensor in a canteen — wireless feedback and service calls",
+      "RoomAlyzer Space Touch sensor on a wall in a washroom, one-tap service requests",
+      "RoomAlyzer Space Touch sensor in a canteen, wireless feedback and service calls",
     ],
     imageAlt:
-      "RoomAlyzer Space Touch sensor — wireless one-tap button for service requests and feedback",
+      "RoomAlyzer Space Touch sensor, wireless one-tap button for service requests and feedback",
     width: 1080,
     height: 1080,
   },
@@ -184,11 +184,11 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
     src: `${BASE}/water-detector.webp`,
     inUseSrc: [`${BASE}/water-detector-in-use.webp`, `${BASE}/water-detector-in-use-2.webp`],
     inUseAlt: [
-      "RoomAlyzer Water detector under a sink — spot leak detection with wireless alerts",
-      "RoomAlyzer Water detector in a technical room — water damage prevention",
+      "RoomAlyzer Water detector under a sink, spot leak detection with wireless alerts",
+      "RoomAlyzer Water detector in a technical room, water damage prevention",
     ],
     imageAlt:
-      "RoomAlyzer Water detector — wireless spot leak sensor for instant water alarms",
+      "RoomAlyzer Water detector, wireless spot leak sensor for instant water alarms",
     width: 1080,
     height: 1080,
   },
@@ -196,12 +196,12 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
     src: `${BASE}/water-rope.webp`,
     inUseSrc: [`${BASE}/water-rope-in-use.webp`, `${BASE}/water-rope-in-use-2.webp`],
     inUseAlt: [
-      "RoomAlyzer Water rope and Cloud connector in a utility cabinet — line leak monitoring with wireless uplink",
-      "RoomAlyzer Water rope in a server room — continuous zone water monitoring",
+      "RoomAlyzer Water rope and Cloud connector in a utility cabinet, line leak monitoring with wireless uplink",
+      "RoomAlyzer Water rope in a server room, continuous zone water monitoring",
     ],
     inUseObjectPosition: ["center top", "center"],
     imageAlt:
-      "RoomAlyzer Water rope — wireless sensing cable for line leak detection along pipes and floors",
+      "RoomAlyzer Water rope, wireless sensing cable for line leak detection along pipes and floors",
     width: 1080,
     height: 1080,
   },
@@ -209,12 +209,12 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
     src: `${BASE}/cloud-connector.webp`,
     inUseSrc: [`${BASE}/cloud-connector-in-use.webp`, `${BASE}/cloud-connector-in-use-2.webp`],
     inUseAlt: [
-      "Washroom touch sensor for paper, soap and cleaning requests — connected via RoomAlyzer Cloud connector",
-      "RoomAlyzer Cloud connector mounted on a ceiling — cellular gateway for wireless sensors",
+      "Washroom touch sensor for paper, soap and cleaning requests, connected via RoomAlyzer Cloud connector",
+      "RoomAlyzer Cloud connector mounted on a ceiling, cellular gateway for wireless sensors",
     ],
     inUseObjectPosition: ["center", "center top"],
     imageAlt:
-      "RoomAlyzer Cloud connector — cellular gateway connecting wireless sensors to the platform",
+      "RoomAlyzer Cloud connector, cellular gateway connecting wireless sensors to the platform",
     width: 1080,
     height: 1080,
   },
@@ -226,11 +226,11 @@ export const sensorProductImages: Record<string, SensorProductImage> = {
       `${BASE}/range-extender-and-bracket-in-use-2.webp`,
     ],
     inUseAlt: [
-      "RoomAlyzer range extender under a desk — signal boost for wireless desk sensors",
-      "RoomAlyzer mounting bracket with sensor in a cold storage area — secure sensor mounting",
+      "RoomAlyzer range extender under a desk, signal boost for wireless desk sensors",
+      "RoomAlyzer mounting bracket with sensor in a cold storage area, secure sensor mounting",
     ],
     imageAlt:
-      "RoomAlyzer range extender and mounting bracket — wireless coverage extension and sensor mounting kit",
+      "RoomAlyzer range extender and mounting bracket, wireless coverage extension and sensor mounting kit",
     width: 1080,
     height: 1080,
   },

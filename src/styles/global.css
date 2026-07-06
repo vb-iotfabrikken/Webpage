@@ -163,7 +163,7 @@
   /* Compact page heroes on short laptop viewports (height-limited, not mobile). */
   @media (max-height: 900px) and (min-width: 768px) {
     [data-page-hero] h1 {
-      font-size: clamp(2rem, 1.25rem + 2vw, 2.75rem);
+      font-size: clamp(1.75rem, 1rem + 1.75vw, 2.25rem);
     }
 
     [data-page-hero][data-compact-top] .hero-lead {

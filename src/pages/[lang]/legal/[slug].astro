@@ -3,7 +3,7 @@ import PlaceholderPage from "../../../components/PlaceholderPage.astro";
 import { getLegalHub } from "../../../data/hubs/legal";
 import { getLegal } from "../../../data/i18n/legal";
 import { getAbout } from "../../../data/i18n/about";
-import { locales, langPath, type Lang } from "../../../data/lang";
+import { locales, langPath, localizeSegment, type Lang } from "../../../data/lang";
 import type { HubLeaf } from "../../../data/hubs/types";
 
 export function getStaticPaths() {
@@ -12,7 +12,7 @@ export function getStaticPaths() {
     getLegalHub(l.code)
       .leaves.filter((leaf) => leaf.slug !== "privacy" && leaf.slug !== "impressum")
       .map((leaf) => ({
-        params: { lang: l.code, slug: leaf.slug },
+        params: { lang: l.code, slug: localizeSegment(leaf.slug, l.code) },
         props: { leaf },
       })),
   );

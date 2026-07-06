@@ -4,12 +4,12 @@ import PlaceholderPage from "../../../components/PlaceholderPage.astro";
 import { getFaqHub } from "../../../data/hubs/faq";
 import { getFaqContent } from "../../../data/faqContent";
 import { getLegal } from "../../../data/i18n/legal";
-import { locales, langPath, type Lang } from "../../../data/lang";
+import { locales, langPath, localizeSegment, type Lang } from "../../../data/lang";
 
 export function getStaticPaths() {
   return locales.flatMap((l) =>
     getFaqHub(l.code).leaves.map((leaf) => ({
-      params: { lang: l.code, slug: leaf.slug },
+      params: { lang: l.code, slug: localizeSegment(leaf.slug, l.code) },
       props: { leaf },
     })),
   );

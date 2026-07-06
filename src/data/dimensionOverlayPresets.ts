@@ -9,6 +9,8 @@ export type DimensionAxisLabelSlot = {
   axis: DimensionAxis;
   x: number;
   y: number;
+  /** Nudge in viewBox units (negative = up). */
+  dy?: number;
   textAnchor?: "start" | "middle" | "end";
   dominantBaseline?: "middle" | "hanging" | "auto";
 };
@@ -17,6 +19,8 @@ export type DimensionStaticLabelSlot = {
   text: string;
   x: number;
   y: number;
+  /** Nudge in viewBox units (negative = up). */
+  dy?: number;
   textAnchor?: "start" | "middle" | "end";
   dominantBaseline?: "middle" | "hanging" | "auto";
 };
@@ -28,11 +32,25 @@ export type DimensionOverlayPreset = {
 };
 
 export const dimensionOverlayPresets = {
-  /** CO2, Cloud connector, Outdoor, Open/Close. */
+  /** CO2, Cloud connector, Outdoor. */
   bracketSideStandard: {
     labels: [
       { axis: "w", x: 50, y: 65, textAnchor: "middle", dominantBaseline: "middle" },
       { axis: "h", x: 73, y: 36, textAnchor: "middle", dominantBaseline: "middle" },
+    ],
+  },
+  /** Open/Close — small unit. */
+  bracketSideOpenCloseSmall: {
+    labels: [
+      { axis: "w", x: 49.95, y: 63.01, dy: -0.7, textAnchor: "middle", dominantBaseline: "middle" },
+      { axis: "h", x: 61.8, y: 42.87, dy: -0.55, textAnchor: "middle", dominantBaseline: "middle" },
+    ],
+  },
+  /** Open/Close — large unit. */
+  bracketSideOpenCloseLarge: {
+    labels: [
+      { axis: "w", x: 49.95, y: 63.01, dy: -0.7, textAnchor: "middle", dominantBaseline: "middle" },
+      { axis: "h", x: 61.8, y: 38.98, dy: -0.55, textAnchor: "middle", dominantBaseline: "middle" },
     ],
   },
   /** Water detector / Water rope — Compact (IP30). */

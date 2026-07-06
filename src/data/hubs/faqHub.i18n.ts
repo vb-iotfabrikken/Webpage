@@ -19,10 +19,10 @@ export const faqHubI18n: Partial<Record<Lang, FaqHubOverlay>> = {
     title: "Ofte stillede spørgsmål.",
     titleAccent: "Klare svar uden marketingtåge.",
     eyebrow: "FAQ",
-    lead: "Gennemse efter emne — eller brug søgningen. Hvert svar er kort, konkret og linket til den relevante del af produktet.",
+    lead: "Gennemse efter emne, eller brug søgningen. Hvert svar er kort, konkret og linket til den relevante del af produktet.",
     leaves: {
       platform: {
-        title: "Platform FAQ.",
+        title: "Platform-FAQ.",
         titleAccent: "Sådan fungerer RoomAlyzer.",
         lead: "Arkitektur, dashboards, opdateringer, oppetid og det, folk spørger om, før de tilmelder sig.",
       },
@@ -37,7 +37,7 @@ export const faqHubI18n: Partial<Record<Lang, FaqHubOverlay>> = {
         lead: "Standarder, målefrekvens, sensorplacering og rapportering til museer, arkiver og kirker.",
       },
       "space-management": {
-        title: "Space management FAQ.",
+        title: "Space-management-FAQ.",
         titleAccent: "Udnyttelse, privatliv, nøjagtighed.",
         lead: "Hvad vi tæller, hvad vi ikke gør, og hvordan dataene overholder GDPR og overenskomster.",
       },
@@ -54,7 +54,7 @@ export const faqHubI18n: Partial<Record<Lang, FaqHubOverlay>> = {
       sensors: {
         title: "Sensorer FAQ.",
         titleAccent: "Hardwarespørgsmål, besvaret.",
-        lead: "Nøjagtighed, kalibrering, batterilevetid, placering og compliance — de spørgsmål, vi får mest.",
+        lead: "Nøjagtighed, kalibrering, batterilevetid, placering og compliance, de spørgsmål, vi får mest.",
       },
       integrations: {
         title: "Integrationer FAQ.",
@@ -63,7 +63,7 @@ export const faqHubI18n: Partial<Record<Lang, FaqHubOverlay>> = {
       },
       pricing: {
         title: "Priser FAQ.",
-        titleAccent: "Hvad I betaler for — og hvad I ikke gør.",
+        titleAccent: "Hvad I betaler for, og hvad I ikke gør.",
         lead: "Licensmodel, kontraktvilkår, opsigelse og den typiske faktureringsopsætning for offentlige kunder.",
       },
       "security-privacy": {
@@ -87,7 +87,7 @@ export const faqHubI18n: Partial<Record<Lang, FaqHubOverlay>> = {
     title: "Häufig gestellte Fragen.",
     titleAccent: "Klare Antworten, kein Marketingnebel.",
     eyebrow: "FAQ",
-    lead: "Nach Thema stöbern — oder die Suche nutzen. Jede Antwort ist kurz, konkret und mit dem passenden Produktbereich verknüpft.",
+    lead: "Nach Thema stöbern, oder die Suche nutzen. Jede Antwort ist kurz, konkret und mit dem passenden Produktbereich verknüpft.",
     leaves: {
       platform: {
         title: "Plattform-FAQ.",
@@ -107,7 +107,7 @@ export const faqHubI18n: Partial<Record<Lang, FaqHubOverlay>> = {
       "space-management": {
         title: "Space-Management-FAQ.",
         titleAccent: "Auslastung, Datenschutz, Genauigkeit.",
-        lead: "Was wir zählen, was nicht — und wie die Daten GDPR und Betriebsvereinbarungen respektieren.",
+        lead: "Was wir zählen, was nicht, und wie die Daten GDPR und Betriebsvereinbarungen respektieren.",
       },
       "water-detection": {
         title: "Wassererkennung-FAQ.",
@@ -122,7 +122,7 @@ export const faqHubI18n: Partial<Record<Lang, FaqHubOverlay>> = {
       sensors: {
         title: "Sensoren-FAQ.",
         titleAccent: "Hardwarefragen, beantwortet.",
-        lead: "Genauigkeit, Kalibrierung, Batterielaufzeit, Platzierung und Compliance — die häufigsten Fragen.",
+        lead: "Genauigkeit, Kalibrierung, Batterielaufzeit, Platzierung und Compliance, die häufigsten Fragen.",
       },
       integrations: {
         title: "Integrationen-FAQ.",
@@ -131,7 +131,7 @@ export const faqHubI18n: Partial<Record<Lang, FaqHubOverlay>> = {
       },
       pricing: {
         title: "Preise-FAQ.",
-        titleAccent: "Wofür Sie zahlen — und wofür nicht.",
+        titleAccent: "Wofür Sie zahlen, und wofür nicht.",
         lead: "Lizenzmodell, Vertragslaufzeiten, Kündigung und typische Rechnungsstellung für den öffentlichen Sektor.",
       },
       "security-privacy": {
@@ -155,7 +155,7 @@ export const faqHubI18n: Partial<Record<Lang, FaqHubOverlay>> = {
     title: "Vanliga frågor.",
     titleAccent: "Raka svar utan marknadsfog.",
     eyebrow: "FAQ",
-    lead: "Bläddra efter ämne — eller använd sökningen. Varje svar är kort, konkret och länkat till rätt del av produkten.",
+    lead: "Bläddra efter ämne, eller använd sökningen. Varje svar är kort, konkret och länkat till rätt del av produkten.",
     leaves: {
       platform: {
         title: "Plattforms-FAQ.",
@@ -190,7 +190,7 @@ export const faqHubI18n: Partial<Record<Lang, FaqHubOverlay>> = {
       sensors: {
         title: "Sensorer-FAQ.",
         titleAccent: "Hårdvarufrågor, besvarade.",
-        lead: "Noggrannhet, kalibrering, batteritid, placering och compliance — de frågor vi får oftast.",
+        lead: "Noggrannhet, kalibrering, batteritid, placering och compliance, de frågor vi får oftast.",
       },
       integrations: {
         title: "Integrationer-FAQ.",
@@ -199,7 +199,7 @@ export const faqHubI18n: Partial<Record<Lang, FaqHubOverlay>> = {
       },
       pricing: {
         title: "Priser-FAQ.",
-        titleAccent: "Vad ni betalar för — och vad ni inte gör.",
+        titleAccent: "Vad ni betalar för, och vad ni inte gör.",
         lead: "Licensmodell, avtalsvillkor, uppsägning och typisk fakturering för offentliga kunder.",
       },
       "security-privacy": {

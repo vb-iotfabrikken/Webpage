@@ -11,6 +11,13 @@ export const spaceManagementFeatureImages: Record<
 
 export const spaceManagementDashboardSrc = "/images/modules/space-management-dashboard.webp";
 
+/** Editorial photo in the hero split visual. */
+export const spaceManagementHeroHand = {
+  src: "/images/modules/space-management-hero-hand.webp",
+  width: 1213,
+  height: 1293,
+} as const;
+
 /** Small editorial photo beside the capabilities section intro. */
 export const spaceManagementCapabilitiesContext = {
   src: "/images/modules/space-management-capabilities-context.webp",

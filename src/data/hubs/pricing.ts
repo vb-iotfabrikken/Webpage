@@ -5,7 +5,7 @@ export const pricingHub: Hub = {
   title: "Pricing you can plan with.",
   titleAccent: "No per-sensor licence fees.",
   eyebrow: "Pricing",
-  lead: "A simple, predictable subscription that scales with your building — not with every new device you add.",
+  lead: "A simple, predictable subscription that scales with your building, not with every new device you add.",
   leaves: [
     {
       slug: "plans",

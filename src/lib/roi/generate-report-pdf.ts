@@ -610,7 +610,7 @@ function drawEsgBadge(
     co2Kg = deskCo2SavingsKg(reducible);
     headline = `Right-sizing by ${formatNumber(reducible)} desks frees up roughly ${formatCo2(co2Kg)} per year.`;
     body =
-      "Less heated, cooled, and lit floor space directly reduces your operational carbon footprint, supporting your corporate ESG initiatives — without touching headcount.";
+      "Less heated, cooled, and lit floor space directly reduces your operational carbon footprint, supporting your corporate ESG initiatives, without touching headcount.";
   } else {
     // Only the energy portion converts to CO2 — productivity, sick-day and
     // risk value lines have no scope-1 footprint.
@@ -625,10 +625,10 @@ function drawEsgBadge(
     }
     body =
       report.facility === "heritage"
-        ? "Sensors log temperature and humidity continuously — the documentation conservation authorities and funding bodies increasingly expect, and the basis for gentle conservation heating that protects both the building and the climate."
+        ? "Sensors log temperature and humidity continuously, the documentation conservation authorities and funding bodies increasingly expect, and the basis for gentle conservation heating that protects both the building and the climate."
         : report.facility === "school"
-          ? "Sensors log CO2, temperature and humidity in every room — evidence for municipal climate accounting and healthier air for pupils and staff at the same time."
-          : "Sensors automatically log temperature, humidity, and CO2 — the same data your team needs for CSRD-style ESG compliance reports, saving dozens of hours of manual data compilation.";
+          ? "Sensors log CO2, temperature and humidity in every room, evidence for municipal climate accounting and healthier air for pupils and staff at the same time."
+          : "Sensors automatically log temperature, humidity, and CO2, the same data your team needs for CSRD-style ESG compliance reports, saving dozens of hours of manual data compilation.";
   }
 
   const boxH = 36;
@@ -756,7 +756,7 @@ function drawHumanAngle(
     sections = [
       {
         heading: "Preservation you can prove",
-        body: "Humidity swings — not gradual ageing — cause most damage to organs, frescoes, paper and wood. Continuous monitoring catches excursions while they are still reversible, and the resulting data record is exactly what conservation authorities and funding bodies ask for.",
+        body: "Humidity swings, not gradual ageing, cause most damage to organs, frescoes, paper and wood. Continuous monitoring catches excursions while they are still reversible, and the resulting data record is exactly what conservation authorities and funding bodies ask for.",
       },
       {
         heading: "Gentle on the building, gentle on the budget",
@@ -767,7 +767,7 @@ function drawHumanAngle(
     sections = [
       {
         heading: "Air quality children can feel",
-        body: "CO2 above the 1,000 ppm guideline measurably reduces concentration and increases sickness absence. Live monitoring tells staff exactly when to air out — no guesswork, no needlessly cold classrooms.",
+        body: "CO2 above the 1,000 ppm guideline measurably reduces concentration and increases sickness absence. Live monitoring tells staff exactly when to air out, no guesswork, no needlessly cold classrooms.",
       },
       {
         heading: "One overview for the whole municipality",
@@ -778,11 +778,11 @@ function drawHumanAngle(
     sections = [
       {
         heading: "Cognitive performance, not freezing employees",
-        body: "Sensors measure CO2, humidity, and temperature. Overheated, poorly ventilated rooms drastically reduce employee focus and increase afternoon fatigue. We are not just lowering your heating bill — we are actively monitoring CO2 to maintain the optimal climate for peak productivity and well-being.",
+        body: "Sensors measure CO2, humidity, and temperature. Overheated, poorly ventilated rooms drastically reduce employee focus and increase afternoon fatigue. We are not just lowering your heating bill, we are actively monitoring CO2 to maintain the optimal climate for peak productivity and well-being.",
       },
       {
         heading: "From reactive to proactive facilities",
-        body: "Most facilities teams react to climate complaints. RoomAlyzer gives them a live dashboard to spot anomalies — like a radiator stuck on high during a weekend — before they cost the company thousands of euros.",
+        body: "Most facilities teams react to climate complaints. RoomAlyzer gives them a live dashboard to spot anomalies, like a radiator stuck on high during a weekend, before they cost the company thousands of euros.",
       },
     ];
   }
@@ -806,7 +806,7 @@ function drawHumanAngle(
     report.calculator === "desk"
       ? "We safely consolidated two floors into one within 90 days while keeping a 1.5:1 desk sharing ratio."
       : report.facility === "heritage"
-        ? "We finally have the humidity record our conservation advisors asked for — and caught two excursions in the first month."
+        ? "We finally have the humidity record our conservation advisors asked for, and caught two excursions in the first month."
         : report.facility === "school"
           ? "Teachers now air out exactly when needed. Complaints about heavy air dropped within weeks."
           : "We caught a weekend heating fault on day three and saved thousands before the next quarterly bill.";

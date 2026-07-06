@@ -4,7 +4,7 @@ import ModulePageContent from "../../../components/content/ModulePageContent.ast
 import { getModulesHub } from "../../../data/hubs/modules";
 import { getModuleContent } from "../../../data/content/modules";
 import { getUi } from "../../../data/i18n/ui";
-import { locales, langPath, type Lang } from "../../../data/lang";
+import { locales, langPath, localizeSegment, canonicalizeSegment, type Lang } from "../../../data/lang";
 
 export function getStaticPaths() {
   // Rich module landing pages live as dedicated routes; skip them here.
@@ -21,13 +21,14 @@ export function getStaticPaths() {
     getModulesHub(l.code).leaves
       .filter((leaf) => !dedicated.has(leaf.slug))
       .map((leaf) => ({
-        params: { lang: l.code, slug: leaf.slug },
+        params: { lang: l.code, slug: localizeSegment(leaf.slug, l.code) },
         props: { leaf },
       })),
   );
 }
 
-const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+const { lang } = Astro.params as { lang: Lang; slug: string };
+const slug = canonicalizeSegment(Astro.params.slug as string, lang);
 const { leaf } = Astro.props;
 const content = getModuleContent(slug, lang);
 const t = getUi(lang).modules;

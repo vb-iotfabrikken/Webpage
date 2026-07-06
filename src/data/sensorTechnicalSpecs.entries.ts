@@ -5,7 +5,7 @@
 
 const WEB_APP = "Web application and mobile app (iOS/Android)";
 const CLOUD = "SecureDataShot via Cloud Connector";
-const NB_IOT = "NB-IoT (direct cellular — no Wi-Fi or gateway)";
+const NB_IOT = "NB-IoT (direct cellular, no Wi-Fi or gateway)";
 
 export const sensorTechnicalSpecEntries = {
   co2: {
@@ -211,7 +211,10 @@ export const sensorTechnicalSpecEntries = {
         id: "measuringRange",
         value: "Detection of presence/distance to the magnet",
       },
-      { id: "dimensions", value: "H19 × W19 × D3.5 mm · 3 g" },
+      {
+        id: "dimensions",
+        value: "Small unit: H25 × W10 × D10 mm · Large unit: H38 × W23 × D10 mm · 3 g",
+      },
       { id: "battery", value: "Up to 15 years (integrated)" },
       { id: "connectivity", value: CLOUD },
       { id: "activation", value: "Removal of the battery strip (plug-and-play)" },
@@ -294,7 +297,7 @@ export const sensorTechnicalSpecEntries = {
       { id: "operatingConditions", value: "0 to 50 °C / 10 to 90% RH" },
       {
         id: "wirelessRange",
-        value: "Up to 40 metres — up to 5,000 m² (depending on building characteristics)",
+        value: "Up to 40 metres, up to 5,000 m² (depending on building characteristics)",
       },
       { id: "controlSoftware", value: WEB_APP },
       { id: "ipRating", value: "IP20" },

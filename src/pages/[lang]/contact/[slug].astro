@@ -3,7 +3,7 @@ import PlaceholderPage from "../../../components/PlaceholderPage.astro";
 import { getContactHub } from "../../../data/hubs/contact";
 import { getContact } from "../../../data/i18n/contact";
 import { getAbout } from "../../../data/i18n/about";
-import { locales, langPath, type Lang } from "../../../data/lang";
+import { locales, langPath, localizeSegment, type Lang } from "../../../data/lang";
 import type { HubLeaf } from "../../../data/hubs/types";
 
 export function getStaticPaths() {
@@ -12,7 +12,7 @@ export function getStaticPaths() {
       // book-demo has its own dedicated page with the ContactForm; skip it here.
       .filter((leaf) => leaf.slug !== "book-demo")
       .map((leaf) => ({
-        params: { lang: l.code, slug: leaf.slug },
+        params: { lang: l.code, slug: localizeSegment(leaf.slug, l.code) },
         props: { leaf },
       })),
   );

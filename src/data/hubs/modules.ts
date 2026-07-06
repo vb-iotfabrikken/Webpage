@@ -14,7 +14,7 @@ export const modulesHub: Hub = {
       eyebrow: "Module",
       title: "Indoor climate.",
       titleAccent: "Data instead of feelings.",
-      lead: "CO2, temperature, humidity and VOC in real time — and early warnings about mould and damp before they hurt the building.",
+      lead: "CO2, temperature, humidity and VOC in real time, and early warnings about mould and damp before they hurt the building.",
     },
     {
       slug: "preservation",
@@ -42,14 +42,14 @@ export const modulesHub: Hub = {
       eyebrow: "Module",
       title: "Push buttons.",
       titleAccent: "Feedback with a single tap.",
-      lead: "Service calls, cleaning requests and satisfaction input from staff and guests — routed straight to the right team.",
+      lead: "Service calls, cleaning requests and satisfaction input from staff and guests, routed straight to the right team.",
     },
     {
       slug: "lockers-doors",
       eyebrow: "Module",
       title: "Lockers and doors.",
       titleAccent: "Opens, closes, left ajar.",
-      lead: "Wireless open/close sensors for doors, cabinets, windows and lockers — without any wiring.",
+      lead: "Wireless open/close sensors for doors, cabinets, windows and lockers, without any wiring.",
     },
     {
       slug: "usage-cleaning",

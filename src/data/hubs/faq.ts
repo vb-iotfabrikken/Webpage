@@ -7,7 +7,7 @@ export const faqHub: Hub = {
   title: "Frequently asked questions.",
   titleAccent: "Straight answers, no marketing fog.",
   eyebrow: "FAQ",
-  lead: "Browse by topic — or use the search. Every answer is short, concrete and linked to the relevant part of the product.",
+  lead: "Browse by topic, or use the search. Every answer is short, concrete and linked to the relevant part of the product.",
   leaves: [
     {
       slug: "platform",
@@ -56,7 +56,7 @@ export const faqHub: Hub = {
       eyebrow: "FAQ",
       title: "Sensors FAQ.",
       titleAccent: "Hardware questions, answered.",
-      lead: "Accuracy, calibration, battery life, placement and compliance — the questions we get most.",
+      lead: "Accuracy, calibration, battery life, placement and compliance, the questions we get most.",
     },
     {
       slug: "integrations",
@@ -69,7 +69,7 @@ export const faqHub: Hub = {
       slug: "pricing",
       eyebrow: "FAQ",
       title: "Pricing FAQ.",
-      titleAccent: "What you pay for — and what you don't.",
+      titleAccent: "What you pay for, and what you don't.",
       lead: "License model, contract terms, cancellation and the typical invoicing setup for public-sector customers.",
     },
     {

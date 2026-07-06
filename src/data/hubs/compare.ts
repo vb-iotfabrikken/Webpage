@@ -5,14 +5,14 @@ export const compareHub: Hub = {
   title: "How RoomAlyzer compares.",
   titleAccent: "Honest, evidence-based answers.",
   eyebrow: "Compare",
-  lead: "Decision-making pages that put RoomAlyzer next to the alternatives — and explain when one approach beats the other.",
+  lead: "Decision-making pages that put RoomAlyzer next to the alternatives, and explain when one approach beats the other.",
   leaves: [
     {
       slug: "vs-manual-logging",
       eyebrow: "Comparison",
       title: "RoomAlyzer vs. manual logging.",
       titleAccent: "When the clipboard is the bottleneck.",
-      lead: "What you gain — and what you lose — when you replace hand-written logs with continuous sensor data.",
+      lead: "What you gain, and what you lose, when you replace hand-written logs with continuous sensor data.",
     },
     {
       slug: "vs-bms-cts",
@@ -33,7 +33,7 @@ export const compareHub: Hub = {
       eyebrow: "Comparison",
       title: "Cloud vs. on-premise.",
       titleAccent: "Where should your data live?",
-      lead: "Hosting, security, cost and uptime — compared for cloud-hosted and self-hosted deployments.",
+      lead: "Hosting, security, cost and uptime, compared for cloud-hosted and self-hosted deployments.",
     },
     {
       slug: "lorawan-vs-nb-iot-vs-wifi",
@@ -46,7 +46,7 @@ export const compareHub: Hub = {
       slug: "saas-vs-selfhosted",
       eyebrow: "Comparison",
       title: "SaaS vs. self-hosted.",
-      titleAccent: "Operate it — or let us.",
+      titleAccent: "Operate it, or let us.",
       lead: "When a fully hosted SaaS wins, and when a self-hosted deployment is the right call.",
     },
     {
@@ -61,7 +61,7 @@ export const compareHub: Hub = {
       eyebrow: "Comparison",
       title: "Demand- vs. schedule-based cleaning.",
       titleAccent: "Same budget, better result.",
-      lead: "How sensor-driven cleaning beats fixed cleaning schedules — on both cost and perceived quality.",
+      lead: "How sensor-driven cleaning beats fixed cleaning schedules, on both cost and perceived quality.",
     },
   ],
 };

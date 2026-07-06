@@ -120,10 +120,10 @@ const mentionSources: PressMentionSource[] = [
     outlet: "Sjællandske Nyheder",
     url: "https://www.sn.dk/art6306093/roskilde-kommune/erhverv/lagde-ud-med-rottefaelder-nu-taeller-kunderne-baade-museer-kirker-og-kommuner/",
     headline: {
-      en: "Started with rat traps — now customers include museums, churches and municipalities",
+      en: "Started with rat traps, now customers include museums, churches and municipalities",
       da: "Lagde ud med rottefælder – nu tæller kunderne både museer, kirker og kommuner",
-      de: "Begann mit Rattenfallen — heute zählen Museen, Kirchen und Kommunen zu den Kunden",
-      sv: "Började med råttfällor — nu räknas museer, kyrkor och kommuner bland kunderna",
+      de: "Begann mit Rattenfallen, heute zählen Museen, Kirchen und Kommunen zu den Kunden",
+      sv: "Började med råttfällor, nu räknas museer, kyrkor och kommuner bland kunderna",
     },
   },
   {
@@ -142,10 +142,10 @@ const mentionSources: PressMentionSource[] = [
     outlet: "Energiforum Danmark",
     url: "https://www.energiforumdanmark.dk/viden-og-temaer/iot-fabrikken-saadan-dokumenterer-du-indeklimaet-optimerer-arealet-og-undgaar-vandskader-med-et-system/",
     headline: {
-      en: "How to document indoor climate, optimise space and avoid water damage — with one system",
+      en: "How to document indoor climate, optimise space and avoid water damage, with one system",
       da: "Sådan dokumenterer du indeklimaet, optimerer arealet og undgår vandskader – med ét system",
-      de: "So dokumentieren Sie Raumklima, optimieren Flächen und vermeiden Wasserschäden — mit einem System",
-      sv: "Så dokumenterar du inomhusklimatet, optimerar ytan och undviker vattenskador — med ett system",
+      de: "So dokumentieren Sie Raumklima, optimieren Flächen und vermeiden Wasserschäden, mit einem System",
+      sv: "Så dokumenterar du inomhusklimatet, optimerar ytan och undviker vattenskador, med ett system",
     },
   },
   {
@@ -153,10 +153,10 @@ const mentionSources: PressMentionSource[] = [
     outlet: "DFM",
     url: "https://dfm-net.dk/space-management-med-sensorer-frigav-650-kvm-og-det-batter-paa-bundlinjen/",
     headline: {
-      en: "Space management with sensors freed 650 sqm — and it shows on the bottom line",
+      en: "Space management with sensors freed 650 sqm, and it shows on the bottom line",
       da: "Space management med sensorer frigav 650 kvm – og det batter på bundlinjen",
-      de: "Space-Management mit Sensoren machte 650 m² frei — mit spürbarem Effekt auf die Bilanz",
-      sv: "Space management med sensorer frigjorde 650 kvm — och det syns på resultatet",
+      de: "Space-Management mit Sensoren machte 650 m² frei, mit spürbarem Effekt auf die Bilanz",
+      sv: "Space management med sensorer frigjorde 650 kvm, och det syns på resultatet",
     },
   },
   {
@@ -218,10 +218,10 @@ const mentionSources: PressMentionSource[] = [
     outlet: "DFM",
     url: "https://dfm-net.dk/dgnb-bygninger-i-drift-vinder-indpas-ny-rapport-goer-det-enklere/",
     headline: {
-      en: "DGNB Buildings in Operation gaining ground — new report makes it easier",
+      en: "DGNB Buildings in Operation gaining ground, new report makes it easier",
       da: "DGNB Bygninger i Drift vinder indpas – ny rapport gør det enklere",
-      de: "DGNB Betrieb zieht an — neuer Bericht macht es einfacher",
-      sv: "DGNB Byggnader i drift vinner terräng — ny rapport gör det enklare",
+      de: "DGNB Betrieb zieht an, neuer Bericht macht es einfacher",
+      sv: "DGNB Byggnader i drift vinner terräng, ny rapport gör det enklare",
     },
   },
   {

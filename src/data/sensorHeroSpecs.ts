@@ -98,7 +98,7 @@ const heroSpecsBySlug: Partial<Record<string, Partial<Record<Lang, string[]>>>> 
   "open-close": {
     en: cloudChips(
       "Up to 15 years battery",
-      "H19 × W19 × D3.5 mm",
+      "Small & large units",
       "Open/close detection",
     ),
   },

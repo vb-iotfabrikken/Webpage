@@ -136,7 +136,7 @@ export const departments: Record<
   },
   sales: {
     label: "Sales",
-    blurb: "First contact for new customers — in Denmark, Sweden and Germany.",
+    blurb: "First contact for new customers, in Denmark, Sweden and Germany.",
   },
   operations: {
     label: "Operations",
@@ -144,7 +144,7 @@ export const departments: Record<
   },
   communications: {
     label: "Communications & marketing",
-    blurb: "How we tell our story — press, newsletters, website and campaigns.",
+    blurb: "How we tell our story, press, newsletters, website and campaigns.",
   },
 };
 
@@ -157,25 +157,25 @@ const departmentsI18n: Partial<
     leadership: { label: "Ledelse", blurb: "Retning, partnerskaber og den langsigtede vision bag IoT Fabrikken." },
     engineering: { label: "Udvikling", blurb: "Dem, der bygger og vedligeholder platformen, integrationerne og produktoplevelsen." },
     "customer-success": { label: "Customer success og implementering", blurb: "Onboarding, udrulning og løbende support, så kunder får varig værdi af indeklima og space management." },
-    sales: { label: "Salg", blurb: "Første kontakt for nye kunder — i Danmark, Sverige og Tyskland." },
+    sales: { label: "Salg", blurb: "Første kontakt for nye kunder, i Danmark, Sverige og Tyskland." },
     operations: { label: "Drift", blurb: "Administration og logistik, der får virksomheden til at køre gnidningsfrit." },
-    communications: { label: "Kommunikation & marketing", blurb: "Sådan fortæller vi vores historie — presse, nyhedsbreve, website og kampagner." },
+    communications: { label: "Kommunikation & marketing", blurb: "Sådan fortæller vi vores historie, presse, nyhedsbreve, website og kampagner." },
   },
   de: {
     leadership: { label: "Führung", blurb: "Ausrichtung, Partnerschaften und die langfristige Vision hinter IoT Fabrikken." },
     engineering: { label: "Entwicklung", blurb: "Die Menschen, die die Plattform, Integrationen und das Produkterlebnis bauen und pflegen." },
     "customer-success": { label: "Customer Success und Implementierung", blurb: "Onboarding, Rollout und laufender Support, damit Kunden dauerhaften Nutzen aus Raumklima und Space-Management ziehen." },
-    sales: { label: "Vertrieb", blurb: "Erster Kontakt für neue Kunden — in Dänemark, Schweden und Deutschland." },
+    sales: { label: "Vertrieb", blurb: "Erster Kontakt für neue Kunden, in Dänemark, Schweden und Deutschland." },
     operations: { label: "Betrieb", blurb: "Verwaltung und Logistik, die das Unternehmen reibungslos am Laufen halten." },
-    communications: { label: "Kommunikation & Marketing", blurb: "Wie wir unsere Geschichte erzählen — Presse, Newsletter, Website und Kampagnen." },
+    communications: { label: "Kommunikation & Marketing", blurb: "Wie wir unsere Geschichte erzählen: Presse, Newsletter, Website und Kampagnen." },
   },
   sv: {
     leadership: { label: "Ledning", blurb: "Inriktning, partnerskap och den långsiktiga visionen bakom IoT Fabrikken." },
     engineering: { label: "Utveckling", blurb: "De som bygger och underhåller plattformen, integrationerna och produktupplevelsen." },
     "customer-success": { label: "Customer success och implementering", blurb: "Onboarding, utrullning och löpande support så att kunder får bestående värde av inomhusklimat och space management." },
-    sales: { label: "Försäljning", blurb: "Första kontakten för nya kunder — i Danmark, Sverige och Tyskland." },
+    sales: { label: "Försäljning", blurb: "Första kontakten för nya kunder, i Danmark, Sverige och Tyskland." },
     operations: { label: "Drift", blurb: "Administration och logistik som får företaget att fungera smidigt." },
-    communications: { label: "Kommunikation & marknad", blurb: "Så berättar vi vår historia — press, nyhetsbrev, webbplats och kampanjer." },
+    communications: { label: "Kommunikation & marknad", blurb: "Så berättar vi vår historia, press, nyhetsbrev, webbplats och kampanjer." },
   },
 };
 

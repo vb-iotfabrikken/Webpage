@@ -56,6 +56,6 @@ export const aboutHubCardImages: Record<string, AboutHubCardImage> = {
   },
   "trust-center": {
     placeholder: true,
-    imageAlt: "Trust centre — security, privacy and compliance",
+    imageAlt: "Trust centre, security, privacy and compliance",
   },
 };

@@ -3,7 +3,7 @@ import { defaultLang } from "../lang";
 import type { ModulePageStrings } from "./modulePageTypes";
 
 const en: ModulePageStrings = {
-  metaTitle: "Water detection — leak sensors and alerts | IoT Fabrikken",
+  metaTitle: "Water detection: leak sensors and alerts | IoT Fabrikken",
   metaDescription:
     "Wireless water sensors that alert by email and SMS before leaks spread. Cellular coverage for basements and shafts, with an incident log for insurance.",
   breadcrumbHome: "Home",
@@ -16,7 +16,7 @@ const en: ModulePageStrings = {
   intro: [],
   heroPrimaryCta: "Book a free demo",
   heroSecondaryCta: "Get an offer",
-  dashboardLabel: "RoomAlyzer — Water detection",
+  dashboardLabel: "RoomAlyzer: Water detection",
   dashboardAlt: "RoomAlyzer water detection dashboard showing sensor locations and active alerts",
   challengesEyebrow: "The risk you cannot hear",
   challengesHeading: "A beeping sensor in an empty basement is not protection.",
@@ -135,7 +135,7 @@ const en: ModulePageStrings = {
       a: "Leaks start where Wi-Fi often does not reach — deep basements, shafts, and closed cabinets. NB-IoT sensors connect over the mobile network independently of your building's wireless infrastructure.",
     },
     {
-      q: "Water rope vs point detector — when should we use which?",
+      q: "Water rope vs point detector: when should we use which?",
       a: "Use point detectors under sinks, next to water heaters, and beside appliances where a single spot is the risk. Run water rope along pipe runs, under raised floors, and across low points where water could travel before anyone notices.",
     },
     {
@@ -167,7 +167,7 @@ const en: ModulePageStrings = {
         label: "Pro (IP67 waterproof)",
         caption: "For basements, plant rooms, and shafts",
         alt: "RoomAlyzer Water detector Pro installed in a plant room",
-        hrefSlug: "water-detector",
+        hrefSlug: "water-rope",
       },
     ],
     useCases: [
@@ -196,7 +196,7 @@ const en: ModulePageStrings = {
 };
 
 const da: ModulePageStrings = {
-  metaTitle: "Vanddetektering — lækagesensorer og alarmer | IoT Fabrikken",
+  metaTitle: "Vanddetektering: lækagesensorer og alarmer | IoT Fabrikken",
   metaDescription:
     "Trådløse vandsensorer, der alarmerer via e-mail og SMS, før lækager spreder sig. Mobildækning til kældre og skakte med hændelseslog til forsikringen.",
   breadcrumbHome: "Hjem",
@@ -209,7 +209,7 @@ const da: ModulePageStrings = {
   intro: [],
   heroPrimaryCta: "Book en gratis demo",
   heroSecondaryCta: "Få et tilbud",
-  dashboardLabel: "RoomAlyzer — Vanddetektering",
+  dashboardLabel: "RoomAlyzer: Vanddetektering",
   dashboardAlt: "RoomAlyzer vanddetekterings-dashboard med sensorplaceringer og aktive alarmer",
   challengesEyebrow: "Risikoen, I ikke kan høre",
   challengesHeading: "En bippe-sensor i en tom kælder er ikke beskyttelse.",
@@ -297,10 +297,10 @@ const da: ModulePageStrings = {
     "Fredede bygninger løber en dobbelt risiko: langsom fugtskade på samlinger og pludselig vandindtrængning fra tage, rør og murværk. Kombinér vanddetektering med Bevaring for at beskytte både bygningen og det, den rummer.",
   relatedModuleLink: "Se bevaringsmodulet",
   audiencesEyebrow: "Hvem det er til",
-  audiencesHeading: "Driftsteams, der skal handle hurtigt",
+  audiencesHeading: "Ejendomsdrift, der skal handle hurtigt",
   audiencesLead:
     "Den samme alarm, der når en facility manager i en erhvervsbygning, når vagthavende vicevært i en boligforening — med dokumentation, alle kan stole på.",
-  primaryAudienceHeading: "Til facility managers og driftsteams",
+  primaryAudienceHeading: "Til facility managers og ejendomsdrift",
   primaryAudienceItems: [
     "Få alarmer sorteret efter kritikalitet på tværs af lokationer",
     "Dæk skakte, teknikrum og tekniske arealer uden Wi-Fi",
@@ -324,7 +324,7 @@ const da: ModulePageStrings = {
       a: "Læk opstår, hvor Wi-Fi ofte ikke når frem — dybe kældre, skakte og lukkede skabe. NB-IoT-sensorer forbinder via mobilnetværket uafhængigt af bygningens trådløse infrastruktur.",
     },
     {
-      q: "Vandrebs vs. punktsensor — hvornår skal vi bruge hvad?",
+      q: "Vandrebs vs. punktsensor: hvornår skal vi bruge hvad?",
       a: "Brug punktsensorer under vaske, ved vandvarmere og ved apparater, hvor ét punkt er risikoen. Læg vandrebs langs rørføringer, under hævede gulve og over lave punkter, hvor vand kan løbe, før nogen opdager det.",
     },
     {
@@ -356,7 +356,7 @@ const da: ModulePageStrings = {
         label: "Pro (IP67 vandtæt)",
         caption: "Til kældre, varmecentraler og skakte",
         alt: "RoomAlyzer Water detector Pro monteret i et teknikrum",
-        hrefSlug: "water-detector",
+        hrefSlug: "water-rope",
       },
     ],
     useCases: [
@@ -385,7 +385,7 @@ const da: ModulePageStrings = {
 };
 
 const de: ModulePageStrings = {
-  metaTitle: "Wassererkennung — Lecksensoren und Alarme | IoT Fabrikken",
+  metaTitle: "Wassererkennung: Lecksensoren und Alarme | IoT Fabrikken",
   metaDescription:
     "Drahtlose Wassersensoren, die per E-Mail und SMS alarmieren, bevor sich Lecks ausbreiten. Mobilfunkabdeckung für Keller und Schächte mit Ereignisprotokoll für die Versicherung.",
   breadcrumbHome: "Startseite",
@@ -398,7 +398,7 @@ const de: ModulePageStrings = {
   intro: [],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer — Wassererkennung",
+  dashboardLabel: "RoomAlyzer: Wassererkennung",
   dashboardAlt: "RoomAlyzer Wassererkennungs-Dashboard mit Sensorpositionen und aktiven Alarmen",
   challengesEyebrow: "Das Risiko, das Sie nicht hören",
   challengesHeading: "Ein piepsender Sensor in einem leeren Keller ist kein Schutz.",
@@ -513,7 +513,7 @@ const de: ModulePageStrings = {
       a: "Lecks entstehen dort, wo WLAN oft nicht hinreicht — tiefe Keller, Schächte und geschlossene Schränke. NB-IoT-Sensoren verbinden sich über das Mobilfunknetz unabhängig von der drahtlosen Infrastruktur Ihres Gebäudes.",
     },
     {
-      q: "Wasserseil vs. Punktsensor — wann nutzen wir was?",
+      q: "Wasserseil vs. Punktsensor: wann nutzen wir was?",
       a: "Nutzen Sie Punktsensoren unter Spülen, neben Warmwasserbereitern und bei Geräten, wo ein einzelner Punkt das Risiko ist. Verlegen Sie Wasserseile entlang Rohrleitungen, unter Doppelböden und über Tiefpunkte, wo Wasser laufen kann, bevor es jemand bemerkt.",
     },
     {
@@ -545,7 +545,7 @@ const de: ModulePageStrings = {
         label: "Pro (IP67 wasserdicht)",
         caption: "Für Keller, Technikräume und Schächte",
         alt: "RoomAlyzer Water detector Pro in einem Technikraum installiert",
-        hrefSlug: "water-detector",
+        hrefSlug: "water-rope",
       },
     ],
     useCases: [
@@ -574,7 +574,7 @@ const de: ModulePageStrings = {
 };
 
 const sv: ModulePageStrings = {
-  metaTitle: "Vattendetektering — läckagesensorer och larm | IoT Fabrikken",
+  metaTitle: "Vattendetektering: läckagesensorer och larm | IoT Fabrikken",
   metaDescription:
     "Trådlösa vattensensorer som larmar via e-post och SMS innan läckor sprider sig. Mobiltäckning för källare och schakt med händelselogg för försäkringen.",
   breadcrumbHome: "Hem",
@@ -587,7 +587,7 @@ const sv: ModulePageStrings = {
   intro: [],
   heroPrimaryCta: "Boka en gratis demo",
   heroSecondaryCta: "Få en offert",
-  dashboardLabel: "RoomAlyzer — Vattendetektering",
+  dashboardLabel: "RoomAlyzer: Vattendetektering",
   dashboardAlt: "RoomAlyzer vattendetekteringsdashboard med sensorplatser och aktiva larm",
   challengesEyebrow: "Risken ni inte kan höra",
   challengesHeading: "En pipande sensor i en tom källare är inget skydd.",
@@ -675,10 +675,10 @@ const sv: ModulePageStrings = {
     "Kulturbyggnader löper en dubbel risk: långsam fuktskada på samlingar och plötsligt vatteninträngande från tak, rör och murverk. Kombinera vattendetektering med Bevarande för att skydda både byggnaden och det den rymmer.",
   relatedModuleLink: "Utforska bevarandemodulen",
   audiencesEyebrow: "Vem det är för",
-  audiencesHeading: "Driftteam som behöver agera snabbt",
+  audiencesHeading: "Fastighetsdrift som behöver agera snabbt",
   audiencesLead:
     "Samma larm som når en facility manager i en kommersiell byggnad når jourhavande vaktmästare i en bostadsförening — med dokumentation alla kan lita på.",
-  primaryAudienceHeading: "För facility managers och driftteam",
+  primaryAudienceHeading: "För facility managers och fastighetsdrift",
   primaryAudienceItems: [
     "Få larm sorterade efter kritikalitet över platser",
     "Täck schakt, teknikrum och tekniska ytor utan Wi-Fi",
@@ -702,7 +702,7 @@ const sv: ModulePageStrings = {
       a: "Läckor börjar där Wi-Fi ofta inte når — djupa källare, schakt och stängda skåp. NB-IoT-sensorer ansluter via mobilnätet oberoende av byggnadens trådlösa infrastruktur.",
     },
     {
-      q: "Vattenrep vs punktsensor — när ska vi använda vilket?",
+      q: "Vattenrep vs punktsensor: när ska vi använda vilket?",
       a: "Använd punktsensorer under diskhoar, vid varmvattenberedare och vid apparater där en enskild punkt är risken. Lägg vattenrep längs rördragningar, under upphöjda golv och över lågpunkter där vatten kan rinna innan någon märker det.",
     },
     {
@@ -734,7 +734,7 @@ const sv: ModulePageStrings = {
         label: "Pro (IP67 vattentät)",
         caption: "För källare, teknikrum och schakt",
         alt: "RoomAlyzer Water detector Pro monterad i ett teknikrum",
-        hrefSlug: "water-detector",
+        hrefSlug: "water-rope",
       },
     ],
     useCases: [

@@ -56,12 +56,12 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     heroTitle: "Get an offer.",
     heroTitleAccent: "We'll be in touch.",
     heroLead:
-      "We'll get in touch as soon as we've seen your enquiry — and we're always happy to drop by, either in person or online.",
+      "We'll get in touch as soon as we've seen your enquiry, and we're always happy to drop by, either in person or online.",
     contactNote: "",
     bullets: [
       "A tailored offer built around your case",
       "Advice on the right sensors for your rooms",
-      "A fast reply — usually within one business day",
+      "A fast reply, usually within one business day",
     ],
     form: {
       eyebrow: "Request a quote",
@@ -80,12 +80,12 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       quantity: "Qty",
       comment: "Comment",
       disclaimer:
-        "By submitting you accept our privacy policy. Use your company email — personal addresses are not accepted.",
+        "By submitting you accept our privacy policy. Use your company email, personal addresses are not accepted.",
       consent:
         "I agree that IoT Fabrikken may store and use my details to respond to my enquiry, in line with the privacy policy.",
       submit: "Get an offer",
       sending: "Sending…",
-      successTitle: "Thanks — we've got it.",
+      successTitle: "Thanks, we've got it.",
       successBody: "We'll be in touch as soon as we've reviewed your enquiry.",
       emailError: "Please enter a valid work email address.",
       optional: "optional",
@@ -113,12 +113,12 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     heroTitle: "Få et tilbud.",
     heroTitleAccent: "Vi vender tilbage.",
     heroLead:
-      "Vi vender tilbage, så snart vi har set din henvendelse — og vi kommer altid gerne forbi, enten fysisk eller online.",
+      "Vi vender tilbage, så snart vi har set din henvendelse, og vi kommer altid gerne forbi, enten fysisk eller online.",
     contactNote: "",
     bullets: [
       "Et skræddersyet tilbud bygget om din case",
       "Rådgivning om de rette sensorer til dine lokaler",
-      "Et hurtigt svar — typisk inden for én hverdag",
+      "Et hurtigt svar, typisk inden for én hverdag",
     ],
     form: {
       eyebrow: "Anmod om tilbud",
@@ -137,12 +137,12 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       quantity: "Antal",
       comment: "Kommentar",
       disclaimer:
-        "Ved at sende accepterer du vores privatlivspolitik. Brug din arbejdsmail — personlige adresser accepteres ikke.",
+        "Ved at sende accepterer du vores privatlivspolitik. Brug din arbejdsmail, personlige adresser accepteres ikke.",
       consent:
         "Jeg accepterer, at IoT Fabrikken må gemme og bruge mine oplysninger til at besvare min henvendelse i overensstemmelse med privatlivspolitikken.",
       submit: "Få et tilbud",
       sending: "Sender…",
-      successTitle: "Tak — vi har modtaget din henvendelse.",
+      successTitle: "Tak, vi har modtaget din henvendelse.",
       successBody: "Vi vender tilbage, så snart vi har gennemgået din forespørgsel.",
       emailError: "Indtast en gyldig arbejdsmail.",
       optional: "valgfrit",
@@ -170,12 +170,12 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     heroTitle: "Angebot anfordern.",
     heroTitleAccent: "Wir melden uns.",
     heroLead:
-      "Wir melden uns, sobald wir Ihre Anfrage gesehen haben — und kommen gern vorbei, persönlich oder online.",
+      "Wir melden uns, sobald wir Ihre Anfrage gesehen haben, und kommen gern vorbei, persönlich oder online.",
     contactNote: "",
     bullets: [
       "Ein auf Ihren Anwendungsfall zugeschnittenes Angebot",
       "Beratung zu den passenden Sensoren für Ihre Räume",
-      "Eine schnelle Rückmeldung — meist innerhalb eines Werktags",
+      "Eine schnelle Rückmeldung, meist innerhalb eines Werktags",
     ],
     form: {
       eyebrow: "Angebot anfragen",
@@ -194,12 +194,12 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       quantity: "Anz.",
       comment: "Kommentar",
       disclaimer:
-        "Mit dem Absenden akzeptieren Sie unsere Datenschutzerklärung. Verwenden Sie Ihre geschäftliche E-Mail — private Adressen werden nicht akzeptiert.",
+        "Mit dem Absenden akzeptieren Sie unsere Datenschutzerklärung. Verwenden Sie Ihre geschäftliche E-Mail, private Adressen werden nicht akzeptiert.",
       consent:
         "Ich bin damit einverstanden, dass IoT Fabrikken meine Angaben speichert und verwendet, um meine Anfrage gemäß der Datenschutzerklärung zu beantworten.",
       submit: "Angebot anfordern",
       sending: "Wird gesendet…",
-      successTitle: "Danke — wir haben Ihre Anfrage erhalten.",
+      successTitle: "Danke, wir haben Ihre Anfrage erhalten.",
       successBody: "Wir melden uns, sobald wir Ihre Anfrage geprüft haben.",
       emailError: "Bitte geben Sie eine gültige geschäftliche E-Mail-Adresse ein.",
       optional: "optional",
@@ -230,12 +230,12 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     heroTitle: "Få en offert.",
     heroTitleAccent: "Vi hör av oss.",
     heroLead:
-      "Vi hör av oss så snart vi har sett din förfrågan — och kommer gärna förbi, antingen på plats eller online.",
+      "Vi hör av oss så snart vi har sett din förfrågan, och kommer gärna förbi, antingen på plats eller online.",
     contactNote: "",
     bullets: [
       "En skräddarsydd offert byggd kring ditt case",
       "Rådgivning om rätt sensorer för dina lokaler",
-      "Ett snabbt svar — oftast inom en arbetsdag",
+      "Ett snabbt svar, oftast inom en arbetsdag",
     ],
     form: {
       eyebrow: "Begär offert",
@@ -254,12 +254,12 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       quantity: "Antal",
       comment: "Kommentar",
       disclaimer:
-        "Genom att skicka godkänner du vår integritetspolicy. Använd din jobbmejl — personliga adresser accepteras inte.",
+        "Genom att skicka godkänner du vår integritetspolicy. Använd din jobbmejl, personliga adresser accepteras inte.",
       consent:
         "Jag godkänner att IoT Fabrikken lagrar och använder mina uppgifter för att besvara min förfrågan i enlighet med integritetspolicyn.",
       submit: "Få en offert",
       sending: "Skickar…",
-      successTitle: "Tack — vi har tagit emot din förfrågan.",
+      successTitle: "Tack, vi har tagit emot din förfrågan.",
       successBody: "Vi hör av oss så snart vi har gått igenom din förfrågan.",
       emailError: "Ange en giltig jobbmejladress.",
       optional: "valfritt",

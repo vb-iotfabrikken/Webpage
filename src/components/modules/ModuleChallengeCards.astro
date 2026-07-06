@@ -8,9 +8,21 @@ interface Props {
   challenges: Challenge[];
   /** Icon set variant for visual variety across module pages. */
   iconSet?: "default" | "climate" | "heritage" | "water" | "service" | "access" | "cleaning";
+  /** `horizontal` (one row on large screens (four cards); `auto`) 2×2 or 3-column grid. */
+  layout?: "auto" | "horizontal";
 }
 
-const { challenges, iconSet = "default" } = Astro.props;
+const { challenges, iconSet = "default", layout = "auto" } = Astro.props;
+
+const isCompact = layout === "horizontal";
+
+const gridClass =
+  layout === "horizontal"
+    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5"
+    : [
+        "grid grid-cols-1 gap-6 lg:gap-8",
+        challenges.length >= 4 ? "md:grid-cols-2" : "md:grid-cols-3",
+      ];
 
 const stroke = {
   width: "1.8",
@@ -19,16 +31,27 @@ const stroke = {
 };
 ---
 
-<div
-  class:list={[
-    "grid grid-cols-1 gap-6 lg:gap-8",
-    challenges.length >= 4 ? "md:grid-cols-2" : "md:grid-cols-3",
-  ]}
->
+<div class:list={gridClass}>
   {
     challenges.map((challenge, index) => (
-      <article class="reveal bg-white border border-stone-100 rounded-xl p-6 md:p-8">
-        <div class="w-11 h-11 rounded-md bg-coral-50 text-coral-500 inline-flex items-center justify-center mb-5">
+      <article
+        class:list={[
+          "reveal min-w-0 bg-white border border-stone-100 rounded-xl",
+          isCompact ? "p-5 md:p-6" : "p-6 md:p-8",
+        ]}
+      >
+        <div
+          class:list={[
+            "flex flex-col items-start gap-3 min-w-0",
+            isCompact ? "mb-3" : "mb-5",
+          ]}
+        >
+          <div
+            class:list={[
+              "shrink-0 rounded-md bg-coral-50 text-coral-500 inline-flex items-center justify-center",
+              isCompact ? "w-10 h-10" : "w-11 h-11",
+            ]}
+          >
           {iconSet === "default" && index === 0 && (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
@@ -44,6 +67,14 @@ const stroke = {
           {iconSet === "default" && index === 2 && (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M3 21V9l9-6 9 6v12M9 21v-6h6v6" />
+            </svg>
+          )}
+          {iconSet === "default" && index === 3 && (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" />
             </svg>
           )}
           {iconSet === "climate" && index === 0 && (
@@ -141,9 +172,17 @@ const stroke = {
               <path d="M3 3v18h18" /><path d="M7 16l4-8 4 5 5-9" />
             </svg>
           )}
+          </div>
+          <h3
+            class:list={[
+              "font-semibold text-navy-500 hyphens-auto",
+              isCompact ? "text-base leading-snug" : "text-xl",
+            ]}
+          >
+            {challenge.title}
+          </h3>
         </div>
-        <h3 class="text-xl font-semibold text-navy-500">{challenge.title}</h3>
-        <p class="mt-3 text-base leading-relaxed text-stone-900/75">{challenge.body}</p>
+        <p class:list={["text-stone-900/75", isCompact ? "text-sm leading-snug" : "mt-3 text-base leading-relaxed"]}>{challenge.body}</p>
       </article>
     ))
   }

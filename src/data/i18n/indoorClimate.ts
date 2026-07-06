@@ -53,22 +53,22 @@ export interface IndoorClimateStrings {
 }
 
 const en: IndoorClimateStrings = {
-  metaTitle: "Indoor climate — sensors and data | IoT Fabrikken",
+  metaTitle: "Indoor climate: sensors and data | IoT Fabrikken",
   metaDescription:
     "Remote indoor climate monitoring with wireless sensors. Turn complaints into facts, cut energy waste, and stay ahead of mould — with EPBD and DGNB-ready reports.",
   breadcrumbHome: "Home",
   breadcrumbModules: "Modules",
   breadcrumbCurrent: "Indoor climate",
-  heroTitle: "Handle complaints and energy with data —",
+  heroTitle: "Handle complaints and energy with data,",
   heroTitleAccent: "not feelings.",
   heroLead:
     "Remote indoor climate monitoring that turns complaints into facts and saves energy",
   intro: [
-    "Indoor climate monitoring gives you the data to answer a question every facility manager knows: is the complaint real, or is it a feeling? Someone is too warm, someone else is too cold, and the air feels \"heavy\" by mid-afternoon — but without data on temperature, humidity, and CO₂, you are left managing impressions, adjusting ventilation on guesswork, and defending decisions you cannot back up.",
+    "Indoor climate monitoring gives you the data to answer a question every facility manager knows: is the complaint real, or is it a feeling? Someone is too warm, someone else is too cold, and the air feels \"heavy\" by mid-afternoon, but without data on temperature, humidity, and CO₂, you are left managing impressions, adjusting ventilation on guesswork, and defending decisions you cannot back up.",
   ],
   heroPrimaryCta: "Book a free demo",
   heroSecondaryCta: "Get an offer",
-  dashboardLabel: "RoomAlyzer — Indoor climate",
+  dashboardLabel: "RoomAlyzer: Indoor climate",
   dashboardAlt: "Occupied office with RoomAlyzer indoor climate monitoring",
   challengesEyebrow: "The challenges you know",
   challengesHeading: "Without room-level data, energy spend and comfort complaints both get worse.",
@@ -120,28 +120,28 @@ const en: IndoorClimateStrings = {
     {
       id: "energy-optimisation",
       title: "Energy optimisation",
-      body: "See how much energy your building wastes keeping rooms warmer or cooler than they need to be. The module compares indoor temperature against winter and summer setpoints and puts a clear figure on overheating and overcooling — in kWh, in cost and in CO₂ — so you can see exactly where savings are hiding. An efficiency score sums up each location at a glance, passive periods are excluded so the numbers stay honest, and you get concrete, prioritised recommendations for any window from 24 hours to 90 days.",
+      body: "See how much energy your building wastes keeping rooms warmer or cooler than they need to be. The module compares indoor temperature against winter and summer setpoints and puts a clear figure on overheating and overcooling (in kWh, in cost and in CO₂) so you can see exactly where savings are hiding. An efficiency score sums up each location at a glance, passive periods are excluded so the numbers stay honest, and you get concrete, prioritised recommendations for any window from 24 hours to 90 days.",
       unit: "Energy",
       imageAlt: "Energy optimisation analysis in RoomAlyzer",
     },
     {
       id: "mould-risk",
       title: "Mould risk",
-      body: "The Mould Risk module uses the recognised VTT model to turn temperature and humidity into a single mould index from 0 to 6 for every sensor — from no risk through early microscopic growth to visible, critical risk. Set each location's material sensitivity so the model reflects your actual building. A clear overview shows the highest risk right now, which zones are growing and how each one is trending — with plain-language advice before a small ventilation change becomes a costly repair.",
+      body: "The Mould Risk module uses the recognised VTT model to turn temperature and humidity into a single mould index from 0 to 6 for every sensor — from no risk through early microscopic growth to visible, critical risk. Set each location's material sensitivity so the model reflects your actual building. A clear overview shows the highest risk right now, which zones are growing and how each one is trending, with plain-language advice before a small ventilation change becomes a costly repair.",
       unit: "VTT",
       imageAlt: "Mould risk overview in RoomAlyzer",
     },
     {
       id: "scenarios",
       title: "Thresholds & scenarios",
-      body: "Thresholds are the green, yellow and red zones that define a good indoor climate for your building — and with scenarios you set them once and apply them globally, per location, or down to a single sensor. RoomAlyzer ships with ready-made scenarios built on recognised standards — from EPBD / EN 16798 and BR18 for offices to EN 15757 for preservation and HACCP for food storage — grouped by sector so the right limits are only a click away.",
+      body: "Thresholds are the green, yellow and red zones that define a good indoor climate for your building — and with scenarios you set them once and apply them globally, per location, or down to a single sensor. RoomAlyzer ships with ready-made scenarios built on recognised standards (from EPBD / EN 16798 for offices to EN 15757 for preservation and HACCP for food storage), grouped by sector so the right limits are only a click away.",
       unit: "Thresholds",
       imageAlt: "Indoor climate scenarios and standards library in RoomAlyzer",
     },
     {
       id: "legacy-report",
       title: "Report & warnings",
-      body: "Daily, weekly and monthly indoor climate summaries land straight in your inbox — choose exactly which values to include, send to as many recipients as you like, and always send a test first. The warning function notifies you the moment the indoor climate drifts from the level you have set. Tune alerts to avoid false alarms, choose SMS or email, and assign different reports to different recipients — so rising humidity or poor air quality is caught early.",
+      body: "Daily, weekly and monthly indoor climate summaries land straight in your inbox. Choose exactly which values to include, send to as many recipients as you like, and always send a test first. The warning function notifies you the moment the indoor climate drifts from the level you have set. Tune alerts to avoid false alarms, choose SMS or email, and assign different reports to different recipients, so rising humidity or poor air quality is caught early.",
       unit: "Reports",
       imageAlt: "Indoor climate report and CO₂ graph in RoomAlyzer",
     },
@@ -151,15 +151,15 @@ const en: IndoorClimateStrings = {
     "Pair indoor-climate data with occupancy from Space management — ventilate when rooms are in use and dial back when they are empty.",
   relatedModuleLink: "Explore space management",
   audiencesEyebrow: "Who it is for",
-  audiencesHeading: "For compliance officers and ESG managers — data you can use across standards and regulations.",
+  audiencesHeading: "For compliance officers and ESG managers: data you can use across standards and regulations.",
   audiencesLead:
     "Whether your reporting touches EPBD, DGNB, CSRD, ESG or local building rules, RoomAlyzer gives compliance officers and facility teams the same objective baseline to build on.",
-  fmHeading: "For facility managers",
+  fmHeading: "For facility managers and operations teams",
   fmItems: [
     "See alarms sorted by criticality; run operations based on real usage — not schedule",
     "Balance heating and cooling with objective data; reduce complaints with room-level data",
-    "Document ventilation system performance — including VDI 6022 evidence",
-    "BR18 / BR25 and FaDi law — data you can use for operational building and HVAC requirements",
+    "Document ventilation system performance with exportable reports",
+    "Local building and HVAC rules — data you can use for operational compliance",
   ],
   complianceHeading: "For compliance officers & ESG managers",
   complianceItems: [
@@ -199,22 +199,22 @@ const en: IndoorClimateStrings = {
 };
 
 const da: IndoorClimateStrings = {
-  metaTitle: "Indeklima — sensorer og data | IoT Fabrikken",
+  metaTitle: "Indeklima: sensorer og data | IoT Fabrikken",
   metaDescription:
     "Fjernovervågning af indeklima med trådløse sensorer. Gør klager til fakta, reducer energispild, og vær på forkant med skimmel — med EPBD- og DGNB-klare rapporter.",
   breadcrumbHome: "Hjem",
   breadcrumbModules: "Moduler",
   breadcrumbCurrent: "Indeklima",
-  heroTitle: "Håndtér klager og energi med data —",
+  heroTitle: "Håndtér klager og energi med data,",
   heroTitleAccent: "ikke fornemmelser.",
   heroLead:
     "Fjernovervågning af indeklima, der gør klager til fakta og sparer energi",
   intro: [
-    "Indeklimaovervågning giver jer data til at besvare et spørgsmål, enhver facility manager kender: er klagen reel, eller er det en fornemmelse? Den ene er for varm, den anden for kold, og luften føles \"tung\" tidligt på eftermiddagen — men uden data om temperatur, fugt og CO₂ styrer I på indtryk, justerer ventilation på mavefornemmelse og forsvarer beslutninger, I ikke kan underbygge.",
+    "Indeklimaovervågning giver jer data til at besvare et spørgsmål, enhver facility manager kender: er klagen reel, eller er det en fornemmelse? Den ene er for varm, den anden for kold, og luften føles \"tung\" tidligt på eftermiddagen, men uden data om temperatur, fugt og CO₂ styrer I på indtryk, justerer ventilation på mavefornemmelse og forsvarer beslutninger, I ikke kan underbygge.",
   ],
   heroPrimaryCta: "Book en gratis demo",
   heroSecondaryCta: "Få et tilbud",
-  dashboardLabel: "RoomAlyzer — Indeklima",
+  dashboardLabel: "RoomAlyzer: Indeklima",
   dashboardAlt: "Beplant kontor med RoomAlyzer indeklimaovervågning",
   challengesEyebrow: "Udfordringerne, I kender",
   challengesHeading: "Uden rumdata bliver både energiforbrug og komfortklager værre.",
@@ -266,28 +266,28 @@ const da: IndoorClimateStrings = {
     {
       id: "energy-optimisation",
       title: "Energioptimering",
-      body: "Se, hvor meget energi bygningen spilder på at holde rum varmere eller koldere end nødvendigt. Modulet sammenligner indendørstemperaturen med vinter- og sommersætpunkter og sætter et klart tal på overopvarmning og overkøling — i kWh, i omkostninger og i CO₂ — så I præcis kan se, hvor besparelserne gemmer sig. En effektivitetsscore opsummerer hvert sted med ét blik, passive perioder udelades, så tallene holder sig ærlige, og I får konkrete, prioriterede anbefalinger for ethvert vindue fra 24 timer til 90 dage.",
+      body: "Se, hvor meget energi bygningen spilder på at holde rum varmere eller koldere end nødvendigt. Modulet sammenligner indendørstemperaturen med vinter- og sommersætpunkter og sætter et klart tal på overopvarmning og overkøling (i kWh, i omkostninger og i CO₂) så I præcis kan se, hvor besparelserne gemmer sig. En effektivitetsscore opsummerer hvert sted med ét blik, passive perioder udelades, så tallene holder sig ærlige, og I får konkrete, prioriterede anbefalinger for ethvert vindue fra 24 timer til 90 dage.",
       unit: "Energi",
       imageAlt: "Energioptimeringsanalyse i RoomAlyzer",
     },
     {
       id: "mould-risk",
       title: "Skimmelrisiko",
-      body: "Skimmelrisiko-modulet bruger den anerkendte VTT-model til at omsætte temperatur og fugt til et enkelt skimmelindeks fra 0 til 6 for hver sensor — fra ingen risiko over tidlig mikroskopisk vækst til synlig, kritisk risiko. Indstil hver lokations materialefølsomhed, så modellen afspejler jeres faktiske bygning. Et klart overblik viser den højeste risiko lige nu, hvilke zoner der vokser, og hvordan hver enkelt udvikler sig — med klart sprog og råd, før en lille ventilationsændring bliver en dyr reparation.",
+      body: "Skimmelrisiko-modulet bruger den anerkendte VTT-model til at omsætte temperatur og fugt til et enkelt skimmelindeks fra 0 til 6 for hver sensor — fra ingen risiko over tidlig mikroskopisk vækst til synlig, kritisk risiko. Indstil hver lokations materialefølsomhed, så modellen afspejler jeres faktiske bygning. Et klart overblik viser den højeste risiko lige nu, hvilke zoner der vokser, og hvordan hver enkelt udvikler sig, med klart sprog og råd, før en lille ventilationsændring bliver en dyr reparation.",
       unit: "VTT",
       imageAlt: "Skimmelrisiko-overblik i RoomAlyzer",
     },
     {
       id: "scenarios",
       title: "Tærskler og scenarier",
-      body: "Tærskler er de grønne, gule og røde zoner, der definerer et godt indeklima for jeres bygning — og med scenarier sætter I dem én gang og anvender dem globalt, pr. lokation eller helt ned til en enkelt sensor. RoomAlyzer leveres med færdige scenarier bygget på anerkendte standarder — fra EPBD / EN 16798 og BR18 til kontorer til EN 15757 til bevaring og HACCP til fødevareopbevaring — grupperet efter sektor, så de rette grænser kun er et klik væk.",
+      body: "Tærskler er de grønne, gule og røde zoner, der definerer et godt indeklima for jeres bygning — og med scenarier sætter I dem én gang og anvender dem globalt, pr. lokation eller helt ned til en enkelt sensor. RoomAlyzer leveres med færdige scenarier bygget på anerkendte standarder (fra EPBD / EN 16798 og BR18 til kontorer til EN 15757 til bevaring og HACCP til fødevareopbevaring), grupperet efter sektor, så de rette grænser kun er et klik væk.",
       unit: "Tærskler",
       imageAlt: "Indeklimascenarier og standardbibliotek i RoomAlyzer",
     },
     {
       id: "legacy-report",
       title: "Rapport og advarsler",
-      body: "Daglige, ugentlige og månedlige indeklimaoversigter lander direkte i indbakken — vælg præcis hvilke værdier der skal med, send til så mange modtagere, I vil, og send altid en test først. Advarselsfunktionen giver besked i det øjeblik, indeklimaet afviger fra det niveau, I har sat. Finjuster alarmer for at undgå falske alarm, vælg SMS eller e-mail, og tildel forskellige rapporter til forskellige modtagere — så stigende fugt eller dårlig luftkvalitet opdages tidligt.",
+      body: "Daglige, ugentlige og månedlige indeklimaoversigter lander direkte i indbakken. Vælg præcis hvilke værdier der skal med, send til så mange modtagere, I vil, og send altid en test først. Advarselsfunktionen giver besked i det øjeblik, indeklimaet afviger fra det niveau, I har sat. Finjuster alarmer for at undgå falske alarm, vælg SMS eller e-mail, og tildel forskellige rapporter til forskellige modtagere, så stigende fugt eller dårlig luftkvalitet opdages tidligt.",
       unit: "Rapporter",
       imageAlt: "Indeklimarapport og CO₂-graf i RoomAlyzer",
     },
@@ -297,21 +297,21 @@ const da: IndoorClimateStrings = {
     "Kombinér indeklimadata med belægning fra Space management — ventilér, når rummene er i brug, og skru ned, når de står tomme.",
   relatedModuleLink: "Udforsk space management",
   audiencesEyebrow: "Hvem det er til",
-  audiencesHeading: "Til compliance-ansvarlige og ESG-managere — data I kan bruge på tværs af standarder og regler.",
+  audiencesHeading: "Til compliance-ansvarlige og ESG-managere: data I kan bruge på tværs af standarder og regler.",
   audiencesLead:
     "Uanset om jeres rapportering berører EPBD, DGNB, CSRD, ESG eller lokale bygningsregler, giver RoomAlyzer compliance-ansvarlige og facility-teams det samme objektive udgangspunkt at bygge videre på.",
-  fmHeading: "Til facility managers",
+  fmHeading: "Til facility managers og ejendomsdrift",
   fmItems: [
     "Se alarmer sorteret efter kritikalitet; driv drift ud fra reel brug — ikke skema",
     "Balancér opvarmning og køling med objektive data; reducér klager med rumdata",
-    "Dokumentér ventilationsanlæggenes ydeevne — inkl. VDI 6022-underlag",
+    "Dokumentér ventilationsanlæggenes ydeevne — inkl. underlag til APV og tilsyn",
     "BR18 / BR25 og FaDi-loven — data I kan bruge til operationelle bygnings- og HVAC-krav",
   ],
   complianceHeading: "Til compliance-ansvarlige og ESG-managere",
   complianceItems: [
     "Eksporterede rapporter I kan bruge i CSRD-, ESG- og andet disclosures-arbejde",
     "EPBD 2024 og DGNB — rapporter og PDF-eksporter I kan bruge til gap-analyse, energioverblik og SOC 1.1 / 1.2 (EN 16798-1)-indsendelser",
-    "Indeklimahistorik og dokumenterede data I kan trække på til arbejdspladsvurderinger, audits og medarbejdertrivsel",
+    "Indeklimahistorik og dokumenterede data I kan trække på til APV, audits og medarbejdertrivsel",
     "Evidens til at understøtte energireduktion gennem datadreven styring",
   ],
   faqTitle: "Ofte stillede spørgsmål",
@@ -345,28 +345,28 @@ const da: IndoorClimateStrings = {
 };
 
 const de: IndoorClimateStrings = {
-  metaTitle: "Raumklima — Sensoren und Daten | IoT Fabrikken",
+  metaTitle: "Raumklima: Sensoren und Daten | IoT Fabrikken",
   metaDescription:
     "Fernüberwachung des Raumklimas mit drahtlosen Sensoren. Beschwerden in Fakten verwandeln, Energieverschwendung senken und Schimmel voraus sein — mit EPBD- und DGNB-fertigen Berichten.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
   breadcrumbCurrent: "Raumklima",
-  heroTitle: "Beschwerden und Energie mit Daten begegnen —",
+  heroTitle: "Beschwerden und Energie mit Daten begegnen,",
   heroTitleAccent: "nicht mit Gefühlen.",
   heroLead:
     "Fernüberwachung des Raumklimas, die Beschwerden in Fakten verwandelt und Energie spart",
   intro: [
-    "Raumklimaüberwachung liefert die Daten, um eine Frage zu beantworten, die jeder Facility Manager kennt: Ist die Beschwerde berechtigt — oder eine subjektive Empfindung? Dem einen ist es zu warm, dem anderen zu kalt, und nachmittags fühlt sich die Luft „schwer“ an — aber ohne Daten zu Temperatur, Luftfeuchtigkeit und CO₂ verwalten Sie nach Eindruck, steuern die Lüftung nach Bauchgefühl und verteidigen Entscheidungen, die Sie nicht belegen können.",
+    "Raumklimaüberwachung liefert die Daten, um eine Frage zu beantworten, die jeder Facility Manager kennt: Ist die Beschwerde berechtigt oder eine subjektive Empfindung? Dem einen ist es zu warm, dem anderen zu kalt, und nachmittags fühlt sich die Luft „schwer“ an, aber ohne Daten zu Temperatur, Luftfeuchtigkeit und CO₂ verwalten Sie nach Eindruck, steuern die Lüftung nach Bauchgefühl und verteidigen Entscheidungen, die Sie nicht belegen können.",
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer — Raumklima",
+  dashboardLabel: "RoomAlyzer: Raumklima",
   dashboardAlt: "Belegtes Büro mit RoomAlyzer Raumklimaüberwachung",
   challengesEyebrow: "Die Herausforderungen, die Sie kennen",
   challengesHeading: "Ohne Raumdaten verschlechtern sich sowohl Energieverbrauch als auch Komfortbeschwerden.",
   challenges: [
     {
-      title: "Unnötige Energieverschwendung",
+      title: "Energieverschwendung",
       body: "Heizen und Kühlen laufen, egal ob Räume es brauchen — und ohne belastbare Daten zahlen Sie für Komfort, den niemand spürt.",
     },
     {
@@ -374,7 +374,7 @@ const de: IndoorClimateStrings = {
       body: "Auf der einen Gebäudeseite ist es zu warm, auf der anderen zu kalt. Ohne objektive Messwerte findet das Facility-Team nicht die richtige Balance zwischen Heizen und Kühlen.",
     },
     {
-      title: "Koordinationsherausforderungen",
+      title: "Koordinationsprobleme",
       body: "Facility Manager, HVAC-Dienstleister und Compliance-Teams arbeiten mit unterschiedlichen Annahmen — und niemand teilt dasselbe Bild davon, was die Luft tatsächlich tut.",
     },
     {
@@ -412,28 +412,28 @@ const de: IndoorClimateStrings = {
     {
       id: "energy-optimisation",
       title: "Energieoptimierung",
-      body: "Sehen Sie, wie viel Energie Ihr Gebäude verschwendet, weil Räume wärmer oder kälter gehalten werden als nötig. Das Modul vergleicht die Innentemperatur mit Winter- und Sommer-Sollwerten und quantifiziert Überhitzung und Überkühlung — in kWh, in Kosten und in CO₂ — damit Sie genau sehen, wo Einsparpotenziale liegen. Ein Effizienzscore fasst jeden Standort auf einen Blick zusammen, passive Phasen werden ausgeschlossen, damit die Zahlen ehrlich bleiben, und Sie erhalten konkrete, priorisierte Empfehlungen für jedes Zeitfenster von 24 Stunden bis 90 Tagen.",
+      body: "Sehen Sie, wie viel Energie Ihr Gebäude verschwendet, weil Räume wärmer oder kälter gehalten werden als nötig. Das Modul vergleicht die Innentemperatur mit Winter- und Sommer-Sollwerten und quantifiziert Überhitzung und Überkühlung (in kWh, in Kosten und in CO₂) damit Sie genau sehen, wo Einsparpotenziale liegen. Ein Effizienzscore fasst jeden Standort auf einen Blick zusammen, passive Phasen werden ausgeschlossen, damit die Zahlen ehrlich bleiben, und Sie erhalten konkrete, priorisierte Empfehlungen für jedes Zeitfenster von 24 Stunden bis 90 Tagen.",
       unit: "Energie",
       imageAlt: "Energieoptimierungsanalyse in RoomAlyzer",
     },
     {
       id: "mould-risk",
       title: "Schimmelrisiko",
-      body: "Das Schimmelrisiko-Modul nutzt das anerkannte VTT-Modell, um Temperatur und Luftfeuchtigkeit in einen Schimmelindex von 0 bis 6 für jeden Sensor zu überführen — von keinem Risiko über frühes mikroskopisches Wachstum bis zu sichtbarem, kritischem Risiko. Legen Sie die Materialempfindlichkeit je Standort fest, damit das Modell Ihr Gebäude widerspiegelt. Eine klare Übersicht zeigt das höchste Risiko gerade jetzt, welche Zonen wachsen und wie sich jede entwickelt — mit verständlichen Hinweisen, bevor eine kleine Lüftungsänderung zu einer teuren Reparatur wird.",
+      body: "Das Schimmelrisiko-Modul nutzt das anerkannte VTT-Modell, um Temperatur und Luftfeuchtigkeit in einen Schimmelindex von 0 bis 6 für jeden Sensor zu überführen — von keinem Risiko über frühes mikroskopisches Wachstum bis zu sichtbarem, kritischem Risiko. Legen Sie die Materialempfindlichkeit je Standort fest, damit das Modell Ihr Gebäude widerspiegelt. Eine klare Übersicht zeigt das höchste Risiko gerade jetzt, welche Zonen wachsen und wie sich jede entwickelt, mit verständlichen Hinweisen, bevor eine kleine Lüftungsänderung zu einer teuren Reparatur wird.",
       unit: "VTT",
       imageAlt: "Schimmelrisiko-Übersicht in RoomAlyzer",
     },
     {
       id: "scenarios",
       title: "Schwellen & Szenarien",
-      body: "Schwellen sind die grünen, gelben und roten Zonen, die ein gutes Raumklima für Ihr Gebäude definieren — und mit Szenarien legen Sie sie einmal fest und wenden sie global, pro Standort oder bis auf einen einzelnen Sensor an. RoomAlyzer bringt fertige Szenarien auf Basis anerkannter Standards mit — von EPBD / EN 16798 und BR18 für Büros bis EN 15757 für Konservierung und HACCP für Lebensmittellagerung — nach Branche gruppiert, damit die richtigen Grenzen nur einen Klick entfernt sind.",
+      body: "Schwellen sind die grünen, gelben und roten Zonen, die ein gutes Raumklima für Ihr Gebäude definieren, und mit Szenarien legen Sie sie einmal fest und wenden sie global, pro Standort oder bis auf einen einzelnen Sensor an. RoomAlyzer bringt fertige Szenarien auf Basis anerkannter Standards (von EPBD / EN 16798 und GEG für Büros bis EN 15757 für Konservierung und HACCP für Lebensmittellagerung) nach Branche gruppiert, damit die richtigen Grenzen nur einen Klick entfernt sind.",
       unit: "Schwellen",
       imageAlt: "Raumklimaszenarien und Standardbibliothek in RoomAlyzer",
     },
     {
       id: "legacy-report",
       title: "Berichte & Warnungen",
-      body: "Tägliche, wöchentliche und monatliche Raumklima-Zusammenfassungen landen direkt in Ihrem Posteingang — wählen Sie genau, welche Werte enthalten sein sollen, senden Sie an beliebig viele Empfänger und testen Sie immer zuerst. Die Warnfunktion benachrichtigt Sie, sobald das Raumklima von Ihrem Soll abweicht. Stimmen Sie Alarme fein ab, wählen Sie SMS oder E-Mail und weisen Sie verschiedene Berichte verschiedenen Empfängern zu — damit steigende Luftfeuchtigkeit oder schlechte Luftqualität früh erkannt werden.",
+      body: "Tägliche, wöchentliche und monatliche Raumklima-Zusammenfassungen landen direkt in Ihrem Posteingang. Wählen Sie genau, welche Werte enthalten sein sollen, senden Sie an beliebig viele Empfänger und testen Sie immer zuerst. Die Warnfunktion benachrichtigt Sie, sobald das Raumklima von Ihrem Soll abweicht. Stimmen Sie Alarme fein ab, wählen Sie SMS oder E-Mail und weisen Sie verschiedene Berichte verschiedenen Empfängern zu, damit steigende Luftfeuchtigkeit oder schlechte Luftqualität früh erkannt werden.",
       unit: "Berichte",
       imageAlt: "Raumklimabericht und CO₂-Diagramm in RoomAlyzer",
     },
@@ -443,15 +443,15 @@ const de: IndoorClimateStrings = {
     "Kombinieren Sie Raumklimadaten mit Belegung aus Space management — lüften, wenn Räume genutzt werden, und drosseln, wenn sie leer stehen.",
   relatedModuleLink: "Space management entdecken",
   audiencesEyebrow: "Für wen es gedacht ist",
-  audiencesHeading: "Für Compliance-Verantwortliche und ESG-Manager — Daten, die Sie für Standards und Vorschriften nutzen können.",
+  audiencesHeading: "Für Compliance-Verantwortliche und ESG-Manager: Daten, die Sie für Standards und Vorschriften nutzen können.",
   audiencesLead:
     "Ob Ihre Berichterstattung EPBD, DGNB, CSRD, ESG oder lokale Bauvorschriften betrifft — RoomAlyzer liefert Compliance-Verantwortlichen und Facility-Teams dieselbe objektive Basis, auf der Sie aufbauen können.",
-  fmHeading: "Für Facility Manager",
+  fmHeading: "Für Facility Manager und Betriebsteams",
   fmItems: [
     "Alarme nach Kritikalität sortiert sehen; Betrieb nach tatsächlicher Nutzung führen — nicht nach Zeitplan",
     "Heizen und Kühlen mit objektiven Daten ausbalancieren; Beschwerden mit Raumdaten reduzieren",
     "Leistung von Lüftungsanlagen dokumentieren — inkl. VDI 6022-Nachweis",
-    "BR18 / BR25 und FaDi-Gesetz — Daten, die Sie für operative Gebäude- und HVAC-Anforderungen nutzen können",
+    "GEG und lokale Bauvorschriften — Daten, die Sie für operative Gebäude- und HVAC-Anforderungen nutzen können",
   ],
   complianceHeading: "Für Compliance-Verantwortliche & ESG-Manager",
   complianceItems: [
@@ -491,22 +491,22 @@ const de: IndoorClimateStrings = {
 };
 
 const sv: IndoorClimateStrings = {
-  metaTitle: "Inomhusklimat — sensorer och data | IoT Fabrikken",
+  metaTitle: "Inomhusklimat: sensorer och data | IoT Fabrikken",
   metaDescription:
     "Fjärrövervakning av inomhusklimat med trådlösa sensorer. Förvandla klagomål till fakta, minska energislöseri och ligga steget före mögel — med EPBD- och DGNB-klara rapporter.",
   breadcrumbHome: "Hem",
   breadcrumbModules: "Moduler",
   breadcrumbCurrent: "Inomhusklimat",
-  heroTitle: "Hantera klagomål och energi med data —",
+  heroTitle: "Hantera klagomål och energi med data,",
   heroTitleAccent: "inte känslor.",
   heroLead:
     "Fjärrövervakning av inomhusklimat som förvandlar klagomål till fakta och sparar energi",
   intro: [
-    "Inomhusklimatövervakning ger er data för att besvara en fråga varje facility manager känner igen: är klagomålet verkligt, eller en känsla? Någon är för varm, någon annan för kall, och luften känns \"tung\" tidigt på eftermiddagen — men utan data om temperatur, fukt och CO₂ styr ni på intryck, justerar ventilation på magkänsla och försvarar beslut ni inte kan backa upp.",
+    "Inomhusklimatövervakning ger er data för att besvara en fråga varje facility manager känner igen: är klagomålet verkligt, eller en känsla? Någon är för varm, någon annan för kall, och luften känns \"tung\" tidigt på eftermiddagen, men utan data om temperatur, fukt och CO₂ styr ni på intryck, justerar ventilation på magkänsla och försvarar beslut ni inte kan backa upp.",
   ],
   heroPrimaryCta: "Boka en gratis demo",
   heroSecondaryCta: "Få en offert",
-  dashboardLabel: "RoomAlyzer — Inomhusklimat",
+  dashboardLabel: "RoomAlyzer: Inomhusklimat",
   dashboardAlt: "Bevakat kontorsutrymme med RoomAlyzer inomhusklimatövervakning",
   challengesEyebrow: "Utmaningarna ni känner igen",
   challengesHeading: "Utan rumsdata försämras både energiförbrukning och komfortklagomål.",
@@ -558,28 +558,28 @@ const sv: IndoorClimateStrings = {
     {
       id: "energy-optimisation",
       title: "Energioptimering",
-      body: "Se hur mycket energi byggnaden slösar på att hålla rum varmare eller kallare än nödvändigt. Modulen jämför inomhustemperaturen med vinter- och sommarsetpoints och sätter en tydlig siffra på överuppvärmning och överkylning — i kWh, i kostnad och i CO₂ — så ni exakt ser var besparingarna finns. En effektivitetspoäng sammanfattar varje plats med en blick, passiva perioder exkluderas så siffrorna förblir ärliga, och ni får konkreta, prioriterade rekommendationer för vilket fönster som helst från 24 timmar till 90 dagar.",
+      body: "Se hur mycket energi byggnaden slösar på att hålla rum varmare eller kallare än nödvändigt. Modulen jämför inomhustemperaturen med vinter- och sommarsetpoints och sätter en tydlig siffra på överuppvärmning och överkylning (i kWh, i kostnad och i CO₂) så ni exakt ser var besparingarna finns. En effektivitetspoäng sammanfattar varje plats med en blick, passiva perioder exkluderas så siffrorna förblir ärliga, och ni får konkreta, prioriterade rekommendationer för vilket fönster som helst från 24 timmar till 90 dagar.",
       unit: "Energi",
       imageAlt: "Energioptimeringsanalys i RoomAlyzer",
     },
     {
       id: "mould-risk",
       title: "Mögelrisk",
-      body: "Mögelriskmodulen använder den erkända VTT-modellen för att omvandla temperatur och fukt till ett enda mögelindex från 0 till 6 för varje sensor — från ingen risk via tidig mikroskopisk tillväxt till synlig, kritisk risk. Ställ in varje plats materialkänslighet så modellen speglar er faktiska byggnad. En tydlig översikt visar den högsta risken just nu, vilka zoner som växer och hur varje utvecklas — med klart språk och råd innan en liten ventilationsändring blir en dyr reparation.",
+      body: "Mögelriskmodulen använder den erkända VTT-modellen för att omvandla temperatur och fukt till ett enda mögelindex från 0 till 6 för varje sensor — från ingen risk via tidig mikroskopisk tillväxt till synlig, kritisk risk. Ställ in varje plats materialkänslighet så modellen speglar er faktiska byggnad. En tydlig översikt visar den högsta risken just nu, vilka zoner som växer och hur varje utvecklas, med klart språk och råd innan en liten ventilationsändring blir en dyr reparation.",
       unit: "VTT",
       imageAlt: "Mögelrisköversikt i RoomAlyzer",
     },
     {
       id: "scenarios",
       title: "Trösklar och scenarier",
-      body: "Trösklar är de gröna, gula och röda zonerna som definierar ett bra inomhusklimat för er byggnad — och med scenarier sätter ni dem en gång och tillämpar dem globalt, per plats eller ända ner till en enskild sensor. RoomAlyzer levereras med färdiga scenarier byggda på erkända standarder — från EPBD / EN 16798 och BR18 för kontor till EN 15757 för bevaring och HACCP för livsmedelsförvaring — grupperade efter sektor så rätt gränser bara är ett klick bort.",
+      body: "Trösklar är de gröna, gula och röda zonerna som definierar ett bra inomhusklimat för er byggnad, och med scenarier sätter ni dem en gång och tillämpar dem globalt, per plats eller ända ner till en enskild sensor. RoomAlyzer levereras med färdiga scenarier byggda på erkända standarder (från EPBD / EN 16798 och BBR för kontor till EN 15757 för bevaring och HACCP för livsmedelsförvaring), grupperade efter sektor så rätt gränser bara är ett klick bort.",
       unit: "Trösklar",
       imageAlt: "Inomhusklimatscenarier och standardbibliotek i RoomAlyzer",
     },
     {
       id: "legacy-report",
       title: "Rapport och varningar",
-      body: "Dagliga, veckovisa och månatliga inomhusklimatsammanfattningar landar direkt i inkorgen — välj exakt vilka värden som ska ingå, skicka till så många mottagare ni vill och skicka alltid ett test först. Varningsfunktionen meddelar er i samma ögonblick som inomhusklimatet avviker från den nivå ni satt. Finjustera larm för att undvika falsklarm, välj SMS eller e-post och tilldela olika rapporter till olika mottagare — så stigande fukt eller dålig luftkvalitet upptäcks tidigt.",
+      body: "Dagliga, veckovisa och månatliga inomhusklimatsammanfattningar landar direkt i inkorgen. Välj exakt vilka värden som ska ingå, skicka till så många mottagare ni vill och skicka alltid ett test först. Varningsfunktionen meddelar er i samma ögonblick som inomhusklimatet avviker från den nivå ni satt. Finjustera larm för att undvika falsklarm, välj SMS eller e-post och tilldela olika rapporter till olika mottagare, så stigande fukt eller dålig luftkvalitet upptäcks tidigt.",
       unit: "Rapporter",
       imageAlt: "Inomhusklimatrapport och CO₂-diagram i RoomAlyzer",
     },
@@ -592,12 +592,12 @@ const sv: IndoorClimateStrings = {
   audiencesHeading: "För compliance-ansvariga och ESG-chefer — data ni kan använda över standarder och regler.",
   audiencesLead:
     "Oavsett om er rapportering berör EPBD, DGNB, CSRD, ESG eller lokala byggregler ger RoomAlyzer compliance-ansvariga och facility-team samma objektiva utgångspunkt att bygga vidare på.",
-  fmHeading: "För facility managers",
+  fmHeading: "För facility managers och fastighetsdrift",
   fmItems: [
     "Se larm sorterade efter kritikalitet; driv driften utifrån verklig användning — inte schema",
     "Balansera värme och kyla med objektiva data; minska klagomål med rumsdata",
-    "Dokumentera ventilationssystemens prestanda — inkl. VDI 6022-underlag",
-    "BR18 / BR25 och FaDi-lagen — data ni kan använda för operativa byggnads- och HVAC-krav",
+    "Dokumentera ventilationssystemens prestanda — inkl. underlag till OVK och arbetsmiljökrav",
+    "BBR och lokala byggregler — data ni kan använda för operativa byggnads- och HVAC-krav",
   ],
   complianceHeading: "För compliance-ansvariga och ESG-chefer",
   complianceItems: [

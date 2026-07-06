@@ -44,7 +44,7 @@ const de: DhbvStrings = {
   heroTitle: "Holz- und Gebäudeschutz.",
   heroTitleAccent: "Mit Daten im Blick.",
   heroLead:
-    "Treffen Sie IoT Fabrikken auf dem DHBV-Verbandstag in Papenburg und erfahren Sie, wie RoomAlyzer Feuchte, Temperatur und Leckagen in Gebäuden und Schutzkonstruktionen überwacht — kabellos, skalierbar und ohne aufwendige Verkabelung.",
+    "Treffen Sie IoT Fabrikken auf dem DHBV-Verbandstag in Papenburg und erfahren Sie, wie RoomAlyzer Feuchte, Temperatur und Leckagen in Gebäuden und Schutzkonstruktionen überwacht, kabellos, skalierbar und ohne aufwendige Verkabelung.",
   heroMetaFields: {
     labels: { termin: "Termin", ort: "Ort", detail: "Veranstaltung" },
     ort: "Papenburg",
@@ -60,7 +60,7 @@ const de: DhbvStrings = {
     {
       title: "Holzfeuchte und Schimmelrisiko",
       icon: "wood",
-      body: "Überwachen Sie relative Luftfeuchtigkeit und Temperatur in Holzkonstruktionen und Schutzbereichen — mit Alarmen, bevor Schäden entstehen.",
+      body: "Überwachen Sie relative Luftfeuchtigkeit und Temperatur in Holzkonstruktionen und Schutzbereichen, mit Alarmen, bevor Schäden entstehen.",
     },
     {
       title: "Gebäude und Konstruktionen",
@@ -70,17 +70,17 @@ const de: DhbvStrings = {
     {
       title: "Leckage und Wasserschäden",
       icon: "climate",
-      body: "Wasserdetektoren und Sensorketten melden Leckagen frühzeitig — in Technikräumen, unter Böden oder entlang von Rohrleitungen.",
+      body: "Wasserdetektoren und Sensorketten melden Leckagen frühzeitig, in Technikräumen, unter Böden oder entlang von Rohrleitungen.",
     },
   ],
   topicsEyebrow: "Im Fokus des Verbandstags",
   topicsHeading: "Drei Themen, die zu unserer Expertise passen.",
   topicsLead:
-    "Vom präventiven Holzschutz bis zur digitalen Gebäudeüberwachung — hier sind Bereiche, in denen wir gern Erfahrungen teilen und Live-Beispiele zeigen.",
+    "Vom präventiven Holzschutz bis zur digitalen Gebäudeüberwachung, hier sind Bereiche, in denen wir gern Erfahrungen teilen und Live-Beispiele zeigen.",
   topics: [
     {
       title: "Präventiver Holzschutz",
-      body: "Wie kontinuierliches Monitoring Feuchte und Temperatur in Holzbauteilen sichtbar macht — und Entscheidungen für Sanierung oder Austausch fundiert unterstützt.",
+      body: "Wie kontinuierliches Monitoring Feuchte und Temperatur in Holzbauteilen sichtbar macht, und Entscheidungen für Sanierung oder Austausch fundiert unterstützt.",
     },
     {
       title: "Gebäudediagnostik",
@@ -88,7 +88,7 @@ const de: DhbvStrings = {
     },
     {
       title: "Digitale Alarmierung",
-      body: "Automatische Benachrichtigungen bei Grenzwertüberschreitungen — per E-Mail, SMS oder Integration in bestehende Facility-Systeme.",
+      body: "Automatische Benachrichtigungen bei Grenzwertüberschreitungen, per E-Mail, SMS oder Integration in bestehende Facility-Systeme.",
     },
   ],
   ctaTitle: "Möchten Sie uns in Papenburg treffen?",

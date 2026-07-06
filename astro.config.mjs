@@ -1,14 +1,11 @@
 // @ts-check
 import { fileURLToPath } from 'node:url';
-import { readdir, readFile, rm, rmdir, writeFile } from 'node:fs/promises';
-import { readdirSync } from 'node:fs';
+import { mkdir, readdir, readFile, rm, rmdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const SITE_URL = 'https://iot-fabrikken.com';
 
 import { defineConfig } from 'astro/config';
-
-import { articles as articleCatalog } from './src/data/library/catalog';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -17,8 +14,179 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 import { isHiddenPath, isLivePath, LAUNCH_LIVE_ONLY } from './src/data/launch';
-import { getEventRedirectMap } from './src/data/events';
-import { getLangFromPath, isPageIndexed } from './src/data/lang';
+import { getSiteRedirectMap } from './src/data/redirects';
+import { getLangFromPath, isPageIndexed, canonicalizePath, routePath } from './src/data/lang';
+
+/**
+ * Translate an emitted locale URL path into its localized form via the route
+ * registry. `/de/modules/indoor-climate/` -> `/de/module/raumklima/`. English
+ * maps to itself, and paths already emitted with localized segments (dynamic
+ * [slug] routes) round-trip unchanged, so this is safe to apply to every page.
+ * @param {string} pathname
+ * @returns {string}
+ */
+function localizeUrlPath(pathname) {
+  const match = pathname.match(/^\/(en|da|de|sv)(\/.*)?$/);
+  if (!match) return pathname;
+  const lang = /** @type {import('./src/data/lang').Lang} */ (match[1]);
+  const rest = (match[2] ?? '/').replace(/^\/+/, '').replace(/\/+$/, '');
+  const canonical = canonicalizePath(rest, lang);
+  return routePath(canonical, lang);
+}
+
+/**
+ * Translate an emitted locale URL path into its canonical English-segment form.
+ * `/de/module/raumklima/` -> `/de/modules/indoor-climate/`. Used to write a
+ * redirect stub at the old English-segment path for dynamic [slug] pages, which
+ * emit their localized segment directly (so the relocation pass never sees the
+ * English path). English maps to itself.
+ * @param {string} pathname
+ * @returns {string}
+ */
+function canonicalizeUrlPath(pathname) {
+  const match = pathname.match(/^\/(en|da|de|sv)(\/.*)?$/);
+  if (!match) return pathname;
+  const lang = /** @type {import('./src/data/lang').Lang} */ (match[1]);
+  const rest = (match[2] ?? '/').replace(/^\/+/, '').replace(/\/+$/, '');
+  const canonical = canonicalizePath(rest, lang);
+  const trimmed = canonical.replace(/^\/+/, '').replace(/\/+$/, '');
+  return `/${lang}${trimmed ? `/${trimmed}` : ''}/`.replace(/\/{2,}/g, '/');
+}
+
+/** True when a file already exists at the given absolute path. */
+async function fileExists(/** @type {string} */ full) {
+  try {
+    await readFile(full);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/** Minimal client-side redirect stub written at a page's former English path. */
+function redirectStubHtml(/** @type {string} */ target) {
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <meta http-equiv="refresh" content="0;url=${target}" />
+    <link rel="canonical" href="${target}" />
+    <meta name="robots" content="noindex,follow" />
+  </head>
+  <body>
+    <p>This page has moved to <a href="${target}">${target}</a>.</p>
+    <script>window.location.replace(${JSON.stringify(target)});</script>
+  </body>
+</html>
+`;
+}
+
+/**
+ * Relocate fixed-filename pages (hub index.astro, dedicated module landings,
+ * etc.) from their emitted English-segment path to the localized path dictated
+ * by the route registry, and leave a redirect stub at the old path. Dynamic
+ * [slug] pages already emit localized segments, so they round-trip unchanged.
+ * The emitted HTML already carries the localized canonical/hreflang/links, so
+ * moving the file is safe. Also rewrites sitemap <loc> entries to match.
+ *
+ * Runs after @astrojs/sitemap (whose URLs are built from Astro's English-segment
+ * route list) and before pruneHiddenPages.
+ */
+function localizeFixedPages() {
+  return {
+    name: 'localize-fixed-pages',
+    hooks: {
+      'astro:build:done': async (/** @type {{ dir: URL, logger: { info: (msg: string) => void } }} */ { dir, logger }) => {
+        const outDir = fileURLToPath(dir);
+
+        /** @type {string[]} */
+        const indexFiles = [];
+        async function collect(/** @type {string} */ currentDir) {
+          for (const entry of await readdir(currentDir, { withFileTypes: true })) {
+            const full = path.join(currentDir, entry.name);
+            if (entry.isDirectory()) {
+              await collect(full);
+              continue;
+            }
+            if (entry.name === 'index.html') indexFiles.push(full);
+          }
+        }
+        await collect(outDir);
+
+        let moved = 0;
+        let stubbed = 0;
+        for (const full of indexFiles) {
+          const rel = path.relative(outDir, full).split(path.sep).join('/');
+          const urlPath = `/${rel.replace(/index\.html$/, '')}`;
+          const localized = localizeUrlPath(urlPath);
+
+          if (localized !== urlPath) {
+            // Fixed-name page emitted at the English-segment path: relocate the
+            // real page to its localized path and leave a stub at the old path.
+            const newRel = `${localized.replace(/^\/+/, '')}index.html`;
+            const newFull = path.join(outDir, ...newRel.split('/'));
+            const html = await readFile(full, 'utf8');
+            await mkdir(path.dirname(newFull), { recursive: true });
+            await writeFile(newFull, html);
+            await rm(full, { force: true });
+            await writeFile(full, redirectStubHtml(localized));
+            moved += 1;
+            continue;
+          }
+
+          // Dynamic [slug] page already emitted at its localized path: leave a
+          // stub at the canonical English-segment path (which Astro never
+          // emits for da/de/sv) so old English-segment URLs still resolve in
+          // one hop. Skip when nothing differs (English locale, untranslated
+          // segments) or a real page already occupies the English path.
+          const canonical = canonicalizeUrlPath(urlPath);
+          if (canonical === urlPath) continue;
+          const stubRel = `${canonical.replace(/^\/+/, '')}index.html`;
+          const stubFull = path.join(outDir, ...stubRel.split('/'));
+          if (await fileExists(stubFull)) continue;
+          await mkdir(path.dirname(stubFull), { recursive: true });
+          await writeFile(stubFull, redirectStubHtml(urlPath));
+          stubbed += 1;
+        }
+        if (moved > 0 || stubbed > 0) {
+          logger.info(
+            `Localized URLs: relocated ${moved} fixed page(s) and wrote ${moved + stubbed} redirect stub(s).`,
+          );
+        }
+
+        // Rewrite every absolute site URL in the sitemap to its localized path.
+        // @astrojs/sitemap builds both <loc> entries and its i18n
+        // <xhtml:link rel="alternate" hreflang="…" href="…"> alternates from
+        // Astro's English-segment route list, so both must be localized to stay
+        // consistent with the relocated pages and the HTML hreflang tags.
+        const sitemapFile = path.join(outDir, 'sitemap-0.xml');
+        try {
+          const xml = await readFile(sitemapFile, 'utf8');
+          let rewritten = 0;
+          const originRe = new RegExp(
+            `${SITE_URL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(/[^"<\\s]*)`,
+            'g',
+          );
+          const cleaned = xml.replace(originRe, (whole, pathname) => {
+            const localized = localizeUrlPath(pathname);
+            if (localized !== pathname) {
+              rewritten += 1;
+              return `${SITE_URL}${localized}`;
+            }
+            return whole;
+          });
+          if (rewritten > 0) {
+            await writeFile(sitemapFile, cleaned);
+            logger.info(`Localized URLs: rewrote ${rewritten} sitemap URL(s) to localized paths.`);
+          }
+        } catch {
+          // No sitemap emitted — nothing to do.
+        }
+      },
+    },
+  };
+}
 
 // Soft-launch gate: after the build completes, delete every page that is not
 // on the live allowlist (src/data/launch.ts) so only the approved pages ship
@@ -107,33 +275,6 @@ async function removeEmptyDirs(/** @type {string} */ dir) {
   }
 }
 
-const SITE_LOCALES = ['en', 'da', 'de', 'sv'];
-
-// The article catalogue moved from /library/ to /articles/. Enumerate an
-// explicit 301 for every old article URL (catalogue stubs + published MDX) so
-// static hosts emit a real redirect stub for each — Astro does not reliably
-// prerender redirect stubs for spread/dynamic patterns in `output: 'static'`.
-const landingDir = fileURLToPath(new URL('./src/content/landingpages', import.meta.url));
-const landingSlugs = readdirSync(landingDir)
-  .filter((f) => /\.(md|mdx)$/.test(f))
-  .map((f) => f.replace(/\.(md|mdx)$/, ''));
-const articleSlugs = Array.from(
-  new Set([...articleCatalog.map((a) => a.slug), ...landingSlugs]),
-);
-
-/** Legacy /library/ and /blog/ URLs → /articles/ for every locale prefix. */
-const legacyArticlesRedirects = Object.fromEntries(
-  SITE_LOCALES.flatMap((lang) => [
-    [`/${lang}/library/`, `/${lang}/articles/`],
-    [`/${lang}/library/tags/`, `/${lang}/articles/tags/`],
-    ...articleSlugs.map((slug) => [`/${lang}/library/${slug}/`, `/${lang}/articles/${slug}/`]),
-    [`/${lang}/blog/`, `/${lang}/articles/`],
-    [`/${lang}/blog/welcome-to-the-iot-fabrikken-blog/`, `/${lang}/articles/`],
-    [`/${lang}/blog/en-15757-in-practice/`, `/${lang}/articles/en-15757-in-practice/`],
-    [`/${lang}/blog/rollout-in-varde-municipality/`, `/${lang}/articles/rollout-in-varde-municipality/`],
-  ]),
-);
-
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
@@ -164,64 +305,8 @@ export default defineConfig({
   // client-side `window.location.replace()` in `src/pages/index.astro` as a
   // fallback for pure static hosts.
 
-  redirects: {
-    '/': '/en/',
-
-    // Danish legacy slugs mapped to the anglicised English slugs so older
-    // documents or inbound links still resolve. When the /da/ tree ships these
-    // will be replaced by proper /da/... routes that use the Danish slugs
-    // natively.
-    '/en/cases/': '/en/case-studies/',
-    '/da/cases/': '/da/case-studies/',
-    '/da/case-studies/varde-kommune-3/': '/da/case-studies/varde-kommune/',
-    '/en/case-studies/norddjurs-kommune/': '/en/case-studies/norddjurs-municipality/',
-    '/en/case-studies/varde-kommune/': '/en/case-studies/varde-municipality/',
-    '/en/case-studies/gribskov-kommune/': '/en/case-studies/gribskov-municipality/',
-    '/en/about/d-label/': '/en/about/trust-center/',
-    '/en/about/d-maerket/': '/en/about/trust-center/',
-
-    // Sensor catalogue slug changes and removed products
-    '/en/sensors/gateway/': '/en/sensors/cloud-connector/',
-    '/en/sensors/motion-pir/': '/en/sensors/motion/',
-    '/en/sensors/push-button/': '/en/sensors/touch/',
-    '/en/sensors/full/': '/en/sensors/',
-    '/en/sensors/mini/': '/en/sensors/',
-    '/en/sensors/full-plus-pir/': '/en/sensors/',
-    '/en/sensors/series-a/': '/en/sensors/',
-    '/en/sensors/series-b/': '/en/sensors/',
-    '/en/sensors/series-c/': '/en/sensors/',
-    '/en/shop/products/gateway/': '/en/shop/products/cloud-connector/',
-    '/en/shop/products/motion-pir/': '/en/shop/products/motion/',
-    '/en/shop/products/push-button/': '/en/shop/products/touch/',
-    '/en/shop/products/full/': '/en/shop/products/',
-    '/en/shop/products/mini/': '/en/shop/products/',
-    '/en/shop/products/full-plus-pir/': '/en/shop/products/',
-    '/en/shop/products/series-a/': '/en/shop/products/',
-    '/en/shop/products/series-b/': '/en/shop/products/',
-    '/en/shop/products/series-c/': '/en/shop/products/',
-
-    // Sensor compare moved from /sensors/compare/ to /compare/
-    '/en/sensors/compare/': '/en/compare/',
-    '/da/sensors/compare/': '/da/compare/',
-    '/de/sensors/compare/': '/de/compare/',
-    '/sv/sensors/compare/': '/sv/compare/',
-
-    // The Library was renamed to Articles (single canonical content catalogue).
-    ...legacyArticlesRedirects,
-
-    // Pricing plans and enterprise were merged into a single pricing page.
-    '/en/pricing/plans/': '/en/pricing/',
-    '/en/pricing/enterprise/': '/en/pricing/',
-    '/da/pricing/plans/': '/da/pricing/',
-    '/da/pricing/enterprise/': '/da/pricing/',
-    '/de/pricing/plans/': '/de/pricing/',
-    '/de/pricing/enterprise/': '/de/pricing/',
-    '/sv/pricing/plans/': '/sv/pricing/',
-    '/sv/pricing/enterprise/': '/sv/pricing/',
-
-    // Locale-scoped and archived event pages (see src/data/events.ts).
-    ...getEventRedirectMap(),
-  },
+  // All path renames: src/data/redirects.ts (library/blog, cases, sensors, events, …).
+  redirects: getSiteRedirectMap(),
 
   vite: {
     plugins: [tailwindcss()]
@@ -247,6 +332,7 @@ export default defineConfig({
         return isLivePath(pathname);
       },
     }),
+    localizeFixedPages(),
     pruneHiddenPages(),
   ]
 });

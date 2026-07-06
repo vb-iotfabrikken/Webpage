@@ -44,7 +44,7 @@ const de: MutecStrings = {
   heroTitle: "Museumstechnik trifft",
   heroTitleAccent: "Raumklima-Monitoring.",
   heroLead:
-    "Treffen Sie IoT Fabrikken auf der MUTEC in Leipzig und erfahren Sie, wie RoomAlyzer Temperatur, Luftfeuchtigkeit und CO₂ in Museen, Depots und Ausstellungsräumen überwacht — diskret, kabellos und dokumentationsfähig.",
+    "Treffen Sie IoT Fabrikken auf der MUTEC in Leipzig und erfahren Sie, wie RoomAlyzer Temperatur, Luftfeuchtigkeit und CO₂ in Museen, Depots und Ausstellungsräumen überwacht, diskret, kabellos und dokumentationsfähig.",
   heroMetaFields: {
     labels: { termin: "Termin", ort: "Ort", detail: "Messe" },
     ort: "Leipzig",
@@ -60,7 +60,7 @@ const de: MutecStrings = {
     {
       title: "Depot- und Schauraumklima",
       icon: "museum",
-      body: "Überwachen Sie Temperatur und relative Luftfeuchtigkeit in Depots, Vitrinen und Ausstellungsräumen — mit Alarmen bei Abweichungen von Sollwerten.",
+      body: "Überwachen Sie Temperatur und relative Luftfeuchtigkeit in Depots, Vitrinen und Ausstellungsräumen, mit Alarmen bei Abweichungen von Sollwerten.",
     },
     {
       title: "CO₂ und Besucherströme",
@@ -70,21 +70,21 @@ const de: MutecStrings = {
     {
       title: "Leckage und Gebäudehülle",
       icon: "security",
-      body: "Frühwarnung bei Wassereintritt in Technikräumen oder an der Gebäudehülle — mit Wasserdetektoren und Feuchtesensoren entlang kritischer Stellen.",
+      body: "Frühwarnung bei Wassereintritt in Technikräumen oder an der Gebäudehülle, mit Wasserdetektoren und Feuchtesensoren entlang kritischer Stellen.",
     },
   ],
   topicsEyebrow: "Im Fokus der MUTEC",
   topicsHeading: "Drei Themen, die zu unserer Expertise passen.",
   topicsLead:
-    "Von der konservatorischen Klimaführung bis zur digitalen Gebäudeüberwachung — hier sind Bereiche, in denen wir gern Erfahrungen teilen.",
+    "Von der konservatorischen Klimaführung bis zur digitalen Gebäudeüberwachung, hier sind Bereiche, in denen wir gern Erfahrungen teilen.",
   topics: [
     {
       title: "Konservatorisches Monitoring",
-      body: "Wie dauerhafte Messung Temperatur und Feuchte in Depots und Schauräumen sichtbar macht — als Grundlage für Gutachten und Präventivmaßnahmen.",
+      body: "Wie dauerhafte Messung Temperatur und Feuchte in Depots und Schauräumen sichtbar macht, als Grundlage für Gutachten und Präventivmaßnahmen.",
     },
     {
       title: "Energie und Lüftung",
-      body: "Bedarfsgerechte Lüftung auf Basis von CO₂- und Belegungsdaten — Komfort für Besucher bei gleichzeitigem Schutz des Kulturguts.",
+      body: "Bedarfsgerechte Lüftung auf Basis von CO₂- und Belegungsdaten: Komfort für Besucher bei gleichzeitigem Schutz des Kulturguts.",
     },
     {
       title: "Skalierbare Sensorik",

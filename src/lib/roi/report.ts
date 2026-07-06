@@ -60,7 +60,7 @@ export const FACILITY_LABELS: Record<EnergyFacility, string> = {
 
 export const FACILITY_SOCIAL_PROOF: Record<EnergyFacility, string> = {
   office:
-    "RoomAlyzer monitors offices across the Nordics — from single floors to full headquarters.",
+    "RoomAlyzer monitors offices across the Nordics, from single floors to full headquarters.",
   heritage:
     "Trusted by the Protestant Church in Hesse and Nassau, Rudersdal Museums and Faaborg Museum.",
   school:
@@ -88,7 +88,7 @@ export function buildGoalSuggestions(
       const value = share.desks * Math.max(0, inputs.annualCostPerDesk);
       suggestions.push({
         goal: "cut",
-        text: `Remove or sublease ~${formatNumber(share.desks)} desks — ${formatMoney(currency, value)} / year off your cost base.`,
+        text: `Remove or sublease ~${formatNumber(share.desks)} desks (${formatMoney(currency, value)} / year off your cost base).`,
       });
     } else if (share.goal === "repurpose") {
       const sqm = share.desks * DESK_AREA_PER_DESK_SQM;
@@ -104,12 +104,12 @@ export function buildGoalSuggestions(
         .join(" and ");
       suggestions.push({
         goal: "repurpose",
-        text: `Convert ~${formatNumber(sqm)} m² of desk space${fits ? ` — fits ~${fits}` : ""}.`,
+        text: `Convert ~${formatNumber(sqm)} m² of desk space${fits ? ` (fits ~${fits})` : ""}.`,
       });
     } else {
       suggestions.push({
         goal: "grow",
-        text: `Seat ~${formatNumber(share.desks)} new hires in your current lease — growth without a new rental contract.`,
+        text: `Seat ~${formatNumber(share.desks)} new hires in your current lease, growth without a new rental contract.`,
       });
     }
   }
@@ -138,7 +138,7 @@ export function buildEnergyValueLines(
   if (inputs.facility === "heritage") {
     const levels = { low: "Low", medium: "Medium", high: "High" } as const;
     lines.push(
-      `Climate risk exposure: ${levels[results.riskLevel]} — avoidable incident cost ~${formatMoney(currency, results.riskValue)} / year.`,
+      `Climate risk exposure: ${levels[results.riskLevel]}, avoidable incident cost ~${formatMoney(currency, results.riskValue)} / year.`,
     );
     if (inputs.collectionValue && inputs.collectionValue > 0) {
       lines.push(
@@ -147,7 +147,7 @@ export function buildEnergyValueLines(
     }
     if (inputs.needsDocumentation) {
       lines.push(
-        "Continuous climate logs — documentation for conservation authorities and fund applications.",
+        "Continuous climate logs, documentation for conservation authorities and fund applications.",
       );
     }
     if (inputs.energyModuleActive) {
@@ -193,8 +193,8 @@ export function buildReportDisplayMeta(payload: LeadPayload): ReportDisplayMeta 
     const goalLabels = inputs.goals.map((g) => GOAL_LABELS[g]).join(", ");
     const teaser =
       results.reducibleDesks > 0
-        ? `You could right-size ~${formatNumber(results.reducibleDesks)} desks (${formatPct(results.savingsPctOfCapacity, 0)} of capacity) — goals: ${goalLabels}.`
-        : "Your peak attendance matches your desk count — try lowering the attendance slider.";
+        ? `You could right-size ~${formatNumber(results.reducibleDesks)} desks (${formatPct(results.savingsPctOfCapacity, 0)} of capacity), goals: ${goalLabels}.`
+        : "Your peak attendance matches your desk count, try lowering the attendance slider.";
     return {
       calcLabel: "Desk optimiser",
       useCase: "Space management",
@@ -217,12 +217,12 @@ export function buildReportDisplayMeta(payload: LeadPayload): ReportDisplayMeta 
   } else {
     teaser =
       inputs.annualBill > 0
-        ? `Up to ${formatPct(results.savingsPctOfBill, 0)} of your annual heating bill — plus a productivity uplift.`
+        ? `Up to ${formatPct(results.savingsPctOfBill, 0)} of your annual heating bill, plus a productivity uplift.`
         : "Enter your heating bill or floor area to see an estimate.";
   }
 
   return {
-    calcLabel: `Energy saver — ${FACILITY_LABELS[facility]}`,
+    calcLabel: `Energy saver: ${FACILITY_LABELS[facility]}`,
     useCase:
       facility === "heritage"
         ? "Preservation / indoor climate"
@@ -431,7 +431,7 @@ export function formatReportAsText(
 ): string {
   const calcLabel = report.calculator === "desk" ? "Desk optimiser" : "Energy saver";
   const lines = [
-    "IoT Fabrikken — ROI breakdown (illustrative)",
+    "IoT Fabrikken: ROI breakdown (illustrative)",
     "",
     `Calculator: ${calcLabel}`,
     `Name: ${lead.firstName} ${lead.lastName}`,

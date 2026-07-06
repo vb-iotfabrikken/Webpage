@@ -17,7 +17,10 @@
     "optimize-images": "node scripts/optimize-sensor-finder-images.mjs && node scripts/optimize-hero-images.mjs && node scripts/optimize-module-images.mjs && node scripts/optimize-sensor-product-images.mjs && node scripts/optimize-sensor-dimension-images.mjs && node scripts/optimize-sensor-in-use-images.mjs",
     "optimize-water-detection-images": "node scripts/optimize-water-detection-images.mjs",
     "sync-all-images": "npm run sync-sensor-in-use && npm run sync-sensor-dimensions && npm run optimize-images",
-    "generate-favicon": "node scripts/generate-favicon.mjs"
+    "generate-favicon": "node scripts/generate-favicon.mjs",
+    "export-redirects": "node scripts/export-redirects.mjs",
+    "crawl-legacy-sitemaps": "node scripts/crawl-legacy-sitemaps.mjs",
+    "audit:locale-grammar": "node scripts/audit-locale-grammar.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.0",
