@@ -152,7 +152,7 @@ English slugs: `norddjurs-municipality`, `varde-municipality`, `dansk-industri`,
 | `/about/careers` | Careers page (0 open positions in [`careers.ts`](../careers.ts)) |
 | `/about/press` | Press assets |
 | `/about/partners` | Partner grid; Integrations CTA hidden |
-| `/about/trust-center` | Trust pillars shown; only **Privacy** pillar is clickable |
+| `/about/trust-center` | **Privacy & GDPR** pillar only; Security, Terms & DPA, and Service levels hidden; D-Label certification hidden |
 
 ### Contact — entire `/{lang}/contact/` tree
 
@@ -248,6 +248,7 @@ From [`launch.ts`](../launch.ts):
 | `LIVE_PREFIXES` | `sensors`, `case-studies`, `about`, `contact`, `events` |
 | `LIVE_EXACT` | homepage, `cases` (legacy redirect), `compare`, `get-an-offer`, `legal/privacy`, `legal/impressum` |
 | `LIVE_MODULE_SLUGS` | `indoor-climate`, `space-management`, `water-detection`, `preservation` (+ `modules` hub index) |
+| `LIVE_TRUST_CENTER_SECTIONS` | _(empty during soft launch — certification hidden)_ |
 | `ALWAYS_ALLOWED` | `404`, `thank-you`, `thanks` |
 
 ## Branch workflow

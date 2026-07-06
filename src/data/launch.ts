@@ -19,6 +19,8 @@
  *   • Events        → Hub + landing pages in detailLocales (see events.ts)
  *   • Get an offer  → Quote request form
  *   • Legal         → Privacy, Impressum only
+ *   • Trust center  → Privacy pillar only (via isLivePath); inline sections
+ *                     via LIVE_TRUST_CENTER_SECTIONS (certification hidden)
  *   • Helpcenter + Log in are external (no internal page to gate)
  *
  * Module pages are matched via LIVE_MODULE_SLUGS (not the whole /modules/ tree).
@@ -88,6 +90,14 @@ export const ALWAYS_ALLOWED: readonly string[] = [
   "thanks",
 ];
 
+/**
+ * Inline trust-center sections live during soft launch. Pillar cards inherit
+ * from {@link isLivePath} on each pillar's legal slug.
+ */
+export const LIVE_TRUST_CENTER_SECTIONS: readonly string[] = [
+  // "certification" omitted until full launch
+];
+
 const localePrefix = new RegExp(`^/(?:${locales.map((l) => l.code).join("|")})(?:/|$)`);
 const localePrefixCapture = new RegExp(
   `^/(${locales.map((l) => l.code).join("|")})(?:/|$)`,
@@ -142,4 +152,10 @@ export function isLivePath(pathname: string): boolean {
 /** Convenience inverse of {@link isLivePath}. */
 export function isHiddenPath(pathname: string): boolean {
   return !isLivePath(pathname);
+}
+
+/** Is the given trust-center inline section part of the live set? */
+export function isLiveTrustCenterSection(section: string): boolean {
+  if (!LAUNCH_LIVE_ONLY) return true;
+  return LIVE_TRUST_CENTER_SECTIONS.includes(section);
 }
