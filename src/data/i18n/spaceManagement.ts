@@ -12,6 +12,8 @@ export interface SpaceManagementStrings {
   heroTitle: string;
   heroTitleAccent: string;
   heroLead: string;
+  /** Alt text for the editorial photo beside the hero title. */
+  heroTitleImageAlt: string;
   /** Intro paragraphs below the challenges section header. */
   intro: string[];
   heroPrimaryCta: string;
@@ -60,48 +62,49 @@ export interface SpaceManagementStrings {
 }
 
 const en: SpaceManagementStrings = {
-  metaTitle: "Space management — occupancy sensors and data | IoT Fabrikken",
+  metaTitle: "Space management: occupancy sensors and data | IoT Fabrikken",
   metaDescription:
     "Optimise office costs and employee well-being with wireless occupancy sensors for desks and meeting rooms. See real utilisation, fix ghost bookings, and turn space data into rent and energy savings.",
   breadcrumbHome: "Home",
   breadcrumbModules: "Modules",
   breadcrumbCurrent: "Space management",
-  heroTitle: "Optimise office costs and employee well-being —",
+  heroTitle: "Optimise office costs and employee well-being,",
   heroTitleAccent: "with space management built on real usage.",
   heroLead:
-    "Live desk and room occupancy that turns calendar illusions and hybrid-policy guesswork into rent, energy and workplace decisions.",
+    "Live desk and room occupancy that turns guesswork into rent and energy savings, and gives people a workplace worth showing up for.",
+  heroTitleImageAlt: "Hand placing a RoomAlyzer Space desk sensor under an office desk",
   intro: [
-    "Hybrid work means facility teams juggle employee experience and leadership decisions every day — who needs a desk right now, and whether you can downsize with proof. Without real-time occupancy data, both sides run on guesswork.",
+    "Facility management is no longer just about desks and indoor climate. It is navigating a human dilemma between flexibility and physical presence. Employees no longer commute out of habit; the workplace must deliver clear value. The challenge is to elevate the employee experience while driving waste toward zero, shifting from counting heads to optimising how people actually use the office.",
   ],
   heroPrimaryCta: "Book a free demo",
   heroSecondaryCta: "Get an offer",
-  dashboardLabel: "RoomAlyzer — Space management",
+  dashboardLabel: "RoomAlyzer: Space management",
   dashboardAlt: "RoomAlyzer Space management dashboard showing desk occupancy, trends, and utilisation",
   challengesEyebrow: "The challenges you actually face",
   challengesHeading:
-    "When you cannot see real-time utilisation, every real estate decision is a guess. Hybrid office policy says one thing; human behaviour says another.",
+    "Without live utilisation data, every space, cost and workplace decision is guesswork.",
   challenges: [
     {
       title: "The \"fully booked\" illusion",
-      body: "Meeting rooms look blocked in your calendar system, yet they stand empty — or are booked for ten and used by two. Without real data, you miss the hidden slack that could fit an entire additional department.",
+      body: "Meeting rooms look completely blocked in your calendar, yet they stand empty, or are booked for ten and used by two. Without real-time data, you miss the hidden slack that could accommodate an entire additional department.",
     },
     {
       title: "Policy vs. reality",
-      body: "Management may announce a mandatory five-day office week, but team leads make individual exceptions. Desks sit empty on Mondays and Fridays while you pay for full-scale heating, cooling and cleaning.",
+      body: "Leadership may mandate a five-day office week, but team leads keep making exceptions. Offices peak mid-week while desks sit empty on Mondays and Fridays — and you pay for full-scale heating, cooling and cleaning week after week.",
     },
     {
       title: "Green agendas without teeth",
-      body: "Municipalities and corporations want to downsize square footage to hit sustainability targets — but facility managers lack the bulletproof occupancy data needed to justify those proposals to leadership.",
+      body: "Municipalities and corporations want to aggressively downsize square footage for sustainability targets, but facility managers lack the hard occupancy data needed to justify those proposals to sceptical leadership.",
     },
     {
-      title: "Nursing the modern employee",
-      body: "To incentivise office attendance, companies build silent zones, standing rooms and project walls — but without tracking, you have no idea which layouts actually drive attendance and which waste budget.",
+      title: "Office upgrades you can't measure",
+      body: "To incentivise office attendance, companies invest in silent zones, standing rooms and project walls, but without tracking, you have no baseline for which layouts actually drive attendance and which ones waste budget.",
     },
   ],
   capabilitiesEyebrow: "How RoomAlyzer solves it",
-  capabilitiesHeading: "Occupancy data tailored to how people work — deployed securely from day one.",
+  capabilitiesHeading: "Occupancy data tailored to how people work, deployed securely from day one.",
   solutionLead:
-    "RoomAlyzer Space management uses plug-and-play Desk and Motion sensors to give you a live, entirely anonymised overview of workspace dynamics — built for facility managers, space planners, corporate leadership and municipalities.",
+    "RoomAlyzer Space management uses plug-and-play Desk and Motion sensors to give you a live, entirely anonymised and GDPR-compliant overview of workspace dynamics, built for facility managers, space planners, corporate leadership and municipalities.",
   solutionLeadWithSensorLinks: [
     { type: "text", value: "RoomAlyzer Space management uses plug-and-play " },
     { type: "sensor", slug: "desk", label: "Desk" },
@@ -110,7 +113,7 @@ const en: SpaceManagementStrings = {
     {
       type: "text",
       value:
-        " sensors to give you a live, entirely anonymised overview of workspace dynamics — built for facility managers, space planners, corporate leadership and municipalities. ",
+        " sensors to give you a live, entirely anonymised and GDPR-compliant overview of workspace dynamics, built for facility managers, space planners, corporate leadership and municipalities. ",
     },
     { type: "compare", label: "Compare hybrid office sensors", useCaseId: "hybrid-office" },
   ],
@@ -120,7 +123,7 @@ const en: SpaceManagementStrings = {
     {
       id: "desks",
       title: "Desks & zone tagging",
-      body: "Don't just count heads — tag and compare how departments use their home zones versus shared project spaces. Understand exactly how your teams interact with your real estate.",
+      body: "Don't just count heads: tag and compare how departments use their home zones versus shared project spaces, and make data-driven layout changes based on how teams actually interact with your real estate.",
       bodyWithSensorLinks: [
         { type: "text", value: "The " },
         { type: "sensor", slug: "desk", label: "Desk" },
@@ -129,7 +132,7 @@ const en: SpaceManagementStrings = {
         {
           type: "text",
           value:
-            " sensors let you tag and compare how departments use their home zones versus shared project spaces — so you understand how teams interact with your real estate, not just how many people are present.",
+            " sensors let you tag and compare how departments use their home zones versus shared project spaces, so you can make data-driven layout changes, not just count heads.",
         },
       ],
       unit: "Tagging",
@@ -138,21 +141,34 @@ const en: SpaceManagementStrings = {
     {
       id: "meeting-rooms",
       title: "Meeting rooms & smart release",
-      body: "Compare bookings to actual use and close the gap that blocks your calendar. Unused bookings can release the room automatically — integrated with Google, Microsoft 365 and Pronestor.",
+      body: "Close the calendar gap between bookings and actual use. Unused bookings release the room automatically, integrated with Google, Microsoft 365 and Pronestor to free ghost bookings when a room stays empty.",
       unit: "Smart release",
       imageAlt: "Meeting room booking versus actual utilisation in RoomAlyzer",
     },
     {
       id: "heatmaps",
       title: "Intuitive heat maps",
-      body: "Move past dense spreadsheets. Heat maps translate raw occupancy into scannable visual trends — see a week's worth of underutilisation or peak occupancy across entire floors at a glance.",
+      body: "Move past dense, confusing spreadsheets. Heat maps translate raw occupancy into scannable visual trends: see a week's underutilisation or peak occupancy across entire floors at a glance.",
       unit: "Trends",
       imageAlt: "Occupancy heat map across a floor plan in RoomAlyzer",
     },
     {
       id: "savings",
       title: "Energy & cleaning savings",
-      body: "When occupancy is low on Mondays and Fridays, consolidate teams onto lower floors and shut down heating, ventilation and cleaning on upper levels. A documented case: 1M DKK infrastructure investment yielding up to 1.5M DKK in direct energy and operational savings within year one.",
+      body: "Manage facilities on reality, not policy. See when occupancy drops on Mondays and Fridays or across whole zones, so you can align heating, ventilation and cleaning with actual use instead of fixed schedules. A documented Dansk Industri case: 1M DKK infrastructure investment yielding up to 1.5M DKK in direct energy and operational savings within year one.",
+      bodyWithSensorLinks: [
+        {
+          type: "text",
+          value:
+            "Manage facilities on reality, not policy. See when occupancy drops on Mondays and Fridays or across whole zones, so you can align heating, ventilation and cleaning with actual use instead of fixed schedules. ",
+        },
+        { type: "caseStudy", slug: "dansk-industri", label: "A documented Dansk Industri case" },
+        {
+          type: "text",
+          value:
+            ": 1M DKK infrastructure investment yielding up to 1.5M DKK in direct energy and operational savings within year one.",
+        },
+      ],
       unit: "ROI",
       imageAlt: "RoomAlyzer savings dashboard showing energy and operational ROI",
     },
@@ -160,7 +176,7 @@ const en: SpaceManagementStrings = {
   smarterTogetherLabel: "Smarter together",
   smarterTogetherHeadline: "Occupancy, indoor climate and compliance in one view",
   smarterTogether:
-    "RoomAlyzer pairs space utilisation with indoor climate monitoring — CO₂, temperature and humidity — so you ventilate for actual headcount and dial back when rooms are empty. Standard environments for offices and classrooms update as European and German legislation changes, keeping your buildings compliant without the legal overhead.",
+    "RoomAlyzer pairs space utilisation with indoor climate (CO₂, temperature and humidity) so you ventilate for actual headcount and dial back when rooms are empty.",
   smarterTogetherOccupancyLabel: "Space utilisation",
   smarterTogetherOccupancyContext: "Open plan · Floor 3",
   smarterTogetherOccupancyStat: "62% occupied",
@@ -168,90 +184,91 @@ const en: SpaceManagementStrings = {
   smarterTogetherClimateContext: "Meeting room A",
   smarterTogetherIndoorClimateLink: "Explore indoor climate",
   audiencesEyebrow: "Who it's for",
-  audiencesHeading: "Day-to-day operations and long-term decisions",
+  audiencesHeading: "For workplace and facilities teams, and the leadership that approves the numbers.",
   audiencesLead:
-    "The same occupancy data helps the colleague find a desk today, gives leadership the proof to downsize tomorrow, and turns climate goals into verifiable rent and energy savings.",
-  fmHeading: "For facility management",
+    "Workplace and facility functions are merging into unified teams. RoomAlyzer gives workplace and facilities managers the hard data to build an internal case, and gives senior management the proof to approve budget and consolidation.",
+  fmHeading: "For workplace & facilities managers",
   fmItems: [
-    "Help employees find a free desk or room instantly",
-    "Smart release when bookings go unused",
-    "Adjust ventilation dynamically based on actual headcount",
+    "Build the occupancy business case management expects before space or budget changes",
+    "Run day-to-day operations with live desk, room and zone data",
+    "Replace opinions with hard metrics as workplace and facility roles converge",
   ],
-  realEstateHeading: "For real estate & leadership",
+  realEstateHeading: "For senior management & building owners",
   realEstateItems: [
-    "Prove spare capacity before you rent, repurpose or build",
-    "Allocate department space with objective usage metrics",
-    "Turn climate goals into verifiable energy and rent savings",
+    "Approve consolidation, downsizing and rent decisions with documented spare capacity",
+    "Turn sustainability targets into verifiable energy and rent savings",
+    "Allocate department space with objective usage metrics, not politics",
   ],
   faqTitle: "Frequently asked questions",
   faqContextAlt: "Colleagues discussing plans around a meeting table",
   faqItems: [
     {
       q: "How do occupancy sensors work without identifying people?",
-      a: "RoomAlyzer uses sensors that detect presence and movement without capturing faces or personal identifiers. Data is entirely anonymised and GDPR-compliant — no cameras, no badges, no personal data.",
+      a: "Data is 100% anonymous and fully GDPR-compliant. The system tracks movement and occupancy dynamics, never individuals: no cameras, no badges, no personal data.",
     },
     {
       q: "Can we automatically release no-show meetings?",
-      a: "Yes. Combine occupancy signals with a calendar integration (Google, Microsoft 365, Pronestor) and the platform will release the room after a grace period when a booking goes unused — freeing ghost bookings without manual cleanup.",
+      a: "Yes. RoomAlyzer integrates with your calendar systems to automatically free ghost bookings when a room remains empty after a grace period.",
     },
     {
       q: "How accurate is the occupancy detection?",
-      a: "Accuracy depends on the environment scenario assigned to each sensor — which is why RoomAlyzer is pre-configured before deployment. Fine-tuned scenarios and AI-powered reporting give you reliable utilisation data from day one.",
+      a: "Detection is powered by fine-tuned environment scenarios and AI reporting. Sensors are pre-configured before deployment so you get reliable utilisation data from day one.",
     },
     {
       q: "How does it impact our IT security?",
-      a: "A major advantage for IT teams: the infrastructure operates entirely independently of your corporate network. It is WiFi-free, cellular-backed and requires zero network configuration — fully isolated and secure.",
+      a: "Zero impact on your corporate network. The infrastructure is completely isolated, WiFi-free and cellular-backed, with no network configuration required.",
     },
   ],
   ctaTitle: "Want to see it for yourself?",
   ctaSubtitle:
-    "Book a 30-minute demo. See how occupancy data turns into energy and operational savings — RoomAlyzer installs in minutes and adapts as your workplace changes.",
+    "Book a 30-minute demo. See how occupancy data turns into energy and operational savings. RoomAlyzer installs in minutes and adapts as your workplace changes.",
   ctaMicrocopy: "Installs in minutes · adapts as your workplace changes",
 };
 
 const da: SpaceManagementStrings = {
-  metaTitle: "Space management — belægningssensorer og data | IoT Fabrikken",
+  metaTitle: "Space management: belægningssensorer og data | IoT Fabrikken",
   metaDescription:
     "Optimér kontoromkostninger og medarbejdertrivsel med trådløse belægningssensorer til skriveborde og mødelokaler. Se reel udnyttelse, løs spøgelsesbookinger, og omsæt arealdata til besparelser på husleje og energi.",
   breadcrumbHome: "Hjem",
   breadcrumbModules: "Moduler",
   breadcrumbCurrent: "Space management",
-  heroTitle: "Optimér kontoromkostninger og medarbejdertrivsel —",
+  heroTitle: "Optimér kontoromkostninger og medarbejdertrivsel,",
   heroTitleAccent: "med space management bygget på reel brug.",
   heroLead:
-    "Live belægning af skriveborde og lokaler, der omsætter kalenderillusioner og gætterier om hybridpolitik til beslutninger om husleje, energi og arbejdsplads.",
+    "Live belægning af skriveborde og lokaler, der omsætter gætterier til besparelser på husleje og energi — og giver medarbejderne en arbejdsplads, det er værd at møde op på.",
+  heroTitleImageAlt: "Hånd, der monterer en RoomAlyzer Space desk-sensor under et kontorskrivebord",
   intro: [
-    "Hybrid arbejde betyder, at facility-teams hver dag balancerer medarbejderoplevelse og ledelsesbeslutninger — hvem har brug for et skrivebord lige nu, og om I kan nedskalere med dokumentation. Uden realtidsdata om belægning kører begge dele på mavefornemmelse.",
+    "Facility management handler ikke længere kun om skriveborde og indeklima. Det handler om at navigere et menneskeligt dilemma mellem fleksibilitet og fysisk tilstedeværelse. Medarbejdere pendler ikke længere af vane; arbejdspladsen skal levere tydelig værdi. Udfordringen er at løfte medarbejderoplevelsen, mens spild presses mod nul: et skift fra at tælle hoveder til at optimere, hvordan mennesker faktisk bruger kontoret.",
   ],
   heroPrimaryCta: "Book en gratis demo",
   heroSecondaryCta: "Få et tilbud",
-  dashboardLabel: "RoomAlyzer — Space management",
+  dashboardLabel: "RoomAlyzer: Space management",
   dashboardAlt: "RoomAlyzer Space management-dashboard med skrivebordsbelægning, tendenser og udnyttelse",
   challengesEyebrow: "Udfordringerne, I faktisk står med",
   challengesHeading:
-    "Når I ikke kan se realtidsudnyttelse, bliver enhver ejendomsbeslutning et gæt. Hybridkontorpolitik siger én ting; menneskelig adfærd siger noget andet.",
+    "Uden live udnyttelsesdata er enhver beslutning om areal, omkostninger og arbejdsplads et gæt.",
   challenges: [
     {
       title: "Illusionen om fuldt booket",
-      body: "Mødelokaler ser blokerede ud i kalendersystemet, men står tomme — eller er booket til ti og brugt af to. Uden reelle data overser I den skjulte kapacitet, der kunne rumme en hel ekstra afdeling.",
+      body: "Mødelokaler ser fuldt blokerede ud i kalenderen, men står tomme — eller er booket til ti og brugt af to. Uden realtidsdata overser I den skjulte kapacitet, der kunne rumme en hel ekstra afdeling.",
     },
     {
       title: "Politik vs. virkelighed",
-      body: "Ledelsen kan annoncere en obligatorisk fem-dages kontoruge, men teamledere giver individuelle undtagelser. Skriveborde står tomme mandag og fredag, mens I betaler for fuld opvarmning, køling og rengøring.",
+      body: "Ledelsen kan kræve en fem-dages kontoruge, men teamledere giver fortsat undtagelser. Kontorer topper midt på ugen, mens skriveborde står tomme mandag og fredag — og I betaler for fuld opvarmning, køling og rengøring uge efter uge.",
     },
     {
       title: "Grønne dagsordener uden substans",
-      body: "Kommuner og virksomheder vil nedjustere kvadratmeter for at nå bæredygtighedsmål — men facility managers mangler den uigendrivelige belægningsdata, der skal til for at retfærdiggøre det over for ledelsen.",
+      body: "Kommuner og virksomheder vil aggressivt nedjustere kvadratmeter for bæredygtighedsmål — men facility managers mangler den hårde belægningsdata, der skal til for at retfærdiggøre det over for skeptisk ledelse.",
     },
     {
-      title: "Den moderne medarbejder",
-      body: "For at tiltrække kontor fremmøde bygger virksomheder stille zoner, stående rum og projektvægge — men uden sporing ved I ikke, hvilke layouts der faktisk driver fremmøde, og hvilke der spilder budget.",
+      title: "Kontorforbedringer I ikke kan måle",
+      body: "For at tiltrække kontor fremmøde investerer virksomheder i stille zoner, stående rum og projektvægge — men uden sporing har I intet udgangspunkt for, hvilke layouts der driver fremmøde, og hvilke der spilder budget.",
     },
   ],
   capabilitiesEyebrow: "Sådan løser RoomAlyzer det",
   capabilitiesHeading: "Belægningsdata tilpasset, hvordan mennesker arbejder — sikkert deployet fra dag ét.",
   solutionLead:
-    "RoomAlyzer Space management bruger plug-and-play Desk- og Motion-sensorer til et live, fuldt anonymiseret overblik over arbejdspladsens dynamik — bygget til facility managers, arealplanlæggere, ledelse og kommuner.",
+    "RoomAlyzer Space management bruger plug-and-play Desk- og Motion-sensorer til et live, fuldt anonymiseret og GDPR-compliant overblik over arbejdspladsens dynamik — bygget til facility managers, arealplanlæggere, ledelse og kommuner.",
   solutionLeadWithSensorLinks: [
     { type: "text", value: "RoomAlyzer Space management bruger plug-and-play " },
     { type: "sensor", slug: "desk", label: "Desk" },
@@ -260,7 +277,7 @@ const da: SpaceManagementStrings = {
     {
       type: "text",
       value:
-        "-sensorer til et live, fuldt anonymiseret overblik over arbejdspladsens dynamik — bygget til facility managers, arealplanlæggere, ledelse og kommuner. ",
+        "-sensorer til et live, fuldt anonymiseret og GDPR-compliant overblik over arbejdspladsens dynamik — bygget til facility managers, arealplanlæggere, ledelse og kommuner. ",
     },
     { type: "compare", label: "Sammenlign hybridkontorsensorer", useCaseId: "hybrid-office" },
   ],
@@ -270,7 +287,7 @@ const da: SpaceManagementStrings = {
     {
       id: "desks",
       title: "Skriveborde og zonetagging",
-      body: "Tæl ikke bare hoveder — tag og sammenlign, hvordan afdelinger bruger deres hjemmezoner versus fælles projektarealer. Forstå præcis, hvordan teams interagerer med jeres ejendom.",
+      body: "Tæl ikke bare hoveder — tag og sammenlign, hvordan afdelinger bruger deres hjemmezoner versus fælles projektarealer, og lav datadrevne layoutændringer baseret på, hvordan teams faktisk bruger jeres ejendom.",
       bodyWithSensorLinks: [
         { type: "text", value: "Sensoren " },
         { type: "sensor", slug: "desk", label: "Desk" },
@@ -279,7 +296,7 @@ const da: SpaceManagementStrings = {
         {
           type: "text",
           value:
-            " lader jer tagge og sammenligne, hvordan afdelinger bruger deres hjemmezoner versus fælles projektarealer — så I forstår, hvordan teams interagerer med jeres ejendom, ikke bare hvor mange der er til stede.",
+            " lader jer tagge og sammenligne, hvordan afdelinger bruger deres hjemmezoner versus fælles projektarealer — så I kan lave datadrevne layoutændringer, ikke bare tælle hoveder.",
         },
       ],
       unit: "Tagging",
@@ -288,21 +305,34 @@ const da: SpaceManagementStrings = {
     {
       id: "meeting-rooms",
       title: "Mødelokaler og smart release",
-      body: "Sammenlign bookinger med faktisk brug og luk hullet, der blokerer jeres kalender. Ubrugte bookinger kan frigive lokalet automatisk — integreret med Google, Microsoft 365 og Pronestor.",
+      body: "Luk kalenderhullet mellem bookinger og faktisk brug. Ubrugte bookinger frigiver lokalet automatisk — integreret med Google, Microsoft 365 og Pronestor, så spøgelsesbookinger frigives, når et lokale står tomt.",
       unit: "Smart release",
       imageAlt: "Mødelokalebooking versus faktisk udnyttelse i RoomAlyzer",
     },
     {
       id: "heatmaps",
       title: "Intuitive heatmaps",
-      body: "Kom væk fra tætte regneark. Heatmaps omsætter rå belægning til visuelle tendenser, I kan scanne — se en uges underudnyttelse eller topbelægning på tværs af hele etager med ét blik.",
+      body: "Kom væk fra tætte, forvirrende regneark. Heatmaps omsætter rå belægning til visuelle tendenser, I kan scanne — se en uges underudnyttelse eller topbelægning på tværs af hele etager med ét blik.",
       unit: "Tendenser",
       imageAlt: "Belægningsheatmap på en plantegning i RoomAlyzer",
     },
     {
       id: "savings",
       title: "Energi- og rengøringsbesparelser",
-      body: "Når belægningen er lav mandag og fredag, kan I samle teams på lavere etager og lukke opvarmning, ventilation og rengøring på øvre niveauer. Et dokumenteret case: 1 mio. kr. i infrastruktur giver op til 1,5 mio. kr. i direkte energi- og driftsbesparelser inden for det første år.",
+      body: "Styr faciliteter efter virkelighed, ikke politik. Se, hvornår belægningen falder mandag og fredag eller på tværs af zoner, så I kan tilpasse opvarmning, ventilation og rengøring til faktisk brug i stedet for faste planer. Et dokumenteret Dansk Industri-case: 1 mio. kr. i infrastruktur giver op til 1,5 mio. kr. i direkte energi- og driftsbesparelser inden for det første år.",
+      bodyWithSensorLinks: [
+        {
+          type: "text",
+          value:
+            "Styr faciliteter efter virkelighed, ikke politik. Se, hvornår belægningen falder mandag og fredag eller på tværs af zoner, så I kan tilpasse opvarmning, ventilation og rengøring til faktisk brug i stedet for faste planer. ",
+        },
+        { type: "caseStudy", slug: "dansk-industri", label: "Et dokumenteret Dansk Industri-case" },
+        {
+          type: "text",
+          value:
+            ": 1 mio. kr. i infrastruktur giver op til 1,5 mio. kr. i direkte energi- og driftsbesparelser inden for det første år.",
+        },
+      ],
       unit: "ROI",
       imageAlt: "RoomAlyzer-dashboard med energi- og drifts-ROI",
     },
@@ -310,7 +340,7 @@ const da: SpaceManagementStrings = {
   smarterTogetherLabel: "Smarter together",
   smarterTogetherHeadline: "Belægning, indeklima og compliance i ét overblik",
   smarterTogether:
-    "RoomAlyzer kombinerer arealudnyttelse med indeklimamonitorering — CO₂, temperatur og luftfugtighed — så I ventilerer efter faktisk headcount og skruer ned, når lokaler står tomme. Standardmiljøer til kontorer og klasselokaler opdateres, når europæisk og tysk lovgivning ændrer sig, så jeres bygninger forbliver compliant uden juridisk bøvl.",
+    "RoomAlyzer kombinerer arealudnyttelse med indeklima (CO₂, temperatur og luftfugtighed) så I ventilerer efter faktisk headcount og skruer ned, når lokaler står tomme.",
   smarterTogetherOccupancyLabel: "Arealudnyttelse",
   smarterTogetherOccupancyContext: "Åbent kontor · 3. sal",
   smarterTogetherOccupancyStat: "62 % belagt",
@@ -318,39 +348,39 @@ const da: SpaceManagementStrings = {
   smarterTogetherClimateContext: "Mødelokale A",
   smarterTogetherIndoorClimateLink: "Se indeklima-modulet",
   audiencesEyebrow: "Hvem det er til",
-  audiencesHeading: "Daglig drift og langsigtede beslutninger",
+  audiencesHeading: "Til workplace- og facility-teams, og den ledelse, der godkender tallene.",
   audiencesLead:
-    "De samme belægningsdata hjælper kollegaen med at finde et skrivebord i dag, giver ledelsen dokumentation til nedskalering i morgen og omsætter klimamål til verificerbare besparelser på husleje og energi.",
-  fmHeading: "Til facility management",
+    "Workplace- og facility-funktioner smelter sammen i samlede teams. RoomAlyzer giver workplace- og facility managers de hårde data til at bygge en intern business case — og giver ledelsen dokumentation til at godkende budget og konsolidering.",
+  fmHeading: "Til workplace- og facility managers",
   fmItems: [
-    "Hjælp medarbejdere med at finde et ledigt skrivebord eller lokale med det samme",
-    "Smart release, når bookinger ikke benyttes",
-    "Tilpas ventilation dynamisk efter faktisk headcount",
+    "Byg den belægnings-business case, ledelsen forventer, før der ændres på areal eller budget",
+    "Kør daglig drift med live data om skriveborde, lokaler og zoner",
+    "Erstat holdninger med hårde tal, efterhånden som workplace- og facility-roller smelter sammen",
   ],
-  realEstateHeading: "Til ejendom og ledelse",
+  realEstateHeading: "Til ledelse og bygningsejere",
   realEstateItems: [
-    "Dokumentér ledig kapacitet, før I lejer, ombygger eller bygger nyt",
-    "Fordel afdelingsarealer med objektive brugsmålinger",
-    "Omsæt klimamål til verificerbare besparelser på energi og husleje",
+    "Godkend konsolidering, nedskalering og lejeændringer med dokumenteret ledig kapacitet",
+    "Omsæt bæredygtighedsmål til verificerbare besparelser på energi og husleje",
+    "Fordel afdelingsarealer med objektive brugstal, ikke politik",
   ],
   faqTitle: "Ofte stillede spørgsmål",
   faqContextAlt: "Kolleger der diskuterer planer omkring et mødebord",
   faqItems: [
     {
       q: "Hvordan fungerer belægningssensorer uden at identificere personer?",
-      a: "RoomAlyzer bruger sensorer, der registrerer tilstedeværelse og bevægelse uden at indfange ansigter eller personlige identifikatorer. Data er fuldt anonymiseret og GDPR-compliant — ingen kameraer, ingen badges, ingen persondata.",
+      a: "Data er 100 % anonyme og fuldt GDPR-compliant. Systemet registrerer bevægelse og belægningsdynamik, aldrig enkeltpersoner — ingen kameraer, ingen badges, ingen persondata.",
     },
     {
       q: "Kan vi automatisk frigive møder, hvor ingen dukker op?",
-      a: "Ja. Kombinér belægningssignaler med en kalenderintegration (Google, Microsoft 365, Pronestor), og platformen frigiver lokalet efter en graceperiode, når en booking ikke benyttes — uden manuel oprydning af spøgelsesbookinger.",
+      a: "Ja. RoomAlyzer integrerer med jeres kalendersystemer og frigiver automatisk spøgelsesbookinger, når et lokale forbliver tomt efter en graceperiode.",
     },
     {
       q: "Hvor præcis er belægningsdetektionen?",
-      a: "Præcisionen afhænger af det miljøscenarie, hver sensor er tildelt — derfor prækonfigureres RoomAlyzer før udrulning. Finjusterede scenarier og AI-drevet rapportering giver pålidelige udnyttelsesdata fra dag ét.",
+      a: "Detektionen drives af finjusterede miljøscenarier og AI-rapportering. Sensorer prækonfigureres før udrulning, så I får pålidelige udnyttelsesdata fra dag ét.",
     },
     {
       q: "Hvordan påvirker det vores IT-sikkerhed?",
-      a: "En stor fordel for IT-teams: infrastrukturen kører helt uafhængigt af jeres virksomhedsnetværk. Den er WiFi-fri, mobildrevet og kræver nul netværkskonfiguration — fuldt isoleret og sikker.",
+      a: "Nul påvirkning af jeres virksomhedsnetværk. Infrastrukturen er fuldt isoleret, WiFi-fri og mobildrevet — ingen netværkskonfiguration krævet.",
     },
   ],
   ctaTitle: "Vil du selv se det?",
@@ -360,48 +390,49 @@ const da: SpaceManagementStrings = {
 };
 
 const de: SpaceManagementStrings = {
-  metaTitle: "Space-Management — Belegungssensoren und Daten | IoT Fabrikken",
+  metaTitle: "Space-Management: Belegungssensoren und Daten | IoT Fabrikken",
   metaDescription:
     "Optimieren Sie Bürokosten und das Wohlbefinden Ihrer Mitarbeitenden mit drahtlosen Belegungssensoren für Arbeitsplätze und Besprechungsräume. Sehen Sie reale Nutzung, lösen Sie Geisterbuchungen und setzen Sie Flächendaten in Miet- und Energieeinsparungen um.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
   breadcrumbCurrent: "Space-Management",
-  heroTitle: "Bürokosten optimieren und Mitarbeitendenwohlbefinden stärken —",
+  heroTitle: "Bürokosten optimieren und Mitarbeitendenwohlbefinden stärken,",
   heroTitleAccent: "mit Space-Management auf Basis realer Nutzung.",
   heroLead:
-    "Live-Belegung von Arbeitsplätzen und Räumen, die Kalenderillusionen und Hybrid-Richtlinien-Rätselraten in Miet-, Energie- und Arbeitsplatzentscheidungen übersetzt.",
+    "Live-Belegung von Arbeitsplätzen und Räumen, die Rätselraten in Miet- und Energieeinsparungen übersetzt — und Menschen einen Arbeitsplatz gibt, für den sich das Kommen lohnt.",
+  heroTitleImageAlt: "Hand, die einen RoomAlyzer Space Desk Sensor unter einem Bürotisch anbringt",
   intro: [
-    "Hybrides Arbeiten bedeutet, dass Facility-Teams täglich Mitarbeitererlebnis und Führungsentscheidungen ausbalancieren — wer braucht jetzt einen Arbeitsplatz, und ob Sie mit Belegen verkleinern können. Ohne Echtzeit-Belegungsdaten läuft beides auf Bauchgefühl.",
+    "Facility Management geht nicht mehr nur um Arbeitsplätze und Raumklima. Es geht um ein menschliches Dilemma zwischen Flexibilität und physischer Präsenz. Mitarbeitende pendeln nicht mehr aus Gewohnheit; der Arbeitsplatz muss klaren Mehrwert liefern. Die Herausforderung: das Mitarbeitererlebnis heben und Verschwendung gegen null drücken, weg vom Köpfezählen hin zur Optimierung der tatsächlichen Nutzung.",
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer — Space-Management",
+  dashboardLabel: "RoomAlyzer: Space-Management",
   dashboardAlt: "RoomAlyzer Space-Management-Dashboard mit Arbeitsplatzbelegung, Trends und Nutzung",
   challengesEyebrow: "Die Herausforderungen, denen Sie wirklich begegnen",
   challengesHeading:
-    "Ohne Echtzeit-Nutzung wird jede Immobilienentscheidung zum Rätselraten. Die Hybrid-Büropolitik sagt eines; menschliches Verhalten etwas anderes.",
+    "Ohne Live-Nutzungsdaten bleibt jede Entscheidung zu Fläche, Kosten und Arbeitsplatz reines Rätselraten.",
   challenges: [
     {
       title: "Die Illusion der vollen Auslastung",
-      body: "Besprechungsräume wirken im Kalendersystem blockiert, stehen aber leer — oder sind für zehn gebucht und von zweien genutzt. Ohne echte Daten übersehen Sie die versteckte Reserve, die eine ganze zusätzliche Abteilung aufnehmen könnte.",
+      body: "Besprechungsräume wirken im Kalender vollständig blockiert, stehen aber leer — oder sind für zehn gebucht und von zweien genutzt. Ohne Echtzeitdaten übersehen Sie die versteckte Reserve, die eine ganze zusätzliche Abteilung aufnehmen könnte.",
     },
     {
       title: "Politik vs. Realität",
-      body: "Die Geschäftsführung kündigt vielleicht eine verpflichtende Fünf-Tage-Bürowoche an, aber Teamleitungen machen individuelle Ausnahmen. Arbeitsplätze stehen montags und freitags leer, während Sie für volle Heizung, Kühlung und Reinigung zahlen.",
+      body: "Die Führung kann eine Fünf-Tage-Bürowoche vorschreiben, aber Teamleitungen machen weiter Ausnahmen. Büros erreichen Mitte der Woche ihren Höhepunkt, während Arbeitsplätze montags und freitags leer stehen — und Sie Woche für Woche für volle Heizung, Kühlung und Reinigung zahlen.",
     },
     {
       title: "Grüne Agenda ohne Substanz",
-      body: "Kommunen und Unternehmen wollen Fläche reduzieren, um Nachhaltigkeitsziele zu erreichen — aber Facility Manager fehlen die belastbaren Belegungsdaten, um diese Vorschläge gegenüber der Führung zu rechtfertigen.",
+      body: "Kommunen und Unternehmen wollen Fläche aggressiv reduzieren, um Nachhaltigkeitsziele zu erreichen — aber Facility Managern fehlen die belastbaren Belegungsdaten, um diese Vorschläge skeptischer Führung zu rechtfertigen.",
     },
     {
-      title: "Der moderne Mitarbeitende",
-      body: "Um Büropräsenz zu fördern, bauen Unternehmen Ruhezonen, Stehräume und Projektwände — aber ohne Tracking wissen Sie nicht, welche Layouts tatsächlich Anwesenheit fördern und welche Budget verschwenden.",
+      title: "Büro-Upgrades, die Sie nicht messen können",
+      body: "Um Büropräsenz zu fördern, investieren Unternehmen in Ruhezonen, Stehräume und Projektwände — aber ohne Tracking fehlt jede Basis, welche Layouts Anwesenheit fördern und welche Budget verschwenden.",
     },
   ],
   capabilitiesEyebrow: "So löst RoomAlyzer das",
   capabilitiesHeading: "Belegungsdaten, angepasst an die Art, wie Menschen arbeiten — sicher ab Tag eins.",
   solutionLead:
-    "RoomAlyzer Space-Management nutzt Plug-and-Play-Desk- und Motion-Sensoren für einen live, vollständig anonymisierten Überblick über Arbeitsplatzdynamik — entwickelt für Facility Manager, Flächenplaner, Führungskräfte und Kommunen.",
+    "RoomAlyzer Space-Management nutzt Plug-and-Play-Desk- und Motion-Sensoren für einen live, vollständig anonymisierten und DSGVO-konformen Überblick über Arbeitsplatzdynamik — entwickelt für Facility Manager, Flächenplaner, Führungskräfte und Kommunen.",
   solutionLeadWithSensorLinks: [
     { type: "text", value: "RoomAlyzer Space-Management nutzt Plug-and-Play-" },
     { type: "sensor", slug: "desk", label: "Desk" },
@@ -410,7 +441,7 @@ const de: SpaceManagementStrings = {
     {
       type: "text",
       value:
-        "-Sensoren für einen live, vollständig anonymisierten Überblick über Arbeitsplatzdynamik — entwickelt für Facility Manager, Flächenplaner, Führungskräfte und Kommunen. ",
+        "-Sensoren für einen live, vollständig anonymisierten und DSGVO-konformen Überblick über Arbeitsplatzdynamik — entwickelt für Facility Manager, Flächenplaner, Führungskräfte und Kommunen. ",
     },
     { type: "compare", label: "Hybrid-Office-Sensoren vergleichen", useCaseId: "hybrid-office" },
   ],
@@ -420,7 +451,7 @@ const de: SpaceManagementStrings = {
     {
       id: "desks",
       title: "Arbeitsplätze und Zonen-Tagging",
-      body: "Zählen Sie nicht nur Köpfe — taggen und vergleichen Sie, wie Abteilungen ihre Heimzonen versus gemeinsame Projektbereiche nutzen. Verstehen Sie genau, wie Teams mit Ihrer Immobilie interagieren.",
+      body: "Zählen Sie nicht nur Köpfe — taggen und vergleichen Sie, wie Abteilungen ihre Heimzonen versus gemeinsame Projektbereiche nutzen, und treffen Sie datengestützte Layout-Entscheidungen nach tatsächlicher Nutzung.",
       bodyWithSensorLinks: [
         { type: "text", value: "Die Sensoren " },
         { type: "sensor", slug: "desk", label: "Desk" },
@@ -429,7 +460,7 @@ const de: SpaceManagementStrings = {
         {
           type: "text",
           value:
-            " ermöglichen Tagging und Vergleich, wie Abteilungen ihre Heimzonen versus gemeinsame Projektbereiche nutzen — damit Sie verstehen, wie Teams mit Ihrer Immobilie interagieren, nicht nur wie viele Personen anwesend sind.",
+            " ermöglichen Tagging und Vergleich, wie Abteilungen ihre Heimzonen versus gemeinsame Projektbereiche nutzen — für datengestützte Layout-Entscheidungen statt bloßem Köpfezählen.",
         },
       ],
       unit: "Tagging",
@@ -438,21 +469,34 @@ const de: SpaceManagementStrings = {
     {
       id: "meeting-rooms",
       title: "Besprechungsräume und Smart Release",
-      body: "Vergleichen Sie Buchungen mit tatsächlicher Nutzung und schließen Sie die Lücke, die Ihren Kalender blockiert. Ungenutzte Buchungen können den Raum automatisch freigeben — integriert mit Google, Microsoft 365 und Pronestor.",
+      body: "Schließen Sie die Kalenderlücke zwischen Buchung und tatsächlicher Nutzung. Ungenutzte Buchungen geben den Raum automatisch frei — integriert mit Google, Microsoft 365 und Pronestor, um Geisterbuchungen freizugeben, wenn ein Raum leer bleibt.",
       unit: "Smart Release",
       imageAlt: "Besprechungsraumbuchung versus tatsächliche Nutzung in RoomAlyzer",
     },
     {
       id: "heatmaps",
       title: "Intuitive Heatmaps",
-      body: "Weg von dichten Tabellen. Heatmaps übersetzen Rohbelegung in scannbare visuelle Trends — sehen Sie eine Woche Unterauslastung oder Spitzenbelegung über ganze Etagen auf einen Blick.",
+      body: "Weg von dichten, verwirrenden Tabellen. Heatmaps übersetzen Rohbelegung in scannbare visuelle Trends — sehen Sie eine Woche Unterauslastung oder Spitzenbelegung über ganze Etagen auf einen Blick.",
       unit: "Trends",
       imageAlt: "Belegungs-Heatmap auf einem Grundriss in RoomAlyzer",
     },
     {
       id: "savings",
       title: "Energie- und Reinigungseinsparungen",
-      body: "Bei niedriger Belegung montags und freitags Teams auf untere Etagen konsolidieren und Heizung, Lüftung und Reinigung auf oberen Ebenen abschalten. Ein dokumentierter Fall: 1 Mio. DKK Infrastrukturinvestition mit bis zu 1,5 Mio. DKK direkten Energie- und Betriebseinsparungen im ersten Jahr.",
+      body: "Steuern Sie Gebäude nach Realität, nicht nach Policy. Erkennen Sie, wann die Belegung montags und freitags oder in ganzen Zonen sinkt, und passen Sie Heizung, Lüftung und Reinigung an die tatsächliche Nutzung statt an feste Pläne an. Ein dokumentierter Dansk Industri-Fall: 1 Mio. DKK Infrastruktur mit bis zu 1,5 Mio. DKK direkten Energie- und Betriebseinsparungen im ersten Jahr.",
+      bodyWithSensorLinks: [
+        {
+          type: "text",
+          value:
+            "Steuern Sie Gebäude nach Realität, nicht nach Policy. Erkennen Sie, wann die Belegung montags und freitags oder in ganzen Zonen sinkt, und passen Sie Heizung, Lüftung und Reinigung an die tatsächliche Nutzung statt an feste Pläne an. ",
+        },
+        { type: "caseStudy", slug: "dansk-industri", label: "Ein dokumentierter Dansk Industri-Fall" },
+        {
+          type: "text",
+          value:
+            ": 1 Mio. DKK Infrastruktur mit bis zu 1,5 Mio. DKK direkten Energie- und Betriebseinsparungen im ersten Jahr.",
+        },
+      ],
       unit: "ROI",
       imageAlt: "RoomAlyzer-Einsparungsdashboard mit Energie- und Betriebs-ROI",
     },
@@ -460,7 +504,7 @@ const de: SpaceManagementStrings = {
   smarterTogetherLabel: "Smarter together",
   smarterTogetherHeadline: "Belegung, Raumklima und Compliance in einer Ansicht",
   smarterTogether:
-    "RoomAlyzer kombiniert Flächennutzung mit Raumklimamonitoring — CO₂, Temperatur und Luftfeuchtigkeit — damit Sie für tatsächliche Kopfzahl lüften und drosseln, wenn Räume leer sind. Standardumgebungen für Büros und Klassenzimmer aktualisieren sich mit europäischer und deutscher Gesetzgebung, sodass Ihre Gebäude compliant bleiben — ohne juristischen Aufwand.",
+    "RoomAlyzer kombiniert Flächennutzung mit Raumklima (CO₂, Temperatur und Luftfeuchtigkeit) damit Sie für tatsächliche Kopfzahl lüften und drosseln, wenn Räume leer sind.",
   smarterTogetherOccupancyLabel: "Flächennutzung",
   smarterTogetherOccupancyContext: "Open Space · Etage 3",
   smarterTogetherOccupancyStat: "62 % belegt",
@@ -468,39 +512,39 @@ const de: SpaceManagementStrings = {
   smarterTogetherClimateContext: "Besprechungsraum A",
   smarterTogetherIndoorClimateLink: "Raumklima-Modul entdecken",
   audiencesEyebrow: "Für wen",
-  audiencesHeading: "Täglicher Betrieb und langfristige Entscheidungen",
+  audiencesHeading: "Für Workplace- und Facility-Teams — und die Führung, die die Zahlen freigibt.",
   audiencesLead:
-    "Dieselben Belegungsdaten helfen dem Kollegen, heute einen Arbeitsplatz zu finden, geben der Führung morgen den Nachweis für Verkleinerung und setzen Klimaziele in nachweisbare Miet- und Energieeinsparungen um.",
-  fmHeading: "Für Facility Management",
+    "Workplace- und Facility-Funktionen verschmelzen zu gemeinsamen Teams. RoomAlyzer liefert Workplace- und Facility-Managern belastbare Daten für den internen Business Case — und der Geschäftsführung den Nachweis für Budget- und Konsolidierungsentscheidungen.",
+  fmHeading: "Für Workplace- und Facility-Manager",
   fmItems: [
-    "Mitarbeitenden helfen, sofort einen freien Arbeitsplatz oder Raum zu finden",
-    "Smart Release, wenn Buchungen ungenutzt bleiben",
-    "Lüftung dynamisch an tatsächliche Kopfzahl anpassen",
+    "Den Belegungs-Business Case aufbauen, den die Führung vor Flächen- oder Budgetänderungen erwartet",
+    "Den Tagesbetrieb mit Live-Daten zu Arbeitsplätzen, Räumen und Zonen steuern",
+    "Meinungen durch belastbare Kennzahlen ersetzen, während Workplace- und Facility-Rollen zusammenwachsen",
   ],
-  realEstateHeading: "Für Immobilien und Geschäftsführung",
+  realEstateHeading: "Für Geschäftsführung und Gebäudeeigentümer",
   realEstateItems: [
-    "Freie Kapazität belegen, bevor Sie mieten, umnutzen oder bauen",
-    "Abteilungsflächen mit objektiven Nutzungsmetriken verteilen",
-    "Klimaziele in nachweisbare Energie- und Mieteinsparungen umsetzen",
+    "Konsolidierung, Verkleinerung und Mietentscheidungen mit dokumentierter freier Kapazität freigeben",
+    "Nachhaltigkeitsziele in nachweisbare Energie- und Mieteinsparungen umsetzen",
+    "Abteilungsflächen mit objektiven Nutzungsmetriken statt Politik verteilen",
   ],
   faqTitle: "Häufig gestellte Fragen",
   faqContextAlt: "Kollegen besprechen Pläne an einem Besprechungstisch",
   faqItems: [
     {
       q: "Wie funktionieren Belegungssensoren, ohne Personen zu identifizieren?",
-      a: "RoomAlyzer nutzt Sensoren, die Anwesenheit und Bewegung erfassen, ohne Gesichter oder persönliche Identifikatoren zu speichern. Daten sind vollständig anonymisiert und DSGVO-konform — keine Kameras, keine Badges, keine personenbezogenen Daten.",
+      a: "Daten sind 100 % anonym und vollständig DSGVO-konform. Das System erfasst Bewegung und Belegungsdynamik, niemals Einzelpersonen — keine Kameras, keine Badges, keine personenbezogenen Daten.",
     },
     {
       q: "Können wir No-Show-Meetings automatisch freigeben?",
-      a: "Ja. Kombinieren Sie Belegungssignale mit einer Kalenderintegration (Google, Microsoft 365, Pronestor), und die Plattform gibt den Raum nach einer Kulanzzeit frei, wenn eine Buchung ungenutzt bleibt — Geisterbuchungen ohne manuelle Bereinigung.",
+      a: "Ja. RoomAlyzer integriert sich in Ihre Kalendersysteme und gibt Geisterbuchungen automatisch frei, wenn ein Raum nach einer Kulanzzeit leer bleibt.",
     },
     {
       q: "Wie genau ist die Belegungserkennung?",
-      a: "Die Genauigkeit hängt vom jedem Sensor zugewiesenen Umgebungsszenario ab — deshalb wird RoomAlyzer vor dem Rollout vorkonfiguriert. Fein abgestimmte Szenarien und KI-gestütztes Reporting liefern ab Tag eins verlässliche Nutzungsdaten.",
+      a: "Die Erkennung basiert auf fein abgestimmten Umgebungsszenarien und KI-Reporting. Sensoren werden vor dem Rollout vorkonfiguriert, damit Sie ab Tag eins verlässliche Nutzungsdaten erhalten.",
     },
     {
       q: "Wie wirkt sich das auf unsere IT-Sicherheit aus?",
-      a: "Ein großer Vorteil für IT-Teams: Die Infrastruktur arbeitet vollständig unabhängig vom Unternehmensnetzwerk. Sie ist WiFi-frei, mobilfunkbasiert und erfordert null Netzwerkkonfiguration — vollständig isoliert und sicher.",
+      a: "Null Auswirkung auf Ihr Unternehmensnetzwerk. Die Infrastruktur ist vollständig isoliert, WiFi-frei und mobilfunkbasiert — keine Netzwerkkonfiguration nötig.",
     },
   ],
   ctaTitle: "Möchten Sie es selbst sehen?",
@@ -510,48 +554,49 @@ const de: SpaceManagementStrings = {
 };
 
 const sv: SpaceManagementStrings = {
-  metaTitle: "Space management — beläggningssensorer och data | IoT Fabrikken",
+  metaTitle: "Space management: beläggningssensorer och data | IoT Fabrikken",
   metaDescription:
     "Optimera kontorskostnader och medarbetarnas välbefinnande med trådlösa beläggningssensorer för skrivbord och mötesrum. Se verkligt utnyttjande, lösa spökbookningar och omvandla ytdata till besparingar på hyra och energi.",
   breadcrumbHome: "Hem",
   breadcrumbModules: "Moduler",
   breadcrumbCurrent: "Space management",
-  heroTitle: "Optimera kontorskostnader och medarbetarnas välbefinnande —",
+  heroTitle: "Optimera kontorskostnader och medarbetarnas välbefinnande,",
   heroTitleAccent: "med space management byggt på verklig användning.",
   heroLead:
-    "Live beläggning av skrivbord och rum som omvandlar kalenderillusioner och gissningar om hybridpolicy till beslut om hyra, energi och arbetsplats.",
+    "Live beläggning av skrivbord och rum som omvandlar gissningar till hyres- och energibesparingar — och ger medarbetare en arbetsplats värd att dyka upp på.",
+  heroTitleImageAlt: "Hand som monterar en RoomAlyzer Space desk-sensor under ett kontorsskrivbord",
   intro: [
-    "Hybridt arbete innebär att facility-team varje dag balanserar medarbetarupplevelse och ledningsbeslut — vem behöver ett skrivbord just nu, och om ni kan minska ytan med bevis. Utan realtidsdata om beläggning styrs båda sidor av magkänsla.",
+    "Facility management handlar inte längre bara om skrivbord och inomhusklimat. Det handlar om att navigera ett mänskligt dilemma mellan flexibilitet och fysisk närvaro. Medarbetare pendlar inte längre av vana; arbetsplatsen måste leverera tydligt värde. Utmaningen är att höja medarbetarupplevelsen samtidigt som slöseri pressas mot noll: ett skifte från att räkna huvuden till att optimera hur människor faktiskt använder kontoret.",
   ],
   heroPrimaryCta: "Boka en gratis demo",
   heroSecondaryCta: "Få en offert",
-  dashboardLabel: "RoomAlyzer — Space management",
+  dashboardLabel: "RoomAlyzer: Space management",
   dashboardAlt: "RoomAlyzer Space management-dashboard med skrivbordsbeläggning, trender och utnyttjande",
   challengesEyebrow: "Utmaningarna ni faktiskt står inför",
   challengesHeading:
-    "När ni inte ser realtidsutnyttjande blir varje fastighetsbeslut en gissning. Hybridkontorspolicy säger en sak; mänskligt beteende säger något annat.",
+    "Utan live utnyttjandedata är varje beslut om yta, kostnad och arbetsplats en gissning.",
   challenges: [
     {
       title: "Illusionen om fullbokat",
-      body: "Mötesrum ser blockerade ut i kalendersystemet men står tomma — eller är bokade för tio och använda av två. Utan verkliga data missar ni den dolda kapacitet som skulle rymma en hel extra avdelning.",
+      body: "Mötesrum ser helt blockerade ut i kalendern men står tomma — eller är bokade för tio och använda av två. Utan realtidsdata missar ni den dolda kapacitet som skulle rymma en hel extra avdelning.",
     },
     {
       title: "Policy vs. verklighet",
-      body: "Ledningen kan tillkännage en obligatorisk femdagars kontorsvecka, men teamledare gör individuella undantag. Skrivbord står tomma måndag och fredag medan ni betalar för full uppvärmning, kylning och städning.",
+      body: "Ledningen kan kräva en femdagars kontorsvecka, men teamledare ger fortfarande undantag. Kontor toppar mitt i veckan medan skrivbord står tomma måndag och fredag — och ni betalar för full uppvärmning, kylning och städning vecka efter vecka.",
     },
     {
       title: "Gröna agenda utan substans",
-      body: "Kommuner och företag vill minska kvadratmeter för att nå hållbarhetsmål — men facility managers saknar den oförnekliga beläggningsdata som krävs för att motivera det inför ledningen.",
+      body: "Kommuner och företag vill aggressivt minska kvadratmeter för hållbarhetsmål — men facility managers saknar den hårda beläggningsdata som krävs för att motivera det inför skeptisk ledning.",
     },
     {
-      title: "Den moderna medarbetaren",
-      body: "För att locka kontorsnärvaro bygger företag tysta zoner, stående rum och projektväggar — men utan spårning vet ni inte vilka layouter som faktiskt driver närvaro och vilka som slösar budget.",
+      title: "Kontorsförbättringar ni inte kan mäta",
+      body: "För att locka kontorsnärvaro investerar företag i tysta zoner, stående rum och projektväggar — men utan spårning finns ingen baslinje för vilka layouter som driver närvaro och vilka som slösar budget.",
     },
   ],
   capabilitiesEyebrow: "Så löser RoomAlyzer det",
   capabilitiesHeading: "Beläggningsdata anpassad till hur människor arbetar — säkert driftsatt från dag ett.",
   solutionLead:
-    "RoomAlyzer Space management använder plug-and-play Desk- och Motion-sensorer för en live, helt anonymiserad överblick över arbetsplatsens dynamik — byggd för facility managers, ytplanerare, ledning och kommuner.",
+    "RoomAlyzer Space management använder plug-and-play Desk- och Motion-sensorer för en live, helt anonymiserad och GDPR-kompatibel överblick över arbetsplatsens dynamik — byggd för facility managers, ytplanerare, ledning och kommuner.",
   solutionLeadWithSensorLinks: [
     { type: "text", value: "RoomAlyzer Space management använder plug-and-play " },
     { type: "sensor", slug: "desk", label: "Desk" },
@@ -560,7 +605,7 @@ const sv: SpaceManagementStrings = {
     {
       type: "text",
       value:
-        "-sensorer för en live, helt anonymiserad överblick över arbetsplatsens dynamik — byggd för facility managers, ytplanerare, ledning och kommuner. ",
+        "-sensorer för en live, helt anonymiserad och GDPR-kompatibel överblick över arbetsplatsens dynamik — byggd för facility managers, ytplanerare, ledning och kommuner. ",
     },
     { type: "compare", label: "Jämför hybridkontorssensorer", useCaseId: "hybrid-office" },
   ],
@@ -570,7 +615,7 @@ const sv: SpaceManagementStrings = {
     {
       id: "desks",
       title: "Skrivbord och zonmärkning",
-      body: "Räkna inte bara huvuden — märk och jämför hur avdelningar använder sina hemzoner versus gemensamma projektytor. Förstå exakt hur team interagerar med er fastighet.",
+      body: "Räkna inte bara huvuden — märk och jämför hur avdelningar använder sina hemzoner versus gemensamma projektytor, och gör datadrivna layoutändringar baserat på hur team faktiskt använder er fastighet.",
       bodyWithSensorLinks: [
         { type: "text", value: "Sensorerna " },
         { type: "sensor", slug: "desk", label: "Desk" },
@@ -579,7 +624,7 @@ const sv: SpaceManagementStrings = {
         {
           type: "text",
           value:
-            " låter er märka och jämföra hur avdelningar använder sina hemzoner versus gemensamma projektytor — så ni förstår hur team interagerar med er fastighet, inte bara hur många som är närvarande.",
+            " låter er märka och jämföra hur avdelningar använder sina hemzoner versus gemensamma projektytor — för datadrivna layoutändringar, inte bara huvudräkning.",
         },
       ],
       unit: "Tagging",
@@ -588,21 +633,34 @@ const sv: SpaceManagementStrings = {
     {
       id: "meeting-rooms",
       title: "Mötesrum och smart release",
-      body: "Jämför bokningar med faktisk användning och stäng gapet som blockerar er kalender. Oanvända bokningar kan frigöra rummet automatiskt — integrerat med Google, Microsoft 365 och Pronestor.",
+      body: "Stäng kalendergapet mellan bokningar och faktisk användning. Oanvända bokningar frigör rummet automatiskt — integrerat med Google, Microsoft 365 och Pronestor för att frigöra spökbookningar när ett rum står tomt.",
       unit: "Smart release",
       imageAlt: "Mötesrumsbokning versus faktiskt utnyttjande i RoomAlyzer",
     },
     {
       id: "heatmaps",
       title: "Intuitiva heatmaps",
-      body: "Lägg de täta kalkylbladen bakom er. Heatmaps omvandlar rå beläggning till skannbara visuella trender — se en veckas underutnyttjande eller topputnyttjande över hela våningar med ett ögonkast.",
+      body: "Lägg de täta, förvirrande kalkylbladen bakom er. Heatmaps omvandlar rå beläggning till skannbara visuella trender — se en veckas underutnyttjande eller topputnyttjande över hela våningar med ett ögonkast.",
       unit: "Trender",
       imageAlt: "Beläggningsheatmap på en planlösning i RoomAlyzer",
     },
     {
       id: "savings",
       title: "Energi- och städbesparingar",
-      body: "När beläggningen är låg måndag och fredag kan ni samla team på lägre våningar och stänga av uppvärmning, ventilation och städning på övre nivåer. Ett dokumenterat case: 1 M DKK i infrastruktur ger upp till 1,5 M DKK i direkta energi- och driftsbesparingar inom det första året.",
+      body: "Styr lokaler efter verklighet, inte policy. Se när beläggningen sjunker måndag och fredag eller i hela zoner, så ni kan anpassa uppvärmning, ventilation och städning till faktisk användning i stället för fasta scheman. Ett dokumenterat Dansk Industri-case: 1 M DKK i infrastruktur ger upp till 1,5 M DKK i direkta energi- och driftsbesparingar inom det första året.",
+      bodyWithSensorLinks: [
+        {
+          type: "text",
+          value:
+            "Styr lokaler efter verklighet, inte policy. Se när beläggningen sjunker måndag och fredag eller i hela zoner, så ni kan anpassa uppvärmning, ventilation och städning till faktisk användning i stället för fasta scheman. ",
+        },
+        { type: "caseStudy", slug: "dansk-industri", label: "Ett dokumenterat Dansk Industri-case" },
+        {
+          type: "text",
+          value:
+            ": 1 M DKK i infrastruktur ger upp till 1,5 M DKK i direkta energi- och driftsbesparingar inom det första året.",
+        },
+      ],
       unit: "ROI",
       imageAlt: "RoomAlyzer-dashboard med energi- och drifts-ROI",
     },
@@ -610,7 +668,7 @@ const sv: SpaceManagementStrings = {
   smarterTogetherLabel: "Smarter together",
   smarterTogetherHeadline: "Beläggning, inomhusklimat och compliance i en vy",
   smarterTogether:
-    "RoomAlyzer kombinerar ytanvändning med inomhusklimatövervakning — CO₂, temperatur och luftfuktighet — så att ni ventilerar efter faktisk headcount och drar ner när rum står tomma. Standardmiljöer för kontor och klassrum uppdateras när europeisk och tysk lagstiftning ändras, så att era byggnader förblir compliant utan juridisk overhead.",
+    "RoomAlyzer kombinerar ytanvändning med inomhusklimat (CO₂, temperatur och luftfuktighet) så att ni ventilerar efter faktisk headcount och drar ner när rum står tomma.",
   smarterTogetherOccupancyLabel: "Ytanvändning",
   smarterTogetherOccupancyContext: "Öppet kontor · Våning 3",
   smarterTogetherOccupancyStat: "62 % belagt",
@@ -618,39 +676,39 @@ const sv: SpaceManagementStrings = {
   smarterTogetherClimateContext: "Mötesrum A",
   smarterTogetherIndoorClimateLink: "Utforska inomhusklimat",
   audiencesEyebrow: "Vem det är för",
-  audiencesHeading: "Vardagsdrift och långsiktiga beslut",
+  audiencesHeading: "För workplace- och facility-team — och ledningen som godkänner siffrorna.",
   audiencesLead:
-    "Samma beläggningsdata hjälper kollegan hitta skrivbord i dag, ger ledningen bevis för att minska ytan i morgon och omvandlar klimatmål till verifierbara besparingar på hyra och energi.",
-  fmHeading: "För facility management",
+    "Workplace- och facility-funktioner smälter samman i enhetliga team. RoomAlyzer ger workplace- och facility managers hårda data för internt business case — och ger ledningen bevis för budget- och konsolideringsbeslut.",
+  fmHeading: "För workplace- och facility managers",
   fmItems: [
-    "Hjälp medarbetare hitta ett ledigt skrivbord eller rum direkt",
-    "Smart release när bokningar inte används",
-    "Anpassa ventilation dynamiskt efter faktisk headcount",
+    "Bygg beläggnings-business caset ledningen förväntar sig innan yta eller budget ändras",
+    "Driv vardagsdrift med live data om skrivbord, rum och zoner",
+    "Ersätt åsikter med hårda siffror när workplace- och facility-roller sammanfaller",
   ],
-  realEstateHeading: "För fastighet och ledning",
+  realEstateHeading: "För ledning och fastighetsägare",
   realEstateItems: [
-    "Visa ledig kapacitet innan ni hyr, bygger om eller bygger nytt",
-    "Fördela avdelningsytor med objektiva användningsmått",
-    "Omvandla klimatmål till verifierbara besparingar på energi och hyra",
+    "Godkänn konsolidering, nedskalning och hyresbeslut med dokumenterad ledig kapacitet",
+    "Omvandla hållbarhetsmål till verifierbara besparingar på energi och hyra",
+    "Fördela avdelningsytor med objektiva användningsmått, inte politik",
   ],
   faqTitle: "Vanliga frågor",
   faqContextAlt: "Kolleger som diskuterar planer runt ett mötesbord",
   faqItems: [
     {
       q: "Hur fungerar beläggningssensorer utan att identifiera personer?",
-      a: "RoomAlyzer använder sensorer som registrerar närvaro och rörelse utan att fånga ansikten eller personliga identifierare. Data är helt anonymiserad och GDPR-kompatibel — inga kameror, inga brickor, inga personuppgifter.",
+      a: "Data är 100 % anonyma och fullt GDPR-kompatibla. Systemet spårar rörelse och beläggningsdynamik, aldrig individer — inga kameror, inga brickor, inga personuppgifter.",
     },
     {
       q: "Kan vi automatiskt frigöra möten där ingen dyker upp?",
-      a: "Ja. Kombinera beläggningssignaler med en kalenderintegration (Google, Microsoft 365, Pronestor) så frigör plattformen rummet efter en respitperiod när en bokning inte används — utan manuell städning av spökbookningar.",
+      a: "Ja. RoomAlyzer integreras med era kalendersystem och frigör automatiskt spökbookningar när ett rum förblir tomt efter en respitperiod.",
     },
     {
       q: "Hur exakt är beläggningsdetekteringen?",
-      a: "Noggrannheten beror på det miljöscenario som tilldelats varje sensor — därför förskonfigureras RoomAlyzer före utrullning. Finjusterade scenarier och AI-driven rapportering ger pålitliga utnyttjandedata från dag ett.",
+      a: "Detekteringen drivs av finjusterade miljöscenarier och AI-rapportering. Sensorer förskonfigureras före utrullning så att ni får pålitliga utnyttjandedata från dag ett.",
     },
     {
       q: "Hur påverkar det vår IT-säkerhet?",
-      a: "En stor fördel för IT-team: infrastrukturen körs helt oberoende av ert företagsnätverk. Den är WiFi-fri, mobilnätsbaserad och kräver noll nätverkskonfiguration — helt isolerad och säker.",
+      a: "Noll påverkan på ert företagsnätverk. Infrastrukturen är helt isolerad, WiFi-fri och mobilnätsbaserad — ingen nätverkskonfiguration krävs.",
     },
   ],
   ctaTitle: "Vill du se det själv?",

@@ -1,0 +1,72 @@
+# Legacy WordPress domain redirects → https://iot-fabrikken.com
+#
+# Apply on each legacy host during DNS cutover (separate Caddy site blocks,
+# Cloudflare redirect rules, or WordPress Redirection plugin). Do NOT merge into
+# the Railway soft-launch Caddyfile — that file only serves static dist/.
+#
+# Path inventory: src/data/legacyWordPressPaths.ts
+# Full matrix: exports/redirect-inventory.csv (npm run export-redirects)
+
+# ─── iot-fabrikken.uk (English) ───────────────────────────────────────────────
+
+iot-fabrikken.uk {
+	redir / https://iot-fabrikken.com/en/ permanent
+	redir /cases/ https://iot-fabrikken.com/en/case-studies/ permanent
+	redir /case/* https://iot-fabrikken.com/en/case-studies/{path} permanent
+	redir /about-us/ https://iot-fabrikken.com/en/about/ permanent
+	redir /book-a-demo/ https://iot-fabrikken.com/en/contact/book-demo/ permanent
+	redir /contact/ https://iot-fabrikken.com/en/contact/ permanent
+	redir /get-an-offer/ https://iot-fabrikken.com/en/get-an-offer/ permanent
+	redir /indoor-climate/ https://iot-fabrikken.com/en/modules/indoor-climate/ permanent
+	redir /water-detection/ https://iot-fabrikken.com/en/modules/water-detection/ permanent
+	redir /space-management/ https://iot-fabrikken.com/en/modules/space-management/ permanent
+	redir /partners/ https://iot-fabrikken.com/en/about/partners/ permanent
+	redir /privacy-policy/ https://iot-fabrikken.com/en/legal/privacy/ permanent
+	redir /product-sheets/ https://iot-fabrikken.com/en/sensors/product-sheets/ permanent
+	redir /jobs-at-iot-fabrikken/ https://iot-fabrikken.com/en/about/careers/ permanent
+	redir /knowledge-hub/ https://iot-fabrikken.com/en/articles/ permanent
+}
+
+# ─── iot-fabrikken.de (German) ────────────────────────────────────────────────
+
+iot-fabrikken.de {
+	redir / https://iot-fabrikken.com/de/ permanent
+	redir /raumklima/ https://iot-fabrikken.com/de/module/raumklima/ permanent
+	redir /space-management/ https://iot-fabrikken.com/de/module/space-management/ permanent
+	redir /raumklima-messgerat/ https://iot-fabrikken.com/de/sensoren/ permanent
+	redir /projekte/ https://iot-fabrikken.com/de/referenzen/ permanent
+	redir /case/* https://iot-fabrikken.com/de/referenzen/{path} permanent
+	redir /demo-buchen/ https://iot-fabrikken.com/de/kontakt/demo-buchen/ permanent
+	redir /kontakt/ https://iot-fabrikken.com/de/kontakt/ permanent
+	redir /impressum/ https://iot-fabrikken.com/de/rechtliches/impressum/ permanent
+	redir /privacy-policy/ https://iot-fabrikken.com/de/rechtliches/datenschutz/ permanent
+	redir /archivistica/ https://iot-fabrikken.com/de/veranstaltungen/archivistica/ permanent
+	redir /wissenszentrum/ https://iot-fabrikken.com/de/wissenszentrum/ permanent
+	redir /uber-uns/ https://iot-fabrikken.com/de/ueber-uns/ permanent
+	# Do NOT redirect /wp-content/uploads/* — keep serving media/PDFs
+}
+
+# ─── iot-fabrikken.se (Swedish) ───────────────────────────────────────────────
+
+iot-fabrikken.se {
+	redir / https://iot-fabrikken.com/sv/ permanent
+	redir /projekt/ https://iot-fabrikken.com/sv/projekt/ permanent
+	redir /case/* https://iot-fabrikken.com/sv/projekt/{path} permanent
+	redir /kontakt/ https://iot-fabrikken.com/sv/kontakt/ permanent
+	redir /boka-en-demo/ https://iot-fabrikken.com/sv/kontakt/boka-demo/ permanent
+	redir /inomhusklimat/ https://iot-fabrikken.com/sv/moduler/inomhusklimat/ permanent
+}
+
+# ─── Bare-path rules for old Danish WordPress on iot-fabrikken.com ────────────
+#
+# Also emitted as Astro build-time redirects (getBarePathLegacyRedirectMap).
+# See src/data/legacyWordPressPaths.ts for the full list.
+#
+#   /cases/           → /da/case-studies/   (da keeps the English segment)
+#   /case/{slug}/     → /da/case-studies/{slug}/
+#   /kontakt/         → /da/kontakt/
+#   /indeklima/       → /da/moduler/indeklima/
+#   …
+#
+# Note: bare / on iot-fabrikken.com redirects to /da/ (Danish legacy home).
+# Same rule applies after www → apex canonicalization.

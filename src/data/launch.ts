@@ -33,7 +33,7 @@
  * Branch workflow: see `launch/README.md`.
  */
 
-import { locales } from "./lang";
+import { locales, canonicalizePath, defaultLang, type Lang } from "./lang";
 
 /**
  * Master switch. When `true`, only pages on the allowlist are considered live;
@@ -89,19 +89,27 @@ export const ALWAYS_ALLOWED: readonly string[] = [
 ];
 
 const localePrefix = new RegExp(`^/(?:${locales.map((l) => l.code).join("|")})(?:/|$)`);
+const localePrefixCapture = new RegExp(
+  `^/(${locales.map((l) => l.code).join("|")})(?:/|$)`,
+);
 
 /**
- * Strip the locale prefix and normalise to a bare route key.
+ * Strip the locale prefix and normalise to a bare, canonical (English) route
+ * key.
  *
  * Handles both request paths (`/da/about/team/`) and emitted output files
  * (`da/about/team/index.html`, `404.html`) by removing a trailing
- * `index.html` / `.html` and surrounding slashes.
+ * `index.html` / `.html` and surrounding slashes. Localized segments (e.g.
+ * `/de/module/raumklima/`) are mapped back to their English key so the
+ * allowlist can stay authored in canonical English.
  */
 export function stripLocale(pathname: string): string {
   let path = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  const lang = (path.match(localePrefixCapture)?.[1] as Lang) ?? defaultLang;
   path = path.replace(localePrefix, "/");
   path = path.replace(/index\.html$/, "").replace(/\.html$/, "");
-  return path.replace(/^\/+/, "").replace(/\/+$/, "");
+  const key = path.replace(/^\/+/, "").replace(/\/+$/, "");
+  return canonicalizePath(key, lang);
 }
 
 /**

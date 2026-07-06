@@ -46,7 +46,7 @@ export function buildFairRecapEyebrow(lang: Lang = defaultLang): string {
 }
 
 const deLeadTail =
-  "Drei Tage lang haben wir mit Restauratorinnen, Konservatoren und Museumsleitungen über Bewahrung und Energieeffizienz gesprochen. Auf der ARCHIVISTICA in Hof setzen wir das Gespräch fort — gerne auch mit Ihnen.";
+  "Drei Tage lang haben wir mit Restauratorinnen, Konservatoren und Museumsleitungen über Bewahrung und Energieeffizienz gesprochen. Auf der ARCHIVISTICA in Hof setzen wir das Gespräch fort, gerne auch mit Ihnen.";
 
 function buildFairLead(): string {
   const { city, startDate } = pastFairRecap;
@@ -55,7 +55,7 @@ function buildFairLead(): string {
 }
 
 const de = {
-  fairHeading: "Wir sind unterwegs — und freuen uns auf Hof.",
+  fairHeading: "Wir sind unterwegs, und freuen uns auf Hof.",
   closingCaption: "Bis bald in Hof",
 } as const;
 

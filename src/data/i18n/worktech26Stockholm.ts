@@ -45,7 +45,7 @@ const sv: WorktechStrings = {
   heroTitle: "Framtidens arbetsplats.",
   heroTitleAccent: "Med data som grund.",
   heroLead:
-    "Träffa IoT Fabrikken på WORKTECH26 i Stockholm och se hur RoomAlyzer hjälper workplace-, fastighets- och facility-team att fatta beslut om utrymme, närvaro och inomhusklimat — med trådlösa sensorer och en plattform byggd för nordiska organisationer.",
+    "Träffa IoT Fabrikken på WORKTECH26 i Stockholm och se hur RoomAlyzer hjälper workplace-, fastighets- och facility-team att fatta beslut om utrymme, närvaro och inomhusklimat, med trådlösa sensorer och en plattform byggd för nordiska organisationer.",
   heroMetaFields: {
     labels: { termin: "Datum", ort: "Plats", detail: "Event" },
     ort: "Stockholm",
@@ -55,24 +55,24 @@ const sv: WorktechStrings = {
   heroPrimaryCta: "Boka möte på plats",
   heroSecondaryCta: "Boka online-demo",
   featuresEyebrow: "Vad du kan se hos oss",
-  featuresHeading: "People, place and technology — i praktiken.",
+  featuresHeading: "People, place and technology, i praktiken.",
   featuresLead:
     "WORKTECH samlar ledare inom workplace strategy, fastigheter, HR och teknik. Vi visar hur kontinuerlig sensordata stödjer hybridarbete, energieffektivitet och bättre beslut om kontoret.",
   features: [
     {
-      title: "People — komfort och trivsel",
+      title: "People, komfort och trivsel",
       icon: "people",
-      body: "Mät CO₂, temperatur och luftfuktighet i realtid så att du kan svara på klagomål med fakta, inte känslor — och dokumentera inomhusklimat enligt krav.",
+      body: "Mät CO₂, temperatur och luftfuktighet i realtid så att du kan svara på klagomål med fakta, inte känslor, och dokumentera inomhusklimat enligt krav.",
     },
     {
-      title: "Place — utnyttjande av ytor",
+      title: "Place, utnyttjande av ytor",
       icon: "place",
       body: "Se faktisk närvaro i mötesrum, öppna kontorslandskap och gemensamma ytor. Identifiera underutnyttjade zoner och optimera yta utan gissningar.",
     },
     {
-      title: "Technology — en plattform",
+      title: "Technology, en plattform",
       icon: "technology",
-      body: "RoomAlyzer samlar sensorer, larm och rapporter i en vy. Ingen kabeldragning, inget WiFi-krångel — trådlöst, skalbart och redo för nordiska fastighetsportföljer.",
+      body: "RoomAlyzer samlar sensorer, larm och rapporter i en vy. Ingen kabeldragning, inget WiFi-krångel, trådlöst, skalbart och redo för nordiska fastighetsportföljer.",
     },
   ],
   topicsEyebrow: "Konferensens fokus",
@@ -82,11 +82,11 @@ const sv: WorktechStrings = {
   topics: [
     {
       title: "Workplace intelligence",
-      body: "Från fragmenterad data till beslut som går att fatta — hur sensorer ger facility- och workplace-team en gemensam bild av vad som faktiskt händer i byggnaden.",
+      body: "Från fragmenterad data till beslut som går att fatta, hur sensorer ger facility- och workplace-team en gemensam bild av vad som faktiskt händer i byggnaden.",
     },
     {
       title: "Hybridarbete och samarbete",
-      body: "När kontoret ska locka tillbaka medarbetare behövs mätbar insikt om beläggning, mötesrum och zoner — inte bara antaganden om hur ytorna används.",
+      body: "När kontoret ska locka tillbaka medarbetare behövs mätbar insikt om beläggning, mötesrum och zoner, inte bara antaganden om hur ytorna används.",
     },
     {
       title: "Energi och hållbarhet",
@@ -95,7 +95,7 @@ const sv: WorktechStrings = {
   ],
   ctaTitle: "Vill du boka tid med oss på WORKTECH26?",
   ctaLead:
-    "Reservera ett möte på plats i Stockholm eller boka en online-demo i förväg — vi ser fram emot att träffa dig.",
+    "Reservera ett möte på plats i Stockholm eller boka en online-demo i förväg, vi ser fram emot att träffa dig.",
   ctaPrimary: "Boka möte på plats",
   ctaSecondary: "Boka online-demo",
   officialEventLabel: "Officiell WORKTECH26 Stockholm-sida",

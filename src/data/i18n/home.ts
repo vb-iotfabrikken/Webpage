@@ -62,14 +62,14 @@ export interface HomeStrings {
 
 const en: HomeStrings = {
   meta: {
-    title: "IoT Fabrikken — Sensors and platform for facility and space management",
+    title: "IoT Fabrikken: Sensors and platform for facility and space management",
     description:
       "Market-leading Danish platform for indoor climate, space management and water-leak detection. Plug and play sensors, long battery life and no installation.",
   },
   hero: {
     title: "Market-leading software for indoor climate and",
     titleAccent: "space management.",
-    lead: "Wireless sensors and a single platform that turns data about indoor climate, space utilisation and water leaks into something you can actually use — plug and play.",
+    lead: "Wireless sensors and a single platform that turns data about indoor climate, space utilisation and water leaks into something you can actually use, plug and play.",
     ctaPrimary: "Book a free demo",
     ctaSecondary: "Contact sales",
   },
@@ -81,7 +81,7 @@ const en: HomeStrings = {
     heading: "Why IoT Fabrikken?",
     intro: "Hardware that just works. Software that actually thinks.",
     figcaption:
-      "Built and quality-checked in-house — every sensor shipped from our team in Denmark.",
+      "Built and quality-checked in-house: every sensor shipped from our team in Denmark.",
     items: [
       {
         title: "Up to 10-year battery",
@@ -103,7 +103,7 @@ const en: HomeStrings = {
   },
   sensorFinder: {
     heading: "Find the right setup for your space.",
-    subtitle: "Start with your industry — we will point you to the sensors and modules that fit.",
+    subtitle: "Start with your industry, we will point you to the sensors and modules that fit.",
     ctaLabel: "See recommended sensors",
     cards: {
       offices: {
@@ -150,14 +150,14 @@ const en: HomeStrings = {
 
 const da: HomeStrings = {
   meta: {
-    title: "IoT Fabrikken — Sensorer og platform til facility- og space management",
+    title: "IoT Fabrikken: Sensorer og platform til facility- og space management",
     description:
       "Markedsledende dansk platform til indeklima, space management og detektion af vandlækager. Plug and play-sensorer, lang batterilevetid og ingen installation.",
   },
   hero: {
     title: "Markedsledende software til indeklima og",
     titleAccent: "space management.",
-    lead: "Trådløse sensorer og én samlet platform, der gør data om indeklima, arealudnyttelse og vandlækager til noget, du faktisk kan bruge — plug and play.",
+    lead: "Trådløse sensorer og én samlet platform, der gør data om indeklima, arealudnyttelse og vandlækager til noget, du faktisk kan bruge, plug and play.",
     ctaPrimary: "Book en gratis demo",
     ctaSecondary: "Kontakt salg",
   },
@@ -169,7 +169,7 @@ const da: HomeStrings = {
     heading: "Hvorfor IoT Fabrikken?",
     intro: "Hardware, der bare virker. Software, der faktisk tænker.",
     figcaption:
-      "Bygget og kvalitetstjekket in-house — hver sensor sendes fra vores team i Danmark.",
+      "Bygget og kvalitetstjekket in-house: hver sensor sendes fra vores team i Danmark.",
     items: [
       {
         title: "Op til 10 års batteri",
@@ -191,7 +191,7 @@ const da: HomeStrings = {
   },
   sensorFinder: {
     heading: "Find den rette opsætning til dine lokaler.",
-    subtitle: "Start med din branche — så peger vi på de sensorer og moduler, der passer.",
+    subtitle: "Start med din branche, så peger vi på de sensorer og moduler, der passer.",
     ctaLabel: "Se anbefalede sensorer",
     cards: {
       offices: {
@@ -238,14 +238,14 @@ const da: HomeStrings = {
 
 const de: HomeStrings = {
   meta: {
-    title: "IoT Fabrikken — Sensoren und Plattform für Facility- und Space-Management",
+    title: "IoT Fabrikken: Sensoren und Plattform für Facility- und Space-Management",
     description:
       "Marktführende dänische Plattform für Raumklima, Space-Management und Wasserleckerkennung. Plug-and-Play-Sensoren, lange Batterielaufzeit und keine Installation.",
   },
   hero: {
     title: "Marktführende Software für Raumklima und",
     titleAccent: "Space-Management.",
-    lead: "Drahtlose Sensoren und eine einzige Plattform, die Daten zu Raumklima, Flächennutzung und Wasserlecks in echten Mehrwert verwandelt — Plug-and-Play.",
+    lead: "Drahtlose Sensoren und eine einzige Plattform, die Daten zu Raumklima, Flächennutzung und Wasserlecks in echten Mehrwert verwandelt, Plug-and-Play.",
     ctaPrimary: "Kostenlose Demo buchen",
     ctaSecondary: "Vertrieb kontaktieren",
   },
@@ -257,7 +257,7 @@ const de: HomeStrings = {
     heading: "Warum IoT Fabrikken?",
     intro: "Hardware, die einfach funktioniert. Software, die wirklich mitdenkt.",
     figcaption:
-      "Im eigenen Haus gebaut und qualitätsgeprüft — jeder Sensor wird von unserem Team in Dänemark versandt.",
+      "Im eigenen Haus gebaut und qualitätsgeprüft, jeder Sensor wird von unserem Team in Dänemark versandt.",
     items: [
       {
         title: "Bis zu 10 Jahre Batterie",
@@ -279,7 +279,7 @@ const de: HomeStrings = {
   },
   sensorFinder: {
     heading: "Finden Sie die richtige Lösung für Ihre Räume.",
-    subtitle: "Starten Sie mit Ihrer Branche — wir zeigen Ihnen die passenden Sensoren und Module.",
+    subtitle: "Starten Sie mit Ihrer Branche, wir zeigen Ihnen die passenden Sensoren und Module.",
     ctaLabel: "Empfohlene Sensoren ansehen",
     cards: {
       offices: {
@@ -326,14 +326,14 @@ const de: HomeStrings = {
 
 const sv: HomeStrings = {
   meta: {
-    title: "IoT Fabrikken — Sensorer och plattform för facility- och space management",
+    title: "IoT Fabrikken: Sensorer och plattform för facility- och space management",
     description:
       "Marknadsledande dansk plattform för inomhusklimat, space management och detektering av vattenläckor. Plug and play-sensorer, lång batteritid och ingen installation.",
   },
   hero: {
     title: "Marknadsledande mjukvara för inomhusklimat och",
     titleAccent: "space management.",
-    lead: "Trådlösa sensorer och en enda plattform som förvandlar data om inomhusklimat, ytutnyttjande och vattenläckor till något du faktiskt kan använda — plug and play.",
+    lead: "Trådlösa sensorer och en enda plattform som förvandlar data om inomhusklimat, ytutnyttjande och vattenläckor till något du faktiskt kan använda, plug and play.",
     ctaPrimary: "Boka en gratis demo",
     ctaSecondary: "Kontakta försäljning",
   },
@@ -345,7 +345,7 @@ const sv: HomeStrings = {
     heading: "Varför IoT Fabrikken?",
     intro: "Hårdvara som bara fungerar. Mjukvara som faktiskt tänker.",
     figcaption:
-      "Byggd och kvalitetskontrollerad in-house — varje sensor skickas från vårt team i Danmark.",
+      "Byggd och kvalitetskontrollerad in-house: varje sensor skickas från vårt team i Danmark.",
     items: [
       {
         title: "Upp till 10 års batteri",
@@ -367,7 +367,7 @@ const sv: HomeStrings = {
   },
   sensorFinder: {
     heading: "Hitta rätt lösning för dina lokaler.",
-    subtitle: "Börja med din bransch — så visar vi vilka sensorer och moduler som passar.",
+    subtitle: "Börja med din bransch, så visar vi vilka sensorer och moduler som passar.",
     ctaLabel: "Se rekommenderade sensorer",
     cards: {
       offices: {

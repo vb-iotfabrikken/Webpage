@@ -13,18 +13,19 @@ import {
   cardsForIndustry,
   featuredForIndustry,
 } from "../../../data/articles/query";
-import { locales, langPath, type Lang } from "../../../data/lang";
+import { locales, langPath, localizeSegment, canonicalizeSegment, type Lang } from "../../../data/lang";
 
 export function getStaticPaths() {
   return locales.flatMap((l) =>
     getIndustriesHub(l.code).leaves.map((leaf) => ({
-      params: { lang: l.code, slug: leaf.slug },
+      params: { lang: l.code, slug: localizeSegment(leaf.slug, l.code) },
       props: { leaf },
     })),
   );
 }
 
-const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+const { lang } = Astro.params as { lang: Lang; slug: string };
+const slug = canonicalizeSegment(Astro.params.slug as string, lang);
 const { leaf } = Astro.props;
 const hub = getIndustriesHub(lang);
 const localizedLeaf = hub.leaves.find((l) => l.slug === slug) ?? leaf;

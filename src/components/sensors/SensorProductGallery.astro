@@ -102,6 +102,8 @@ function lineLabel(line: SensorDimensionLine, gallery: SensorStrings["gallery"])
   if (!line.label) return undefined;
   if (line.label === "compact") return gallery.compact;
   if (line.label === "pro") return gallery.pro;
+  if (line.label === "smallUnit") return gallery.smallUnit;
+  if (line.label === "largeUnit") return gallery.largeUnit;
   if (line.label === "rangeExtender") return gallery.rangeExtender;
   if (line.label === "bracket") return gallery.bracket;
   return line.label;
@@ -419,7 +421,11 @@ const referenceCell = "relative aspect-square min-h-0";
             {dimensions.images.kind === "variants" && dimensions.variantOverlays && (
               <div class="divide-y divide-stone-100">
                 <div>
-                  {!hideInnerLabels && <p class="text-xs text-stone-300 px-4 pt-4 mb-2">{t.compact}</p>}
+                  {!hideInnerLabels && dimensions.spec.lines[0]?.label && (
+                    <p class="text-xs text-stone-300 px-4 pt-4 mb-2">
+                      {lineLabel(dimensions.spec.lines[0], t)}
+                    </p>
+                  )}
                   <div class={squareDimensionTile}>
                     <SensorDimensionFigure
                       figureId={`${slug}-dimensions-compact`}
@@ -435,7 +441,11 @@ const referenceCell = "relative aspect-square min-h-0";
                   </div>
                 </div>
                 <div>
-                  {!hideInnerLabels && <p class="text-xs text-stone-300 px-4 pt-4 mb-2">{t.pro}</p>}
+                  {!hideInnerLabels && dimensions.spec.lines[1]?.label && (
+                    <p class="text-xs text-stone-300 px-4 pt-4 mb-2">
+                      {lineLabel(dimensions.spec.lines[1], t)}
+                    </p>
+                  )}
                   <div class={squareDimensionTile}>
                     <SensorDimensionFigure
                       figureId={`${slug}-dimensions-pro`}

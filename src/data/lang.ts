@@ -1,4 +1,12 @@
 import { getRouteFallback, isRouteAvailableInLocale } from "./events";
+import { canonicalizePath, routePath, isArticleTranslated } from "./routes";
+
+export {
+  localizeSegment,
+  canonicalizeSegment,
+  routePath,
+  canonicalizePath,
+} from "./routes";
 
 export const defaultLang = "en" as const;
 
@@ -15,13 +23,13 @@ export type Lang = (typeof locales)[number]["code"];
 const localeCodes = new Set<Lang>(locales.map((l) => l.code));
 
 /**
- * Locales that have real, human-ready translations and may therefore be
- * indexed / advertised via hreflang and the sitemap. English-first for now:
- * the /da/, /de/, /sv/ trees still fall back to English content, so they are
- * kept out of search engines until their translations ship. Add a code here
- * once that locale is genuinely translated.
+ * Locales that may be indexed / advertised via hreflang and the sitemap. All
+ * four locales serve native-language URLs and localized structural, hub and
+ * product copy. Per-article indexing is gated separately by the
+ * content-readiness gate (see `isPageIndexed`), so English-fallback article
+ * bodies never get indexed under a localized slug.
  */
-export const INDEXED_LOCALES = new Set<Lang>(["en"]);
+export const INDEXED_LOCALES = new Set<Lang>(["en", "da", "de", "sv"]);
 
 /** Should pages in this locale be indexed (and advertised via hreflang)? */
 export function isIndexedLocale(lang: Lang): boolean {
@@ -35,12 +43,20 @@ export function isIndexedLocale(lang: Lang): boolean {
  */
 export const MULTILINGUAL_INDEXED_ROUTES = new Set<string>(["compare"]);
 
-/** Strip the locale prefix and return the bare route key (no leading/trailing slashes). */
+/**
+ * Strip the locale prefix and return the canonical (English) route key.
+ *
+ * Segments are canonicalized so callers that key off English route keys
+ * (indexing, hreflang, the soft-launch allowlist) keep working even when the
+ * incoming path uses localized segments (e.g. `/de/module/raumklima/`).
+ */
 export function stripLocaleRoute(pathname: string): string {
-  return pathname
+  const lang = getLangFromPath(pathname);
+  const rest = pathname
     .replace(/^\/(en|da|de|sv)(\/|$)/, "/")
     .replace(/^\/+/, "")
     .replace(/\/+$/, "");
+  return canonicalizePath(rest, lang);
 }
 
 /** Whether this pathname is a fully translated route indexed in all locales. */
@@ -50,27 +66,32 @@ export function isMultilingualIndexedRoute(pathname: string): boolean {
 
 /** Whether this page should be indexed and advertised via hreflang alternates. */
 export function isPageIndexed(pathname: string, lang: Lang): boolean {
-  return isIndexedLocale(lang) || isMultilingualIndexedRoute(pathname);
+  if (!isIndexedLocale(lang) && !isMultilingualIndexedRoute(pathname)) {
+    return false;
+  }
+
+  // Content-readiness gate: an article detail page in a non-English locale is
+  // only indexable once that post is genuinely translated. Until then it serves
+  // the English fallback and must stay out of the index. The articles index and
+  // tag listings (navigational, localized chrome) are unaffected.
+  if (lang !== defaultLang) {
+    const routeKey = stripLocaleRoute(pathname);
+    const articleDetail = routeKey.match(/^articles\/([^/]+)$/);
+    if (articleDetail && articleDetail[1] !== "tags") {
+      return isArticleTranslated(articleDetail[1], lang);
+    }
+  }
+
+  return true;
 }
 
 /**
- * EN ↔ DA slug pairs where the two locales use different path segments.
- * Mirrors the legacy redirects in astro.config.mjs.
- */
-const slugPairs: ReadonlyArray<readonly [enSlug: string, daSlug: string]> = [
-  ["norddjurs-municipality", "norddjurs-kommune"],
-  ["varde-municipality", "varde-kommune"],
-  ["gribskov-municipality", "gribskov-kommune"],
-];
-
-/**
- * Build a fully-prefixed URL for the given language.
- * Always leaves a trailing slash so Astro does not 301 the link.
+ * Build a fully-prefixed URL for the given language from a canonical English
+ * path, translating every segment into the target locale via the route
+ * registry. Always leaves a trailing slash so Astro does not 301 the link.
  */
 export function langPath(path: string, lang: Lang = defaultLang): string {
-  const clean = path.replace(/^\/+/, "").replace(/\/+$/, "");
-  if (!clean) return `/${lang}/`;
-  return `/${lang}/${clean}/`;
+  return routePath(path, lang);
 }
 
 /** URL of the articles index (the single canonical content catalogue). */
@@ -165,7 +186,13 @@ export function astroLang(astro: AstroLangContext): Lang {
 
 type LocalLink = { label: string; href?: string };
 
-/** Swap the locale prefix on an internal path (keeps query + hash). */
+/**
+ * Rewrite an internal link so its locale prefix and every path segment match
+ * the active locale (keeps query + hash). The incoming href may already be
+ * localized in another locale (e.g. `/de/module/raumklima/`) or canonical
+ * English (`/en/modules/indoor-climate/` or `/modules/indoor-climate`); it is
+ * first mapped back to canonical English, then localized into `lang`.
+ */
 export function localizeHref(href: string, lang: Lang): string {
   if (
     !href ||
@@ -178,19 +205,29 @@ export function localizeHref(href: string, lang: Lang): string {
   }
 
   const url = new URL(href, "https://placeholder.local");
+
+  // Static assets (files with an extension: `.pdf`, `.png`, `sitemap.xml`, …)
+  // are not locale-routed pages. Never prefix or localize them, otherwise a
+  // download link like `/downloads/product-sheets/co2.pdf` would be rewritten
+  // to a non-existent `/de/downloads/produktdatenblaetter/co2.pdf/`.
+  const lastSegment = url.pathname.replace(/\/+$/, "").split("/").pop() ?? "";
+  if (lastSegment.includes(".")) return href;
+
   const localeMatch = url.pathname.match(/^\/(en|da|de|sv)(\/.*)?$/);
 
-  let pathname: string;
+  let canonicalRest: string;
   if (localeMatch) {
+    const sourceLang = localeMatch[1] as Lang;
     const rest = (localeMatch[2] ?? "/").replace(/^\/+/, "").replace(/\/+$/, "");
-    pathname = langPath(rest, lang);
+    canonicalRest = canonicalizePath(rest, sourceLang);
   } else if (url.pathname.startsWith("/")) {
     const rest = url.pathname.replace(/^\/+/, "").replace(/\/+$/, "");
-    pathname = langPath(rest, lang);
+    canonicalRest = canonicalizePath(rest, defaultLang);
   } else {
     return href;
   }
 
+  const pathname = langPath(canonicalRest, lang);
   return `${pathname}${url.search}${url.hash}`;
 }
 
@@ -209,29 +246,19 @@ export function localizeCrumbs<T extends LocalLink>(crumbs: T[], lang: Lang): T[
   );
 }
 
-function translateSlug(slug: string, targetLang: Lang): string {
-  for (const [enSlug, daSlug] of slugPairs) {
-    if (targetLang === "da" && slug === enSlug) return daSlug;
-    if (targetLang === "en" && slug === daSlug) return enSlug;
-  }
-  return slug;
-}
-
 /**
- * Build the equivalent URL in another locale by swapping the prefix and
- * translating any paired slugs in the final path segment.
+ * Build the equivalent URL in another locale. The source path may use
+ * localized segments in its own locale; it is mapped back to canonical English
+ * (all segments, not just the last) and then localized into `targetLang`.
  */
 export function switchLocalePath(pathname: string, targetLang: Lang): string {
-  const prefixMatch = pathname.match(/^\/(en|da|de|sv)(\/.*)?$/);
-  const rest = prefixMatch?.[2] ?? pathname;
-
-  const segments = rest.split("/").filter(Boolean);
-  if (segments.length > 0) {
-    const last = segments.length - 1;
-    segments[last] = translateSlug(segments[last], targetLang);
-  }
-
-  return langPath(segments.join("/"), targetLang);
+  const sourceLang = getLangFromPath(pathname);
+  const rest = pathname
+    .replace(/^\/(en|da|de|sv)(\/|$)/, "/")
+    .replace(/^\/+/, "")
+    .replace(/\/+$/, "");
+  const canonical = canonicalizePath(rest, sourceLang);
+  return langPath(canonical, targetLang);
 }
 
 /**

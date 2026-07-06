@@ -17,7 +17,7 @@ export type GlossaryEntry = {
   anchor: string;
   short: string;
   detail?: string;
-  /** Anchors of related terms — rendered as chips under each entry. */
+  /** Anchors of related terms, rendered as chips under each entry. */
   seeAlso?: string[];
 };
 
@@ -48,7 +48,7 @@ export const glossary: GlossaryEntry[] = [
     aka: ["carbon dioxide"],
     anchor: "co2",
     short: "The gas exhaled by occupants; indoor levels are the most practical proxy for ventilation quality in classrooms and offices.",
-    detail: "Outdoor baseline is around 420 ppm. BR18 requires < 1000 ppm in classrooms during teaching hours; levels above 1200 ppm start to affect concentration, above 2000 ppm cause headaches.",
+    detail: "Outdoor baseline is around 420 ppm. Danish BR18 requires < 1000 ppm in classrooms during teaching hours; levels above 1200 ppm start to affect concentration, above 2000 ppm cause headaches.",
     seeAlso: ["voc", "ppm", "en-16798"],
   },
   {
@@ -96,7 +96,7 @@ export const glossary: GlossaryEntry[] = [
     term: "FM",
     aka: ["Facility Management"],
     anchor: "fm",
-    short: "The discipline that operates the physical workspace — cleaning, maintenance, space planning, energy and environment.",
+    short: "The discipline that operates the physical workspace, cleaning, maintenance, space planning, energy and environment.",
     seeAlso: ["bms", "space-management"],
   },
   {
@@ -104,7 +104,7 @@ export const glossary: GlossaryEntry[] = [
     aka: ["General Data Protection Regulation"],
     anchor: "gdpr",
     short: "The EU data-protection regulation that applies whenever a building's sensor data can be linked to an identifiable individual.",
-    detail: "Aggregated room occupancy is not personal data. Desk-level occupancy combined with hot-desk bookings usually is — we handle that case with strict role-based access controls and configurable retention.",
+    detail: "Aggregated room occupancy is not personal data. Desk-level occupancy combined with hot-desk bookings usually is, we handle that case with strict role-based access controls and configurable retention.",
     seeAlso: ["space-management"],
   },
   {
@@ -118,14 +118,14 @@ export const glossary: GlossaryEntry[] = [
     term: "IAQ",
     aka: ["Indoor Air Quality"],
     anchor: "iaq",
-    short: "The umbrella term for measuring and managing the air inside a building — CO₂, temperature, humidity, VOC, PM2.5 and more.",
+    short: "The umbrella term for measuring and managing the air inside a building: CO₂, temperature, humidity, VOC, PM2.5 and more.",
     seeAlso: ["co2", "voc", "pm25"],
   },
   {
     term: "IoT",
     aka: ["Internet of Things"],
     anchor: "iot",
-    short: "The network of physical devices — sensors, gateways, actuators — connected to the internet for data collection and automation.",
+    short: "The network of physical devices (sensors, gateways, actuators) connected to the internet for data collection and automation.",
     seeAlso: ["lorawan", "nb-iot"],
   },
   {
@@ -165,7 +165,7 @@ export const glossary: GlossaryEntry[] = [
     term: "MCP",
     aka: ["Model Context Protocol"],
     anchor: "mcp",
-    short: "An emerging open protocol that lets LLM clients query external data sources — including IoT platforms — with structured tools.",
+    short: "An emerging open protocol that lets LLM clients query external data sources (including IoT platforms) with structured tools.",
     seeAlso: ["iot"],
   },
   {
@@ -200,7 +200,7 @@ export const glossary: GlossaryEntry[] = [
     term: "PIR",
     aka: ["Passive Infrared"],
     anchor: "pir",
-    short: "An occupancy-sensor technology that detects motion by measuring changes in infrared radiation — the standard for room-level presence.",
+    short: "An occupancy-sensor technology that detects motion by measuring changes in infrared radiation, the standard for room-level presence.",
     seeAlso: ["mmwave"],
   },
   {
@@ -214,14 +214,14 @@ export const glossary: GlossaryEntry[] = [
     term: "PMV/PPD",
     aka: ["Predicted Mean Vote / Predicted Percentage Dissatisfied"],
     anchor: "pmv-ppd",
-    short: "Fanger's thermal-comfort indices — used in EN 16798 and ISO 7730 to predict how people will perceive a given combination of temperature, humidity and activity.",
+    short: "Fanger's thermal-comfort indices, used in EN 16798 and ISO 7730 to predict how people will perceive a given combination of temperature, humidity and activity.",
     seeAlso: ["en-16798"],
   },
   {
     term: "ppm",
     aka: ["parts per million"],
     anchor: "ppm",
-    short: "The unit used for CO₂ and many trace-gas measurements — 1 ppm means 1 molecule in a million.",
+    short: "The unit used for CO₂ and many trace-gas measurements: 1 ppm means 1 molecule in a million.",
     seeAlso: ["co2", "voc"],
   },
   {
@@ -280,7 +280,7 @@ export const glossary: GlossaryEntry[] = [
     term: "VAV",
     aka: ["Variable Air Volume"],
     anchor: "vav",
-    short: "A ventilation control scheme where each room gets a damper that modulates airflow — an ideal target for CO₂-driven demand control.",
+    short: "A ventilation control scheme where each room gets a damper that modulates airflow, an ideal target for CO₂-driven demand control.",
     seeAlso: ["co2"],
   },
   {
@@ -298,7 +298,7 @@ export const glossary: GlossaryEntry[] = [
   {
     term: "WELL",
     anchor: "well",
-    short: "A wellness-focused building certification with strict indoor-air and comfort requirements — increasingly chosen by office tenants.",
+    short: "A wellness-focused building certification with strict indoor-air and comfort requirements, increasingly chosen by office tenants.",
     seeAlso: ["dgnb", "leed"],
   },
   {

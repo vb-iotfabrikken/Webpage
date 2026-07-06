@@ -3,7 +3,7 @@ import { defaultLang } from "../lang";
 import type { ModulePageStrings } from "./modulePageTypes";
 
 const en: ModulePageStrings = {
-  metaTitle: "Usage and cleaning — demand-based cleaning | IoT Fabrikken",
+  metaTitle: "Usage and cleaning: demand-based cleaning | IoT Fabrikken",
   metaDescription:
     "Direct cleaning to the spaces that were actually used. See occupancy, schedule by demand, prioritise washrooms, and share reports with contractors.",
   breadcrumbHome: "Home",
@@ -18,7 +18,7 @@ const en: ModulePageStrings = {
   ],
   heroPrimaryCta: "Book a free demo",
   heroSecondaryCta: "Get an offer",
-  dashboardLabel: "RoomAlyzer — Usage and cleaning",
+  dashboardLabel: "RoomAlyzer: Usage and cleaning",
   dashboardAlt: "RoomAlyzer dashboard showing space usage and cleaning priorities",
   challengesEyebrow: "The challenges you know",
   challengesHeading: "When you clean by rota, busy rooms wait and empty ones get polished.",
@@ -144,7 +144,7 @@ const en: ModulePageStrings = {
 };
 
 const da: ModulePageStrings = {
-  metaTitle: "Brug og rengøring — behovsbaseret rengøring | IoT Fabrikken",
+  metaTitle: "Brug og rengøring: behovsbaseret rengøring | IoT Fabrikken",
   metaDescription:
     "Send rengøringen til de rum, der faktisk er blevet brugt. Se belægning, planlæg efter behov, prioriter toiletter og del rapporter med leverandører.",
   breadcrumbHome: "Hjem",
@@ -159,7 +159,7 @@ const da: ModulePageStrings = {
   ],
   heroPrimaryCta: "Book en gratis demo",
   heroSecondaryCta: "Få et tilbud",
-  dashboardLabel: "RoomAlyzer — Brug og rengøring",
+  dashboardLabel: "RoomAlyzer: Brug og rengøring",
   dashboardAlt: "RoomAlyzer-dashboard med rumbrug og rengøringsprioriteter",
   challengesEyebrow: "Udfordringerne, I kender",
   challengesHeading: "Når I gør rent efter plan, venter travle rum, mens tomme bliver pudset.",
@@ -285,7 +285,7 @@ const da: ModulePageStrings = {
 };
 
 const de: ModulePageStrings = {
-  metaTitle: "Nutzung und Reinigung — bedarfsorientierte Reinigung | IoT Fabrikken",
+  metaTitle: "Nutzung und Reinigung: bedarfsorientierte Reinigung | IoT Fabrikken",
   metaDescription:
     "Lenken Sie die Reinigung dorthin, wo Räume tatsächlich genutzt wurden. Belegung sehen, nach Bedarf planen, Sanitärräume priorisieren und Berichte mit Dienstleistern teilen.",
   breadcrumbHome: "Startseite",
@@ -300,7 +300,7 @@ const de: ModulePageStrings = {
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer — Nutzung und Reinigung",
+  dashboardLabel: "RoomAlyzer: Nutzung und Reinigung",
   dashboardAlt: "RoomAlyzer-Dashboard mit Raumnutzung und Reinigungsprioritäten",
   challengesEyebrow: "Die Herausforderungen, die Sie kennen",
   challengesHeading: "Bei Reinigung nach Plan warten stark genutzte Räume, während leere poliert werden.",
@@ -426,7 +426,7 @@ const de: ModulePageStrings = {
 };
 
 const sv: ModulePageStrings = {
-  metaTitle: "Användning och städning — behovsbaserad städning | IoT Fabrikken",
+  metaTitle: "Användning och städning: behovsbaserad städning | IoT Fabrikken",
   metaDescription:
     "Rikta städningen till de utrymmen som faktiskt använts. Se beläggning, schemalägg efter behov, prioritera toaletter och dela rapporter med entreprenörer.",
   breadcrumbHome: "Hem",
@@ -441,7 +441,7 @@ const sv: ModulePageStrings = {
   ],
   heroPrimaryCta: "Boka en gratis demo",
   heroSecondaryCta: "Få en offert",
-  dashboardLabel: "RoomAlyzer — Användning och städning",
+  dashboardLabel: "RoomAlyzer: Användning och städning",
   dashboardAlt: "RoomAlyzer-dashboard med rumsanvändning och städprioriteringar",
   challengesEyebrow: "Utmaningarna ni känner igen",
   challengesHeading: "När ni städar efter schema väntar aktiva rum medan tomma putsas.",

@@ -13,18 +13,19 @@ import {
 } from "../../../data/sensorTechnicalSpecs";
 import { productSchema } from "../../../lib/seo/schema";
 import { getUi } from "../../../data/i18n/ui";
-import { locales, langPath, type Lang } from "../../../data/lang";
+import { locales, langPath, localizeSegment, canonicalizeSegment, type Lang } from "../../../data/lang";
 
 export function getStaticPaths() {
   const slugs = sensorsHub.leaves
     .filter((leaf) => leaf.slug !== "compare")
     .map((leaf) => leaf.slug);
   return locales.flatMap((l) =>
-    slugs.map((slug) => ({ params: { lang: l.code, slug } })),
+    slugs.map((slug) => ({ params: { lang: l.code, slug: localizeSegment(slug, l.code) } })),
   );
 }
 
-const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+const { lang } = Astro.params as { lang: Lang; slug: string };
+const slug = canonicalizeSegment(Astro.params.slug as string, lang);
 const hub = getSensorsHub(lang);
 const leaf = hub.leaves.find((entry) => entry.slug === slug)!;
 const content = getSensorContent(slug, lang);

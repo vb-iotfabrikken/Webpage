@@ -9,7 +9,7 @@ export const sensorPageContent: SensorPageContent[] = [
  {
  slug: "full-plus",
  heroTitle: "Full+ sensor",
- heroTitleAccent: "Complete indoor climate monitoring — entirely wireless.",
+ heroTitleAccent: "Complete indoor climate monitoring, entirely wireless.",
  heroLead:
  "The Full+ sensor is your all-in-one solution for precise monitoring of temperature, humidity, CO2, and TVOC. Designed for effortless professional use, it delivers the vital data you need to optimise wellbeing, protect your buildings, and reduce heating costs.",
  useCases: "Schools & classrooms · Daycare centres · Offices · DGNB-certified buildings",
@@ -35,14 +35,14 @@ export const sensorPageContent: SensorPageContent[] = [
  {
  slug: "mini-plus",
  heroTitle: "Mini+ sensor",
- heroTitleAccent: "Precise temperature and humidity monitoring — without the complexity.",
+ heroTitleAccent: "Precise temperature and humidity monitoring, without the complexity.",
  heroLead:
  "The Mini+ sensor is the ideal solution for precisely monitoring the most critical parameters of your indoor climate without unnecessary complexity. Designed for professional use, it combines robust hardware with the intelligent RoomAlyzer platform to help you optimise energy consumption and protect your assets.",
  useCases: "Multi-room buildings · Care homes · Museums & churches · Rental properties",
  benefits: [
  {
  title: "Rapid deployment",
- body: "Press the on-sensor button to activate — data flows immediately over NB-IoT with no Wi-Fi, gateway, or IT setup.",
+ body: "Press the on-sensor button to activate, data flows immediately over NB-IoT with no Wi-Fi, gateway, or IT setup.",
  },
  {
  title: "True maintenance-free operation",
@@ -50,18 +50,18 @@ export const sensorPageContent: SensorPageContent[] = [
  },
  {
  title: "Fact-based documentation",
- body: "±0.1 °C and ±1% RH precision with <0.03 °C/year drift — verifiable conditions you can export from the RoomAlyzer platform.",
+ body: "±0.1 °C and ±1% RH precision with <0.03 °C/year drift, verifiable conditions you can export from the RoomAlyzer platform.",
  },
  {
  title: "Precise energy savings",
- body: "At H124 × W60 × D26 mm (130 g), deploy across every room and cut heating costs by ~5% for each degree you lower setpoint — backed by room-level data.",
+ body: "At H124 × W60 × D26 mm (130 g), deploy across every room and cut heating costs by ~5% for each degree you lower setpoint, backed by room-level data.",
  },
  ],
  },
  {
  slug: "mini-plus-pir",
  heroTitle: "Mini+ PIR sensor",
- heroTitleAccent: "Precise indoor climate and space utilisation data — with a long battery life.",
+ heroTitleAccent: "Precise indoor climate and space utilisation data, with a long battery life.",
  heroLead:
  "The Mini+ PIR is the intelligent all-in-one solution for an optimised indoor climate and needs-based space utilisation. By combining precise climate measurements with anonymised occupancy tracking, it delivers a holistic overview of your building dynamics to make your operations smarter.",
  useCases: "Flexible offices · Meeting rooms · Shared workspaces",
@@ -87,7 +87,7 @@ export const sensorPageContent: SensorPageContent[] = [
  {
  slug: "humidity",
  heroTitle: "Humidity sensor",
- heroTitleAccent: "Discreet protection for assets and the indoor climate — with an extremely long battery life.",
+ heroTitleAccent: "Discreet protection for assets and the indoor climate, with an extremely long battery life.",
  heroLead:
  "The Humidity sensor is the ideal solution for anyone who requires precise temperature and humidity data in a discreet, compact format. It delivers exact values to the RoomAlyzer platform to safeguard irreplaceable cultural assets, comply with strict heritage conservation, or optimise office environments.",
  useCases: "Museums & churches · Archives · Heritage buildings",
@@ -114,7 +114,7 @@ export const sensorPageContent: SensorPageContent[] = [
  {
  slug: "co2",
  heroTitle: "CO2 sensor",
- heroTitleAccent: "Precise air quality data — with maximum battery life.",
+ heroTitleAccent: "Precise air quality data, with maximum battery life.",
  heroLead:
  "The CO2 sensor is the professional solution for monitoring air quality in environments where wellbeing, health, and concentration are crucial. In combination with the RoomAlyzer platform, it provides a sound, fact-based foundation for optimising ventilation and your overall indoor climate.",
  useCases: "Classrooms · Meeting rooms · Open-plan offices",
@@ -221,9 +221,9 @@ export const sensorPageContent: SensorPageContent[] = [
  {
  slug: "touch",
  heroTitle: "Touch sensor",
- heroTitleAccent: "Simple feedback and rapid service — exactly where the need arises.",
+ heroTitleAccent: "Simple feedback and rapid service, exactly where the need arises.",
  heroLead:
- "The Touch sensor is the ideal solution for anyone looking to manage their operations based on demand. By giving your users and guests the ability to notify you directly with a simple press of a button, you can react instantly when a facility requires attention — whether a coffee machine is out of order or a washroom needs servicing.",
+ "The Touch sensor is the ideal solution for anyone looking to manage their operations based on demand. By giving your users and guests the ability to notify you directly with a simple press of a button, you can react instantly when a facility requires attention, whether a coffee machine is out of order or a washroom needs servicing.",
  useCases: "Washrooms · Canteens · Reception & meeting rooms",
  benefits: [
  {
@@ -248,9 +248,9 @@ export const sensorPageContent: SensorPageContent[] = [
  {
  slug: "open-close",
  heroTitle: "Open/Close sensor",
- heroTitleAccent: "Full transparency of your space resources in real time — from lockers to windows.",
+ heroTitleAccent: "Full transparency of your space resources in real time, from lockers to windows.",
  heroLead:
- "The Open/Close sensor delivers precise facts instead of guesswork regarding the status and utilisation of your infrastructure. Whether managing lockers, optimising logistics for workwear, or ensuring property protection by checking closed windows — the sensor transforms every event into valuable insights.",
+ "The Open/Close sensor delivers precise facts instead of guesswork regarding the status and utilisation of your infrastructure. Whether managing lockers, optimising logistics for workwear, or ensuring property protection by checking closed windows, the sensor transforms every event into valuable insights.",
  useCases: "Locker management · Workwear logistics · Window & door checks",
  benefits: [
  {
@@ -302,7 +302,7 @@ export const sensorPageContent: SensorPageContent[] = [
  {
  slug: "water-detector",
  heroTitle: "Water detector",
- heroTitleAccent: "Reliable monitoring of unwanted water — even in hard-to-reach places.",
+ heroTitleAccent: "Reliable monitoring of unwanted water, even in hard-to-reach places.",
  heroLead:
  "The Water detector is the ultimate safeguard against costly water damage across your building portfolio. Developed specifically for professional operation, the sensor is available in both a robust, fully waterproof variant (Water Detector Pro IP67) and a discreet indoor variant (Water Detector Compact IP30).",
  useCases: "Server rooms · Basements & shafts · Housing associations",
@@ -382,7 +382,7 @@ export const sensorPageContent: SensorPageContent[] = [
  heroTitle: "Range Extender and Bracket",
  heroTitleAccent: "Reach the corners of the building.",
  heroLead:
- "The Range Extender and Bracket are essential accessories when standard mounting is insufficient — from metal desk drawers to industrial freezers. Both act as signal boosters so barriers such as metal, thick walls, or condensation do not interrupt reliable sensor data.",
+ "The Range Extender and Bracket are essential accessories when standard mounting is insufficient, from metal desk drawers to industrial freezers. Both act as signal boosters so barriers such as metal, thick walls, or condensation do not interrupt reliable sensor data.",
  useCases: "Metal desk drawers · Freezer & cold rooms · Display cases · Basements",
  benefits: [
  {
@@ -391,7 +391,7 @@ export const sensorPageContent: SensorPageContent[] = [
  },
  {
  title: "Robust protection in extreme environments",
- body: "Both mounts resist condensation and extreme cold — ideal for cooling and freezer areas where they protect compact sensors and amplify the signal through insulated walls.",
+ body: "Both mounts resist condensation and extreme cold, ideal for cooling and freezer areas where they protect compact sensors and amplify the signal through insulated walls.",
  },
  {
  title: "Flexible mounting anywhere",
@@ -414,7 +414,7 @@ export function getSensorContent(
  return {
   ...base,
   ...overlay,
-  // benefits is an array — only replace it when the overlay supplies its own.
+  // benefits is an array; only replace it when the overlay supplies its own.
   benefits: overlay.benefits ?? base.benefits,
  };
 }

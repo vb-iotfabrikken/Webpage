@@ -58,13 +58,35 @@ const SENSOR_NAME_OVERRIDES: Partial<Record<string, Partial<Record<Lang, string>
   outdoor: { de: "Außen Sensor" },
 };
 
+/** Capitalize generic product suffixes for German noun grammar. */
+function applyGermanProductCasing(name: string): string {
+  return name
+    .replace(/\bOutdoor[- ]?[Ss]ensor\b/g, "Außen Sensor")
+    .replace(/\bdetector\b/g, "Detektor")
+    .replace(/\bsensor\b/g, "Sensor");
+}
+
+/**
+ * Applies locale-specific casing to a composed product label (e.g. industry
+ * spotlight cards). Catalogue tokens stay English; generic suffixes follow
+ * locale grammar. Use `localizedSensorName()` when a sensor slug is known.
+ */
+export function formatProductLabel(name: string, lang: Lang): string {
+  if (lang === "de") return applyGermanProductCasing(name);
+  if (lang === "da" || lang === "sv") return name.replace(/\bSensor\b/g, "sensor");
+  return name;
+}
+
 /**
  * Localized display name for a sensor. Returns the English name unchanged
  * unless an approved per-locale override exists. A trailing period in the
  * English title (e.g. "Water detector.") is preserved on the override.
+ * German applies noun capitalization to generic suffixes when no override.
  */
 export function localizedSensorName(slug: string, englishName: string, lang: Lang): string {
   const override = SENSOR_NAME_OVERRIDES[slug]?.[lang];
-  if (!override) return englishName;
-  return /\.\s*$/.test(englishName) ? `${override}.` : override;
+  const hasPeriod = /\.\s*$/.test(englishName);
+  if (override) return hasPeriod ? `${override}.` : override;
+  if (lang === "de") return applyGermanProductCasing(englishName);
+  return englishName;
 }

@@ -24,6 +24,12 @@ interface Props {
   visualOnWhiteBorder?: boolean;
   /** Place title/lead/CTAs and the visual slot side-by-side in the grey band (article-style). */
   splitVisual?: boolean;
+  /** Vertical alignment of the split visual column (default center). */
+  splitVisualAlign?: "center" | "end" | "stretch";
+  /** Remove gutter between split visual columns (sharp panel edge). */
+  splitVisualGapless?: boolean;
+  /** Pin the split visual in a full-height panel bleeding to the viewport right edge. */
+  splitVisualBleedRight?: boolean;
   /** Render the title band on a dark navy surface (like the footer) instead of grey. */
   dark?: boolean;
   /** Accent palette when `dark` is true. */
@@ -47,6 +53,9 @@ const {
   visualBottomPadding = false,
   visualOnWhiteBorder = true,
   splitVisual = false,
+  splitVisualAlign = "center",
+  splitVisualGapless = false,
+  splitVisualBleedRight = false,
   dark = false,
   darkTone = "navy",
   noPattern = false,
@@ -54,6 +63,8 @@ const {
 
 const hasVisual = Astro.slots.has("visual");
 const hasBelowVisual = Astro.slots.has("belowVisual");
+const hasTitleVisual = Astro.slots.has("titleVisual");
+const hasFloatingVisual = Astro.slots.has("floatingVisual");
 const visualInGreyBand = hasVisual && !visualOnWhite && !splitVisual && !visualBottomPadding;
 
 const darkToneStyles = {
@@ -109,7 +120,7 @@ const containerPaddingClass = [
 const breadcrumbMarginClass = compactTop ? "mb-3 md:mb-4" : "mb-4 md:mb-6";
 const leadMarginClass = compactTop ? "mt-4 md:mt-5 xl:mt-6" : "mt-6";
 const ctaMarginClass = compactTop ? "mt-6 md:mt-7 xl:mt-8" : "mt-8";
-const titleSizeClass = "text-4xl md:text-5xl xl:text-6xl";
+const titleSizeClass = "text-3xl md:text-4xl xl:text-5xl";
 const leadSizeClass = "text-base md:text-lg xl:text-xl";
 ---
 
@@ -120,7 +131,7 @@ const leadSizeClass = "text-base md:text-lg xl:text-xl";
   class:list={[
     "relative",
     surfaceClass,
-    allowVisualOverflow ? "overflow-x-clip overflow-y-visible" : "overflow-hidden",
+    allowVisualOverflow || splitVisualBleedRight ? "overflow-x-clip overflow-y-visible" : "overflow-hidden",
   ]}
 >
   {!noPattern && (
@@ -137,7 +148,59 @@ const leadSizeClass = "text-base md:text-lg xl:text-xl";
     )}
 
     {splitVisual && hasVisual ? (
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-center">
+      splitVisualBleedRight ? (
+        <div class="relative z-10 max-w-3xl">
+          {eyebrow && (
+            <p class:list={["reveal mb-3 text-sm font-semibold uppercase tracking-wider", eyebrowClass]}>
+              {eyebrow}
+            </p>
+          )}
+          <h1 class:list={["reveal font-bold leading-[1.05] tracking-tight", titleSizeClass, titleClass]}>
+            {title}
+            {titleAccent && (
+              <span
+                class:list={[
+                  accentClass,
+                  align === "left" && !inlineTitleAccent && "block mt-1 md:mt-2",
+                ]}
+              >
+                {align === "center" || inlineTitleAccent ? ` ${titleAccent}` : titleAccent}
+              </span>
+            )}
+          </h1>
+          <p class:list={["reveal hero-lead leading-relaxed", leadMarginClass, leadSizeClass, leadClass]}>
+            {lead}
+          </p>
+          {specs.length > 0 && (
+            <ul class="reveal mt-5 flex flex-wrap gap-2" aria-label="Key specifications">
+              {specs.map((chip) => (
+                <li class:list={["rounded-md border px-3 py-1.5 text-sm font-medium", chipClass]}>
+                  {chip}
+                </li>
+              ))}
+            </ul>
+          )}
+          {Astro.slots.has("cta") && (
+            <div class:list={["reveal hero-cta flex flex-wrap gap-3", ctaMarginClass]}>
+              <slot name="cta" />
+            </div>
+          )}
+          {Astro.slots.has("belowCta") && (
+            <div class="reveal mt-4">
+              <slot name="belowCta" />
+            </div>
+          )}
+        </div>
+      ) : (
+      <div class:list={[
+        "grid grid-cols-1 lg:grid-cols-12",
+        splitVisualGapless ? "gap-0" : "gap-6 sm:gap-8 lg:gap-10",
+        splitVisualAlign === "stretch"
+          ? "items-start"
+          : splitVisualAlign === "end"
+            ? "items-end"
+            : "items-center",
+      ]}>
         <div class="lg:col-span-7 max-w-3xl">
           {eyebrow && (
             <p class:list={["reveal mb-3 text-sm font-semibold uppercase tracking-wider", eyebrowClass]}>
@@ -180,12 +243,74 @@ const leadSizeClass = "text-base md:text-lg xl:text-xl";
             </div>
           )}
         </div>
-        <div class="lg:col-span-5 reveal w-full max-lg:pt-2">
-          <slot name="visual" />
+        {splitVisualAlign === "stretch" ? (
+          <div class="relative h-0 min-h-full w-full max-lg:pt-2 lg:col-span-5">
+            <div class="absolute inset-0 reveal">
+              <slot name="visual" />
+            </div>
+          </div>
+        ) : (
+          <div class="lg:col-span-5 reveal w-full max-lg:pt-2">
+            <slot name="visual" />
+          </div>
+        )}
+      </div>
+      )
+    ) : hasTitleVisual && align === "left" ? (
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-6 lg:gap-x-8 xl:gap-x-10 items-start">
+        <div class="lg:col-span-7 max-w-3xl">
+          {eyebrow && (
+            <p class:list={["reveal mb-3 text-sm font-semibold uppercase tracking-wider", eyebrowClass]}>
+              {eyebrow}
+            </p>
+          )}
+          <h1 class:list={["reveal font-bold leading-[1.05] tracking-tight", titleSizeClass, titleClass]}>
+            {title}
+            {titleAccent && (
+              <span
+                class:list={[
+                  accentClass,
+                  !inlineTitleAccent && "block mt-1 md:mt-2",
+                ]}
+              >
+                {inlineTitleAccent ? ` ${titleAccent}` : titleAccent}
+              </span>
+            )}
+          </h1>
+          <p class:list={["reveal hero-lead leading-relaxed", leadMarginClass, leadSizeClass, leadClass]}>
+            {lead}
+          </p>
+          {specs.length > 0 && (
+            <ul class="reveal mt-5 flex flex-wrap gap-2" aria-label="Key specifications">
+              {specs.map((chip) => (
+                <li class:list={["rounded-md border px-3 py-1.5 text-sm font-medium", chipClass]}>
+                  {chip}
+                </li>
+              ))}
+            </ul>
+          )}
+          {Astro.slots.has("cta") && (
+            <div class:list={["reveal hero-cta flex flex-wrap gap-3", ctaMarginClass]}>
+              <slot name="cta" />
+            </div>
+          )}
+          {Astro.slots.has("belowCta") && (
+            <div class="reveal mt-4">
+              <slot name="belowCta" />
+            </div>
+          )}
+        </div>
+        <div class="lg:col-span-5 reveal flex justify-center lg:justify-end w-full max-lg:mt-4 lg:mt-0 lg:self-start">
+          <slot name="titleVisual" />
         </div>
       </div>
     ) : (
-      <div class={align === "center" ? "max-w-3xl mx-auto" : "max-w-3xl"}>
+      <div
+        class:list={[
+          align === "center" ? "max-w-3xl mx-auto" : "max-w-3xl",
+          hasFloatingVisual && "relative z-10 lg:max-w-[min(100%,42rem)] lg:pr-6 xl:pr-8",
+        ]}
+      >
         {eyebrow && (
           <p class:list={["reveal mb-3 text-sm font-semibold uppercase tracking-wider", eyebrowClass]}>
             {eyebrow}
@@ -238,12 +363,32 @@ const leadSizeClass = "text-base md:text-lg xl:text-xl";
       </div>
     )}
 
+    {hasFloatingVisual && align === "left" && !splitVisual && (
+      <div
+        class:list={[
+          "reveal pointer-events-none select-none max-lg:hidden",
+          "lg:absolute lg:inset-y-0 lg:left-[54%] xl:left-[58%] lg:right-0 lg:z-0",
+          "lg:flex lg:items-end lg:justify-end lg:pb-6 xl:pb-8",
+        ]}
+      >
+        <slot name="floatingVisual" />
+      </div>
+    )}
+
     {visualInGreyBand && (
       <div class={compactTop ? "mt-4 md:mt-6" : "mt-12 md:mt-16"}>
         <slot name="visual" />
       </div>
     )}
   </div>
+
+  {splitVisual && splitVisualBleedRight && hasVisual && (
+    <div class="pointer-events-none absolute inset-y-0 right-0 left-[58%] hidden overflow-hidden lg:block xl:left-[60%]">
+      <div class="reveal h-full">
+        <slot name="visual" />
+      </div>
+    </div>
+  )}
 </section>
 
 {

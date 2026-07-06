@@ -43,7 +43,6 @@ const {
 } = Astro.props;
 
 const siteOrigin = Astro.site ?? "https://iot-fabrikken.com";
-const canonical = new URL(canonicalPath ?? Astro.url.pathname, siteOrigin);
 const ogImageUrl = new URL(ogImage, siteOrigin).toString();
 
 const routePathname = pagePathname(Astro.url.pathname, Astro.originPathname);
@@ -53,6 +52,16 @@ const currentLang = resolveLang({
   currentLocale: Astro.currentLocale,
   originPathname: Astro.originPathname,
 });
+
+// Self-referential canonical, always localized. Fixed-filename pages render at
+// the English-segment path (Astro.url.pathname), so re-localize the current
+// route into the active locale. This is idempotent for dynamic [slug] pages
+// that already emit localized params, and matches the build-time relocation of
+// fixed pages to their localized paths.
+const canonical = new URL(
+  canonicalPath ?? localeSwitchTarget(routePathname, currentLang),
+  siteOrigin,
+);
 
 // English-first: untranslated locales stay noindex site-wide, except routes in
 // MULTILINGUAL_INDEXED_ROUTES (e.g. /compare/) that ship in all four locales.

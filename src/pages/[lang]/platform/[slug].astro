@@ -5,18 +5,19 @@ import { getPlatformHub } from "../../../data/hubs/platform";
 import { getPlatformContent } from "../../../data/content/platform";
 import { getLegal } from "../../../data/i18n/legal";
 import { getUi } from "../../../data/i18n/ui";
-import { locales, langPath, type Lang } from "../../../data/lang";
+import { locales, langPath, localizeSegment, canonicalizeSegment, type Lang } from "../../../data/lang";
 
 export function getStaticPaths() {
   return locales.flatMap((l) =>
     getPlatformHub(l.code).leaves.map((leaf) => ({
-      params: { lang: l.code, slug: leaf.slug },
+      params: { lang: l.code, slug: localizeSegment(leaf.slug, l.code) },
       props: { leaf },
     })),
   );
 }
 
-const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+const { lang } = Astro.params as { lang: Lang; slug: string };
+const slug = canonicalizeSegment(Astro.params.slug as string, lang);
 const { leaf } = Astro.props;
 const hub = getPlatformHub(lang);
 const localizedLeaf = hub.leaves.find((l) => l.slug === slug) ?? leaf;

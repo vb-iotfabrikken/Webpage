@@ -26,7 +26,7 @@ const en: LegalStrings = {
     lastUpdatedDate: "22 May 2026",
     ctaTitle: "Questions about your data?",
     ctaSubtitle:
-      "Contact us — we respond on working days and can point you to the right person for GDPR or product-specific requests.",
+      "Contact us, we respond on working days and can point you to the right person for GDPR or product-specific requests.",
     body: `
     <p>This Privacy Policy describes how IoT Fabrikken ApS ("<strong>IoT Fabrikken</strong>", "<strong>we</strong>", "<strong>us</strong>" or "<strong>our</strong>") collects, uses and shares personal data when you use our website, the RoomAlyzer platform and related services (together, the "<strong>Service</strong>"). It also explains your privacy rights and how applicable law protects you.</p>
     <p>We use personal data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this Privacy Policy. Where we process personal data on behalf of a customer (for example sensor readings and building data in RoomAlyzer), we act as a <strong>data processor</strong> under the customer's instructions; the customer's privacy notice and data processing agreement apply to that processing.</p>
@@ -96,7 +96,7 @@ const en: LegalStrings = {
     <p>We retain Personal Data only for as long as necessary for the purposes set out in this Privacy Policy, including to comply with legal obligations, resolve disputes and enforce agreements.</p>
     <p>Usage Data is generally retained for a shorter period, except where used to strengthen security or improve functionality, or where we are legally required to retain it longer.</p>
     <h2>Transfer of your personal data</h2>
-    <p>Your information, including Personal Data, is processed at the Company's offices and in other places where parties involved in processing are located. Data may be transferred to — and maintained on — systems outside your country where data protection laws may differ.</p>
+    <p>Your information, including Personal Data, is processed at the Company's offices and in other places where parties involved in processing are located. Data may be transferred to (and maintained on) systems outside your country where data protection laws may differ.</p>
     <p>For customer data in RoomAlyzer, we offer <strong>EU data residency by default</strong>. Where transfers outside the European Economic Area occur, we use appropriate safeguards such as Standard Contractual Clauses or equivalent mechanisms, unless an adequacy decision applies.</p>
     <p>Your consent to this Privacy Policy followed by your submission of information represents your agreement to such transfer where applicable. We take steps reasonably necessary to ensure your data is treated securely and in accordance with this Privacy Policy.</p>
     <h2>Disclosure of your personal data</h2>
@@ -161,7 +161,7 @@ const da: LegalStrings = {
     lastUpdatedDate: "22. maj 2026",
     ctaTitle: "Spørgsmål om dine data?",
     ctaSubtitle:
-      "Kontakt os — vi svarer på hverdage og kan henvise dig til den rette person for GDPR- eller produktspecifikke henvendelser.",
+      "Kontakt os, vi svarer på hverdage og kan henvise dig til den rette person for GDPR- eller produktspecifikke henvendelser.",
     body: `
     <p>Denne privatlivspolitik beskriver, hvordan IoT Fabrikken ApS ("<strong>IoT Fabrikken</strong>", "<strong>vi</strong>", "<strong>os</strong>" eller "<strong>vores</strong>") indsamler, bruger og deler personoplysninger, når du bruger vores website, RoomAlyzer-platformen og relaterede tjenester (samlet "<strong>Tjenesten</strong>"). Den forklarer også dine privatlivsrettigheder, og hvordan gældende lovgivning beskytter dig.</p>
     <p>Vi bruger personoplysninger til at levere og forbedre Tjenesten. Ved at bruge Tjenesten accepterer du indsamling og brug af oplysninger i overensstemmelse med denne privatlivspolitik. Når vi behandler personoplysninger på vegne af en kunde (for eksempel sensoraflæsninger og bygningsdata i RoomAlyzer), handler vi som <strong>databehandler</strong> efter kundens instruks; kundens privatlivsmeddelelse og databehandleraftale gælder for den behandling.</p>
@@ -231,7 +231,7 @@ const da: LegalStrings = {
     <p>Vi opbevarer kun Personoplysninger, så længe det er nødvendigt til de formål, der er angivet i denne privatlivspolitik, herunder for at overholde retlige forpligtelser, løse tvister og håndhæve aftaler.</p>
     <p>Brugsdata opbevares generelt i en kortere periode, undtagen når de bruges til at styrke sikkerheden eller forbedre funktionaliteten, eller hvor vi er lovmæssigt forpligtet til at opbevare dem længere.</p>
     <h2>Overførsel af dine personoplysninger</h2>
-    <p>Dine oplysninger, herunder Personoplysninger, behandles på Virksomhedens kontorer og andre steder, hvor de parter, der er involveret i behandlingen, befinder sig. Data kan overføres til — og opbevares på — systemer uden for dit land, hvor databeskyttelseslovgivningen kan være anderledes.</p>
+    <p>Dine oplysninger, herunder Personoplysninger, behandles på Virksomhedens kontorer og andre steder, hvor de parter, der er involveret i behandlingen, befinder sig. Data kan overføres til (og opbevares på) systemer uden for dit land, hvor databeskyttelseslovgivningen kan være anderledes.</p>
     <p>For kundedata i RoomAlyzer tilbyder vi som standard <strong>EU-dataopbevaring</strong>. Hvor der sker overførsler uden for Det Europæiske Økonomiske Samarbejdsområde, bruger vi passende sikkerhedsforanstaltninger såsom standardkontraktbestemmelser eller tilsvarende mekanismer, medmindre en tilstrækkelighedsafgørelse finder anvendelse.</p>
     <p>Dit samtykke til denne privatlivspolitik efterfulgt af din indsendelse af oplysninger udgør din accept af en sådan overførsel, hvor det er relevant. Vi træffer de foranstaltninger, der med rimelighed er nødvendige for at sikre, at dine data behandles sikkert og i overensstemmelse med denne privatlivspolitik.</p>
     <h2>Videregivelse af dine personoplysninger</h2>
@@ -296,7 +296,7 @@ const de: LegalStrings = {
     lastUpdatedDate: "22. Mai 2026",
     ctaTitle: "Fragen zu Ihren Daten?",
     ctaSubtitle:
-      "Kontaktieren Sie uns — wir antworten an Werktagen und verweisen Sie an die richtige Person für DSGVO- oder produktspezifische Anfragen.",
+      "Kontaktieren Sie uns, wir antworten an Werktagen und verweisen Sie an die richtige Person für DSGVO- oder produktspezifische Anfragen.",
     body: `
     <p>Diese Datenschutzerklärung beschreibt, wie die IoT Fabrikken ApS ("<strong>IoT Fabrikken</strong>", "<strong>wir</strong>", "<strong>uns</strong>" oder "<strong>unser</strong>") personenbezogene Daten erhebt, verwendet und weitergibt, wenn Sie unsere Website, die RoomAlyzer-Plattform und zugehörige Dienste (zusammen der "<strong>Dienst</strong>") nutzen. Sie erläutert außerdem Ihre Datenschutzrechte und wie das geltende Recht Sie schützt.</p>
     <p>Wir verwenden personenbezogene Daten, um den Dienst bereitzustellen und zu verbessern. Durch die Nutzung des Dienstes stimmen Sie der Erhebung und Verwendung von Informationen gemäß dieser Datenschutzerklärung zu. Soweit wir personenbezogene Daten im Auftrag eines Kunden verarbeiten (zum Beispiel Sensormesswerte und Gebäudedaten in RoomAlyzer), handeln wir als <strong>Auftragsverarbeiter</strong> nach Weisung des Kunden; für diese Verarbeitung gelten die Datenschutzhinweise und der Auftragsverarbeitungsvertrag des Kunden.</p>
@@ -431,7 +431,7 @@ const sv: LegalStrings = {
     lastUpdatedDate: "22 maj 2026",
     ctaTitle: "Frågor om dina data?",
     ctaSubtitle:
-      "Kontakta oss — vi svarar på vardagar och kan hänvisa dig till rätt person för GDPR- eller produktspecifika förfrågningar.",
+      "Kontakta oss, vi svarar på vardagar och kan hänvisa dig till rätt person för GDPR- eller produktspecifika förfrågningar.",
     body: `
     <p>Denna integritetspolicy beskriver hur IoT Fabrikken ApS ("<strong>IoT Fabrikken</strong>", "<strong>vi</strong>", "<strong>oss</strong>" eller "<strong>vår</strong>") samlar in, använder och delar personuppgifter när du använder vår webbplats, RoomAlyzer-plattformen och relaterade tjänster (tillsammans "<strong>Tjänsten</strong>"). Den förklarar också dina integritetsrättigheter och hur tillämplig lag skyddar dig.</p>
     <p>Vi använder personuppgifter för att tillhandahålla och förbättra Tjänsten. Genom att använda Tjänsten godkänner du insamling och användning av information i enlighet med denna integritetspolicy. När vi behandlar personuppgifter för en kunds räkning (till exempel sensoravläsningar och byggnadsdata i RoomAlyzer) agerar vi som <strong>personuppgiftsbiträde</strong> enligt kundens instruktioner; kundens integritetsmeddelande och personuppgiftsbiträdesavtal gäller för den behandlingen.</p>
@@ -501,7 +501,7 @@ const sv: LegalStrings = {
     <p>Vi lagrar Personuppgifter endast så länge som det är nödvändigt för de ändamål som anges i denna integritetspolicy, inklusive för att uppfylla rättsliga förpliktelser, lösa tvister och göra avtal gällande.</p>
     <p>Användningsdata lagras i allmänhet under en kortare period, utom när de används för att stärka säkerheten eller förbättra funktionaliteten, eller där vi enligt lag är skyldiga att lagra dem längre.</p>
     <h2>Överföring av dina personuppgifter</h2>
-    <p>Din information, inklusive Personuppgifter, behandlas på Företagets kontor och på andra platser där de parter som är involverade i behandlingen befinner sig. Data kan överföras till — och lagras på — system utanför ditt land där dataskyddslagstiftningen kan skilja sig åt.</p>
+    <p>Din information, inklusive Personuppgifter, behandlas på Företagets kontor och på andra platser där de parter som är involverade i behandlingen befinner sig. Data kan överföras till (och lagras på) system utanför ditt land där dataskyddslagstiftningen kan skilja sig åt.</p>
     <p>För kunddata i RoomAlyzer erbjuder vi som standard <strong>datalagring inom EU</strong>. Där överföringar utanför Europeiska ekonomiska samarbetsområdet sker använder vi lämpliga skyddsåtgärder såsom standardavtalsklausuler eller motsvarande mekanismer, om inte ett beslut om adekvat skyddsnivå gäller.</p>
     <p>Ditt samtycke till denna integritetspolicy följt av din inlämning av information utgör ditt godkännande av en sådan överföring där det är tillämpligt. Vi vidtar de åtgärder som rimligen är nödvändiga för att säkerställa att dina data behandlas säkert och i enlighet med denna integritetspolicy.</p>
     <h2>Utlämnande av dina personuppgifter</h2>
@@ -562,10 +562,13 @@ const sv: LegalStrings = {
 const dictionaries: Record<Lang, LegalStrings> = { en, da, de, sv };
 
 function applyLocaleLegalLinks(html: string, lang: Lang): string {
-  return html
-    .replace(/href="\/en\/legal\/cookies\/"/g, `href="${langPath("legal/cookies", lang)}"`)
-    .replace(/href="\/en\/legal\/terms\/"/g, `href="${langPath("legal/terms", lang)}"`)
-    .replace(/href="\/en\/legal\/security\/"/g, `href="${langPath("legal/security", lang)}"`);
+  // The inline bodies hard-code locale-prefixed English-segment legal links
+  // (`/de/legal/security/`, …). Rewrite every locale variant to the localized
+  // route (`/de/rechtliches/security/`) so they resolve in one hop.
+  return html.replace(
+    /href="\/(?:en|da|de|sv)\/legal\/(cookies|terms|security)\/"/g,
+    (_match, slug) => `href="${langPath(`legal/${slug}`, lang)}"`,
+  );
 }
 
 export function getLegal(lang: Lang): LegalStrings {

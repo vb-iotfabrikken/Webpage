@@ -98,7 +98,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroTitle: "Let's have",
       heroTitleAccent: "a chat.",
       heroLead:
-        "Got questions, or just curious about our solution? We're always happy to have an expert, no-strings chat — online or in person.",
+        "Got questions, or just curious about our solution? We're always happy to have an expert, no-strings chat, online or in person.",
       primaryCta: "Book a free demo",
       secondaryCta: "Talk to sales",
       formTitle: "Write to us",
@@ -131,7 +131,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroTitle: "Reserve a stand visit.",
       heroTitleAccent: "We look forward to meeting you.",
       heroLead:
-        "Book a personal meeting at our trade-fair stand. Tell us when you plan to visit — we'll set aside time for your questions.",
+        "Book a personal meeting at our trade-fair stand. Tell us when you plan to visit, we'll set aside time for your questions.",
       formTitle: "Reserve a stand visit",
       formSubtitle: "Fill out the form and we'll get back to you with a suggested time slot.",
     },
@@ -153,12 +153,12 @@ const contactStrings: Record<Lang, ContactStrings> = {
       phonePlaceholder: "+45 12 34 56 78",
       emailError: "Please enter a valid work email address.",
       disclaimer:
-        "By submitting you accept our privacy policy. Use your company email — personal addresses are not accepted.",
+        "By submitting you accept our privacy policy. Use your company email, personal addresses are not accepted.",
       consent:
         "I agree that IoT Fabrikken may store and use my details to respond to my enquiry, in line with the privacy policy.",
       submit: "Send",
       sending: "Sending…",
-      successTitle: "Thanks — we've got it.",
+      successTitle: "Thanks, we've got it.",
       successBody: "We'll be in touch within one business day.",
       optional: "optional",
       requiredLegend: "Required",
@@ -187,7 +187,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroTitle: "Lad os tage",
       heroTitleAccent: "en snak.",
       heroLead:
-        "Har du spørgsmål eller er du bare nysgerrig på vores løsning? Vi tager altid gerne en uforpligtende snak med en ekspert — online eller fysisk.",
+        "Har du spørgsmål eller er du bare nysgerrig på vores løsning? Vi tager altid gerne en uforpligtende snak med en ekspert, online eller fysisk.",
       primaryCta: "Book en gratis demo",
       secondaryCta: "Tal med salg",
       formTitle: "Skriv til os",
@@ -220,7 +220,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroTitle: "Reserver et standbesøg.",
       heroTitleAccent: "Vi glæder os til at møde dig.",
       heroLead:
-        "Book et personligt møde ved vores messestand. Fortæl os, hvornår du planlægger at besøge os — så afsætter vi tid til dine spørgsmål.",
+        "Book et personligt møde ved vores messestand. Fortæl os, hvornår du planlægger at besøge os, så afsætter vi tid til dine spørgsmål.",
       formTitle: "Reserver et standbesøg",
       formSubtitle: "Udfyld formularen, så vender vi tilbage med et foreslået tidspunkt.",
     },
@@ -242,12 +242,12 @@ const contactStrings: Record<Lang, ContactStrings> = {
       phonePlaceholder: "+45 12 34 56 78",
       emailError: "Indtast en gyldig arbejdsmail.",
       disclaimer:
-        "Ved at sende accepterer du vores privatlivspolitik. Brug din arbejdsmail — personlige adresser accepteres ikke.",
+        "Ved at sende accepterer du vores privatlivspolitik. Brug din arbejdsmail, personlige adresser accepteres ikke.",
       consent:
         "Jeg accepterer, at IoT Fabrikken må gemme og bruge mine oplysninger til at besvare min henvendelse i overensstemmelse med privatlivspolitikken.",
       submit: "Send",
       sending: "Sender…",
-      successTitle: "Tak — vi har modtaget din besked.",
+      successTitle: "Tak, vi har modtaget din besked.",
       successBody: "Vi vender tilbage inden for én hverdag.",
       optional: "valgfrit",
       requiredLegend: "Påkrævet",
@@ -276,7 +276,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroTitle: "Lassen Sie uns",
       heroTitleAccent: "reden.",
       heroLead:
-        "Haben Sie Fragen oder sind Sie einfach neugierig auf unsere Lösung? Wir führen jederzeit gern ein unverbindliches Expertengespräch — online oder persönlich.",
+        "Haben Sie Fragen oder sind Sie einfach neugierig auf unsere Lösung? Wir führen jederzeit gern ein unverbindliches Expertengespräch, online oder persönlich.",
       primaryCta: "Kostenlose Demo buchen",
       secondaryCta: "Mit dem Vertrieb sprechen",
       formTitle: "Schreiben Sie uns",
@@ -309,9 +309,9 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroTitle: "Termin am Messestand.",
       heroTitleAccent: "Wir freuen uns auf Sie.",
       heroLead:
-        "Reservieren Sie einen persönlichen Termin an unserem Messestand. Sagen Sie uns, wann Sie vorbeikommen möchten — wir nehmen uns Zeit für Ihre Fragen.",
+        "Reservieren Sie einen persönlichen Termin an unserem Messestand. Sagen Sie uns, wann Sie vorbeikommen möchten, wir nehmen uns Zeit für Ihre Fragen.",
       formTitle: "Termin am Messestand reservieren",
-      formSubtitle: "Füllen Sie das Formular aus — wir melden uns mit einem Terminvorschlag.",
+      formSubtitle: "Füllen Sie das Formular aus, wir melden uns mit einem Terminvorschlag.",
     },
     form: {
       eyebrow: "Loslegen",
@@ -331,12 +331,12 @@ const contactStrings: Record<Lang, ContactStrings> = {
       phonePlaceholder: "+49 30 1234567",
       emailError: "Bitte geben Sie eine gültige geschäftliche E-Mail-Adresse ein.",
       disclaimer:
-        "Mit dem Absenden akzeptieren Sie unsere Datenschutzerklärung. Verwenden Sie Ihre geschäftliche E-Mail — private Adressen werden nicht akzeptiert.",
+        "Mit dem Absenden akzeptieren Sie unsere Datenschutzerklärung. Verwenden Sie Ihre geschäftliche E-Mail, private Adressen werden nicht akzeptiert.",
       consent:
         "Ich bin damit einverstanden, dass IoT Fabrikken meine Angaben speichert und verwendet, um meine Anfrage gemäß der Datenschutzerklärung zu beantworten.",
       submit: "Senden",
       sending: "Wird gesendet…",
-      successTitle: "Danke — wir haben Ihre Nachricht erhalten.",
+      successTitle: "Danke, wir haben Ihre Nachricht erhalten.",
       successBody: "Wir melden uns innerhalb eines Werktags.",
       optional: "optional",
       requiredLegend: "Pflichtfeld",
@@ -368,7 +368,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroTitle: "Låt oss ta",
       heroTitleAccent: "ett snack.",
       heroLead:
-        "Har du frågor eller är du bara nyfiken på vår lösning? Vi tar alltid gärna ett förutsättningslöst expertsamtal — online eller på plats.",
+        "Har du frågor eller är du bara nyfiken på vår lösning? Vi tar alltid gärna ett förutsättningslöst expertsamtal, online eller på plats.",
       primaryCta: "Boka en gratis demo",
       secondaryCta: "Prata med försäljning",
       formTitle: "Skriv till oss",
@@ -401,7 +401,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroTitle: "Boka möte på plats.",
       heroTitleAccent: "Vi ser fram emot att träffa dig.",
       heroLead:
-        "Boka ett personligt möte vid vår mässmonter. Berätta när du planerar att besöka oss — så reserverar vi tid för dina frågor.",
+        "Boka ett personligt möte vid vår mässmonter. Berätta när du planerar att besöka oss, så reserverar vi tid för dina frågor.",
       formTitle: "Boka möte på plats",
       formSubtitle: "Fyll i formuläret så återkommer vi med ett föreslaget tidsspann.",
     },
@@ -423,12 +423,12 @@ const contactStrings: Record<Lang, ContactStrings> = {
       phonePlaceholder: "+46 8 123 456",
       emailError: "Ange en giltig jobbmejladress.",
       disclaimer:
-        "Genom att skicka godkänner du vår integritetspolicy. Använd din jobbmejl — personliga adresser accepteras inte.",
+        "Genom att skicka godkänner du vår integritetspolicy. Använd din jobbmejl, personliga adresser accepteras inte.",
       consent:
         "Jag godkänner att IoT Fabrikken lagrar och använder mina uppgifter för att besvara min förfrågan i enlighet med integritetspolicyn.",
       submit: "Skicka",
       sending: "Skickar…",
-      successTitle: "Tack — vi har tagit emot ditt meddelande.",
+      successTitle: "Tack, vi har tagit emot ditt meddelande.",
       successBody: "Vi hör av oss inom en arbetsdag.",
       optional: "valfritt",
       requiredLegend: "Obligatoriskt",

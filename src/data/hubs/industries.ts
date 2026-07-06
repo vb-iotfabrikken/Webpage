@@ -7,14 +7,14 @@ export const industriesHub: Hub = {
   title: "Built for your sector.",
   titleAccent: "From the first sensor to the thousandth.",
   eyebrow: "Industries",
-  lead: "Every industry has its own rhythms, regulations and pain points. We have rolled out IoT in all of these — and more.",
+  lead: "Every industry has its own rhythms, regulations and pain points. We have rolled out IoT in all of these, and more.",
   leaves: [
     {
       slug: "offices",
       eyebrow: "Industry",
       title: "Offices.",
       titleAccent: "Hybrid work, measured.",
-      lead: "Utilisation, comfort and energy in modern offices — the three levers that decide whether people come in.",
+      lead: "Utilisation, comfort and energy in modern offices, the three levers that decide whether people come in.",
     },
     {
       slug: "schools",
@@ -35,14 +35,14 @@ export const industriesHub: Hub = {
       eyebrow: "Industry",
       title: "Museums and galleries.",
       titleAccent: "Preserve what you exhibit.",
-      lead: "Climate data aligned with international preservation standards for collections and loan objects.",
+      lead: "Preservation module climate data aligned with international standards for collections and loan objects.",
     },
     {
       slug: "churches",
       eyebrow: "Industry",
       title: "Churches.",
       titleAccent: "Care for organs and frescoes.",
-      lead: "Humidity, temperature and condensation monitoring that protects historic buildings and their contents.",
+      lead: "Preservation-grade humidity and temperature monitoring that protects historic buildings and their contents.",
     },
     {
       slug: "archives-libraries",
@@ -56,14 +56,14 @@ export const industriesHub: Hub = {
       eyebrow: "Industry",
       title: "Manors and castles.",
       titleAccent: "Heritage that lasts.",
-      lead: "Monitor humidity and temperature in unheated halls, cellars and storage spaces — without damaging surfaces.",
+      lead: "Monitor humidity and temperature in unheated halls, cellars and storage spaces, without damaging surfaces.",
     },
     {
       slug: "municipalities",
       eyebrow: "Industry",
       title: "Municipalities.",
       titleAccent: "One overview, many buildings.",
-      lead: "Schools, day-care centres, administration and cultural institutions — aggregated into a single platform.",
+      lead: "Schools, day-care centres, administration and cultural institutions, aggregated into a single platform.",
     },
     {
       slug: "hotels",
@@ -91,7 +91,7 @@ export const industriesHub: Hub = {
       eyebrow: "Industry",
       title: "Elderly care.",
       titleAccent: "A safer, calmer day.",
-      lead: "Indoor-climate monitoring and service buttons that make everyday care easier for residents and staff.",
+      lead: "Indoor climate monitoring and push-button service requests that make everyday care easier for residents and staff.",
     },
     {
       slug: "property-management",
@@ -105,7 +105,7 @@ export const industriesHub: Hub = {
       eyebrow: "Industry",
       title: "FM companies.",
       titleAccent: "White-label the data layer.",
-      lead: "Add a measurable, data-driven service on top of your existing facility-management offering.",
+      lead: "Add measurable indoor climate, space, cleaning, and water detection on top of your facility-management offering.",
     },
     {
       slug: "consulting-engineers",

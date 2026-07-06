@@ -33,7 +33,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
     },
     "en-15757": {
       short: "Den europæiske bevaringsstandard, der angiver klimakrav for organiske hygroskopiske materialer i kulturarvsmiljøer.",
-      detail: "EN 15757 bruger en relativ tilgang (sæsonbånd udledt af objektets historiske klima) frem for et fast setpoint — ofte mere realistisk i uopvarmede historiske bygninger.",
+      detail: "EN 15757 bruger en relativ tilgang (sæsonbånd udledt af objektets historiske klima) frem for et fast setpoint, ofte mere realistisk i uopvarmede historiske bygninger.",
     },
     "en-16798": {
       short: "Den gældende europæiske standard for bygningers energiydelse inkl. parametre for indeklima.",
@@ -43,20 +43,20 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Et rapporteringsframework brugt af investorer og tilsyn til ikke-finansiel performance, inkl. bygningsenergi og indeklimadata.",
     },
     fm: {
-      short: "Disciplinen, der driver den fysiske arbejdsplads — rengøring, vedligehold, space planning, energi og miljø.",
+      short: "Disciplinen, der driver den fysiske arbejdsplads, rengøring, vedligehold, space planning, energi og miljø.",
     },
     gdpr: {
       short: "EU's databeskyttelsesforordning, der gælder, når en bygnings sensordata kan knyttes til en identificerbar person.",
-      detail: "Aggregeret rumbelægning er ikke persondata. Skrivebordsniveau kombineret med hot-desk-bookinger er det som regel — derfor rollebaseret adgang og konfigurerbar opbevaring.",
+      detail: "Aggregeret rumbelægning er ikke persondata. Skrivebordsniveau kombineret med hot-desk-bookinger er det som regel, derfor rollebaseret adgang og konfigurerbar opbevaring.",
     },
     ghg: {
       short: "Gasserne i CO₂-fodaftryk: CO₂, CH₄, N₂O, F-gasser. Bygningsdrift genererer scope-1- og scope-2-emissioner.",
     },
     iaq: {
-      short: "Samlebetegnelsen for måling og styring af luft inde i en bygning — CO₂, temperatur, fugt, VOC, PM2.5 og mere.",
+      short: "Samlebetegnelsen for måling og styring af luft inde i en bygning: CO₂, temperatur, fugt, VOC, PM2.5 og mere.",
     },
     iot: {
-      short: "Netværket af fysiske enheder — sensorer, gateways, aktuatorer — forbundet til internettet til dataindsamling og automatisering.",
+      short: "Netværket af fysiske enheder (sensorer, gateways, aktuatorer) forbundet til internettet til dataindsamling og automatisering.",
     },
     "iso-27001": {
       short: "Den internationale standard for informationssikkerhedsstyring (ISMS); IoT Fabrikken er certificeret.",
@@ -75,7 +75,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "En let publish-subscribe-protokol til live sensordata fra platformen til BMS, NOC og ITSM-systemer.",
     },
     mcp: {
-      short: "En ny åben protokol, der lader LLM-klienter forespørge eksterne datakilder — inkl. IoT-platforme — med strukturerede værktøjer.",
+      short: "En ny åben protokol, der lader LLM-klienter forespørge eksterne datakilder (inkl. IoT-platforme) med strukturerede værktøjer.",
     },
     "nb-iot": {
       short: "En 3GPP-celleprotokol til lavenergi-IoT. Fungerer gennem beton og under jorden, kører på operatørnetværk og kræver ikke lokal gateway.",
@@ -90,16 +90,16 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "En aggregeret score i indeklimarapporter, der kombinerer overskridelsesfrekvens, alvor og varighed til én procent.",
     },
     pir: {
-      short: "Belægningssensorteknologi, der detekterer bevægelse via infrarød stråling — standard for tilstedeværelse på rumniveau.",
+      short: "Belægningssensorteknologi, der detekterer bevægelse via infrarød stråling, standard for tilstedeværelse på rumniveau.",
     },
     pm25: {
       short: "Fine luftbårne partikler små nok til at passere ind i blodbanen. Overvåges som del af moderne IAQ-programmer.",
     },
     "pmv-ppd": {
-      short: "Fangers termiske komfortindekser — brugt i EN 16798 og ISO 7730 til at forudsige, hvordan folk oplever temperatur, fugt og aktivitet.",
+      short: "Fangers termiske komfortindekser, brugt i EN 16798 og ISO 7730 til at forudsige, hvordan folk oplever temperatur, fugt og aktivitet.",
     },
     ppm: {
-      short: "Enheden for CO₂ og mange sporstofgasser — 1 ppm betyder 1 molekyle ud af en million.",
+      short: "Enheden for CO₂ og mange sporstofgasser: 1 ppm betyder 1 molekyle ud af en million.",
     },
     proptech: {
       short: "Property technology: software og hardware, der omformer design, opførelse og drift af erhvervs- og boligejendomme.",
@@ -127,7 +127,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Et indeklimaindikator, der vægter overskridelser efter, hvor længe rummet faktisk var belagt.",
     },
     vav: {
-      short: "Et ventilationsstyringsskema, hvor hvert rum får en spjæld, der modulerer luftmængde — ideelt mål for CO₂-styret efterspørgselsregulering.",
+      short: "Et ventilationsstyringsskema, hvor hvert rum får en spjæld, der modulerer luftmængde, ideelt mål for CO₂-styret efterspørgselsregulering.",
     },
     "voc-single": {
       short: "En stor familie af kulstofbaserede forbindelser, der fordamper ved stuetemperatur. Overvåges samlet som TVOC.",
@@ -136,7 +136,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Det finske Teknologiske Forskningscenter. Udgiver ofte citerede studier om indeklima og bevaring.",
     },
     well: {
-      short: "Et wellness-fokuseret bygningscertificering med strenge krav til indeklima og komfort — populært blandt kontorlejere.",
+      short: "Et wellness-fokuseret bygningscertificering med strenge krav til indeklima og komfort, populært blandt kontorlejere.",
     },
     mmwave: {
       short: "Millimeterbølge-radarsensorer, der tæller personer og estimerer kropsholdning uden kameraer. Bruges, hvor PIR er for grov.",
@@ -156,7 +156,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
     },
     co2: {
       short: "Das von Nutzern ausgeatmete Gas; Innenwerte sind der praktischste Indikator für Lüftungsqualität in Klassenzimmern und Büros.",
-      detail: "Außenluft liegt bei etwa 420 ppm. BR18 verlangt < 1000 ppm in Klassen während Unterricht; über 1200 ppm sinkt die Konzentration, über 2000 ppm treten Kopfschmerzen auf.",
+      detail: "Außenluft liegt bei etwa 420 ppm. In Deutschland gelten vergleichbare Grenzwerte über DIN/EN-Normen und GEG; über 1200 ppm sinkt die Konzentration, über 2000 ppm treten Kopfschmerzen auf.",
     },
     csrd: {
       short: "Die EU-Richtlinie zu detaillierter Nachhaltigkeitsberichterstattung großer Unternehmen, inkl. Gebäudeenergie und GHG-Kennzahlen.",
@@ -169,7 +169,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
     },
     "en-15757": {
       short: "Die europäische Konservierungsnorm mit Klimavorgaben für organische hygroskopische Materialien im Kulturerbe.",
-      detail: "EN 15757 nutzt einen relativen Ansatz (Saisonbänder aus dem historischen Klima des Objekts) statt eines festen Sollwerts — oft realistischer in unbeheizten historischen Gebäuden.",
+      detail: "EN 15757 nutzt einen relativen Ansatz (Saisonbänder aus dem historischen Klima des Objekts) statt eines festen Sollwerts, oft realistischer in unbeheizten historischen Gebäuden.",
     },
     "en-16798": {
       short: "Die aktuelle europäische Norm zur Energieeffizienz von Gebäuden inkl. Parameter der Innenumwelt.",
@@ -179,20 +179,20 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Ein Berichtsrahmen für nicht-finanzielle Leistung von Investoren und Aufsicht, inkl. Gebäudeenergie und Raumklimadaten.",
     },
     fm: {
-      short: "Die Disziplin, die den physischen Arbeitsplatz betreibt — Reinigung, Wartung, Flächenplanung, Energie und Umwelt.",
+      short: "Die Disziplin, die den physischen Arbeitsplatz betreibt: Reinigung, Wartung, Flächenplanung, Energie und Umwelt.",
     },
     gdpr: {
       short: "Die EU-Datenschutz-Grundverordnung, wenn Gebäudesensordaten einer identifizierbaren Person zugeordnet werden können.",
-      detail: "Aggregierte Raumbelegung ist keine personenbezogene Daten. Schreibtisch-Belegung mit Hot-Desk-Buchungen meist schon — dafür strikte rollenbasierte Zugriffe und konfigurierbare Aufbewahrung.",
+      detail: "Aggregierte Raumbelegung ist keine personenbezogene Daten. Schreibtisch-Belegung mit Hot-Desk-Buchungen meist schon, dafür strikte rollenbasierte Zugriffe und konfigurierbare Aufbewahrung.",
     },
     ghg: {
       short: "Die Gase im CO₂-Fußabdruck: CO₂, CH₄, N₂O, F-Gase. Gebäudebetrieb erzeugt Scope-1- und Scope-2-Emissionen.",
     },
     iaq: {
-      short: "Oberbegriff für Messung und Steuerung der Luft im Gebäude — CO₂, Temperatur, Feuchte, VOC, PM2.5 und mehr.",
+      short: "Oberbegriff für Messung und Steuerung der Luft im Gebäude: CO₂, Temperatur, Feuchte, VOC, PM2.5 und mehr.",
     },
     iot: {
-      short: "Das Netz physischer Geräte — Sensoren, Gateways, Aktoren — mit Internetanbindung für Datenerfassung und Automatisierung.",
+      short: "Das Netz physischer Geräte (Sensoren, Gateways, Aktoren) mit Internetanbindung für Datenerfassung und Automatisierung.",
     },
     "iso-27001": {
       short: "Die internationale Norm für Informationssicherheits-Managementsysteme (ISMS); IoT Fabrikken ist zertifiziert.",
@@ -211,7 +211,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Ein leichtes Publish-Subscribe-Protokoll zum Streamen von Live-Sensordaten von der Plattform zu BMS, NOC und ITSM.",
     },
     mcp: {
-      short: "Ein neues offenes Protokoll, mit dem LLM-Clients externe Datenquellen — inkl. IoT-Plattformen — per strukturierter Tools abfragen.",
+      short: "Ein neues offenes Protokoll, mit dem LLM-Clients externe Datenquellen (inkl. IoT-Plattformen) per strukturierter Tools abfragen.",
     },
     "nb-iot": {
       short: "Ein 3GPP-Mobilfunkprotokoll für Low-Power-IoT. Durchdringt Beton und Untergrund, läuft über Carrier-Netze, ohne lokales Gateway.",
@@ -226,16 +226,16 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Ein aggregierter Score in Raumklimaberichten, der Überschreitungshäufigkeit, Schwere und Dauer zu einem Prozentwert bündelt.",
     },
     pir: {
-      short: "Belegungssensortechnik, die Bewegung über Infrarotstrahlung erfasst — Standard für Anwesenheit auf Raumebene.",
+      short: "Belegungssensortechnik, die Bewegung über Infrarotstrahlung erfasst: Standard für Anwesenheit auf Raumebene.",
     },
     pm25: {
       short: "Feinstaubpartikel klein genug für den Blutkreislauf. Teil moderner IAQ-Programme.",
     },
     "pmv-ppd": {
-      short: "Fangers thermische Komfortindizes — in EN 16798 und ISO 7730 zur Vorhersage der Wahrnehmung von Temperatur, Feuchte und Aktivität.",
+      short: "Fangers thermische Komfortindizes, in EN 16798 und ISO 7730 zur Vorhersage der Wahrnehmung von Temperatur, Feuchte und Aktivität.",
     },
     ppm: {
-      short: "Die Einheit für CO₂ und viele Spurengase — 1 ppm bedeutet ein Molekül unter einer Million.",
+      short: "Die Einheit für CO₂ und viele Spurengase: 1 ppm bedeutet ein Molekül unter einer Million.",
     },
     proptech: {
       short: "Property Technology: Software und Hardware, die Planung, Bau und Betrieb von Gewerbe- und Wohnimmobilien verändern.",
@@ -263,7 +263,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Ein Raumklimaindikator, der Überschreitungen nach tatsächlicher Belegungsdauer gewichtet.",
     },
     vav: {
-      short: "Lüftungsregelung mit modulierenden Klappen pro Raum — ideales Ziel für CO₂-gesteuerte Bedarfsführung.",
+      short: "Lüftungsregelung mit modulierenden Klappen pro Raum, ideales Ziel für CO₂-gesteuerte Bedarfsführung.",
     },
     "voc-single": {
       short: "Eine große Familie kohlenstoffbasierter Verbindungen, die bei Raumtemperatur verdampfen. Gemessen als TVOC.",
@@ -272,7 +272,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Das finnische Technische Forschungszentrum. Veröffentlicht häufig zitierte Studien zu Raumklima und Konservierung.",
     },
     well: {
-      short: "Ein Wellness-orientiertes Gebäudezertifikat mit strengen Anforderungen an Luft und Komfort — beliebt bei Büromietern.",
+      short: "Ein Wellness-orientiertes Gebäudezertifikat mit strengen Anforderungen an Luft und Komfort, beliebt bei Büromietern.",
     },
     mmwave: {
       short: "Millimeterwellen-Radarsensoren, die Personen zählen und Haltung schätzen ohne Kameras. Wo PIR zu grob ist.",
@@ -292,7 +292,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
     },
     co2: {
       short: "Gasen som andas ut av personer; inomhusnivåer är den mest praktiska indikatorn på ventilationskvalitet i klassrum och kontor.",
-      detail: "Utomhusnivå ligger runt 420 ppm. BR18 kräver < 1000 ppm i klassrum under lektionstid; över 1200 ppm påverkas koncentrationen, över 2000 ppm ger huvudvärk.",
+      detail: "Utomhusnivå ligger runt 420 ppm. BBR ställer krav på CO₂-nivåer i klassrum under lektionstid; över 1200 ppm påverkas koncentrationen, över 2000 ppm ger huvudvärk.",
     },
     csrd: {
       short: "EU-direktivet som kräver detaljerad hållbarhetsrapportering för stora företag, inkl. byggnadsenergi och GHG-mått.",
@@ -305,7 +305,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
     },
     "en-15757": {
       short: "Den europeiska bevarandestandard som anger klimakrav för organiska hygroskopiska material i kulturarvsmiljöer.",
-      detail: "EN 15757 använder ett relativt angrepp (säsongsband från objektets historiska klimat) snarare än en fast setpoint — ofta mer realistiskt i ouppvärmda historiska byggnader.",
+      detail: "EN 15757 använder ett relativt angrepp (säsongsband från objektets historiska klimat) snarare än en fast setpoint, ofta mer realistiskt i ouppvärmda historiska byggnader.",
     },
     "en-16798": {
       short: "Den gällande europeiska standarden för byggnaders energiprestanda inkl. parametrar för inomhusmiljö.",
@@ -315,20 +315,20 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Ett rapporteringsramverk för icke-finansiell prestation hos investerare och tillsyn, inkl. byggnadsenergi och inomhusklimadata.",
     },
     fm: {
-      short: "Disciplinen som driver den fysiska arbetsplatsen — städning, underhåll, ytplanering, energi och miljö.",
+      short: "Disciplinen som driver den fysiska arbetsplatsen, städning, underhåll, ytplanering, energi och miljö.",
     },
     gdpr: {
       short: "EU:s dataskyddsförordning när byggnadssensordata kan kopplas till en identifierbar person.",
-      detail: "Aggregerad rumsnärvaro är inte personuppgifter. Skrivbordsnivå kombinerat med hot-desk-bokningar är det ofta — därför rollbaserad åtkomst och konfigurerbar lagring.",
+      detail: "Aggregerad rumsnärvaro är inte personuppgifter. Skrivbordsnivå kombinerat med hot-desk-bokningar är det ofta, därför rollbaserad åtkomst och konfigurerbar lagring.",
     },
     ghg: {
       short: "Gaserna i koldioxidavtryck: CO₂, CH₄, N₂O, F-gaser. Byggnadsdrift ger scope-1- och scope-2-utsläpp.",
     },
     iaq: {
-      short: "Samlingsbegreppet för mätning och styrning av luft inomhus — CO₂, temperatur, fukt, VOC, PM2.5 och mer.",
+      short: "Samlingsbegreppet för mätning och styrning av luft inomhus: CO₂, temperatur, fukt, VOC, PM2.5 och mer.",
     },
     iot: {
-      short: "Nätverket av fysiska enheter — sensorer, gateways, ställdon — anslutna till internet för datainsamling och automation.",
+      short: "Nätverket av fysiska enheter (sensorer, gateways, ställdon) anslutna till internet för datainsamling och automation.",
     },
     "iso-27001": {
       short: "Den internationella standarden för informationssäkerhetsledning (ISMS); IoT Fabrikken är certifierad.",
@@ -347,7 +347,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Ett lätt publish-subscribe-protokoll för live sensordata från plattformen till BMS, NOC och ITSM-system.",
     },
     mcp: {
-      short: "Ett nytt öppet protokoll som låter LLM-klienter fråga externa datakällor — inkl. IoT-plattformar — med strukturerade verktyg.",
+      short: "Ett nytt öppet protokoll som låter LLM-klienter fråga externa datakällor (inkl. IoT-plattformar) med strukturerade verktyg.",
     },
     "nb-iot": {
       short: "Ett 3GPP-cellprotokoll för lågenergi-IoT. Fungerar genom betong och under jord, på operatörsnät, utan lokal gateway.",
@@ -362,16 +362,16 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Ett aggregerat betyg i inomhusklimatrapporter som kombinerar överskridandefrekvens, allvar och varaktighet till en procent.",
     },
     pir: {
-      short: "Närvarosensorteknik som detekterar rörelse via infraröd strålning — standard för närvaro på rumsnivå.",
+      short: "Närvarosensorteknik som detekterar rörelse via infraröd strålning, standard för närvaro på rumsnivå.",
     },
     pm25: {
       short: "Fina luftburna partiklar tillräckligt små för att passera in i blodet. Övervakas i moderna IAQ-program.",
     },
     "pmv-ppd": {
-      short: "Fangers termiska komfortindex — i EN 16798 och ISO 7730 för att förutsäga upplevelse av temperatur, fukt och aktivitet.",
+      short: "Fangers termiska komfortindex, i EN 16798 och ISO 7730 för att förutsäga upplevelse av temperatur, fukt och aktivitet.",
     },
     ppm: {
-      short: "Enheten för CO₂ och många spårgaser — 1 ppm betyder en molekyl av en miljon.",
+      short: "Enheten för CO₂ och många spårgaser: 1 ppm betyder en molekyl av en miljon.",
     },
     proptech: {
       short: "Property technology: mjukvara och hårdvara som omformar design, byggande och drift av kommersiella och bostadsfastigheter.",
@@ -399,7 +399,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "En inomhusklimaindikator som viktar överskridanden efter hur länge rummet faktiskt var belagt.",
     },
     vav: {
-      short: "Ett ventilationsstyrsystem där varje rum får en spjäll som modulerar luftflöde — idealt mål för CO₂-styrd efterfrågestyrning.",
+      short: "Ett ventilationsstyrsystem där varje rum får en spjäll som modulerar luftflöde, idealt mål för CO₂-styrd efterfrågestyrning.",
     },
     "voc-single": {
       short: "En stor familj kolbaserade föreningar som avdunstar vid rumstemperatur. Mäts samman som TVOC.",
@@ -408,7 +408,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Finlands tekniska forskningscentrum. Publicerar ofta citerade studier om inomhusklimat och bevarande.",
     },
     well: {
-      short: "Ett wellness-fokuserat byggcertifiering med strikta krav på inomhusluft och komfort — populärt bland kontorshyresgäster.",
+      short: "Ett wellness-fokuserat byggcertifiering med strikta krav på inomhusluft och komfort, populärt bland kontorshyresgäster.",
     },
     mmwave: {
       short: "Millimetervågsradarsensorer som räknar personer och uppskattar hållning utan kameror. Där PIR är för grov.",

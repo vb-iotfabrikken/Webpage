@@ -19,9 +19,11 @@ interface Props {
   lang: Lang;
   leaf: CaseStudyLeaf;
   breadcrumbs: Breadcrumb[];
+  /** Case exists in a single locale — skip hreflang alternates. */
+  suppressHreflang?: boolean;
 }
 
-const { lang, leaf, breadcrumbs } = Astro.props;
+const { lang, leaf, breadcrumbs, suppressHreflang = false } = Astro.props;
 const detail = resolveCaseStudyDetail(leaf, lang);
 const t = getCases(lang);
 const categoryLabels = getCaseStudyCategoryLabels(lang);
@@ -54,6 +56,7 @@ const caseJsonLd = [
   description={metaDescription}
   ogImage={leaf.ogImage ?? leaf.logo}
   noindex={leaf.noindex}
+  suppressHreflang={suppressHreflang}
   jsonLd={caseJsonLd}
 >
   <nav class="container-page pt-6" aria-label="Breadcrumb">

@@ -3,7 +3,7 @@ import { defaultLang } from "../lang";
 import type { ModulePageStrings } from "./modulePageTypes";
 
 const en: ModulePageStrings = {
-  metaTitle: "Lockers and doors — open/close monitoring | IoT Fabrikken",
+  metaTitle: "Lockers and doors: open/close monitoring | IoT Fabrikken",
   metaDescription:
     "Wireless open/close sensors for lockers, doors, windows and cabinets. See what is open in real time, spot after-hours gaps, and plan capacity from usage data.",
   breadcrumbHome: "Home",
@@ -18,7 +18,7 @@ const en: ModulePageStrings = {
   ],
   heroPrimaryCta: "Book a free demo",
   heroSecondaryCta: "Get an offer",
-  dashboardLabel: "RoomAlyzer — Lockers and doors",
+  dashboardLabel: "RoomAlyzer: Lockers and doors",
   dashboardAlt: "RoomAlyzer dashboard showing live open and closed status for lockers and doors",
   challengesEyebrow: "The challenges you know",
   challengesHeading: "When you cannot see what is open, every round is a walk-through.",
@@ -140,7 +140,7 @@ const en: ModulePageStrings = {
 };
 
 const da: ModulePageStrings = {
-  metaTitle: "Skabe og døre — åbn/luk-overvågning | IoT Fabrikken",
+  metaTitle: "Skabe og døre: åbn/luk-overvågning | IoT Fabrikken",
   metaDescription:
     "Trådløse åbn/luk-sensorer til skabe, døre, vinduer og skuffer. Se, hvad der er åbent i realtid, opdag huller uden for åbningstid, og planlæg kapacitet ud fra brugsdata.",
   breadcrumbHome: "Hjem",
@@ -155,7 +155,7 @@ const da: ModulePageStrings = {
   ],
   heroPrimaryCta: "Book en gratis demo",
   heroSecondaryCta: "Få et tilbud",
-  dashboardLabel: "RoomAlyzer — Skabe og døre",
+  dashboardLabel: "RoomAlyzer: Skabe og døre",
   dashboardAlt: "RoomAlyzer-dashboard med live åben/luk-status for skabe og døre",
   challengesEyebrow: "Udfordringerne, I kender",
   challengesHeading: "Når I ikke kan se, hvad der er åbent, bliver hver runde en gåtur.",
@@ -277,7 +277,7 @@ const da: ModulePageStrings = {
 };
 
 const de: ModulePageStrings = {
-  metaTitle: "Schließfächer und Türen — Öffnen/Schließen-Überwachung | IoT Fabrikken",
+  metaTitle: "Schließfächer und Türen: Öffnen/Schließen-Überwachung | IoT Fabrikken",
   metaDescription:
     "Drahtlose Öffnen/Schließen-Sensoren für Schließfächer, Türen, Fenster und Schränke. Sehen Sie in Echtzeit, was offen ist, erkennen Sie Lücken außerhalb der Öffnungszeiten und planen Sie Kapazität anhand von Nutzungsdaten.",
   breadcrumbHome: "Startseite",
@@ -292,7 +292,7 @@ const de: ModulePageStrings = {
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer — Schließfächer und Türen",
+  dashboardLabel: "RoomAlyzer: Schließfächer und Türen",
   dashboardAlt: "RoomAlyzer-Dashboard mit Live-Offen/Geschlossen-Status für Schließfächer und Türen",
   challengesEyebrow: "Die Herausforderungen, die Sie kennen",
   challengesHeading: "Ohne Sicht auf Offen-Status wird jede Runde zum Rundgang.",
@@ -414,7 +414,7 @@ const de: ModulePageStrings = {
 };
 
 const sv: ModulePageStrings = {
-  metaTitle: "Skåp och dörrar — öppna/stäng-övervakning | IoT Fabrikken",
+  metaTitle: "Skåp och dörrar: öppna/stäng-övervakning | IoT Fabrikken",
   metaDescription:
     "Trådlösa öppna/stäng-sensorer för skåp, dörrar, fönster och skåp. Se vad som är öppet i realtid, upptäck luckor utanför öppettider och planera kapacitet utifrån användningsdata.",
   breadcrumbHome: "Hem",
@@ -429,7 +429,7 @@ const sv: ModulePageStrings = {
   ],
   heroPrimaryCta: "Boka en gratis demo",
   heroSecondaryCta: "Få en offert",
-  dashboardLabel: "RoomAlyzer — Skåp och dörrar",
+  dashboardLabel: "RoomAlyzer: Skåp och dörrar",
   dashboardAlt: "RoomAlyzer-dashboard med live öppen/stängd-status för skåp och dörrar",
   challengesEyebrow: "Utmaningarna ni känner igen",
   challengesHeading: "När ni inte ser vad som är öppet blir varje runda en rundvandring.",

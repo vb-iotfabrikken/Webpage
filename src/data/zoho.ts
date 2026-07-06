@@ -16,7 +16,7 @@
  *   a form. From the generated HTML copy the hidden token values, the `action`
  *   URL, the `actionType` value, and the exact field names, then replace the
  *   REPLACE_WITH_* placeholders below. Disable the form's reCAPTCHA (we keep the
- *   honeypot + dwell-time gate instead) so a programmatic POST is accepted.
+ * honeypot + dwell-time gate instead) so a programmatic POST is accepted.
  */
 
 /**
@@ -29,19 +29,19 @@ export const ZOHO_WEBTOLEAD_ENDPOINT = "https://crm.zoho.eu/crm/WebToLeadForm";
 
 /** Hidden form tokens, copied verbatim from the generated Zoho web form. */
 export const ZOHO_TOKENS = {
-  /** Encrypted form identifier (Zoho field name: `xnQsjsdp`). */
-  xnQsjsdp: "387dc32cc7aed2be23cb208cac913cc2909d8acf063ca2067589f20de1ff5397",
-  /** Secondary form token (Zoho field name: `xmIwtLD`). */
-  xmIwtLD:
-    "c7d440154e1992da67015306cae3296253073dab73a64322cc551d880611056bebe79580a9006f5a065142a41e4e6a2f",
-  /** base64("Leads"). Copy the exact value from the generated form. */
-  actionType: "TGVhZHM=",
+ /** Encrypted form identifier (Zoho field name: `xnQsjsdp`). */
+ xnQsjsdp: "387dc32cc7aed2be23cb208cac913cc2909d8acf063ca2067589f20de1ff5397",
+ /** Secondary form token (Zoho field name: `xmIwtLD`). */
+ xmIwtLD:
+ "c7d440154e1992da67015306cae3296253073dab73a64322cc551d880611056bebe79580a9006f5a065142a41e4e6a2f",
+ /** base64("Leads"). Copy the exact value from the generated form. */
+ actionType: "TGVhZHM=",
 } as const;
 
 /**
  * Fallback URL sent as the hidden `returnURL` field. The Zoho form is set to
  * "Splash message", so Zoho ignores this and returns its splash JSON instead of
- * redirecting — and we render our own success UI regardless. We point it at the
+ * redirecting, and we render our own success UI regardless. We point it at the
  * site root (which always 200s) purely so the value is a valid, real URL.
  */
 export const ZOHO_RETURN_URL = "https://iot-fabrikken.com/";

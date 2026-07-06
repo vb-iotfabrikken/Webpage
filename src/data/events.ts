@@ -1,4 +1,6 @@
 import { defaultLang, langPath, locales, type Lang } from "./lang";
+import { canonicalizeSegment } from "./routes";
+import { getCaseStudiesHub } from "./hubs/caseStudies";
 import type { EventCardTheme } from "./eventCardThemes";
 
 /**
@@ -22,112 +24,133 @@ export const EVENT_ARCHIVE_GRACE_DAYS = 0;
 export interface SiteEvent {
   slug: string;
   /** Market locale — shows the active card on this locale's events hub. */
-  hostLocale: Lang;
-  /** Locales with a dedicated detail landing page (usually the host locale). */
-  detailLocales: readonly Lang[];
-  startDate: string;
-  endDate: string;
-  /** Force-hide before endDate or after grace when cleaning up. */
-  status?: "live" | "archived";
-  /** Locale-stripped module routes that may show a fair teaser while live. */
-  moduleTeasers?: readonly string[];
+ hostLocale: Lang;
+ /** Locales with a dedicated detail landing page (usually the host locale). */
+ detailLocales: readonly Lang[];
+ startDate: string;
+ endDate: string;
+ /** Force-hide before endDate or after grace when cleaning up. */
+ status?: "live" | "archived";
+ /** Locale-stripped module routes that may show a fair teaser while live. */
+ moduleTeasers?: readonly string[];
 }
 
-/** Retired events — used for host-locale 301 redirects after pages stop building. */
+/** Retired events, used for host-locale 301 redirects after pages stop building. */
 export const archivedEvents: readonly { slug: string; hostLocale: Lang }[] = [];
 
 export const eventAssets: Readonly<
-  Record<
-    string,
-    {
-      logo: string;
-      logoAlt: string;
-      cardTheme: EventCardTheme;
-      officialUrl: string;
-    }
-  >
+ Record<
+ string,
+ {
+ logo: string;
+ logoAlt: string;
+ cardTheme: EventCardTheme;
+ officialUrl: string;
+ }
+ >
 > = {
-  "dhbv-verbandstag-2026": {
-    logo: "/images/events/dhbv/dhbv-logo.png",
-    logoAlt: "DHBV Verbandstag",
-    cardTheme: "dhbv",
-    officialUrl: "https://www.dhbv.de/76-verbandstag-papenburg/",
-  },
-  archivistica: {
-    logo: "/images/events/archivistica/archivistica-logo.jpg",
-    logoAlt: "ARCHIVISTICA Logo",
-    cardTheme: "navy",
-    officialUrl: "https://www.vda.archiv.net/archivistica.html",
-  },
-  "mutec-2026": {
-    logo: "/images/events/mutec/mutec-logo.png",
-    logoAlt: "MUTEC",
-    cardTheme: "mutec",
-    officialUrl: "https://www.mutec.de/en/",
-  },
-  "worktech26-stockholm": {
-    logo: "/images/events/worktech/worktech26-stockholm-logo.svg",
-    logoAlt: "WORKTECH26 Stockholm",
-    cardTheme: "worktech",
-    officialUrl: "https://worktechevents.com/events/worktech26-stockholm/",
-  },
+ "dhbv-verbandstag-2026": {
+ logo: "/images/events/dhbv/dhbv-logo.png",
+ logoAlt: "DHBV Verbandstag",
+ cardTheme: "dhbv",
+ officialUrl: "https://www.dhbv.de/76-verbandstag-papenburg/",
+ },
+ archivistica: {
+ logo: "/images/events/archivistica/archivistica-logo.jpg",
+ logoAlt: "ARCHIVISTICA Logo",
+ cardTheme: "navy",
+ officialUrl: "https://www.vda.archiv.net/archivistica.html",
+ },
+ "mutec-2026": {
+ logo: "/images/events/mutec/mutec-logo.png",
+ logoAlt: "MUTEC",
+ cardTheme: "mutec",
+ officialUrl: "https://www.mutec.de/en/",
+ },
+ "worktech26-stockholm": {
+ logo: "/images/events/worktech/worktech26-stockholm-logo.svg",
+ logoAlt: "WORKTECH26 Stockholm",
+ cardTheme: "worktech",
+ officialUrl: "https://worktechevents.com/events/worktech26-stockholm/",
+ },
 };
 
 export const siteEvents: readonly SiteEvent[] = [
-  {
-    slug: "dhbv-verbandstag-2026",
-    hostLocale: "de",
-    detailLocales: ["de"],
-    startDate: "2026-09-24",
-    endDate: "2026-09-26",
-  },
-  {
-    slug: "archivistica",
-    hostLocale: "de",
-    detailLocales: ["de"],
-    startDate: "2026-09-29",
-    endDate: "2026-10-01",
-    moduleTeasers: ["modules/indoor-climate"],
-  },
-  {
-    slug: "mutec-2026",
-    hostLocale: "de",
-    detailLocales: ["de"],
-    startDate: "2026-11-05",
-    endDate: "2026-11-06",
-  },
-  {
-    slug: "worktech26-stockholm",
-    hostLocale: "sv",
-    detailLocales: ["sv"],
-    startDate: "2026-11-10",
-    endDate: "2026-11-10",
-  },
+ {
+ slug: "dhbv-verbandstag-2026",
+ hostLocale: "de",
+ detailLocales: ["de"],
+ startDate: "2026-09-24",
+ endDate: "2026-09-26",
+ },
+ {
+ slug: "archivistica",
+ hostLocale: "de",
+ detailLocales: ["de"],
+ startDate: "2026-09-29",
+ endDate: "2026-10-01",
+ moduleTeasers: ["modules/indoor-climate"],
+ },
+ {
+ slug: "mutec-2026",
+ hostLocale: "de",
+ detailLocales: ["de"],
+ startDate: "2026-11-05",
+ endDate: "2026-11-06",
+ },
+ {
+ slug: "worktech26-stockholm",
+ hostLocale: "sv",
+ detailLocales: ["sv"],
+ startDate: "2026-11-10",
+ endDate: "2026-11-10",
+ },
 ];
 
 function toUtcDateString(date: Date): string {
-  return date.toISOString().slice(0, 10);
+ return date.toISOString().slice(0, 10);
 }
 
 function addUtcDays(isoDate: string, days: number): string {
-  const next = new Date(`${isoDate}T00:00:00Z`);
-  next.setUTCDate(next.getUTCDate() + days);
-  return toUtcDateString(next);
+ const next = new Date(`${isoDate}T00:00:00Z`);
+ next.setUTCDate(next.getUTCDate() + days);
+ return toUtcDateString(next);
 }
 
 /** Whether the event should appear on the hub and build detail pages. */
 export function isEventLive(event: SiteEvent, asOf: Date = new Date()): boolean {
-  if (event.status === "archived") return false;
-  const visibleThrough = addUtcDays(event.endDate, EVENT_ARCHIVE_GRACE_DAYS);
-  return toUtcDateString(asOf) <= visibleThrough;
+ if (event.status === "archived") return false;
+ const visibleThrough = addUtcDays(event.endDate, EVENT_ARCHIVE_GRACE_DAYS);
+ return toUtcDateString(asOf) <= visibleThrough;
 }
 
 export function getLiveEvents(asOf: Date = new Date()): SiteEvent[] {
-  return siteEvents.filter((event) => isEventLive(event, asOf));
+ return siteEvents.filter((event) => isEventLive(event, asOf));
+}
+
+/**
+ * Case studies are published per locale (each locale ships its own leaf list,
+ * sometimes with locale-specific slugs). Map every canonical case route to the
+ * locales that actually publish it so locale switching and hreflang skip the
+ * ones that would 404. Static across a build, so compute it once.
+ */
+let caseStudyScopedRoutesCache: Record<string, Lang[]> | null = null;
+function caseStudyScopedRoutes(): Record<string, Lang[]> {
+  if (caseStudyScopedRoutesCache) return caseStudyScopedRoutesCache;
+  const routes: Record<string, Lang[]> = {};
+  for (const locale of locales) {
+    for (const leaf of getCaseStudiesHub(locale.code).leaves) {
+      const canonical = canonicalizeSegment(leaf.slug, locale.code);
+      const key = `case-studies/${canonical}`;
+      (routes[key] ??= []).push(locale.code);
+    }
+  }
+  caseStudyScopedRoutesCache = routes;
+  return routes;
 }
 
 function buildLocaleScopedRoutes(asOf: Date = new Date()): Record<string, readonly Lang[]> {
-  const routes: Record<string, readonly Lang[]> = {};
+  const routes: Record<string, readonly Lang[]> = { ...caseStudyScopedRoutes() };
   for (const event of getLiveEvents(asOf)) {
     if (event.detailLocales.length === 0) continue;
     routes[`events/${event.slug}`] = event.detailLocales;
@@ -172,6 +195,7 @@ export function isRouteAvailableInLocale(routeKey: string, lang: Lang): boolean 
 export function getRouteFallback(routeKey: string, targetLang: Lang): string {
   if (routeKey.startsWith("events/")) return langPath("events", targetLang);
   if (routeKey.startsWith("contact/")) return langPath("contact", targetLang);
+  if (routeKey.startsWith("case-studies/")) return langPath("case-studies", targetLang);
   return langPath("", targetLang);
 }
 

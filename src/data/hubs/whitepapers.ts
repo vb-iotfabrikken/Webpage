@@ -16,7 +16,7 @@ export const whitepapersHub: Hub = {
   title: "White papers.",
   titleAccent: "Long-form guides for decision makers.",
   eyebrow: "White papers",
-  lead: "We are preparing official white papers on the topics our customers ask about most. Until they are ready, explore our articles and customer cases — or book a briefing with our team.",
+  lead: "We are preparing official white papers on the topics our customers ask about most. Until they are ready, explore our articles and customer cases, or book a briefing with our team.",
   leaves: [],
 };
 
@@ -26,7 +26,7 @@ const whitepaperResourcesEn: WhitepaperResource[] = [
     eyebrow: "Articles",
     title: "Articles and use cases.",
     titleAccent: "Search by topic or industry.",
-    lead: "Guides on indoor climate, preservation, space management, integrations and more — with filters for tags and categories.",
+    lead: "Guides on indoor climate, preservation, space management, integrations and more, with filters for tags and categories.",
     ctaLabel: "Browse articles",
   },
   {
@@ -34,7 +34,7 @@ const whitepaperResourcesEn: WhitepaperResource[] = [
     eyebrow: "Customer cases",
     title: "Real buildings, real results.",
     titleAccent: "Municipalities, offices and heritage.",
-    lead: "See how customers use RoomAlyzer for indoor climate, space management and water prevention — with named references where we can share them.",
+    lead: "See how customers use RoomAlyzer for indoor climate, space management and water prevention, with named references where we can share them.",
     ctaLabel: "Read customer cases",
   },
   {
@@ -42,7 +42,7 @@ const whitepaperResourcesEn: WhitepaperResource[] = [
     eyebrow: "Briefing",
     title: "Talk to us directly.",
     titleAccent: "Tailored to your building type.",
-    lead: "Book a 30-minute walk-through and we will cover the topics that matter for your portfolio — no white paper required.",
+    lead: "Book a 30-minute walk-through and we will cover the topics that matter for your portfolio, no white paper required.",
     ctaLabel: "Book a free demo",
   },
 ];

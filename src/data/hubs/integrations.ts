@@ -12,7 +12,7 @@ export const integrationsHub: Hub = {
       eyebrow: "Integration",
       title: "MQTT.",
       titleAccent: "The language of IoT.",
-      lead: "Subscribe to a live MQTT stream of readings and alarms — and route them anywhere.",
+      lead: "Subscribe to a live MQTT stream of readings and alarms, and route them anywhere.",
     },
     {
       slug: "azure-iot-hub",
@@ -40,7 +40,7 @@ export const integrationsHub: Hub = {
       eyebrow: "Integration",
       title: "Pronestor.",
       titleAccent: "Booking meets reality.",
-      lead: "Combine Pronestor room bookings with RoomAlyzer occupancy — and end ghost bookings for good.",
+      lead: "Combine Pronestor room bookings with RoomAlyzer occupancy, and end ghost bookings for good.",
     },
     {
       slug: "rest-api",

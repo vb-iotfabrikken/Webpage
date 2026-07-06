@@ -26,7 +26,7 @@ export const sensorTechnicalSpecsI18n: Partial<
         longTermDrift:
           "Temperatur <0,03 °C/år / Luftfugtighed <0,20% RF/år (under normale forhold)",
         battery: "Op til 10 år (udskifteligt 3 × AA litiumpakke)",
-        connectivity: "NB-IoT (direkte mobil — uden Wi-Fi eller gateway)",
+        connectivity: "NB-IoT (direkte mobil, uden Wi-Fi eller gateway)",
         activation: "Knap på sensoren",
         controlSoftware: "Webapplikation og mobilapp (iOS/Android)",
         mounting: "Skruer eller 3M klæbepuder",
@@ -48,7 +48,7 @@ export const sensorTechnicalSpecsI18n: Partial<
         longTermDrift:
           "Temperatur <0,03 °C/Jahr / Luftfeuchtigkeit <0,20% RF/Jahr (unter normalen Bedingungen)",
         battery: "Bis zu 10 Jahre (austauschbares 3 × AA-Lithium-Paket)",
-        connectivity: "NB-IoT (direktes Mobilfunk — ohne Wi-Fi oder Gateway)",
+        connectivity: "NB-IoT (direktes Mobilfunk, ohne Wi-Fi oder Gateway)",
         activation: "Taste am Sensor",
         controlSoftware: "Webanwendung und mobile App (iOS/Android)",
         mounting: "Schrauben oder 3M-Klebe-Pads",
@@ -70,7 +70,7 @@ export const sensorTechnicalSpecsI18n: Partial<
         longTermDrift:
           "Temperatur <0,03 °C/år / Luftfuktighet <0,20% RF/år (under normala förhållanden)",
         battery: "Upp till 10 år (utbytbart 3 × AA litiumpaket)",
-        connectivity: "NB-IoT (direkt mobil — utan Wi-Fi eller gateway)",
+        connectivity: "NB-IoT (direkt mobil, utan Wi-Fi eller gateway)",
         activation: "Knapp på sensorn",
         controlSoftware: "Webbapplikation och mobilapp (iOS/Android)",
         mounting: "Skruvar eller 3M klisterkuddar",

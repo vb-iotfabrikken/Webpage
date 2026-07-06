@@ -7,7 +7,7 @@ import { defaultLang, type Lang } from "./lang";
 export const storyIntro = {
   title: "Our story.",
   titleAccent: "25 years in the making.",
-  lead: "From DIBS and eSmiley to IoT Fabrikken — the track record behind the company.",
+  lead: "From DIBS and eSmiley to IoT Fabrikken: the track record behind the company.",
 };
 
 export const storyParagraphs: string[] = [
@@ -20,9 +20,9 @@ export const storyParagraphs: string[] = [
 type StoryIntro = { title: string; titleAccent: string; lead: string };
 
 const storyIntroI18n: Partial<Record<Lang, StoryIntro>> = {
-  da: { title: "Vores historie.", titleAccent: "25 år i støbeskeen.", lead: "Fra DIBS og eSmiley til IoT Fabrikken — historikken bag virksomheden." },
-  de: { title: "Unsere Geschichte.", titleAccent: "25 Jahre in der Entstehung.", lead: "Von DIBS und eSmiley zu IoT Fabrikken — die Erfolgsbilanz hinter dem Unternehmen." },
-  sv: { title: "Vår historia.", titleAccent: "25 år i vardande.", lead: "Från DIBS och eSmiley till IoT Fabrikken — meritlistan bakom företaget." },
+  da: { title: "Vores historie.", titleAccent: "25 år i støbeskeen.", lead: "Fra DIBS og eSmiley til IoT Fabrikken: historikken bag virksomheden." },
+  de: { title: "Unsere Geschichte.", titleAccent: "25 Jahre in der Entstehung.", lead: "Von DIBS und eSmiley zu IoT Fabrikken: die Erfolgsbilanz hinter dem Unternehmen." },
+  sv: { title: "Vår historia.", titleAccent: "25 år i vardande.", lead: "Från DIBS och eSmiley till IoT Fabrikken: meritlistan bakom företaget." },
 };
 
 const storyParagraphsI18n: Partial<Record<Lang, string[]>> = {

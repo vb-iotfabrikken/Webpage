@@ -2,7 +2,7 @@
 import PlaceholderPage from "../../../components/PlaceholderPage.astro";
 import { getAboutHub } from "../../../data/hubs/about";
 import { getAbout } from "../../../data/i18n/about";
-import { locales, langPath, type Lang } from "../../../data/lang";
+import { locales, langPath, localizeSegment, type Lang } from "../../../data/lang";
 import type { HubLeaf } from "../../../data/hubs/types";
 
 export function getStaticPaths() {
@@ -11,7 +11,7 @@ export function getStaticPaths() {
     getAboutHub(l.code).leaves
       .filter((leaf) => !handAuthored.has(leaf.slug))
       .map((leaf) => ({
-        params: { lang: l.code, slug: leaf.slug },
+        params: { lang: l.code, slug: localizeSegment(leaf.slug, l.code) },
         props: { leaf },
       })),
   );

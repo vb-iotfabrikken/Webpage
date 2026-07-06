@@ -12,7 +12,6 @@ interface Props {
 const { lang = defaultLang } = Astro.props;
 const t = getAbout(lang);
 const aboutHub = getAboutHub(lang);
-const leafBase = langPath("about", lang);
 
 const partnerLogos = getPartners(lang).filter(
   (entry): entry is Extract<ReturnType<typeof getPartners>[number], { kind: "partner" }> =>
@@ -23,7 +22,7 @@ const cards = aboutHub.leaves.map((leaf) => {
   const media = aboutHubCardImages[leaf.slug];
   return {
     slug: leaf.slug,
-    href: `${leafBase}${leaf.slug}/`,
+    href: langPath(`about/${leaf.slug}`, lang),
     title: leaf.title.replace(/\.$/, ""),
     description: leaf.lead,
     image: media?.image,

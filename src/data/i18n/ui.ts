@@ -211,6 +211,8 @@ export interface SensorStrings {
     inUse: string;
     compact: string;
     pro: string;
+    smallUnit: string;
+    largeUnit: string;
     rangeExtender: string;
     bracket: string;
   };
@@ -328,7 +330,7 @@ const en: UiStrings = {
   },
   nav: {
     utility: {
-      builtInDenmark: "Built in Denmark — real humans at the other end.",
+      builtInDenmark: "Built in Denmark, real humans at the other end.",
       talkToUs: "Talk to us",
     },
     top: {
@@ -366,7 +368,7 @@ const en: UiStrings = {
     },
     resources: {
       libraryLabel: "Articles",
-      libraryDesc: "Guides, use cases and news — searchable by topic or industry.",
+      libraryDesc: "Guides, use cases and news, searchable by topic or industry.",
       casesLabel: "Cases",
       casesDesc: "What customers say about working with us.",
       whitepapersLabel: "White papers",
@@ -403,7 +405,7 @@ const en: UiStrings = {
       productViews: "Product views",
       whyChoose: "Why choose this sensor?",
       ctaBandTitle: "Want to see it for yourself?",
-      ctaBandSubtitle: "Book a live demo — always free of charge and completely non-binding.",
+      ctaBandSubtitle: "Book a live demo, always free of charge and completely non-binding.",
       specs: {
         title: "Technical specifications",
         downloadFullSheet: "Download full product sheet (PDF)",
@@ -453,7 +455,7 @@ const en: UiStrings = {
       battery: "Battery",
       connectivity: "Connectivity",
       ctaTitle: "Still deciding?",
-      ctaSubtitle: "Book a demo and we will map the right sensors to your rooms — no guesswork.",
+      ctaSubtitle: "Book a demo and we will map the right sensors to your rooms, no guesswork.",
       browseAllSensors: "Browse all sensors",
       swapSensors: "Swap sensors",
       showDifferencesOnly: "Show differences only",
@@ -482,6 +484,8 @@ const en: UiStrings = {
       inUse: "In use",
       compact: "Compact (IP30)",
       pro: "Pro (IP67)",
+      smallUnit: "Small unit",
+      largeUnit: "Large unit",
       rangeExtender: "Range extender",
       bracket: "Bracket",
     },
@@ -499,7 +503,7 @@ const en: UiStrings = {
       sectionEyebrow: "Modules",
       sectionHeading: "Solve real building problems.",
       sectionIntro:
-        "Indoor climate, space management, water detection and more — each module runs on the same RoomAlyzer platform and sensor network.",
+        "Indoor climate, space management, water detection and more, each module runs on the same RoomAlyzer platform and sensor network.",
       ctaTitle: "Want a guided walk-through?",
       ctaSubtitle: "Book a 30-minute demo and we'll tailor it to your building.",
     },
@@ -510,7 +514,7 @@ const en: UiStrings = {
     },
     detail: {
       ctaBandTitle: "Want to know more already now?",
-      ctaBandSubtitle: "Get in touch — we're always happy to have a no-strings chat.",
+      ctaBandSubtitle: "Get in touch, we're always happy to have a no-strings chat.",
     },
   },
   industries: {
@@ -595,7 +599,7 @@ const da: UiStrings = {
   },
   nav: {
     utility: {
-      builtInDenmark: "Bygget i Danmark — rigtige mennesker i den anden ende.",
+      builtInDenmark: "Bygget i Danmark, rigtige mennesker i den anden ende.",
       talkToUs: "Tal med os",
     },
     top: {
@@ -633,7 +637,7 @@ const da: UiStrings = {
     },
     resources: {
       libraryLabel: "Artikler",
-      libraryDesc: "Guides, use cases og nyheder — søgbare efter emne eller branche.",
+      libraryDesc: "Guides, use cases og nyheder, søgbare efter emne eller branche.",
       casesLabel: "Cases",
       casesDesc: "Hvad kunder siger om at arbejde med os.",
       whitepapersLabel: "Whitepapers",
@@ -670,7 +674,7 @@ const da: UiStrings = {
       productViews: "Produktvisninger",
       whyChoose: "Hvorfor vælge denne sensor?",
       ctaBandTitle: "Vil du selv se det?",
-      ctaBandSubtitle: "Book en live-demo — altid gratis og helt uforpligtende.",
+      ctaBandSubtitle: "Book en live-demo, altid gratis og helt uforpligtende.",
       specs: {
         title: "Tekniske specifikationer",
         downloadFullSheet: "Download fuldt produktblad (PDF)",
@@ -720,7 +724,7 @@ const da: UiStrings = {
       battery: "Batteri",
       connectivity: "Forbindelse",
       ctaTitle: "Stadig i tvivl?",
-      ctaSubtitle: "Book en demo, så matcher vi de rette sensorer til dine rum — uden gætværk.",
+      ctaSubtitle: "Book en demo, så matcher vi de rette sensorer til dine rum, uden gætværk.",
       browseAllSensors: "Se alle sensorer",
       swapSensors: "Byt sensorer",
       showDifferencesOnly: "Vis kun forskelle",
@@ -749,6 +753,8 @@ const da: UiStrings = {
       inUse: "I brug",
       compact: "Compact (IP30)",
       pro: "Pro (IP67)",
+      smallUnit: "Lille enhed",
+      largeUnit: "Stor enhed",
       rangeExtender: "Range extender",
       bracket: "Beslag",
     },
@@ -766,7 +772,7 @@ const da: UiStrings = {
       sectionEyebrow: "Moduler",
       sectionHeading: "Løs reelle bygningsudfordringer.",
       sectionIntro:
-        "Indeklima, pladsudnyttelse, vanddetektion og mere — hvert modul kører på den samme RoomAlyzer-platform og sensornetværk.",
+        "Indeklima, pladsudnyttelse, vanddetektion og mere, hvert modul kører på den samme RoomAlyzer-platform og sensornetværk.",
       ctaTitle: "Vil du have en guidet gennemgang?",
       ctaSubtitle: "Book en demo på 30 minutter, så tilpasser vi den til din bygning.",
     },
@@ -777,7 +783,7 @@ const da: UiStrings = {
     },
     detail: {
       ctaBandTitle: "Vil du vide mere allerede nu?",
-      ctaBandSubtitle: "Tag fat i os — vi tager altid gerne en uforpligtende snak.",
+      ctaBandSubtitle: "Tag fat i os, vi tager altid gerne en uforpligtende snak.",
     },
   },
   industries: {
@@ -862,7 +868,7 @@ const de: UiStrings = {
   },
   nav: {
     utility: {
-      builtInDenmark: "Entwickelt in Dänemark — echte Menschen am anderen Ende.",
+      builtInDenmark: "Entwickelt in Dänemark, echte Menschen am anderen Ende.",
       talkToUs: "Sprechen Sie mit uns",
     },
     top: {
@@ -900,7 +906,7 @@ const de: UiStrings = {
     },
     resources: {
       libraryLabel: "Artikel",
-      libraryDesc: "Leitfäden, Anwendungsfälle und News — nach Thema oder Branche durchsuchbar.",
+      libraryDesc: "Leitfäden, Anwendungsfälle und News, nach Thema oder Branche durchsuchbar.",
       casesLabel: "Referenzen",
       casesDesc: "Was Kunden über die Zusammenarbeit mit uns sagen.",
       whitepapersLabel: "Whitepaper",
@@ -937,7 +943,7 @@ const de: UiStrings = {
       productViews: "Produktansichten",
       whyChoose: "Warum dieser Sensor?",
       ctaBandTitle: "Möchten Sie es selbst sehen?",
-      ctaBandSubtitle: "Buchen Sie eine Live-Demo — immer kostenlos und völlig unverbindlich.",
+      ctaBandSubtitle: "Buchen Sie eine Live-Demo, immer kostenlos und völlig unverbindlich.",
       specs: {
         title: "Technische Spezifikationen",
         downloadFullSheet: "Vollständiges Produktdatenblatt herunterladen (PDF)",
@@ -987,7 +993,7 @@ const de: UiStrings = {
       battery: "Batterie",
       connectivity: "Konnektivität",
       ctaTitle: "Noch unentschlossen?",
-      ctaSubtitle: "Buchen Sie eine Demo, und wir ordnen die passenden Sensoren Ihren Räumen zu — ohne Rätselraten.",
+      ctaSubtitle: "Buchen Sie eine Demo, und wir ordnen die passenden Sensoren Ihren Räumen zu, ohne Rätselraten.",
       browseAllSensors: "Alle Sensoren ansehen",
       swapSensors: "Sensoren tauschen",
       showDifferencesOnly: "Nur Unterschiede anzeigen",
@@ -1016,6 +1022,8 @@ const de: UiStrings = {
       inUse: "Im Einsatz",
       compact: "Compact (IP30)",
       pro: "Pro (IP67)",
+      smallUnit: "Kleine Einheit",
+      largeUnit: "Große Einheit",
       rangeExtender: "Range Extender",
       bracket: "Halterung",
     },
@@ -1033,7 +1041,7 @@ const de: UiStrings = {
       sectionEyebrow: "Module",
       sectionHeading: "Echte Gebäudeprobleme lösen.",
       sectionIntro:
-        "Innenklima, Raumnutzung, Wassermonitoring und mehr — jedes Modul läuft auf derselben RoomAlyzer-Plattform und demselben Sensornetzwerk.",
+        "Innenklima, Raumnutzung, Wassermonitoring und mehr, jedes Modul läuft auf derselben RoomAlyzer-Plattform und demselben Sensornetzwerk.",
       ctaTitle: "Möchten Sie eine geführte Tour?",
       ctaSubtitle: "Buchen Sie eine 30-minütige Demo, die wir auf Ihr Gebäude zuschneiden.",
     },
@@ -1044,7 +1052,7 @@ const de: UiStrings = {
     },
     detail: {
       ctaBandTitle: "Möchten Sie schon jetzt mehr erfahren?",
-      ctaBandSubtitle: "Melden Sie sich — wir führen jederzeit gern ein unverbindliches Gespräch.",
+      ctaBandSubtitle: "Melden Sie sich, wir führen jederzeit gern ein unverbindliches Gespräch.",
     },
   },
   industries: {
@@ -1065,7 +1073,7 @@ const de: UiStrings = {
     },
     detail: {
       ctaBandTitle: "Möchten Sie eine Lösung für Ihre Gebäude?",
-      ctaBandSubtitle: "Buchen Sie eine Demo — wir zeigen die Sensoren, die zu Ihrer Branche passen.",
+      ctaBandSubtitle: "Buchen Sie eine Demo, wir zeigen die Sensoren, die zu Ihrer Branche passen.",
     },
     articles: {
       eyebrow: "Artikel",
@@ -1129,7 +1137,7 @@ const sv: UiStrings = {
   },
   nav: {
     utility: {
-      builtInDenmark: "Byggt i Danmark — riktiga människor i andra änden.",
+      builtInDenmark: "Byggt i Danmark, riktiga människor i andra änden.",
       talkToUs: "Prata med oss",
     },
     top: {
@@ -1167,7 +1175,7 @@ const sv: UiStrings = {
     },
     resources: {
       libraryLabel: "Artiklar",
-      libraryDesc: "Guider, användningsfall och nyheter — sökbara efter ämne eller bransch.",
+      libraryDesc: "Guider, användningsfall och nyheter, sökbara efter ämne eller bransch.",
       casesLabel: "Kundcase",
       casesDesc: "Vad kunder säger om att arbeta med oss.",
       whitepapersLabel: "Whitepapers",
@@ -1204,7 +1212,7 @@ const sv: UiStrings = {
       productViews: "Produktvyer",
       whyChoose: "Varför välja den här sensorn?",
       ctaBandTitle: "Vill du se det själv?",
-      ctaBandSubtitle: "Boka en live-demo — alltid kostnadsfri och helt förutsättningslös.",
+      ctaBandSubtitle: "Boka en live-demo, alltid kostnadsfri och helt förutsättningslös.",
       specs: {
         title: "Tekniska specifikationer",
         downloadFullSheet: "Ladda ner fullständigt produktblad (PDF)",
@@ -1254,7 +1262,7 @@ const sv: UiStrings = {
       battery: "Batteri",
       connectivity: "Anslutning",
       ctaTitle: "Fortfarande osäker?",
-      ctaSubtitle: "Boka en demo så matchar vi rätt sensorer till dina rum — utan gissningar.",
+      ctaSubtitle: "Boka en demo så matchar vi rätt sensorer till dina rum, utan gissningar.",
       browseAllSensors: "Se alla sensorer",
       swapSensors: "Byt sensorer",
       showDifferencesOnly: "Visa endast skillnader",
@@ -1283,6 +1291,8 @@ const sv: UiStrings = {
       inUse: "I bruk",
       compact: "Compact (IP30)",
       pro: "Pro (IP67)",
+      smallUnit: "Liten enhet",
+      largeUnit: "Stor enhet",
       rangeExtender: "Range extender",
       bracket: "Fäste",
     },
@@ -1300,7 +1310,7 @@ const sv: UiStrings = {
       sectionEyebrow: "Moduler",
       sectionHeading: "Lös verkliga byggnadsutmaningar.",
       sectionIntro:
-        "Inomhusklimat, ytanvändning, vattendetektering och mer — varje modul körs på samma RoomAlyzer-plattform och sensornätverk.",
+        "Inomhusklimat, ytanvändning, vattendetektering och mer, varje modul körs på samma RoomAlyzer-plattform och sensornätverk.",
       ctaTitle: "Vill du ha en guidad genomgång?",
       ctaSubtitle: "Boka en 30-minuters demo så skräddarsyr vi den efter din byggnad.",
     },
@@ -1311,7 +1321,7 @@ const sv: UiStrings = {
     },
     detail: {
       ctaBandTitle: "Vill du veta mer redan nu?",
-      ctaBandSubtitle: "Hör av dig — vi tar alltid gärna ett förutsättningslöst samtal.",
+      ctaBandSubtitle: "Hör av dig, vi tar alltid gärna ett förutsättningslöst samtal.",
     },
   },
   industries: {

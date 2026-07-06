@@ -80,7 +80,7 @@ const en: CompareStrings = {
     space: {
       label: "Space & interaction",
       rows: {
-        occupancy: { label: "Room occupancy", hint: "PIR presence — no cameras" },
+        occupancy: { label: "Room occupancy", hint: "PIR presence, no cameras" },
         deskOccupancy: { label: "Desk occupancy", hint: "Under-desk utilisation" },
         openClose: { label: "Open / close contact", hint: "Doors, windows, lockers" },
         touch: { label: "Touch / service button", hint: "One-tap feedback or requests" },
@@ -154,7 +154,7 @@ const da: CompareStrings = {
     space: {
       label: "Rum og interaktion",
       rows: {
-        occupancy: { label: "Rumbelægning", hint: "PIR-tilstedeværelse — ingen kameraer" },
+        occupancy: { label: "Rumbelægning", hint: "PIR-tilstedeværelse, ingen kameraer" },
         deskOccupancy: { label: "Skrivebordsbelægning", hint: "Udnyttelse under skrivebordet" },
         openClose: { label: "Åbn/luk-kontakt", hint: "Døre, vinduer, skabe" },
         touch: { label: "Tryk-/serviceknap", hint: "Feedback eller anmodninger med ét tryk" },
@@ -228,7 +228,7 @@ const de: CompareStrings = {
     space: {
       label: "Raum & Interaktion",
       rows: {
-        occupancy: { label: "Raumbelegung", hint: "PIR-Präsenz — keine Kameras" },
+        occupancy: { label: "Raumbelegung", hint: "PIR-Präsenz, keine Kameras" },
         deskOccupancy: { label: "Arbeitsplatzbelegung", hint: "Nutzung unter dem Schreibtisch" },
         openClose: { label: "Auf/Zu-Kontakt", hint: "Türen, Fenster, Schließfächer" },
         touch: { label: "Touch-/Servicetaste", hint: "Feedback oder Anfragen per Tastendruck" },
@@ -302,7 +302,7 @@ const sv: CompareStrings = {
     space: {
       label: "Yta och interaktion",
       rows: {
-        occupancy: { label: "Rumsbeläggning", hint: "PIR-närvaro — inga kameror" },
+        occupancy: { label: "Rumsbeläggning", hint: "PIR-närvaro, inga kameror" },
         deskOccupancy: { label: "Skrivbordsbeläggning", hint: "Utnyttjande under skrivbordet" },
         openClose: { label: "Öppna/stäng-kontakt", hint: "Dörrar, fönster, skåp" },
         touch: { label: "Tryck-/serviceknapp", hint: "Feedback eller förfrågningar med ett tryck" },

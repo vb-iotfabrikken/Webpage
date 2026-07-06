@@ -80,7 +80,7 @@ export const landingCategories: Record<LandingCategorySlug, LandingCategory> = {
     slug: "cabinets-doors",
     name: "Cabinets and doors",
     eyebrow: "Open/close",
-    description: "Monitor doors, windows and cabinets — without expensive installation.",
+    description: "Monitor doors, windows and cabinets, without expensive installation.",
     color: "sky",
   },
   cleaning: {
@@ -97,7 +97,6 @@ export const landingCategories: Record<LandingCategorySlug, LandingCategory> = {
     eyebrow: "Energy",
     description: "Save energy by combining indoor climate, presence and climate data.",
     color: "navy",
-    module: "energy",
   },
   "lockers-doors": {
     slug: "lockers-doors",
@@ -132,7 +131,7 @@ export const landingCategories: Record<LandingCategorySlug, LandingCategory> = {
     slug: "industries",
     name: "Industries",
     eyebrow: "Industry",
-    description: "IoT tailored to your sector — from schools to hospitals.",
+    description: "IoT tailored to your sector, from schools to hospitals.",
     color: "sky",
   },
   "business-cases": {
@@ -146,7 +145,7 @@ export const landingCategories: Record<LandingCategorySlug, LandingCategory> = {
     slug: "standards",
     name: "Standards and compliance",
     eyebrow: "Compliance",
-    description: "BR18, EN 16798, DGNB, WELL, ISO and ESG — document it with data.",
+    description: "EN 16798, DGNB, WELL, ISO and ESG — document compliance with data.",
     color: "navy",
   },
   guides: {

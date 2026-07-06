@@ -5,14 +5,14 @@ export const roiHub: Hub = {
   title: "Business cases and ROI.",
   titleAccent: "Numbers, not just promises.",
   eyebrow: "ROI",
-  lead: "The savings, payback time and total cost of ownership behind every module — with real customer data to back it up.",
+  lead: "The savings, payback time and total cost of ownership behind every module, with real customer data to back it up.",
   leaves: [
     {
       slug: "calculator",
       eyebrow: "ROI",
       title: "ROI calculator.",
       titleAccent: "Your case, your numbers.",
-      lead: "Desk optimiser and Energy saver — gamified sliders that estimate annual savings from space right-sizing and heating setbacks, with a full breakdown by email.",
+      lead: "Desk optimiser and Energy saver, gamified sliders that estimate annual savings from space right-sizing and heating setbacks, with a full breakdown by email.",
     },
     {
       slug: "schools",
@@ -26,7 +26,7 @@ export const roiHub: Hub = {
       eyebrow: "ROI",
       title: "ROI for museums.",
       titleAccent: "Insurance for the collection.",
-      lead: "How continuous climate monitoring reduces preservation risk — and protects lending agreements.",
+      lead: "How continuous climate monitoring reduces preservation risk, and protects lending agreements.",
     },
     {
       slug: "offices",

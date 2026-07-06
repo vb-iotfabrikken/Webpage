@@ -68,7 +68,7 @@ export async function getStaticPaths() {
   );
 }
 
-const { dimension, slug } = Astro.params;
+const { dimension } = Astro.params;
 const { entries, tagValue } = Astro.props;
 const dim = dimensions.find((d) => d.slug === dimension)!;
 

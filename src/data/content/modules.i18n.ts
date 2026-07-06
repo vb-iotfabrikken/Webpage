@@ -14,18 +14,18 @@ const da: Record<string, ModuleContentOverlay> = {
     heroTitle: "Indeklimaovervågning",
     heroTitleAccent: "der gør klager til fakta.",
     heroLead:
-      "Indeklimaovervågning giver dig data til at besvare et spørgsmål, enhver facility manager kender: er klagen reel, eller er det en fornemmelse? Én er for varm, en anden er for kold, og luften føles tung midt på eftermiddagen — men uden data på temperatur, fugt og CO2 ender du med at styre på indtryk, justere ventilation på gætværk og forsvare beslutninger, du ikke kan dokumentere.",
+      "Indeklimaovervågning giver dig data til at besvare et spørgsmål, enhver facility manager kender: er klagen reel, eller er det en fornemmelse? Én er for varm, en anden er for kold, og luften føles tung midt på eftermiddagen, men uden data på temperatur, fugt og CO2 ender du med at styre på indtryk, justere ventilation på gætværk og forsvare beslutninger, du ikke kan dokumentere.",
     challenges: [
       "Klager, du ikke kan verificere: en bruger melder om dårlig luftkvalitet, og du har ingen mulighed for at bekræfte, om der skal handles, eller om det er et spørgsmål om oplevelse.",
       "Systemer, der kører i blinde: varme og ventilation følger faste tidsplaner i stedet for faktiske forhold og spilder energi, når rum er tomme, og underpræsterer, når de er fyldte.",
       "Ingen dokumentation til samtalen: når ledelse, medarbejdere eller myndigheder spørger til indeklimaet på jeres kontorer eller skoler, har du intet konkret at vise.",
     ],
     solution: [
-      "RoomAlyzer måler temperatur, fugt, CO2 og TVOC løbende og omsætter det til klar dokumentation — så du kan besvare enhver klage med fakta i stedet for fornemmelser. Du ser præcis, hvornår CO2-niveauet stiger, hvornår fugten indbyder til skimmel, og om et rum reelt kræver handling eller blot en beroligelse.",
+      "RoomAlyzer måler temperatur, fugt, CO2 og TVOC løbende og omsætter det til klar dokumentation, så du kan besvare enhver klage med fakta i stedet for fornemmelser. Du ser præcis, hvornår CO2-niveauet stiger, hvornår fugten indbyder til skimmel, og om et rum reelt kræver handling eller blot en beroligelse.",
       "Og det gør mere end at vise dig tallene: det advarer dig, når skimmel bliver en risiko, og foreslår konkrete justeringer, så du kan tilpasse varme og ventilation til den faktiske brug og sænke energiomkostningerne uden at miste komfort. Anvendes på tværs af kontorer, skoler og kommuner.",
     ],
     smarterTogether:
-      "Kombineret med Space management kan RoomAlyzer tilpasse energiforbrug og indeklima til antallet af personer, der faktisk er til stede — vist side om side i ét overblik.",
+      "Kombineret med Space management kan RoomAlyzer tilpasse energiforbrug og indeklima til antallet af personer, der faktisk er til stede, vist side om side i ét overblik.",
     closing:
       "Løsninger som denne er normalt dyre og besværlige at installere. RoomAlyzer er klar på minutter, forbliver fleksibel, når dine behov ændrer sig, og koster en brøkdel af prisen.",
   },
@@ -41,8 +41,8 @@ const da: Record<string, ModuleContentOverlay> = {
       "Beslutninger, der er svære at forsvare: at fordele areal mellem afdelinger eller planlægge nyansættelser bliver en forhandling baseret på holdninger frem for brug.",
     ],
     solution: [
-      "RoomAlyzer Space management giver jer et live, anonymiseret overblik over belægningen af skriveborde og lokaler — i realtid og over tid. I ser, hvilke skriveborde der er ledige lige nu, hvordan zoner bruges hen over dagen og ugen, hvornår belægningen topper, og præcis hvor I har ledig kapacitet.",
-      "Mødelokaler er et fokus i sig selv: I kan se, hvordan de reelt bruges — booket til mange, brugt af få — og få lokaler frigivet automatisk, når en booking ikke benyttes, så et aflyst møde ikke længere blokerer et lokale, der faktisk er ledigt. Den indbyggede økonomiberegner omsætter det hele til konkrete besparelser på husleje og energi, mens heatmaps og rapporter giver jer et objektivt grundlag for fair beslutninger. Udviklet i Danmark og bygget til at være let for enhver bruger er den relevant for facility management, arealplanlæggere, drift og kommuner.",
+      "RoomAlyzer Space management giver jer et live, anonymiseret overblik over belægningen af skriveborde og lokaler, i realtid og over tid. I ser, hvilke skriveborde der er ledige lige nu, hvordan zoner bruges hen over dagen og ugen, hvornår belægningen topper, og præcis hvor I har ledig kapacitet.",
+      "Mødelokaler er et fokus i sig selv: I kan se, hvordan de reelt bruges (booket til mange, brugt af få) og få lokaler frigivet automatisk, når en booking ikke benyttes, så et aflyst møde ikke længere blokerer et lokale, der faktisk er ledigt. Den indbyggede økonomiberegner omsætter det hele til konkrete besparelser på husleje og energi, mens heatmaps og rapporter giver jer et objektivt grundlag for fair beslutninger. Udviklet i Danmark og bygget til at være let for enhver bruger er den relevant for facility management, arealplanlæggere, drift og kommuner.",
     ],
     smarterTogether:
       "RoomAlyzer kan vise arealudnyttelse og indeklima side om side, så I kan tilpasse energiforbrug og ventilation til antallet af personer, der faktisk er til stede — og ramme den rette balance mellem trivsel og energioptimering.",
@@ -53,7 +53,7 @@ const da: Record<string, ModuleContentOverlay> = {
     heroTitle: "Detektion af vandlækager",
     heroTitleAccent: "der advarer dig, før skaden spreder sig.",
     heroLead:
-      "Detektion af vandlækager handler om én ting: at få beskeden, før et lille læk bliver til en dyr katastrofe. Et sprængt rør i en skakt, et læk i et el-skab eller vand under en vask i en boligforening kan løbe uopdaget i timer eller dage — og når nogen endelig opdager det, er regningen og generne allerede store.",
+      "Detektion af vandlækager handler om én ting: at få beskeden, før et lille læk bliver til en dyr katastrofe. Et sprængt rør i en skakt, et læk i et el-skab eller vand under en vask i en boligforening kan løbe uopdaget i timer eller dage, og når nogen endelig opdager det, er regningen og generne allerede store.",
     challenges: [
       "Læk opdaget for sent: vand når servere, el-installationer eller bygningens konstruktion, før nogen er opmærksom, og en mindre hændelse bliver til en stor.",
       "Alarmer, ingen hører: en traditionel sensor sidder og bipper for sig selv i en kælder eller skakt, hvor der ikke er nogen til at bemærke den.",
@@ -61,7 +61,7 @@ const da: Record<string, ModuleContentOverlay> = {
       "Ingen dokumentation bagefter: når forsikringssamtalen kommer, har du ingen objektiv registrering af, hvornår og hvor det skete.",
     ],
     solution: [
-      "RoomAlyzer sender en advarsel direkte til e-mail eller SMS, når der registreres vand — så du kan handle, før skaden spreder sig. I stedet for en alarm, der bipper i et tomt rum, går beskeden direkte til den rette person, og du kan oprette så mange modtagere, du har brug for, så den altid når nogen, der kan handle.",
+      "RoomAlyzer sender en advarsel direkte til e-mail eller SMS, når der registreres vand, så du kan handle, før skaden spreder sig. I stedet for en alarm, der bipper i et tomt rum, går beskeden direkte til den rette person, og du kan oprette så mange modtagere, du har brug for, så den altid når nogen, der kan handle.",
       "Sensorerne kører på et mobilnetværk, der fungerer uafhængigt af lokalt Wi-Fi og når dybe kældre, skakte og lukkede skabe, og en detaljeret hændelseslog giver dig en objektiv registrering til forsikringen. Det er enkelt, driftsnært og et reelt effektivt tidligt varslingssystem til facility management, drift og boligforeninger.",
     ],
     closing:
@@ -78,8 +78,8 @@ const da: Record<string, ModuleContentOverlay> = {
       "Bevaring kontra energiregninger: at opvarme en historisk bygning for at beskytte dens indhold er dyrt, og uden data kan I ikke finde balancen.",
     ],
     solution: [
-      "RoomAlyzer overvåger temperatur og luftfugtighed og omsætter det til klar dokumentation af de præcise forhold, jeres genstande opbevares i. Vores sensorer er kendt for deres høje præcision — noget konservatorer med rette insisterer på — så I kan stole på de tal, I bevarer jeres samling efter.",
-      "I kan holde øje med enhver form for samling, fra altre og orgler til malerier og montrer, og afveje bevaring mod energiforbrug i stedet for at gætte. En af de reelle styrker her er, at de samme data tjener to roller, der sjældent deler værktøj: konservatorer, der beskytter samlingen, og facility managers, der driver bygningen, arbejder ud fra de samme fakta — hvilket ikke er tilfældigt, da konservatorer har været med til at forme, hvordan det fungerer. Ideel til museer, kirker, arkiver og bevaring af kulturarv.",
+      "RoomAlyzer overvåger temperatur og luftfugtighed og omsætter det til klar dokumentation af de præcise forhold, jeres genstande opbevares i. Vores sensorer er kendt for deres høje præcision (noget konservatorer med rette insisterer på) så I kan stole på de tal, I bevarer jeres samling efter.",
+      "I kan holde øje med enhver form for samling, fra altre og orgler til malerier og montrer, og afveje bevaring mod energiforbrug i stedet for at gætte. En af de reelle styrker her er, at de samme data tjener to roller, der sjældent deler værktøj: konservatorer, der beskytter samlingen, og facility managers, der driver bygningen, arbejder ud fra de samme fakta, hvilket ikke er tilfældigt, da konservatorer har været med til at forme, hvordan det fungerer. Ideel til museer, kirker, arkiver og bevaring af kulturarv.",
     ],
     closing:
       "Klimaovervågning af samlinger er normalt dyr og besværlig at installere. RoomAlyzer er klar på minutter, fleksibel nok til enhver bygning og koster en brøkdel af det forventede.",
@@ -95,7 +95,7 @@ const da: Record<string, ModuleContentOverlay> = {
       "Intet grundlag for samtalen: du kan ikke vise et rengøringsfirma eller en budgetansvarlig, hvor indsatsen reelt skal lægges.",
     ],
     solution: [
-      "RoomAlyzer viser dig, hvilke rum der faktisk er blevet brugt, så rengøringen kan følge reel efterspørgsel i stedet for et fast skema. Gør de travle områder bedre rene, og spring det over, der allerede er rent og urørt — fra kontorer til offentlige toiletter.",
+      "RoomAlyzer viser dig, hvilke rum der faktisk er blevet brugt, så rengøringen kan følge reel efterspørgsel i stedet for et fast skema. Gør de travle områder bedre rene, og spring det over, der allerede er rent og urørt, fra kontorer til offentlige toiletter.",
       "Resultatet er bedre hygiejne dér, hvor det betyder noget, lavere omkostninger og et klart grundlag for planlægning. Bygget til rengøringsteams og facility management deler den sine data direkte med Space management.",
     ],
     closing:
@@ -105,14 +105,14 @@ const da: Record<string, ModuleContentOverlay> = {
     heroTitle: "Brugerfeedback i realtid",
     heroTitleAccent: "der gør problemer til øjeblikkelige servicekald.",
     heroLead:
-      "Brugerfeedback kommer som regel for sent — som en klage, efter at kaffemaskinen har været i stykker hele formiddagen, eller toilettet har manglet papir i timevis. Når du hører om det, er skaden på oplevelsen allerede sket.",
+      "Brugerfeedback kommer som regel for sent, som en klage, efter at kaffemaskinen har været i stykker hele formiddagen, eller toilettet har manglet papir i timevis. Når du hører om det, er skaden på oplevelsen allerede sket.",
     challenges: [
       "Du hører om problemer for sent: en tom sæbedispenser eller en defekt maskine bliver til en klage i stedet for en hurtig løsning.",
       "Ingen direkte linje fra bruger til service: de, der opdager problemet, har ingen nem måde at sige det til dem, der kan løse det.",
       "Bemanding på gætværk: uden feedbackdata kan du ikke se, hvor der reelt er behov for service.",
     ],
     solution: [
-      "RoomAlyzer lader brugerne fortælle dig, når noget kræver opmærksomhed — et enkelt tryk melder en manglende forsyning, en fejl eller et servicebehov, og en automatisk e-mail eller SMS når den ansvarlige med det samme.",
+      "RoomAlyzer lader brugerne fortælle dig, når noget kræver opmærksomhed: et enkelt tryk melder en manglende forsyning, en fejl eller et servicebehov, og en automatisk e-mail eller SMS når den ansvarlige med det samme.",
       "Du reagerer, før problemer bliver til klager, og historikken over alle interaktioner viser dig, hvor behovet reelt er, så bemandingen følger fakta frem for gætværk. Et enkelt, behovsdrevet værktøj til facility management og serviceteams.",
     ],
     closing:
@@ -129,7 +129,7 @@ const da: Record<string, ModuleContentOverlay> = {
       "Ingen brugsmønstre at planlægge ud fra: du har ingen data om, hvordan skabe, kabinetter eller adgangsveje bruges over tid.",
     ],
     solution: [
-      "RoomAlyzer giver dig et realtidsoverblik over, hvilke skabe, vinduer og døre der er åbne eller lukkede, og omsætter det til brugsmønstre, du kan planlægge ud fra. Tildel ledig skabskapacitet effektivt, understøt shared desk- og clean desk-koncepter, og tjek med et enkelt klik uden for åbningstid, om alt er lukket — så du beskytter både bygningen og energiregningen.",
+      "RoomAlyzer giver dig et realtidsoverblik over, hvilke skabe, vinduer og døre der er åbne eller lukkede, og omsætter det til brugsmønstre, du kan planlægge ud fra. Tildel ledig skabskapacitet effektivt, understøt shared desk- og clean desk-koncepter, og tjek med et enkelt klik uden for åbningstid, om alt er lukket, så du beskytter både bygningen og energiregningen.",
       "Relevant for facility management og arbejdspladsplanlægning.",
     ],
     closing:
@@ -142,18 +142,18 @@ const de: Record<string, ModuleContentOverlay> = {
     heroTitle: "Raumklima-Monitoring,",
     heroTitleAccent: "das Beschwerden zu Fakten macht.",
     heroLead:
-      "Raumklima-Monitoring liefert Ihnen die Daten, um eine Frage zu beantworten, die jeder Facility Manager kennt: Ist die Beschwerde berechtigt oder nur ein Gefühl? Einem ist zu warm, einem anderen zu kalt, und am Nachmittag wirkt die Luft stickig — doch ohne Daten zu Temperatur, Luftfeuchtigkeit und CO2 verwalten Sie nur Eindrücke, regeln die Lüftung nach Bauchgefühl und verteidigen Entscheidungen, die Sie nicht belegen können.",
+      "Raumklima-Monitoring liefert Ihnen die Daten, um eine Frage zu beantworten, die jeder Facility Manager kennt: Ist die Beschwerde berechtigt oder nur ein Gefühl? Einem ist zu warm, einem anderen zu kalt, und am Nachmittag wirkt die Luft stickig, doch ohne Daten zu Temperatur, Luftfeuchtigkeit und CO2 verwalten Sie nur Eindrücke, regeln die Lüftung nach Bauchgefühl und verteidigen Entscheidungen, die Sie nicht belegen können.",
     challenges: [
       "Beschwerden, die Sie nicht überprüfen können: Ein Nutzer meldet schlechte Luftqualität, und Sie können nicht bestätigen, ob Handlungsbedarf besteht oder ob es eine Frage der Wahrnehmung ist.",
       "Systeme, die blind laufen: Heizung und Lüftung folgen festen Zeitplänen statt den tatsächlichen Bedingungen, verschwenden Energie, wenn Räume leer sind, und liefern zu wenig, wenn sie voll sind.",
       "Kein Nachweis für das Gespräch: Wenn Geschäftsführung, Mitarbeitende oder Behörden nach dem Raumklima in Ihren Büros oder Schulen fragen, haben Sie nichts Konkretes vorzuweisen.",
     ],
     solution: [
-      "RoomAlyzer misst Temperatur, Luftfeuchtigkeit, CO2 und TVOC kontinuierlich und macht daraus klare Dokumentation — damit Sie jede Beschwerde mit Fakten statt mit Gefühlen beantworten können. Sie sehen genau, wann die CO2-Werte steigen, wann die Feuchtigkeit Schimmel begünstigt und ob ein Raum wirklich Aufmerksamkeit braucht oder nur eine Beruhigung.",
+      "RoomAlyzer misst Temperatur, Luftfeuchtigkeit, CO2 und TVOC kontinuierlich und macht daraus klare Dokumentation, damit Sie jede Beschwerde mit Fakten statt mit Gefühlen beantworten können. Sie sehen genau, wann die CO2-Werte steigen, wann die Feuchtigkeit Schimmel begünstigt und ob ein Raum wirklich Aufmerksamkeit braucht oder nur eine Beruhigung.",
       "Und es zeigt Ihnen mehr als nur die Zahlen: Es warnt Sie, wenn Schimmel zum Risiko wird, und schlägt konkrete Anpassungen vor, damit Sie Heizung und Lüftung an die tatsächliche Nutzung anpassen und die Energiekosten senken können, ohne Komfort einzubüßen. Im Einsatz in Büros, Schulen und Kommunen.",
     ],
     smarterTogether:
-      "In Kombination mit Space-Management kann RoomAlyzer Energieverbrauch und Raumklima an die Zahl der tatsächlich anwesenden Personen anpassen — nebeneinander in einer Ansicht dargestellt.",
+      "In Kombination mit Space-Management kann RoomAlyzer Energieverbrauch und Raumklima an die Zahl der tatsächlich anwesenden Personen anpassen, nebeneinander in einer Ansicht dargestellt.",
     closing:
       "Lösungen wie diese sind normalerweise teuer und mühsam zu installieren. RoomAlyzer ist in Minuten einsatzbereit, bleibt flexibel, wenn sich Ihre Anforderungen ändern, und kostet einen Bruchteil des Preises.",
   },
@@ -169,8 +169,8 @@ const de: Record<string, ModuleContentOverlay> = {
       "Schwer zu rechtfertigende Entscheidungen: Die Flächenverteilung zwischen Abteilungen oder die Planung von Neueinstellungen wird zur Verhandlung auf Basis von Meinungen statt Nutzung.",
     ],
     solution: [
-      "RoomAlyzer Space-Management gibt Ihnen einen live, anonymisierten Überblick über die Belegung von Arbeitsplätzen und Räumen — in Echtzeit und im Zeitverlauf. Sie sehen, welche Arbeitsplätze gerade frei sind, wie Zonen über Tag und Woche genutzt werden, wann die Belegung ihren Höhepunkt erreicht und wo genau Sie freie Kapazität haben.",
-      "Besprechungsräume sind ein eigener Schwerpunkt: Sie sehen, wie sie wirklich genutzt werden — für viele gebucht, von wenigen besucht — und lassen Räume automatisch freigeben, wenn eine Buchung ungenutzt bleibt, sodass ein abgesagtes Meeting keinen tatsächlich freien Raum mehr blockiert. Der integrierte Wirtschaftlichkeitsrechner verwandelt all das in klare Einsparungen bei Miete und Energie, während Heatmaps und Berichte eine objektive Grundlage für faire Entscheidungen liefern. In Dänemark entwickelt und für jeden Anwendertyp einfach gestaltet, ist es relevant für Facility Management, Flächenplaner, den Betrieb und Kommunen.",
+      "RoomAlyzer Space-Management gibt Ihnen einen live, anonymisierten Überblick über die Belegung von Arbeitsplätzen und Räumen, in Echtzeit und im Zeitverlauf. Sie sehen, welche Arbeitsplätze gerade frei sind, wie Zonen über Tag und Woche genutzt werden, wann die Belegung ihren Höhepunkt erreicht und wo genau Sie freie Kapazität haben.",
+      "Besprechungsräume sind ein eigener Schwerpunkt: Sie sehen, wie sie wirklich genutzt werden (für viele gebucht, von wenigen besucht) und lassen Räume automatisch freigeben, wenn eine Buchung ungenutzt bleibt, sodass ein abgesagtes Meeting keinen tatsächlich freien Raum mehr blockiert. Der integrierte Wirtschaftlichkeitsrechner verwandelt all das in klare Einsparungen bei Miete und Energie, während Heatmaps und Berichte eine objektive Grundlage für faire Entscheidungen liefern. In Dänemark entwickelt und für jeden Anwendertyp einfach gestaltet, ist es relevant für Facility Management, Flächenplaner, den Betrieb und Kommunen.",
     ],
     smarterTogether:
       "RoomAlyzer kann Flächennutzung und Raumklima nebeneinander darstellen, sodass Sie Energieverbrauch und Lüftung an die Zahl der tatsächlich anwesenden Personen anpassen können — für die richtige Balance zwischen Wohlbefinden und Energieoptimierung.",
@@ -189,7 +189,7 @@ const de: Record<string, ModuleContentOverlay> = {
       "Keine Dokumentation im Nachhinein: Wenn das Gespräch mit der Versicherung ansteht, haben Sie keinen objektiven Nachweis darüber, wann und wo es passiert ist.",
     ],
     solution: [
-      "RoomAlyzer sendet bei erkanntem Wasser sofort eine Benachrichtigung per E-Mail oder SMS — damit Sie handeln können, bevor sich der Schaden ausbreitet. Statt eines Alarms, der in einem leeren Raum piept, geht die Meldung direkt an die richtige Person, und Sie können so viele Empfänger einrichten, wie Sie brauchen, sodass sie immer jemanden erreicht, der handeln kann.",
+      "RoomAlyzer sendet bei erkanntem Wasser sofort eine Benachrichtigung per E-Mail oder SMS, damit Sie handeln können, bevor sich der Schaden ausbreitet. Statt eines Alarms, der in einem leeren Raum piept, geht die Meldung direkt an die richtige Person, und Sie können so viele Empfänger einrichten, wie Sie brauchen, sodass sie immer jemanden erreicht, der handeln kann.",
       "Die Sensoren laufen über ein Mobilfunknetz, das unabhängig vom lokalen WLAN funktioniert und tiefe Keller, Schächte und geschlossene Schränke erreicht, und ein detailliertes Ereignisprotokoll liefert Ihnen einen objektiven Nachweis für die Versicherung. Es ist einfach, praxisnah und ein wirklich wirksames Frühwarnsystem für Facility Management, den Betrieb und Wohnungsgenossenschaften.",
     ],
     closing:
@@ -206,7 +206,7 @@ const de: Record<string, ModuleContentOverlay> = {
       "Konservierung versus Energiekosten: ein historisches Gebäude zu beheizen, um seinen Inhalt zu schützen, ist teuer, und ohne Daten finden Sie die Balance nicht.",
     ],
     solution: [
-      "RoomAlyzer überwacht Temperatur und Luftfeuchtigkeit und macht daraus eine klare Dokumentation der genauen Bedingungen, in denen Ihre Objekte aufbewahrt werden. Unsere Sensoren sind für ihre hohe Präzision bekannt — worauf Restauratoren zu Recht bestehen — sodass Sie den Werten vertrauen können, nach denen Sie Ihre Sammlung bewahren.",
+      "RoomAlyzer überwacht Temperatur und Luftfeuchtigkeit und macht daraus eine klare Dokumentation der genauen Bedingungen, in denen Ihre Objekte aufbewahrt werden. Unsere Sensoren sind für ihre hohe Präzision bekannt (worauf Restauratoren zu Recht bestehen) sodass Sie den Werten vertrauen können, nach denen Sie Ihre Sammlung bewahren.",
       "Sie können jede Art von Sammlung überwachen, von Altären und Orgeln bis zu Gemälden und Vitrinen, und Konservierung gegen Energieverbrauch abwägen, statt zu raten. Eine der echten Stärken hier ist, dass dieselben Daten zwei Rollen dienen, die sich selten ein Werkzeug teilen: Restauratoren, die die Sammlung schützen, und Facility Manager, die das Gebäude betreiben, arbeiten mit denselben Fakten — was kein Zufall ist, denn Restauratoren haben mitgestaltet, wie das funktioniert. Ideal für Museen, Kirchen, Archive und die Denkmalpflege.",
     ],
     closing:
@@ -270,14 +270,14 @@ const sv: Record<string, ModuleContentOverlay> = {
     heroTitle: "Inomhusklimatövervakning",
     heroTitleAccent: "som gör klagomål till fakta.",
     heroLead:
-      "Inomhusklimatövervakning ger dig data för att besvara en fråga som varje facility manager känner till: är klagomålet verkligt eller bara en känsla? Någon är för varm, någon annan för kall, och luften känns tung mitt på eftermiddagen — men utan data om temperatur, fukt och CO2 styr du på intryck, justerar ventilationen på gissningar och försvarar beslut du inte kan belägga.",
+      "Inomhusklimatövervakning ger dig data för att besvara en fråga som varje facility manager känner till: är klagomålet verkligt eller bara en känsla? Någon är för varm, någon annan för kall, och luften känns tung mitt på eftermiddagen, men utan data om temperatur, fukt och CO2 styr du på intryck, justerar ventilationen på gissningar och försvarar beslut du inte kan belägga.",
     challenges: [
       "Klagomål du inte kan verifiera: en användare rapporterar dålig luftkvalitet, och du har inget sätt att bekräfta om åtgärder behövs eller om det handlar om upplevelse.",
       "System som kör i blindo: värme och ventilation följer fasta scheman i stället för faktiska förhållanden, slösar energi när rum är tomma och underpresterar när de är fulla.",
       "Inget underlag för samtalet: när ledning, medarbetare eller myndigheter frågar om inomhusklimatet på era kontor eller skolor har du inget konkret att visa.",
     ],
     solution: [
-      "RoomAlyzer mäter temperatur, fukt, CO2 och TVOC kontinuerligt och omvandlar det till tydlig dokumentation — så att du kan bemöta varje klagomål med fakta i stället för känslor. Du ser exakt när CO2-nivåerna stiger, när fukten bjuder in till mögel och om ett rum verkligen behöver åtgärdas eller bara en lugnande förklaring.",
+      "RoomAlyzer mäter temperatur, fukt, CO2 och TVOC kontinuerligt och omvandlar det till tydlig dokumentation, så att du kan bemöta varje klagomål med fakta i stället för känslor. Du ser exakt när CO2-nivåerna stiger, när fukten bjuder in till mögel och om ett rum verkligen behöver åtgärdas eller bara en lugnande förklaring.",
       "Och det gör mer än att visa siffrorna: det varnar dig när mögel blir en risk och föreslår konkreta justeringar, så att du kan anpassa värme och ventilation efter den faktiska användningen och sänka energikostnaderna utan att förlora komfort. Används på kontor, i skolor och i kommuner.",
     ],
     smarterTogether:
@@ -297,8 +297,8 @@ const sv: Record<string, ModuleContentOverlay> = {
       "Beslut som är svåra att försvara: att fördela ytor mellan avdelningar eller planera nyanställningar blir en förhandling baserad på åsikter snarare än användning.",
     ],
     solution: [
-      "RoomAlyzer Space management ger er en live, anonymiserad överblick över beläggningen av skrivbord och rum — i realtid och över tid. Ni ser vilka skrivbord som är lediga just nu, hur zoner används under dagen och veckan, när beläggningen toppar och exakt var ni har ledig kapacitet.",
-      "Mötesrum är ett fokus i sig: ni kan se hur de verkligen används — bokade för många, använda av få — och låta rum frigöras automatiskt när en bokning inte används, så att ett inställt möte inte längre blockerar ett rum som faktiskt är ledigt. Den inbyggda ekonomikalkylatorn omvandlar allt detta till tydliga besparingar på hyra och energi, medan heatmaps och rapporter ger er ett objektivt underlag för rättvisa beslut. Utvecklad i Danmark och byggd för att vara enkel för alla typer av användare är den relevant för facility management, ytplanerare, drift och kommuner.",
+      "RoomAlyzer Space management ger er en live, anonymiserad överblick över beläggningen av skrivbord och rum, i realtid och över tid. Ni ser vilka skrivbord som är lediga just nu, hur zoner används under dagen och veckan, när beläggningen toppar och exakt var ni har ledig kapacitet.",
+      "Mötesrum är ett fokus i sig: ni kan se hur de verkligen används (bokade för många, använda av få) och låta rum frigöras automatiskt när en bokning inte används, så att ett inställt möte inte längre blockerar ett rum som faktiskt är ledigt. Den inbyggda ekonomikalkylatorn omvandlar allt detta till tydliga besparingar på hyra och energi, medan heatmaps och rapporter ger er ett objektivt underlag för rättvisa beslut. Utvecklad i Danmark och byggd för att vara enkel för alla typer av användare är den relevant för facility management, ytplanerare, drift och kommuner.",
     ],
     smarterTogether:
       "RoomAlyzer kan visa ytanvändning och inomhusklimat sida vid sida, så att ni kan anpassa energianvändning och ventilation efter antalet personer som faktiskt är på plats — och hitta rätt balans mellan välbefinnande och energioptimering.",
@@ -317,7 +317,7 @@ const sv: Record<string, ModuleContentOverlay> = {
       "Ingen dokumentation i efterhand: när försäkringssamtalet kommer har du ingen objektiv registrering av när och var det hände.",
     ],
     solution: [
-      "RoomAlyzer skickar en varning direkt till e-post eller SMS när vatten upptäcks — så att du kan agera innan skadan sprider sig. I stället för ett larm som piper i ett tomt rum går meddelandet direkt till rätt person, och du kan lägga upp så många mottagare du behöver, så att det alltid når någon som kan agera.",
+      "RoomAlyzer skickar en varning direkt till e-post eller SMS när vatten upptäcks, så att du kan agera innan skadan sprider sig. I stället för ett larm som piper i ett tomt rum går meddelandet direkt till rätt person, och du kan lägga upp så många mottagare du behöver, så att det alltid når någon som kan agera.",
       "Sensorerna körs på ett mobilnät som fungerar oberoende av lokalt wifi och når djupa källare, schakt och stängda skåp, och en detaljerad händelselogg ger dig en objektiv registrering för försäkringen. Det är enkelt, driftsnära och ett verkligt effektivt tidigt varningssystem för facility management, drift och bostadsrättsföreningar.",
     ],
     closing:
@@ -334,7 +334,7 @@ const sv: Record<string, ModuleContentOverlay> = {
       "Bevarande kontra energiräkningar: att värma upp en historisk byggnad för att skydda dess innehåll är dyrt, och utan data kan ni inte hitta balansen.",
     ],
     solution: [
-      "RoomAlyzer övervakar temperatur och luftfuktighet och omvandlar det till tydlig dokumentation av de exakta förhållanden era föremål förvaras i. Våra sensorer är kända för sin höga precision — något konservatorer med rätta insisterar på — så att ni kan lita på de siffror ni bevarar er samling efter.",
+      "RoomAlyzer övervakar temperatur och luftfuktighet och omvandlar det till tydlig dokumentation av de exakta förhållanden era föremål förvaras i. Våra sensorer är kända för sin höga precision (något konservatorer med rätta insisterar på) så att ni kan lita på de siffror ni bevarar er samling efter.",
       "Ni kan hålla koll på alla slags samlingar, från altaren och orglar till målningar och montrar, och väga bevarande mot energianvändning i stället för att gissa. En av de verkliga styrkorna här är att samma data tjänar två roller som sällan delar verktyg: konservatorer som skyddar samlingen och facility managers som driver byggnaden, som arbetar utifrån samma fakta — vilket inte är en slump, eftersom konservatorer har varit med och format hur det fungerar. Idealisk för museer, kyrkor, arkiv och kulturarvsvård.",
     ],
     closing:
@@ -385,7 +385,7 @@ const sv: Record<string, ModuleContentOverlay> = {
       "Inga användningsmönster att planera utifrån: du har ingen data om hur skåp, kabinett eller passagevägar används över tid.",
     ],
     solution: [
-      "RoomAlyzer ger dig en realtidsöverblick över vilka skåp, fönster och dörrar som är öppna eller stängda och omvandlar det till användningsmönster du kan planera utifrån. Tilldela ledig skåpkapacitet effektivt, stöd shared desk- och clean desk-koncept och kontrollera med ett enda klick efter stängning om allt är stängt — så att du skyddar både byggnaden och energiräkningen.",
+      "RoomAlyzer ger dig en realtidsöverblick över vilka skåp, fönster och dörrar som är öppna eller stängda och omvandlar det till användningsmönster du kan planera utifrån. Tilldela ledig skåpkapacitet effektivt, stöd shared desk- och clean desk-koncept och kontrollera med ett enda klick efter stängning om allt är stängt, så att du skyddar både byggnaden och energiräkningen.",
       "Relevant för facility management och arbetsplatsplanering.",
     ],
     closing:

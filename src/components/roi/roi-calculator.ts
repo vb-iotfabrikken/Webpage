@@ -332,7 +332,7 @@ function initCalculator(root: HTMLElement) {
       console.error("[ROI] PDF generation failed", err);
       if (emailError) {
         emailError.textContent =
-          "Sorry — we couldn't build the PDF. Open the browser console for details.";
+          "Sorry, we couldn't build the PDF. Open the browser console for details.";
         emailError.classList.remove("hidden");
       }
     }
@@ -668,7 +668,7 @@ function initCalculator(root: HTMLElement) {
         const li = document.createElement("li");
         li.className = "text-stone-300";
         li.textContent =
-          "Peak attendance matches your desk count — lower the attendance slider to free up space.";
+          "Peak attendance matches your desk count. Lower the attendance slider to free up space.";
         heatmapSuggestions.appendChild(li);
       }
     }

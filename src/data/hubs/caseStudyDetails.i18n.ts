@@ -30,7 +30,7 @@ const da: Record<string, CaseDetailOverlay> = {
     },
   },
   "dansk-industri": {
-    titleAccent: "Space management med sensorer frigav 650 kvadratmeter — og det gør en forskel på bundlinjen.",
+    titleAccent: "Space management med sensorer frigav 650 kvadratmeter, og det gør en forskel på bundlinjen.",
     intro: [
       "Jimmy Holk har været på en lang rejse med indretning af arbejdspladser. At måle skriveborde og mødelokaler med sensorer har givet dokumentationen til at skære mange kvadratmeter væk.",
     ],
@@ -46,7 +46,7 @@ const da: Record<string, CaseDetailOverlay> = {
     ],
     quote: {
       heading: "Hvad siger Gribskov Kommune?",
-      body: "Koncernledelsen var ekstremt begejstret for de data, vi kan levere til at kvalificere deres beslutningsgrundlag for flere forskellige beslutninger. Tilbagemeldingen er, at de nu kan komme videre fra holdninger og antagelser. Derudover var de meget overraskede over, hvor lidt vi faktisk bruger vores skriveborde — og den ineffektive brug af mødelokaler (få deltagere i store mødelokaler). Det gav dem virkelig noget at tænke over.",
+      body: "Koncernledelsen var ekstremt begejstret for de data, vi kan levere til at kvalificere deres beslutningsgrundlag for flere forskellige beslutninger. Tilbagemeldingen er, at de nu kan komme videre fra holdninger og antagelser. Derudover var de meget overraskede over, hvor lidt vi faktisk bruger vores skriveborde, og den ineffektive brug af mødelokaler (få deltagere i store mødelokaler). Det gav dem virkelig noget at tænke over.",
     },
   },
   "gribskov-kommune": {
@@ -58,11 +58,11 @@ const da: Record<string, CaseDetailOverlay> = {
   "archdiocese-of-freiburg": {
     titleAccent: "Bevidstgør frivillige gennem datadreven forståelse af indeklimaet.",
     intro: [
-      "Sensorløsningen muliggør kontinuerlig måling af temperatur og luftfugtighed i kirkerum. Klimarisici kan opdages tidligt, og bevidstheden blandt frivillige styrkes — på en platform skræddersyet til kirkernes behov.",
+      "Sensorløsningen muliggør kontinuerlig måling af temperatur og luftfugtighed i kirkerum. Klimarisici kan opdages tidligt, og bevidstheden blandt frivillige styrkes, på en platform skræddersyet til kirkernes behov.",
     ],
     quote: {
       heading: "Hvad siger Erzdiözese Freiburg?",
-      body: "Mennesker har ikke en pålidelig fornemmelse af relativ luftfugtighed — alligevel spiller den en afgørende rolle for indeklimaet i vores kirker. Derfor måler vi med sensorer. Kontinuerlig registrering af temperatur og luftfugtighed hjælper os med at forstå forholdene på stedet præcist. Dataene hjælper os med at bevidstgøre frivillige om emnet og reagere i tide på mulige risici for bygninger og inventar. Det er en stor fordel for vores arbejde. Vi valgte IoT Fabrikken, fordi de tilbyder en meget overskuelig platform og er fleksible omkring vores behov — hvilket passer godt i en kirkelig sammenhæng.",
+      body: "Mennesker har ikke en pålidelig fornemmelse af relativ luftfugtighed, alligevel spiller den en afgørende rolle for indeklimaet i vores kirker. Derfor måler vi med sensorer. Kontinuerlig registrering af temperatur og luftfugtighed hjælper os med at forstå forholdene på stedet præcist. Dataene hjælper os med at bevidstgøre frivillige om emnet og reagere i tide på mulige risici for bygninger og inventar. Det er en stor fordel for vores arbejde. Vi valgte IoT Fabrikken, fordi de tilbyder en meget overskuelig platform og er fleksible omkring vores behov, hvilket passer godt i en kirkelig sammenhæng.",
       attribution: "Claudia Dambacher, rådgiver, Kirkebeskyttelse",
     },
   },
@@ -173,7 +173,7 @@ const de: Record<string, CaseDetailOverlay> = {
     },
   },
   "dansk-industri": {
-    titleAccent: "Space-Management mit Sensoren machte 650 Quadratmeter frei — und das macht sich in der Bilanz bemerkbar.",
+    titleAccent: "Space-Management mit Sensoren machte 650 Quadratmeter frei, und das macht sich in der Bilanz bemerkbar.",
     intro: [
       "Jimmy Holk hat eine lange Reise mit der Arbeitsplatzgestaltung hinter sich. Das Messen von Arbeitsplätzen und Besprechungsräumen mit Sensoren lieferte die Dokumentation, um viele Quadratmeter einzusparen.",
     ],
@@ -189,7 +189,7 @@ const de: Record<string, CaseDetailOverlay> = {
     ],
     quote: {
       heading: "Was sagt die Gemeinde Gribskov?",
-      body: "Die Konzernleitung war äußerst begeistert von den Daten, die wir liefern können, um ihre Entscheidungsgrundlage für mehrere verschiedene Entscheidungen zu untermauern. Die Rückmeldung ist, dass sie nun von Meinungen und Annahmen wegkommen können. Außerdem waren sie sehr überrascht, wie wenig wir unsere Arbeitsplätze tatsächlich nutzen — und über die ineffiziente Nutzung von Besprechungsräumen (wenige Teilnehmende in großen Besprechungsräumen). Das gab ihnen wirklich zu denken.",
+      body: "Die Konzernleitung war äußerst begeistert von den Daten, die wir liefern können, um ihre Entscheidungsgrundlage für mehrere verschiedene Entscheidungen zu untermauern. Die Rückmeldung ist, dass sie nun von Meinungen und Annahmen wegkommen können. Außerdem waren sie sehr überrascht, wie wenig wir unsere Arbeitsplätze tatsächlich nutzen, und über die ineffiziente Nutzung von Besprechungsräumen (wenige Teilnehmende in großen Besprechungsräumen). Das gab ihnen wirklich zu denken.",
     },
   },
   "gribskov-kommune": {
@@ -201,11 +201,11 @@ const de: Record<string, CaseDetailOverlay> = {
   "archdiocese-of-freiburg": {
     titleAccent: "Sensibilisiert Ehrenamtliche durch datenbasiertes Verständnis des Raumklimas.",
     intro: [
-      "Die Sensorlösung ermöglicht die kontinuierliche Messung von Temperatur und Luftfeuchtigkeit in Kirchenräumen. Klimarisiken lassen sich früh erkennen und das Bewusstsein bei Ehrenamtlichen stärken — auf einer Plattform, die auf die Anforderungen von Kirchen zugeschnitten ist.",
+      "Die Sensorlösung ermöglicht die kontinuierliche Messung von Temperatur und Luftfeuchtigkeit in Kirchenräumen. Klimarisiken lassen sich früh erkennen und das Bewusstsein bei Ehrenamtlichen stärken, auf einer Plattform, die auf die Anforderungen von Kirchen zugeschnitten ist.",
     ],
     quote: {
       heading: "Was sagt die Erzdiözese Freiburg?",
-      body: "Menschen haben kein verlässliches Gespür für die relative Luftfeuchtigkeit — dabei spielt sie für das Raumklima in unseren Kirchen eine entscheidende Rolle. Deshalb messen wir mit Sensoren. Die kontinuierliche Erfassung von Temperatur und Luftfeuchtigkeit hilft uns, die Bedingungen vor Ort genau zu verstehen. Die Daten helfen uns, Ehrenamtliche für das Thema zu sensibilisieren und rechtzeitig auf mögliche Risiken für Gebäude und Ausstattung zu reagieren. Das ist ein großer Vorteil für unsere Arbeit. Wir haben uns für IoT Fabrikken entschieden, weil sie eine sehr übersichtliche Plattform bieten und flexibel auf unsere Bedürfnisse eingehen — was in einem kirchlichen Kontext gut passt.",
+      body: "Menschen haben kein verlässliches Gespür für die relative Luftfeuchtigkeit, dabei spielt sie für das Raumklima in unseren Kirchen eine entscheidende Rolle. Deshalb messen wir mit Sensoren. Die kontinuierliche Erfassung von Temperatur und Luftfeuchtigkeit hilft uns, die Bedingungen vor Ort genau zu verstehen. Die Daten helfen uns, Ehrenamtliche für das Thema zu sensibilisieren und rechtzeitig auf mögliche Risiken für Gebäude und Ausstattung zu reagieren. Das ist ein großer Vorteil für unsere Arbeit. Wir haben uns für IoT Fabrikken entschieden, weil sie eine sehr übersichtliche Plattform bieten und flexibel auf unsere Bedürfnisse eingehen, was in einem kirchlichen Kontext gut passt.",
       attribution: "Claudia Dambacher, Referentin, Kirchenschutz",
     },
   },
@@ -316,7 +316,7 @@ const sv: Record<string, CaseDetailOverlay> = {
     },
   },
   "dansk-industri": {
-    titleAccent: "Space management med sensorer frigjorde 650 kvadratmeter — och det gör skillnad på sista raden.",
+    titleAccent: "Space management med sensorer frigjorde 650 kvadratmeter, och det gör skillnad på sista raden.",
     intro: [
       "Jimmy Holk har gjort en lång resa med arbetsplatsutformning. Att mäta skrivbord och mötesrum med sensorer har gett dokumentationen för att skära bort många kvadratmeter.",
     ],
@@ -332,7 +332,7 @@ const sv: Record<string, CaseDetailOverlay> = {
     ],
     quote: {
       heading: "Vad säger Gribskov kommun?",
-      body: "Koncernledningen var oerhört entusiastisk över de data vi kan leverera för att kvalificera deras beslutsunderlag för flera olika beslut. Återkopplingen är att de nu kan gå vidare från åsikter och antaganden. Dessutom blev de mycket förvånade över hur lite vi faktiskt använder våra skrivbord — och den ineffektiva användningen av mötesrum (få deltagare i stora mötesrum). Det gav dem verkligen något att tänka på.",
+      body: "Koncernledningen var oerhört entusiastisk över de data vi kan leverera för att kvalificera deras beslutsunderlag för flera olika beslut. Återkopplingen är att de nu kan gå vidare från åsikter och antaganden. Dessutom blev de mycket förvånade över hur lite vi faktiskt använder våra skrivbord, och den ineffektiva användningen av mötesrum (få deltagare i stora mötesrum). Det gav dem verkligen något att tänka på.",
     },
   },
   "gribskov-kommune": {
@@ -344,11 +344,11 @@ const sv: Record<string, CaseDetailOverlay> = {
   "archdiocese-of-freiburg": {
     titleAccent: "Medvetandegör volontärer genom datadriven förståelse av inomhusklimatet.",
     intro: [
-      "Sensorlösningen möjliggör kontinuerlig mätning av temperatur och luftfuktighet i kyrkorum. Klimatrisker kan upptäckas tidigt och medvetenheten bland volontärer stärkas — på en plattform anpassad efter kyrkornas behov.",
+      "Sensorlösningen möjliggör kontinuerlig mätning av temperatur och luftfuktighet i kyrkorum. Klimatrisker kan upptäckas tidigt och medvetenheten bland volontärer stärkas, på en plattform anpassad efter kyrkornas behov.",
     ],
     quote: {
       heading: "Vad säger Erzdiözese Freiburg?",
-      body: "Människor har ingen tillförlitlig känsla för relativ luftfuktighet — ändå spelar den en avgörande roll för inomhusklimatet i våra kyrkor. Därför mäter vi med sensorer. Kontinuerlig registrering av temperatur och luftfuktighet hjälper oss att förstå förhållandena på plats exakt. Datan hjälper oss att medvetandegöra volontärer om ämnet och reagera i tid på möjliga risker för byggnader och inventarier. Det är en stor fördel för vårt arbete. Vi valde IoT Fabrikken eftersom de erbjuder en mycket överskådlig plattform och är flexibla kring våra behov — vilket passar bra i ett kyrkligt sammanhang.",
+      body: "Människor har ingen tillförlitlig känsla för relativ luftfuktighet, ändå spelar den en avgörande roll för inomhusklimatet i våra kyrkor. Därför mäter vi med sensorer. Kontinuerlig registrering av temperatur och luftfuktighet hjälper oss att förstå förhållandena på plats exakt. Datan hjälper oss att medvetandegöra volontärer om ämnet och reagera i tid på möjliga risker för byggnader och inventarier. Det är en stor fördel för vårt arbete. Vi valde IoT Fabrikken eftersom de erbjuder en mycket överskådlig plattform och är flexibla kring våra behov, vilket passar bra i ett kyrkligt sammanhang.",
       attribution: "Claudia Dambacher, rådgivare, Kyrkoskydd",
     },
   },
