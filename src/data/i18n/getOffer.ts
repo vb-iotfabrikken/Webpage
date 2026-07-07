@@ -56,7 +56,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     heroTitle: "Get an offer.",
     heroTitleAccent: "We'll be in touch.",
     heroLead:
-      "We'll get in touch as soon as we've seen your enquiry, and we're always happy to drop by, either in person or online.",
+      "We'll get back to you within one business day, and we're always happy to drop by, either in person or online.",
     contactNote: "",
     bullets: [
       "A tailored offer built around your case",
@@ -66,7 +66,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     form: {
       eyebrow: "Request a quote",
       title: "Tell us what you need",
-      subtitle: "Fill out the form and we'll get back to you with a tailored offer.",
+      subtitle: "Fill out the form and we'll get back to you within one business day with a tailored offer.",
       firstName: "First name",
       lastName: "Last name",
       phone: "Telephone",
@@ -86,7 +86,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       submit: "Get an offer",
       sending: "Sending…",
       successTitle: "Thanks, we've got it.",
-      successBody: "We'll be in touch as soon as we've reviewed your enquiry.",
+      successBody: "We'll be in touch within one business day.",
       emailError: "Please enter a valid work email address.",
       optional: "optional",
       requiredLegend: "Required",
@@ -113,7 +113,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     heroTitle: "Få et tilbud.",
     heroTitleAccent: "Vi vender tilbage.",
     heroLead:
-      "Vi vender tilbage, så snart vi har set din henvendelse, og vi kommer altid gerne forbi, enten fysisk eller online.",
+      "Vi vender tilbage inden for én hverdag, og vi kommer altid gerne forbi, enten fysisk eller online.",
     contactNote: "",
     bullets: [
       "Et skræddersyet tilbud bygget om din case",
@@ -123,7 +123,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     form: {
       eyebrow: "Anmod om tilbud",
       title: "Fortæl os, hvad du har brug for",
-      subtitle: "Udfyld formularen, så vender vi tilbage med et skræddersyet tilbud.",
+      subtitle: "Udfyld formularen, så vender vi tilbage inden for én hverdag med et skræddersyet tilbud.",
       firstName: "Fornavn",
       lastName: "Efternavn",
       phone: "Telefon",
@@ -143,7 +143,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       submit: "Få et tilbud",
       sending: "Sender…",
       successTitle: "Tak, vi har modtaget din henvendelse.",
-      successBody: "Vi vender tilbage, så snart vi har gennemgået din forespørgsel.",
+      successBody: "Vi vender tilbage inden for én hverdag.",
       emailError: "Indtast en gyldig arbejdsmail.",
       optional: "valgfrit",
       requiredLegend: "Påkrævet",
@@ -170,7 +170,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     heroTitle: "Angebot anfordern.",
     heroTitleAccent: "Wir melden uns.",
     heroLead:
-      "Wir melden uns, sobald wir Ihre Anfrage gesehen haben, und kommen gern vorbei, persönlich oder online.",
+      "Wir melden uns innerhalb eines Werktags und kommen gern vorbei, persönlich oder online.",
     contactNote: "",
     bullets: [
       "Ein auf Ihren Anwendungsfall zugeschnittenes Angebot",
@@ -180,7 +180,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     form: {
       eyebrow: "Angebot anfragen",
       title: "Sagen Sie uns, was Sie brauchen",
-      subtitle: "Füllen Sie das Formular aus und wir melden uns mit einem passenden Angebot.",
+      subtitle: "Füllen Sie das Formular aus und wir melden uns innerhalb eines Werktags mit einem passenden Angebot.",
       firstName: "Vorname",
       lastName: "Nachname",
       phone: "Telefon",
@@ -200,7 +200,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       submit: "Angebot anfordern",
       sending: "Wird gesendet…",
       successTitle: "Danke, wir haben Ihre Anfrage erhalten.",
-      successBody: "Wir melden uns, sobald wir Ihre Anfrage geprüft haben.",
+      successBody: "Wir melden uns innerhalb eines Werktags.",
       emailError: "Bitte geben Sie eine gültige geschäftliche E-Mail-Adresse ein.",
       optional: "optional",
       requiredLegend: "Pflichtfeld",
@@ -230,7 +230,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     heroTitle: "Få en offert.",
     heroTitleAccent: "Vi hör av oss.",
     heroLead:
-      "Vi hör av oss så snart vi har sett din förfrågan, och kommer gärna förbi, antingen på plats eller online.",
+      "Vi återkommer inom en arbetsdag, och kommer gärna förbi, antingen på plats eller online.",
     contactNote: "",
     bullets: [
       "En skräddarsydd offert byggd kring ditt case",
@@ -240,7 +240,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
     form: {
       eyebrow: "Begär offert",
       title: "Berätta vad du behöver",
-      subtitle: "Fyll i formuläret så återkommer vi med en skräddarsydd offert.",
+      subtitle: "Fyll i formuläret så återkommer vi inom en arbetsdag med en skräddarsydd offert.",
       firstName: "Förnamn",
       lastName: "Efternamn",
       phone: "Telefon",
@@ -260,7 +260,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       submit: "Få en offert",
       sending: "Skickar…",
       successTitle: "Tack, vi har tagit emot din förfrågan.",
-      successBody: "Vi hör av oss så snart vi har gått igenom din förfrågan.",
+      successBody: "Vi hör av oss inom en arbetsdag.",
       emailError: "Ange en giltig jobbmejladress.",
       optional: "valfritt",
       requiredLegend: "Obligatoriskt",

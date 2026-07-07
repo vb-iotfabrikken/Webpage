@@ -135,7 +135,7 @@ const en: ModulePageStrings = {
   ],
   ctaTitle: "Want to see it for yourself?",
   ctaSubtitle:
-    "Book a 30-minute demo. RoomAlyzer installs in minutes, adapts as your building changes, and costs a fraction of the usual price.",
+    "Book a demo. RoomAlyzer installs in minutes, adapts as your building changes, and costs a fraction of the usual price.",
   ctaMicrocopy: "Wireless sensors · no wiring per locker",
 };
 
@@ -272,7 +272,7 @@ const da: ModulePageStrings = {
   ],
   ctaTitle: "Vil du selv se det?",
   ctaSubtitle:
-    "Book en demo på 30 minutter. RoomAlyzer installeres på minutter, tilpasser sig, når bygningen ændrer sig, og koster en brøkdel af det sædvanlige.",
+    "Book en demo. RoomAlyzer installeres på minutter, tilpasser sig, når bygningen ændrer sig, og koster en brøkdel af det sædvanlige.",
   ctaMicrocopy: "Trådløse sensorer · ingen kabling pr. skab",
 };
 
@@ -409,7 +409,7 @@ const de: ModulePageStrings = {
   ],
   ctaTitle: "Möchten Sie es selbst sehen?",
   ctaSubtitle:
-    "Buchen Sie eine 30-minütige Demo. RoomAlyzer ist in Minuten installiert, passt sich an, wenn sich Ihr Gebäude verändert, und kostet einen Bruchteil des Üblichen.",
+    "Buchen Sie eine Demo. RoomAlyzer ist in Minuten installiert, passt sich an, wenn sich Ihr Gebäude verändert, und kostet einen Bruchteil des Üblichen.",
   ctaMicrocopy: "Drahtlose Sensoren · keine Verkabelung pro Schließfach",
 };
 
@@ -546,7 +546,7 @@ const sv: ModulePageStrings = {
   ],
   ctaTitle: "Vill du se det själv?",
   ctaSubtitle:
-    "Boka en 30-minuters demo. RoomAlyzer installeras på minuter, anpassar sig när byggnaden förändras och kostar en bråkdel av det vanliga.",
+    "Boka en demo. RoomAlyzer installeras på minuter, anpassar sig när byggnaden förändras och kostar en bråkdel av det vanliga.",
   ctaMicrocopy: "Trådlösa sensorer · ingen kabeldragning per skåp",
 };
 

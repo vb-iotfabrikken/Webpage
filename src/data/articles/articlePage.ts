@@ -84,7 +84,7 @@ const PLACEHOLDER_BY_GROUP: Record<string, PlaceholderTemplate> = {
     faq: [
       { q: "How many sensors do we need?", a: "It depends on room count and layout. We are happy to draw up a plan with you, book a demo and we will walk through your buildings." },
       { q: "When will the full article be published?", a: "This topic is on our knowledge-base roadmap. The sections below outline the subject; contact us if you need guidance before the full guide is ready." },
-      { q: "Can we see RoomAlyzer live for this use case?", a: "Yes. Book a free 30-minute demo and we will show the platform with examples relevant to your buildings." },
+      { q: "Can we see RoomAlyzer live for this use case?", a: "Yes. Book a free demo and we will show the platform with examples relevant to your buildings." },
     ],
   },
   preservation: {
@@ -147,7 +147,7 @@ const PLACEHOLDER_BY_GROUP: Record<string, PlaceholderTemplate> = {
       { title: "Platform", unit: "RoomAlyzer", body: "One login for every building, sensor and stakeholder role." },
     ],
     faq: [
-      { q: "How do we get started?", a: "Book a free 30-minute demo. We will walk through your case and give a concrete price estimate." },
+      { q: "How do we get started?", a: "Book a free demo. We will walk through your case and give a concrete price estimate." },
       { q: "When will the full article be published?", a: "This topic is on our knowledge-base roadmap. Contact us if you need guidance before the full guide is ready." },
       { q: "Is RoomAlyzer right for our building type?", a: "We have rolled out in schools, offices, churches, hospitals and more. Tell us about your buildings and we will show relevant examples." },
     ],

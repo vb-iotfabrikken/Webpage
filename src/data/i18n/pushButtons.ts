@@ -138,7 +138,7 @@ const en: ModulePageStrings = {
   ],
   ctaTitle: "Want to see it for yourself?",
   ctaSubtitle:
-    "Book a 30-minute demo. We will show the platform, walk through your case and give you a price estimate.",
+    "Book a demo. We will show the platform, walk through your case and give you a price estimate.",
   ctaMicrocopy: "Ready in seconds · place anywhere",
 };
 
@@ -278,7 +278,7 @@ const da: ModulePageStrings = {
   ],
   ctaTitle: "Vil du se det selv?",
   ctaSubtitle:
-    "Book en 30-minutters demo. Vi viser platformen, går jeres case igennem og giver et prisestimat.",
+    "Book en demo. Vi viser platformen, går jeres case igennem og giver et prisestimat.",
   ctaMicrocopy: "Klar på sekunder · placer overalt",
 };
 
@@ -418,7 +418,7 @@ const de: ModulePageStrings = {
   ],
   ctaTitle: "Möchten Sie es selbst sehen?",
   ctaSubtitle:
-    "Buchen Sie eine 30-minütige Demo. Wir zeigen die Plattform, gehen Ihren Fall durch und erstellen eine Preisschätzung.",
+    "Buchen Sie eine Demo. Wir zeigen die Plattform, gehen Ihren Fall durch und erstellen eine Preisschätzung.",
   ctaMicrocopy: "In Sekunden einsatzbereit · überall platzierbar",
 };
 
@@ -558,7 +558,7 @@ const sv: ModulePageStrings = {
   ],
   ctaTitle: "Vill du se det själv?",
   ctaSubtitle:
-    "Boka en 30-minuters demo. Vi visar plattformen, går igenom ert fall och ger en prisuppskattning.",
+    "Boka en demo. Vi visar plattformen, går igenom ert fall och ger en prisuppskattning.",
   ctaMicrocopy: "Redo på sekunder · placera överallt",
 };
 

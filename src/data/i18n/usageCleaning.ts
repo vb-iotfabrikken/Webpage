@@ -139,7 +139,7 @@ const en: ModulePageStrings = {
   ],
   ctaTitle: "Want to see it for yourself?",
   ctaSubtitle:
-    "Book a 30-minute demo. RoomAlyzer installs in minutes, flexes to fit your building, and costs a fraction of the usual price.",
+    "Book a demo. RoomAlyzer installs in minutes, flexes to fit your building, and costs a fraction of the usual price.",
   ctaMicrocopy: "Demand-based cleaning · shares data with Space management",
 };
 
@@ -280,7 +280,7 @@ const da: ModulePageStrings = {
   ],
   ctaTitle: "Vil du selv se det?",
   ctaSubtitle:
-    "Book en demo på 30 minutter. RoomAlyzer installeres på minutter, tilpasser sig jeres bygning og koster en brøkdel af det sædvanlige.",
+    "Book en demo. RoomAlyzer installeres på minutter, tilpasser sig jeres bygning og koster en brøkdel af det sædvanlige.",
   ctaMicrocopy: "Behovsbaseret rengøring · deler data med Space management",
 };
 
@@ -421,7 +421,7 @@ const de: ModulePageStrings = {
   ],
   ctaTitle: "Möchten Sie es selbst sehen?",
   ctaSubtitle:
-    "Buchen Sie eine 30-minütige Demo. RoomAlyzer ist in Minuten installiert, passt sich Ihrem Gebäude an und kostet einen Bruchteil des Üblichen.",
+    "Buchen Sie eine Demo. RoomAlyzer ist in Minuten installiert, passt sich Ihrem Gebäude an und kostet einen Bruchteil des Üblichen.",
   ctaMicrocopy: "Bedarfsorientierte Reinigung · teilt Daten mit Space-Management",
 };
 
@@ -562,7 +562,7 @@ const sv: ModulePageStrings = {
   ],
   ctaTitle: "Vill du se det själv?",
   ctaSubtitle:
-    "Boka en 30-minuters demo. RoomAlyzer installeras på minuter, anpassar sig till er byggnad och kostar en bråkdel av det vanliga.",
+    "Boka en demo. RoomAlyzer installeras på minuter, anpassar sig till er byggnad och kostar en bråkdel av det vanliga.",
   ctaMicrocopy: "Behovsbaserad städning · delar data med Space management",
 };
 

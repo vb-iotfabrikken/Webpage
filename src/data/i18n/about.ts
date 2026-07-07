@@ -124,7 +124,7 @@ const en: AboutStrings = {
     exploreTitle: "Explore the company.",
     exploreLead: "Our story, the people behind the product, open roles, press resources, certification and partners.",
     ctaTitle: "Want a guided walk-through?",
-    ctaSubtitle: "Book a 30-minute demo and we'll tailor it to your building.",
+    ctaSubtitle: "Book a demo and we'll tailor it to your building.",
   },
   story: {
     metaTitle: "Our story | About | IoT Fabrikken",
@@ -224,7 +224,7 @@ const da: AboutStrings = {
     exploreTitle: "Udforsk virksomheden.",
     exploreLead: "Vores historie, menneskene bag produktet, ledige stillinger, pressemateriale, certificering og partnere.",
     ctaTitle: "Vil du have en guidet gennemgang?",
-    ctaSubtitle: "Book en 30-minutters demo, så tilpasser vi den til din bygning.",
+    ctaSubtitle: "Book en demo, så tilpasser vi den til din bygning.",
   },
   story: {
     metaTitle: "Vores historie | Om os | IoT Fabrikken",
@@ -324,7 +324,7 @@ const de: AboutStrings = {
     exploreTitle: "Entdecken Sie das Unternehmen.",
     exploreLead: "Unsere Geschichte, die Menschen hinter dem Produkt, offene Stellen, Presseressourcen, Zertifizierung und Partner.",
     ctaTitle: "Möchten Sie eine geführte Tour?",
-    ctaSubtitle: "Buchen Sie eine 30-minütige Demo, und wir passen sie an Ihr Gebäude an.",
+    ctaSubtitle: "Buchen Sie eine Demo, und wir passen sie an Ihr Gebäude an.",
   },
   story: {
     metaTitle: "Unsere Geschichte | Über uns | IoT Fabrikken",
@@ -424,7 +424,7 @@ const sv: AboutStrings = {
     exploreTitle: "Utforska företaget.",
     exploreLead: "Vår historia, människorna bakom produkten, lediga tjänster, pressmaterial, certifiering och partner.",
     ctaTitle: "Vill du ha en guidad genomgång?",
-    ctaSubtitle: "Boka en 30-minuters demo, så anpassar vi den efter din byggnad.",
+    ctaSubtitle: "Boka en demo, så anpassar vi den efter din byggnad.",
   },
   story: {
     metaTitle: "Vår historia | Om oss | IoT Fabrikken",
