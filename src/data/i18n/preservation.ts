@@ -172,7 +172,7 @@ const en: PreservationStrings = {
     },
     {
       q: "Can this work in historic buildings without WiFi?",
-      a: "Yes. Sensors use LoRaWAN or similar long-range radio — no building WiFi required. A single gateway typically covers a nave, archive stack or museum floor through thick masonry walls.",
+      a: "Yes. NB-IoT sensors connect directly over the mobile network and reach deep into naves, archive stacks and museum floors through thick masonry – no building Wi-Fi required. Where SecureDataShot is used, a single Cloud Connector with a SIM card links the sensors to the platform.",
     },
     {
       q: "Does RoomAlyzer support EN 15757 documentation?",
@@ -219,12 +219,12 @@ const da: PreservationStrings = {
     intro: {
       heading: "Indsigt på objektniveau for konservatorer",
       paragraphs: [
-        "Det meste klimahardware er bygget til HVAC-teams — ikke til konservatorer, arkivarer og kirkeværger. I balancerer skrøbelige samlinger mod energikrav uden objektniveaudata, mens bygningsomfattende sensorer overser montren, skibet og udlånet, I aldrig får inspiceret.",
+        "Det meste klimahardware er bygget til HVAC-teams – ikke til konservatorer, arkivarer og kirkeværger. Du balancerer skrøbelige samlinger mod energikrav uden data på det enkelte objekt, mens bygningsdækkende sensorer overser montren, kirkeskibet og udlånet, du aldrig når at inspicere.",
       ],
     },
   },
   challengesEyebrow: "Udfordringerne, I kender",
-  challengesHeading: "Når I ikke kan dokumentere klimaet, er enhver genstand i risiko.",
+  challengesHeading: "Når du ikke kan dokumentere klimaet, er hver eneste genstand i risiko.",
   challenges: [
     {
       title: "Usynlig, gradvis skade",
@@ -232,17 +232,17 @@ const da: PreservationStrings = {
     },
     {
       title: "Ingen dokumentation af forholdene",
-      body: "I kan ikke bevise, hvilket klima jeres samling har været opbevaret i (over for forsikringsselskaber, fonde eller bevaringskrav) når målinger lever i notesbøger eller slet ikke findes.",
+      body: "Du kan ikke bevise, hvilket klima jeres samling har været opbevaret i (over for forsikringsselskaber, fonde eller bevaringskrav), når målingerne lever i notesbøger eller slet ikke findes.",
     },
     {
       title: "Bevaring kontra energiregninger",
-      body: "At opvarme en historisk bygning for at beskytte dens indhold er dyrt, og uden data kan I ikke finde balancen mellem at beskytte samlinger og styre driftsomkostningerne.",
+      body: "At opvarme en historisk bygning for at beskytte dens indhold er dyrt, og uden data kan du ikke finde balancen mellem at beskytte samlingerne og styre driftsomkostningerne.",
     },
   ],
   capabilitiesEyebrow: "Sådan løser RoomAlyzer det",
-  capabilitiesHeading: "De specifikke analyseværktøjer, I har brug for. Standarderne, I stoler på.",
+  capabilitiesHeading: "De helt rigtige analyseværktøjer. De standarder, du stoler på.",
   solutionLead:
-    "Stop gætteriet og begynd at optimere. RoomAlyzer Bevaring giver en komplet pakke af specialiserede analyseværktøjer og omsætter trådløse sensordata til zonede dashboards, driftalarmer og revisionsklare rapporter — så I kan balancere fejlfri bevaring med energieffektivitet.",
+    "Stop gætteriet, og begynd at optimere. RoomAlyzer Bevaring giver en komplet pakke af specialiserede analyseværktøjer og omsætter trådløse sensordata til zonede dashboards, driftsalarmer og revisionsklare rapporter – så du kan balancere fejlfri bevaring med energieffektivitet.",
   solutionLeadWithSensorLinks: [
     {
       type: "text",
@@ -262,7 +262,7 @@ const da: PreservationStrings = {
     { type: "compare", label: "Sammenlign kulturarvssensorer", useCaseId: "heritage" },
   ],
   solutionProofPoints: [
-    { value: "±0,1 °C · ±1 % RH", label: "Sensorpræcision" },
+    { value: "±0,1 °C · ±1 % r.f.", label: "Sensorpræcision" },
     { value: "7–10 år", label: "Batterilevetid" },
   ],
   capabilitiesContextAlt: "Specialist vedligeholder et historisk orgel",
@@ -328,10 +328,10 @@ const da: PreservationStrings = {
   audiencesEyebrow: "Hvem det er til",
   audiencesHeading: "Til konservatorer og facility-teams, med data, alle kan stole på.",
   audiencesLead:
-    "Det samme objektive klimagrundlag tjener konservatoren, der beskytter samlingen, og facility manageren, der driver bygningen.",
+    "Det samme objektive klimagrundlag kan bruges af både konservatoren, der beskytter samlingen, og facility manageren, der driver bygningen.",
   primaryAudienceHeading: "Til konservatorer og specialister",
   primaryAudienceItems: [
-    "Overvåg RH og temperatur på samlingsniveau",
+    "Overvåg r.f. og temperatur på samlingsniveau",
     "Dokumentér forhold til EN 15757, forsikring og fonde",
     "Stol på højpræcise målinger, konservatorer kræver",
     "Se klimahistorik for hver montre og hvert magasin",
@@ -352,11 +352,11 @@ const da: PreservationStrings = {
     },
     {
       q: "Hvor præcise er sensorerne, og skal de kalibreres?",
-      a: "RoomAlyzer Air-fugt- og temperatursensorer leverer ±0,1 °C og ±1 % RH — de tolerancer, konservatorer forventer. Hver sensor er fabrikskalibreret; platformen markerer enheder, der glider uden for spec.",
+      a: "RoomAlyzer Air-fugt- og temperatursensorer leverer ±0,1 °C og ±1 % r.f. – de tolerancer, konservatorer forventer. Hver sensor er fabrikskalibreret, og platformen markerer de enheder, der glider uden for spec.",
     },
     {
       q: "Kan det fungere i historiske bygninger uden WiFi?",
-      a: "Ja. Sensorerne bruger LoRaWAN eller lignende langtrækkende radio — ingen bygnings-WiFi påkrævet. En enkelt gateway dækker typisk et skib, et arkivmagasin eller en museums-etage gennem tykke murstensvægge.",
+      a: "Ja. NB-IoT-sensorerne forbinder direkte via mobilnettet og når helt ind i kirkeskibe, magasiner og museumsetager gennem tykt murværk – uden bygnings-Wi-Fi. Hvor SecureDataShot bruges, kobler en enkelt Cloud Connector med simkort sensorerne på platformen.",
     },
     {
       q: "Understøtter RoomAlyzer EN 15757-dokumentation?",
@@ -374,20 +374,20 @@ const da: PreservationStrings = {
 };
 
 const de: PreservationStrings = {
-  metaTitle: "Konservierung: Klimaüberwachung für Kulturgut | IoT Fabrikken",
+  metaTitle: "Preservation: Klimaüberwachung für Kulturgut | IoT Fabrikken",
   metaDescription:
-    "Drahtlose Sensoren überwachen Temperatur und Luftfeuchtigkeit rund um unersetzliche Sammlungen, mit der Präzision, die Restauratoren verlangen, und Dokumentation für EN 15757.",
+    "Drahtlose Sensoren überwachen Temperatur und Luftfeuchtigkeit rund um unersetzliche Sammlungen, mit der Präzision, die Restauratoren verlangen und Dokumentation für EN 15757.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
-  breadcrumbCurrent: "Konservierung",
-  heroTitle: "Makellose Konservierung",
+  breadcrumbCurrent: "Preservation",
+  heroTitle: "Makellose Preservation",
   heroTitleAccent: "trifft auf Energieoptimierung",
   heroLead:
     "Unser intelligentes Modul sichert das ideale Klima und reduziert gleichzeitig unnötigen Energieverbrauch",
   intro: [],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer: Konservierung",
+  dashboardLabel: "RoomAlyzer: Preservation",
   dashboardAlt: "RoomAlyzer-Dashboard mit Klimadaten für Kulturgut in Räumen und Vitrinen",
   heroGallery: {
     images: [
@@ -403,7 +403,7 @@ const de: PreservationStrings = {
     intro: {
       heading: "Einblicke auf Objektebene für Restauratoren",
       paragraphs: [
-        "Die meiste Klimahardware ist für HVAC-Teams gebaut — nicht für Restauratoren, Archivare und Kirchenverwalter. Sie balancieren empfindliche Sammlungen gegen Energievorgaben ohne Objektdaten, während gebäudeweite Sensoren Vitrine, Kirchenschiff und Leihgaben übersehen, die Sie nie prüfen können.",
+        "Die meiste Klimahardware wurde für HLK-Techniker entwickelt – nicht für Restauratoren, Archivare oder Kirchenvorstände. Sie müssen den Schutz empfindlicher Sammlungen mühsam mit strengen Energievorgaben vereinbaren, ohne auf präzise Objektdaten zugreifen zu können. Grobe Gebäudesensoren übersehen dabei das spezifische Mikroklima in Vitrinen, Kirchenschiffen oder bei wertvollen Leihgaben – und lassen Sie völlig im Dunkeln.",
       ],
     },
   },
@@ -412,41 +412,41 @@ const de: PreservationStrings = {
   challenges: [
     {
       title: "Unsichtbarer, schleichender Schaden",
-      body: "Ungünstige Luftfeuchtigkeit und Temperatur schädigen unersetzliche Objekte, lange bevor ein sichtbares Zeichen erscheint — wenn Risse, Verzug oder Schimmel sichtbar werden, ist der Schaden bereits geschehen.",
+      body: "Ungünstige Luftfeuchtigkeit und Temperatur schädigen unersetzliche Objekte, lange bevor der Schaden sichtbar wird. Wenn Risse, Verzug oder Schimmel schließlich sichtbar werden, ist es für präventive Maßnahmen bereits zu spät.",
     },
     {
       title: "Keine Dokumentation der Bedingungen",
-      body: "Sie können das Klima, in dem Ihre Sammlung aufbewahrt wurde, nicht belegen (gegenüber Versicherern, Fördergebern oder Konservierungsanforderungen), wenn Messwerte in Notizbüchern stehen oder gar nicht existieren.",
+      body: "Sie können das Klima, in dem Ihre Sammlung aufbewahrt wird, nicht lückenlos belegen, weder gegenüber Versicherern und Fördergebern noch zur Erfüllung von Preservationsanforderungen, wenn Messwerte nur in Notizbüchern stehen oder gar nicht existieren.",
     },
     {
-      title: "Konservierung versus Energiekosten",
-      body: "Ein historisches Gebäude zu beheizen, um seinen Inhalt zu schützen, ist teuer, und ohne Daten finden Sie die Balance zwischen Sammlungsschutz und Betriebskosten nicht.",
+      title: "Preservation versus Energiekosten",
+      body: "Ein historisches Gebäude zu beheizen, um seinen kostbaren Inhalt zu schützen, ist extrem teuer. Ohne präzise Daten ist es jedoch schier unmöglich, die richtige Balance zwischen Sammlungsschutz und Betriebskosten zu finden.",
     },
   ],
   capabilitiesEyebrow: "So löst RoomAlyzer das",
   capabilitiesHeading: "Die spezifischen Analysewerkzeuge, die Sie brauchen. Die Standards, denen Sie vertrauen.",
   solutionLead:
-    "Schluss mit Vermutungen — starten Sie mit Optimierung. RoomAlyzer Konservierung bietet eine vollständige Suite spezialisierter Analysewerkzeuge und verwandelt drahtlose Sensordaten in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte, damit Sie makellose Konservierung mit Energieeffizienz in Einklang bringen.",
+    "Schluss mit Vermutungen — starten Sie mit Optimierung. RoomAlyzer Preservation bietet eine vollständige Suite spezialisierter Analysewerkzeuge und verwandelt drahtlose Sensordaten in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte, damit Sie makellose Preservation mit Energieeffizienz in Einklang bringen.",
   solutionLeadWithSensorLinks: [
     {
       type: "text",
       value:
-        "Schluss mit Vermutungen — starten Sie mit Optimierung. RoomAlyzer Konservierung bietet spezialisierte Analysewerkzeuge und verwandelt drahtlose ",
+        "Schluss mit Vermutungen — starten Sie mit Optimierung. RoomAlyzer Preservation bietet spezialisierte Analysewerkzeuge und verwandelt drahtlose ",
     },
     { type: "sensor", slug: "humidity", label: "Humidity" },
     { type: "text", value: " und " },
     { type: "sensor", slug: "mini-plus", label: "Mini+" },
-    { type: "text", value: "-Sensordaten (mit " },
+    { type: "text", value: "-Sensordaten (inkl. " },
     { type: "sensor", slug: "outdoor", label: "Außen" },
     {
       type: "text",
       value:
-        " für Fassaden) in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte, damit Sie makellose Konservierung mit Energieeffizienz in Einklang bringen. ",
+        " für Fassaden) in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte, damit Sie makellose Preservation mit Energieeffizienz in Einklang bringen. ",
     },
     { type: "compare", label: "Kulturerbe-Sensoren vergleichen", useCaseId: "heritage" },
   ],
   solutionProofPoints: [
-    { value: "±0,1 °C · ±1 % rF", label: "Sensorpräzision" },
+    { value: "±0,1 °C · ±1 % r. F.", label: "Sensorpräzision" },
     { value: "7–10 J.", label: "Batterielaufzeit" },
   ],
   capabilitiesContextAlt: "Spezialist wartet an einer historischen Orgel",
@@ -499,56 +499,56 @@ const de: PreservationStrings = {
     },
     {
       id: "heat-ventilation",
-      title: "Konservierungsheiz- und Lüftungsanalyse",
+      title: "Preservationsheiz- und Lüftungsanalyse",
       body: "Tiefe Einblicke, die Ihnen helfen, Ihr Klima zu stabilisieren und gleichzeitig unnötigen Energieverbrauch zu reduzieren.",
       unit: "Energie",
-      imageAlt: "Konservierungsheiz- und Lüftungsanalyse in RoomAlyzer",
+      imageAlt: "Preservationsheiz- und Lüftungsanalyse in RoomAlyzer",
     },
   ],
   relatedModuleLabel: "Smarter zusammen",
   relatedModuleBody:
-    "Kombinieren Sie Konservierungsüberwachung mit Live-Raumklimadaten für bewohnte Bereiche.",
-  relatedModuleLink: "Raumklima entdecken",
+    "Kombinieren Sie Preservationsüberwachung mit Live-Indoor climate data für bewohnte Bereiche.",
+  relatedModuleLink: "Indoor climate entdecken",
   audiencesEyebrow: "Für wen es gedacht ist",
   audiencesHeading: "Für Restauratoren und Facility-Teams, mit Daten, denen alle vertrauen können.",
   audiencesLead:
-    "Dieselbe objektive Klimabasis dient dem Restaurator, der die Sammlung schützt, und dem Facility Manager, der das Gebäude betreibt.",
+    "Dieselbe objektive Klimabasis dient dem Restaurator, der die Sammlung schützt und dem Facility Manager, der das Gebäude betreibt.",
   primaryAudienceHeading: "Für Restauratoren und Spezialisten",
   primaryAudienceItems: [
-    "RH und Temperatur auf Sammlungsebene überwachen",
+    "Relative Luftfeuchtigkeit und Temperatur auf Sammlungsebene überwachen",
     "Bedingungen für EN 15757, Versicherer und Förderer dokumentieren",
     "Hochpräzisen Messwerten vertrauen, die Restauratoren verlangen",
     "Klimaverlauf für jede Vitrine und jedes Depot einsehen",
   ],
   secondaryAudienceHeading: "Für Facility Manager",
   secondaryAudienceItems: [
-    "Konservierung mit Heiz- und Energiekosten in Einklang bringen",
-    "Frühwarnungen erhalten, wenn die HVAC vom Sollwert abweicht",
-    "Dieselben Daten mit Konservierungsteams teilen",
-    "Ohne WLAN in dickwandigen historischen Gebäuden einsetzen",
+    "Preservation mit Heiz- und Energiekosten in Einklang bringen",
+    "Frühwarnungen erhalten, wenn die HLK vom Sollwert abweicht",
+    "Dieselben Daten mit Preservationsteams teilen",
+    "Ohne WLAN in dickwändigen historischen Gebäuden einsetzen",
   ],
   faqTitle: "Häufig gestellte Fragen",
   faqContextAlt: "Kollegen besprechen Pläne an einem Besprechungstisch",
   faqItems: [
     {
       q: "Wie lange hält die Batterie?",
-      a: "Unsere Konservierungssensoren laufen je nach Meldefrequenz typischerweise 7–10 Jahre mit einer einzigen Batterie. Die Plattform warnt Sie rechtzeitig, wenn eine Batterie gewechselt werden muss.",
+      a: "Unsere Preservationssensoren laufen je nach Meldefrequenz typischerweise 7–10 Jahre mit einer einzigen Batterie. Die Plattform warnt Sie rechtzeitig, wenn eine Batterie gewechselt werden muss.",
     },
     {
-      q: "Wie präzise sind die Sensoren, und müssen sie kalibriert werden?",
-      a: "RoomAlyzer Air Feuchtigkeits- und Temperatursensoren liefern ±0,1 °C und ±1 % rF — die Toleranzen, die Restauratoren erwarten. Jeder Sensor ist werkskalibriert; die Plattform markiert Geräte, die außerhalb der Spezifikation geraten.",
+      q: "Wie präzise sind die Sensoren und müssen sie kalibriert werden?",
+      a: "RoomAlyzer Air Feuchtigkeits- und Temperature liefern ±0,1 °C und ±1 % r. F.. Jeder Sensor ist werkskalibriert; die Plattform markiert Geräte, die außerhalb der Spezifikation geraten.",
     },
     {
       q: "Funktioniert das in historischen Gebäuden ohne WLAN?",
-      a: "Ja. Die Sensoren nutzen LoRaWAN oder ähnliche Funkprotokolle mit großer Reichweite — kein Gebäude-WLAN erforderlich. Ein einziges Gateway deckt in der Regel ein Kirchenschiff, ein Archivmagazin oder eine Museumsetage durch dickes Mauerwerk ab.",
+      a: "Ja. Die NB-IoT-Sensoren verbinden sich direkt über das Mobilfunknetz und erreichen selbst durch dickes Mauerwerk Kirchenschiffe, Archivmagazine und Museumsetagen – ohne Gebäude-WLAN. Wo SecureDataShot zum Einsatz kommt, verbindet ein einziger Cloud Connector mit SIM-Karte die Sensoren mit der Plattform.",
     },
     {
       q: "Unterstützt RoomAlyzer EN-15757-Dokumentation?",
-      a: "Ja. Kontinuierliche Klimaprotokolle und exportierbare Berichte liefern die dokumentierte Historie, die EN 15757 für organische hygroskopische Materialien erwartet — bereit für Audits, Versicherer und Förderprüfungen.",
+      a: "Ja. Kontinuierliche Klimaprotokolle und exportierbare Berichte liefern die dokumentierte Historie, die EN 15757 für organische hygroskopische Materialien erwartet.",
     },
     {
       q: "Was kostet das?",
-      a: "Der Preis hängt von der Anzahl der Sensoren und Zonen ab. Buchen Sie eine Demo, und wir geben Ihnen eine konkrete Schätzung auf Basis Ihrer Gebäude und Sammlungen.",
+      a: "Der Preis hängt von der Anzahl der Sensoren und Zonen ab. Buchen Sie eine Demo und wir geben Ihnen eine konkrete Schätzung auf Basis Ihrer Gebäude und Sammlungen.",
     },
   ],
   ctaTitle: "Möchten Sie es selbst sehen?",
@@ -587,12 +587,12 @@ const sv: PreservationStrings = {
     intro: {
       heading: "Insikt på objektnivå för konservatorer",
       paragraphs: [
-        "Det mesta klimathårdvaran är byggd för HVAC-team — inte för konservatorer, arkivarier och kyrkvärdar. Ni balanserar ömtåliga samlingar mot energikrav utan objektnivådata, medan byggnadsomfattande sensorer missar montern, långhuset och utlånet ni aldrig hinner inspektera.",
+        "Det mesta av klimathårdvaran är byggd för HVAC-team – inte för konservatorer, arkivarier och kyrkvärdar. Du balanserar ömtåliga samlingar mot energikrav utan data på objektnivå, medan byggnadsomfattande sensorer missar montern, långhuset och utlånet du aldrig hinner inspektera.",
       ],
     },
   },
   challengesEyebrow: "Utmaningarna ni känner igen",
-  challengesHeading: "När ni inte kan bevisa klimatet är varje föremål i riskzonen.",
+  challengesHeading: "När du inte kan bevisa klimatet är varje föremål i riskzonen.",
   challenges: [
     {
       title: "Osynlig, gradvis skada",
@@ -608,9 +608,9 @@ const sv: PreservationStrings = {
     },
   ],
   capabilitiesEyebrow: "Så löser RoomAlyzer det",
-  capabilitiesHeading: "De specifika analysverktyg ni behöver. Standarderna ni litar på.",
+  capabilitiesHeading: "De specifika analysverktyg du behöver. De standarder du litar på.",
   solutionLead:
-    "Sluta gissa och börja optimera. RoomAlyzer Bevarande erbjuder en komplett svit av specialiserade analysverktyg och omvandlar trådlösa sensordata till zonerade dashboards, driftlarm och revisionsklara rapporter — så att ni kan balansera felfritt bevarande med energieffektivitet.",
+    "Sluta gissa och börja optimera. RoomAlyzer Bevarande erbjuder en komplett svit av specialiserade analysverktyg och omvandlar trådlösa sensordata till zonerade dashboards, driftlarm och revisionsklara rapporter – så att du kan balansera felfritt bevarande med energieffektivitet.",
   solutionLeadWithSensorLinks: [
     {
       type: "text",
@@ -699,7 +699,7 @@ const sv: PreservationStrings = {
     "Samma objektiva klimatbas tjänar konservatorn som skyddar samlingen och facility managern som driver byggnaden.",
   primaryAudienceHeading: "För konservatorer och specialister",
   primaryAudienceItems: [
-    "Övervaka RH och temperatur på samlingsnivå",
+    "Övervaka RF och temperatur på samlingsnivå",
     "Dokumentera förhållanden för EN 15757, försäkring och finansiärer",
     "Lita på högprecisa mätningar som konservatorer kräver",
     "Se klimathistorik för varje monter och varje magasin",
@@ -707,7 +707,7 @@ const sv: PreservationStrings = {
   secondaryAudienceHeading: "För facility managers",
   secondaryAudienceItems: [
     "Balansera bevarande med uppvärmnings- och energikostnader",
-    "Få tidiga varningar när HVAC glider från setpoint",
+    "Få tidiga varningar när HVAC glider från börvärdet",
     "Dela samma data med bevarandeteam",
     "Distribuera utan wifi i tjockväggiga historiska byggnader",
   ],
@@ -720,11 +720,11 @@ const sv: PreservationStrings = {
     },
     {
       q: "Hur precisa är sensorerna, och behöver de kalibreras?",
-      a: "RoomAlyzer Air fukt- och temperatursensorer levererar ±0,1 °C och ±1 % RF — de toleranser konservatorer förväntar sig. Varje sensor är fabrikskalibrerad; plattformen flaggar enheter som glider utanför specifikationen.",
+      a: "RoomAlyzer Air fukt- och temperatursensorer levererar ±0,1 °C och ±1 % RF – de toleranser konservatorer förväntar sig. Varje sensor är fabrikskalibrerad, och plattformen flaggar enheter som glider utanför specifikationen.",
     },
     {
       q: "Fungerar det i historiska byggnader utan wifi?",
-      a: "Ja. Sensorerna använder LoRaWAN eller liknande radioprotokoll med lång räckvidd — inget byggnads-wifi krävs. En enda gateway täcker vanligtvis ett långhus, ett arkivmagasin eller en museumsvåning genom tjocka murverksväggar.",
+      a: "Ja. NB-IoT-sensorerna ansluter direkt via mobilnätet och når djupt in i kyrkorum, arkivmagasin och museivåningar genom tjockt murverk – utan byggnads-wifi. Där SecureDataShot används kopplar en enda Cloud Connector med SIM-kort sensorerna till plattformen.",
     },
     {
       q: "Stöder RoomAlyzer EN 15757-dokumentation?",

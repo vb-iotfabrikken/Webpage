@@ -36,7 +36,7 @@ const da: Record<string, CaseDetailOverlay> = {
     ],
     quote: {
       heading: "Hvad siger Dansk Industri?",
-      body: "Jeg kan ikke styre efter alles holdninger og fornemmelser. Og jeg sidder i et politisk hus, hvor man ikke laver så store ændringer uden at have sine argumenter og dermed også sin dokumentation i orden. Det får jeg med IoT-løsningen.",
+      body: "Jeg kan ikke styre efter alles holdninger og fornemmelser. Og jeg sidder i et politisk hus, hvor man ikke laver så store ændringer uden at have sine argumenter – og dermed sin dokumentation – i orden. Det får jeg med IoT Fabrikken.",
     },
   },
   "gribskov-municipality": {
@@ -159,7 +159,7 @@ const de: Record<string, CaseDetailOverlay> = {
     ],
     quote: {
       heading: "Was sagt die Gemeinde Norddjurs?",
-      body: "Wir müssen wissen, wie viele Arbeitsplätze unsere Mitarbeitenden tatsächlich brauchen. Das Büro soll ein angenehmer Ort sein, der auf ihre Bedürfnisse zugeschnitten ist. Viele unserer Mitarbeitenden sind im Außendienst tätig, und wie überall arbeiten auch mehr von zu Hause. Es geht natürlich auch darum, das Geld der Steuerzahler sinnvoll einzusetzen.",
+      body: "Wir müssen wissen, wie viele Arbeitsplätze unsere Mitarbeitenden tatsächlich brauchen. Das Büro soll ein angenehmer Ort sein, der auf ihre Bedürfnisse zugeschnitten ist. Viele unserer Mitarbeitenden sind im Außendienst tätig und wie überall arbeiten auch mehr von zu Hause. Es geht natürlich auch darum, das Geld der Steuerzahler sinnvoll einzusetzen.",
     },
   },
   "varde-municipality": {
@@ -173,7 +173,7 @@ const de: Record<string, CaseDetailOverlay> = {
     },
   },
   "dansk-industri": {
-    titleAccent: "Space-Management mit Sensoren machte 650 Quadratmeter frei, und das macht sich in der Bilanz bemerkbar.",
+    titleAccent: "Space-Management mit Sensoren machte 650 Quadratmeter frei und das macht sich in der Bilanz bemerkbar.",
     intro: [
       "Jimmy Holk hat eine lange Reise mit der Arbeitsplatzgestaltung hinter sich. Das Messen von Arbeitsplätzen und Besprechungsräumen mit Sensoren lieferte die Dokumentation, um viele Quadratmeter einzusparen.",
     ],
@@ -189,77 +189,77 @@ const de: Record<string, CaseDetailOverlay> = {
     ],
     quote: {
       heading: "Was sagt die Gemeinde Gribskov?",
-      body: "Die Konzernleitung war äußerst begeistert von den Daten, die wir liefern können, um ihre Entscheidungsgrundlage für mehrere verschiedene Entscheidungen zu untermauern. Die Rückmeldung ist, dass sie nun von Meinungen und Annahmen wegkommen können. Außerdem waren sie sehr überrascht, wie wenig wir unsere Arbeitsplätze tatsächlich nutzen, und über die ineffiziente Nutzung von Besprechungsräumen (wenige Teilnehmende in großen Besprechungsräumen). Das gab ihnen wirklich zu denken.",
+      body: "Die Konzernleitung war äußerst begeistert von den Daten, die wir liefern können, um ihre Entscheidungsgrundlage für mehrere verschiedene Entscheidungen zu untermauern. Die Rückmeldung ist, dass sie nun von Meinungen und Annahmen wegkommen können. Außerdem waren sie sehr überrascht, wie wenig wir unsere Arbeitsplätze tatsächlich nutzen und über die ineffiziente Nutzung von Besprechungsräumen (wenige Teilnehmende in großen Besprechungsräumen). Das gab ihnen wirklich zu denken.",
     },
   },
   "gribskov-kommune": {
-    titleAccent: "Raumklimadaten für Schulen und kommunale Gebäude.",
+    titleAccent: "Indoor climate data für Schulen und kommunale Gebäude.",
     intro: [
-      "Die Gemeinde ist Teil des Raumklimaprojekts von Realdania und nutzt die RoomAlyzer-Plattform, um zu entscheiden, wie die Bedingungen in Schulen und anderen Gebäuden verbessert werden.",
+      "Die Gemeinde ist Teil des Indoor climateprojekts von Realdania und nutzt die RoomAlyzer-Plattform, um zu entscheiden, wie die Bedingungen in Schulen und anderen Gebäuden verbessert werden.",
     ],
   },
   "archdiocese-of-freiburg": {
-    titleAccent: "Sensibilisiert Ehrenamtliche durch datenbasiertes Verständnis des Raumklimas.",
+    titleAccent: "Sensibilisiert Ehrenamtliche durch datenbasiertes Verständnis des Indoor climates.",
     intro: [
       "Die Sensorlösung ermöglicht die kontinuierliche Messung von Temperatur und Luftfeuchtigkeit in Kirchenräumen. Klimarisiken lassen sich früh erkennen und das Bewusstsein bei Ehrenamtlichen stärken, auf einer Plattform, die auf die Anforderungen von Kirchen zugeschnitten ist.",
     ],
     quote: {
       heading: "Was sagt die Erzdiözese Freiburg?",
-      body: "Menschen haben kein verlässliches Gespür für die relative Luftfeuchtigkeit, dabei spielt sie für das Raumklima in unseren Kirchen eine entscheidende Rolle. Deshalb messen wir mit Sensoren. Die kontinuierliche Erfassung von Temperatur und Luftfeuchtigkeit hilft uns, die Bedingungen vor Ort genau zu verstehen. Die Daten helfen uns, Ehrenamtliche für das Thema zu sensibilisieren und rechtzeitig auf mögliche Risiken für Gebäude und Ausstattung zu reagieren. Das ist ein großer Vorteil für unsere Arbeit. Wir haben uns für IoT Fabrikken entschieden, weil sie eine sehr übersichtliche Plattform bieten und flexibel auf unsere Bedürfnisse eingehen, was in einem kirchlichen Kontext gut passt.",
+      body: "Menschen haben kein verlässliches Gespür für die relative Luftfeuchtigkeit, dabei spielt sie für das Indoor climate in unseren Kirchen eine entscheidende Rolle. Deshalb messen wir mit Sensoren. Die kontinuierliche Erfassung von Temperatur und Luftfeuchtigkeit hilft uns, die Bedingungen vor Ort genau zu verstehen. Die Daten helfen uns, Ehrenamtliche für das Thema zu sensibilisieren und rechtzeitig auf mögliche Risiken für Gebäude und Ausstattung zu reagieren. Das ist ein großer Vorteil für unsere Arbeit. Wir haben uns für IoT Fabrikken entschieden, weil sie eine sehr übersichtliche Plattform bieten und flexibel auf unsere Bedürfnisse eingehen, was in einem kirchlichen Kontext gut passt.",
       attribution: "Claudia Dambacher, Referentin, Kirchenschutz",
     },
   },
   "evangelische-kirche-in-hessen-und-nassau": {
-    titleAccent: "Schützt historische Kirchen durch präzise Raumklimaüberwachung.",
+    titleAccent: "Schützt historische Kirchen durch präzise Indoor climate monitoring.",
     intro: [
       "Historische Kirchengebäude brauchen das ganze Jahr über stabile Bedingungen. Drahtlose Sensoren und RoomAlyzer liefern Facility-Teams kontinuierliche Daten zu Luftfeuchtigkeit und Temperatur, ohne Gottesdienste oder denkmalgeschützte Innenräume zu stören.",
     ],
   },
   sweco: {
-    titleAccent: "Raumklimadokumentation für Immobilieneigentümer und DGNB-Projekte.",
+    titleAccent: "Indoor climatedokumentation für Immobilieneigentümer und DGNB-Projekte.",
     intro: [
-      "Sweco hilft Immobilieneigentümern, ein gutes Raumklima in ihren Gebäuden sicherzustellen.",
+      "Sweco hilft Immobilieneigentümern, ein gutes Indoor climate in ihren Gebäuden sicherzustellen.",
     ],
     quote: {
       heading: "Was sagt Sweco?",
-      body: "Sweco arbeitet in vielen seiner Projekte bereits mit DGNB-Zertifizierungen. Mit dem RoomAlyzer-System von IoT Fabrikken lassen sich Raumklimabedingungen gezielt in DGNB-Projekten erfassen, in denen flexibles Raumklima-Monitoring auch Teil der Methodik sein kann. Die Sensoren, die alles von Temperatur, CO2-Konzentration, Luftfeuchtigkeit, TVOC, Schall bis Licht messen, sind einfach zu installieren und stören die Gebäudenutzer nicht, die die Logger auch selbst nutzen können, um ein gutes Raumklima zu überwachen und sicherzustellen. Im Portal, zusammen mit den Raumklima-Loggern verwendet, lassen sich DGNB-Berichte mit wenigen Klicks erstellen, indem man auswählt, welche Sensoren und Intervalle in den Bericht aufgenommen werden.",
+      body: "Sweco arbeitet in vielen seiner Projekte bereits mit DGNB-Zertifizierungen. Mit dem RoomAlyzer-System von IoT Fabrikken lassen sich Indoor climatebedingungen gezielt in DGNB-Projekten erfassen, in denen flexibles Indoor climate-Monitoring auch Teil der Methodik sein kann. Die Sensoren, die alles von Temperatur, CO2-Konzentration, Luftfeuchtigkeit, TVOC, Schall bis Licht messen, sind einfach zu installieren und stören die Gebäudenutzer nicht, die die Logger auch selbst nutzen können, um ein gutes Indoor climate zu überwachen und sicherzustellen. Im Portal, zusammen mit den Indoor climate-Loggern verwendet, lassen sich DGNB-Berichte mit wenigen Klicks erstellen, indem man auswählt, welche Sensoren und Intervalle in den Bericht aufgenommen werden.",
       attribution: "Frederik Kastrup, Nachhaltigkeitsingenieur, Sweco Dänemark",
     },
   },
   "skade-teknik": {
-    titleAccent: "Dokumentiert das Raumklima, wenn Mieter und Vermieter uneinig sind.",
+    titleAccent: "Dokumentiert das Indoor climate, wenn Mieter und Vermieter uneinig sind.",
     intro: [
-      "Viele Hausverwalter und Vermieter tun sich schwer zu dokumentieren, warum in einer bestimmten Mietwohnung Schimmel entsteht, und die Lösungen sind oft kompliziert und teuer. SKADE-teknik wollte seinen Kunden im Wohnungssektor mit einer einfachen Lösung helfen.",
+      "Viele Hausverwalter und Vermieter tun sich schwer zu dokumentieren, warum in einer bestimmten Mietwohnung Schimmel entsteht und die Lösungen sind oft kompliziert und teuer. SKADE-teknik wollte seinen Kunden im Wohnungssektor mit einer einfachen Lösung helfen.",
     ],
     quote: {
       heading: "Was sagt SKADE-teknik?",
       subtitle: "Schimmelkonflikte zwischen Mieter und Vermieter lösen",
-      body: "Ein gutes Beispiel dafür, wie wir die RoomAlyzer-Plattform nutzen, ist mein jüngster Fall für eine Wohnungsgenossenschaft. Der Hausmeister hatte Beschwerden von einigen Bewohnern erhalten, die glaubten, wegen der Beschaffenheit des Gebäudes Schimmel zu haben. Das ist eine klassische Situation, in der es einen langen Dialog zwischen Mieter und Vermieter gab und der festfährt, weil es Aussage gegen Aussage steht. Stattdessen kamen wir hinzu und begannen, mit der RoomAlyzer-Plattform zu messen, und nach einigen Wochen Messung stellten wir fest, dass mit dem Gebäude nichts verkehrt war, sondern dass es darum ging, dass die Bewohner die Heizung zu hoch drehten und nicht lüfteten. So konnten wir den Konflikt lösen und den Bewohnern einige neue Gewohnheiten beibringen. Es geht auch darum, dass IoT-Geräte einfach zu bedienen sind. Man geht einfach hinein, richtet den Sensor ein und geht wieder. Wir haben früher mit Sensoren gearbeitet, die ein Gateway benötigten, und erlebt, dass ein Kind in der Wohnung das Gateway ausschaltet. Wir mussten auch mit altmodischen Datenloggern arbeiten, die viele Male von Daten geleert werden müssen. Mit diesem Sensor können wir in Echtzeit mitverfolgen und die Messung beenden, wenn es sinnvoll ist, statt alle vierzehn Tage hinausfahren und einen altmodischen Sensor leeren zu müssen.",
+      body: "Ein gutes Beispiel dafür, wie wir die RoomAlyzer-Plattform nutzen, ist mein jüngster Fall für eine Wohnungsgenossenschaft. Der Hausmeister hatte Beschwerden von einigen Bewohnern erhalten, die glaubten, wegen der Beschaffenheit des Gebäudes Schimmel zu haben. Das ist eine klassische Situation, in der es einen langen Dialog zwischen Mieter und Vermieter gab und der festfährt, weil es Aussage gegen Aussage steht. Stattdessen kamen wir hinzu und begannen, mit der RoomAlyzer-Plattform zu messen und nach einigen Wochen Messung stellten wir fest, dass mit dem Gebäude nichts verkehrt war, sondern dass es darum ging, dass die Bewohner die Heizung zu hoch drehten und nicht lüfteten. So konnten wir den Konflikt lösen und den Bewohnern einige neue Gewohnheiten beibringen. Es geht auch darum, dass IoT-Geräte einfach zu bedienen sind. Man geht einfach hinein, richtet den Sensor ein und geht wieder. Wir haben früher mit Sensoren gearbeitet, die ein Gateway benötigten und erlebt, dass ein Kind in der Wohnung das Gateway ausschaltet. Wir mussten auch mit altmodischen Datenloggern arbeiten, die viele Male von Daten geleert werden müssen. Mit diesem Sensor können wir in Echtzeit mitverfolgen und die Messung beenden, wenn es sinnvoll ist, statt alle vierzehn Tage hinausfahren und einen altmodischen Sensor leeren zu müssen.",
       attribution: "Bo J. Mortensen, Inhaber, SKADE-teknik, Aalborg",
     },
   },
   "boligselskabet-sjaelland": {
-    titleAccent: "Dokumentiert das Raumklima vor und nach der Renovierung.",
+    titleAccent: "Dokumentiert das Indoor climate vor und nach der Renovierung.",
     intro: [
-      "Boligselskabet Sjælland hatte Schwierigkeiten, die Veränderungen des Raumklimas vor und nach Renovierungen von Gebäuden und Wohnungen zu dokumentieren.",
+      "Boligselskabet Sjælland hatte Schwierigkeiten, die Veränderungen des Indoor climates vor und nach Renovierungen von Gebäuden und Wohnungen zu dokumentieren.",
     ],
   },
   "vejen-kommune": {
-    titleAccent: "Trennt Fakten von Gefühlen beim Raumklima.",
+    titleAccent: "Trennt Fakten von Gefühlen beim Indoor climate.",
     intro: [
-      "Die Gemeinde Vejen hatte mit Beschwerden über das Raumklima zu tun und konnte schwer Schlüsse ziehen: Was sind Fakten und was sind Gefühle?",
+      "Die Gemeinde Vejen hatte mit Beschwerden über das Indoor climate zu tun und konnte schwer Schlüsse ziehen: Was sind Fakten und was sind Gefühle?",
     ],
   },
   "rudersdal-museer": {
     titleAccent: "Stabile Bedingungen in Ausstellungs- und Lagerräumen.",
     intro: [
-      "Rudersdal Museen suchten eine Lösung, die ein optimales Raumklima in Ausstellungs- und Lagerräumen sicherstellt.",
+      "Rudersdal Museen suchten eine Lösung, die ein optimales Indoor climate in Ausstellungs- und Lagerräumen sicherstellt.",
     ],
   },
   "solroed-kommune": {
     titleAccent: "Umstieg von einem Alt-Sensorsystem.",
     intro: [
-      "Die Gemeinde Solrød hatte ein älteres Raumklima-Sensorsystem und benötigte eine moderne Plattform für laufende Überwachung und Berichterstattung.",
+      "Die Gemeinde Solrød hatte ein älteres Indoor climate-Sensorsystem und benötigte eine moderne Plattform für laufende Überwachung und Berichterstattung.",
     ],
   },
   "deutsches-museum-nordschleswig": {
@@ -271,7 +271,7 @@ const de: Record<string, CaseDetailOverlay> = {
   "faaborg-museum": {
     titleAccent: "Weniger Zeit für das manuelle Ablesen von Sensoren.",
     intro: [
-      "Das Faaborg Museum verbrachte viel Zeit damit, Sensoren physisch abzulesen. RoomAlyzer automatisiert die Erfassung, sodass sich das Personal auf die Konservierungsarbeit konzentrieren kann.",
+      "Das Faaborg Museum verbrachte viel Zeit damit, Sensoren physisch abzulesen. RoomAlyzer automatisiert die Erfassung, sodass sich das Personal auf die Preservationsarbeit konzentrieren kann.",
     ],
   },
   "hj-energi": {
@@ -281,15 +281,15 @@ const de: Record<string, CaseDetailOverlay> = {
     ],
   },
   "zealand-erhvervsakademi": {
-    titleAccent: "Volle Kontrolle über das Raumklima in jedem Unterrichtsraum.",
+    titleAccent: "Volle Kontrolle über das Indoor climate in jedem Unterrichtsraum.",
     intro: [
-      "Zealand wollte die volle Kontrolle über das Raumklima in allen Unterrichtsräumen. Kontinuierliche CO2- und Temperaturdaten helfen den Facility-Teams, zur richtigen Zeit zu lüften und zu heizen.",
+      "Zealand wollte die volle Kontrolle über das Indoor climate in allen Unterrichtsräumen. Kontinuierliche CO2- und Temperaturdaten helfen den Facility-Teams, zur richtigen Zeit zu lüften und zu heizen.",
     ],
   },
   "holbaek-kommune": {
-    titleAccent: "Besseres Raumklima für die Mitarbeitenden.",
+    titleAccent: "Besseres Indoor climate für die Mitarbeitenden.",
     intro: [
-      "Wir haben uns für RoomAlyzer entschieden, weil wir den Fokus auf das Raumklima legen und unseren Mitarbeitenden die besten Bedingungen bieten wollen.",
+      "Wir haben uns für RoomAlyzer entschieden, weil wir den Fokus auf das Indoor climate legen und unseren Mitarbeitenden die besten Bedingungen bieten wollen.",
     ],
   },
 };

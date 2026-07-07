@@ -179,7 +179,7 @@ const da: CompareStrings = {
   useCases: {
     classroom: { label: "Klasselokaler og læring", description: "CO₂, komfort og dokumenteret luftkvalitet." },
     "hybrid-office": { label: "Hybridkontorer", description: "Skrivebordsbrug, mødelokaler og indeklima." },
-    heritage: { label: "Kulturarv og bevaring", description: "Diskret RH-logning og udendørs reference." },
+    heritage: { label: "Kulturarv og bevaring", description: "Diskret fugtlogning og udendørs reference." },
     "cold-chain": { label: "Køleskabe og kølelager", description: "Punkttemperatur med øjeblikkelige alarmer." },
     leak: { label: "Lækagebeskyttelse", description: "Punkt- eller linjedækning mod vandskade." },
     "fm-service": { label: "FM og servicepunkter", description: "Behovsstyret rengøring og feedback." },
@@ -235,7 +235,7 @@ const de: CompareStrings = {
       },
     },
     water: {
-      label: "Wassererkennung",
+      label: "Water detection",
       rows: {
         waterSpot: { label: "Punkterkennung", hint: "Lecksensor an einem Punkt" },
         waterLine: { label: "Linien-/Seilerkennung", hint: "Durchgehende Kabelabdeckung" },
@@ -252,8 +252,8 @@ const de: CompareStrings = {
   },
   useCases: {
     classroom: { label: "Klassenzimmer & Lernen", description: "CO₂, Komfort und dokumentierte Luftqualität." },
-    "hybrid-office": { label: "Hybride Büros", description: "Schreibtischnutzung, Besprechungsräume und Raumklima." },
-    heritage: { label: "Kulturerbe & Bewahrung", description: "Diskrete RH-Aufzeichnung und Außenreferenz." },
+    "hybrid-office": { label: "Hybride Büros", description: "Schreibtischnutzung, Besprechungsräume und Indoor climate." },
+    heritage: { label: "Kulturerbe & Bewahrung", description: "Diskrete Feuchtigkeitsaufzeichnung und Außenreferenz." },
     "cold-chain": { label: "Kühlschränke & Kühllager", description: "Punkttemperatur mit Sofortalarmen." },
     leak: { label: "Leckageschutz", description: "Punkt- oder Linienabdeckung gegen Wasserschäden." },
     "fm-service": { label: "FM & Servicepunkte", description: "Bedarfsgesteuerte Reinigung und Feedback." },
@@ -327,7 +327,7 @@ const sv: CompareStrings = {
   useCases: {
     classroom: { label: "Klassrum och lärande", description: "CO₂, komfort och dokumenterad luftkvalitet." },
     "hybrid-office": { label: "Hybridkontor", description: "Skrivbordsanvändning, mötesrum och inomhusklimat." },
-    heritage: { label: "Kulturarv och bevarande", description: "Diskret RH-loggning och utomhusreferens." },
+    heritage: { label: "Kulturarv och bevarande", description: "Diskret fuktloggning och utomhusreferens." },
     "cold-chain": { label: "Kylskåp och kyllager", description: "Punkttemperatur med omedelbara larm." },
     leak: { label: "Läckageskydd", description: "Punkt- eller linjetäckning mot vattenskador." },
     "fm-service": { label: "FM och servicepunkter", description: "Behovsstyrd städning och feedback." },

@@ -285,22 +285,22 @@ const da: ModulePageStrings = {
 };
 
 const de: ModulePageStrings = {
-  metaTitle: "Nutzung und Reinigung: bedarfsorientierte Reinigung | IoT Fabrikken",
+  metaTitle: "Usage and cleaning: bedarfsorientierte Reinigung | IoT Fabrikken",
   metaDescription:
     "Lenken Sie die Reinigung dorthin, wo Räume tatsächlich genutzt wurden. Belegung sehen, nach Bedarf planen, Sanitärräume priorisieren und Berichte mit Dienstleistern teilen.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
-  breadcrumbCurrent: "Nutzung und Reinigung",
+  breadcrumbCurrent: "Usage and cleaning",
   heroTitle: "Reinigen, wo",
   heroTitleAccent: "es wirklich nötig ist.",
   heroLead:
     "Datengesteuerte Reinigung nach tatsächlicher Nutzung — nicht nach festem Plan",
   intro: [
-    "Bedarfsorientierte Reinigung beantwortet eine Frage, die jedes Betriebsteam kennt: Warum einen Raum reinigen, den niemand genutzt hat, während ein stark frequentierter Raum wartet? Feste Reinigungspläne behandeln jeden Raum gleich — Aufwand geht dorthin, wo er nicht gebraucht wird, und zu wenig dorthin, wo er gebraucht wird.",
+    "Bedarfsorientierte Reinigung beantwortet eine Frage, die jedes Betriebsteam kennt: Warum einen Raum reinigen, den niemand genutzt hat, während ein stark frequentierter Raum wartet? Feste Reinigungspläne behandeln jeden Raum gleich — Aufwand geht dorthin, wo er nicht gebraucht wird und zu wenig dorthin, wo er gebraucht wird.",
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer: Nutzung und Reinigung",
+  dashboardLabel: "RoomAlyzer: Usage and cleaning",
   dashboardAlt: "RoomAlyzer-Dashboard mit Raumnutzung und Reinigungsprioritäten",
   challengesEyebrow: "Die Herausforderungen, die Sie kennen",
   challengesHeading: "Bei Reinigung nach Plan warten stark genutzte Räume, während leere poliert werden.",
@@ -321,9 +321,9 @@ const de: ModulePageStrings = {
   capabilitiesEyebrow: "So löst RoomAlyzer das",
   capabilitiesHeading: "Belegungsdaten, die die Reinigung noch am selben Tag steuern.",
   solutionLead:
-    "RoomAlyzer Nutzung und Reinigung macht aus Belegung klare Prioritäten — entwickelt für Reinigungsteams und Facility Manager, die belegen müssen, wohin der Aufwand geht.",
+    "RoomAlyzer Usage and cleaning macht aus Belegung klare Prioritäten — entwickelt für Reinigungsteams und Facility Manager, die belegen müssen, wohin der Aufwand geht.",
   solutionLeadWithSensorLinks: [
-    { type: "text", value: "RoomAlyzer Nutzung und Reinigung nutzt " },
+    { type: "text", value: "RoomAlyzer Usage and cleaning nutzt " },
     { type: "sensor", slug: "motion", label: "Motion" },
     { type: "text", value: " und " },
     { type: "sensor", slug: "mini-plus-pir", label: "Mini+ PIR" },
@@ -377,12 +377,12 @@ const de: ModulePageStrings = {
   ],
   relatedModuleLabel: "Smarter zusammen",
   relatedModuleBody:
-    "Nutzung und Reinigung teilt Belegungsdaten direkt mit Space-Management — ein Sensornetzwerk, zwei Module und eine gemeinsame Quelle dafür, wie das Gebäude genutzt wird.",
+    "Usage and cleaning teilt Belegungsdaten direkt mit Space-Management — ein Sensornetzwerk, zwei Module und eine gemeinsame Quelle dafür, wie das Gebäude genutzt wird.",
   relatedModuleLink: "Space-Management entdecken",
   audiencesEyebrow: "Für wen",
   audiencesHeading: "Reinigungsteams und die Facility Manager, die sie steuern",
   audiencesLead:
-    "Dieselben Belegungsdaten helfen dem Reinigungsmitarbeiter zu wissen, welche Etagen heute Aufmerksamkeit brauchen, und dem Facility Manager zu belegen, wohin das Budget morgen gehen soll.",
+    "Dieselben Belegungsdaten helfen dem Reinigungsmitarbeiter zu wissen, welche Etagen heute Aufmerksamkeit brauchen und dem Facility Manager zu belegen, wohin das Budget morgen gehen soll.",
   primaryAudienceHeading: "Für Reinigungsteams",
   primaryAudienceItems: [
     "Sehen, welche Räume seit der letzten Runde genutzt wurden",
@@ -412,11 +412,11 @@ const de: ModulePageStrings = {
     },
     {
       q: "Wie schnell können wir von einem festen Plan wechseln?",
-      a: "Die meisten Teams starten mit einer Pilotetage oder -zone. Sensoren sind in Minuten installiert, und Sie können bedarfsorientierte und feste Pläne während der Umstellung parallel fahren.",
+      a: "Die meisten Teams starten mit einer Pilotetage oder -zone. Sensoren sind in Minuten installiert und Sie können bedarfsorientierte und feste Pläne während der Umstellung parallel fahren.",
     },
     {
       q: "Wie hängt das mit Space-Management zusammen?",
-      a: "Beide Module nutzen dieselben Belegungsdaten in RoomAlyzer. Space-Management fokussiert Arbeitsplätze und Besprechungsräume; Nutzung und Reinigung macht daraus Reinigungsprioritäten.",
+      a: "Beide Module nutzen dieselben Belegungsdaten in RoomAlyzer. Space-Management fokussiert Arbeitsplätze und Besprechungsräume; Usage and cleaning macht daraus Reinigungsprioritäten.",
     },
   ],
   ctaTitle: "Möchten Sie es selbst sehen?",

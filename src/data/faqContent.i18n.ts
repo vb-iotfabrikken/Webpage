@@ -7,7 +7,6 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
   da: {
     platform: [
       { q: "Hvad er RoomAlyzer?", a: "RoomAlyzer er IoT Fabrikkens cloudplatform til trådløse bygningssensorer. Den indsamler data fra gateways, gemmer dem i en tidsseriedatabase, leverer dashboards og alarmer og eksponerer et API og MQTT-feed, så data kan flyde videre til BMS-, FM- og BI-værktøjer." },
-      { q: "Hvor hostes platformen?", a: "På europæisk cloud-infrastruktur med datalokation i EU som standard. Vi kan tilbyde region-pinning og single-tenant-udrulninger til kunder med særlige compliance-krav." },
       { q: "Hvor ofte opdateres platformen?", a: "Vi udsender små opdateringer ugentligt og større funktioner månedligt med en offentlig changelog. Bagudinkompatible API-ændringer versioneres og annonceres på forhånd." },
       { q: "Hvor længe opbevares historiske data?", a: "Rå målinger opbevares i 24 måneder som standard, mens time- og dagsaggregeringer opbevares så længe kontoen består. Enterprise-planer kan forlænge rå opbevaring til fem eller ti år." },
       { q: "Kan vi white-label dashboards?", a: "Ja. Enterprise-kunder kan anvende egne farver, logo og subdomæne på dashboards, der vises for lejere eller studerende." },
@@ -39,7 +38,7 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
       { q: "Hvor længe opbevares data?", a: "Rumbelægning opbevares i 24 måneder som standard. Skrivebordsdata er 6 måneder som standard og kan konfigureres pr. rum eller skrivebord efter jeres overenskomst." },
     ],
     "water-detection": [
-      { q: "Hvor hurtigt er alarmen?", a: "Fra vand rammer sensoren til alarm forlader platformen tager det under 30 sekunder for LoRaWAN-sensorer og under 2 minutter for NB-IoT. SMS, e-mail, webhook og ticketing-integrationer sender derefter alarmen videre til vagthavende." },
+      { q: "Hvor hurtigt er alarmen?", a: "Fra vand rammer sensoren til alarm forlader platformen tager det under 2 minutter for NB-IoT-sensorer. SMS, e-mail, webhook og ticketing-integrationer sender derefter alarmen videre til vagthavende." },
       { q: "Hvad er falsk-positiv-raten?", a: "Langt under 1 pr. 1000 sensor-år i produktion. Kondens, rengøring og spild kan alle udløse sensorer, vi tuner tærskler og alarm-debouncing til jeres risikoprofil." },
       { q: "Hvor længe holder batteriet i en vandsensor?", a: "Fem til syv år i de fleste installationer. Sensorer er tætte mod fugt og egnet til kældre, teknikrum og skabe under vask." },
       { q: "Hvor bør vi placere vandsensorer?", a: "Under vask, ved varmtvandsbeholdere, ved vaskemaskiner og opvaskemaskiner, ved lave punkter i teknikrum, under raised floor i datacentre og ved enderne af vandrør i nedhængte lofter. Se vanddetektionsmodulets guide for en fuld matrix." },
@@ -47,17 +46,17 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
       { q: "Kan vi integrere alarmen i eksisterende SCADA eller NOC?", a: "Ja. Platformen publicerer til MQTT i realtid, så alarmer kan flyde direkte ind i Niagara, Desigo, Intel NOC eller egne Grafana/Prometheus-stacks." },
     ],
     "push-buttons": [
-      { q: "Hvordan taler knapperne med platformen?", a: "LoRaWAN til lang rækkevidde og lav effekt og NFC til tap-to-report-klistermærker via gæsters telefoner. Begge ender i samme hændelsesstrøm på platformen." },
-      { q: "Hvor mange hændelser pr. dag kan en knap håndtere?", a: "En LoRaWAN-knap kan håndtere 100+ tryk pr. dag i årevis på ét batteri. Til højere volumen anbefaler vi netdrevne enheder eller NFC-klistermærker med backend." },
+      { q: "Hvordan taler knapperne med platformen?", a: "Trådløse trykknapper til batteridrevne installationer og NFC til tap-to-report-klistermærker via gæsters telefoner. Begge ender i samme hændelsesstrøm på platformen." },
+      { q: "Hvor mange hændelser pr. dag kan en knap håndtere?", a: "En trådløs trykknap kan håndtere 100+ tryk pr. dag i årevis på ét batteri. Til højere volumen anbefaler vi netdrevne enheder eller NFC-klistermærker med backend." },
       { q: "Kan vi mærke knapper med specifikke betydninger?", a: "Ja. Hver knap får en rolle (rengøring, genopfyldning, vedligehold, panik, feedback) og en fysisk label. Platformen router hændelser efter rolle og rum." },
       { q: "Kan knapper integreres med vores ticketing-system?", a: "Ja. Tryk bliver tickets i ServiceNow, Jira, Freshdesk og lignende via vores udgående webhooks med automatisk kategorisering og lokationskontekst." },
-      { q: "Hvad er rækkevidden?", a: "2–5 km udendørs og 200–500 m indendørs for LoRaWAN afhængigt af gateways og byggematerialer. De fleste sites behøver én gateway pr. 3–5 etager i et standardkontor." },
+      { q: "Hvad er rækkevidden?", a: "Trådløse trykknapper forbinder via NB-IoT på operatørnetværk. Dækning følger din mobiloperatørs indendørs profil — typisk stærk nok til kontorer, skoler og hospitaler uden ekstra infrastruktur." },
     ],
     sensors: [
       { q: "Hvilke sensorer leverer I?", a: "Vores portefølje er organiseret i fire linjer: RoomAlyzer Air (klimasensorer som CO2, Full+, Humidity, Mini+, Mini+ PIR, Outdoor og Temperature), RoomAlyzer Space (Desk, Motion, Open/Close og Touch), RoomAlyzer Water (Water detector og Water rope) og Miscellaneous (Cloud connector, Range Extender og Bracket). Download produktark fra sensorssektionen." },
       { q: "Skal sensorerne kalibreres?", a: "CO₂-sensorer kalibrerer sig mod udendørs niveauer; fugtsensorer driver ca. 1 % RH pr. år; temperatursensorer er stabile i levetiden. Vi anbefaler fabriksgenkalibrering hvert femte år til bevaringskritiske udrulninger." },
       { q: "Hvad er typisk batterilevetid?", a: "Tre til syv år afhængigt af sensortype, rapporteringsinterval og omgivelsestemperatur. Platformen viser batterimåler for hver sensor og forudsiger skiftedatoer." },
-      { q: "Hvor kan sensorerne placeres?", a: "Overalt med LoRaWAN- eller NB-IoT-dækning. Indendørs placeres de 1,1–1,7 m over gulv, væk fra direkte sollys, stikkontakter og vinduer. Sensorplaceringsguiden dækker detaljer pr. rumtype." },
+      { q: "Hvor kan sensorerne placeres?", a: "Overalt med NB-IoT-dækning. Indendørs placeres de 1,1–1,7 m over gulv, væk fra direkte sollys, stikkontakter og vinduer. Sensorplaceringsguiden dækker detaljer pr. rumtype." },
       { q: "Er sensorerne CE-mærkede?", a: "Ja. Alle vores sensorer er CE-mærkede og overholder Radio Equipment Directive (RED), Low Voltage Directive (LVD) og EMC Directive." },
     ],
     integrations: [
@@ -79,7 +78,7 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
       { q: "Hvor ligger data?", a: "Europæisk cloud-infrastruktur med datalokation i EU som standard. Driftsdatabasen og alle backups forbliver i den region, I vælger ved onboarding." },
       { q: "Er I GDPR-compliant?", a: "Ja. Vi er databehandler for kundedata og leverer standard DPA med underdatabehandlerliste, auditrettigheder og brudnotifikation. Anmodninger fra registrerede går via kunden." },
       { q: "Har I sikkerhedscertificeringer?", a: "Ja, vi er ISO 27001-certificerede og gennemgår årlig penetrationstest hos uafhængigt firma. Rapporter er tilgængelige under NDA." },
-      { q: "Hvordan krypteres data?", a: "TLS 1.3 under transport, AES-256 i hvile. Sensor-til-gateway-trafik krypteres med LoRaWAN sessionsnøgler (AES-128); gateway-til-cloud bruger TLS 1.3." },
+      { q: "Hvordan krypteres data?", a: "TLS 1.3 under transport, AES-256 i hvile. Sensor-til-cloud-trafik krypteres under transport; platformens API-forbindelser bruger TLS 1.3." },
       { q: "Kan vi self-hoste?", a: "Ja, enterprise-kunder kan køre RoomAlyzer på egen infrastruktur (Kubernetes eller managed EKS/AKS). Vi vedligeholder Helm charts og leverer samme support som den hostede platform." },
     ],
     installation: [
@@ -100,7 +99,6 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
   de: {
     platform: [
       { q: "Was ist RoomAlyzer?", a: "RoomAlyzer ist die Cloud-Plattform von IoT Fabrikken für drahtlose Gebäudesensoren. Sie nimmt Daten von Gateways auf, speichert sie in einer Zeitreihendatenbank, liefert Dashboards und Alarme und stellt API und MQTT-Feed bereit, damit Daten weiter zu BMS-, FM- und BI-Tools fließen können." },
-      { q: "Wo wird die Plattform gehostet?", a: "Auf europäischer Cloud-Infrastruktur mit Datenresidenz in der EU als Standard. Region-Pinning und Single-Tenant-Bereitstellungen sind für Kunden mit besonderen Compliance-Anforderungen möglich." },
       { q: "Wie oft wird die Plattform aktualisiert?", a: "Kleine Updates wöchentlich, größere Features monatlich mit veröffentlichtem Changelog. Rückwärtsinkompatible API-Änderungen werden versioniert und im Voraus angekündigt." },
       { q: "Wie lange werden historische Daten aufbewahrt?", a: "Rohmesswerte standardmäßig 24 Monate, Stunden- und Tagesaggregate für die Laufzeit des Kontos. Enterprise-Pläne können Rohdaten auf fünf oder zehn Jahre verlängern." },
       { q: "Können wir Dashboards white-labeln?", a: "Ja. Enterprise-Kunden können eigene Farben, Logo und Subdomain für Dashboards nutzen, die Mietern oder Studierenden gezeigt werden." },
@@ -108,7 +106,7 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
       { q: "Kann ich alles exportieren, wenn ich aussteige?", a: "Ja. Jeder Kunde kann alle historischen Sensormessungen als CSV oder Parquet sowie Metadaten (Räume, Grundrisse, Schwellen) als JSON exportieren. Keine Exportgebühr, kein Lock-in." },
     ],
     "indoor-climate": [
-      { q: "Welche Parameter misst RoomAlyzer für das Raumklima?", a: "CO₂ (400–5000 ppm), Temperatur, relative Luftfeuchte und je nach Sensor VOC (TVOC), Feinstaub (PM2.5) und Beleuchtungsstärke. Alle Parameter werden kontinuierlich erfasst und in von Ihnen konfigurierten Intervallen gemeldet." },
+      { q: "Welche Parameter misst RoomAlyzer für das Indoor climate?", a: "CO₂ (400–5000 ppm), Temperatur, relative Luftfeuchte und je nach Sensor VOC (TVOC), Feinstaub (PM2.5) und Beleuchtungsstärke. Alle Parameter werden kontinuierlich erfasst und in von Ihnen konfigurierten Intervallen gemeldet." },
       { q: "Wie genau sind die CO₂-Messungen?", a: "Typischerweise ±30 ppm oder ±3 % des Messwerts (je nachdem, was größer ist) im Bereich 400–2000 ppm, der für Klassenzimmer und Büros zählt. Sensoren kalibrieren sich bei regulären Lüftungszyklen gegen die Außenluft." },
       { q: "Welchen CO₂-Schwellenwert sollten wir nutzen?", a: "EN 16798 Kategorie II definiert 800–1200 ppm als akzeptabel; viele Schul-Kunden alarmieren bei 1200 ppm. In Deutschland gelten vergleichbare Anforderungen über DIN/EN-Normen, GEG oder Ihre lokale Vorgabe." },
       { q: "Brauchen wir einen Sensor pro Raum?", a: "Ja, ein Sensor pro Raum ist die Faustregel. Sehr große Räume wie Auditorien und Sporthallen können zwei oder drei Sensoren für eine genaue Zonenerfassung benötigen." },
@@ -116,12 +114,12 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
       { q: "Kann CO₂-Daten die Lüftung automatisch steuern?", a: "Ja. Die Plattform stellt Live-Messwerte per MQTT und REST bereit und kann Setpoint-Hinweise an BMS-Systeme wie Niagara, Desigo und EcoStruxure senden. Mehr im MQTT-Integrationsleitfaden." },
     ],
     preservation: [
-      { q: "Welcher Standard gilt für Konservierungsklima?", a: "EN 15757 ist der europäische Standard, den wir standardmäßig zugrunde legen, er definiert zulässige tägliche und saisonale Variationsbänder relativ zum historischen Klima jedes Objekts statt eines festen absoluten Sollwerts. DGNB, WELL und lokale Diözesen-Richtlinien ergänzen das." },
+      { q: "Welcher Standard gilt für Preservationsklima?", a: "EN 15757 ist der europäische Standard, den wir standardmäßig zugrunde legen, er definiert zulässige tägliche und saisonale Variationsbänder relativ zum historischen Klima jedes Objekts statt eines festen absoluten Sollwerts. DGNB, WELL und lokale Diözesen-Richtlinien ergänzen das." },
       { q: "Wie dicht sollte die Sensorabdeckung sein?", a: "Ein Sensor pro Mikroklimazone. Ein einzelnes Kirchenschiff kann drei Sensoren brauchen (Chor, Schiff, unter der Orgelempore), weil jede Zone unterschiedlich auf Heizung und Besucherandrang reagiert." },
       { q: "Können Sie in Vitrinen messen?", a: "Ja. Unsere MINI-Serie passt in Schaukästen und meldet drahtlos durch das Glas. Batteriebetrieb bedeutet keine Kabel durch die Vitrine." },
-      { q: "Wie lange halten die Batterien?", a: "Drei bis fünf Jahre bei typischen Konservierungseinstellungen (15-Minuten-Intervall, stabile Temperatur). Die Plattform warnt 60 Tage vor dem Batteriewechsel." },
+      { q: "Wie lange halten die Batterien?", a: "Drei bis fünf Jahre bei typischen Preservationseinstellungen (15-Minuten-Intervall, stabile Temperatur). Die Plattform warnt 60 Tage vor dem Batteriewechsel." },
       { q: "Unterstützen Sie Reise-Logger für Leihgaben?", a: "Ja. Kleine Taschen-Logger begleiten Objekte auf Leihgabe und docken am Zielort an die Plattform an, eine Timeline von Lager über Transport bis zur Ausstellung." },
-      { q: "Wie präsentieren wir die Daten gegenüber Diözese oder Vorstand?", a: "Nutzen Sie die Konservierungsberichtsvorlage: monatliches PDF mit Bändern, Überschreitungen, Maßnahmen und Anmerkungen. Die meisten Kunden senden es direkt an den Diözesenkonservator oder den Vorstandsvorsitzenden." },
+      { q: "Wie präsentieren wir die Daten gegenüber Diözese oder Vorstand?", a: "Nutzen Sie die Preservationsberichtsvorlage: monatliches PDF mit Bändern, Überschreitungen, Maßnahmen und Anmerkungen. Die meisten Kunden senden es direkt an den Diözesenkonservator oder den Vorstandsvorsitzenden." },
     ],
     "space-management": [
       { q: "Wie funktionieren Belegungssensoren ohne Personen zu identifizieren?", a: "Wir nutzen PIR (passiv infrarot), mmWave und Thermopile-Sensoren, die Bewegung und Wärmesignaturen erfassen, aber keine Gesichter sehen oder Personen identifizieren können. Keine Kameras, keine Badges, keine personenbezogenen Daten." },
@@ -132,25 +130,25 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
       { q: "Wie lange bleiben die Daten erhalten?", a: "Raumbelegung standardmäßig 24 Monate. Schreibtischdaten standardmäßig 6 Monate, konfigurierbar pro Raum oder Schreibtisch gemäß Betriebsvereinbarung." },
     ],
     "water-detection": [
-      { q: "Wie schnell ist der Alarm?", a: "Vom Wasserkontakt bis zum Alarm auf der Plattform unter 30 Sekunden bei LoRaWAN-Sensoren und unter 2 Minuten bei NB-IoT. SMS, E-Mail, Webhook und Ticketing leiten den Alarm an Bereitschaft weiter." },
+      { q: "Wie schnell ist der Alarm?", a: "Vom Wasserkontakt bis zum Alarm auf der Plattform dauert es unter 2 Minuten bei NB-IoT-Sensoren. SMS, E-Mail, Webhook und Ticketing leiten den Alarm an Bereitschaft weiter." },
       { q: "Wie hoch ist die Falschalarmrate?", a: "Deutlich unter 1 pro 1000 Sensor-Jahren im Produktivbetrieb. Kondenswasser, Reinigung und Verschütten können auslösen, wir stimmen Schwellen und Alarm-Entprellung auf Ihr Risikoprofil ab." },
       { q: "Wie lange hält die Batterie im Wassersensor?", a: "Fünf bis sieben Jahre in den meisten Installationen. Sensoren sind feuchtigkeitsdicht und für Keller, Technikräume und Unterschränke geeignet." },
-      { q: "Wo sollten Wassersensoren platziert werden?", a: "Unter Spülen, neben Warmwassergeräten, bei Waschmaschinen und Geschirrspülern, an Tiefpunkten in Technikräumen, unter Doppelböden in Rechenzentren und an Enden in Installationsdecken. Siehe Leitfaden zum Wassererkennungsmodul." },
+      { q: "Wo sollten Wassersensoren platziert werden?", a: "Unter Spülen, neben Warmwassergeräten, bei Waschmaschinen und Geschirrspülern, an Tiefpunkten in Technikräumen, unter Doppelböden in Rechenzentren und an Enden in Installationsdecken. Siehe Leitfaden zum Water detectionsmodul." },
       { q: "Senkt das unsere Versicherungsprämien?", a: "In vielen nordischen Märkten ja, besonders bei Gewerbeimmobilien mit Leitungswasserschäden in der Historie. Wir helfen, die Daten für Ihren Makler aufzubereiten." },
       { q: "Können wir den Alarm in bestehendes SCADA oder NOC integrieren?", a: "Ja. Die Plattform publiziert in Echtzeit per MQTT, sodass Alarme direkt in Niagara, Desigo, Intel NOC oder eigene Grafana/Prometheus-Stacks fließen können." },
     ],
     "push-buttons": [
-      { q: "Wie kommunizieren die Taster mit der Plattform?", a: "LoRaWAN für große Reichweite und geringen Verbrauch sowie NFC für Tap-to-Report-Aufkleber über Gästehandys. Beides landet im gleichen Ereignisstrom auf der Plattform." },
-      { q: "Wie viele Ereignisse pro Tag verträgt ein Taster?", a: "Ein LoRaWAN-Taster verträgt 100+ Drücke pro Tag jahrelang mit einer Batterie. Für höheres Volumen empfehlen wir netzbetriebene Geräte oder NFC-Aufkleber mit Backend." },
+      { q: "Wie kommunizieren die Taster mit der Plattform?", a: "Drahtlose Push buttons für batteriebetriebene Installationen und NFC für Tap-to-Report-Aufkleber über Gästehandys. Beides landet im gleichen Ereignisstrom auf der Plattform." },
+      { q: "Wie viele Ereignisse pro Tag verträgt ein Taster?", a: "Ein drahtloser Push button verträgt 100+ Drücke pro Tag jahrelang mit einer Batterie. Für höheres Volumen empfehlen wir netzbetriebene Geräte oder NFC-Aufkleber mit Backend." },
       { q: "Können wir Taster mit festen Bedeutungen beschriften?", a: "Ja. Jeder Taster erhält eine Rolle (Reinigung, Nachfüllung, Wartung, Panik, Feedback) und ein physisches Label. Die Plattform routet Ereignisse nach Rolle und Raum." },
       { q: "Können Taster mit unserem Ticketing-System integriert werden?", a: "Ja. Drücke werden per ausgehender Webhooks zu Tickets in ServiceNow, Jira, Freshdesk und ähnlichen Systemen, mit automatischer Kategorisierung und Standortkontext." },
-      { q: "Wie groß ist die Reichweite?", a: "2–5 km im Freien und 200–500 m innen für LoRaWAN, abhängig von Gateways und Baumaterialien. Die meisten Standorte brauchen ein Gateway pro 3–5 Etagen in einem Standardbüro." },
+      { q: "Wie groß ist die Reichweite?", a: "Drahtlose Push buttons verbinden sich über NB-IoT in Mobilfunknetzen. Die Abdeckung folgt dem Indoor-Profil Ihres Mobilfunkanbieters — in der Regel ausreichend für Büros, Schulen und Krankenhäuser ohne zusätzliche Infrastruktur." },
     ],
     sensors: [
       { q: "Welche Sensoren liefern Sie?", a: "Unser Portfolio ist in vier Linien gegliedert: RoomAlyzer Air (Klimasensoren wie CO2, Full+, Humidity, Mini+, Mini+ PIR, Outdoor und Temperature), RoomAlyzer Space (Desk, Motion, Open/Close und Touch), RoomAlyzer Water (Wasserdetektor und Water rope) und Miscellaneous (Cloud connector, Range Extender und Bracket). Produktblätter im Sensorenbereich herunterladen." },
-      { q: "Müssen die Sensoren kalibriert werden?", a: "CO₂-Sensoren kalibrieren sich gegen Außenluft; Feuchtesensoren driften etwa 1 % RH pro Jahr; Temperatursensoren sind über die Lebensdauer stabil. Wir empfehlen Werks-Rekalibrierung alle fünf Jahre für konservierungskritische Rollouts." },
+      { q: "Müssen die Sensoren kalibriert werden?", a: "CO₂-Sensoren kalibrieren sich gegen Außenluft; Humidity driften etwa 1 % r. F. pro Jahr; Temperature sind über die Lebensdauer stabil. Wir empfehlen Werks-Rekalibrierung alle fünf Jahre für konservierungskritische Rollouts." },
       { q: "Wie lang ist die typische Batterielaufzeit?", a: "Drei bis sieben Jahre je nach Sensortyp, Meldeintervall und Umgebungstemperatur. Die Plattform zeigt eine Batterieanzeige pro Sensor und prognostiziert Wechseltermine." },
-      { q: "Wo können Sensoren platziert werden?", a: "Überall mit LoRaWAN- oder NB-IoT-Abdeckung. Innen 1,1–1,7 m über dem Boden, fern von direkter Sonne, Steckdosen und Fenstern. Der Platzierungsleitfaden deckt jeden Raumtyp ab." },
+      { q: "Wo können Sensoren platziert werden?", a: "Überall mit NB-IoT-Abdeckung. Innen 1,1–1,7 m über dem Boden, fern von direkter Sonne, Steckdosen und Fenstern. Der Platzierungsleitfaden deckt jeden Raumtyp ab." },
       { q: "Sind die Sensoren CE-gekennzeichnet?", a: "Ja. Alle unsere Sensoren sind CE-gekennzeichnet und erfüllen die Funkanlagenrichtlinie (RED), die Niederspannungsrichtlinie (LVD) und die EMV-Richtlinie." },
     ],
     integrations: [
@@ -172,7 +170,7 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
       { q: "Wo liegen die Daten?", a: "Europäische Cloud-Infrastruktur mit Datenresidenz in der EU als Standard. Betriebsdatenbank und alle Backups bleiben in der bei Onboarding gewählten Region." },
       { q: "Sind Sie GDPR-konform?", a: "Ja. Wir sind Auftragsverarbeiter für Kundendaten und stellen eine Standard-AVV mit Unterauftragsverarbeiterliste, Auditrechten und Meldepflicht bei Verletzungen bereit. Betroffenenanfragen laufen über den Kunden." },
       { q: "Haben Sie Sicherheitszertifizierungen?", a: "Ja, wir sind ISO 27001-zertifiziert und unterziehen uns jährlichen Penetrationstests durch ein unabhängiges Unternehmen. Berichte unter NDA verfügbar." },
-      { q: "Wie werden Daten verschlüsselt?", a: "TLS 1.3 in Transit, AES-256 at Rest. Sensor-zu-Gateway mit LoRaWAN-Sitzungsschlüsseln (AES-128); Gateway-zu-Cloud mit TLS 1.3." },
+      { q: "Wie werden Daten verschlüsselt?", a: "TLS 1.3 in Transit, AES-256 at Rest. Sensor-zu-Cloud-Traffic ist während der Übertragung verschlüsselt; Plattform-API-Verbindungen nutzen TLS 1.3." },
       { q: "Können wir selbst hosten?", a: "Ja, Enterprise-Kunden können RoomAlyzer auf eigener Infrastruktur betreiben (Kubernetes oder managed EKS/AKS). Wir pflegen Helm-Charts und bieten denselben Support wie die gehostete Plattform." },
     ],
     installation: [
@@ -193,7 +191,6 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
   sv: {
     platform: [
       { q: "Vad är RoomAlyzer?", a: "RoomAlyzer är IoT Fabrikkens molnplattform för trådlösa byggnadssensorer. Den tar emot data från gateways, lagrar i en tidsseriedatabas, levererar dashboards och larm och exponerar API och MQTT-flöde så data kan gå vidare till BMS-, FM- och BI-verktyg." },
-      { q: "Var hostas plattformen?", a: "På europeisk molninfrastruktur med datalagring i EU som standard. Region-pinning och single-tenant-utrullningar erbjuds för kunder med särskilda compliance-krav." },
       { q: "Hur ofta uppdateras plattformen?", a: "Små uppdateringar varje vecka och större funktioner månadsvis med publicerad changelog. Bakåtinkompatibla API-ändringar versioneras och annonseras i förväg." },
       { q: "Hur länge sparas historisk data?", a: "Råmätningar sparas i 24 månader som standard, tim- och dagsaggregeringar så länge kontot består. Enterprise-planer kan förlänga rå lagring till fem eller tio år." },
       { q: "Kan vi white-labela dashboards?", a: "Ja. Enterprise-kunder kan använda egna färger, logotyp och subdomän på dashboards som visas för hyresgäster eller studenter." },
@@ -225,7 +222,7 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
       { q: "Hur länge sparas data?", a: "Rumsnärvaro sparas i 24 månader som standard. Skrivbordsdata standard 6 månader, konfigurerbart per rum eller skrivbord enligt ert fackligt avtal." },
     ],
     "water-detection": [
-      { q: "Hur snabbt är larmet?", a: "Från vatten på sensorn till larm som lämnar plattformen tar det under 30 sekunder för LoRaWAN-sensorer och under 2 minuter för NB-IoT. SMS, e-post, webhook och ticketing skickar larmet vidare till beredskap." },
+      { q: "Hur snabbt är larmet?", a: "Från vatten på sensorn till larm som lämnar plattformen tar det under 2 minuter för NB-IoT-sensorer. SMS, e-post, webhook och ticketing skickar larmet vidare till beredskap." },
       { q: "Vad är falsklarmsfrekvensen?", a: "Långt under 1 per 1000 sensor-år i produktion. Kondens, städning och spill kan utlösa sensorer, vi finjusterar trösklar och larm-debouncing efter er riskprofil." },
       { q: "Hur länge håller batteriet i en vattensensor?", a: "Fem till sju år i de flesta installationer. Sensorer är tätade mot fukt och lämpar sig för källare, teknikrum och skåp under disk." },
       { q: "Var bör vi placera vattensensorer?", a: "Under diskhoar, vid varmvattenberedare, vid tvätt- och diskmaskiner, vid lågpunkter i teknikrum, under dubbelgolv i datacenter och vid ändar i installationstak. Se vattendetekteringsmodulens guide för full matris." },
@@ -233,17 +230,17 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
       { q: "Kan vi integrera larmet i befintlig SCADA eller NOC?", a: "Ja. Plattformen publicerar till MQTT i realtid så larm kan gå direkt till Niagara, Desigo, Intel NOC eller egna Grafana/Prometheus-stackar." },
     ],
     "push-buttons": [
-      { q: "Hur kommunicerar knapparna med plattformen?", a: "LoRaWAN för lång räckvidd och låg effekt samt NFC för tap-to-report-klistermärken via gästers telefoner. Båda hamnar i samma händelseström på plattformen." },
-      { q: "Hur många händelser per dag klarar en knapp?", a: "En LoRaWAN-knapp klarar 100+ tryck per dag i åratal på ett batteri. För högre volym rekommenderar vi nätanslutna enheter eller NFC-klistermärken med backend." },
+      { q: "Hur kommunicerar knapparna med plattformen?", a: "Trådlösa tryckknappar för batteridrivna installationer och NFC för tap-to-report-klistermärken via gästers telefoner. Båda hamnar i samma händelseström på plattformen." },
+      { q: "Hur många händelser per dag klarar en knapp?", a: "En trådlös tryckknapp klarar 100+ tryck per dag i åratal på ett batteri. För högre volym rekommenderar vi nätanslutna enheter eller NFC-klistermärken med backend." },
       { q: "Kan vi märka knappar med specifika betydelser?", a: "Ja. Varje knapp får en roll (städning, påfyllning, underhåll, panik, feedback) och en fysisk etikett. Plattformen dirigerar händelser efter roll och rum." },
       { q: "Kan knapparna integreras med vårt ticketing-system?", a: "Ja. Tryck blir ärenden i ServiceNow, Jira, Freshdesk och liknande via våra utgående webhooks med automatisk kategorisering och platskontext." },
-      { q: "Vad är räckvidden?", a: "2–5 km utomhus och 200–500 m inomhus för LoRaWAN beroende på gateways och byggmaterial. De flesta platser behöver en gateway per 3–5 våningar i ett standardkontor." },
+      { q: "Vad är räckvidden?", a: "Trådlösa tryckknappar ansluter via NB-IoT i mobilnät. Täckningen följer din operatörs inomhusprofil — vanligtvis tillräcklig för kontor, skolor och sjukhus utan extra infrastruktur." },
     ],
     sensors: [
       { q: "Vilka sensorer levererar ni?", a: "Vår portfölj är organiserad i fyra linjer: RoomAlyzer Air (klimasensorer som CO2, Full+, Humidity, Mini+, Mini+ PIR, Outdoor och Temperature), RoomAlyzer Space (Desk, Motion, Open/Close och Touch), RoomAlyzer Water (Water detector och Water rope) och Miscellaneous (Cloud connector, Range Extender och Bracket). Ladda ner produktblad från sensorssektionen." },
       { q: "Behöver sensorerna kalibreras?", a: "CO₂-sensorer kalibrerar sig mot utomhusnivåer; fuktsensorer driver cirka 1 % RH per år; temperatursensorer är stabila under livslängden. Vi rekommenderar fabriksomkalibrering vart femte år för bevarandekritiska utrullningar." },
       { q: "Vad är typisk batteritid?", a: "Tre till sju år beroende på sensortyp, rapporteringsintervall och omgivningstemperatur. Plattformen visar batterimätare per sensor och förutsäger bytesdatum." },
-      { q: "Var kan sensorerna placeras?", a: "Överallt med LoRaWAN- eller NB-IoT-täckning. Inomhus 1,1–1,7 m över golv, bort från direkt solljus, uttag och fönster. Placeringsguiden täcker varje rumstyp." },
+      { q: "Var kan sensorerna placeras?", a: "Överallt med NB-IoT-täckning. Inomhus 1,1–1,7 m över golv, bort från direkt solljus, uttag och fönster. Placeringsguiden täcker varje rumstyp." },
       { q: "Är sensorerna CE-märkta?", a: "Ja. Alla våra sensorer är CE-märkta och följer Radio Equipment Directive (RED), Low Voltage Directive (LVD) och EMC Directive." },
     ],
     integrations: [
@@ -265,7 +262,7 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
       { q: "Var lagras data?", a: "Europeisk molninfrastruktur med datalagring i EU som standard. Driftsdatabasen och alla backuper stannar i den region ni väljer vid onboarding." },
       { q: "Är ni GDPR-kompatibla?", a: "Ja. Vi är personuppgiftsbiträde för kunddata och tillhandahåller standard DPA med underbiträdeslista, revisionsrättigheter och brottanmälan. Begäranden från registrerade går via kunden." },
       { q: "Har ni säkerhetscertifieringar?", a: "Ja, vi är ISO 27001-certifierade och genomgår årlig penetrationstest av oberoende firma. Rapporter finns under NDA." },
-      { q: "Hur krypteras data?", a: "TLS 1.3 under transport, AES-256 i vila. Sensor-till-gateway krypteras med LoRaWAN sessionsnycklar (AES-128); gateway-till-moln använder TLS 1.3." },
+      { q: "Hur krypteras data?", a: "TLS 1.3 under transport, AES-256 i vila. Sensor-till-moln-trafik krypteras under transport; plattformens API-anslutningar använder TLS 1.3." },
       { q: "Kan vi self-hosta?", a: "Ja, enterprise-kunder kan köra RoomAlyzer på egen infrastruktur (Kubernetes eller managed EKS/AKS). Vi underhåller Helm charts och ger samma support som den hostade plattformen." },
     ],
     installation: [

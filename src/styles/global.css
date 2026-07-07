@@ -174,4 +174,8 @@
       margin-top: 1.25rem;
     }
   }
+
+  [data-page-hero][data-home-hero] .hero-lead {
+    text-wrap: balance;
+  }
 }

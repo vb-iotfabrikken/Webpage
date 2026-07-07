@@ -205,7 +205,7 @@ const da: ModulePageStrings = {
   heroTitle: "Smart vanddetektering.",
   heroTitleAccent: "Få beskeden, ikke skaden",
   heroLead:
-    "Glem gammeldags alarmer, som ingen hører — få direkte SMS- og e-mail-notifikationer, så I fanger lækager, før de bliver til en katastrofe.",
+    "Glem gammeldags alarmer, som ingen hører – få direkte besked på SMS og e-mail, så du fanger lækager, før de bliver til en katastrofe.",
   intro: [],
   heroPrimaryCta: "Book en gratis demo",
   heroSecondaryCta: "Få et tilbud",
@@ -248,7 +248,7 @@ const da: ModulePageStrings = {
     {
       id: "smart-notifications",
       title: "Smarte notifikationer",
-      body: "I modsætning til en bippe-sensor i en tom kælder sender RoomAlyzer alarmen direkte til dem, der kan handle — via SMS og e-mail i det øjeblik, der registreres vand.",
+      body: "I modsætning til en sensor, der bipper i en tom kælder, sender RoomAlyzer alarmen direkte til dem, der kan handle – på SMS og e-mail, når der registreres vand.",
       unit: "SMS & e-mail",
       imageAlt: "Vanddetekteringsalarm sendt via SMS og e-mail i RoomAlyzer",
     },
@@ -262,14 +262,14 @@ const da: ModulePageStrings = {
     {
       id: "visual-overview",
       title: "Visuelt overblik",
-      body: "Se præcis hvor lækagen er registreret — på kort og plantegninger på tværs af jeres bygninger, så vagthavende ved, hvilket rum de skal til, før de ankommer.",
+      body: "Se præcis, hvor lækagen er registreret – på kort og plantegninger på tværs af dine bygninger, så vagten ved, hvilket rum han skal til, før han ankommer.",
       unit: "Plantegninger",
       imageAlt: "Vandlækage vist på plantegning i RoomAlyzer",
     },
     {
       id: "incident-log",
       title: "Hændelseslog",
-      body: "Hver detektion tidsstemples og gemmes på platformen — så I har en objektiv registrering til forsikringssager og opfølgning.",
+      body: "Hver detektion tidsstemples og gemmes på platformen – så du har en objektiv registrering til forsikringssager og opfølgning.",
       unit: "Audit trail",
       imageAlt: "Vandhændelseslog med tidsstempler i RoomAlyzer",
     },
@@ -324,12 +324,12 @@ const da: ModulePageStrings = {
       a: "Læk opstår, hvor Wi-Fi ofte ikke når frem — dybe kældre, skakte og lukkede skabe. NB-IoT-sensorer forbinder via mobilnetværket uafhængigt af bygningens trådløse infrastruktur.",
     },
     {
-      q: "Vandrebs vs. punktsensor: hvornår skal vi bruge hvad?",
-      a: "Brug punktsensorer under vaske, ved vandvarmere og ved apparater, hvor ét punkt er risikoen. Læg vandrebs langs rørføringer, under hævede gulve og over lave punkter, hvor vand kan løbe, før nogen opdager det.",
+      q: "Water rope vs. punktsensor: hvornår skal du bruge hvad?",
+      a: "Brug punktsensorer under vaske, ved vandvarmere og ved apparater, hvor risikoen er ét bestemt sted. Læg en Water rope-sensor langs rørføringer, under hævede gulve og over lavpunkter, hvor vand kan løbe, før nogen opdager det.",
     },
     {
       q: "Kan vi bruge hændelsesloggen til forsikringsdokumentation?",
-      a: "Ja. Hver detektion tidsstemples, knyttes til sensoren på jeres plantegning og opbevares på platformen. De fleste kunder eksporterer loggen direkte til mægler eller forsikring efter en vandskade.",
+      a: "Ja. Hver detektion tidsstemples, knyttes til sensoren på din plantegning og gemmes på platformen. De fleste kunder eksporterer loggen direkte til mægler eller forsikring efter en vandskade.",
     },
     {
       q: "Hvad koster det?",
@@ -385,41 +385,41 @@ const da: ModulePageStrings = {
 };
 
 const de: ModulePageStrings = {
-  metaTitle: "Wassererkennung: Lecksensoren und Alarme | IoT Fabrikken",
+  metaTitle: "Water detection: Lecksensoren und Alarme | IoT Fabrikken",
   metaDescription:
     "Drahtlose Wassersensoren, die per E-Mail und SMS alarmieren, bevor sich Lecks ausbreiten. Mobilfunkabdeckung für Keller und Schächte mit Ereignisprotokoll für die Versicherung.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
-  breadcrumbCurrent: "Wassererkennung",
-  heroTitle: "Smarte Wassererkennung.",
-  heroTitleAccent: "Die Meldung statt des Schadens",
+  breadcrumbCurrent: "Water detection",
+  heroTitle: "Smarte Wasserdetektion:",
+  heroTitleAccent: "Sekundenschnelle Alarme statt teurer Sanierungskosten.",
   heroLead:
     "Vergessen Sie veraltete Alarme, die niemand hört — erhalten Sie direkte SMS- und E-Mail-Benachrichtigungen, damit Sie Lecks erkennen, bevor sie zur Katastrophe werden.",
   intro: [],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer: Wassererkennung",
-  dashboardAlt: "RoomAlyzer Wassererkennungs-Dashboard mit Sensorpositionen und aktiven Alarmen",
+  dashboardLabel: "RoomAlyzer: Water detection",
+  dashboardAlt: "RoomAlyzer Water detections-Dashboard mit Sensorpositionen und aktiven Alarmen",
   challengesEyebrow: "Das Risiko, das Sie nicht hören",
   challengesHeading: "Ein piepsender Sensor in einem leeren Keller ist kein Schutz.",
   challenges: [
     {
       title: "Lecks zu spät entdeckt",
-      body: "Wasser erreicht Server, Elektroinstallationen oder das Gebäude, bevor jemand es merkt — und ein kleiner Vorfall wird zu einem großen.",
+      body: "Wasser erreicht Serverräume, Elektroinstallationen oder das Fundament, lange bevor es jemand bemerkt – und aus einem unentdeckten Leck wird im Handumdrehen ein katastrophaler Großschaden.",
     },
     {
       title: "Alarme, die niemand hört",
-      body: "Ein herkömmlicher Sensor piepst für sich allein in einem Keller oder Schacht, wo niemand in der Nähe ist, es zu bemerken.",
+      body: "Ein herkömmlicher Sensor piept wirkungslos im Keller oder Schacht vor sich hin – an Orten, an denen niemand das Warnsignal hören oder rechtzeitig reagieren kann.",
     },
     {
       title: "Schwer erreichbare Risikopunkte",
-      body: "Schächte, Keller und Technikräume sind genau dort, wo Lecks beginnen — und genau dort, wo niemand regelmäßig nachsieht.",
+      body: "Schächte, Keller und Technikräume sind die klassischen Ursprungsorte für Leckagen und gleichzeitig genau die Bereiche, die am seltensten kontrolliert werden.",
     },
   ],
   capabilitiesEyebrow: "So schützt RoomAlyzer",
   capabilitiesHeading: "Frühwarnung, die die richtige Person erreicht.",
   solutionLead:
-    "RoomAlyzer Wassererkennung gibt Facility-Teams und Wohnungsgenossenschaften sofortige Alarme, zuverlässige Abdeckung in schwer erreichbaren Räumen und Dokumentation, die in einem Versicherungsfall standhält.",
+    "RoomAlyzer Water detection gibt Facility-Teams und Wohnungsgenossenschaften sofortige Alarme, zuverlässige Abdeckung in schwer erreichbaren Räumen und Dokumentation, die in einem Versicherungsfall standhält.",
   solutionLeadWithSensorLinks: [
     { type: "text", value: "RoomAlyzer verbindet " },
     { type: "sensor", slug: "water-detector", label: "Wasserdetektor" },
@@ -439,14 +439,14 @@ const de: ModulePageStrings = {
       title: "Smarte Benachrichtigungen",
       body: "Anders als ein reiner Piepser in einem leeren Keller sendet RoomAlyzer den Alarm direkt an die Personen, die handeln können — per SMS und E-Mail in dem Moment, in dem Wasser erkannt wird.",
       unit: "SMS & E-Mail",
-      imageAlt: "Wassererkennungsalarm per SMS und E-Mail in RoomAlyzer",
+      imageAlt: "Water detectionsalarm per SMS und E-Mail in RoomAlyzer",
     },
     {
       id: "alarm-escalation",
       title: "Alarm-Eskalation",
       body: "Definieren Sie eine Kontaktkette für jeden Standort. Wenn die erste Person den Alarm nicht quittiert, benachrichtigt das System automatisch den nächsten Kontakt — damit ein Leck um 2 Uhr morgens nicht wartet, bis jemand später sein Telefon prüft.",
       unit: "Eskalation",
-      imageAlt: "Alarm-Eskalationskette in RoomAlyzer Wassererkennung",
+      imageAlt: "Alarm-Eskalationskette in RoomAlyzer Water detection",
     },
     {
       id: "visual-overview",
@@ -465,7 +465,7 @@ const de: ModulePageStrings = {
     {
       id: "plug-and-play",
       title: "Plug & play",
-      body: "Sensoren laufen über NB-IoT mit bis zu sieben Jahren Batterielaufzeit. Kein WLAN, keine Gateways — Sensor montieren, und er verbindet sich über das Mobilfunknetz, auch in tiefen Kellern und Schächten.",
+      body: "Sensoren laufen über NB-IoT mit bis zu sieben Jahren Batterielaufzeit. Kein WLAN, keine Gateways — Sensor montieren und er verbindet sich über das Mobilfunknetz, auch in tiefen Kellern und Schächten.",
       bodyWithSensorLinks: [
         { type: "text", value: "Der " },
         { type: "sensor", slug: "water-detector", label: "Wasserdetektor" },
@@ -474,7 +474,7 @@ const de: ModulePageStrings = {
         {
           type: "text",
           value:
-            " laufen über NB-IoT mit bis zu sieben Jahren Batterielaufzeit. Kein WLAN, keine Gateways — Sensor montieren, und er verbindet sich über das Mobilfunknetz, auch in tiefen Kellern und Schächten.",
+            " laufen über NB-IoT mit bis zu sieben Jahren Batterielaufzeit. Kein WLAN, keine Gateways — Sensor montieren und er verbindet sich über das Mobilfunknetz, auch in tiefen Kellern und Schächten.",
         },
       ],
       unit: "NB-IoT",
@@ -483,8 +483,8 @@ const de: ModulePageStrings = {
   ],
   relatedModuleLabel: "Auch relevant",
   relatedModuleBody:
-    "Denkmalgeschützte Gebäude laufen ein doppeltes Risiko: langsame Feuchteschäden an Sammlungen und plötzliches Wassereindringen durch Dächer, Rohre und Mauerwerk. Kombinieren Sie Wassererkennung mit Konservierung, um sowohl die Bausubstanz als auch ihren Inhalt zu schützen.",
-  relatedModuleLink: "Konservierungsmodul entdecken",
+    "Denkmalgeschützte Gebäude laufen ein doppeltes Risiko: langsame Feuchteschäden an Sammlungen und plötzliches Wassereindringen durch Dächer, Rohre und Mauerwerk. Kombinieren Sie Water detection mit Preservation, um sowohl die Bausubstanz als auch ihren Inhalt zu schützen.",
+  relatedModuleLink: "Preservationsmodul entdecken",
   audiencesEyebrow: "Für wen",
   audiencesHeading: "Betriebsteams, die schnell handeln müssen",
   audiencesLead:
@@ -513,8 +513,8 @@ const de: ModulePageStrings = {
       a: "Lecks entstehen dort, wo WLAN oft nicht hinreicht — tiefe Keller, Schächte und geschlossene Schränke. NB-IoT-Sensoren verbinden sich über das Mobilfunknetz unabhängig von der drahtlosen Infrastruktur Ihres Gebäudes.",
     },
     {
-      q: "Wasserseil vs. Punktsensor: wann nutzen wir was?",
-      a: "Nutzen Sie Punktsensoren unter Spülen, neben Warmwasserbereitern und bei Geräten, wo ein einzelner Punkt das Risiko ist. Verlegen Sie Wasserseile entlang Rohrleitungen, unter Doppelböden und über Tiefpunkte, wo Wasser laufen kann, bevor es jemand bemerkt.",
+      q: "Water rope vs. Water detector: Wann nutzen Sie was?",
+      a: "Nutzen Sie Water detector unter Spülen, neben Warmwasserbereitern und bei Geräten, wo das Risiko an einem einzelnen Punkt liegt. Verlegen Sie das Water rope entlang von Rohrleitungen, unter Doppelböden und über Tiefpunkte, wo Wasser laufen kann, bevor es jemand bemerkt.",
     },
     {
       q: "Können wir das Ereignisprotokoll für die Versicherungsdokumentation nutzen?",
@@ -522,7 +522,7 @@ const de: ModulePageStrings = {
     },
     {
       q: "Was kostet es?",
-      a: "Der Preis hängt von der Anzahl der Sensoren und der Gebäudestruktur ab. Buchen Sie eine Demo, und wir erstellen ein konkretes Angebot basierend auf Ihren Risikopunkten.",
+      a: "Der Preis hängt von der Anzahl der Sensoren und der Gebäudestruktur ab. Buchen Sie eine Demo und wir erstellen ein konkretes Angebot basierend auf Ihren Risikopunkten.",
     },
   ],
   ctaTitle: "Möchten Sie es selbst sehen?",
@@ -702,8 +702,8 @@ const sv: ModulePageStrings = {
       a: "Läckor börjar där Wi-Fi ofta inte når — djupa källare, schakt och stängda skåp. NB-IoT-sensorer ansluter via mobilnätet oberoende av byggnadens trådlösa infrastruktur.",
     },
     {
-      q: "Vattenrep vs punktsensor: när ska vi använda vilket?",
-      a: "Använd punktsensorer under diskhoar, vid varmvattenberedare och vid apparater där en enskild punkt är risken. Lägg vattenrep längs rördragningar, under upphöjda golv och över lågpunkter där vatten kan rinna innan någon märker det.",
+      q: "Water rope vs punktsensor: när ska du använda vilket?",
+      a: "Använd punktsensorer under diskhoar, vid varmvattenberedare och vid apparater där risken finns på en enskild punkt. Lägg en Water rope längs rördragningar, under upphöjda golv och över lågpunkter där vatten kan rinna innan någon märker det.",
     },
     {
       q: "Kan vi använda händelseloggen för försäkringsdokumentation?",

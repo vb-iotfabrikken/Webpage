@@ -36,11 +36,11 @@ export const compareHub: Hub = {
       lead: "Hosting, security, cost and uptime, compared for cloud-hosted and self-hosted deployments.",
     },
     {
-      slug: "lorawan-vs-nb-iot-vs-wifi",
+      slug: "nb-iot-vs-wifi",
       eyebrow: "Comparison",
-      title: "LoRaWAN vs. NB-IoT vs. Wi-Fi.",
+      title: "NB-IoT vs. Wi-Fi.",
       titleAccent: "Pick the right radio.",
-      lead: "Range, battery life, coverage and dependency profile of the three main wireless options for sensors.",
+      lead: "Range, battery life, coverage and dependency profile of cellular and Wi-Fi wireless options for sensors.",
     },
     {
       slug: "saas-vs-selfhosted",

@@ -19,6 +19,7 @@
  *   • Events        → Hub + landing pages in detailLocales (see events.ts)
  *   • Get an offer  → Quote request form
  *   • Legal         → Privacy, Impressum only
+ *   • Analytics     → Second wave only (see ANALYTICS_WAVE_LIVE); not soft launch
  *   • Trust center  → Privacy pillar only (via isLivePath); inline sections
  *                     via LIVE_TRUST_CENTER_SECTIONS (certification hidden)
  *   • Helpcenter + Log in are external (no internal page to gate)
@@ -43,6 +44,31 @@ import { locales, canonicalizePath, defaultLang, type Lang } from "./lang";
  * (e.g. for the full public launch).
  */
 export const LAUNCH_LIVE_ONLY = false;
+
+/**
+ * Second-wave gate for customer-journey analytics (GTM, GA4, consent banner,
+ * form/CTA events, cookie policy page, internal journey dashboard).
+ * Keep `false` during soft launch; flip to `true` when enabling analytics.
+ * Docker/Railway builds force this off regardless of branch.
+ *
+ * **Do not enable without explicit product approval.** While building:
+ *   • Never set `ANALYTICS_WAVE_LIVE = true` on a branch that deploys to Railway.
+ *   • Never add `internal/journey` or `legal/cookies` to `LIVE_EXACT` until approved.
+ *   • Second-wave pages emit only via {@link isAnalyticsWaveBuilt} (local `astro dev`
+ *     or an approved production build with this flag `true`).
+ */
+export const ANALYTICS_WAVE_LIVE = false;
+
+/**
+ * Second-wave routes (internal dashboard, cookie policy) emit only in dev or when
+ * {@link ANALYTICS_WAVE_LIVE} is explicitly enabled. Production builds with the
+ * wave off skip these pages at build time and prune any stray output.
+ */
+export function isAnalyticsWaveBuilt(): boolean {
+  if (ANALYTICS_WAVE_LIVE) return true;
+  // MODE is reliable in getStaticPaths; DEV can stay true during some build phases.
+  return import.meta.env.MODE === "development";
+}
 
 /**
  * Whole sections that are live. A path matches when it equals the prefix or

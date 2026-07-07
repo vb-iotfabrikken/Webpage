@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# local calibration mockup (generated preview, not for production)
+public/dimension-calibration-mockup/

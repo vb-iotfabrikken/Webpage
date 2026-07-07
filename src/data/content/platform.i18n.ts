@@ -291,12 +291,12 @@ const de: Record<string, PlatformContentOverlay> = {
     heroTitle: "So funktioniert RoomAlyzer.",
     heroTitleAccent: "Eine vollständige Gebäudeüberwachungslösung, die vom ersten Tag an funktioniert.",
     heroLead:
-      "RoomAlyzer ist eine drahtlose Gebäudeüberwachungslösung für Raumklima, Space-Management und Wassererkennung. Sie ist einfach gedacht: Wenn Sie eine unserer Lösungen bestellen (RoomAlyzer Air, RoomAlyzer Space oder RoomAlyzer Water), erhalten Sie alles in einem Paket, einsatzbereit. So funktioniert es — von der Bestellung bis zu den Daten auf dem Bildschirm.",
+      "RoomAlyzer ist eine drahtlose Gebäudeüberwachungslösung für Indoor climate, Space-Management und Water detection. Sie ist einfach gedacht: Wenn Sie eine unserer Lösungen bestellen (RoomAlyzer Air, RoomAlyzer Space oder RoomAlyzer Water), erhalten Sie alles in einem Paket, einsatzbereit. So funktioniert es — von der Bestellung bis zu den Daten auf dem Bildschirm.",
     sections: [
       {
         heading: "Alles in einer vollständigen Lösung",
         paragraphs: [
-          "Was auch immer Sie wählen, Sie erhalten immer eine vollständige, einsatzbereite Lösung mit allem, was Sie brauchen: drahtlose Sensoren mit eingebauter Konnektivität, die sofort funktionieren, und die RoomAlyzer-Software, in der Ihre Daten zu klaren Analysen, Prognosen und konkreten Empfehlungen werden. Nichts muss zusammengesetzt oder konfiguriert werden — Sie platzieren die Sensoren, und die Daten beginnen einzutreffen.",
+          "Was auch immer Sie wählen, Sie erhalten immer eine vollständige, einsatzbereite Lösung mit allem, was Sie brauchen: drahtlose Sensoren mit eingebauter Konnektivität, die sofort funktionieren und die RoomAlyzer-Software, in der Ihre Daten zu klaren Analysen, Prognosen und konkreten Empfehlungen werden. Nichts muss zusammengesetzt oder konfiguriert werden — Sie platzieren die Sensoren und die Daten beginnen einzutreffen.",
         ],
       },
       {
@@ -314,13 +314,13 @@ const de: Record<string, PlatformContentOverlay> = {
       {
         heading: "In Dänemark entwickelt — mit den Menschen, die es nutzen",
         paragraphs: [
-          "Wir entwickeln unsere Software selbst, hier in Dänemark, und tun das gemeinsam mit den vielen Nutzern, mit denen wir arbeiten: Facility Manager, Space Planner, Betriebspersonal, Ingenieure, Energieberater und Konservatoren in Kommunen, Unternehmen, Museen, Kirchen und Wohnungsgenossenschaften. Sie haben uns gesagt, wie es funktionieren muss, damit es zu ihrer Arbeit passt — und dieses Know-how steckt in Software, die wirklich einfach zu bedienen ist.",
+          "Wir entwickeln unsere Software selbst, hier in Dänemark und tun das gemeinsam mit den vielen Nutzern, mit denen wir arbeiten: Facility Manager, Space Planner, Betriebspersonal, Ingenieure, Energieberater und Konservatoren in Kommunen, Unternehmen, Museen, Kirchen und Wohnungsgenossenschaften. Sie haben uns gesagt, wie es funktionieren muss, damit es zu ihrer Arbeit passt — und dieses Know-how steckt in Software, die wirklich einfach zu bedienen ist.",
         ],
       },
       {
         heading: "Einfache Facility-Management-Software — auch wenn IT nicht Ihr Fach ist",
         paragraphs: [
-          "Die meisten haben schon mit einem IT-System gerungen, dessen Einarbeitung Wochen dauert. RoomAlyzer ist anders. Während große, komplexe Systeme lange Schulungen verlangen, ist unseres dafür bekannt, einfach zu sein. Es ist so aufgebaut, dass Sie genau die Daten finden, die Sie brauchen, schnell und unkompliziert im Arbeitsalltag. Das System ist intuitiv und hilft Ihnen, Daten in der Form zu nutzen, die gerade am meisten Sinn ergibt: Rohdaten, Berichte, Analysen, Grafiken oder eine API-Weiterleitung. Sie können Daten selbst abrufen, in den Posteingang liefern lassen oder das System sie ohne Handgriff an andere weiterleiten. Sie müssen nicht viel über IT-Systeme wissen, und wir entwickeln mit dem klaren Blick darauf, dass Menschen in Betrieb, Facility Management und Denkmalpflege wenig Zeit haben.",
+          "Die meisten haben schon mit einem IT-System gerungen, dessen Einarbeitung Wochen dauert. RoomAlyzer ist anders. Während große, komplexe Systeme lange Schulungen verlangen, ist unseres dafür bekannt, einfach zu sein. Es ist so aufgebaut, dass Sie genau die Daten finden, die Sie brauchen, schnell und unkompliziert im Arbeitsalltag. Das System ist intuitiv und hilft Ihnen, Daten in der Form zu nutzen, die gerade am meisten Sinn ergibt: Rohdaten, Berichte, Analysen, Grafiken oder eine API-Weiterleitung. Sie können Daten selbst abrufen, in den Posteingang liefern lassen oder das System sie ohne Handgriff an andere weiterleiten. Sie müssen nicht viel über IT-Systeme wissen und wir entwickeln mit dem klaren Blick darauf, dass Menschen in Betrieb, Facility Management und Denkmalpflege wenig Zeit haben.",
         ],
       },
       {
@@ -346,7 +346,7 @@ const de: Record<string, PlatformContentOverlay> = {
       {
         heading: "In Minuten selbst aufbauen",
         paragraphs: [
-          "Es gibt kein festes Layout. Sie wählen, was angezeigt wird und wie — mit fünf einfachen Widget-Typen: eine große KPI-Zahl, eine Live-Messung, ein Diagramm, eine Top-Liste oder eine Heatmap. Das Hinzufügen ist ein geführter Vier-Schritte-Prozess ohne Schulung, und das Layout ist per Drag-and-drop aufgebaut und speichert sich automatisch.",
+          "Es gibt kein festes Layout. Sie wählen, was angezeigt wird und wie — mit fünf einfachen Widget-Typen: eine große KPI-Zahl, eine Live-Messung, ein Diagramm, eine Top-Liste oder eine Heatmap. Das Hinzufügen ist ein geführter Vier-Schritte-Prozess ohne Schulung und das Layout ist per Drag-and-drop aufgebaut und speichert sich automatisch.",
         ],
       },
       {
@@ -355,9 +355,9 @@ const de: Record<string, PlatformContentOverlay> = {
           "Jede Lösung hat ihre eigene fertige Betriebsansicht, damit Sie immer wissen, wo Sie stehen:",
         ],
         list: [
-          "RoomAlyzer Air: Raumklima: Live-Temperatur, Feuchte und CO2 mit Sensoraktivitätsindikatoren, die bei eingehenden Messungen pulsieren. Eine parallele Bewahrungsansicht ergänzt die konservierungsspezifischen Kennzahlen (Preservation Index (PI/TWPI), Schimmelrisiko, EN 15757-Schwankungen und Bizot Green) für Museen, Archive und Kirchen.",
+          "RoomAlyzer Air: Indoor climate: Live-Temperatur, Feuchte und CO2 mit Sensoraktivitätsindikatoren, die bei eingehenden Messungen pulsieren. Eine parallele Bewahrungsansicht ergänzt die konservierungsspezifischen Kennzahlen (Preservation Index (PI/TWPI), Schimmelrisiko, EN 15757-Schwankungen und Bizot Green) für Museen, Archive und Kirchen.",
           "RoomAlyzer Space: Space-Management: sehen Sie, wie Schreibtische, Räume und Zonen wirklich genutzt werden — Live-Belegung und Heatmaps, die Muster über die Zeit zeigen. Das sind die Daten, die zeigen, wo Reservekapazität liegt, welche Meetingräume leer stehen und wo gerade ein freier Schreibtisch ist.",
-          "RoomAlyzer Water: Wassererkennung: ein operatives Cockpit mit aktiven Alarmen, stillen Sensoren und dem Zustand Ihrer gesamten Sensorflotte in Echtzeit, automatisch alle paar Sekunden aktualisiert — damit kein Leck übersehen wird.",
+          "RoomAlyzer Water: Water detection: ein operatives Cockpit mit aktiven Alarmen, stillen Sensoren und dem Zustand Ihrer gesamten Sensorflotte in Echtzeit, automatisch alle paar Sekunden aktualisiert — damit kein Leck übersehen wird.",
           "Es gibt auch eine Energieansicht, in der Verschwendung in DKK und CO2 angezeigt wird und die Effizienz je Standort aufgeschlüsselt ist.",
         ],
       },
@@ -367,7 +367,7 @@ const de: Record<string, PlatformContentOverlay> = {
           "Es gibt zwei Arten, ein Dashboard zu nutzen — und Sie entscheiden, welche welche ist.",
           "Für Sie und Ihr Team: bauen Sie beliebig viele Dashboards für verschiedene Rollen (Management-Überblick, technisches Monitoring, Abteilungsansicht) und wechseln Sie in Sekunden. Daten sind immer auf Ihre Organisation begrenzt und respektieren den Zugriff jedes Nutzers, sodass jeder genau das sieht, was er soll — und nichts, was er nicht soll.",
           "Für alle im Gebäude: jedes Dashboard oder jeder Live-Grundriss kann per passwortgeschütztem Link an einer Wandanzeige geteilt werden — kein Login, nur URL und Passwort. Zeigen Sie Kollegen und Besuchern, wie voll die Kantine ist, wo beim Vorbeigehen an der Rezeption ein freier Schreibtisch ist oder welche Meetingräume frei sind.",
-          "Und entscheidend: Sie wählen, was auf einem öffentlichen Bildschirm erscheint. Vielleicht teilen Sie Flächendaten gern, während Raumklimadaten beim Betriebsteam bleiben sollen. Sie können mehrere Bildschirme im selben Gebäude betreiben, jeweils mit eigenem Passwort — Lobby und Leitstand zeigen unterschiedliche Ansichten.",
+          "Und entscheidend: Sie wählen, was auf einem öffentlichen Bildschirm erscheint. Vielleicht teilen Sie Flächendaten gern, während Indoor climate data beim Betriebsteam bleiben sollen. Sie können mehrere Bildschirme im selben Gebäude betreiben, jeweils mit eigenem Passwort — Lobby und Leitstand zeigen unterschiedliche Ansichten.",
         ],
       },
     ],
@@ -376,20 +376,20 @@ const de: Record<string, PlatformContentOverlay> = {
     heroTitle: "Berichte.",
     heroTitleAccent: "Von Rohdaten zu klarer, nutzbarer Erkenntnis.",
     heroLead:
-      "RoomAlyzer verwandelt Ihre kontinuierlichen Sensordaten in klare, strukturierte Berichte, automatisch an die richtigen Personen, im richtigen Format, zur richtigen Zeit. Ob wiederkehrendes Team-Briefing, Compliance-Dokumentation oder ein Datensatz für Ihre eigene Analyse: die Plattform erledigt das ohne manuelle Arbeit. Wenn Sie Berichte mit konkreten Empfehlungen an viele Nutzer an vielen Standorten senden müssen, helfen wir auch dabei: ein spezieller Berichtstyp, der unsere Raumklima-Expertise mit KI kombiniert und jedem Standort in klarer Sprache sagt, was zu tun ist, um Energie zu sparen und das Klima richtig zu halten.",
+      "RoomAlyzer verwandelt Ihre kontinuierlichen Sensordaten in klare, strukturierte Berichte, automatisch an die richtigen Personen, im richtigen Format, zur richtigen Zeit. Ob wiederkehrendes Team-Briefing, Compliance-Dokumentation oder ein Datensatz für Ihre eigene Analyse: die Plattform erledigt das ohne manuelle Arbeit. Wenn Sie Berichte mit konkreten Empfehlungen an viele Nutzer an vielen Standorten senden müssen, helfen wir auch dabei: ein spezieller Berichtstyp, der unsere Indoor climate-Expertise mit KI kombiniert und jedem Standort in klarer Sprache sagt, was zu tun ist, um Energie zu sparen und das Klima richtig zu halten.",
     sections: [
       {
         heading: "Geplante Berichte, direkt ins Postfach",
         paragraphs: [
-          "Halten Sie Ihr Team informiert, ohne dass jemand einloggen muss. Raumklima-Berichte laufen automatisch täglich, wöchentlich oder monatlich und kommen direkt per E-Mail. Jeder Bericht kann einen Sensor oder einen ganzen Standort abdecken, mit beliebig vielen Empfängern — und Sie können vorab einen Test senden, um Inhalt und Format zu prüfen.",
+          "Halten Sie Ihr Team informiert, ohne dass jemand einloggen muss. Indoor climate-Berichte laufen automatisch täglich, wöchentlich oder monatlich und kommen direkt per E-Mail. Jeder Bericht kann einen Sensor oder einen ganzen Standort abdecken, mit beliebig vielen Empfängern — und Sie können vorab einen Test senden, um Inhalt und Format zu prüfen.",
           "Für ein reichhaltigeres, visuelleres Briefing kann RoomAlyzer auch geplante Grafikberichte senden — ein PDF-Snapshot von bis zu fünf Sensoren mit Ihren gewählten Parametern und Zeitfenster (von den letzten 24 Stunden bis zum letzten Jahr). Sie können Außenwetter einblenden und eine KI-generierte Trendanalyse hinzufügen. Frequenz und Empfänger lassen sich jederzeit ändern, ohne den Bericht neu aufzubauen.",
         ],
       },
       {
         heading: "Compliance-Dokumentation, abgabefertig",
         paragraphs: [
-          "Viele Facility Manager wurden von der Geschäftsführung gebeten, das Raumklima zu dokumentieren, oft infolge von EU-Richtlinien. RoomAlyzer erstellt diese Dokumentation für Sie, direkt aus Ihren Live-Sensordaten, ohne manuelle Datenerhebung und ohne Tabellen.",
-          "Für DGNB-Zertifizierung (SOC1.1 / SOC1.2, EN 16798-1) führt ein einfacher Assistent Sie durch: Zeitraum und Arbeitszeiten wählen, Sensoren auswählen, passende Schwellen (DGNB 2020 oder 2023, Gebäude- und Lüftungstyp) und ein professionelles PDF mit Diagrammen, Statistiken und Grundriss-Overlays erzeugen. Für Gebäude unter der Energy Performance of Buildings Directive (EPBD 2024, EN 16798-1) erstellt RoomAlyzer auf Abruf einen vollständigen Compliance-Bericht — mit Gap-Analyse, Compliance-Prozentsätzen je Parameter, Energieüberblick und regelbasierten Verbesserungsempfehlungen. Sie nehmen genau die Abschnitte auf, die relevant sind, und ein Download-Verlauf hält frühere Berichte verfügbar. Wenn Sie unsicher sind, welcher Standard für Sie gilt, helfen wir gern.",
+          "Viele Facility Manager wurden von der Geschäftsführung gebeten, das Indoor climate zu dokumentieren, oft infolge von EU-Richtlinien. RoomAlyzer erstellt diese Dokumentation für Sie, direkt aus Ihren Live-Sensordaten, ohne manuelle Datenerhebung und ohne Tabellen.",
+          "Für DGNB-Zertifizierung (SOC1.1 / SOC1.2, EN 16798-1) führt ein einfacher Assistent Sie durch: Zeitraum und Arbeitszeiten wählen, Sensoren auswählen, passende Schwellen (DGNB 2020 oder 2023, Gebäude- und Lüftungstyp) und ein professionelles PDF mit Diagrammen, Statistiken und Grundriss-Overlays erzeugen. Für Gebäude unter der Energy Performance of Buildings Directive (EPBD 2024, EN 16798-1) erstellt RoomAlyzer auf Abruf einen vollständigen Compliance-Bericht — mit Gap-Analyse, Compliance-Prozentsätzen je Parameter, Energieüberblick und regelbasierten Verbesserungsempfehlungen. Sie nehmen genau die Abschnitte auf, die relevant sind und ein Download-Verlauf hält frühere Berichte verfügbar. Wenn Sie unsicher sind, welcher Standard für Sie gilt, helfen wir gern.",
         ],
       },
       {
@@ -407,7 +407,7 @@ const de: Record<string, PlatformContentOverlay> = {
       "Der Sinn von Monitoring ist, ein Problem zu erkennen, bevor es zur Katastrophe wird. RoomAlyzer sendet Ihnen sofort eine E-Mail oder SMS, wenn etwas nicht stimmt, egal wo Sie sind und wo das Gebäude steht. Wenn also ein Entfeuchter in einem Lager am anderen Ende des Landes ausfällt und die Feuchte steigt, erfahren Sie das rechtzeitig, statt den Schaden Wochen später zu entdecken.",
     sections: [
       {
-        heading: "RoomAlyzer Air: Raumklima- und Konservierungsalarme",
+        heading: "RoomAlyzer Air: Indoor climate- und Preservationsalarme",
         paragraphs: [
           "Erhalten Sie einen Alarm, wenn Temperatur, Feuchte, CO2 oder Schimmelrisiko außerhalb Ihres eingestellten Bereichs liegen. In einem vollen Büro oder einer Schule kann das bedeuten, schlechte Luftqualität anzugehen, bevor Beschwerden kommen. In Museum, Kirche oder Archiv kann es unersetzliche Objekte schützen — einen ausfallenden Entfeuchter oder Feuchteschwankung erkennen, bevor Holz, Gemälde oder Papier Schaden nehmen. Sie legen die Grenzen fest, RoomAlyzer überwacht sie rund um die Uhr.",
         ],
@@ -415,7 +415,7 @@ const de: Record<string, PlatformContentOverlay> = {
       {
         heading: "RoomAlyzer Water: Leckalarme direkt an die richtige Person",
         paragraphs: [
-          "Wenn Wasser erkannt wird, sendet RoomAlyzer eine Nachricht direkt per E-Mail oder SMS. Kein Alarm, der in einem leeren Keller piept, sondern eine Benachrichtigung, die eine handelnde Person erreicht. Sie können beliebig viele Empfänger hinzufügen, damit Betrieb und Sicherheit gleichzeitig informiert sind, und ein Leck in einem Schacht, Schaltschrank oder einer Wohnanlage erfasst wird, solange es noch klein ist.",
+          "Wenn Wasser erkannt wird, sendet RoomAlyzer eine Nachricht direkt per E-Mail oder SMS. Kein Alarm, der in einem leeren Keller piept, sondern eine Benachrichtigung, die eine handelnde Person erreicht. Sie können beliebig viele Empfänger hinzufügen, damit Betrieb und Sicherheit gleichzeitig informiert sind und ein Leck in einem Schacht, Schaltschrank oder einer Wohnanlage erfasst wird, solange es noch klein ist.",
         ],
       },
       {
@@ -428,7 +428,7 @@ const de: Record<string, PlatformContentOverlay> = {
       {
         heading: "Fein abgestimmt gegen Fehlalarme",
         paragraphs: [
-          "Alarme werden pro Sensor und Parameter gesetzt, und Sie können die Empfindlichkeit anpassen (wie viele Messungen hintereinander außerhalb des Bereichs liegen müssen, bevor ein Alarm gesendet wird), damit ein kurzer, harmloser Spike keinen Fehlalarm auslöst. Temperatur, Feuchte, CO2, VOC, Schall, Licht, Anwesenheit und Schimmelrisiko werden unterstützt, und jeder Alarm kann einzeln getestet werden, bevor er live geht.",
+          "Alarme werden pro Sensor und Parameter gesetzt und Sie können die Empfindlichkeit anpassen (wie viele Messungen hintereinander außerhalb des Bereichs liegen müssen, bevor ein Alarm gesendet wird), damit ein kurzer, harmloser Spike keinen Fehlalarm auslöst. Temperatur, Feuchte, CO2, VOC, Schall, Licht, Anwesenheit und Schimmelrisiko werden unterstützt und jeder Alarm kann einzeln getestet werden, bevor er live geht.",
         ],
       },
     ],
@@ -455,18 +455,18 @@ const de: Record<string, PlatformContentOverlay> = {
     heroTitle: "Sicherheit.",
     heroTitleAccent: "Kein Wi-Fi, EU-basiertes Hosting, volle Verschlüsselung.",
     heroLead:
-      "Datensicherheit sollte keine Sorge sein. RoomAlyzer ist eine Multi-Tenant-Plattform für Kunden in vielen Ländern und Branchen, so aufgebaut, dass Sicherheit von Anfang an im Design steckt: niemand erreicht fremde Daten, und Ihre Organisation weiß immer genau, wer worauf Zugriff hat. So funktioniert es, und warum Ihre eigene Risikobewertung einfacher wird.",
+      "Datensicherheit sollte keine Sorge sein. RoomAlyzer ist eine Multi-Tenant-Plattform für Kunden in vielen Ländern und Branchen, so aufgebaut, dass Sicherheit von Anfang an im Design steckt: niemand erreicht fremde Daten und Ihre Organisation weiß immer genau, wer worauf Zugriff hat. So funktioniert es und warum Ihre eigene Risikobewertung einfacher wird.",
     sections: [
       {
         heading: "25 Jahre Erfahrung mit sicheren Online-Lösungen",
         paragraphs: [
-          "Sicherheit ist für uns nicht neu. Die Lösungen von IoT Fabrikken werden von Menschen mit mehr als 25 Jahren Erfahrung in sicheren Online-Systemen gebaut — von Online-Zahlungslösungen bis zur Datenprotokollierung für Lebensmittelsicherheit. Dieses Fundament gibt uns tiefes, praktisches Wissen darüber, wie Daten sicher transportiert und gespeichert werden, und wir halten unsere Lösungen an aktuellen Sicherheitsstandards. Deshalb gelten bei uns strenge Regeln, damit immer gilt: Sie besitzen Ihre Daten (jederzeit) und niemand sonst.",
+          "Sicherheit ist für uns nicht neu. Die Lösungen von IoT Fabrikken werden von Menschen mit mehr als 25 Jahren Erfahrung in sicheren Online-Systemen gebaut — von Online-Zahlungslösungen bis zur Datenprotokollierung für Lebensmittelsicherheit. Dieses Fundament gibt uns tiefes, praktisches Wissen darüber, wie Daten sicher transportiert und gespeichert werden und wir halten unsere Lösungen an aktuellen Sicherheitsstandards. Deshalb gelten bei uns strenge Regeln, damit immer gilt: Sie besitzen Ihre Daten (jederzeit) und niemand sonst.",
         ],
       },
       {
         heading: "Wir berühren niemals Ihr Wi-Fi",
         paragraphs: [
-          "Wir haben zwei Sensortypen: manche haben eine eingebaute NB-IoT-SIM-Karte, andere senden an einen Cloud Connector, der die Daten über seine eigene SIM-Karte an Ihre App weiterleitet. So oder so reisen die Daten über ein dediziertes Mobilfunknetz — niemals über Ihr Wi-Fi. Ihre Messungen bleiben völlig getrennt von allem Sensiblen oder Vertraulichen in Ihrem Netzwerk, und Sie müssen keinem externen System Zugang zu Ihrer IT-Umgebung geben.",
+          "Wir haben zwei Sensortypen: manche haben eine eingebaute NB-IoT-SIM-Karte, andere senden an einen Cloud Connector, der die Daten über seine eigene SIM-Karte an Ihre App weiterleitet. So oder so reisen die Daten über ein dediziertes Mobilfunknetz — niemals über Ihr Wi-Fi. Ihre Messungen bleiben völlig getrennt von allem Sensiblen oder Vertraulichen in Ihrem Netzwerk und Sie müssen keinem externen System Zugang zu Ihrer IT-Umgebung geben.",
         ],
       },
       {
@@ -478,7 +478,7 @@ const de: Record<string, PlatformContentOverlay> = {
       {
         heading: "Login, dem Sie vertrauen können — mit optionaler Zwei-Faktor-Authentifizierung",
         paragraphs: [
-          "Jeder Nutzer meldet sich über Firebase Authentication an, Googles Enterprise-Identitätsplattform. RoomAlyzer speichert Ihre Passwörter nie selbst — Anmeldung, Passwort-Reset und Kontowiederherstellung laufen über Firebase. Für Organisationen mit zusätzlicher Absicherung ist Zwei-Faktor-Authentifizierung verfügbar (derselbe sechsstellige Code-Standard wie bei Banken), und Sie können sie für alle in den Sicherheitseinstellungen verpflichtend machen.",
+          "Jeder Nutzer meldet sich über Firebase Authentication an, Googles Enterprise-Identitätsplattform. RoomAlyzer speichert Ihre Passwörter nie selbst — Anmeldung, Passwort-Reset und Kontowiederherstellung laufen über Firebase. Für Organisationen mit zusätzlicher Absicherung ist Zwei-Faktor-Authentifizierung verfügbar (derselbe sechsstellige Code-Standard wie bei Banken) und Sie können sie für alle in den Sicherheitseinstellungen verpflichtend machen.",
         ],
       },
       {
@@ -502,7 +502,7 @@ const de: Record<string, PlatformContentOverlay> = {
       {
         heading: "Ein vollständiger Audit-Trail",
         paragraphs: [
-          "Jede Zugriffsänderung wird protokolliert. Wenn ein Nutzer hinzugefügt oder entfernt wird, eine Rolle geändert oder ein Konto erstellt oder gelöscht wird, entsteht ein unveränderlicher Eintrag (wer, wen, was, wann). Administratoren können die vollständige Zugriffshistorie jedes Nutzers einsehen, sodass interne Compliance einfach wird, und die Frage ist beantwortet, die irgendwann jeder stellt: wer hatte wann Zugriff auf was?",
+          "Jede Zugriffsänderung wird protokolliert. Wenn ein Nutzer hinzugefügt oder entfernt wird, eine Rolle geändert oder ein Konto erstellt oder gelöscht wird, entsteht ein unveränderlicher Eintrag (wer, wen, was, wann). Administratoren können die vollständige Zugriffshistorie jedes Nutzers einsehen, sodass interne Compliance einfach wird und die Frage ist beantwortet, die irgendwann jeder stellt: wer hatte wann Zugriff auf was?",
         ],
       },
       {
@@ -526,9 +526,9 @@ const de: Record<string, PlatformContentOverlay> = {
         ],
         listIntro: "Worauf Sie zugreifen können:",
         list: [
-          "Raumklima — Live-Messungen und historische Daten für Temperatur, Feuchte, CO2 und mehr. Schwellenwerte pro Sensor und Abweichungszusammenfassungen abrufen, um zu sehen, wie oft Bedingungen außerhalb akzeptabler Bereiche liegen.",
-          "Konservierung: Gebäudedaten für Preservation Index (PI/TWPI), Schimmelrisiko (VTT), EN 15757-Schwankungen und Konservierungsheizung. Ideal für Museen, Archive und Kulturerbe.",
-          "Wassererkennung — aktive Alarme, Alarmhistorie und Sensorflottenstatus für Ihr Lecküberwachungsnetzwerk.",
+          "Indoor climate — Live-Messungen und historische Daten für Temperatur, Feuchte, CO2 und mehr. Schwellenwerte pro Sensor und Abweichungszusammenfassungen abrufen, um zu sehen, wie oft Bedingungen außerhalb akzeptabler Bereiche liegen.",
+          "Preservation: Gebäudedaten für Preservation Index (PI/TWPI), Schimmelrisiko (VTT), EN 15757-Schwankungen und Preservationsheizung. Ideal für Museen, Archive und Kulturerbe.",
+          "Water detection — aktive Alarme, Alarmhistorie und Sensorflottenstatus für Ihr Lecküberwachungsnetzwerk.",
           "Space-Management — monatliche Belegungs-Heatmaps zur Analyse der tatsächlichen Flächennutzung.",
           "Drucktaster — Warteschlangenstatus, Bearbeitungshistorie und Antwortstatistiken für Service- und Alarmtaster.",
         ],
@@ -541,7 +541,7 @@ const de: Record<string, PlatformContentOverlay> = {
       {
         heading: "MCP-Server — KI-Agenten mit Ihren Daten arbeiten lassen",
         paragraphs: [
-          "RoomAlyzer ist auch als MCP-Server (Model Context Protocol) verfügbar — der aufkommende Standard, um KI-Assistenten und Agenten mit externen Datenquellen zu verbinden. Mit einem MCP-Schlüssel können KI-Agenten Ihre Raumklimadaten direkt in natürlicher Sprache abfragen. Fragen Sie z. B. „Welche Räume hatten diese Woche die höchsten CO2-Werte?“ oder „Zeigen Sensoren Bedingungen außerhalb der Sommerschwellen?“ und erhalten strukturierte, mandantenspezifische Antworten.",
+          "RoomAlyzer ist auch als MCP-Server (Model Context Protocol) verfügbar — der aufkommende Standard, um KI-Assistenten und Agenten mit externen Datenquellen zu verbinden. Mit einem MCP-Schlüssel können KI-Agenten Ihre Indoor climate data direkt in natürlicher Sprache abfragen. Fragen Sie z. B. „Welche Räume hatten diese Woche die höchsten CO2-Werte?“ oder „Zeigen Sensoren Bedingungen außerhalb der Sommerschwellen?“ und erhalten strukturierte, mandantenspezifische Antworten.",
           "Der MCP-Server ist unter mcp.roomalyzer.com/sse erreichbar und authentifiziert mit einem Bearer-Schlüssel. Schlüssel werden im RoomAlyzer-Adminbereich verwaltet und an Ihren Mandanten gebunden — Ihre Daten vermischen sich nie mit denen eines anderen Kunden. RoomAlyzer wird so zu einer natürlichen Datenquelle für KI-gestützte Facility-Berichte, automatisierte Compliance-Prüfungen und dialogbasierte Gebäude-Assistenten.",
         ],
       },

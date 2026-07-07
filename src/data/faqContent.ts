@@ -16,7 +16,6 @@ export type Qa = { q: string; a: string };
 export const faqContent: Record<string, Qa[]> = {
   platform: [
     { q: "What is RoomAlyzer?", a: "RoomAlyzer is IoT Fabrikken's cloud platform for wireless building sensors. It ingests data from gateways, stores it in a time-series database, serves dashboards and alarms, and exposes an API and MQTT feed so the data can flow onwards to BMS, FM and BI tools." },
-    { q: "Where is the platform hosted?", a: "On European cloud infrastructure with data residency inside the EU by default. We can offer region pinning and single-tenant deployments for customers with specific compliance requirements." },
     { q: "How often does the platform get updated?", a: "We ship small updates weekly and larger features monthly, with a published changelog. Backwards-incompatible API changes are versioned and announced in advance." },
     { q: "What's the historical data retention?", a: "Raw readings are retained for 24 months by default, with hourly and daily aggregates retained for the lifetime of the account. Enterprise plans can extend raw retention to five or ten years." },
     { q: "Can we white-label the dashboards?", a: "Yes. Enterprise customers can apply their own colours, logo and subdomain to dashboards shown to tenants or students." },
@@ -52,7 +51,7 @@ export const faqContent: Record<string, Qa[]> = {
   ],
 
   "water-detection": [
-    { q: "How fast is the alarm?", a: "From water hitting the sensor to an alarm leaving the platform takes under 30 seconds for LoRaWAN-connected sensors and under 2 minutes for NB-IoT. SMS, email, webhook and ticketing integrations then fan out the alarm to on-call staff." },
+    { q: "How fast is the alarm?", a: "From water hitting the sensor to an alarm leaving the platform takes under 2 minutes for NB-IoT-connected sensors. SMS, email, webhook and ticketing integrations then fan out the alarm to on-call staff." },
     { q: "What's the false-positive rate?", a: "Well below 1 per 1000 sensor-years in production deployments. Condensation, cleaning and spills can all trigger sensors; we tune thresholds and alarm debouncing to your specific risk profile." },
     { q: "How long does the battery last in a water sensor?", a: "Five to seven years in most installations. Sensors are sealed against humidity and rated for placement in basements, plant rooms and under-sink cabinets." },
     { q: "Where should we place water sensors?", a: "Under sinks, next to water heaters, near washing machines and dishwashers, at the low points of plant rooms, under raised floors in data centres and at the ends of runs in plumbed ceilings. See the water-detection module guide for a full matrix." },
@@ -61,18 +60,18 @@ export const faqContent: Record<string, Qa[]> = {
   ],
 
   "push-buttons": [
-    { q: "How do the buttons talk to the platform?", a: "LoRaWAN for long-range, low-power deployments and NFC for tap-to-report stickers that piggyback on guest phones. Both end up in the same event stream on the platform." },
-    { q: "How many events per day can a button handle?", a: "A LoRaWAN button can handle 100+ presses per day for years on a single battery. For higher-volume use cases we recommend mains-powered units or NFC stickers with a back-end service." },
+    { q: "How do the buttons talk to the platform?", a: "Wireless push buttons for battery-powered deployments and NFC for tap-to-report stickers that piggyback on guest phones. Both end up in the same event stream on the platform." },
+    { q: "How many events per day can a button handle?", a: "A wireless push button can handle 100+ presses per day for years on a single battery. For higher-volume use cases we recommend mains-powered units or NFC stickers with a back-end service." },
     { q: "Can we label buttons with specific meanings?", a: "Yes. Each button gets a role (cleaning request, restock, maintenance, panic, feedback) and a physical label. The platform routes events according to the role and the room." },
     { q: "Can the buttons integrate with our ticketing system?", a: "Yes. Presses become tickets in ServiceNow, Jira, Freshdesk and similar via our outbound webhooks, with automatic categorisation and location context." },
-    { q: "What's the range?", a: "2–5 km outdoors and 200–500 m indoors for LoRaWAN, depending on the number of gateways and building materials. Most sites need one gateway per 3–5 floors of a standard office." },
+    { q: "What's the range?", a: "Wireless push buttons connect over NB-IoT on carrier networks. Coverage follows your mobile operator's indoor footprint — typically strong enough for offices, schools and hospitals without extra infrastructure." },
   ],
 
   sensors: [
     { q: "Which sensors do you supply?", a: "Our portfolio is organised in four lines: RoomAlyzer Air (climate sensors such as CO2, Full+, Humidity, Mini+, Mini+ PIR, Outdoor and Temperature), RoomAlyzer Space (Desk, Motion, Open/Close and Touch), RoomAlyzer Water (Water detector and Water rope) and Miscellaneous (Cloud connector and Range Extender and Bracket). Download product sheets from the sensors section." },
     { q: "Do the sensors need calibration?", a: "CO₂ sensors self-calibrate against outdoor levels; humidity sensors drift about 1% RH per year; temperature sensors are stable for their lifetime. We recommend a factory recalibration every five years for preservation-critical deployments." },
     { q: "What's the typical battery life?", a: "Three to seven years depending on sensor type, reporting interval and ambient temperature. The platform shows a battery gauge for every sensor and predicts replacement dates." },
-    { q: "Where can I put the sensors?", a: "Anywhere with LoRaWAN or NB-IoT coverage. Indoors, place 1.1–1.7 m above the floor, away from direct sunlight, outlets and windows. The sensor placement guide covers the details for each room type." },
+    { q: "Where can I put the sensors?", a: "Anywhere with NB-IoT coverage. Indoors, place 1.1–1.7 m above the floor, away from direct sunlight, outlets and windows. The sensor placement guide covers the details for each room type." },
     { q: "Are the sensors CE-marked?", a: "Yes. All our sensors carry CE marking and comply with the Radio Equipment Directive (RED), the Low Voltage Directive (LVD) and the EMC Directive." },
   ],
 
@@ -97,7 +96,7 @@ export const faqContent: Record<string, Qa[]> = {
     { q: "Where does the data live?", a: "European cloud infrastructure with data residency inside the EU by default. The operational database and all backups stay in the region you select at onboarding." },
     { q: "Are you GDPR-compliant?", a: "Yes. We act as data processor for customer data and provide a standard DPA with subprocessor list, audit rights and breach notification commitments. Data subject requests flow through the customer." },
     { q: "Do you hold security certifications?", a: "Yes, we are ISO 27001 certified and undergo annual penetration testing by an independent firm. Reports are available under NDA." },
-    { q: "How is data encrypted?", a: "TLS 1.3 in transit, AES-256 at rest. Sensor-to-gateway traffic is encrypted with LoRaWAN session keys (AES-128); gateway-to-cloud traffic uses TLS 1.3." },
+    { q: "How is data encrypted?", a: "TLS 1.3 in transit, AES-256 at rest. Sensor-to-cloud traffic is encrypted in transit; platform API connections use TLS 1.3." },
     { q: "Can we self-host?", a: "Yes, enterprise customers can run RoomAlyzer on their own infrastructure (Kubernetes or managed EKS/AKS). We maintain the Helm charts and provide the same support coverage as the hosted platform." },
   ],
 

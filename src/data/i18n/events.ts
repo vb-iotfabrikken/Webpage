@@ -144,7 +144,7 @@ const da: EventsHubStrings = {
 const de: EventsHubStrings = {
   metaTitle: "Veranstaltungen | IoT Fabrikken",
   metaDescription:
-    "Treffen Sie IoT Fabrikken auf Fachmessen und Branchenevents. Sehen Sie, wo wir ausstellen, und buchen Sie Zeit mit unserem Team.",
+    "Treffen Sie IoT Fabrikken auf Fachmessen und Branchenevents. Sehen Sie, wo wir ausstellen und buchen Sie Zeit mit unserem Team.",
   breadcrumbHome: "Startseite",
   breadcrumbCurrent: "Veranstaltungen",
   heroTitle: "Persönlich treffen.",

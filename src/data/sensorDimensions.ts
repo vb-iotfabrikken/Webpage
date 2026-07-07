@@ -2,8 +2,13 @@
  * Physical dimensions and weights from official RoomAlyzer product sheets
  * (`Productsheets/EN/`). Re-check when PDFs change.
  *
- * Side-view photography is synced from `Sensor Product Pictures/Dimension/`
+ * Side-view photography is synced from `Pictures/Sensors/Dimensions/`
  * into `public/images/sensors/` via `scripts/sync-sensor-dimension-images.mjs`.
+ *
+ * When adding a new sensor dimension gallery:
+ * 1. Add source PNG + mapping in scripts/lib/dimension-image-mappings.mjs
+ * 2. Run `npm run sync-sensor-dimensions` (sync WebP + regenerate bracket calibration)
+ * 3. Add an entry below with `bracketSide` (or `bracketIsometric` / water preset)
  */
 
 import type { DimensionOverlayPresetKey } from "./dimensionOverlayPresets";
@@ -46,7 +51,7 @@ type SensorDimensionEntry = {
 export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
   co2: {
     spec: { kind: "single", lines: [{ size: "H95 × W66 × D25 mm", weight: "116 g" }] },
-    overlay: "bracketSideStandard",
+    overlay: "bracketSide",
     images: {
       kind: "single",
       src: `${BASE}/co2-dimensions.webp`,
@@ -55,7 +60,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
   },
   "full-plus": {
     spec: { kind: "single", lines: [{ size: "H124 × W60 × D26 mm", weight: "130 g" }] },
-    overlay: "bracketSideWide",
+    overlay: "bracketSide",
     images: {
       kind: "single",
       src: `${BASE}/full-plus-dimensions.webp`,
@@ -64,7 +69,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
   },
   humidity: {
     spec: { kind: "single", lines: [{ size: "H39 × W23 × D12 mm", weight: "9.3 g" }] },
-    overlay: "bracketSideHumidity",
+    overlay: "bracketSide",
     images: {
       kind: "single",
       src: `${BASE}/humidity-dimensions.webp`,
@@ -73,7 +78,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
   },
   "mini-plus": {
     spec: { kind: "single", lines: [{ size: "H124 × W60 × D26 mm", weight: "130 g" }] },
-    overlay: "bracketSideWide",
+    overlay: "bracketSide",
     images: {
       kind: "single",
       src: `${BASE}/mini-plus-dimensions.webp`,
@@ -82,7 +87,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
   },
   "mini-plus-pir": {
     spec: { kind: "single", lines: [{ size: "H124 × W60 × D26 mm", weight: "130 g" }] },
-    overlay: "bracketSideWide",
+    overlay: "bracketSide",
     images: {
       kind: "single",
       src: `${BASE}/mini-plus-pir-dimensions.webp`,
@@ -91,7 +96,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
   },
   outdoor: {
     spec: { kind: "single", lines: [{ size: "H132 × W80 × D30 mm", weight: "283 g" }] },
-    overlay: "bracketSideStandard",
+    overlay: "bracketSide",
     images: {
       kind: "single",
       src: `${BASE}/outdoor-dimensions.webp`,
@@ -118,7 +123,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
   },
   motion: {
     spec: { kind: "single", lines: [{ size: "H42 × W110 mm", weight: "123 g" }] },
-    overlay: "bracketSideMotion",
+    overlay: "bracketSide",
     images: {
       kind: "single",
       src: `${BASE}/motion-dimensions.webp`,
@@ -133,7 +138,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
         { label: "largeUnit", size: "H38 × W23 × D10 mm" },
       ],
     },
-    variantOverlays: { compact: "bracketSideOpenCloseSmall", pro: "bracketSideOpenCloseLarge" },
+    variantOverlays: { compact: "bracketSideOpenClose", pro: "bracketSideOpenClose" },
     images: {
       kind: "variants",
       compact: {
@@ -148,7 +153,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
   },
   touch: {
     spec: { kind: "single", lines: [{ size: "H19 × W19 × D3.5 mm", weight: "3 g" }] },
-    overlay: "bracketSideMid",
+    overlay: "bracketSide",
     images: {
       kind: "single",
       src: `${BASE}/touch-dimensions.webp`,
@@ -199,7 +204,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
   },
   "cloud-connector": {
     spec: { kind: "single", lines: [{ size: "H153 × W114 × D30 mm", weight: "200 g" }] },
-    overlay: "bracketSideStandard",
+    overlay: "bracketSide",
     images: {
       kind: "single",
       src: `${BASE}/cloud-connector-dimensions.webp`,
@@ -214,7 +219,7 @@ export const sensorDimensions: Partial<Record<string, SensorDimensionEntry>> = {
         { label: "bracket", size: "H100 × W40 × D15 mm", weight: "7 g" },
       ],
     },
-    kitOverlays: { rangeExtender: "bracketSideKitRange", bracket: "bracketSideKitBracket" },
+    kitOverlays: { rangeExtender: "bracketSide", bracket: "bracketSide" },
     images: {
       kind: "kit",
       parts: [

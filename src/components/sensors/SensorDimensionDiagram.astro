@@ -3,12 +3,7 @@
  * Side-view product photo with measurement labels placed in baked-in bracket guides.
  */
 import type { DimensionOverlayPreset } from "../../data/dimensionOverlayPresets";
-import {
-  dimensionAxisLetters,
-  dimensionLabel,
-  parseDimensionMm,
-  pickAxisValue,
-} from "../../lib/sensors/parse-dimensions";
+import { resolveDimensionLabels } from "../../lib/sensors/resolve-dimension-labels";
 import { defaultLang, type Lang } from "../../data/lang";
 
 interface Props {
@@ -36,20 +31,8 @@ const {
   class: className,
 } = Astro.props;
 
-const parsed = parseDimensionMm(size);
-const letters = dimensionAxisLetters(lang);
 const stroke = "var(--color-navy-500)";
-
-const labels = overlay.labels
-  .map((slot) => {
-    if ("text" in slot) {
-      return { ...slot, text: slot.text };
-    }
-    const value = pickAxisValue(parsed, slot.axis);
-    if (value === undefined) return null;
-    return { ...slot, text: dimensionLabel(slot.axis, value, letters) };
-  })
-  .filter(Boolean);
+const labels = resolveDimensionLabels(src, overlay, size, lang);
 ---
 
 <div class:list={[
@@ -84,10 +67,10 @@ const labels = overlay.labels
       >
         {labels.map((label) => (
           <text
-            x={label!.x}
-            y={label!.y}
-            dy={label!.dy}
-            text-anchor={label!.textAnchor ?? "middle"}
+            x={label.x}
+            y={label.y}
+            dy={label.dy}
+            text-anchor={label.textAnchor ?? "middle"}
             dominant-baseline="central"
             alignment-baseline="central"
             fill={stroke}
@@ -95,7 +78,7 @@ const labels = overlay.labels
             font-weight="600"
             class="dimension-label"
           >
-            {label!.text}
+            {label.text}
           </text>
         ))}
       </svg>

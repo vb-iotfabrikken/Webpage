@@ -80,7 +80,7 @@ const de: DhbvStrings = {
   topics: [
     {
       title: "Präventiver Holzschutz",
-      body: "Wie kontinuierliches Monitoring Feuchte und Temperatur in Holzbauteilen sichtbar macht, und Entscheidungen für Sanierung oder Austausch fundiert unterstützt.",
+      body: "Wie kontinuierliches Monitoring Feuchte und Temperatur in Holzbauteilen sichtbar macht und Entscheidungen für Sanierung oder Austausch fundiert unterstützt.",
     },
     {
       title: "Gebäudediagnostik",

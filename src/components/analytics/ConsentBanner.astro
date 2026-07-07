@@ -1,0 +1,247 @@
+---
+import { langPath, type Lang } from "../../data/lang";
+import { getGtmId, isAnalyticsEnabled } from "../../lib/analytics/config";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const analyticsEnabled = isAnalyticsEnabled() && Boolean(getGtmId());
+
+const copy = {
+  en: {
+    title: "We use cookies",
+    lead: "We use necessary cookies to remember your preferences. With your consent we also use analytics and marketing cookies to measure campaigns and improve the site.",
+    acceptAll: "Accept all",
+    rejectOptional: "Necessary only",
+    customise: "Customise",
+    save: "Save preferences",
+    analytics: "Analytics",
+    analyticsDesc: "Help us understand how visitors use the site (Google Analytics via GTM).",
+    marketing: "Marketing",
+    marketingDesc: "Measure ad performance and remarketing (Google Ads).",
+    necessary: "Necessary",
+    necessaryDesc: "Store your cookie choice. Always active.",
+    policyLink: "Cookie policy",
+    manage: "Cookie settings",
+  },
+  da: {
+    title: "Vi bruger cookies",
+    lead: "Vi bruger nødvendige cookies til at huske dine valg. Med dit samtykke bruger vi også analyse- og marketingcookies til at måle kampagner og forbedre sitet.",
+    acceptAll: "Acceptér alle",
+    rejectOptional: "Kun nødvendige",
+    customise: "Tilpas",
+    save: "Gem valg",
+    analytics: "Analyse",
+    analyticsDesc: "Hjælper os med at forstå, hvordan besøgende bruger sitet (Google Analytics via GTM).",
+    marketing: "Marketing",
+    marketingDesc: "Måler annoncering og remarketing (Google Ads).",
+    necessary: "Nødvendige",
+    necessaryDesc: "Gemmer dit cookievalg. Altid aktive.",
+    policyLink: "Cookiepolitik",
+    manage: "Cookieindstillinger",
+  },
+  de: {
+    title: "Wir verwenden Cookies",
+    lead: "Wir setzen notwendige Cookies, um Ihre Einstellungen zu speichern. Mit Ihrer Einwilligung nutzen wir auch Analyse- und Marketing-Cookies, um Kampagnen zu messen und die Website zu verbessern.",
+    acceptAll: "Alle akzeptieren",
+    rejectOptional: "Nur notwendige",
+    customise: "Anpassen",
+    save: "Einstellungen speichern",
+    analytics: "Analyse",
+    analyticsDesc: "Hilft uns zu verstehen, wie Besucher die Website nutzen (Google Analytics via GTM).",
+    marketing: "Marketing",
+    marketingDesc: "Misst Anzeigenleistung und Remarketing (Google Ads).",
+    necessary: "Notwendig",
+    necessaryDesc: "Speichert Ihre Cookie-Auswahl. Immer aktiv.",
+    policyLink: "Cookie-Richtlinie",
+    manage: "Cookie-Einstellungen",
+  },
+  sv: {
+    title: "Vi använder cookies",
+    lead: "Vi använder nödvändiga cookies för att komma ihåg dina val. Med ditt samtycke använder vi även analys- och marknadsföringscookies för att mäta kampanjer och förbättra webbplatsen.",
+    acceptAll: "Acceptera alla",
+    rejectOptional: "Endast nödvändiga",
+    customise: "Anpassa",
+    save: "Spara val",
+    analytics: "Analys",
+    analyticsDesc: "Hjälper oss att förstå hur besökare använder webbplatsen (Google Analytics via GTM).",
+    marketing: "Marknadsföring",
+    marketingDesc: "Mäter annonsering och remarketing (Google Ads).",
+    necessary: "Nödvändiga",
+    necessaryDesc: "Sparar ditt cookieval. Alltid aktiva.",
+    policyLink: "Cookiepolicy",
+    manage: "Cookieinställningar",
+  },
+} as const;
+
+const t = copy[lang] ?? copy.en;
+const cookiePolicyHref = langPath("legal/cookies", lang);
+---
+
+{analyticsEnabled && (
+  <>
+    <div
+      id="consent-banner"
+      class="fixed inset-x-0 bottom-0 z-[100] hidden border-t border-stone-200 bg-white p-4 shadow-lg md:p-6"
+      role="dialog"
+      aria-labelledby="consent-banner-title"
+      aria-describedby="consent-banner-lead"
+    >
+      <div class="container-page">
+        <div id="consent-banner-main">
+          <h2 id="consent-banner-title" class="text-lg font-semibold text-navy-500">{t.title}</h2>
+          <p id="consent-banner-lead" class="mt-2 max-w-3xl text-sm text-stone-900/80">{t.lead}</p>
+          <div class="mt-4 flex flex-wrap items-center gap-3">
+            <button type="button" data-consent-choice="all" class="rounded-md bg-coral-500 px-4 py-2 text-sm font-medium text-white hover:bg-coral-600">
+              {t.acceptAll}
+            </button>
+            <button type="button" data-consent-choice="necessary" class="rounded-md border border-stone-300 px-4 py-2 text-sm font-medium text-navy-500 hover:bg-stone-50">
+              {t.rejectOptional}
+            </button>
+            <button type="button" data-consent-show-custom class="text-sm font-medium text-navy-500 underline underline-offset-2 hover:text-coral-500">
+              {t.customise}
+            </button>
+            <a href={cookiePolicyHref} class="text-sm text-stone-900/70 underline underline-offset-2 hover:text-navy-500">
+              {t.policyLink}
+            </a>
+          </div>
+        </div>
+
+        <div id="consent-banner-custom" class="hidden">
+          <h2 class="text-lg font-semibold text-navy-500">{t.customise}</h2>
+          <div class="mt-4 space-y-4">
+            <div class="rounded-lg border border-stone-200 p-4">
+              <p class="font-medium text-navy-500">{t.necessary}</p>
+              <p class="mt-1 text-sm text-stone-900/70">{t.necessaryDesc}</p>
+            </div>
+            <label class="flex cursor-pointer gap-3 rounded-lg border border-stone-200 p-4">
+              <input type="checkbox" data-consent-analytics class="mt-1 h-4 w-4 rounded border-stone-300" />
+              <span>
+                <span class="font-medium text-navy-500">{t.analytics}</span>
+                <span class="mt-1 block text-sm text-stone-900/70">{t.analyticsDesc}</span>
+              </span>
+            </label>
+            <label class="flex cursor-pointer gap-3 rounded-lg border border-stone-200 p-4">
+              <input type="checkbox" data-consent-marketing class="mt-1 h-4 w-4 rounded border-stone-300" />
+              <span>
+                <span class="font-medium text-navy-500">{t.marketing}</span>
+                <span class="mt-1 block text-sm text-stone-900/70">{t.marketingDesc}</span>
+              </span>
+            </label>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <button type="button" data-consent-save-custom class="rounded-md bg-coral-500 px-4 py-2 text-sm font-medium text-white hover:bg-coral-600">
+              {t.save}
+            </button>
+            <button type="button" data-consent-hide-custom class="text-sm font-medium text-navy-500 underline underline-offset-2">
+              {t.rejectOptional}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      id="consent-manage"
+      class="fixed bottom-4 left-4 z-[90] hidden rounded-full border border-stone-300 bg-white px-3 py-2 text-xs font-medium text-navy-500 shadow-sm hover:bg-stone-50"
+    >
+      {t.manage}
+    </button>
+
+    <script>
+      import {
+        applyConsentMode,
+        consentFromChoice,
+        readConsentState,
+        writeConsentState,
+        type ConsentChoice,
+      } from "../../lib/analytics/consent";
+      import { pushEvent } from "../../lib/analytics/events";
+      import { initAnalyticsRuntime, onConsentSaved } from "../../lib/analytics/init";
+
+      const banner = document.getElementById("consent-banner");
+      const manageBtn = document.getElementById("consent-manage");
+      const mainPanel = document.getElementById("consent-banner-main");
+      const customPanel = document.getElementById("consent-banner-custom");
+      const analyticsCheckbox = document.querySelector<HTMLInputElement>("[data-consent-analytics]");
+      const marketingCheckbox = document.querySelector<HTMLInputElement>("[data-consent-marketing]");
+
+      function showBanner(showCustom = false): void {
+        banner?.classList.remove("hidden");
+        manageBtn?.classList.add("hidden");
+        if (showCustom) {
+          mainPanel?.classList.add("hidden");
+          customPanel?.classList.remove("hidden");
+        } else {
+          mainPanel?.classList.remove("hidden");
+          customPanel?.classList.add("hidden");
+        }
+      }
+
+      function hideBanner(): void {
+        banner?.classList.add("hidden");
+        manageBtn?.classList.remove("hidden");
+      }
+
+      function saveConsent(choice: ConsentChoice): void {
+        let state;
+        if (choice === "custom") {
+          state = consentFromChoice("custom", {
+            analytics: analyticsCheckbox?.checked ?? false,
+            marketing: marketingCheckbox?.checked ?? false,
+          });
+        } else {
+          state = consentFromChoice(choice);
+        }
+
+        writeConsentState(state);
+        applyConsentMode(state);
+        pushEvent("consent_update", {
+          analytics: state.analytics,
+          marketing: state.marketing,
+        });
+        onConsentSaved();
+        hideBanner();
+      }
+
+      document.querySelectorAll<HTMLButtonElement>("[data-consent-choice]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const choice = btn.dataset.consentChoice as ConsentChoice;
+          saveConsent(choice);
+        });
+      });
+
+      document.querySelector("[data-consent-show-custom]")?.addEventListener("click", () => {
+        showBanner(true);
+      });
+
+      document.querySelector("[data-consent-save-custom]")?.addEventListener("click", () => {
+        saveConsent("custom");
+      });
+
+      document.querySelector("[data-consent-hide-custom]")?.addEventListener("click", () => {
+        saveConsent("necessary");
+      });
+
+      manageBtn?.addEventListener("click", () => {
+        const existing = readConsentState();
+        if (analyticsCheckbox) analyticsCheckbox.checked = existing?.analytics ?? false;
+        if (marketingCheckbox) marketingCheckbox.checked = existing?.marketing ?? false;
+        showBanner(true);
+      });
+
+      const existing = readConsentState();
+      if (existing) {
+        applyConsentMode(existing);
+        initAnalyticsRuntime();
+        manageBtn?.classList.remove("hidden");
+      } else {
+        showBanner(false);
+      }
+    </script>
+  </>
+)}

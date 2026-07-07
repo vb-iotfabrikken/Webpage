@@ -10,17 +10,31 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check",
+    "check": "astro check && npm run check:locale",
+    "check:locale": "node scripts/audit-locale-grammar.mjs",
     "llms-full": "node scripts/build-llms-full.mjs",
     "sync-sensor-in-use": "node scripts/sync-sensor-in-use-images.mjs",
-    "sync-sensor-dimensions": "node scripts/sync-sensor-dimension-images.mjs",
+    "sync-sensor-dimensions": "node scripts/sync-sensor-dimension-images.mjs && npm run calibrate-dimension-brackets",
+    "calibrate-dimension-brackets": "node scripts/calibrate-dimension-brackets.mjs",
     "optimize-images": "node scripts/optimize-sensor-finder-images.mjs && node scripts/optimize-hero-images.mjs && node scripts/optimize-module-images.mjs && node scripts/optimize-sensor-product-images.mjs && node scripts/optimize-sensor-dimension-images.mjs && node scripts/optimize-sensor-in-use-images.mjs",
     "optimize-water-detection-images": "node scripts/optimize-water-detection-images.mjs",
     "sync-all-images": "npm run sync-sensor-in-use && npm run sync-sensor-dimensions && npm run optimize-images",
     "generate-favicon": "node scripts/generate-favicon.mjs",
     "export-redirects": "node scripts/export-redirects.mjs",
     "crawl-legacy-sitemaps": "node scripts/crawl-legacy-sitemaps.mjs",
-    "audit:locale-grammar": "node scripts/audit-locale-grammar.mjs"
+    "audit:locale-grammar": "node scripts/audit-locale-grammar.mjs",
+    "audit:seo": "node scripts/audit-seo.mjs",
+    "export:softlaunch-da": "node scripts/export-softlaunch-da-docx.mjs",
+    "export:softlaunch-de": "node scripts/export-softlaunch-de-docx.mjs",
+    "export:softlaunch-en": "node scripts/export-softlaunch-en-docx.mjs",
+    "export:softlaunch-sv": "node scripts/export-softlaunch-sv-docx.mjs",
+    "export:softlaunch-all": "npm run export:softlaunch-en && npm run export:softlaunch-da && npm run export:softlaunch-de && npm run export:softlaunch-sv",
+    "parse:softlaunch-edits": "node scripts/parse-softlaunch-edits.mjs",
+    "apply:softlaunch-edits": "node scripts/apply-softlaunch-edits.mjs",
+    "prepare": "simple-git-hooks"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "node scripts/pre-commit-locale.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.0",
@@ -33,9 +47,11 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "docx": "^9.7.1",
     "pdf-lib": "^1.17.1",
     "playwright": "^1.61.1",
     "sharp": "^0.34.5",
+    "simple-git-hooks": "^2.13.1",
     "typescript": "^6.0.3"
   }
 }

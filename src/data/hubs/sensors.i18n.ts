@@ -38,8 +38,8 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
         lead: "Überwachen Sie CO₂, Temperatur und Luftfeuchtigkeit in Klassenzimmern, Besprechungsräumen und anderen stark frequentierten Räumen.",
       },
       "full-plus": {
-        titleAccent: "Alles über Ihr Raumklima.",
-        lead: "CO₂, Temperatur, Luftfeuchtigkeit, VOC und mehr in einer einzigen, diskreten Einheit, das Arbeitstier der meisten Raumklima-Rollouts.",
+        titleAccent: "Alles über Ihr Indoor climate.",
+        lead: "CO₂, Temperatur, Luftfeuchtigkeit, VOC und mehr in einer einzigen, diskreten Einheit, das Arbeitstier der meisten Indoor climate-Rollouts.",
       },
       humidity: {
         titleAccent: "Schutz vor Feuchtigkeit und Schimmel.",
@@ -48,7 +48,7 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
       "mini-plus": {
         titleAccent: "Kleiner Footprint, präzise Klimadaten.",
         lead: "Einfache Installation und präzise Klimawerte dort, wo Größe und Ästhetik zählen.",
-        seoTitle: "RoomAlyzer Air Mini+ | NB-IoT Temperatur- & Feuchtesensor",
+        seoTitle: "RoomAlyzer Air Mini+ | NB-IoT Temperatur- & Humidity",
         metaDescription:
           "RoomAlyzer Air Mini+ Funk-Sensor: NB-IoT Temperatur- und Feuchtigkeitsüberwachung, bis zu 10 Jahre Batterie, ±0,1 °C Präzision. Ohne Wi-Fi oder Gateway.",
       },
@@ -85,7 +85,7 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
         lead: "Verhindern Sie Wasserschäden mit Daten: Alarme innerhalb von Sekunden, sobald Wasser erkannt wird.",
       },
       "water-rope": {
-        titleAccent: "Linienabdeckung dort, wo ein Punktsensor nicht hinreicht.",
+        titleAccent: "Linienabdeckung dort, wo ein Water detector nicht hinreicht.",
         lead: "Ein Sensorkabel für lange Strecken entlang von Rohren, Sockelleisten und Technikraumböden.",
       },
       "cloud-connector": {

@@ -1,0 +1,66 @@
+{
+  "moduleNamesEn": {
+    "indoor-climate": "Indoor climate",
+    "space-management": "Space management",
+    "water-detection": "Water detection",
+    "preservation": "Preservation",
+    "usage-cleaning": "Usage and cleaning",
+    "push-buttons": "Push buttons",
+    "lockers-doors": "Lockers and doors"
+  },
+  "sensorNamesEn": {
+    "co2": "CO2",
+    "full-plus": "Full+",
+    "humidity": "Humidity",
+    "mini-plus": "Mini+",
+    "mini-plus-pir": "Mini+ PIR",
+    "outdoor": "Outdoor",
+    "temperature": "Temperature",
+    "desk": "Desk",
+    "motion": "Motion",
+    "open-close": "Open/Close",
+    "touch": "Touch",
+    "water-detector": "Water detector",
+    "water-rope": "Water rope",
+    "cloud-connector": "Cloud connector",
+    "range-extender-and-bracket": "Range Extender and Bracket"
+  },
+  "sensorNameOverridesDe": {
+    "water-detector": "Wasserdetektor",
+    "outdoor": "Außen Sensor"
+  },
+  "forbiddenModuleTokens": [
+    "Raumklima",
+    "Raumklimaüberwachung",
+    "Raumklimadaten",
+    "Wassererkennung",
+    "Konservierung",
+    "Drucktasten",
+    "Schließfächer und Türen",
+    "Nutzung und Reinigung",
+    "RoomAlyzer Raumklima",
+    "RoomAlyzer Konservierung",
+    "RoomAlyzer Wassererkennung",
+    "RoomAlyzer Drucktasten",
+    "RoomAlyzer Schließfächer",
+    "RoomAlyzer Nutzung und Reinigung",
+    "Öffnen/Schließen-Monitoring",
+    "Öffnen/Schließen-Überwachung"
+  ],
+  "forbiddenSensorTokens": [
+    "Feuchtesensor",
+    "Feuchtesensoren",
+    "Temperatursensor",
+    "Temperatursensoren",
+    "Bewegungssensor",
+    "Bewegungssensoren",
+    "Öffnen/Schließen-Sensor",
+    "Öffnen/Schließen-Sensoren",
+    "Öffnen/Schließen",
+    "Wasserseil",
+    "Wasserseile",
+    "Punktsensor",
+    "Outdoor Sensor",
+    "Outdoor-Sensor"
+  ]
+}

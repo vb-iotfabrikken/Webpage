@@ -21,7 +21,7 @@ export const modulesI18n: Partial<Record<Lang, Record<string, ModuleOverlay>>> =
     "space-management": {
       name: "Space management",
       short: "Overblik over dine kontorer og mødefaciliteter.",
-      long: "Reagér hurtigt på medarbejdernes skiftende behov, og optimér jeres brug af arealerne.",
+      long: "Reagér hurtigt på medarbejdernes skiftende behov, og udnyt arealerne bedst muligt.",
     },
     "water-detection": {
       name: "Vanddetektering",
@@ -51,39 +51,32 @@ export const modulesI18n: Partial<Record<Lang, Record<string, ModuleOverlay>>> =
   },
   de: {
     "indoor-climate": {
-      name: "Raumklima",
       short: "Beschwerden mit Daten statt mit Bauchgefühl begegnen.",
       long: "Messen Sie CO2, Temperatur, Luftfeuchtigkeit und VOC. Bleiben Sie Schimmel und Feuchtigkeit voraus.",
     },
     "space-management": {
-      name: "Space-Management",
       short: "Überblick über Ihre Büros und Besprechungsräume.",
       long: "Reagieren Sie schnell auf die wechselnden Bedürfnisse Ihrer Mitarbeitenden und optimieren Sie die Flächennutzung.",
     },
     "water-detection": {
-      name: "Wassererkennung",
       short: "Erkennen Sie Lecks, bevor sie teuer werden.",
       long: "Drahtlose Sensoren, die sofort alarmieren, sobald Wasser dort erkannt wird, wo es nicht sein sollte.",
     },
     preservation: {
-      name: "Konservierung",
       short: "Schützen Sie wertvolle Sammlungen und Materialien.",
       long: "Kontinuierliche Überwachung von Temperatur und Luftfeuchtigkeit für Museen, Archive und Lager.",
     },
     "usage-cleaning": {
-      name: "Nutzung und Reinigung",
       short: "Reinigen nach Bedarf, nicht nach Zeitplan.",
       long: "Nutzen Sie Belegungsdaten, um die Reinigung dorthin zu lenken, wo sie wirklich etwas bewirkt.",
     },
     "push-buttons": {
-      name: "Drucktasten",
       short: "Echtzeit-Feedback von Ihren Nutzern.",
       long: "Lassen Sie Mitarbeitende und Gäste mit einem einzigen Tastendruck Rückmeldung geben, direkt an das Facility-Team.",
     },
     "lockers-doors": {
-      name: "Schließfächer und Türen",
       short: "Offen, geschlossen, angelehnt.",
-      long: "Drahtlose Öffnen/Schließen-Sensoren für Türen, Schränke, Fenster und Schließfächer, ganz ohne Verkabelung.",
+      long: "Drahtlose Open/Close für Türen, Schränke, Fenster und Schließfächer, ganz ohne Verkabelung.",
     },
   },
   sv: {

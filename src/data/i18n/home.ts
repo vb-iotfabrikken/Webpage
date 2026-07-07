@@ -69,7 +69,7 @@ const en: HomeStrings = {
   hero: {
     title: "Market-leading software for indoor climate and",
     titleAccent: "space management.",
-    lead: "Wireless sensors and a single platform that turns data about indoor climate, space utilisation and water leaks into something you can actually use, plug and play.",
+    lead: "Wireless sensors and a single platform that turns data about indoor climate, space utilisation and water leaks into something you can actually use, plug\u00A0and\u00A0play.",
     ctaPrimary: "Book a free demo",
     ctaSecondary: "Contact sales",
   },
@@ -157,7 +157,7 @@ const da: HomeStrings = {
   hero: {
     title: "Markedsledende software til indeklima og",
     titleAccent: "space management.",
-    lead: "Trådløse sensorer og én samlet platform, der gør data om indeklima, arealudnyttelse og vandlækager til noget, du faktisk kan bruge, plug and play.",
+    lead: "Trådløse sensorer og én samlet platform, der gør data om indeklima, arealudnyttelse og vandlækager til noget, du faktisk kan bruge.",
     ctaPrimary: "Book en gratis demo",
     ctaSecondary: "Kontakt salg",
   },
@@ -185,7 +185,7 @@ const da: HomeStrings = {
       },
       {
         title: "Smart udrulning",
-        body: "Slut med alarmtræthed. Systemet adviserer dit team præcis når og hvor der reelt er brug for det.",
+        body: "Slut med alarmtræthed. Systemet adviserer dit team, præcis når og hvor der reelt er brug for det.",
       },
     ],
   },
@@ -197,7 +197,7 @@ const da: HomeStrings = {
       offices: {
         title: "Kontorer & arbejdspladser",
         description:
-          "Balancér arealudnyttelse på hybride arbejdspladser med medarbejdernes produktivitet og komfort.",
+          "Balancér arealudnyttelsen af den hybride arbejdsplads med medarbejdernes produktivitet og komfort.",
       },
       churches: {
         title: "Kirker & kulturarv",
@@ -228,9 +228,9 @@ const da: HomeStrings = {
     ],
   },
   cta: {
-    title: "Klar til at prøve det?",
+    title: "Se løsningen i praksis?",
     subtitle:
-      "Book en demo og se, hvordan data fra vores sensorer kan optimere jeres drift.",
+      "Book en demo, og se, hvordan data fra vores sensorer kan optimere driften.",
     primary: "Book en gratis demo",
     secondary: "Kontakt salg",
   },
@@ -240,12 +240,12 @@ const de: HomeStrings = {
   meta: {
     title: "IoT Fabrikken: Sensoren und Plattform für Facility- und Space-Management",
     description:
-      "Marktführende dänische Plattform für Raumklima, Space-Management und Wasserleckerkennung. Plug-and-Play-Sensoren, lange Batterielaufzeit und keine Installation.",
+      "Marktführende dänische Plattform für Indoor climate, Space-Management und Wasserleckerkennung. Plug-and-Play-Sensoren, lange Batterielaufzeit ohne Installation.",
   },
   hero: {
-    title: "Marktführende Software für Raumklima und",
+    title: "Marktführende Software für Indoor climate und",
     titleAccent: "Space-Management.",
-    lead: "Drahtlose Sensoren und eine einzige Plattform, die Daten zu Raumklima, Flächennutzung und Wasserlecks in echten Mehrwert verwandelt, Plug-and-Play.",
+    lead: "Drahtlose Sensoren in einer einzigen Plattform, die Daten zu Indoor climate, Flächennutzung und Wasserlecks in echten Mehrwert verwandelt, Plug\u2011and\u2011Play.",
     ctaPrimary: "Kostenlose Demo buchen",
     ctaSecondary: "Vertrieb kontaktieren",
   },
@@ -257,7 +257,7 @@ const de: HomeStrings = {
     heading: "Warum IoT Fabrikken?",
     intro: "Hardware, die einfach funktioniert. Software, die wirklich mitdenkt.",
     figcaption:
-      "Im eigenen Haus gebaut und qualitätsgeprüft, jeder Sensor wird von unserem Team in Dänemark versandt.",
+      "Im eigenen Haus gebaut und qualitätsgeprüft. Jeder Sensor wird von unserem Team in Dänemark versandt.",
     items: [
       {
         title: "Bis zu 10 Jahre Batterie",
@@ -265,11 +265,11 @@ const de: HomeStrings = {
       },
       {
         title: "Beratung, nicht nur Daten",
-        body: "Verzichten Sie auf komplexe Diagramme. Unsere KI gibt Ihnen einfache Empfehlungen, die Sie sofort umsetzen.",
+        body: "Verzichten Sie auf komplexe Diagramme. Unsere KI gibt Ihnen einfache Empfehlungen, die Sie sofort umsetzen können.",
       },
       {
         title: "Schluss mit Diskussionen",
-        body: "Ersetzen Sie das Bauchgefühl durch belastbare Daten und optimieren Sie Ihr Raumklima mit Sicherheit.",
+        body: "Verlassen Sie sich nicht auf Ihr Bauchgefühl – steuern Sie Ihr Indoor climate datenbasiert und sicher.",
       },
       {
         title: "Intelligenter Einsatz",
@@ -285,7 +285,7 @@ const de: HomeStrings = {
       offices: {
         title: "Büros & Arbeitsplätze",
         description:
-          "Bringen Sie Flächennutzung in hybriden Arbeitswelten mit Produktivität und Komfort der Mitarbeitenden in Einklang.",
+          "Bringen Sie Raumauslastung und Mitarbeiter-Wohlbefinden auf einen gemeinsamen Nenner.",
       },
       churches: {
         title: "Kirchen & Kulturerbe",
@@ -295,7 +295,7 @@ const de: HomeStrings = {
       "museums-galleries": {
         title: "Museen & Kultur",
         description:
-          "Minimieren Sie Risiken und bewahren Sie empfindliche Sammlungen mit kontinuierlicher Klimaüberwachung nach Konservierungsstandards.",
+          "Minimieren Sie Risiken und bewahren Sie empfindliche Sammlungen mit kontinuierlicher Klimaüberwachung nach den höchsten Preservationsstandards.",
       },
       municipalities: {
         title: "Schulen & Kommunen",
@@ -333,7 +333,7 @@ const sv: HomeStrings = {
   hero: {
     title: "Marknadsledande mjukvara för inomhusklimat och",
     titleAccent: "space management.",
-    lead: "Trådlösa sensorer och en enda plattform som förvandlar data om inomhusklimat, ytutnyttjande och vattenläckor till något du faktiskt kan använda, plug and play.",
+    lead: "Trådlösa sensorer och en enda plattform som förvandlar data om inomhusklimat, ytutnyttjande och vattenläckor till något du faktiskt kan använda, plug\u00A0and\u00A0play.",
     ctaPrimary: "Boka en gratis demo",
     ctaSecondary: "Kontakta försäljning",
   },

@@ -202,6 +202,14 @@ export function categoryColorClasses(color: ModuleColor) {
       return { dot: "bg-sky-500", chip: "bg-sky-50 text-sky-600", accent: "text-sky-600" };
     case "forest":
       return { dot: "bg-forest-500", chip: "bg-forest-50 text-forest-500", accent: "text-forest-500" };
+    case "amber":
+      return { dot: "bg-amber-500", chip: "bg-amber-50 text-amber-600", accent: "text-amber-500" };
+    case "violet":
+      return { dot: "bg-violet-500", chip: "bg-violet-50 text-violet-600", accent: "text-violet-500" };
+    case "orange":
+      return { dot: "bg-orange-500", chip: "bg-orange-50 text-orange-600", accent: "text-orange-500" };
+    case "white":
+      return { dot: "bg-stone-100", chip: "bg-stone-0 text-navy-500", accent: "text-navy-500" };
     case "navy":
     default:
       return { dot: "bg-navy-500", chip: "bg-stone-100 text-navy-500", accent: "text-navy-500" };

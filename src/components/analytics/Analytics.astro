@@ -1,0 +1,27 @@
+---
+import { getGscVerification, getGtmId, isAnalyticsEnabled } from "../../lib/analytics/config";
+
+const gscVerification = getGscVerification();
+const analyticsEnabled = isAnalyticsEnabled() && Boolean(getGtmId());
+---
+
+{gscVerification && (
+  <meta name="google-site-verification" content={gscVerification} />
+)}
+
+{analyticsEnabled && (
+  <script is:inline define:vars={{ bootstrapConsentDefaults }}>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("consent", "default", {
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      analytics_storage: "denied",
+      functionality_storage: "denied",
+      personalization_storage: "denied",
+      security_storage: "granted",
+      wait_for_update: 500,
+    });
+  </script>
+)}

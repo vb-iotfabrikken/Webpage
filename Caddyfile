@@ -1,18 +1,21 @@
-# Caddy static-file server for the IoT Fabrikken soft launch.
+# Caddy static-file server for the IoT Fabrikken site.
 #
-# The whole site is password-protected with HTTP Basic Auth so only invited
-# people can see the in-progress launch. Credentials are read from environment
-# variables (set them in Railway → Variables), never committed here.
+# Auth layers (Railway → Variables):
 #
-#   BASIC_AUTH_USER  – the username (e.g. "iotfabrikken")
-#   BASIC_AUTH_HASH  – a bcrypt hash of the password. Generate with:
-#                        docker run --rm caddy caddy hash-password --plaintext 'your-password'
-#                      (or `caddy hash-password ...` if Caddy is installed locally)
+#   Internal dashboard (/en/internal/*, etc.) — always team-only when set:
+#     INTERNAL_AUTH_USER
+#     INTERNAL_AUTH_HASH  — bcrypt hash from `caddy hash-password`
+#
+#   Soft-launch site gate (whole public site) — optional:
+#     SOFT_LAUNCH_SITE_AUTH=true   — gate all non-internal paths
+#     BASIC_AUTH_USER
+#     BASIC_AUTH_HASH
+#
+#   Public launch: set SOFT_LAUNCH_SITE_AUTH=false (or unset). Keep INTERNAL_AUTH_*
+#   so /internal/journey/ stays protected while the marketing site is open.
 
 {
 	admin off
-	# Railway terminates TLS at its edge and forwards plain HTTP on $PORT,
-	# so Caddy should not try to provision its own certificates.
 	auto_https off
 }
 
@@ -20,16 +23,31 @@
 	root * /srv
 	encode zstd gzip
 
-	# Gate the entire soft-launch site behind a single set of credentials.
-	basic_auth {
-		{$BASIC_AUTH_USER} {$BASIC_AUTH_HASH}
+	# Team-only internal routes (locale-prefixed and bare /internal/).
+	@internal path /internal/* /en/internal/* /da/internal/* /de/internal/* /sv/internal/*
+
+	handle @internal {
+		basic_auth {
+			{$INTERNAL_AUTH_USER} {$INTERNAL_AUTH_HASH}
+		}
+		file_server
 	}
 
-	# Static output uses directory-style URLs (foo/index.html); file_server
-	# resolves the index automatically and adds canonical trailing slashes.
-	file_server
+	# Soft launch: password-protect the rest of the site until public go-live.
+	@site_gated expression {env.SOFT_LAUNCH_SITE_AUTH} == "true"
 
-	# Serve Astro's generated 404 page for unknown paths.
+	handle @site_gated {
+		basic_auth {
+			{$BASIC_AUTH_USER} {$BASIC_AUTH_HASH}
+		}
+		file_server
+	}
+
+	# Public marketing site (default after soft launch).
+	handle {
+		file_server
+	}
+
 	handle_errors {
 		rewrite * /404.html
 		file_server

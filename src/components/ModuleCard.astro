@@ -1,11 +1,12 @@
 ---
 import ModuleIcon from "./ModuleIcon.astro";
+import { moduleColorClasses, type ModuleColor } from "../data/modules";
 
 export type ModuleCardData = {
   slug: string;
   href: string;
   title: string;
-  titleAccent?: string;
+  color: ModuleColor;
 };
 
 interface Props {
@@ -13,26 +14,31 @@ interface Props {
 }
 
 const { module: m } = Astro.props;
+const accent = moduleColorClasses[m.color];
 ---
 
 <a
   href={m.href}
-  class="reveal group relative block bg-white border border-stone-100 rounded-xl overflow-hidden hover:border-navy-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+  class="reveal group relative flex flex-col h-full bg-white border border-stone-100 rounded-xl overflow-hidden hover:border-navy-500 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
 >
-  <div class="absolute top-0 left-0 right-0 h-1 bg-sky-500"></div>
+  <div
+    class:list={[
+      "aspect-[4/3] flex items-center justify-center bg-stone-50 transition-colors duration-300",
+      accent.hoverBgSoft,
+    ]}
+  >
+    <ModuleIcon
+      slug={m.slug}
+      class:list={[
+        "w-10 h-10 md:w-12 md:h-12 text-navy-500 transition-colors duration-300",
+        accent.hoverText,
+      ]}
+    />
+  </div>
 
-  <div class="flex gap-3 items-center p-4 md:p-5">
-    <div
-      class="shrink-0 w-9 h-9 rounded-lg bg-stone-50 text-forest-500 group-hover:bg-forest-50 flex items-center justify-center transition-colors duration-300"
-    >
-      <ModuleIcon slug={m.slug} />
-    </div>
-
-    <h3 class="flex-1 min-w-0 text-base font-semibold text-navy-500 leading-snug pr-1">
+  <div class="flex items-center gap-2 p-4 md:p-5">
+    <h3 class="flex-1 min-w-0 text-base font-semibold text-navy-500 leading-snug">
       {m.title}
-      {m.titleAccent && (
-        <span class="block text-sky-600 text-sm font-medium mt-0.5 leading-snug">{m.titleAccent}</span>
-      )}
     </h3>
 
     <svg
@@ -40,7 +46,7 @@ const { module: m } = Astro.props;
       height="14"
       viewBox="0 0 14 14"
       fill="none"
-      class="shrink-0 text-stone-300 opacity-0 translate-x-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:text-sky-600 transition-all duration-300"
+      class="shrink-0 text-stone-300 opacity-0 translate-x-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:text-navy-500 transition-all duration-300"
       aria-hidden="true"
     >
       <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />

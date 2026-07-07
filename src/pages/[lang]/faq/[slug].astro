@@ -6,6 +6,13 @@ import { getFaqContent } from "../../../data/faqContent";
 import { getLegal } from "../../../data/i18n/legal";
 import { locales, langPath, localizeSegment, type Lang } from "../../../data/lang";
 
+const platformOverviewLink: Record<Lang, string> = {
+  en: "See the full platform overview",
+  da: "Se den fulde platformsoversigt",
+  de: "Zur vollständigen Plattformübersicht",
+  sv: "Se hela plattformsöversikten",
+};
+
 export function getStaticPaths() {
   return locales.flatMap((l) =>
     getFaqHub(l.code).leaves.map((leaf) => ({
@@ -25,6 +32,10 @@ const t = getLegal(lang).common;
 const homeHref = langPath("", lang);
 const faqHref = langPath("faq", lang);
 const topicLabel = localizedLeaf.title.replace(/\.$/, "");
+const relatedLinks =
+  localizedLeaf.slug === "platform"
+    ? [{ label: platformOverviewLink[lang], href: langPath("platform", lang) }]
+    : [];
 ---
 
 {hasContent ? (
@@ -40,6 +51,7 @@ const topicLabel = localizedLeaf.title.replace(/\.$/, "");
       { label: topicLabel },
     ]}
     qa={qa}
+    relatedLinks={relatedLinks}
   />
 ) : (
   <PlaceholderPage

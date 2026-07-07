@@ -43,7 +43,7 @@ const intros: Record<Lang, Omit<ArticlesIntro, "elsewhere">> = {
     title: "Was Sie hier finden",
     lead: "Ein Ort für alles, was wir veröffentlichen, praktische Anleitungen, Branchenguides, Standard-Erklärungen und längere Lektüre aus der Praxis. Suchen oder filtern Sie unten, oder starten Sie von Ihrer Branche, wenn Sie Ihren Gebäudetyp kennen.",
     includes: [
-      "Anleitungen und Anwendungsfälle nach Thema: Raumklima, Konservierung, Wassererkennung, Space-Management und mehr.",
+      "Anleitungen und Anwendungsfälle nach Thema: Indoor climate, Preservation, Water detection, Space-Management und mehr.",
       "Branchenspezifische Orientierung, oder springen Sie direkt zu Branchen, um von Ihrem Gebäudetyp zu starten.",
       "Standards, Compliance und Integrations-Tiefenblicke für technische Leser.",
       "Längere Lektüre und Rollout-Geschichten aus echten Kundenprojekten.",

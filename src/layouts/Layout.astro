@@ -4,6 +4,9 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { isRouteAvailableInLocale } from "../data/events";
 import { locales, pagePathname, resolveLang, localeSwitchTarget, isPageIndexed, stripLocaleRoute } from "../data/lang";
+import Analytics from "../components/analytics/Analytics.astro";
+import ConsentBanner from "../components/analytics/ConsentBanner.astro";
+import { isAnalyticsEnabled } from "../lib/analytics/config";
 import { DEFAULT_OG_IMAGE, SITE_NAME, organizationSchema, websiteSchema } from "../lib/seo/config";
 
 interface Props {
@@ -25,6 +28,10 @@ interface Props {
   modifiedTime?: string;
   /** Remove the default gap above the site footer. */
   flushFooter?: boolean;
+  /** Analytics page_type for content_view events (module, sensor, compare, etc.). */
+  analyticsPageType?: string;
+  /** Analytics content_id slug (module slug, sensor slug, case study slug). */
+  analyticsContentId?: string;
 }
 
 const {
@@ -40,6 +47,8 @@ const {
   publishedTime,
   modifiedTime,
   flushFooter = false,
+  analyticsPageType,
+  analyticsContentId,
 } = Astro.props;
 
 const siteOrigin = Astro.site ?? "https://iot-fabrikken.com";
@@ -97,10 +106,15 @@ const ogLocaleByLang = {
 // Global structured data emitted on every page, plus any page-specific nodes.
 const globalJsonLd = [organizationSchema(), websiteSchema()];
 const pageJsonLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const analyticsEnabled = isAnalyticsEnabled();
 ---
 
 <!doctype html>
-<html lang={currentLang}>
+<html
+  lang={currentLang}
+  data-analytics-page-type={analyticsPageType}
+  data-analytics-content-id={analyticsContentId}
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -152,9 +166,11 @@ const pageJsonLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       <script type="application/ld+json" set:html={JSON.stringify(node)} />
     ))}
 
+    {analyticsEnabled && <Analytics />}
     <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col">
+    {analyticsEnabled && <ConsentBanner lang={currentLang} />}
     <Header />
     <main class="flex flex-1 flex-col">
       <slot />

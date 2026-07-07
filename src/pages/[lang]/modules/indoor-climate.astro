@@ -41,7 +41,7 @@ const pageJsonLd = [
 ].filter(Boolean) as Array<Record<string, unknown>>;
 ---
 
-<Layout title={t.metaTitle} description={t.metaDescription} jsonLd={pageJsonLd}>
+<Layout title={t.metaTitle} description={t.metaDescription} jsonLd={pageJsonLd} analyticsPageType="module" analyticsContentId="indoor-climate">
   <Hero
     title={t.heroTitle}
     titleAccent={t.heroTitleAccent}

@@ -54,6 +54,8 @@ const heroTitle = content?.heroTitle ?? leaf.title;
   ctaBandPrimaryLabel={t.common.bookDemo}
   ctaBandSecondaryLabel={t.common.contactSales}
   hideNotice={!!content}
+  analyticsPageType="module"
+  analyticsContentId={slug}
 >
   {content && <ModulePageContent content={content} lang={lang} />}
 </PlaceholderPage>

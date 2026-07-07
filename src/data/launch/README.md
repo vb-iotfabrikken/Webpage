@@ -22,8 +22,9 @@ flowchart TD
 
 ## Access layer
 
-- **HTTP Basic Auth** on the whole deployment ([`Caddyfile`](../../../Caddyfile)) —
-  credentials from `BASIC_AUTH_USER` / `BASIC_AUTH_HASH` in Railway.
+- **HTTP Basic Auth** on the deployment ([`Caddyfile`](../../../Caddyfile)):
+  - **Soft launch:** `SOFT_LAUNCH_SITE_AUTH=true` + `BASIC_AUTH_*` gates the whole site.
+  - **Public launch:** marketing site is open; **`/internal/*` stays gated** with separate `INTERNAL_AUTH_*` credentials (team-only journey dashboard).
 - **Root redirect:** `/` → `/en/`.
 - **Locales served:** `en`, `da`, `de`, `sv` (da/de/sv fall back to English where
   untranslated).
@@ -40,7 +41,7 @@ flowchart TD
 | Utility bar | “Built in Denmark” status, **Helpcenter** (external), language switcher |
 | Primary nav | **Products**, **Resources**, **Company** only |
 | Hidden nav items | **Industries**, **Pricing** (no live destinations) |
-| Products dropdown | **Modules** (4 live) + **Sensors** (6 featured + “All sensors” + **Compare sensors**) — **no Platform column** |
+| Products dropdown | **Modules** (4 live) + **Sensors** (6 featured + “All sensors” + **Compare sensors**); when platform is live, a **Platform footer teaser** links to `/platform/` only (no sub-page list in the dropdown) |
 | Resources dropdown | **Case studies** only (Articles, Whitepapers hidden) |
 | Company dropdown | **About**, **Careers**, **Contact** |
 | Header actions | **Log in** (external RoomAlyzer), **Book a demo** CTA |
@@ -250,6 +251,43 @@ From [`launch.ts`](../launch.ts):
 | `LIVE_MODULE_SLUGS` | `indoor-climate`, `space-management`, `water-detection`, `preservation` (+ `modules` hub index) |
 | `LIVE_TRUST_CENTER_SECTIONS` | _(empty during soft launch — certification hidden)_ |
 | `ALWAYS_ALLOWED` | `404`, `thank-you`, `thanks` |
+| `ANALYTICS_WAVE_LIVE` | `false` during soft launch — see **Second wave** below |
+| `isAnalyticsWaveBuilt()` | `true` in `astro dev` only until wave is approved |
+
+## Second wave (post soft-launch)
+
+Customer-journey analytics (GTM, GA4, consent banner, CTA/form events) ships in a
+**second wave**, not during soft launch. Code lives in the repo but stays inactive
+until `ANALYTICS_WAVE_LIVE` is flipped to `true` in [`launch.ts`](../launch.ts).
+
+**Building stage (now):** second-wave routes exist **only during local `npm run dev`**
+via [`isAnalyticsWaveBuilt()`](../launch.ts). Production and Railway builds omit
+`/internal/journey/` and `/legal/cookies/` entirely (`getStaticPaths` + post-build
+prune). Do **not** enable the wave or add those paths to `LIVE_EXACT` without
+explicit product approval.
+
+When enabling the second wave (after approval), also:
+
+1. Set `ANALYTICS_WAVE_LIVE = true` and add `legal/cookies` + `internal/journey` to `LIVE_EXACT`.
+2. Configure `PUBLIC_GTM_ID`, Clarity in GTM, and tool link env vars — see [`docs/analytics/README.md`](../../../docs/analytics/README.md).
+3. Set `SOFT_LAUNCH_SITE_AUTH=false` on Railway so public traffic is measurable; keep `INTERNAL_AUTH_*` for `/internal/journey/`.
+4. Require Google Workspace 2FA on GA4, Clarity, Looker, and Search Console accounts.
+
+### Internal dashboard auth (Railway / Caddy)
+
+| Variable | Purpose |
+|----------|---------|
+| `INTERNAL_AUTH_USER` | Username for `/en/internal/*` (and other locale `/internal/*` paths) |
+| `INTERNAL_AUTH_HASH` | Bcrypt hash — generate with `caddy hash-password` |
+| `SOFT_LAUNCH_SITE_AUTH` | `true` during soft launch (whole-site gate); `false` at public launch |
+| `BASIC_AUTH_USER` / `BASIC_AUTH_HASH` | Soft-launch invite credentials only |
+
+The internal hub at `/en/internal/journey/` links to GA4, Looker, Clarity, and Search Console — it does not embed dashboards. Real analytics data stays in Google/Microsoft tools protected by team 2FA.
+
+While `ANALYTICS_WAVE_LIVE` is `false`: no cookie banner, no GTM, no event tracking,
+no GA4 attribution in Zoho leads. The cookie policy and internal journey dashboard
+are available at `npm run dev` only — they are not emitted in production builds and
+are pruned from dist if any stray HTML appears.
 
 ## Branch workflow
 

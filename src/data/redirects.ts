@@ -9,6 +9,7 @@ import { fileURLToPath } from "node:url";
 import { articles as articleCatalog } from "./library/catalog";
 import { getEventRedirectMap } from "./events";
 import { getCaseStudiesContent } from "./hubs/caseStudies";
+import { platformHub } from "./hubs/platform";
 import {
   getLegacyComBarePathMap,
   LEGACY_HOST_LOCALE,
@@ -46,7 +47,11 @@ export function localizeRedirectTarget(target: string): string {
       return target;
     }
   }
-  return localizeLocalePath(target) ?? target;
+  const hashIdx = target.indexOf("#");
+  const pathPart = hashIdx >= 0 ? target.slice(0, hashIdx) : target;
+  const hashPart = hashIdx >= 0 ? target.slice(hashIdx) : "";
+  const localized = localizeLocalePath(pathPart) ?? pathPart;
+  return localized + hashPart;
 }
 
 export const CANONICAL_SITE = "https://iot-fabrikken.com";
@@ -77,6 +82,13 @@ export type RedirectEntry = {
   status: RedirectStatus;
   /** Legacy host for cross-domain rules (e.g. iot-fabrikken.uk). */
   sourceHost?: string;
+};
+
+/** Article slugs renamed after content updates (old → new). */
+export const legacyArticleSlugAliases: Readonly<Record<string, string>> = {
+  "lorawan-vs-nb-iot-vs-wifi": "nb-iot-vs-wifi",
+  "nfc-vs-lorawan-buttons": "nfc-vs-wireless-buttons",
+  "lorawan-vs-nb-iot-rf-budget": "nb-iot-rf-budget",
 };
 
 /** WordPress case URLs that used a different slug than the new site. */
@@ -205,6 +217,19 @@ export function getBarePathLegacyRedirectMap(): Record<string, string> {
   };
 }
 
+/** Platform leaf pages → overview anchors (hub retired). */
+export function getPlatformLeafRedirectMap(): Record<string, string> {
+  return Object.fromEntries(
+    SITE_LOCALES.flatMap((lang) =>
+      platformHub.leaves.map((leaf) => {
+        const source = routePath(`platform/${leaf.slug}`, lang);
+        const target = `${routePath("platform", lang)}#${leaf.slug}`;
+        return [source, target] as [string, string];
+      }),
+    ),
+  );
+}
+
 /** Static path renames (excluding dynamic article/event maps). */
 export function getStaticSiteRedirectMap(): Record<string, string> {
   const sensorRenames: Record<string, string> = {
@@ -238,6 +263,16 @@ export function getStaticSiteRedirectMap(): Record<string, string> {
     [`/${lang}/about/d-maerket/`, `/${lang}/about/trust-center/`],
   ] as [string, string][]);
 
+  const articleSlugRenameEntries: [string, string][] = [];
+  for (const [oldSlug, newSlug] of Object.entries(legacyArticleSlugAliases)) {
+    for (const lang of SITE_LOCALES) {
+      articleSlugRenameEntries.push([`/${lang}/articles/${oldSlug}/`, `/${lang}/articles/${newSlug}/`]);
+      articleSlugRenameEntries.push([`/${lang}/library/${oldSlug}/`, `/${lang}/articles/${newSlug}/`]);
+      articleSlugRenameEntries.push([`/${lang}/solutions/${oldSlug}/`, `/${lang}/articles/${newSlug}/`]);
+      articleSlugRenameEntries.push([`/${lang}/compare/${oldSlug}/`, `/${lang}/compare/${newSlug}/`]);
+    }
+  }
+
   return Object.fromEntries([
     ["/", "/da/"],
     ["/en/cases/", "/en/case-studies/"],
@@ -252,6 +287,7 @@ export function getStaticSiteRedirectMap(): Record<string, string> {
     ...sensorEntries,
     ...compareEntries,
     ...pricingEntries,
+    ...articleSlugRenameEntries,
   ]);
 }
 
@@ -259,6 +295,7 @@ export function getStaticSiteRedirectMap(): Record<string, string> {
 export function getSiteRedirectMap(): Record<string, string> {
   const raw = {
     ...getStaticSiteRedirectMap(),
+    ...getPlatformLeafRedirectMap(),
     ...getLegacyCaseSingularRedirectMap(),
     ...getSolutionsRedirectMap(),
     ...getLegacyArticlesRedirectMap(),

@@ -6,6 +6,7 @@ import {
   ZOHO_WEBTOLEAD_ENDPOINT,
   type ZohoLeadSource,
 } from "../../data/zoho";
+import { enrichZohoDescription } from "../analytics/zoho-bridge";
 
 /** Lead fields collected from any of the site's forms. */
 export type ZohoLeadFields = {
@@ -115,9 +116,7 @@ export function submitLeadToZoho(
     addHidden(form, ZOHO_FIELDS.phone, fields.phone.trim());
   }
 
-  const description = [`Lead source: ${source}`, fields.description?.trim()]
-    .filter(Boolean)
-    .join("\n\n");
+  const description = enrichZohoDescription(fields.description?.trim(), source);
   addHidden(form, ZOHO_FIELDS.description, description);
 
   document.body.appendChild(form);

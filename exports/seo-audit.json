@@ -1,0 +1,318 @@
+{
+  "generatedAt": "2026-07-07T11:38:06.383Z",
+  "stats": {
+    "filesScanned": 49,
+    "metaTitles": 80,
+    "metaDescriptions": 56,
+    "seoTitles": 4,
+    "errors": 0,
+    "warnings": 44
+  },
+  "issues": [
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 29 chars (min 30): \"Press | About | IoT Fabrikken…\"",
+      "file": "src/data/i18n/about.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "description_short",
+      "message": "metaDescription is 64 chars (min 70)",
+      "file": "src/data/i18n/about.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_short",
+      "message": "metaDescription is 63 chars (min 70)",
+      "file": "src/data/i18n/about.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_short",
+      "message": "metaDescription is 63 chars (min 70)",
+      "file": "src/data/i18n/about.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_short",
+      "message": "metaDescription is 63 chars (min 70)",
+      "file": "src/data/i18n/about.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 26 chars (min 30): \"Kundecases | IoT Fabrikken…\"",
+      "file": "src/data/i18n/cases.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 24 chars (min 30): \"Kundcase | IoT Fabrikken…\"",
+      "file": "src/data/i18n/cases.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 168 chars (max 160)",
+      "file": "src/data/i18n/dhbvVerbandstag2026.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 22 chars (min 30): \"Events | IoT Fabrikken…\"",
+      "file": "src/data/i18n/events.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 29 chars (min 30): \"Arrangementer | IoT Fabrikken…\"",
+      "file": "src/data/i18n/events.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 21 chars (min 30): \"Event | IoT Fabrikken…\"",
+      "file": "src/data/i18n/events.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 161 chars (max 160)",
+      "file": "src/data/i18n/indoorClimate.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 162 chars (max 160)",
+      "file": "src/data/i18n/indoorClimate.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 192 chars (max 160)",
+      "file": "src/data/i18n/indoorClimate.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 174 chars (max 160)",
+      "file": "src/data/i18n/indoorClimate.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 29 chars (min 30): \"Cookie policy | IoT Fabrikken…\"",
+      "file": "src/data/i18n/legal.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 25 chars (min 30): \"Impressum | IoT Fabrikken…\"",
+      "file": "src/data/i18n/legal.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 29 chars (min 30): \"Cookiepolitik | IoT Fabrikken…\"",
+      "file": "src/data/i18n/legal.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 25 chars (min 30): \"Impressum | IoT Fabrikken…\"",
+      "file": "src/data/i18n/legal.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 25 chars (min 30): \"Impressum | IoT Fabrikken…\"",
+      "file": "src/data/i18n/legal.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 28 chars (min 30): \"Cookiepolicy | IoT Fabrikken…\"",
+      "file": "src/data/i18n/legal.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 25 chars (min 30): \"Impressum | IoT Fabrikken…\"",
+      "file": "src/data/i18n/legal.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 168 chars (max 160)",
+      "file": "src/data/i18n/lockersDoors.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 206 chars (max 160)",
+      "file": "src/data/i18n/lockersDoors.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 171 chars (max 160)",
+      "file": "src/data/i18n/lockersDoors.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 164 chars (max 160)",
+      "file": "src/data/i18n/mutec2026.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 174 chars (max 160)",
+      "file": "src/data/i18n/preservation.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 25 chars (min 30): \"Pricing you can plan with…\"",
+      "file": "src/data/i18n/pricing.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 29 chars (min 30): \"Priser du kan planlægge efter…\"",
+      "file": "src/data/i18n/pricing.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_short",
+      "message": "metaTitle is 27 chars (min 30): \"Priser du kan planera efter…\"",
+      "file": "src/data/i18n/pricing.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_long",
+      "message": "metaTitle is 67 chars (max 65): \"Push buttons: one-tap feedback and service request…\"",
+      "file": "src/data/i18n/pushButtons.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_long",
+      "message": "metaTitle is 71 chars (max 65): \"Trykknapper: feedback og serviceanmodninger med ét…\"",
+      "file": "src/data/i18n/pushButtons.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_long",
+      "message": "metaTitle is 73 chars (max 65): \"Push buttons: Feedback und Serviceanfragen mit ein…\"",
+      "file": "src/data/i18n/pushButtons.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "title_long",
+      "message": "metaTitle is 77 chars (max 65): \"Tryckknappar: feedback och serviceförfrågningar me…\"",
+      "file": "src/data/i18n/pushButtons.ts",
+      "key": "metaTitle"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 198 chars (max 160)",
+      "file": "src/data/i18n/spaceManagement.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 213 chars (max 160)",
+      "file": "src/data/i18n/spaceManagement.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 258 chars (max 160)",
+      "file": "src/data/i18n/spaceManagement.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 220 chars (max 160)",
+      "file": "src/data/i18n/spaceManagement.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 172 chars (max 160)",
+      "file": "src/data/i18n/usageCleaning.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 176 chars (max 160)",
+      "file": "src/data/i18n/waterDetection.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "description_long",
+      "message": "metaDescription is 176 chars (max 160)",
+      "file": "src/data/i18n/worktech26Stockholm.ts",
+      "key": "metaDescription"
+    },
+    {
+      "severity": "warning",
+      "code": "duplicate_title",
+      "message": "Duplicate title \"om iot fabrikken | iot fabrikken\" in 2 files",
+      "file": "src/data/i18n/about.ts, src/data/i18n/about.ts"
+    },
+    {
+      "severity": "warning",
+      "code": "duplicate_title",
+      "message": "Duplicate title \"impressum | iot fabrikken\" in 4 files",
+      "file": "src/data/i18n/legal.ts, src/data/i18n/legal.ts, src/data/i18n/legal.ts, src/data/i18n/legal.ts"
+    },
+    {
+      "severity": "warning",
+      "code": "duplicate_title",
+      "message": "Duplicate title \"lockers and doors: open/close monitoring | iot fabrikken\" in 2 files",
+      "file": "src/data/i18n/lockersDoors.ts, src/data/i18n/lockersDoors.ts"
+    }
+  ]
+}
