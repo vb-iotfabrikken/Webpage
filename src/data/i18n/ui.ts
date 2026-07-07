@@ -398,7 +398,7 @@ const en: UiStrings = {
     },
     index: {
       ctaTitle: "Want a guided walk-through?",
-      ctaSubtitle: "Book a 30-minute demo and we'll tailor it to your building.",
+      ctaSubtitle: "Book a demo and we'll tailor it to your building.",
     },
     detail: {
       exampleUseCases: "Example use cases",
@@ -505,7 +505,7 @@ const en: UiStrings = {
       sectionIntro:
         "Indoor climate, space management, water detection and more — each module runs on the same RoomAlyzer platform and sensor network.",
       ctaTitle: "Want a guided walk-through?",
-      ctaSubtitle: "Book a 30-minute demo and we'll tailor it to your building.",
+      ctaSubtitle: "Book a demo and we'll tailor it to your building.",
     },
     content: {
       challengesEyebrow: "The challenges you know",
@@ -667,7 +667,7 @@ const da: UiStrings = {
     },
     index: {
       ctaTitle: "Vil du have en guidet gennemgang?",
-      ctaSubtitle: "Book en demo på 30 minutter, så tilpasser vi den til din bygning.",
+      ctaSubtitle: "Book en demo, så tilpasser vi den til din bygning.",
     },
     detail: {
       exampleUseCases: "Eksempler på anvendelse",
@@ -774,7 +774,7 @@ const da: UiStrings = {
       sectionIntro:
         "Indeklima, pladsudnyttelse, vanddetektion og mere — hvert modul kører på den samme RoomAlyzer-platform og sensornetværk.",
       ctaTitle: "Vil du have en guidet gennemgang?",
-      ctaSubtitle: "Book en demo på 30 minutter, så tilpasser vi den til din bygning.",
+      ctaSubtitle: "Book en demo, så tilpasser vi den til din bygning.",
     },
     content: {
       challengesEyebrow: "De udfordringer, du kender",
@@ -936,7 +936,7 @@ const de: UiStrings = {
     },
     index: {
       ctaTitle: "Möchten Sie eine geführte Tour?",
-      ctaSubtitle: "Buchen Sie eine 30-minütige Demo, die wir auf Ihr Gebäude zuschneiden.",
+      ctaSubtitle: "Buchen Sie eine Demo, die wir auf Ihr Gebäude zuschneiden.",
     },
     detail: {
       exampleUseCases: "Beispielhafte Anwendungsfälle",
@@ -1043,7 +1043,7 @@ const de: UiStrings = {
       sectionIntro:
         "Innenklima, Raumnutzung, Wassermonitoring und mehr, jedes Modul läuft auf derselben RoomAlyzer-Plattform und demselben Sensornetzwerk.",
       ctaTitle: "Möchten Sie eine geführte Tour?",
-      ctaSubtitle: "Buchen Sie eine 30-minütige Demo, die wir auf Ihr Gebäude zuschneiden.",
+      ctaSubtitle: "Buchen Sie eine Demo, die wir auf Ihr Gebäude zuschneiden.",
     },
     content: {
       challengesEyebrow: "Die Herausforderungen, die Sie kennen",
@@ -1205,7 +1205,7 @@ const sv: UiStrings = {
     },
     index: {
       ctaTitle: "Vill du ha en guidad genomgång?",
-      ctaSubtitle: "Boka en 30-minuters demo så skräddarsyr vi den efter din byggnad.",
+      ctaSubtitle: "Boka en demo så skräddarsyr vi den efter din byggnad.",
     },
     detail: {
       exampleUseCases: "Exempel på användning",
@@ -1312,7 +1312,7 @@ const sv: UiStrings = {
       sectionIntro:
         "Inomhusklimat, ytanvändning, vattendetektering och mer, varje modul körs på samma RoomAlyzer-plattform och sensornätverk.",
       ctaTitle: "Vill du ha en guidad genomgång?",
-      ctaSubtitle: "Boka en 30-minuters demo så skräddarsyr vi den efter din byggnad.",
+      ctaSubtitle: "Boka en demo så skräddarsyr vi den efter din byggnad.",
     },
     content: {
       challengesEyebrow: "Utmaningarna du känner till",

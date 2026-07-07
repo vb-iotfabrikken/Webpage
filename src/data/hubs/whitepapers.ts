@@ -42,7 +42,7 @@ const whitepaperResourcesEn: WhitepaperResource[] = [
     eyebrow: "Briefing",
     title: "Talk to us directly.",
     titleAccent: "Tailored to your building type.",
-    lead: "Book a 30-minute walk-through and we will cover the topics that matter for your portfolio, no white paper required.",
+    lead: "Book a walk-through and we will cover the topics that matter for your portfolio, no white paper required.",
     ctaLabel: "Book a free demo",
   },
 ];

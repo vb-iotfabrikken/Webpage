@@ -149,7 +149,7 @@ const en: ModulePageStrings = {
   ],
   ctaTitle: "Want to see it for yourself?",
   ctaSubtitle:
-    "Book a 30-minute demo. We will walk through your risk points, show the platform, and give you a price estimate.",
+    "Book a demo. We will walk through your risk points, show the platform, and give you a price estimate.",
   ctaMicrocopy: "Minutes to install · works in basements and shafts",
   spotlight: {
     heading: "Hope you never need it. Trust it when you do.",
@@ -338,7 +338,7 @@ const da: ModulePageStrings = {
   ],
   ctaTitle: "Vil du selv se det?",
   ctaSubtitle:
-    "Book en demo på 30 minutter. Vi gennemgår jeres risikopunkter, viser platformen og giver et prisestimat.",
+    "Book en demo. Vi gennemgår jeres risikopunkter, viser platformen og giver et prisestimat.",
   ctaMicrocopy: "Installeres på minutter · virker i kældre og skakte",
   spotlight: {
     heading: "Håb, du aldrig får brug for det. Stol på det, når du gør.",
@@ -527,7 +527,7 @@ const de: ModulePageStrings = {
   ],
   ctaTitle: "Möchten Sie es selbst sehen?",
   ctaSubtitle:
-    "Buchen Sie eine 30-minütige Demo. Wir gehen Ihre Risikopunkte durch, zeigen die Plattform und erstellen ein Preisangebot.",
+    "Buchen Sie eine Demo. Wir gehen Ihre Risikopunkte durch, zeigen die Plattform und erstellen ein Preisangebot.",
   ctaMicrocopy: "In Minuten installiert · funktioniert in Kellern und Schächten",
   spotlight: {
     heading: "Hoffentlich brauchen Sie es nie. Vertrauen Sie darauf, wenn Sie es tun.",
@@ -716,7 +716,7 @@ const sv: ModulePageStrings = {
   ],
   ctaTitle: "Vill du se det själv?",
   ctaSubtitle:
-    "Boka en 30-minuters demo. Vi går igenom era riskpunkter, visar plattformen och ger en prisuppskattning.",
+    "Boka en demo. Vi går igenom era riskpunkter, visar plattformen och ger en prisuppskattning.",
   ctaMicrocopy: "Installeras på minuter · fungerar i källare och schakt",
   spotlight: {
     heading: "Hoppas du aldrig behöver det. Lita på det när du gör det.",

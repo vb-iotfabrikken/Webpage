@@ -13,15 +13,15 @@ export const contactHub: Hub = {
       slug: "book-demo",
       eyebrow: "Contact",
       title: "Book a demo.",
-      titleAccent: "30 minutes, no strings.",
-      lead: "Pick a slot that fits your calendar. We will show the product, discuss your use case and give you a concrete price estimate.",
+      titleAccent: "No strings attached.",
+      lead: "Tell us what suits you. We will show the product, discuss your use case and give you a concrete price estimate.",
       primaryCta: { label: "Book a free demo", href: "/en/contact/book-demo/" },
     },
     {
       slug: "sales",
       eyebrow: "Contact",
       title: "Talk to sales.",
-      lead: "A short conversation with our sales team to understand your setup, scope and timeline.",
+      lead: "A conversation with our sales team to understand your setup, scope and timeline.",
     },
     {
       slug: "support-info",
@@ -63,13 +63,13 @@ const contactHubI18n: Partial<Record<Lang, ContactHubOverlay>> = {
     leaves: {
       "book-demo": {
         title: "Book en demo.",
-        titleAccent: "30 minutter, helt uforpligtende.",
-        lead: "Vælg et tidspunkt, der passer i din kalender. Vi viser produktet, taler om din case og giver dig et konkret prisestimat.",
+        titleAccent: "Helt uforpligtende.",
+        lead: "Fortæl os, hvad der passer dig. Vi viser produktet, taler om din case og giver dig et konkret prisestimat.",
         primaryCtaLabel: "Book en gratis demo",
       },
       sales: {
         title: "Tal med salg.",
-        lead: "En kort samtale med vores salgsteam for at forstå din opsætning, omfang og tidsplan.",
+        lead: "En samtale med vores salgsteam for at forstå din opsætning, omfang og tidsplan.",
       },
       "support-info": {
         title: "Supportinformation.",
@@ -91,13 +91,13 @@ const contactHubI18n: Partial<Record<Lang, ContactHubOverlay>> = {
     leaves: {
       "book-demo": {
         title: "Demo buchen.",
-        titleAccent: "30 Minuten, unverbindlich.",
-        lead: "Wählen Sie einen Termin, der in Ihren Kalender passt. Wir zeigen das Produkt, besprechen Ihren Anwendungsfall und geben Ihnen eine konkrete Preisschätzung.",
+        titleAccent: "Unverbindlich.",
+        lead: "Sagen Sie uns, wann es Ihnen passt. Wir zeigen das Produkt, besprechen Ihren Anwendungsfall und geben Ihnen eine konkrete Preisschätzung.",
         primaryCtaLabel: "Kostenlose Demo buchen",
       },
       sales: {
         title: "Mit dem Vertrieb sprechen.",
-        lead: "Ein kurzes Gespräch mit unserem Vertriebsteam, um Ihr Setup, den Umfang und den Zeitplan zu verstehen.",
+        lead: "Ein Gespräch mit unserem Vertriebsteam, um Ihr Setup, den Umfang und den Zeitplan zu verstehen.",
       },
       "support-info": {
         title: "Support-Informationen.",
@@ -119,13 +119,13 @@ const contactHubI18n: Partial<Record<Lang, ContactHubOverlay>> = {
     leaves: {
       "book-demo": {
         title: "Boka en demo.",
-        titleAccent: "30 minuter, helt förutsättningslöst.",
-        lead: "Välj en tid som passar i din kalender. Vi visar produkten, pratar om ditt case och ger dig en konkret prisuppskattning.",
+        titleAccent: "Helt förutsättningslöst.",
+        lead: "Berätta vad som passar dig. Vi visar produkten, pratar om ditt case och ger dig en konkret prisuppskattning.",
         primaryCtaLabel: "Boka en gratis demo",
       },
       sales: {
         title: "Prata med försäljning.",
-        lead: "Ett kort samtal med vårt säljteam för att förstå din uppsättning, omfattning och tidsplan.",
+        lead: "Ett samtal med vårt säljteam för att förstå din uppsättning, omfattning och tidsplan.",
       },
       "support-info": {
         title: "Supportinformation.",

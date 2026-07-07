@@ -108,14 +108,14 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroTitle: "See the platform.",
       heroTitleAccent: "Ask the questions.",
       heroLead:
-        "30 minutes. No commitments. We'll walk through the platform, talk about your case and give a concrete estimate for a setup.",
+        "No commitments. RoomAlyzer is an intricate platform, so we take the time your questions need. We'll walk through the platform, talk about your case and give a concrete estimate for a setup.",
       formTitle: "Book a meeting",
-      formSubtitle: "Fill out the form and we'll reach out to find a time that works for you.",
+      formSubtitle: "Fill out the form and we'll get back to you within one business day to find a time that works for you.",
     },
     sales: {
       heroTitle: "Talk to sales.",
       heroLead:
-        "A short conversation with our sales team to understand your setup, scope and timeline.",
+        "A conversation with our sales team to understand your setup, scope and timeline.",
       formTitle: "Talk to sales",
       formSubtitle: "Fill out the form and our sales team will get back to you within one business day.",
     },
@@ -133,7 +133,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroLead:
         "Book a personal meeting at our trade-fair stand. Tell us when you plan to visit, we'll set aside time for your questions.",
       formTitle: "Reserve a stand visit",
-      formSubtitle: "Fill out the form and we'll get back to you with a suggested time slot.",
+      formSubtitle: "Fill out the form and we'll get back to you within one business day with a suggested time slot.",
     },
     form: {
       eyebrow: "Get started",
@@ -197,14 +197,14 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroTitle: "Se platformen.",
       heroTitleAccent: "Stil spørgsmålene.",
       heroLead:
-        "30 minutter. Ingen forpligtelser. Vi gennemgår platformen, taler om din case og giver et konkret estimat for en opsætning.",
+        "Ingen forpligtelser. RoomAlyzer er en kompleks platform, så vi tager den tid, dine spørgsmål kræver. Vi gennemgår platformen, taler om din case og giver et konkret estimat for en opsætning.",
       formTitle: "Book et møde",
-      formSubtitle: "Udfyld formularen, så finder vi et tidspunkt, der passer dig.",
+      formSubtitle: "Udfyld formularen, så vender vi tilbage inden for én hverdag for at finde et tidspunkt, der passer dig.",
     },
     sales: {
       heroTitle: "Tal med salg.",
       heroLead:
-        "En kort samtale med vores salgsteam for at forstå din opsætning, omfang og tidsplan.",
+        "En samtale med vores salgsteam for at forstå din opsætning, omfang og tidsplan.",
       formTitle: "Tal med salg",
       formSubtitle: "Udfyld formularen, så vender vores salgsteam tilbage inden for én hverdag.",
     },
@@ -222,7 +222,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroLead:
         "Book et personligt møde ved vores messestand. Fortæl os, hvornår du planlægger at besøge os, så afsætter vi tid til dine spørgsmål.",
       formTitle: "Reserver et standbesøg",
-      formSubtitle: "Udfyld formularen, så vender vi tilbage med et foreslået tidspunkt.",
+      formSubtitle: "Udfyld formularen, så vender vi tilbage inden for én hverdag med et foreslået tidspunkt.",
     },
     form: {
       eyebrow: "Kom i gang",
@@ -286,14 +286,14 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroTitle: "Sehen Sie die Plattform.",
       heroTitleAccent: "Stellen Sie Ihre Fragen.",
       heroLead:
-        "30 Minuten. Keine Verpflichtungen. Wir gehen die Plattform durch, sprechen über Ihren Anwendungsfall und geben eine konkrete Einschätzung für ein Setup.",
+        "Keine Verpflichtungen. RoomAlyzer ist eine komplexe Plattform, deshalb nehmen wir uns die Zeit, die Ihre Fragen brauchen. Wir gehen die Plattform durch, sprechen über Ihren Anwendungsfall und geben eine konkrete Einschätzung für ein Setup.",
       formTitle: "Termin buchen",
-      formSubtitle: "Füllen Sie das Formular aus und wir finden einen passenden Termin für Sie.",
+      formSubtitle: "Füllen Sie das Formular aus und wir melden uns innerhalb eines Werktags, um einen passenden Termin zu finden.",
     },
     sales: {
       heroTitle: "Mit dem Vertrieb sprechen.",
       heroLead:
-        "Ein kurzes Gespräch mit unserem Vertriebsteam, um Ihr Setup, den Umfang und den Zeitplan zu verstehen.",
+        "Ein Gespräch mit unserem Vertriebsteam, um Ihr Setup, den Umfang und den Zeitplan zu verstehen.",
       formTitle: "Mit dem Vertrieb sprechen",
       formSubtitle: "Füllen Sie das Formular aus und unser Vertriebsteam meldet sich innerhalb eines Werktags.",
     },
@@ -311,7 +311,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroLead:
         "Reservieren Sie einen persönlichen Termin an unserem Messestand. Sagen Sie uns, wann Sie vorbeikommen möchten, wir nehmen uns Zeit für Ihre Fragen.",
       formTitle: "Termin am Messestand reservieren",
-      formSubtitle: "Füllen Sie das Formular aus, wir melden uns mit einem Terminvorschlag.",
+      formSubtitle: "Füllen Sie das Formular aus und wir melden uns innerhalb eines Werktags mit einem Terminvorschlag.",
     },
     form: {
       eyebrow: "Loslegen",
@@ -378,14 +378,14 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroTitle: "Se plattformen.",
       heroTitleAccent: "Ställ frågorna.",
       heroLead:
-        "30 minuter. Inga åtaganden. Vi går igenom plattformen, pratar om ditt case och ger en konkret uppskattning för en uppsättning.",
+        "Inga åtaganden. RoomAlyzer är en komplex plattform, så vi tar den tid dina frågor behöver. Vi går igenom plattformen, pratar om ditt case och ger en konkret uppskattning för en uppsättning.",
       formTitle: "Boka ett möte",
-      formSubtitle: "Fyll i formuläret så hittar vi en tid som passar dig.",
+      formSubtitle: "Fyll i formuläret så återkommer vi inom en arbetsdag för att hitta en tid som passar dig.",
     },
     sales: {
       heroTitle: "Prata med försäljning.",
       heroLead:
-        "Ett kort samtal med vårt säljteam för att förstå din uppsättning, omfattning och tidsplan.",
+        "Ett samtal med vårt säljteam för att förstå din uppsättning, omfattning och tidsplan.",
       formTitle: "Prata med försäljning",
       formSubtitle: "Fyll i formuläret så återkommer vårt säljteam inom en arbetsdag.",
     },
@@ -403,7 +403,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroLead:
         "Boka ett personligt möte vid vår mässmonter. Berätta när du planerar att besöka oss, så reserverar vi tid för dina frågor.",
       formTitle: "Boka möte på plats",
-      formSubtitle: "Fyll i formuläret så återkommer vi med ett föreslaget tidsspann.",
+      formSubtitle: "Fyll i formuläret så återkommer vi inom en arbetsdag med ett föreslaget tidsspann.",
     },
     form: {
       eyebrow: "Kom igång",

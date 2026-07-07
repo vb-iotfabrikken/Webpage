@@ -194,7 +194,7 @@ const en: IndoorClimateStrings = {
   ],
   ctaTitle: "Want to see it for yourself?",
   ctaSubtitle:
-    "Book a 30-minute demo. We'll show the platform, walk through your case and give you a price estimate.",
+    "Book a demo. We'll show the platform, walk through your case and give you a price estimate.",
   ctaMicrocopy: "Sensors live in minutes · years of battery life",
 };
 
@@ -340,7 +340,7 @@ const da: IndoorClimateStrings = {
   ],
   ctaTitle: "Vil du selv se det?",
   ctaSubtitle:
-    "Book en demo på 30 minutter. Vi viser platformen, gennemgår jeres case og giver dig et prisestimat.",
+    "Book en demo. Vi viser platformen, gennemgår jeres case og giver dig et prisestimat.",
   ctaMicrocopy: "Sensorer klar på minutter · års batterilevetid",
 };
 
@@ -486,7 +486,7 @@ const de: IndoorClimateStrings = {
   ],
   ctaTitle: "Möchten Sie es selbst sehen?",
   ctaSubtitle:
-    "Buchen Sie eine 30-minütige Demo. Wir zeigen die Plattform, gehen Ihren Fall durch und geben Ihnen eine Preisschätzung.",
+    "Buchen Sie eine Demo. Wir zeigen die Plattform, gehen Ihren Fall durch und geben Ihnen eine Preisschätzung.",
   ctaMicrocopy: "Sensoren in Minuten live · jahrelange Batterielaufzeit",
 };
 
@@ -632,7 +632,7 @@ const sv: IndoorClimateStrings = {
   ],
   ctaTitle: "Vill du se det själv?",
   ctaSubtitle:
-    "Boka en 30-minuters demo. Vi visar plattformen, går igenom ert fall och ger dig en prisuppskattning.",
+    "Boka en demo. Vi visar plattformen, går igenom ert fall och ger dig en prisuppskattning.",
   ctaMicrocopy: "Sensorer live på minuter · års batteritid",
 };
 

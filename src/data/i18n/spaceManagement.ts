@@ -221,7 +221,7 @@ const en: SpaceManagementStrings = {
   ],
   ctaTitle: "Want to see it for yourself?",
   ctaSubtitle:
-    "Book a 30-minute demo. See how occupancy data turns into energy and operational savings. RoomAlyzer installs in minutes and adapts as your workplace changes.",
+    "Book a demo. See how occupancy data turns into energy and operational savings. RoomAlyzer installs in minutes and adapts as your workplace changes.",
   ctaMicrocopy: "Installs in minutes · adapts as your workplace changes",
 };
 
@@ -385,7 +385,7 @@ const da: SpaceManagementStrings = {
   ],
   ctaTitle: "Vil du selv se det?",
   ctaSubtitle:
-    "Book en demo på 30 minutter. Se, hvordan belægningsdata omsættes til energi- og driftsbesparelser — RoomAlyzer installeres på minutter og tilpasser sig, når arbejdspladsen ændrer sig.",
+    "Book en demo. Se, hvordan belægningsdata omsættes til energi- og driftsbesparelser — RoomAlyzer installeres på minutter og tilpasser sig, når arbejdspladsen ændrer sig.",
   ctaMicrocopy: "Installeres på minutter · tilpasser sig, når arbejdspladsen ændrer sig",
 };
 
@@ -549,7 +549,7 @@ const de: SpaceManagementStrings = {
   ],
   ctaTitle: "Möchten Sie es selbst sehen?",
   ctaSubtitle:
-    "Buchen Sie eine 30-minütige Demo. Sehen Sie, wie Belegungsdaten in Energie- und Betriebseinsparungen werden — RoomAlyzer ist in Minuten installiert und passt sich an, wenn sich Ihr Arbeitsplatz verändert.",
+    "Buchen Sie eine Demo. Sehen Sie, wie Belegungsdaten in Energie- und Betriebseinsparungen werden — RoomAlyzer ist in Minuten installiert und passt sich an, wenn sich Ihr Arbeitsplatz verändert.",
   ctaMicrocopy: "In Minuten installiert · passt sich an, wenn sich Ihr Arbeitsplatz verändert",
 };
 
@@ -713,7 +713,7 @@ const sv: SpaceManagementStrings = {
   ],
   ctaTitle: "Vill du se det själv?",
   ctaSubtitle:
-    "Boka en 30-minuters demo. Se hur beläggningsdata blir energi- och driftsbesparingar — RoomAlyzer installeras på minuter och anpassar sig när arbetsplatsen förändras.",
+    "Boka en demo. Se hur beläggningsdata blir energi- och driftsbesparingar — RoomAlyzer installeras på minuter och anpassar sig när arbetsplatsen förändras.",
   ctaMicrocopy: "Installeras på minuter · anpassar sig när arbetsplatsen förändras",
 };
 
