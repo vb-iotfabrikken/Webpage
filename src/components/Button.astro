@@ -7,6 +7,8 @@ interface Props {
   size?: "sm" | "md" | "lg";
   class?: string;
   type?: "button" | "submit" | "reset";
+  /** Stable analytics ID for cta_click events (see src/lib/analytics/events.ts). */
+  analyticsCta?: string;
 }
 
 const {
@@ -15,6 +17,7 @@ const {
   size = "md",
   class: className = "",
   type = "button",
+  analyticsCta,
 } = Astro.props;
 
 const base =
@@ -47,7 +50,7 @@ const cls = [base, sizes[size], variants[variant], className].join(" ");
 ---
 
 {href ? (
-  <a href={href} class={cls}>
+  <a href={href} class={cls} data-analytics-cta={analyticsCta}>
     <slot />
   </a>
 ) : (

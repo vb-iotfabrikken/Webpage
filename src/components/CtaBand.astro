@@ -57,11 +57,11 @@ const subCls = variant === "light" ? "text-stone-900/70" : "text-white/80";
           <p class="mt-4 text-lg md:text-xl text-stone-900/70 leading-relaxed">{subtitle}</p>
         )}
         <div class="mt-9 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
-          <Button href={resolvedPrimaryHref} variant="primary" size="lg">
+          <Button href={resolvedPrimaryHref} variant="primary" size="lg" analyticsCta="book_demo">
             {primaryLabel}
           </Button>
           {secondaryLabel && (
-            <Button href={resolvedSecondaryHref} variant="secondary" size="lg">
+            <Button href={resolvedSecondaryHref} variant="secondary" size="lg" analyticsCta="contact_sales">
               {secondaryLabel}
             </Button>
           )}
@@ -81,7 +81,7 @@ const subCls = variant === "light" ? "text-stone-900/70" : "text-white/80";
           {subtitle && <p class={`mt-3 text-lg ${subCls}`}>{subtitle}</p>}
         </div>
         <div class="flex flex-wrap gap-3">
-          <Button href={resolvedPrimaryHref} variant={variant === "light" ? "primary" : "white"} size="lg">
+          <Button href={resolvedPrimaryHref} variant={variant === "light" ? "primary" : "white"} size="lg" analyticsCta="book_demo">
             {primaryLabel}
           </Button>
           {secondaryLabel && (
@@ -89,6 +89,7 @@ const subCls = variant === "light" ? "text-stone-900/70" : "text-white/80";
               href={resolvedSecondaryHref}
               variant={variant === "light" ? "secondary" : "ghost"}
               size="lg"
+              analyticsCta="contact_sales"
               class={variant !== "light" ? "text-white hover:text-white/80 border border-white/40 hover:bg-white/10" : ""}
             >
               {secondaryLabel}

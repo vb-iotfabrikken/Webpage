@@ -95,22 +95,22 @@ export const faqHubI18n: Partial<Record<Lang, FaqHubOverlay>> = {
         lead: "Architektur, Dashboards, Updates, Verfügbarkeit und das, was Kunden vor der Anmeldung fragen.",
       },
       "indoor-climate": {
-        title: "Raumklima-FAQ.",
+        title: "Indoor climate-FAQ.",
         titleAccent: "CO₂, Feuchte, VOC und mehr.",
         lead: "Was wir messen, warum es zählt und wie Alarme konfiguriert werden.",
       },
       preservation: {
-        title: "Konservierung-FAQ.",
+        title: "Preservation-FAQ.",
         titleAccent: "Für Sammlungen und Kulturerbe.",
         lead: "Normen, Messfrequenz, Sensorplatzierung und Berichte für Museen, Archive und Kirchen.",
       },
       "space-management": {
         title: "Space-Management-FAQ.",
         titleAccent: "Auslastung, Datenschutz, Genauigkeit.",
-        lead: "Was wir zählen, was nicht, und wie die Daten GDPR und Betriebsvereinbarungen respektieren.",
+        lead: "Was wir zählen, was nicht und wie die Daten GDPR und Betriebsvereinbarungen respektieren.",
       },
       "water-detection": {
-        title: "Wassererkennung-FAQ.",
+        title: "Water detection-FAQ.",
         titleAccent: "Wie schnell, wie laut, wie zuverlässig.",
         lead: "Alarmlatenz, Falschalarmrate, Batterielaufzeit und wie Alarme aus der Plattform weitergeleitet werden.",
       },
@@ -131,7 +131,7 @@ export const faqHubI18n: Partial<Record<Lang, FaqHubOverlay>> = {
       },
       pricing: {
         title: "Preise-FAQ.",
-        titleAccent: "Wofür Sie zahlen, und wofür nicht.",
+        titleAccent: "Wofür Sie zahlen und wofür nicht.",
         lead: "Lizenzmodell, Vertragslaufzeiten, Kündigung und typische Rechnungsstellung für den öffentlichen Sektor.",
       },
       "security-privacy": {

@@ -1,0 +1,251 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { EVENT_CATALOG } from "../../../lib/analytics/events";
+import { getAnalyticsToolLinks } from "../../../lib/analytics/config";
+import { isAnalyticsWaveBuilt } from "../../../data/launch";
+import { type Lang } from "../../../data/lang";
+import fs from "node:fs";
+import path from "node:path";
+
+export function getStaticPaths() {
+  if (!isAnalyticsWaveBuilt()) return [];
+  return [{ params: { lang: "en" as Lang } }];
+}
+
+const seoAuditPath = path.join(process.cwd(), "exports", "seo-audit.json");
+
+type SeoIssue = {
+  severity: "error" | "warning" | "info";
+  code: string;
+  message: string;
+  file?: string;
+  key?: string;
+};
+
+type SeoAudit = {
+  generatedAt?: string;
+  stats?: {
+    filesScanned?: number;
+    metaTitles?: number;
+    metaDescriptions?: number;
+    errors?: number;
+    warnings?: number;
+  };
+  issues?: SeoIssue[];
+};
+
+type ToolLink = {
+  title: string;
+  description: string;
+  href?: string;
+  envKey: string;
+};
+
+let seoAudit: SeoAudit | null = null;
+try {
+  if (fs.existsSync(seoAuditPath)) {
+    seoAudit = JSON.parse(fs.readFileSync(seoAuditPath, "utf8")) as SeoAudit;
+  }
+} catch {
+  seoAudit = null;
+}
+
+const tools = getAnalyticsToolLinks();
+const topIssues = seoAudit?.issues?.slice(0, 25) ?? [];
+
+const analyticsTools: ToolLink[] = [
+  {
+    title: "Google Analytics 4",
+    description: "Sessions, conversions, custom events, and locale breakdowns.",
+    href: tools.ga4,
+    envKey: "PUBLIC_GA4_REPORT_URL",
+  },
+  {
+    title: "Looker Studio — funnel",
+    description: "Sessions → CTA click → form start → generate_lead by campaign and lang.",
+    href: tools.lookerFunnel,
+    envKey: "PUBLIC_LOOKER_GA4_URL",
+  },
+  {
+    title: "Google Search Console",
+    description: "Queries, impressions, CTR, and indexing status.",
+    href: tools.searchConsole,
+    envKey: "PUBLIC_GSC_URL",
+  },
+  {
+    title: "Looker Studio — Search Console",
+    description: "Organic performance dashboard built from the Search Console connector.",
+    href: tools.lookerSearchConsole,
+    envKey: "PUBLIC_LOOKER_GSC_URL",
+  },
+  {
+    title: "Google Ads",
+    description: "Campaign performance, conversions imported from GA4, and keyword reports.",
+    href: tools.googleAds,
+    envKey: "PUBLIC_GOOGLE_ADS_URL",
+  },
+];
+
+const heatmapTools: ToolLink[] = [
+  {
+    title: "Microsoft Clarity",
+    description: "Click heatmaps, scroll maps, session recordings, and rage-click reports for public pages.",
+    href: tools.clarity,
+    envKey: "PUBLIC_CLARITY_DASHBOARD_URL",
+  },
+];
+---
+
+<Layout
+  title="Customer journey dashboard | IoT Fabrikken"
+  description="Internal analytics hub: tool links, SEO audit summary, and event catalog."
+  noindex={true}
+  suppressHreflang={true}
+>
+  <div class="container-page py-12 md:py-16 space-y-12">
+    <header class="max-w-3xl">
+      <p class="text-xs font-semibold uppercase tracking-wider text-coral-500">Internal</p>
+      <h1 class="mt-2 text-3xl md:text-4xl font-bold text-navy-500">Customer journey dashboard</h1>
+      <p class="mt-4 text-lg text-stone-900/70">
+        Team-only hub. Funnel data, heatmaps, and Search Console live in Google and Microsoft tools
+        (sign in with your Workspace account and 2FA). This page holds SEO audit results and the event catalog only.
+        Run <code class="text-sm bg-stone-100 px-1.5 py-0.5 rounded">npm run audit:seo</code> before deploy to refresh the SEO section.
+      </p>
+      <p class="mt-3 text-sm text-stone-900/60">
+        Access requires <code class="text-sm">INTERNAL_AUTH_*</code> credentials on production.
+        See <code class="text-sm">docs/analytics/README.md</code> in the repo.
+      </p>
+    </header>
+
+    <section aria-labelledby="tools-heading" class="space-y-4">
+      <h2 id="tools-heading" class="text-2xl font-bold text-navy-500">Analytics tools</h2>
+      <p class="text-stone-900/70">
+        Open each tool in a new tab. Configure outbound URLs via Railway env vars (not embedded here).
+      </p>
+      <ul class="grid gap-4 sm:grid-cols-2">
+        {analyticsTools.map((tool) => (
+          <li class="rounded-xl border border-stone-200 bg-stone-50 p-5 flex flex-col">
+            <h3 class="font-semibold text-navy-500">{tool.title}</h3>
+            <p class="mt-2 text-sm text-stone-900/70 flex-1">{tool.description}</p>
+            {tool.href ? (
+              <a
+                href={tool.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-4 inline-flex text-sm font-medium text-coral-500 hover:text-coral-600"
+              >
+                Open dashboard →
+              </a>
+            ) : (
+              <p class="mt-4 text-xs text-stone-900/50 font-mono">Set {tool.envKey}</p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section aria-labelledby="heatmaps-heading" class="space-y-4">
+      <h2 id="heatmaps-heading" class="text-2xl font-bold text-navy-500">Heatmaps and recordings</h2>
+      <p class="text-stone-900/70">
+        Visitor click and scroll behaviour on the public marketing site is captured by
+        <strong> Microsoft Clarity</strong> (loaded via GTM after analytics cookie consent in the second wave).
+        View aggregated heatmaps and sampled session replays in the Clarity project — not on this page.
+      </p>
+      <ul class="grid gap-4 sm:grid-cols-2">
+        {heatmapTools.map((tool) => (
+          <li class="rounded-xl border border-stone-200 bg-stone-50 p-5 flex flex-col">
+            <h3 class="font-semibold text-navy-500">{tool.title}</h3>
+            <p class="mt-2 text-sm text-stone-900/70 flex-1">{tool.description}</p>
+            {tool.href ? (
+              <a
+                href={tool.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-4 inline-flex text-sm font-medium text-coral-500 hover:text-coral-600"
+              >
+                Open Clarity project →
+              </a>
+            ) : (
+              <p class="mt-4 text-xs text-stone-900/50 font-mono">Set {tool.envKey}</p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section aria-labelledby="seo-heading" class="space-y-4">
+      <h2 id="seo-heading" class="text-2xl font-bold text-navy-500">SEO audit</h2>
+      {seoAudit ? (
+        <>
+          <p class="text-sm text-stone-900/70">
+            Generated {seoAudit.generatedAt ?? "unknown"} —
+            {seoAudit.stats?.filesScanned ?? 0} files scanned,
+            {seoAudit.stats?.errors ?? 0} errors,
+            {seoAudit.stats?.warnings ?? 0} warnings.
+          </p>
+          {topIssues.length > 0 ? (
+            <div class="overflow-x-auto rounded-xl border border-stone-200">
+              <table class="w-full text-sm text-left">
+                <thead class="bg-stone-50 text-navy-500">
+                  <tr>
+                    <th class="px-4 py-3 font-semibold">Severity</th>
+                    <th class="px-4 py-3 font-semibold">Code</th>
+                    <th class="px-4 py-3 font-semibold">Message</th>
+                    <th class="px-4 py-3 font-semibold">File</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {topIssues.map((issue) => (
+                    <tr class="border-t border-stone-100">
+                      <td class="px-4 py-2 capitalize">{issue.severity}</td>
+                      <td class="px-4 py-2 font-mono text-xs">{issue.code}</td>
+                      <td class="px-4 py-2">{issue.message}</td>
+                      <td class="px-4 py-2 font-mono text-xs text-stone-900/60">{issue.file ?? "—"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p class="text-stone-900/70">No issues found in the latest audit.</p>
+          )}
+        </>
+      ) : (
+        <p class="text-stone-900/70">
+          No audit file at <code class="text-sm bg-stone-100 px-1.5 py-0.5 rounded">exports/seo-audit.json</code>.
+          Run <code class="text-sm bg-stone-100 px-1.5 py-0.5 rounded">npm run audit:seo</code>.
+        </p>
+      )}
+      <p class="text-sm text-stone-900/60">
+        Redirect inventory: run <code class="text-sm">npm run export-redirects</code> to generate
+        <code class="text-sm">exports/redirect-inventory.csv</code>.
+      </p>
+    </section>
+
+    <section aria-labelledby="events-heading" class="space-y-4">
+      <h2 id="events-heading" class="text-2xl font-bold text-navy-500">Event catalog</h2>
+      <div class="overflow-x-auto rounded-xl border border-stone-200">
+        <table class="w-full text-sm text-left">
+          <thead class="bg-stone-50 text-navy-500">
+            <tr>
+              <th class="px-4 py-3 font-semibold">Event</th>
+              <th class="px-4 py-3 font-semibold">Funnel stage</th>
+              <th class="px-4 py-3 font-semibold">Trigger</th>
+              <th class="px-4 py-3 font-semibold">Parameters</th>
+            </tr>
+          </thead>
+          <tbody>
+            {EVENT_CATALOG.map((row) => (
+              <tr class="border-t border-stone-100">
+                <td class="px-4 py-2 font-mono text-xs">{row.event}</td>
+                <td class="px-4 py-2">{row.stage}</td>
+                <td class="px-4 py-2">{row.trigger}</td>
+                <td class="px-4 py-2 font-mono text-xs">{row.params.join(", ")}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</Layout>

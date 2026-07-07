@@ -84,6 +84,7 @@ export interface NavStrings {
     allSensors: string;
     compareSensors: string;
     allIndustries: string;
+    explorePlatform: string;
   };
   industryColumns: {
     publicHealth: string;
@@ -244,6 +245,10 @@ export interface ModuleStrings {
 
 export interface IndustryStrings {
   breadcrumb: { home: string; industries: string };
+  hub: {
+    filterBySector: string;
+    all: string;
+  };
   content: {
     focusEyebrow: string;
     challengesEyebrow: string;
@@ -353,6 +358,7 @@ const en: UiStrings = {
       allSensors: "All sensors",
       compareSensors: "Compare sensors",
       allIndustries: "All industries",
+      explorePlatform: "RoomAlyzer platform",
     },
     industryColumns: {
       publicHealth: "Public sector & healthcare",
@@ -519,6 +525,10 @@ const en: UiStrings = {
   },
   industries: {
     breadcrumb: { home: "Home", industries: "Industries" },
+    hub: {
+      filterBySector: "Filter by sector",
+      all: "All",
+    },
     content: {
       focusEyebrow: "What matters in this sector",
       challengesEyebrow: "Typical challenges",
@@ -552,7 +562,7 @@ const en: UiStrings = {
 const da: UiStrings = {
   footer: {
     brandBlurb:
-      "100% dansk-ejet SaaS- og IoT-virksomhed. Vi leverer trådløse sensorer og en platform, der gør data til noget brugbart til facility- og space management.",
+      "100% dansk ejet SaaS- og IoT-virksomhed. Vi leverer trådløse sensorer og en platform, der gør data til noget brugbart i facility- og space management.",
     headOffice: "Hovedkontor",
     hubOffice: "Hub-kontor",
     openingHours: "Åbningstider",
@@ -599,7 +609,7 @@ const da: UiStrings = {
   },
   nav: {
     utility: {
-      builtInDenmark: "Bygget i Danmark, rigtige mennesker i den anden ende.",
+      builtInDenmark: "Bygget i Danmark – med rigtige mennesker i den anden ende.",
       talkToUs: "Tal med os",
     },
     top: {
@@ -622,6 +632,7 @@ const da: UiStrings = {
       allSensors: "Alle sensorer",
       compareSensors: "Sammenlign sensorer",
       allIndustries: "Alle brancher",
+      explorePlatform: "RoomAlyzer platform",
     },
     industryColumns: {
       publicHealth: "Offentlig sektor og sundhed",
@@ -639,7 +650,7 @@ const da: UiStrings = {
       libraryLabel: "Artikler",
       libraryDesc: "Guides, use cases og nyheder, søgbare efter emne eller branche.",
       casesLabel: "Cases",
-      casesDesc: "Hvad kunder siger om at arbejde med os.",
+      casesDesc: "Hvad vores kunder siger om at arbejde med os.",
       whitepapersLabel: "Whitepapers",
       whitepapersDesc: "Dybdegående rapporter til beslutningstagere.",
     },
@@ -647,7 +658,7 @@ const da: UiStrings = {
       aboutLabel: "Om os",
       aboutDesc: "Vores historie, team og danske rødder.",
       careersLabel: "Karriere",
-      careersDesc: "Ledige stillinger og livet hos IoT Fabrikken.",
+      careersDesc: "Ledige stillinger og hverdagen hos IoT Fabrikken.",
       contactLabel: "Kontakt",
       contactDesc: "Salg, support og demoanmodninger.",
     },
@@ -667,7 +678,7 @@ const da: UiStrings = {
     },
     index: {
       ctaTitle: "Vil du have en guidet gennemgang?",
-      ctaSubtitle: "Book en demo, så tilpasser vi den til din bygning.",
+      ctaSubtitle: "Book en demo, så tilpasser vi den til jeres bygning.",
     },
     detail: {
       exampleUseCases: "Eksempler på anvendelse",
@@ -718,13 +729,13 @@ const da: UiStrings = {
       selectSensor: "Vælg en sensor",
       pickTwoDifferent: "Vælg to forskellige sensorer for at sammenligne.",
       sameProfile:
-        "Disse sensorer har samme funktionsprofil i vores matrix. Se produktsiderne for flere detaljer.",
+        "De to sensorer har samme funktionsprofil i vores matrix. Se produktsiderne for flere detaljer.",
       capability: "Funktion",
       yes: "Ja",
       battery: "Batteri",
       connectivity: "Forbindelse",
       ctaTitle: "Stadig i tvivl?",
-      ctaSubtitle: "Book en demo, så matcher vi de rette sensorer til dine rum, uden gætværk.",
+      ctaSubtitle: "Book en demo, så finder vi de rigtige sensorer til dine arealer.",
       browseAllSensors: "Se alle sensorer",
       swapSensors: "Byt sensorer",
       showDifferencesOnly: "Vis kun forskelle",
@@ -740,7 +751,7 @@ const da: UiStrings = {
       heroAccent: "Officielle specifikationer for hver sensor.",
       lead: "Download PDF-produktblade for hele RoomAlyzer-porteføljen.",
       metaDescription:
-        "Download officielle RoomAlyzer-produktblade for hver sensor i vores portefølje.",
+        "Download de officielle RoomAlyzer-produktblade for hver sensor i porteføljen.",
       pdf: "PDF",
     },
     gallery: {
@@ -770,11 +781,11 @@ const da: UiStrings = {
     },
     index: {
       sectionEyebrow: "Moduler",
-      sectionHeading: "Løs reelle bygningsudfordringer.",
+      sectionHeading: "Løs konkrete udfordringer i bygningsdriften.",
       sectionIntro:
-        "Indeklima, pladsudnyttelse, vanddetektion og mere — hvert modul kører på den samme RoomAlyzer-platform og sensornetværk.",
+        "Indeklima, pladsudnyttelse, vanddetektion og mere — hvert modul kører på samme RoomAlyzer-platform og sensornetværk.",
       ctaTitle: "Vil du have en guidet gennemgang?",
-      ctaSubtitle: "Book en demo, så tilpasser vi den til din bygning.",
+      ctaSubtitle: "Book en demo, så tilpasser vi den til jeres bygning.",
     },
     content: {
       challengesEyebrow: "De udfordringer, du kender",
@@ -783,11 +794,15 @@ const da: UiStrings = {
     },
     detail: {
       ctaBandTitle: "Vil du vide mere allerede nu?",
-      ctaBandSubtitle: "Tag fat i os, vi tager altid gerne en uforpligtende snak.",
+      ctaBandSubtitle: "Tag fat i os – vi tager altid gerne en uforpligtende samtale.",
     },
   },
   industries: {
     breadcrumb: { home: "Hjem", industries: "Brancher" },
+    hub: {
+      filterBySector: "Filtrer efter sektor",
+      all: "Alle",
+    },
     content: {
       focusEyebrow: "Det, der betyder noget i denne branche",
       challengesEyebrow: "Typiske udfordringer",
@@ -821,7 +836,7 @@ const da: UiStrings = {
 const de: UiStrings = {
   footer: {
     brandBlurb:
-      "100% dänisches SaaS- und IoT-Unternehmen in eigenem Besitz. Wir liefern drahtlose Sensoren und eine Plattform, die Daten in nützliche Erkenntnisse für Facility- und Space-Management verwandelt.",
+      "100% dänisches SaaS- und IoT-Unternehmen. Wir liefern drahtlose Sensoren und eine Plattform, die Daten in nützliche Erkenntnisse für Facility- und Space-Management verwandelt.",
     headOffice: "Hauptsitz",
     hubOffice: "Hub-Büro",
     openingHours: "Öffnungszeiten",
@@ -891,6 +906,7 @@ const de: UiStrings = {
       allSensors: "Alle Sensoren",
       compareSensors: "Sensoren vergleichen",
       allIndustries: "Alle Branchen",
+      explorePlatform: "RoomAlyzer platform",
     },
     industryColumns: {
       publicHealth: "Öffentlicher Sektor & Gesundheit",
@@ -916,7 +932,7 @@ const de: UiStrings = {
       aboutLabel: "Über uns",
       aboutDesc: "Unsere Geschichte, unser Team und unsere dänischen Wurzeln.",
       careersLabel: "Karriere",
-      careersDesc: "Offene Stellen und das Leben bei IoT Fabrikken.",
+      careersDesc: "Offene Stellen bei IoT Fabrikken.",
       contactLabel: "Kontakt",
       contactDesc: "Vertrieb, Support und Demo-Anfragen.",
     },
@@ -935,15 +951,15 @@ const de: UiStrings = {
       demoDisclaimer: "Die Live-Demo ist immer kostenlos und völlig unverbindlich.",
     },
     index: {
-      ctaTitle: "Möchten Sie eine geführte Tour?",
-      ctaSubtitle: "Buchen Sie eine Demo, die wir auf Ihr Gebäude zuschneiden.",
+      ctaTitle: "Möchten Sie einen kurzen Überblick bekommen?",
+      ctaSubtitle: "Buchen Sie eine Demo, maßgeschneidert auf Ihr Gebäude.",
     },
     detail: {
       exampleUseCases: "Beispielhafte Anwendungsfälle",
       productViews: "Produktansichten",
       whyChoose: "Warum dieser Sensor?",
       ctaBandTitle: "Möchten Sie es selbst sehen?",
-      ctaBandSubtitle: "Buchen Sie eine Live-Demo, immer kostenlos und völlig unverbindlich.",
+      ctaBandSubtitle: "Buchen Sie eine Live-Demo, kostenlos und völlig unverbindlich.",
       specs: {
         title: "Technische Spezifikationen",
         downloadFullSheet: "Vollständiges Produktdatenblatt herunterladen (PDF)",
@@ -993,7 +1009,7 @@ const de: UiStrings = {
       battery: "Batterie",
       connectivity: "Konnektivität",
       ctaTitle: "Noch unentschlossen?",
-      ctaSubtitle: "Buchen Sie eine Demo, und wir ordnen die passenden Sensoren Ihren Räumen zu, ohne Rätselraten.",
+      ctaSubtitle: "Buchen Sie eine Demo und wir ordnen die passenden Sensoren Ihren Räumen zu, ohne Rätselraten.",
       browseAllSensors: "Alle Sensoren ansehen",
       swapSensors: "Sensoren tauschen",
       showDifferencesOnly: "Nur Unterschiede anzeigen",
@@ -1042,8 +1058,8 @@ const de: UiStrings = {
       sectionHeading: "Echte Gebäudeprobleme lösen.",
       sectionIntro:
         "Innenklima, Raumnutzung, Wassermonitoring und mehr, jedes Modul läuft auf derselben RoomAlyzer-Plattform und demselben Sensornetzwerk.",
-      ctaTitle: "Möchten Sie eine geführte Tour?",
-      ctaSubtitle: "Buchen Sie eine Demo, die wir auf Ihr Gebäude zuschneiden.",
+      ctaTitle: "Möchten Sie einen kurzen Überblick bekommen?",
+      ctaSubtitle: "Buchen Sie eine Demo, maßgeschneidert auf Ihr Gebäude.",
     },
     content: {
       challengesEyebrow: "Die Herausforderungen, die Sie kennen",
@@ -1057,6 +1073,10 @@ const de: UiStrings = {
   },
   industries: {
     breadcrumb: { home: "Startseite", industries: "Branchen" },
+    hub: {
+      filterBySector: "Nach Sektor filtern",
+      all: "Alle",
+    },
     content: {
       focusEyebrow: "Was in dieser Branche zählt",
       challengesEyebrow: "Typische Herausforderungen",
@@ -1160,6 +1180,7 @@ const sv: UiStrings = {
       allSensors: "Alla sensorer",
       compareSensors: "Jämför sensorer",
       allIndustries: "Alla branscher",
+      explorePlatform: "RoomAlyzer platform",
     },
     industryColumns: {
       publicHealth: "Offentlig sektor och vård",
@@ -1326,6 +1347,10 @@ const sv: UiStrings = {
   },
   industries: {
     breadcrumb: { home: "Hem", industries: "Branscher" },
+    hub: {
+      filterBySector: "Filtrera efter sektor",
+      all: "Alla",
+    },
     content: {
       focusEyebrow: "Det som spelar roll i den här branschen",
       challengesEyebrow: "Typiska utmaningar",

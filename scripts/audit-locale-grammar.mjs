@@ -1,5 +1,18 @@
+/**
+ * Locale grammar audit for src/data i18n strings.
+ *
+ * German copy checklist:
+ * 1. Module names stay English (Indoor climate, Preservation, …).
+ * 2. Sensor catalogue names stay English except Wasserdetektor and Außen Sensor.
+ * 3. Relative humidity: r. F. or relative Luftfeuchtigkeit — never RH/RF.
+ * 4. Never write ", und" — use "XX und YY" or split the sentence.
+ *
+ * Shared term locks: src/data/de-term-locks.json
+ */
+
 import fs from "node:fs";
 import path from "node:path";
+import lockData from "../src/data/de-term-locks.json" with { type: "json" };
 
 const roots = ["src/data"];
 const exts = new Set([".ts"]);
@@ -12,13 +25,13 @@ const dePatterns = [
     id: "de-lowercase-sensor",
     re: /(?<=[\s/(,;·]|^)sensor\b(?!Categories|Finder|Hero|Product|Technical|Dimensions|Compare|Page)/g,
     locales: ["de"],
-    hint: "Capitalize noun: Sensor",
+    hint: "Capitalize generic noun in prose: Sensor",
   },
   {
     id: "de-lowercase-detektor",
     re: /\bdetektor\b/g,
     locales: ["de"],
-    hint: "Capitalize noun: Detektor",
+    hint: "Capitalize noun: Detektor (or use approved Wasserdetektor)",
   },
   {
     id: "de-outdoor-sensor",
@@ -26,6 +39,65 @@ const dePatterns = [
     locales: ["de"],
     hint: 'Use approved override: "Außen Sensor"',
   },
+  {
+    id: "de-rh-forbidden",
+    re: /\bRH\b/g,
+    locales: ["de"],
+    hint: 'Use "r. F." or "relative Luftfeuchtigkeit"',
+  },
+  {
+    id: "de-rh-hyphen",
+    re: /\bRH-/g,
+    locales: ["de"],
+    hint: 'Use "r. F.-" or "relative Luftfeuchtigkeit"',
+  },
+  {
+    id: "de-rf-forbidden",
+    re: /\bRF\b/g,
+    locales: ["de"],
+    hint: 'Use "r. F." or "relative Luftfeuchtigkeit"',
+  },
+  {
+    id: "de-rf-lowercase",
+    re: /\brF\b/g,
+    locales: ["de"],
+    hint: 'Use "r. F." or "relative Luftfeuchtigkeit"',
+  },
+  {
+    id: "de-relative-feuchte",
+    re: /relative Feuchte/g,
+    locales: ["de"],
+    hint: 'Use "relative Luftfeuchtigkeit"',
+  },
+  {
+    id: "de-comma-und",
+    re: /,\s+und\b/g,
+    locales: ["de"],
+    hint: 'Remove comma before "und" or split the sentence',
+  },
+  {
+    id: "de-english-sensor-suffix",
+    re: new RegExp(
+      `\\b(?:${PRODUCT_TOKENS}|Water (?:detector|rope)|Cloud connector) Sensor\\b`,
+      "gi",
+    ),
+    locales: ["de"],
+    hint: "Use English catalogue name without Sensor suffix (except Außen Sensor, Wasserdetektor)",
+  },
+  ...lockData.forbiddenModuleTokens.map((token) => ({
+    id: "de-translated-module",
+    re: new RegExp(token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"),
+    locales: ["de"],
+    hint: `Use English module name (see de-term-locks.json)`,
+    token,
+  })),
+  ...lockData.forbiddenSensorTokens.map((token) => ({
+    id: "de-translated-sensor",
+    re: new RegExp(token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"),
+    locales: ["de"],
+    hint: "Use English catalogue name or approved override (Wasserdetektor, Außen Sensor)",
+    token,
+  })),
 ];
 
 const nordicPatterns = [
@@ -89,7 +161,6 @@ function auditFile(file) {
 
     for (const lit of extractStringLiterals(line)) {
       const value = lit.value;
-      // Fragment type discriminator — not user-facing copy.
       if (value === "sensor" && /type:\s*["']sensor["']/.test(line)) continue;
       if (value === "text" && /type:\s*["']text["']/.test(line)) continue;
       if (value === "compare" && /type:\s*["']compare["']/.test(line)) continue;
@@ -122,6 +193,7 @@ const allHits = [];
 for (const root of roots) {
   if (!fs.existsSync(root)) continue;
   for (const file of walk(root)) {
+    if (file.endsWith("deTermLocks.ts")) continue;
     allHits.push(...auditFile(file));
   }
 }

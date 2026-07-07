@@ -1,5 +1,6 @@
 import type { Hub } from "./types";
 import { defaultLang, type Lang } from "../lang";
+import { localizedModuleName } from "../deTermLocks";
 import { modulesHubI18n } from "./modules.i18n";
 
 export const modulesHub: Hub = {
@@ -61,6 +62,20 @@ export const modulesHub: Hub = {
   ],
 };
 
+function moduleLeafTitle(
+  slug: string,
+  englishTitle: string,
+  lang: Lang,
+  overlayTitle?: string,
+): string {
+  if (lang === "de") {
+    const bare = englishTitle.replace(/\.\s*$/, "");
+    const name = localizedModuleName(slug, bare, lang);
+    return englishTitle.endsWith(".") ? `${name}.` : name;
+  }
+  return overlayTitle ?? englishTitle;
+}
+
 /** Localized modules hub. Falls back to the English base for missing keys. */
 export function getModulesHub(lang: Lang = defaultLang): Hub {
   if (lang === defaultLang) return modulesHub;
@@ -70,7 +85,7 @@ export function getModulesHub(lang: Lang = defaultLang): Hub {
     const lo = overlay.leaves?.[leaf.slug];
     return {
       ...leaf,
-      title: lo?.title ?? leaf.title,
+      title: moduleLeafTitle(leaf.slug, leaf.title, lang, lo?.title),
       titleAccent: lo?.titleAccent ?? leaf.titleAccent,
       lead: lo?.lead ?? leaf.lead,
     };

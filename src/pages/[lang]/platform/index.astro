@@ -1,6 +1,7 @@
 ---
-import HubIndex from "../../../components/HubIndex.astro";
+import PlatformOverviewPage from "../../../components/platform/PlatformOverviewPage.astro";
 import { getPlatformHub } from "../../../data/hubs/platform";
+import { getPlatformContent } from "../../../data/content/platform";
 import { getLegal } from "../../../data/i18n/legal";
 import { getUi } from "../../../data/i18n/ui";
 import { locales, langPath, type Lang } from "../../../data/lang";
@@ -13,12 +14,27 @@ const { lang } = Astro.params as { lang: Lang };
 const hub = getPlatformHub(lang);
 const t = getLegal(lang).common;
 const platformLabel = getUi(lang).footer.links.platform;
+
+const topics = hub.leaves.flatMap((leaf) => {
+  const content = getPlatformContent(leaf.slug, lang);
+  if (!content || content.sections.length === 0) return [];
+
+  return [
+    {
+      slug: leaf.slug,
+      title: content.heroTitle ?? leaf.title,
+      titleAccent: content.heroTitleAccent ?? leaf.titleAccent,
+      lead: content.heroLead ?? leaf.lead,
+      sections: content.sections,
+    },
+  ];
+});
 ---
 
-<HubIndex
+<PlatformOverviewPage
   hub={hub}
+  topics={topics}
   lang={lang}
-  basePath={langPath("platform", lang)}
   breadcrumbs={[
     { label: t.home, href: langPath("", lang) },
     { label: platformLabel },

@@ -16,11 +16,14 @@ alwaysApply: true
 - URL slugs are English by default; localized slugs are allowed only via the
   slug-pair mechanism in `src/data/lang.ts`.
 - Product and brand names (the RoomAlyzer lines and product names) are NOT
-  translated — they stay identical across all locales, with **one approved
+  translated — they stay identical across all locales, with **two approved
   exceptions** in German (`de`): "Water detector" → **"Wasserdetektor"**;
   "Outdoor" → **"Außen Sensor"**. Per-locale name overrides live in
-  `src/data/sensorCategories.ts` (`localizedSensorName`); do not add others
-  without explicit approval.
+  `src/data/deTermLocks.ts` and `src/data/sensorCategories.ts`
+  (`localizedSensorName`); do not add others without explicit approval.
+- **Module names** (Indoor climate, Preservation, Water detection, etc.) are
+  NOT translated on `/de/` — use English canonical names from `modules.ts`
+  via `localizedModuleName()`. See `src/data/deTermLocks.ts`.
 - When adding new content, write the English version first, then provide the
   translations (or rely on the English fallback) for the other locales.
 
@@ -39,15 +42,21 @@ English user-facing copy uses **British English** and **sentence case**:
 ### Localization grammar (`da`, `de`, `sv`)
 
 Non-English locales follow locale-specific grammar in addition to the product-name
-rules below. Use `localizedSensorName()` and `formatProductLabel()` in
-`src/data/sensorCategories.ts` for product display names.
+rules below. Use `localizedSensorName()`, `localizedModuleName()`, and
+`formatProductLabel()` for display names.
 
 | Locale | Rule | Do | Don't |
 |--------|------|----|-------|
-| **German (`de`)** | Standard noun capitalization | `Sensor`, `Sensoren`, `Entscheidungen`, `Open/Close Sensor` | Lowercase nouns (`sensor`, `entscheidungen`) |
-| **German (`de`)** | Product display names | English catalogue token + capitalized suffix (`Humidity Sensor`); approved overrides (`Wasserdetektor`, `Außen Sensor`) everywhere on `/de/` | `Outdoor Sensor`, `Open/Close sensor` |
+| **German (`de`)** | Module names | English canonical names (`Indoor climate`, `Preservation`) | `Raumklima`, `Konservierung`, `Wassererkennung` |
+| **German (`de`)** | Sensor / product names | English catalogue tokens (`Humidity`, `Open/Close`, `Water rope`); approved overrides (`Wasserdetektor`, `Außen Sensor`) | `Feuchtesensor`, `Öffnen/Schließen`, `Humidity Sensor` |
+| **German (`de`)** | Relative humidity | `r. F.` or `relative Luftfeuchtigkeit` / `Luftfeuchtigkeit` | `RH`, `RF`, `rF`, `relative Feuchte` |
+| **German (`de`)** | Conjunction punctuation | `XX und YY` or split sentences | `, und` (comma immediately before *und*) |
+| **German (`de`)** | Standard noun capitalization | `Sensoren`, `Entscheidungen` (generic prose nouns) | Lowercase nouns (`sensor`, `entscheidungen`) in prose |
 | **Danish / Swedish (`da` / `sv`)** | Sentence case (mirror `en`) | `sensor`, `sensorer`; hyphenated compounds (`Humidity-sensoren`, `CO2-sensor`) | English Title Case (`CO2 Sensor`, `Temperature Sensor`) |
 | **Danish / Swedish (`da` / `sv`)** | Product suffixes in prose | `Humidity-sensoren`, `CO2-sensorn` | `Humidity sensoren` (space before Scandinavian suffix) |
+
+Automated checks: `npm run check:locale` (also runs via pre-commit when
+`src/data/**/*.ts` is staged). Canonical term lists: `src/data/deTermLocks.ts`.
 
 ### Em dashes (`en`, `da`, `de`, `sv`)
 
@@ -132,7 +141,33 @@ vendor names (e.g. Disruptive Technologies, Efento), or other alternate grouping
   the correct URL. Re-run the sync script whenever the source PDFs change.
 - Catalogue data: [`src/data/hubs/sensors.ts`](src/data/hubs/sensors.ts).
 
-## Events hub and landing pages
+### Sensor dimension photography (required for new sensors)
+
+Whenever a **new sensor** is added to the catalogue **and** it has a physical-dimensions
+gallery on its product page, you **must** complete the bracket-calibration workflow.
+Do not ship hand-tuned overlay coordinates in presets.
+
+**Checklist (all steps required):**
+
+1. Add the side-view dimension source PNG to `Pictures/Sensors/Dimensions/`.
+2. Add a `{ source, targets }` row in [`scripts/lib/dimension-image-mappings.mjs`](scripts/lib/dimension-image-mappings.mjs).
+3. Run `npm run sync-sensor-dimensions` (syncs WebP into `public/images/sensors/` **and**
+   regenerates [`src/data/dimensionBracketCalibration.ts`](src/data/dimensionBracketCalibration.ts)).
+4. Add the sensor entry in [`src/data/sensorDimensions.ts`](src/data/sensorDimensions.ts) with
+   the correct overlay preset:
+   - `bracketSide` — standard side-view bracket layout (most sensors)
+   - `bracketSideOpenClose` — open/close small and large units
+   - `bracketSideWaterCompact` / `bracketSideWaterPro` — water detector / water rope variants
+     (IP label stays manual in the preset; `h`/`w` come from calibration)
+   - `bracketIsometric` — temperature / desk coin layout only (explicit coords; not slot-calibrated)
+5. Commit the regenerated `dimensionBracketCalibration.ts` with the sensor change.
+
+**When dimension art changes** for an existing sensor, re-run `npm run sync-sensor-dimensions`
+and commit the updated calibration file — do not manually nudge `x`/`y`/`dy` in presets.
+
+Label positions are resolved at render time by [`src/lib/sensors/resolve-dimension-labels.ts`](src/lib/sensors/resolve-dimension-labels.ts)
+from calibration data keyed by WebP basename. Presets declare **which** labels to show (`slot: "h" | "w"`), not pixel positions.
+
 
 Events are **temporary**. Hub cards and landing pages hide after `endDate` +
 `EVENT_ARCHIVE_GRACE_DAYS` in [`src/data/events.ts`](src/data/events.ts). Structure and
@@ -244,6 +279,122 @@ Do not invent alternate hero layouts or skip landing sections without approval.
 - Keep changes small and focused.
 - Prefer Astro and Tailwind best practices.
 - Avoid adding dependencies unless necessary.
+
+## Sensor product pages (locked structure)
+
+The sensor catalogue pages share an approved layout. **Structure is frozen**;
+**content is not**. Do not reorder sections, change layout modes, or refactor
+the page shells below without explicit user approval. Module landing pages are
+covered separately below.
+
+### Sensor detail (`/[lang]/sensors/[slug]/`)
+
+Shell via [`PlaceholderPage`](src/components/PlaceholderPage.astro): breadcrumbs
+→ hero (no product image) → body (`max-w-3xl`) → bottom `CtaBand`. Enhanced
+pages: primary CTA = Book demo; secondary = Get an offer. Thin pages without
+content stay `noindex` with a minimal gallery only.
+
+Enhanced body order in [`SensorPageContent.astro`](src/components/content/SensorPageContent.astro):
+
+1. Product views — `SensorProductGallery` (`layout="editorial"`, `omitInUse`) + hero spec chips
+2. Why choose this sensor? — benefits grid
+3. Example use cases — prose + optional `SensorInUseGallery` (max 2)
+4. Technical specifications — `SensorSpecTable` + PDF link
+5. Optional cloud connector note
+
+Locked files: [`[slug].astro`](src/pages/[lang]/sensors/[slug].astro),
+`SensorPageContent.astro`, [`SensorProductGallery.astro`](src/components/sensors/SensorProductGallery.astro),
+[`SensorSpecTable.astro`](src/components/sensors/SensorSpecTable.astro),
+[`SensorInUseGallery.astro`](src/components/sensors/SensorInUseGallery.astro),
+dimension figure components. Do not remove the legacy `!enhanced` branch without
+approval.
+
+### Compare (`/[lang]/compare/`)
+
+Order: breadcrumbs → hero (Book demo + Product sheets CTAs) → full matrix
+(category tabs + use-case filters + `SensorCompareMatrix`) → head-to-head duel
+→ `CtaBand`. Locked: [`compare/index.astro`](src/pages/[lang]/compare/index.astro),
+[`SensorCompareMatrix.astro`](src/components/sensors/SensorCompareMatrix.astro),
+duel client script.
+
+### Product sheets index (`/[lang]/sensors/product-sheets/`)
+
+Order: breadcrumbs → hero (title, accent, lead — no CTAs) → category grid
+(`SENSOR_CATEGORY_ORDER`). Locked: [`product-sheets/index.astro`](src/pages/[lang]/sensors/product-sheets/index.astro) layout.
+
+### Still editable without approval
+
+Copy, i18n, hub registry, spec entries, hero chips, compare data, product
+images, dimension calibration, and PDF assets. Adding a new sensor uses data
+files only — the template does not change.
+
+### Confirmation required
+
+If a request touches locked structure (reordering/adding/removing sections,
+switching gallery layout on enhanced pages, moving in-use photos into the
+product gallery, hero product photography, merging compare matrix and duel),
+ask first: "Sensor product page structure is locked per project rules — are
+you sure you want to change it?"
+
+## Module landing pages (locked base structure)
+
+Every module landing page must ship the same **eight base sections** in this
+overall flow. **Content and per-module styling are flexible**; removing or
+reordering base sections is not.
+
+Canonical order:
+
+1. Hero — breadcrumbs, title, accent, lead, Book demo + Get an offer CTAs
+2. Top picture — dashboard, editorial gallery, or sensor spotlight (placement
+   in hero or below is per-module)
+3. Challenges — intro prose + `ModuleChallengeCards`
+4. How RoomAlyzer solves it — `ModuleCapabilitiesIntro` + `ModuleFeatureTabs`
+5. Who it is for — two audience cards
+6. Related module — `ModuleCrossLink` redirect
+7. FAQ — `ModuleFaqSection`
+8. CTA — featured `CtaBand`
+
+**Authoritative template:** [`ModuleLandingPage.astro`](src/components/modules/ModuleLandingPage.astro).
+New rich modules should prefer it + props over bespoke markup. Bespoke pages
+that already follow the base (e.g. [`indoor-climate.astro`](src/pages/[lang]/modules/indoor-climate.astro),
+[`space-management.astro`](src/pages/[lang]/modules/space-management.astro)) may
+keep one-off hero/top-picture treatment.
+
+### Allowed without approval
+
+- **Top picture:** dashboard in hero, dashboard below hero, `heroVisual="gallery"`,
+  sensor spotlight in hero or as its own section (preservation, water-detection,
+  space-management patterns)
+- **Challenges ↔ solution swap** via `capabilitiesBeforeChallenges={true}` only
+  (preservation, water-detection)
+- **Per-module props:** `challengeIconSet`, horizontal challenge layout,
+  `revealBodyOnSelect`, `audiencesOnStone`, `secondaryAudienceIcon`, image classes
+- **Hero variants:** `inlineTitleAccent`, split visual, temporary event teasers
+  (indoor-climate ARCHIVISTICA pattern)
+- **Content:** all i18n, images, FAQ items, feature tabs, cross-link targets,
+  hub registry (`src/data/hubs/modules.ts`, `src/data/i18n/*.ts`, `*Images.ts`)
+
+### Thin module pages (interim)
+
+Routes via [`modules/[slug].astro`](src/pages/[lang]/modules/[slug].astro) +
+[`ModulePageContent.astro`](src/components/content/ModulePageContent.astro) ship
+a reduced body today. The **target** for every module is the full eight-section
+base. Do not remove or further simplify thin pages; do not invent alternate thin
+layouts. Upgrades should grow toward the rich base (`ModuleLandingPage` or
+equivalent sections). Copy edits inside existing thin sections need no approval.
+
+### Out of scope
+
+Modules hub index ([`modules/index.astro`](src/pages/[lang]/modules/index.astro))
+— card grid, not a module landing.
+
+### Confirmation required
+
+If a request removes, skips, merges, or reorders base sections beyond the
+challenges ↔ solution swap; adds a new persistent section between base sections;
+or refactors `ModuleLandingPage.astro` to drop a section slot, ask first:
+"Module landing page base structure is locked per project rules — are you sure
+you want to change it?"
 
 ## Logo carousel (locked)
 

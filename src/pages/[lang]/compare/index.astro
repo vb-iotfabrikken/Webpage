@@ -70,7 +70,12 @@ const duelStrings = {
 };
 ---
 
-<Layout title={`${compareTitle.replace(/\.$/, "")} | IoT Fabrikken`} description={compareLead}>
+<Layout
+  title={`${compareTitle.replace(/\.$/, "")} | IoT Fabrikken`}
+  description={compareLead}
+  analyticsPageType="compare"
+  analyticsContentId="sensor-matrix"
+>
   <nav class="container-page pt-6" aria-label="Breadcrumb">
     <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
       <li class="flex items-center gap-1.5">

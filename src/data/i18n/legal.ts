@@ -17,6 +17,13 @@ export interface LegalStrings {
     metaTitle: string;
     body: string;
   };
+  cookies: {
+    metaTitle: string;
+    lastUpdatedDate: string;
+    ctaTitle: string;
+    ctaSubtitle: string;
+    body: string;
+  };
 }
 
 const en: LegalStrings = {
@@ -132,6 +139,45 @@ const en: LegalStrings = {
       <li><strong>Phone:</strong> <a href="tel:+4571718090">+45 71 71 80 90</a></li>
       <li><strong>Post:</strong> IoT Fabrikken ApS, Brønsager 1, 4000 Roskilde, Denmark</li>
     </ul>
+    `,
+  },
+  cookies: {
+    metaTitle: "Cookie policy | IoT Fabrikken",
+    lastUpdatedDate: "7 July 2026",
+    ctaTitle: "Questions about cookies or tracking?",
+    ctaSubtitle:
+      "Contact us if you need help changing your preferences or want more detail about how we measure campaigns.",
+    body: `
+    <p>This Cookie policy explains how IoT Fabrikken ApS ("<strong>we</strong>", "<strong>us</strong>") uses cookies and similar technologies on iot-fabrikken.com (the "<strong>website</strong>"). It should be read together with our <a href="/en/legal/privacy/">Privacy policy</a>.</p>
+    <h2>What are cookies?</h2>
+    <p>Cookies are small text files stored on your device when you visit a website. Similar technologies include local storage (used to remember your cookie choice) and session storage (used for short-lived form attribution during a visit).</p>
+    <h2>How we use cookies</h2>
+    <p>We group cookies into three categories. You can accept or reject optional categories via the cookie banner or the "Cookie settings" control shown after you have made a choice.</p>
+    <h3>Necessary</h3>
+    <p>These are required for the website to remember your cookie preferences. They do not track you across sites.</p>
+    <ul>
+      <li><strong>Consent preference</strong> — stores your analytics/marketing choice (local storage, up to 12 months).</li>
+    </ul>
+    <h3>Analytics (optional)</h3>
+    <p>Help us understand how visitors use the website so we can improve content and measure organic performance. Loaded only if you consent. Provided via Google Tag Manager, Google Analytics 4 (GA4), and Microsoft Clarity (heatmaps and session recordings).</p>
+    <ul>
+      <li><strong>_ga, _ga_*</strong> — distinguishes users and sessions (Google Analytics, up to 24 months).</li>
+      <li><strong>_gid</strong> — distinguishes users (Google Analytics, 24 hours).</li>
+      <li><strong>_clck, _clsk, CLID, ANONCHK, MR, MUID, SM</strong> — Clarity session and heatmap identifiers (Microsoft, typically up to 1 year; session replay is sampled).</li>
+    </ul>
+    <h3>Marketing (optional)</h3>
+    <p>Measure Google Ads campaigns, attribute leads to ads and support remarketing where permitted. Loaded only if you consent.</p>
+    <ul>
+      <li><strong>_gcl_*</strong> — Google Ads conversion linker and click identifiers (typically 90 days).</li>
+    </ul>
+    <h2>Legal basis</h2>
+    <p>Necessary storage is based on our legitimate interest in operating the website. Analytics and marketing cookies are set only after you give consent via the banner. You can withdraw consent at any time using "Cookie settings" on any page.</p>
+    <h2>Managing cookies</h2>
+    <p>Use the cookie banner when you first visit, or click <strong>Cookie settings</strong> (bottom-left) to change your choice later. You can also block or delete cookies in your browser settings; some site features may still work, but optional measurement will stop.</p>
+    <h2>Updates</h2>
+    <p>We may update this policy when we add or remove tools. The "Last updated" date at the top of this page will change accordingly.</p>
+    <h2>Contact</h2>
+    <p>Questions about cookies: <a href="mailto:info@iot-fabrikken.com">info@iot-fabrikken.com</a>.</p>
     `,
   },
   impressum: {
@@ -269,6 +315,39 @@ const da: LegalStrings = {
     </ul>
     `,
   },
+  cookies: {
+    metaTitle: "Cookiepolitik | IoT Fabrikken",
+    lastUpdatedDate: "7. juli 2026",
+    ctaTitle: "Spørgsmål om cookies eller måling?",
+    ctaSubtitle:
+      "Kontakt os, hvis du har brug for hjælp til at ændre dine præferencer eller ønsker flere oplysninger om, hvordan vi måler kampagner.",
+    body: `
+    <p>Denne cookiepolitik beskriver, hvordan IoT Fabrikken ApS ("<strong>vi</strong>") bruger cookies og lignende teknologier på iot-fabrikken.com ("<strong>websitet</strong>"). Den bør læses sammen med vores <a href="/da/legal/privacy/">Privatlivspolitik</a>.</p>
+    <h2>Hvad er cookies?</h2>
+    <p>Cookies er små tekstfiler, der gemmes på din enhed, når du besøger et website. Lignende teknologier omfatter local storage (til dit cookievalg) og session storage (til kortvarig attributtering under et besøg).</p>
+    <h2>Sådan bruger vi cookies</h2>
+    <p>Vi opdeler cookies i tre kategorier. Du kan acceptere eller afvise valgfrie kategorier via cookiebanneret eller "Cookieindstillinger".</p>
+    <h3>Nødvendige</h3>
+    <p>Påkrævet for at huske dit cookievalg. De sporer dig ikke på tværs af sites.</p>
+    <ul><li><strong>Samtykkepræference</strong> — gemmer dit valg (local storage, op til 12 måneder).</li></ul>
+    <h3>Analyse (valgfri)</h3>
+    <p>Hjælper os med at forstå, hvordan besøgende bruger websitet. Indlæses kun med samtykke via Google Tag Manager, Google Analytics 4 (GA4) og Microsoft Clarity (heatmaps og sessionoptagelser).</p>
+    <ul>
+      <li><strong>_ga, _ga_*</strong> — skelner mellem brugere og sessioner (op til 24 måneder).</li>
+      <li><strong>_gid</strong> — skelner mellem brugere (24 timer).</li>
+      <li><strong>_clck, _clsk, CLID, ANONCHK, MR, MUID, SM</strong> — Clarity-session og heatmap-id'er (Microsoft, typisk op til 1 år; sessionoptagelse er sampled).</li>
+    </ul>
+    <h3>Marketing (valgfri)</h3>
+    <p>Måler Google Ads-kampagner og understøtter remarketing, hvor det er tilladt. Indlæses kun med samtykke.</p>
+    <ul><li><strong>_gcl_*</strong> — Google Ads-konverterings- og klik-id'er (typisk 90 dage).</li></ul>
+    <h2>Retsgrundlag</h2>
+    <p>Nødvendig lagring bygger på vores legitime interesse i at drive websitet. Analyse- og marketingcookies sættes kun efter samtykke. Du kan til enhver tid trække samtykket tilbage via "Cookieindstillinger".</p>
+    <h2>Administration</h2>
+    <p>Brug cookiebanneret ved første besøg, eller klik <strong>Cookieindstillinger</strong> (nederst til venstre) for at ændre valget senere. Du kan også blokere cookies i browseren.</p>
+    <h2>Kontakt</h2>
+    <p>Spørgsmål om cookies: <a href="mailto:info@iot-fabrikken.com">info@iot-fabrikken.com</a>.</p>
+    `,
+  },
   impressum: {
     metaTitle: "Impressum | IoT Fabrikken",
     body: `
@@ -402,6 +481,39 @@ const de: LegalStrings = {
       <li><strong>Telefon:</strong> <a href="tel:+4571718090">+45 71 71 80 90</a></li>
       <li><strong>Post:</strong> IoT Fabrikken ApS, Brønsager 1, 4000 Roskilde, Dänemark</li>
     </ul>
+    `,
+  },
+  cookies: {
+    metaTitle: "Cookie-Richtlinie | IoT Fabrikken",
+    lastUpdatedDate: "7. Juli 2026",
+    ctaTitle: "Fragen zu Cookies oder Messung?",
+    ctaSubtitle:
+      "Kontaktieren Sie uns, wenn Sie Hilfe bei Ihren Einstellungen benötigen oder mehr über unsere Kampagnenmessung erfahren möchten.",
+    body: `
+    <p>Diese Cookie-Richtlinie erläutert, wie IoT Fabrikken ApS ("<strong>wir</strong>") Cookies und ähnliche Technologien auf iot-fabrikken.com (die "<strong>Website</strong>") verwendet. Sie ist zusammen mit unserer <a href="/de/legal/privacy/">Datenschutzerklärung</a> zu lesen.</p>
+    <h2>Was sind Cookies?</h2>
+    <p>Cookies sind kleine Textdateien auf Ihrem Gerät. Ähnliche Technologien umfassen Local Storage (Cookie-Einstellung) und Session Storage (kurzzeitige Attributierung während eines Besuchs).</p>
+    <h2>Wie wir Cookies verwenden</h2>
+    <p>Wir unterteilen Cookies in drei Kategorien. Optionale Kategorien können Sie über das Cookie-Banner oder "Cookie-Einstellungen" steuern.</p>
+    <h3>Notwendig</h3>
+    <p>Erforderlich, um Ihre Cookie-Auswahl zu speichern. Kein Tracking über Websites hinweg.</p>
+    <ul><li><strong>Einwilligungspräferenz</strong> — speichert Ihre Auswahl (Local Storage, bis zu 12 Monate).</li></ul>
+    <h3>Analyse (optional)</h3>
+    <p>Hilft uns zu verstehen, wie Besucher die Website nutzen. Nur mit Einwilligung über Google Tag Manager, Google Analytics 4 (GA4) und Microsoft Clarity (Heatmaps und Session-Aufzeichnungen).</p>
+    <ul>
+      <li><strong>_ga, _ga_*</strong> — unterscheidet Nutzer und Sitzungen (bis zu 24 Monate).</li>
+      <li><strong>_gid</strong> — unterscheidet Nutzer (24 Stunden).</li>
+      <li><strong>_clck, _clsk, CLID, ANONCHK, MR, MUID, SM</strong> — Clarity-Sitzungs- und Heatmap-Kennungen (Microsoft, typisch bis zu 1 Jahr; Session-Aufzeichnung ist sampled).</li>
+    </ul>
+    <h3>Marketing (optional)</h3>
+    <p>Misst Google-Ads-Kampagnen und unterstützt Remarketing, sofern zulässig. Nur mit Einwilligung.</p>
+    <ul><li><strong>_gcl_*</strong> — Google-Ads-Konversions- und Klick-IDs (typisch 90 Tage).</li></ul>
+    <h2>Rechtsgrundlage</h2>
+    <p>Notwendige Speicherung basiert auf unserem berechtigten Interesse am Betrieb der Website. Analyse- und Marketing-Cookies werden nur nach Einwilligung gesetzt. Sie können die Einwilligung jederzeit über "Cookie-Einstellungen" widerrufen.</p>
+    <h2>Verwaltung</h2>
+    <p>Nutzen Sie das Cookie-Banner beim ersten Besuch oder <strong>Cookie-Einstellungen</strong> (unten links), um Ihre Wahl später zu ändern. Sie können Cookies auch im Browser blockieren.</p>
+    <h2>Kontakt</h2>
+    <p>Fragen zu Cookies: <a href="mailto:info@iot-fabrikken.com">info@iot-fabrikken.com</a>.</p>
     `,
   },
   impressum: {
@@ -539,6 +651,39 @@ const sv: LegalStrings = {
     </ul>
     `,
   },
+  cookies: {
+    metaTitle: "Cookiepolicy | IoT Fabrikken",
+    lastUpdatedDate: "7 juli 2026",
+    ctaTitle: "Frågor om cookies eller mätning?",
+    ctaSubtitle:
+      "Kontakta oss om du behöver hjälp att ändra dina inställningar eller vill veta mer om hur vi mäter kampanjer.",
+    body: `
+    <p>Denna cookiepolicy beskriver hur IoT Fabrikken ApS ("<strong>vi</strong>") använder cookies och liknande tekniker på iot-fabrikken.com ("<strong>webbplatsen</strong>"). Den bör läsas tillsammans med vår <a href="/sv/legal/privacy/">Integritetspolicy</a>.</p>
+    <h2>Vad är cookies?</h2>
+    <p>Cookies är små textfiler som lagras på din enhet när du besöker en webbplats. Liknande tekniker inkluderar local storage (cookieval) och session storage (kortvarig attributering under ett besök).</p>
+    <h2>Hur vi använder cookies</h2>
+    <p>Vi delar in cookies i tre kategorier. Du kan acceptera eller avvisa valfria kategorier via cookiebannern eller "Cookieinställningar".</p>
+    <h3>Nödvändiga</h3>
+    <p>Krävs för att komma ihåg ditt cookieval. De spårar dig inte mellan webbplatser.</p>
+    <ul><li><strong>Samtyckesinställning</strong> — lagrar ditt val (local storage, upp till 12 månader).</li></ul>
+    <h3>Analys (valfritt)</h3>
+    <p>Hjälper oss att förstå hur besökare använder webbplatsen. Laddas endast med samtycke via Google Tag Manager, Google Analytics 4 (GA4) och Microsoft Clarity (heatmaps och sessioninspelningar).</p>
+    <ul>
+      <li><strong>_ga, _ga_*</strong> — skiljer användare och sessioner (upp till 24 månader).</li>
+      <li><strong>_gid</strong> — skiljer användare (24 timmar).</li>
+      <li><strong>_clck, _clsk, CLID, ANONCHK, MR, MUID, SM</strong> — Clarity-session och heatmap-id (Microsoft, typiskt upp till 1 år; sessioninspelning är sampled).</li>
+    </ul>
+    <h3>Marknadsföring (valfritt)</h3>
+    <p>Mäter Google Ads-kampanjer och stödjer remarketing där det är tillåtet. Laddas endast med samtycke.</p>
+    <ul><li><strong>_gcl_*</strong> — Google Ads-konverterings- och klick-id (typiskt 90 dagar).</li></ul>
+    <h2>Rättslig grund</h2>
+    <p>Nödvändig lagring bygger på vårt berättigade intresse av att driva webbplatsen. Analys- och marknadsföringscookies sätts endast efter samtycke. Du kan när som helst återkalla samtycket via "Cookieinställningar".</p>
+    <h2>Hantering</h2>
+    <p>Använd cookiebannern vid första besöket, eller klicka på <strong>Cookieinställningar</strong> (nederst till vänster) för att ändra valet senare. Du kan också blockera cookies i webbläsaren.</p>
+    <h2>Kontakt</h2>
+    <p>Frågor om cookies: <a href="mailto:info@iot-fabrikken.com">info@iot-fabrikken.com</a>.</p>
+    `,
+  },
   impressum: {
     metaTitle: "Impressum | IoT Fabrikken",
     body: `
@@ -577,11 +722,19 @@ export function getLegal(lang: Lang): LegalStrings {
     applyLocaleContactToHtml(base.privacy.body, lang),
     lang,
   );
+  const cookiesBody = applyLocaleLegalLinks(
+    applyLocaleContactToHtml(base.cookies.body, lang),
+    lang,
+  );
   return {
     ...base,
     privacy: {
       ...base.privacy,
       body: privacyBody,
+    },
+    cookies: {
+      ...base.cookies,
+      body: cookiesBody,
     },
     impressum: {
       ...base.impressum,

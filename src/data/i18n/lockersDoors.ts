@@ -277,23 +277,23 @@ const da: ModulePageStrings = {
 };
 
 const de: ModulePageStrings = {
-  metaTitle: "Schließfächer und Türen: Öffnen/Schließen-Überwachung | IoT Fabrikken",
+  metaTitle: "Lockers and doors: Open/Close monitoring | IoT Fabrikken",
   metaDescription:
-    "Drahtlose Öffnen/Schließen-Sensoren für Schließfächer, Türen, Fenster und Schränke. Sehen Sie in Echtzeit, was offen ist, erkennen Sie Lücken außerhalb der Öffnungszeiten und planen Sie Kapazität anhand von Nutzungsdaten.",
+    "Drahtlose Open/Close für Schließfächer, Türen, Fenster und Schränke. Sehen Sie in Echtzeit, was offen ist, erkennen Sie Lücken außerhalb der Öffnungszeiten und planen Sie Kapazität anhand von Nutzungsdaten.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
-  breadcrumbCurrent: "Schließfächer und Türen",
+  breadcrumbCurrent: "Lockers and doors",
   heroTitle: "Sehen Sie, was offen ist.",
   heroTitleAccent: "Schließen Sie die Lücken.",
   heroLead:
-    "Öffnen/Schließen-Überwachung für Transparenz bei Schließfächern, Fenstern und Türen",
+    "Open/Close monitoring für Transparenz bei Schließfächern, Fenstern und Türen",
   intro: [
-    "Öffnen/Schließen-Überwachung verwandelt alltägliche Unsicherheit in Fakten: welche Schließfächer tatsächlich genutzt werden, ob Fenster nach Feierabend offen stehen und wie Zugangspunkte im Gebäude wirklich genutzt werden. Ohne sie verwalten Sie Schließfächer nach Bauchgefühl und kontrollieren Fenster zu Fuß.",
+    "Open/Close monitoring verwandelt alltägliche Unsicherheit in Fakten: welche Schließfächer tatsächlich genutzt werden, ob Fenster nach Feierabend offen stehen und wie Zugangspunkte im Gebäude wirklich genutzt werden. Ohne sie verwalten Sie Schließfächer nach Bauchgefühl und kontrollieren Fenster zu Fuß.",
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer: Schließfächer und Türen",
-  dashboardAlt: "RoomAlyzer-Dashboard mit Live-Offen/Geschlossen-Status für Schließfächer und Türen",
+  dashboardLabel: "RoomAlyzer: Lockers and doors",
+  dashboardAlt: "RoomAlyzer-Dashboard mit Live-Offen/Geschlossen-Status für Lockers and doors",
   challengesEyebrow: "Die Herausforderungen, die Sie kennen",
   challengesHeading: "Ohne Sicht auf Offen-Status wird jede Runde zum Rundgang.",
   challenges: [
@@ -313,9 +313,9 @@ const de: ModulePageStrings = {
   capabilitiesEyebrow: "So löst RoomAlyzer das",
   capabilitiesHeading: "Live-Offen/Geschlossen-Status, den Sie noch am selben Tag nutzen können.",
   solutionLead:
-    "RoomAlyzer Schließfächer und Türen gibt Ihnen einen Echtzeitüberblick darüber, was offen oder geschlossen ist — und macht daraus Nutzungsmuster für Facility Management und Arbeitsplatzplanung.",
+    "RoomAlyzer Lockers and doors gibt Ihnen einen Echtzeitüberblick darüber, was offen oder geschlossen ist — und macht daraus Nutzungsmuster für Facility Management und Arbeitsplatzplanung.",
   solutionLeadWithSensorLinks: [
-    { type: "text", value: "RoomAlyzer Schließfächer und Türen nutzt den " },
+    { type: "text", value: "RoomAlyzer Lockers and doors nutzt den " },
     { type: "sensor", slug: "open-close", label: "Open/Close" },
     {
       type: "text",
@@ -339,7 +339,7 @@ const de: ModulePageStrings = {
         },
       ],
       unit: "Echtzeit",
-      imageAlt: "Live Offen/Geschlossen-Status für Schließfächer und Türen in RoomAlyzer",
+      imageAlt: "Live Offen/Geschlossen-Status für Lockers and doors in RoomAlyzer",
     },
     {
       id: "locker-overview",
@@ -365,12 +365,12 @@ const de: ModulePageStrings = {
   ],
   relatedModuleLabel: "Smarter zusammen",
   relatedModuleBody:
-    "Kombinieren Sie Öffnen/Schließen-Daten mit Belegung aus Space-Management — sehen Sie, welche Schließfächer in der Nähe stark genutzter Zonen liegen, und passen Sie die Kapazität an die tatsächliche Nutzung des Gebäudes an.",
+    "Kombinieren Sie Open/Close-Daten mit Belegung aus Space-Management — sehen Sie, welche Schließfächer in der Nähe stark genutzter Zonen liegen und passen Sie die Kapazität an die tatsächliche Nutzung des Gebäudes an.",
   relatedModuleLink: "Space-Management entdecken",
   audiencesEyebrow: "Für wen",
   audiencesHeading: "Täglicher Betrieb und Arbeitsplatzplanung",
   audiencesLead:
-    "Dieselben Öffnen/Schließen-Daten helfen dem Facility Manager, das Gebäude heute Abend abzusichern, und dem Arbeitsplatzplaner zu entscheiden, wie die Schließfachkapazität im nächsten Quartal wachsen soll.",
+    "Dieselben Open/Close-Daten helfen dem Facility Manager, das Gebäude heute Abend abzusichern und dem Arbeitsplatzplaner zu entscheiden, wie die Schließfachkapazität im nächsten Quartal wachsen soll.",
   primaryAudienceHeading: "Für Facility Management",
   primaryAudienceItems: [
     "Live Offen/Geschlossen-Status für Schließfächer, Türen und Fenster sehen",
@@ -387,7 +387,7 @@ const de: ModulePageStrings = {
   faqContextAlt: "Kollegen besprechen Pläne an einem Besprechungstisch",
   faqItems: [
     {
-      q: "Was können die Öffnen/Schließen-Sensoren überwachen?",
+      q: "Was können die Open/Close überwachen?",
       a: "Schließfächer, Türen, Fenster, Schränke, Kühlschranktüren, Gerätelager und andere aufschlagbare Zugangspunkte. Wenn es sich öffnet und schließt, können wir es in der Regel überwachen.",
     },
     {
@@ -400,7 +400,7 @@ const de: ModulePageStrings = {
     },
     {
       q: "Wie lange halten die Batterien?",
-      a: "Öffnen/Schließen-Sensoren laufen typischerweise mehrere Jahre mit einer Batterie, abhängig davon, wie oft die Tür genutzt wird und wie häufig Daten gemeldet werden.",
+      a: "Open/Close laufen typischerweise mehrere Jahre mit einer Batterie, abhängig davon, wie oft die Tür genutzt wird und wie häufig Daten gemeldet werden.",
     },
     {
       q: "Integriert sich das mit Space-Management?",
@@ -409,7 +409,7 @@ const de: ModulePageStrings = {
   ],
   ctaTitle: "Möchten Sie es selbst sehen?",
   ctaSubtitle:
-    "Buchen Sie eine Demo. RoomAlyzer ist in Minuten installiert, passt sich an, wenn sich Ihr Gebäude verändert, und kostet einen Bruchteil des Üblichen.",
+    "Buchen Sie eine Demo. RoomAlyzer ist in Minuten installiert, passt sich an, wenn sich Ihr Gebäude verändert und kostet einen Bruchteil des Üblichen.",
   ctaMicrocopy: "Drahtlose Sensoren · keine Verkabelung pro Schließfach",
 };
 

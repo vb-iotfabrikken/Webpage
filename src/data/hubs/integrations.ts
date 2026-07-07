@@ -26,7 +26,7 @@ export const integrationsHub: Hub = {
       eyebrow: "Integration",
       title: "OS2iot.",
       titleAccent: "Built for the public sector.",
-      lead: "Integration with the Danish municipal OS2iot platform for shared LoRaWAN infrastructure.",
+      lead: "Integration with the Danish municipal OS2iot platform for shared IoT infrastructure.",
     },
     {
       slug: "dalux",

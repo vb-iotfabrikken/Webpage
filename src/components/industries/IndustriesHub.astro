@@ -1,0 +1,141 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../Hero.astro";
+import Button from "../Button.astro";
+import CtaBand from "../CtaBand.astro";
+import IndustrySectorFilterBar from "./IndustrySectorFilterBar.astro";
+import IndustryHubCard from "./IndustryHubCard.astro";
+import type { Hub } from "../../data/hubs/types";
+import { getAbout } from "../../data/i18n/about";
+import { getUi } from "../../data/i18n/ui";
+import {
+  industrySectorIdForSlug,
+  industrySectorLabel,
+  industrySectors,
+} from "../../data/industrySectors";
+import {
+  astroLang,
+  langPath,
+  localizeCrumbs,
+  type Lang,
+} from "../../data/lang";
+import { isLivePath } from "../../data/launch";
+
+interface Breadcrumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  hub: Hub;
+  breadcrumbs?: Breadcrumb[];
+  title?: string;
+  description?: string;
+  lang?: Lang;
+}
+
+const {
+  hub,
+  breadcrumbs = [],
+  title,
+  description,
+  lang: langProp,
+} = Astro.props;
+
+const lang = langProp ?? astroLang(Astro);
+const tAbout = getAbout(lang);
+const tIndustries = getUi(lang).industries;
+const nav = getUi(lang).nav;
+const pageTitle = title ?? `${hub.title.replace(/\.$/, "")} | IoT Fabrikken`;
+const metaDescription = description ?? hub.lead;
+const localizedBreadcrumbs = localizeCrumbs(breadcrumbs, lang);
+const bookDemoHref = langPath("contact/book-demo", lang);
+const contactSalesHref = langPath("contact/sales", lang);
+
+const liveLeaves = hub.leaves.filter((leaf) =>
+  isLivePath(langPath(`${hub.slug}/${leaf.slug}`, lang)),
+);
+
+const filterGroups = industrySectors
+  .map((sector) => ({
+    category: sector.id,
+    label: industrySectorLabel(sector.labelKey, nav),
+    count: sector.slugs.filter((slug) =>
+      liveLeaves.some((leaf) => leaf.slug === slug),
+    ).length,
+  }))
+  .filter((group) => group.count > 0);
+---
+
+<Layout title={pageTitle} description={metaDescription}>
+  {localizedBreadcrumbs.length > 0 && (
+    <nav class="container-page pt-6" aria-label="Breadcrumb">
+      <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+        {localizedBreadcrumbs.map((b, i) => (
+          <li class="flex items-center gap-1.5">
+            {b.href ? (
+              <a href={b.href} class="hover:text-coral-500 transition-colors">{b.label}</a>
+            ) : (
+              <span class="text-navy-500">{b.label}</span>
+            )}
+            {i < localizedBreadcrumbs.length - 1 && (
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )}
+
+  <Hero
+    title={hub.title}
+    titleAccent={hub.titleAccent}
+    lead={hub.lead}
+    align="left"
+    compactTop={localizedBreadcrumbs.length > 0}
+  >
+    <Button href={bookDemoHref} variant="primary" size="lg" slot="cta">{tAbout.common.bookDemo}</Button>
+    <Button href={contactSalesHref} variant="secondary" size="lg" slot="cta">{tAbout.common.contactSales}</Button>
+  </Hero>
+
+  <section class="py-16 md:py-20">
+    <div class="container-page space-y-10">
+      <div class="reveal">
+        <IndustrySectorFilterBar
+          filterLabel={tIndustries.hub.filterBySector}
+          allLabel={tIndustries.hub.all}
+          totalCount={liveLeaves.length}
+          groups={filterGroups}
+        />
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+        data-industry-catalogue
+      >
+        {liveLeaves.map((leaf) => (
+          <IndustryHubCard
+            href={langPath(`${hub.slug}/${leaf.slug}`, lang)}
+            slug={leaf.slug}
+            title={leaf.title}
+            titleAccent={leaf.titleAccent}
+            lead={leaf.lead}
+            ctaLabel={tAbout.common.readMore}
+            sectorId={industrySectorIdForSlug(leaf.slug)}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title={tAbout.hub.ctaTitle}
+    subtitle={tAbout.hub.ctaSubtitle}
+    primaryLabel={tAbout.common.bookDemo}
+    primaryHref={bookDemoHref}
+    secondaryLabel={tAbout.common.contactSales}
+    secondaryHref={contactSalesHref}
+  />
+</Layout>

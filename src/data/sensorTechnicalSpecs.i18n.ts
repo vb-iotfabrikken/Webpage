@@ -20,11 +20,11 @@ export const sensorTechnicalSpecsI18n: Partial<
       values: {
         measurements: "Temperatur og luftfugtighed",
         dimensions: "H124 × B60 × D26 mm · 130 g",
-        measuringRange: "Temperatur −15 til +70 °C / Luftfugtighed 0–99% RF",
+        measuringRange: "Temperatur −15 til +70 °C / Luftfugtighed 0–99 % r.f.",
         operatingRange: "−35 °C til +70 °C",
-        precision: "Temperatur ±0,1 °C / Luftfugtighed ±1% RF",
+        precision: "Temperatur ±0,1 °C / Luftfugtighed ±1 % r.f.",
         longTermDrift:
-          "Temperatur <0,03 °C/år / Luftfugtighed <0,20% RF/år (under normale forhold)",
+          "Temperatur <0,03 °C/år / Luftfugtighed <0,20 % r.f./år (under normale forhold)",
         battery: "Op til 10 år (udskifteligt 3 × AA litiumpakke)",
         connectivity: "NB-IoT (direkte mobil, uden Wi-Fi eller gateway)",
         activation: "Knap på sensoren",
@@ -42,11 +42,11 @@ export const sensorTechnicalSpecsI18n: Partial<
       values: {
         measurements: "Temperatur und Luftfeuchtigkeit",
         dimensions: "H124 × B60 × T26 mm · 130 g",
-        measuringRange: "Temperatur −15 bis +70 °C / Luftfeuchtigkeit 0–99% RF",
+        measuringRange: "Temperatur −15 bis +70 °C / Luftfeuchtigkeit 0–99 % r.F.",
         operatingRange: "−35 °C bis +70 °C",
-        precision: "Temperatur ±0,1 °C / Luftfeuchtigkeit ±1% RF",
+        precision: "Temperatur ±0,1 °C / Luftfeuchtigkeit ±1 % r.F.",
         longTermDrift:
-          "Temperatur <0,03 °C/Jahr / Luftfeuchtigkeit <0,20% RF/Jahr (unter normalen Bedingungen)",
+          "Temperatur <0,03 °C/Jahr / Luftfeuchtigkeit <0,20 % r.F./Jahr (unter normalen Bedingungen)",
         battery: "Bis zu 10 Jahre (austauschbares 3 × AA-Lithium-Paket)",
         connectivity: "NB-IoT (direktes Mobilfunk, ohne Wi-Fi oder Gateway)",
         activation: "Taste am Sensor",
@@ -64,11 +64,11 @@ export const sensorTechnicalSpecsI18n: Partial<
       values: {
         measurements: "Temperatur och luftfuktighet",
         dimensions: "H124 × B60 × D26 mm · 130 g",
-        measuringRange: "Temperatur −15 till +70 °C / Luftfuktighet 0–99% RF",
+        measuringRange: "Temperatur −15 till +70 °C / Luftfuktighet 0–99 % RF",
         operatingRange: "−35 °C till +70 °C",
-        precision: "Temperatur ±0,1 °C / Luftfuktighet ±1% RF",
+        precision: "Temperatur ±0,1 °C / Luftfuktighet ±1 % RF",
         longTermDrift:
-          "Temperatur <0,03 °C/år / Luftfuktighet <0,20% RF/år (under normala förhållanden)",
+          "Temperatur <0,03 °C/år / Luftfuktighet <0,20 % RF/år (under normala förhållanden)",
         battery: "Upp till 10 år (utbytbart 3 × AA litiumpaket)",
         connectivity: "NB-IoT (direkt mobil, utan Wi-Fi eller gateway)",
         activation: "Knapp på sensorn",

@@ -66,7 +66,7 @@ const aboutHubI18n: Partial<Record<Lang, HubOverlay>> = {
     title: "Om IoT Fabrikken.",
     titleAccent: "Bygget i Danmark, brugt i hele Europa.",
     eyebrow: "Om os",
-    lead: "En 100% dansk-ejet SaaS- og IoT-virksomhed, grundlagt af folk med 25 års erfaring inden for måling, SaaS og facility management.",
+    lead: "En 100% dansk ejet SaaS- og IoT-virksomhed, grundlagt af folk med 25 års erfaring inden for måling, SaaS og facility management.",
     leaves: {
       story: { title: "Vores historie.", titleAccent: "25 år i støbeskeen.", lead: "Fra DIBS og eSmiley til IoT Fabrikken: historikken bag virksomheden." },
       team: { title: "Teamet.", titleAccent: "Mød menneskene bag produktet.", lead: "Ledelse, salg, udvikling, customer success og drift, mød menneskene bag produktet." },
@@ -80,14 +80,14 @@ const aboutHubI18n: Partial<Record<Lang, HubOverlay>> = {
     title: "Über IoT Fabrikken.",
     titleAccent: "In Dänemark gebaut, in ganz Europa im Einsatz.",
     eyebrow: "Über uns",
-    lead: "Ein zu 100% in dänischem Besitz befindliches SaaS- und IoT-Unternehmen, gegründet von Menschen mit 25 Jahren Erfahrung in Messtechnik, SaaS und Facility Management.",
+    lead: "Ein zu 100% dänisches SaaS- und IoT-Unternehmen, gegründet von Menschen mit 25 Jahren Erfahrung in Messtechnik, SaaS und Facility Management.",
     leaves: {
       story: { title: "Unsere Geschichte.", titleAccent: "25 Jahre in der Entstehung.", lead: "Von DIBS und eSmiley zu IoT Fabrikken: die Erfolgsbilanz hinter dem Unternehmen." },
-      team: { title: "Das Team.", titleAccent: "Lernen Sie die Menschen hinter dem Produkt kennen.", lead: "Führung, Vertrieb, Entwicklung, Customer Success und Betrieb, lernen Sie die Menschen hinter dem Produkt kennen." },
+      team: { title: "Das Team.", titleAccent: "Lernen Sie die Menschen hinter dem Produkt kennen.", lead: "Führung, Vertrieb, Entwicklung, Customer Success und Betrieb – lernen Sie die Menschen hinter dem Produkt kennen." },
       careers: { title: "Karriere.", titleAccent: "Wir stellen ein.", lead: "Offene Stellen, unser Einstellungsprozess und wie es ist, bei IoT Fabrikken zu arbeiten." },
       press: { title: "Presse.", titleAccent: "Logos, Screenshots und Hintergründe.", lead: "Materialien und Eckdaten für Journalisten, Analysten und Partner." },
       "trust-center": { title: "Trust Center.", titleAccent: "Sicherheit, Datenschutz und Compliance an einem Ort.", lead: "Sicherheitslage, Datenverarbeitungsbedingungen, Serviceverpflichtungen und Produktzertifizierungen: alles, was Sie brauchen, um uns mit Vertrauen zu bewerten." },
-      partners: { title: "Partner.", titleAccent: "Zusammenarbeit schafft Lösungen.", lead: "Starke Partner bringen spezialisiertes Wissen, Technologie und Erfahrung ein, gemeinsam erzielen wir bessere Ergebnisse für Gebäude und die Menschen darin." },
+      partners: { title: "Partner.", titleAccent: "Zusammenarbeit schafft Lösungen.", lead: "Starke Partner bringen spezialisiertes Wissen, Technologie und Erfahrung ein. Gemeinsam erzielen wir bessere Ergebnisse für Gebäude und die Menschen darin." },
     },
   },
   sv: {

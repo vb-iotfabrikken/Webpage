@@ -91,7 +91,7 @@ const PLACEHOLDER_BY_GROUP: Record<string, PlaceholderTemplate> = {
     keyPoints: [
       { title: "Range", unit: "0–100 % RH", body: "High-accuracy temperature and relative humidity in historic spaces." },
       { title: "Battery life", unit: "Up to 10 years", body: "One setup, minimal maintenance in sensitive environments." },
-      { title: "Network", unit: "NB-IoT / LoRaWAN", body: "No WiFi or cabling required in most heritage buildings." },
+      { title: "Network", unit: "NB-IoT", body: "No WiFi or cabling required in most heritage buildings." },
       { title: "Reporting", unit: "EN 15757 ready", body: "Automatic graphs and PDF reports for conservators and advisors." },
     ],
     faq: [
@@ -104,7 +104,7 @@ const PLACEHOLDER_BY_GROUP: Record<string, PlaceholderTemplate> = {
     keyPoints: [
       { title: "Response time", unit: "Under 60 seconds", body: "From water detection to SMS or email with the on-call team." },
       { title: "Battery life", unit: "Up to 10 years", body: "Install and forget, the platform warns before batteries need replacing." },
-      { title: "Network", unit: "NB-IoT / LoRaWAN", body: "Works in basements and plant rooms without WiFi." },
+      { title: "Network", unit: "NB-IoT", body: "Works in basements and plant rooms without WiFi." },
       { title: "Escalation", unit: "SMS · email · webhook", body: "Integrate alarms into your existing emergency or ITSM flow." },
     ],
     faq: [

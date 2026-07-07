@@ -1,5 +1,5 @@
 ---
-import HubIndex from "../../../components/HubIndex.astro";
+import IndustriesHub from "../../../components/industries/IndustriesHub.astro";
 import { getIndustriesHub } from "../../../data/hubs/industries";
 import { getUi } from "../../../data/i18n/ui";
 import { locales, langPath, type Lang } from "../../../data/lang";
@@ -14,11 +14,9 @@ const t = getUi(lang).industries;
 const homeHref = langPath("", lang);
 ---
 
-<HubIndex
+<IndustriesHub
   hub={hub}
-  basePath={langPath("industries", lang)}
   lang={lang}
-  hideSectionIntro
   breadcrumbs={[
     { label: t.breadcrumb.home, href: homeHref },
     { label: t.breadcrumb.industries },

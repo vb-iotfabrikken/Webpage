@@ -17,9 +17,9 @@ export type SensorContentOverlay = Partial<Omit<SensorPageContent, "slug">>;
 export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorContentOverlay>>> = {
   de: {
     "full-plus": {
-      heroTitleAccent: "Vollständige Raumklimaüberwachung, komplett kabellos.",
+      heroTitleAccent: "Vollständige Indoor climate monitoring, komplett kabellos.",
       heroLead:
-        "Der Full+ Sensor ist Ihre All-in-One-Lösung zur präzisen Überwachung von Temperatur, Luftfeuchtigkeit, CO2 und TVOC. Konzipiert für den mühelosen professionellen Einsatz, liefert er die entscheidenden Daten, um Wohlbefinden zu optimieren, Gebäude zu schützen und Heizkosten zu senken.",
+        "Der Full+ ist Ihre All-in-One-Lösung zur präzisen Überwachung von Temperatur, Luftfeuchtigkeit, CO2 und TVOC. Konzipiert für den mühelosen professionellen Einsatz, liefert er die entscheidenden Daten, um Wohlbefinden zu optimieren, Gebäude zu schützen und Heizkosten zu senken.",
       useCases: "Schulen & Klassenzimmer · Kindertagesstätten · Büros · DGNB-zertifizierte Gebäude",
       benefits: [
         {
@@ -43,7 +43,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
     "mini-plus": {
       heroTitleAccent: "Präzise Temperatur- und Feuchtemessung, ohne die Komplexität.",
       heroLead:
-        "Der Mini+ Sensor ist die ideale Lösung, um die wichtigsten Parameter Ihres Raumklimas präzise zu überwachen, ohne unnötige Komplexität. Für den professionellen Einsatz konzipiert, verbindet er robuste Hardware mit der intelligenten RoomAlyzer-Plattform, um Energieverbrauch zu optimieren und Werte zu schützen.",
+        "Der Mini+ ist die ideale Lösung, um die wichtigsten Parameter Ihres Indoor climates präzise zu überwachen, ohne unnötige Komplexität. Für den professionellen Einsatz konzipiert, verbindet er robuste Hardware mit der intelligenten RoomAlyzer-Plattform, um Energieverbrauch zu optimieren und Werte zu schützen.",
       useCases: "Gebäude mit vielen Räumen · Pflegeheime · Museen & Kirchen · Mietobjekte",
       benefits: [
         {
@@ -56,7 +56,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
         },
         {
           title: "Faktenbasierte Dokumentation",
-          body: "±0,1 °C und ±1 % RF Präzision mit <0,03 °C/Jahr Drift, nachweisbare Bedingungen, exportierbar über die RoomAlyzer-Plattform.",
+          body: "±0,1 °C und ±1 % r.F. Präzision bei <0,03 °C/Jahr Drift – nachweisbare Bedingungen, exportierbar über die RoomAlyzer-Plattform.",
         },
         {
           title: "Präzise Energieeinsparungen",
@@ -65,14 +65,14 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     "mini-plus-pir": {
-      heroTitleAccent: "Präzise Raumklima- und Auslastungsdaten, mit langer Batterielaufzeit.",
+      heroTitleAccent: "Präzise Indoor climate- und Auslastungsdaten, mit langer Batterielaufzeit.",
       heroLead:
-        "Der Mini+ PIR ist die intelligente All-in-One-Lösung für ein optimiertes Raumklima und eine bedarfsgerechte Flächennutzung. Durch die Kombination präziser Klimamessungen mit anonymisierter Belegungserfassung liefert er einen ganzheitlichen Überblick über Ihre Gebäudedynamik.",
+        "Der Mini+ PIR ist die intelligente All-in-One-Lösung für ein optimiertes Indoor climate und eine bedarfsgerechte Flächennutzung. Durch die Kombination präziser Klimamessungen mit anonymisierter Belegungserfassung liefert er einen ganzheitlichen Überblick über Ihre Gebäudedynamik.",
       useCases: "Flexible Büros · Besprechungsräume · Geteilte Arbeitsplätze",
       benefits: [
         {
           title: "Dokumentierte Bedingungen in Echtzeit",
-          body: "Schaffen Sie eine verlässliche Datenbasis für Ihr Raumklima mit High-End-Sensorik für maximale Präzision.",
+          body: "Schaffen Sie eine verlässliche Datenbasis für Ihr Indoor climate mit High-End-Sensorik für maximale Präzision.",
         },
         {
           title: "Intelligente Energieoptimierung",
@@ -89,9 +89,9 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     humidity: {
-      heroTitleAccent: "Diskreter Schutz für Werte und Raumklima, mit extrem langer Batterielaufzeit.",
+      heroTitleAccent: "Diskreter Schutz für Werte und Indoor climate, mit extrem langer Batterielaufzeit.",
       heroLead:
-        "Der Humidity Sensor ist die ideale Lösung für alle, die präzise Temperatur- und Feuchtedaten in einem diskreten, kompakten Format benötigen. Er liefert exakte Werte an die RoomAlyzer-Plattform, um unersetzliche Kulturgüter zu schützen, strengen Denkmalschutz einzuhalten oder Büroumgebungen zu optimieren.",
+        "Der Humidity ist die ideale Lösung für alle, die präzise Temperatur- und Feuchtedaten in einem diskreten, kompakten Format benötigen. Er liefert exakte Werte an die RoomAlyzer-Plattform, um unersetzliche Kulturgüter zu schützen, strengen Denkmalschutz einzuhalten oder Büroumgebungen zu optimieren.",
       useCases: "Museen & Kirchen · Archive · Denkmalgeschützte Gebäude",
       benefits: [
         {
@@ -115,7 +115,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
     co2: {
       heroTitleAccent: "Präzise Luftqualitätsdaten, mit maximaler Batterielaufzeit.",
       heroLead:
-        "Der CO2 Sensor ist die professionelle Lösung zur Überwachung der Luftqualität dort, wo Wohlbefinden, Gesundheit und Konzentration entscheidend sind. In Kombination mit der RoomAlyzer-Plattform bietet er eine fundierte, faktenbasierte Grundlage, um Lüftung und Raumklima zu optimieren.",
+        "Der CO2 ist die professionelle Lösung zur Überwachung der Luftqualität dort, wo Wohlbefinden, Gesundheit und Konzentration entscheidend sind. In Kombination mit der RoomAlyzer-Plattform bietet er eine fundierte, faktenbasierte Grundlage, um Lüftung und Indoor climate zu optimieren.",
       useCases: "Klassenzimmer · Besprechungsräume · Großraumbüros",
       benefits: [
         {
@@ -139,7 +139,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
     temperature: {
       heroTitleAccent: "Sichere und präzise Temperaturüberwachung im kleinsten Format der Welt.",
       heroLead:
-        "Der Temperature Sensor überwacht präzise kritische Umgebungen, in denen kleinste Abweichungen erhebliche Folgen haben. Für die mühelose Validierung konzipiert, sichert er die korrekte Lagerung von Medikamenten und Lebensmitteln sowie den stabilen Betrieb technischer Anlagen und Labore.",
+        "Der Temperature überwacht präzise kritische Umgebungen, in denen kleinste Abweichungen erhebliche Folgen haben. Für die mühelose Validierung konzipiert, sichert er die korrekte Lagerung von Medikamenten und Lebensmitteln sowie den stabilen Betrieb technischer Anlagen und Labore.",
       useCases: "Apotheken & Medikamentenlager · Lebensmittellager · Labore & Serverräume",
       benefits: [
         {
@@ -163,7 +163,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
     outdoor: {
       heroTitleAccent: "Die professionelle Lösung zur präzisen Überwachung Ihres Außenklimas.",
       heroLead:
-        "Der Außen Sensor ist ein wesentlicher Bestandteil des modernen Gebäudemanagements. Durch die präzise Erfassung von Außentemperatur und -feuchte schafft er die nötige Referenz, um zu verstehen, wie das Außenklima Ihre Bausubstanz beeinflusst.",
+        "Der Außensensor ist ein wesentlicher Bestandteil des modernen Gebäudemanagements. Durch die präzise Erfassung von Außentemperatur und -feuchte schafft er die nötige Referenz, um zu verstehen, wie das Außenklima Ihre Bausubstanz beeinflusst.",
       useCases: "Innen-/Außenvergleich · Heizungsoptimierung · Schimmelprävention",
       benefits: [
         {
@@ -187,7 +187,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
     desk: {
       heroTitleAccent: "Datengestütztes Flächenmanagement für den modernen Arbeitsplatz.",
       heroLead:
-        "Der Desk Sensor liefert präzise Auslastungsdaten für eine effiziente, bedarfsgerechte Optimierung Ihrer Büroflächen, ohne Rätselraten. Durch die Kombination von Umgebungstemperaturmessung mit intelligenten Algorithmen zur Präsenzerkennung folgt er konsequent dem Privacy-by-Design-Prinzip und ermittelt nur, ob ein Arbeitsplatz belegt oder frei ist.",
+        "Der Desk liefert präzise Auslastungsdaten für eine effiziente, bedarfsgerechte Optimierung Ihrer Büroflächen, ohne Rätselraten. Durch die Kombination von Umgebungstemperaturmessung mit intelligenten Algorithmen zur Präsenzerkennung folgt er konsequent dem Privacy-by-Design-Prinzip und ermittelt nur, ob ein Arbeitsplatz belegt oder frei ist.",
       useCases: "Flexible Büros · Aktivitätsbasierte Arbeitsplätze · Hot-Desking",
       benefits: [
         {
@@ -211,7 +211,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
     touch: {
       heroTitleAccent: "Einfaches Feedback und schneller Service, genau dort, wo der Bedarf entsteht.",
       heroLead:
-        "Der Touch Sensor ist die ideale Lösung für alle, die ihren Betrieb bedarfsorientiert steuern möchten. Geben Sie Nutzern und Gästen die Möglichkeit, Sie per Knopfdruck direkt zu informieren, so reagieren Sie sofort, wenn eine Einrichtung Aufmerksamkeit braucht, ob eine Kaffeemaschine defekt ist oder ein Waschraum Service benötigt.",
+        "Der Touch ist die ideale Lösung für alle, die ihren Betrieb bedarfsorientiert steuern möchten. Geben Sie Nutzern und Gästen die Möglichkeit, Sie per Knopfdruck direkt zu informieren, so reagieren Sie sofort, wenn eine Einrichtung Aufmerksamkeit braucht, ob eine Kaffeemaschine defekt ist oder ein Waschraum Service benötigt.",
       useCases: "Waschräume · Kantinen · Empfang & Besprechungsräume",
       benefits: [
         {
@@ -235,7 +235,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
     "open-close": {
       heroTitleAccent: "Volle Transparenz Ihrer Raumressourcen in Echtzeit, von Schließfächern bis Fenstern.",
       heroLead:
-        "Der Open/Close Sensor liefert präzise Fakten statt Vermutungen zum Status und zur Nutzung Ihrer Infrastruktur. Ob Schließfachverwaltung, Logistikoptimierung für Arbeitskleidung oder Objektschutz durch die Kontrolle geschlossener Fenster, der Sensor verwandelt jedes Ereignis in wertvolle Erkenntnisse.",
+        "Der Open/Close liefert präzise Fakten statt Vermutungen zum Status und zur Nutzung Ihrer Infrastruktur. Ob Schließfachverwaltung, Logistikoptimierung für Arbeitskleidung oder Objektschutz durch die Kontrolle geschlossener Fenster, der Sensor verwandelt jedes Ereignis in wertvolle Erkenntnisse.",
       useCases: "Schließfachverwaltung · Arbeitskleidungs-Logistik · Fenster- & Türkontrolle",
       benefits: [
         {
@@ -244,7 +244,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
         },
         {
           title: "Effiziente Verwaltung und Service",
-          body: "Das System zeigt genau, welche Schränke genutzt wurden, und ermöglicht bedarfsgerechtes Auffüllen von Arbeitskleidung oder gezielte Inspektionsintervalle.",
+          body: "Das System zeigt genau, welche Schränke genutzt wurden und ermöglicht bedarfsgerechtes Auffüllen von Arbeitskleidung oder gezielte Inspektionsintervalle.",
         },
         {
           title: "Objektschutz und Energieoptimierung",
@@ -259,7 +259,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
     motion: {
       heroTitleAccent: "Kabellose Erfassung der Flächennutzung mit 360°-Rundumblick.",
       heroLead:
-        "Der Motion Sensor schafft die präzise Grundlage für professionelles Flächenmanagement und die strategische Optimierung Ihrer Gebäudenutzung. Mittels passiver Infrarottechnik (PIR) zur Erkennung von Wärmebewegung erfasst das System die Raumbelegung ausschließlich, um die Nutzung Ihrer Quadratmeter abzubilden.",
+        "Der Motion schafft die präzise Grundlage für professionelles Flächenmanagement und die strategische Optimierung Ihrer Gebäudenutzung. Mittels passiver Infrarottechnik (PIR) zur Erkennung von Wärmebewegung erfasst das System die Raumbelegung ausschließlich, um die Nutzung Ihrer Quadratmeter abzubilden.",
       useCases: "Flächenplanung · Reinigungsoptimierung · Facility Management",
       benefits: [
         {
@@ -307,7 +307,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
     "water-rope": {
       heroTitleAccent: "Umfassender Schutz statt einzelner Messpunkte, mit durchgehender Zonenerkennung.",
       heroLead:
-        "Der Water Rope Sensor bietet ein fortschrittliches Sicherheitsnetz, indem er einen durchgehenden Pfad statt eines einzelnen Punktes überwacht. Bereits ab 50 mm Kontakt an einer beliebigen Stelle seines flexiblen 3-Meter-Kabels ausgelöst, liefert er die nötige Echtzeitabdeckung, um Hochrisiko-Infrastruktur wie Archive, Labore und Serverräume zu schützen.",
+        "Der Water rope bietet ein fortschrittliches Sicherheitsnetz, indem er einen durchgehenden Pfad statt eines einzelnen Punktes überwacht. Bereits ab 50 mm Kontakt an einer beliebigen Stelle seines flexiblen 3-Meter-Kabels ausgelöst, liefert er die nötige Echtzeitabdeckung, um Hochrisiko-Infrastruktur wie Archive, Labore und Serverräume zu schützen.",
       useCases: "Archive & Labore · Rohrleitungen & Doppelböden · Wohnungsbaugesellschaften",
       benefits: [
         {
@@ -390,15 +390,15 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
         },
         {
           title: "Ægte vedligeholdelsesfri drift",
-          body: "Et udskifteligt 3 × AA litiumpakke giver op til 10 års batterilevetid for stabil overvågning med lave driftsomkostninger.",
+          body: "En udskiftelig pakke med 3 × AA-litiumbatterier giver op til 10 års batterilevetid – stabil overvågning med lave driftsomkostninger.",
         },
         {
           title: "Faktabaseret dokumentation",
-          body: "±0,1 °C og ±1 % RF præcision med <0,03 °C/år drift, verificerbare forhold, du kan eksportere fra RoomAlyzer-platformen.",
+          body: "±0,1 °C og ±1 % r.f. i præcision med under 0,03 °C/år i drift – verificerbare forhold, du kan eksportere fra RoomAlyzer-platformen.",
         },
         {
           title: "Præcise energibesparelser",
-          body: "Med H124 × B60 × D26 mm (130 g) i hvert rum og sænk varmeomkostningerne med ~5 % for hver grad, du sænker setpunktet, understøttet af rumdata.",
+          body: "Registrér temperaturen i hvert rum (H124 × B60 × D26 mm, 130 g), og sænk varmeomkostningerne med ~5 % for hver grad, du sænker setpunktet.",
         },
       ],
     },
@@ -490,7 +490,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
         },
         {
           title: "Øjeblikkelig reaktion",
-          body: "Modtag automatiske e-mail- og SMS-beskeder i det øjeblik temperaturgrænser overskrides, så dit team kan handle, før værdifuld lager fordærves.",
+          body: "Modtag automatiske e-mail- og SMS-beskeder, når temperaturgrænserne overskrides, så dit team kan handle, før værdifulde varer fordærves.",
         },
         {
           title: "Hurtig, fleksibel installation",
@@ -606,7 +606,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
         },
         {
           title: "Behovsbaseret facility management",
-          body: "Optimer ressourcefordelingen ved at fokusere service- og rengøringsrunder på de områder, der reelt har været brugt, planlagt via præcise, automatiske heatmaps.",
+          body: "Optimer ressourcefordelingen ved at planlægge service- og rengøringsrunder efter de områder, der reelt har været brugt – ud fra præcise, automatiske heatmaps.",
         },
         {
           title: "Minimal vedligeholdelse og lang levetid",
@@ -626,7 +626,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       benefits: [
         {
           title: "Beskyttelse af kritisk infrastruktur",
-          body: "Modtag øjeblikkelige beskeder via e-mail eller SMS, når ledende væsker registreres, så du kan opfange læk, før de når serverrum eller elektriske installationer.",
+          body: "Modtag øjeblikkelig besked på e-mail eller SMS, når der registreres ledende væske, så du kan opfange læk, før de når serverrum eller elektriske installationer.",
         },
         {
           title: "Sikkerhed i kældre og skakter",
@@ -944,7 +944,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
         },
         {
           title: "Behovsanpassad facility management",
-          body: "Optimera resursfördelningen genom att fokusera service- och städrundor på de områden som faktiskt har använts, planerat via exakta, automatiska heatmaps.",
+          body: "Optimera resursfördelningen genom att planera service- och städrundor efter de områden som faktiskt har använts – utifrån exakta, automatiska heatmaps.",
         },
         {
           title: "Minimalt underhåll och lång livslängd",

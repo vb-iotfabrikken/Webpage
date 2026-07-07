@@ -250,11 +250,11 @@ const da: SpaceManagementStrings = {
   challenges: [
     {
       title: "Illusionen om fuldt booket",
-      body: "Mødelokaler ser fuldt blokerede ud i kalenderen, men står tomme — eller er booket til ti og brugt af to. Uden realtidsdata overser I den skjulte kapacitet, der kunne rumme en hel ekstra afdeling.",
+      body: "Mødelokaler ser fuldt booket ud i kalenderen, men står tomme – eller er booket til ti og brugt af to. Uden realtidsdata overser du den skjulte kapacitet, der kunne rumme en hel ekstra afdeling.",
     },
     {
       title: "Politik vs. virkelighed",
-      body: "Ledelsen kan kræve en fem-dages kontoruge, men teamledere giver fortsat undtagelser. Kontorer topper midt på ugen, mens skriveborde står tomme mandag og fredag — og I betaler for fuld opvarmning, køling og rengøring uge efter uge.",
+      body: "Ledelsen kan kræve en fem-dages kontoruge, men teamlederne giver fortsat undtagelser. Kontorerne topper midt på ugen, mens skrivebordene står tomme mandag og fredag – og du betaler for fuld opvarmning, køling og rengøring uge efter uge.",
     },
     {
       title: "Grønne dagsordener uden substans",
@@ -262,7 +262,7 @@ const da: SpaceManagementStrings = {
     },
     {
       title: "Kontorforbedringer I ikke kan måle",
-      body: "For at tiltrække kontorfremmøde investerer virksomheder i stille zoner, stående rum og projektvægge — men uden sporing har I intet udgangspunkt for, hvilke layouts der driver fremmøde, og hvilke der spilder budget.",
+      body: "For at give medarbejderne lyst til at komme på kontoret investerer virksomheder i stillezoner, ståpladser og projektvægge – men uden data har du intet udgangspunkt for at vide, hvilke indretninger der rent faktisk får folk til at møde op, og hvilke der spilder budgettet.",
     },
   ],
   capabilitiesEyebrow: "Sådan løser RoomAlyzer det",
@@ -312,14 +312,14 @@ const da: SpaceManagementStrings = {
     {
       id: "heatmaps",
       title: "Intuitive heatmaps",
-      body: "Kom væk fra tætte, forvirrende regneark. Heatmaps omsætter rå belægning til visuelle tendenser, I kan scanne — se en uges underudnyttelse eller topbelægning på tværs af hele etager med ét blik.",
+      body: "Slip for tætpakkede, uoverskuelige regneark. Heatmaps omsætter rå belægning til visuelle mønstre, du kan skimme – se en uges underudnyttelse eller spidsbelastning på tværs af hele etager med ét blik.",
       unit: "Tendenser",
       imageAlt: "Belægningsheatmap på en plantegning i RoomAlyzer",
     },
     {
       id: "savings",
       title: "Energi- og rengøringsbesparelser",
-      body: "Styr faciliteter efter virkelighed, ikke politik. Se, hvornår belægningen falder mandag og fredag eller på tværs af zoner, så I kan tilpasse opvarmning, ventilation og rengøring til faktisk brug i stedet for faste planer. Et dokumenteret Dansk Industri-case: 1 mio. kr. i infrastruktur giver op til 1,5 mio. kr. i direkte energi- og driftsbesparelser inden for det første år.",
+      body: "Styr driften efter virkeligheden, ikke efter politik. Se, hvornår belægningen falder mandag og fredag eller på tværs af zoner, så du kan tilpasse opvarmning, ventilation og rengøring til faktisk brug i stedet for faste planer. En dokumenteret case fra Dansk Industri: 1 mio. kr. i infrastruktur giver op til 1,5 mio. kr. i direkte energi- og driftsbesparelser inden for det første år.",
       bodyWithSensorLinks: [
         {
           type: "text",
@@ -340,7 +340,7 @@ const da: SpaceManagementStrings = {
   smarterTogetherLabel: "Smartere sammen",
   smarterTogetherHeadline: "Belægning, indeklima og compliance i ét overblik",
   smarterTogether:
-    "RoomAlyzer kombinerer arealudnyttelse med indeklima (CO₂, temperatur og luftfugtighed) så I ventilerer efter faktisk headcount og skruer ned, når lokaler står tomme.",
+    "RoomAlyzer kombinerer arealudnyttelse med indeklima (CO₂, temperatur og luftfugtighed), så du ventilerer efter det faktiske antal mennesker og skruer ned, når lokalerne står tomme.",
   smarterTogetherOccupancyLabel: "Arealudnyttelse",
   smarterTogetherOccupancyContext: "Åbent kontor · 3. sal",
   smarterTogetherOccupancyStat: "62 % belagt",
@@ -372,15 +372,15 @@ const da: SpaceManagementStrings = {
     },
     {
       q: "Kan vi automatisk frigive møder, hvor ingen dukker op?",
-      a: "Ja. RoomAlyzer integrerer med jeres kalendersystemer og frigiver automatisk spøgelsesbookinger, når et lokale forbliver tomt efter en graceperiode.",
+      a: "Ja. RoomAlyzer integrerer med dine kalendersystemer og frigiver automatisk spøgelsesbookinger, når et lokale står tomt efter en kort frist.",
     },
     {
       q: "Hvor præcis er belægningsdetektionen?",
-      a: "Detektionen drives af finjusterede miljøscenarier og AI-rapportering. Sensorer prækonfigureres før udrulning, så I får pålidelige udnyttelsesdata fra dag ét.",
+      a: "Detektionen drives af finjusterede miljøscenarier og AI-rapportering. Sensorerne prækonfigureres før udrulning, så du får pålidelige udnyttelsesdata fra dag ét.",
     },
     {
       q: "Hvordan påvirker det vores IT-sikkerhed?",
-      a: "Nul påvirkning af jeres virksomhedsnetværk. Infrastrukturen er fuldt isoleret, WiFi-fri og mobildrevet — ingen netværkskonfiguration krævet.",
+      a: "Ingen påvirkning af dit virksomhedsnetværk. Infrastrukturen er fuldt isoleret, Wi-Fi-fri og mobildrevet – ingen netværkskonfiguration nødvendig.",
     },
   ],
   ctaTitle: "Vil du selv se det?",
@@ -399,10 +399,10 @@ const de: SpaceManagementStrings = {
   heroTitle: "Bürokosten optimieren und Mitarbeitendenwohlbefinden stärken,",
   heroTitleAccent: "mit Space-Management auf Basis realer Nutzung.",
   heroLead:
-    "Live-Belegung von Arbeitsplätzen und Räumen, die Rätselraten in Miet- und Energieeinsparungen übersetzt — und Menschen einen Arbeitsplatz gibt, für den sich das Kommen lohnt.",
-  heroTitleImageAlt: "Hand, die einen RoomAlyzer Space Desk Sensor unter einem Bürotisch anbringt",
+    "Echte Auslastungsdaten statt vager Schätzungen: Senken Sie Miet- sowie Energiekosten spürbar und bieten Sie Ihren Teams eine moderne Arbeitsumgebung, in die man gerne kommt.",
+  heroTitleImageAlt: "Hand, die einen RoomAlyzer Space Desk unter einem Bürotisch anbringt",
   intro: [
-    "Facility Management geht nicht mehr nur um Arbeitsplätze und Raumklima. Es geht um ein menschliches Dilemma zwischen Flexibilität und physischer Präsenz. Mitarbeitende pendeln nicht mehr aus Gewohnheit; der Arbeitsplatz muss klaren Mehrwert liefern. Die Herausforderung: das Mitarbeitererlebnis heben und Verschwendung gegen null drücken, weg vom Köpfezählen hin zur Optimierung der tatsächlichen Nutzung.",
+    "Modernes Facility Management umfasst weit mehr als die reine Bereitstellung von Arbeitsplätzen und Indoor climate. Es bewegt sich im Spannungsfeld zwischen maximaler Flexibilität und physischer Präsenz. Mitarbeitende pendeln heute nicht mehr aus reiner Gewohnheit ins Büro – der Arbeitsplatz muss einen klaren Mehrwert bieten. Die große Herausforderung lautet: Das Mitarbeitererlebnis spürbar zu verbessern und gleichzeitig Ressourcenverschwendung konsequent zu minimieren. Der Schlüssel dazu liegt im Wechsel von starren Mitarbeiterzahlen hin zur präzisen Optimierung der tatsächlichen Nutzung.",
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
@@ -414,11 +414,11 @@ const de: SpaceManagementStrings = {
   challenges: [
     {
       title: "Die Illusion der vollen Auslastung",
-      body: "Besprechungsräume wirken im Kalender vollständig blockiert, stehen aber leer — oder sind für zehn gebucht und von zweien genutzt. Ohne Echtzeitdaten übersehen Sie die versteckte Reserve, die eine ganze zusätzliche Abteilung aufnehmen könnte.",
+      body: "Besprechungsräume wirken im Kalender vollständig blockiert, stehen aber leer oder sind für zehn gebucht und von zweien genutzt. Ohne Echtzeitdaten übersehen Sie die versteckte Reserve, die eine ganze zusätzliche Abteilung aufnehmen könnte.",
     },
     {
       title: "Politik vs. Realität",
-      body: "Die Führung kann eine Fünf-Tage-Bürowoche vorschreiben, aber Teamleitungen machen weiter Ausnahmen. Büros erreichen Mitte der Woche ihren Höhepunkt, während Arbeitsplätze montags und freitags leer stehen — und Sie Woche für Woche für volle Heizung, Kühlung und Reinigung zahlen.",
+      body: "Die Unternehmensleitung kann zwar eine Fünf-Tage-Präsenzwoche anordnen, doch in der Praxis machen Teamleiter weiterhin Ausnahmen. Die Folge: Mitte der Woche erreicht die Büroauslastung ihren Höchststand, während Arbeitsplätze montags und freitags völlig leer stehen – und Sie Woche für Woche für Heizung, Kühlung und Reinigung auf Hochtouren zahlen.",
     },
     {
       title: "Grüne Agenda ohne Substanz",
@@ -432,7 +432,7 @@ const de: SpaceManagementStrings = {
   capabilitiesEyebrow: "So löst RoomAlyzer das",
   capabilitiesHeading: "Belegungsdaten, angepasst an die Art, wie Menschen arbeiten — sicher ab Tag eins.",
   solutionLead:
-    "RoomAlyzer Space-Management nutzt Plug-and-Play-Desk- und Motion-Sensoren für einen live, vollständig anonymisierten und DSGVO-konformen Überblick über Arbeitsplatzdynamik — entwickelt für Facility Manager, Flächenplaner, Führungskräfte und Kommunen.",
+    "RoomAlyzer Space-Management nutzt die Plug-and-Play-Sensoren Desk und Motion für einen anonymisierten, DSGVO-konformen Echtzeit-Überblick über die Arbeitsplatzdynamik – entwickelt für Facility Manager, Flächenplaner, Führungskräfte und Kommunen.",
   solutionLeadWithSensorLinks: [
     { type: "text", value: "RoomAlyzer Space-Management nutzt Plug-and-Play-" },
     { type: "sensor", slug: "desk", label: "Desk" },
@@ -451,7 +451,7 @@ const de: SpaceManagementStrings = {
     {
       id: "desks",
       title: "Arbeitsplätze und Zonen-Tagging",
-      body: "Zählen Sie nicht nur Köpfe — taggen und vergleichen Sie, wie Abteilungen ihre Heimzonen versus gemeinsame Projektbereiche nutzen, und treffen Sie datengestützte Layout-Entscheidungen nach tatsächlicher Nutzung.",
+      body: "Zählen Sie nicht nur Köpfe — taggen und vergleichen Sie, wie Abteilungen ihre Heimzonen versus gemeinsame Projektbereiche nutzen und treffen Sie datengestützte Layout-Entscheidungen nach tatsächlicher Nutzung.",
       bodyWithSensorLinks: [
         { type: "text", value: "Die Sensoren " },
         { type: "sensor", slug: "desk", label: "Desk" },
@@ -483,12 +483,12 @@ const de: SpaceManagementStrings = {
     {
       id: "savings",
       title: "Energie- und Reinigungseinsparungen",
-      body: "Steuern Sie Gebäude nach Realität, nicht nach Policy. Erkennen Sie, wann die Belegung montags und freitags oder in ganzen Zonen sinkt, und passen Sie Heizung, Lüftung und Reinigung an die tatsächliche Nutzung statt an feste Pläne an. Ein dokumentierter Dansk Industri-Fall: 1 Mio. DKK Infrastruktur mit bis zu 1,5 Mio. DKK direkten Energie- und Betriebseinsparungen im ersten Jahr.",
+      body: "Steuern Sie Gebäude nach Realität, nicht nach Policy. Erkennen Sie, wann die Belegung montags und freitags oder in ganzen Zonen sinkt und passen Sie Heizung, Lüftung und Reinigung an die tatsächliche Nutzung statt an feste Pläne an. Ein dokumentierter Dansk Industri-Fall: 1 Mio. DKK Infrastruktur mit bis zu 1,5 Mio. DKK direkten Energie- und Betriebseinsparungen im ersten Jahr.",
       bodyWithSensorLinks: [
         {
           type: "text",
           value:
-            "Steuern Sie Gebäude nach Realität, nicht nach Policy. Erkennen Sie, wann die Belegung montags und freitags oder in ganzen Zonen sinkt, und passen Sie Heizung, Lüftung und Reinigung an die tatsächliche Nutzung statt an feste Pläne an. ",
+            "Steuern Sie Gebäude nach Realität, nicht nach Policy. Erkennen Sie, wann die Belegung montags und freitags oder in ganzen Zonen sinkt und passen Sie Heizung, Lüftung und Reinigung an die tatsächliche Nutzung statt an feste Pläne an. ",
         },
         { type: "caseStudy", slug: "dansk-industri", label: "Ein dokumentierter Dansk Industri-Fall" },
         {
@@ -502,15 +502,15 @@ const de: SpaceManagementStrings = {
     },
   ],
   smarterTogetherLabel: "Smarter zusammen",
-  smarterTogetherHeadline: "Belegung, Raumklima und Compliance in einer Ansicht",
+  smarterTogetherHeadline: "Belegung, Indoor climate und Compliance in einer Ansicht",
   smarterTogether:
-    "RoomAlyzer kombiniert Flächennutzung mit Raumklima (CO₂, Temperatur und Luftfeuchtigkeit), damit Sie für tatsächliche Kopfzahl lüften und drosseln, wenn Räume leer sind.",
+    "RoomAlyzer kombiniert Flächennutzung mit Indoor climate (CO₂, Temperatur und Luftfeuchtigkeit), damit Sie für tatsächliche Kopfzahl lüften und drosseln, wenn Räume leer sind.",
   smarterTogetherOccupancyLabel: "Flächennutzung",
   smarterTogetherOccupancyContext: "Open Space · Etage 3",
   smarterTogetherOccupancyStat: "62 % belegt",
-  smarterTogetherClimateLabel: "Raumklima",
+  smarterTogetherClimateLabel: "Indoor climate",
   smarterTogetherClimateContext: "Besprechungsraum A",
-  smarterTogetherIndoorClimateLink: "Raumklima-Modul entdecken",
+  smarterTogetherIndoorClimateLink: "Indoor climate-Modul entdecken",
   audiencesEyebrow: "Für wen",
   audiencesHeading: "Für Workplace- und Facility-Teams — und die Führung, die die Zahlen freigibt.",
   audiencesLead:

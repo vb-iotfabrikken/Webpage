@@ -90,13 +90,13 @@ const legalHubI18n: Partial<Record<Lang, HubOverlay>> = {
     eyebrow: "Rechtliches",
     lead: "Datenschutz, Cookies, Bedingungen, Sicherheit und die rechtlichen Seiten, die wir veröffentlichen müssen.",
     leaves: {
-      privacy: { title: "Datenschutzerklärung.", titleAccent: "Was wir mit Daten tun, und was nicht.", lead: "Wie wir personenbezogene Daten verarbeiten, welche Auftragsverarbeiter wir einsetzen und welche Rechte Sie als betroffene Person haben." },
-      cookies: { title: "Cookie-Richtlinie.", titleAccent: "Welche Cookies und warum.", lead: "Die Cookies, die wir setzen, die, die wir nicht setzen, und wie Sie Ihre Einstellungen jederzeit ändern können." },
+      privacy: { title: "Datenschutzerklärung.", titleAccent: "Was wir mit Daten tun und was nicht.", lead: "Wie wir personenbezogene Daten verarbeiten, welche Auftragsverarbeiter wir einsetzen und welche Rechte Sie als betroffene Person haben." },
+      cookies: { title: "Cookie-Richtlinie.", titleAccent: "Welche Cookies und warum.", lead: "Die Cookies, die wir setzen, die, die wir nicht setzen und wie Sie Ihre Einstellungen jederzeit ändern können." },
       terms: { title: "Bedingungen und AVV.", titleAccent: "Geschäftsbedingungen und Datenverarbeitung.", lead: "Unsere Geschäftsbedingungen und der Auftragsverarbeitungsvertrag, der für jede RoomAlyzer-Bereitstellung gilt." },
       impressum: { title: "Impressum.", titleAccent: "Gesetzliche Angaben.", lead: "Unternehmensangaben, eingetragene Anschrift und verantwortliche Personen, wie nach deutschem Recht vorgeschrieben." },
       security: { title: "Sicherheit.", titleAccent: "Wie wir Ihre Daten schützen.", lead: "Zertifizierungen, Kontrollen und die architektonischen Entscheidungen hinter der Sicherheit von RoomAlyzer." },
       accessibility: { title: "Erklärung zur Barrierefreiheit.", titleAccent: "Eine Website, die alle nutzen können.", lead: "Unser aktuelles Niveau der Barrierefreiheit, bekannte Probleme und wie Sie Probleme melden." },
-      sla: { title: "Service-Level-Agreement.", titleAccent: "Wozu wir uns verpflichten, und wie.", lead: "Unsere Verfügbarkeitszusage, Supportzeiten und die Art, wie wir Service-Level messen und darüber berichten." },
+      sla: { title: "Service-Level-Agreement.", titleAccent: "Wozu wir uns verpflichten und wie.", lead: "Unsere Verfügbarkeitszusage, Supportzeiten und die Art, wie wir Service-Level messen und darüber berichten." },
     },
   },
   sv: {

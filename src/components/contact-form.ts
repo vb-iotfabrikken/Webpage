@@ -34,6 +34,18 @@ import {
 
 import { submitLeadToZoho } from "../lib/forms/zoho";
 
+import { pushEnhancedConversionEmail } from "../lib/analytics/enhanced-conversions";
+
+import {
+
+  bindFormStartTracking,
+
+  trackFormError,
+
+  trackGenerateLead,
+
+} from "../lib/analytics/form-tracking";
+
 
 
 const DEFAULT_SOURCE: ZohoLeadSource = "Website - Contact";
@@ -138,6 +150,8 @@ function initContactForm(form: HTMLFormElement) {
 
   bindHoneypotTouch(honeypot);
 
+  bindFormStartTracking(form);
+
 
 
   const showFormError = (text: string) => {
@@ -230,6 +244,8 @@ function initContactForm(form: HTMLFormElement) {
 
         );
 
+        trackFormError(form, "validation");
+
         return;
 
       }
@@ -243,6 +259,8 @@ function initContactForm(form: HTMLFormElement) {
           messages.too_soon ?? "Please wait a moment before submitting, then try again.",
 
         );
+
+        trackFormError(form, "too_soon");
 
         return;
 
@@ -294,6 +312,10 @@ function initContactForm(form: HTMLFormElement) {
 
       );
 
+      trackGenerateLead(form, source);
+
+      void pushEnhancedConversionEmail(result.data.email);
+
       form.hidden = true;
 
       if (successEl) successEl.hidden = false;
@@ -303,6 +325,8 @@ function initContactForm(form: HTMLFormElement) {
       if (section) syncContactFormColumnHeight(section);
 
     } catch {
+
+      trackFormError(form, "submit");
 
       showFormError(
 

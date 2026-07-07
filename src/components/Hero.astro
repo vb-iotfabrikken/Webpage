@@ -36,6 +36,8 @@ interface Props {
   darkTone?: "navy" | "worktech" | "mutec" | "dhbv";
   /** Hide the decorative dot pattern in the title band. */
   noPattern?: boolean;
+  /** Homepage hero: wider copy column and slightly smaller lead so the subheadline fits two lines. */
+  homeHero?: boolean;
 }
 
 const {
@@ -59,6 +61,7 @@ const {
   dark = false,
   darkTone = "navy",
   noPattern = false,
+  homeHero = false,
 } = Astro.props;
 
 const hasVisual = Astro.slots.has("visual");
@@ -121,13 +124,15 @@ const breadcrumbMarginClass = compactTop ? "mb-3 md:mb-4" : "mb-4 md:mb-6";
 const leadMarginClass = compactTop ? "mt-4 md:mt-5 xl:mt-6" : "mt-6";
 const ctaMarginClass = compactTop ? "mt-6 md:mt-7 xl:mt-8" : "mt-8";
 const titleSizeClass = "text-3xl md:text-4xl xl:text-5xl";
-const leadSizeClass = "text-base md:text-lg xl:text-xl";
+const leadSizeClass = homeHero ? "text-base md:text-lg" : "text-base md:text-lg xl:text-xl";
+const contentWidthClass = homeHero ? "max-w-4xl" : "max-w-3xl";
 ---
 
 <section
   data-page-hero
   data-compact-top={compactTop || undefined}
   data-compact-bottom={compactBottom || useGreyVisualPadding ? true : undefined}
+  data-home-hero={homeHero || undefined}
   class:list={[
     "relative",
     surfaceClass,
@@ -149,7 +154,7 @@ const leadSizeClass = "text-base md:text-lg xl:text-xl";
 
     {splitVisual && hasVisual ? (
       splitVisualBleedRight ? (
-        <div class="relative z-10 max-w-3xl">
+        <div class:list={["relative z-10", contentWidthClass]}>
           {eyebrow && (
             <p class:list={["reveal mb-3 text-sm font-semibold uppercase tracking-wider", eyebrowClass]}>
               {eyebrow}
@@ -201,7 +206,7 @@ const leadSizeClass = "text-base md:text-lg xl:text-xl";
             ? "items-end"
             : "items-center",
       ]}>
-        <div class="lg:col-span-7 max-w-3xl">
+        <div class:list={["lg:col-span-7", contentWidthClass]}>
           {eyebrow && (
             <p class:list={["reveal mb-3 text-sm font-semibold uppercase tracking-wider", eyebrowClass]}>
               {eyebrow}
@@ -258,7 +263,7 @@ const leadSizeClass = "text-base md:text-lg xl:text-xl";
       )
     ) : hasTitleVisual && align === "left" ? (
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-6 lg:gap-x-8 xl:gap-x-10 items-start">
-        <div class="lg:col-span-7 max-w-3xl">
+        <div class:list={["lg:col-span-7", contentWidthClass]}>
           {eyebrow && (
             <p class:list={["reveal mb-3 text-sm font-semibold uppercase tracking-wider", eyebrowClass]}>
               {eyebrow}
@@ -307,7 +312,7 @@ const leadSizeClass = "text-base md:text-lg xl:text-xl";
     ) : (
       <div
         class:list={[
-          align === "center" ? "max-w-3xl mx-auto" : "max-w-3xl",
+          align === "center" ? `${contentWidthClass} mx-auto` : contentWidthClass,
           hasFloatingVisual && "relative z-10 lg:max-w-[min(100%,42rem)] lg:pr-6 xl:pr-8",
         ]}
       >

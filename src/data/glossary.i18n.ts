@@ -67,10 +67,6 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
     leed: {
       short: "Et US-origineret bygningscertificeringssystem med indeklima-kreditter, der kræver kontinuerlig overvågning.",
     },
-    lorawan: {
-      short: "En lavenergi, langrækkende trådløs protokol (typisk 868 MHz i Europa) brugt af de fleste af vores batteridrevne sensorer.",
-      detail: "Gateways dækker 2–5 km udendørs og 200–500 m indendørs afhængigt af byggeri. Hver sensor får AES-128-krypterede sessionsnøgler.",
-    },
     mqtt: {
       short: "En let publish-subscribe-protokol til live sensordata fra platformen til BMS, NOC og ITSM-systemer.",
     },
@@ -151,8 +147,8 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Ein ANSI/ISO-Protokoll für Gebäudeautomation, das HVAC, Beleuchtung und Zutrittskontrolle über verkabelte Netze verbindet.",
     },
     br18: {
-      short: "Die dänische Bauordnung von 2018 mit Grundanforderungen an Raumklima und Energie für Neubau und Sanierung.",
-      detail: "BR18 Kapitel 14 regelt das Raumklima und verlangt CO₂ unter 1000 ppm in belegten Räumen; Temperatur- und Feuchtebereiche variieren nach Nutzungstyp. In Deutschland gelten vergleichbare Anforderungen über DIN/EN oder lokale Vorschriften.",
+      short: "Die dänische Bauordnung von 2018 mit Grundanforderungen an Indoor climate und Energie für Neubau und Sanierung.",
+      detail: "BR18 Kapitel 14 regelt das Indoor climate und verlangt CO₂ unter 1000 ppm in belegten Räumen; Temperatur- und Feuchtebereiche variieren nach Nutzungstyp. In Deutschland gelten vergleichbare Anforderungen über DIN/EN oder lokale Vorschriften.",
     },
     co2: {
       short: "Das von Nutzern ausgeatmete Gas; Innenwerte sind der praktischste Indikator für Lüftungsqualität in Klassenzimmern und Büros.",
@@ -168,7 +164,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Die frühere (2007) europäische Innenumweltnorm, heute durch EN 16798 abgelöst, aber in älteren Spezifikationen noch referenziert.",
     },
     "en-15757": {
-      short: "Die europäische Konservierungsnorm mit Klimavorgaben für organische hygroskopische Materialien im Kulturerbe.",
+      short: "Die europäische Preservationsnorm mit Klimavorgaben für organische hygroskopische Materialien im Kulturerbe.",
       detail: "EN 15757 nutzt einen relativen Ansatz (Saisonbänder aus dem historischen Klima des Objekts) statt eines festen Sollwerts, oft realistischer in unbeheizten historischen Gebäuden.",
     },
     "en-16798": {
@@ -176,7 +172,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       detail: "Teil 1 definiert vier Kategorien der Innenumwelt (I–IV) mit CO₂-, Temperatur- und Feuchtebereichen. Kategorie II ist das übliche Ziel für Neubauten.",
     },
     esg: {
-      short: "Ein Berichtsrahmen für nicht-finanzielle Leistung von Investoren und Aufsicht, inkl. Gebäudeenergie und Raumklimadaten.",
+      short: "Ein Berichtsrahmen für nicht-finanzielle Leistung von Investoren und Aufsicht, inkl. Gebäudeenergie und Indoor climate data.",
     },
     fm: {
       short: "Die Disziplin, die den physischen Arbeitsplatz betreibt: Reinigung, Wartung, Flächenplanung, Energie und Umwelt.",
@@ -203,10 +199,6 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
     leed: {
       short: "Ein US-originiertes Gebäudezertifikat mit Innenluft-Krediten, die kontinuierliches Monitoring verlangen.",
     },
-    lorawan: {
-      short: "Ein energiearmes, langreichweitiges Funkprotokoll (typisch 868 MHz in Europa) für die meisten unserer batteriebetriebenen Sensoren.",
-      detail: "Gateways decken 2–5 km im Freien und 200–500 m innen ab, je nach Bauweise. Jeder Sensor erhält AES-128-verschlüsselte Sitzungsschlüssel.",
-    },
     mqtt: {
       short: "Ein leichtes Publish-Subscribe-Protokoll zum Streamen von Live-Sensordaten von der Plattform zu BMS, NOC und ITSM.",
     },
@@ -220,10 +212,10 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Ein weit verbreitetes Gebäudeautomation-Framework für BACnet, LonWorks, Modbus und IP-Geräte unter einer Supervisor-Oberfläche.",
     },
     noc: {
-      short: "Das 24/7-Überwachungszentrum, das Wassererkennungs- und kritische Alarme für Rechenzentrum- und Enterprise-Kunden empfängt.",
+      short: "Das 24/7-Überwachungszentrum, das Water detections- und kritische Alarme für Rechenzentrum- und Enterprise-Kunden empfängt.",
     },
     pi: {
-      short: "Ein aggregierter Score in Raumklimaberichten, der Überschreitungshäufigkeit, Schwere und Dauer zu einem Prozentwert bündelt.",
+      short: "Ein aggregierter Score in Indoor climateberichten, der Überschreitungshäufigkeit, Schwere und Dauer zu einem Prozentwert bündelt.",
     },
     pir: {
       short: "Belegungssensortechnik, die Bewegung über Infrarotstrahlung erfasst: Standard für Anwesenheit auf Raumebene.",
@@ -244,7 +236,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Eine HTTP-Schnittstelle zum Abrufen von Sensordaten, Verwalten von Räumen und Konfigurieren von Alarmen. Dokumentiert mit OpenAPI.",
     },
     rh: {
-      short: "Verhältnis von Dampfdruck zu Sättigung in Prozent. 40–60 % RH ist der Komfortbereich für die meisten belegten Räume.",
+      short: "Verhältnis von Dampfdruck zu Sättigung in Prozent. 40–60 % r. F. ist der Komfortbereich für die meisten belegten Räume.",
     },
     "scope-2": {
       short: "GHG-Emissionen aus eingekauftem Strom und Fernwärme. Der Großteil des Gebäudebetriebs fällt unter Scope 2.",
@@ -260,7 +252,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       detail: "TVOC eignet sich für Trenddetektion (Reinigung gerade erfolgt, neues Möbelstück) statt absoluter Gesundheitsschwellen, weil Einzelstoffe sehr unterschiedlich toxisch sind.",
     },
     twpi: {
-      short: "Ein Raumklimaindikator, der Überschreitungen nach tatsächlicher Belegungsdauer gewichtet.",
+      short: "Ein Indoor climateindikator, der Überschreitungen nach tatsächlicher Belegungsdauer gewichtet.",
     },
     vav: {
       short: "Lüftungsregelung mit modulierenden Klappen pro Raum, ideales Ziel für CO₂-gesteuerte Bedarfsführung.",
@@ -269,7 +261,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Eine große Familie kohlenstoffbasierter Verbindungen, die bei Raumtemperatur verdampfen. Gemessen als TVOC.",
     },
     vtt: {
-      short: "Das finnische Technische Forschungszentrum. Veröffentlicht häufig zitierte Studien zu Raumklima und Konservierung.",
+      short: "Das finnische Technische Forschungszentrum. Veröffentlicht häufig zitierte Studien zu Indoor climate und Preservation.",
     },
     well: {
       short: "Ein Wellness-orientiertes Gebäudezertifikat mit strengen Anforderungen an Luft und Komfort, beliebt bei Büromietern.",
@@ -338,10 +330,6 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
     },
     leed: {
       short: "Ett US-ursprungligt byggcertifieringssystem med inomhusluftkrediter som kräver kontinuerlig övervakning.",
-    },
-    lorawan: {
-      short: "Ett lågenergi, långdistans trådlöst protokoll (typiskt 868 MHz i Europa) som de flesta av våra batteridrivna sensorer använder.",
-      detail: "Gateways täcker 2–5 km utomhus och 200–500 m inomhus beroende på byggnad. Varje sensor får AES-128-krypterade sessionsnycklar.",
     },
     mqtt: {
       short: "Ett lätt publish-subscribe-protokoll för live sensordata från plattformen till BMS, NOC och ITSM-system.",

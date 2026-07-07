@@ -4,8 +4,9 @@ import type { Lang } from "../lang";
  * Per-locale overlays for the modules hub (title/accent/eyebrow/lead) and its
  * leaves. English lives in `modules.ts`; missing keys fall back to English.
  *
- * Module names are generic feature categories (not RoomAlyzer product/brand
- * names), so they ARE translated here. Trailing-period title style is kept.
+ * Module names are NOT translated on `/de/` — use English canonical names
+ * from `modules.ts` via `localizedModuleName()`. Only marketing copy
+ * (titleAccent, lead, etc.) is localized here.
  */
 
 export interface ModuleLeafOverlay {
@@ -52,7 +53,7 @@ export const modulesHubI18n: Partial<Record<Lang, ModulesHubOverlay>> = {
       "push-buttons": {
         title: "Trykknapper.",
         titleAccent: "Feedback med et enkelt tryk.",
-        lead: "Servicekald, rengøringsanmodninger og tilfredshedsinput fra medarbejdere og gæster, sendt direkte til det rette team.",
+        lead: "Servicekald, rengøringsanmodninger og tilfredshedsinput fra medarbejdere og gæster – sendt direkte til det rette team.",
       },
       "lockers-doors": {
         title: "Skabe og døre.",
@@ -69,16 +70,16 @@ export const modulesHubI18n: Partial<Record<Lang, ModulesHubOverlay>> = {
   de: {
     title: "Wählen Sie die Module,",
     titleAccent: "die Sie wirklich brauchen.",
-    eyebrow: "Module",
-    lead: "Jedes Modul löst ein konkretes Problem in Ihrem Gebäude. Beginnen Sie mit einem und fügen Sie das nächste hinzu, wann immer es sinnvoll ist.",
+    eyebrow: "Gezielte Problemlösung mit modularer Freiheit: Starten Sie genau mit dem Modul, das Sie aktuell am dringendsten benötigen und erweitern Sie Ihr System flexibel Ihren Anforderungen entsprechend.",
+    lead: "Gezielte Problemlösung mit modularer Freiheit: Starten Sie genau mit dem Modul, das Sie aktuell am dringendsten benötigen und erweitern Sie Ihr System flexibel Ihren Anforderungen entsprechend.",
     leaves: {
       "indoor-climate": {
-        title: "Raumklima.",
-        titleAccent: "Daten statt Bauchgefühl.",
-        lead: "CO2, Temperatur, Luftfeuchtigkeit und VOC in Echtzeit, und frühzeitige Warnungen vor Schimmel und Feuchtigkeit, bevor sie dem Gebäude schaden.",
+        title: "Indoor climate.",
+        titleAccent: "CO2, Temperatur, Luftfeuchtigkeit und VOC in Echtzeit inklusive frühzeitiger Warnungen vor Schimmel und Feuchtigkeit, bevor Gebäudeschäden entstehen.",
+        lead: "CO2, Temperatur, Luftfeuchtigkeit und VOC in Echtzeit und frühzeitige Warnungen vor Schimmel und Feuchtigkeit, bevor sie dem Gebäude schaden.",
       },
       preservation: {
-        title: "Konservierung.",
+        title: "Preservation.",
         titleAccent: "Schützen Sie, was unersetzlich ist.",
         lead: "Kontinuierliche Überwachung des Klimas rund um Sammlungen, Kunstwerke, Archive und empfindliche Materialien.",
       },
@@ -88,24 +89,24 @@ export const modulesHubI18n: Partial<Record<Lang, ModulesHubOverlay>> = {
         lead: "Belegung, Buchung im Vergleich zur tatsächlichen Nutzung und Auslastungsmuster für Besprechungsräume, Arbeitsplätze und Gemeinschaftsbereiche.",
       },
       "water-detection": {
-        title: "Wassererkennung.",
+        title: "Water detection.",
         titleAccent: "Stoppen Sie Schäden, bevor sie sich ausbreiten.",
         lead: "Drahtlose Lecksensoren, die alarmieren, sobald Wasser dort auftaucht, wo es nicht sein sollte.",
       },
       "push-buttons": {
-        title: "Drucktasten.",
+        title: "Push buttons.",
         titleAccent: "Feedback mit einem einzigen Tastendruck.",
         lead: "Serviceanfragen, Reinigungswünsche und Zufriedenheitsfeedback von Mitarbeitenden und Gästen, direkt an das richtige Team.",
       },
       "lockers-doors": {
-        title: "Schließfächer und Türen.",
-        titleAccent: "Offen, geschlossen, angelehnt.",
-        lead: "Drahtlose Öffnen/Schließen-Sensoren für Türen, Schränke, Fenster und Schließfächer, ganz ohne Verkabelung.",
+        title: "Lockers and doors.",
+        titleAccent: "Drahtlose Open/Closeen für Türen, Schränke, Fenster und Schließfächer, ganz ohne Verkabelung.",
+        lead: "Drahtlose Open/Close für Türen, Schränke, Fenster und Schließfächer, ganz ohne Verkabelung.",
       },
       "usage-cleaning": {
-        title: "Nutzung und Reinigung.",
-        titleAccent: "Reinigen, wenn es wirklich nötig ist.",
-        lead: "Bedarfsgerechte Reinigung, die auf die tatsächliche Nutzung reagiert statt auf einen festen Plan.",
+        title: "Usage and cleaning.",
+        titleAccent: "Bedarfsgerechte Reinigung, die auf die tatsächliche Nutzung ausgelegt ist statt auf einen Plan.",
+        lead: "Bedarfsgerechte Reinigung, die auf die tatsächliche Nutzung ausgelegt ist statt auf einen Plan.",
       },
     },
   },
@@ -138,7 +139,7 @@ export const modulesHubI18n: Partial<Record<Lang, ModulesHubOverlay>> = {
       "push-buttons": {
         title: "Tryckknappar.",
         titleAccent: "Feedback med ett enda tryck.",
-        lead: "Serviceanrop, städförfrågningar och nöjdhetsinput från medarbetare och gäster, skickat direkt till rätt team.",
+        lead: "Serviceanrop, städförfrågningar och nöjdhetsinput från medarbetare och gäster – skickas direkt till rätt team.",
       },
       "lockers-doors": {
         title: "Skåp och dörrar.",

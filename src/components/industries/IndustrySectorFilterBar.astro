@@ -1,0 +1,110 @@
+---
+/**
+ * Sector filter for the industries hub (Public sector, Commercial, Culture, Property).
+ */
+interface Props {
+  filterLabel: string;
+  allLabel: string;
+  totalCount: number;
+  groups: Array<{ category: string; label: string; count: number }>;
+}
+
+const { filterLabel, allLabel, totalCount, groups } = Astro.props;
+
+const activeClass = "bg-white text-navy-500 shadow-sm";
+const inactiveClass = "text-stone-900/60 hover:text-navy-500";
+const baseClass =
+  "sector-filter-btn px-3 py-2 text-sm font-semibold rounded-md transition-colors";
+---
+
+<div
+  class="flex flex-wrap gap-1 rounded-lg border border-stone-100 p-1 bg-stone-50 w-fit"
+  role="tablist"
+  aria-label={filterLabel}
+  data-industry-sector-filter
+  data-sector-query-param="sector"
+>
+  <button
+    type="button"
+    class:list={[baseClass, activeClass]}
+    data-sector="all"
+    aria-pressed="true"
+  >
+    {allLabel} ({totalCount})
+  </button>
+  {groups.map((group) => (
+    <button
+      type="button"
+      class:list={[baseClass, inactiveClass]}
+      data-sector={group.category}
+      aria-pressed="false"
+    >
+      {group.label} ({group.count})
+    </button>
+  ))}
+</div>
+
+<script>
+  function initIndustrySectorFilter() {
+    const filterRoot = document.querySelector("[data-industry-sector-filter]");
+    const catalogue = document.querySelector("[data-industry-catalogue]");
+    if (!filterRoot || !catalogue) return;
+
+    const paramName =
+      filterRoot.getAttribute("data-sector-query-param") ?? "sector";
+    const buttons = filterRoot.querySelectorAll(".sector-filter-btn");
+    const cards = catalogue.querySelectorAll("[data-industry-sector]");
+
+    function syncSectorUrl(sector: string) {
+      const url = new URL(window.location.href);
+      if (sector === "all") {
+        url.searchParams.delete(paramName);
+      } else {
+        url.searchParams.set(paramName, sector);
+      }
+      window.history.replaceState({}, "", url);
+    }
+
+    function setSectorFilter(sector: string, syncUrl = true) {
+      buttons.forEach((btn) => {
+        const el = btn as HTMLButtonElement;
+        const active = el.dataset.sector === sector;
+        el.setAttribute("aria-pressed", String(active));
+        el.classList.toggle("bg-white", active);
+        el.classList.toggle("text-navy-500", active);
+        el.classList.toggle("shadow-sm", active);
+        el.classList.toggle("text-stone-900/60", !active);
+      });
+
+      cards.forEach((card) => {
+        const match =
+          sector === "all" ||
+          card.getAttribute("data-industry-sector") === sector;
+        card.classList.toggle("hidden", !match);
+      });
+
+      if (syncUrl) syncSectorUrl(sector);
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        setSectorFilter((btn as HTMLButtonElement).dataset.sector ?? "all");
+      });
+    });
+
+    const sectorParam = new URLSearchParams(window.location.search).get(
+      paramName,
+    );
+    if (sectorParam) {
+      const matchBtn = Array.from(buttons).find(
+        (btn) => (btn as HTMLButtonElement).dataset.sector === sectorParam,
+      );
+      if (matchBtn) {
+        setSectorFilter(sectorParam, false);
+      }
+    }
+  }
+
+  initIndustrySectorFilter();
+  document.addEventListener("astro:page-load", initIndustrySectorFilter);
+</script>

@@ -13,7 +13,7 @@ import mdx from '@astrojs/mdx';
 
 import sitemap from '@astrojs/sitemap';
 
-import { isHiddenPath, isLivePath, LAUNCH_LIVE_ONLY } from './src/data/launch';
+import { ANALYTICS_WAVE_LIVE, isHiddenPath, isLivePath, LAUNCH_LIVE_ONLY } from './src/data/launch';
 import { getSiteRedirectMap } from './src/data/redirects';
 import { getLangFromPath, isPageIndexed, canonicalizePath, routePath } from './src/data/lang';
 
@@ -188,6 +188,53 @@ function localizeFixedPages() {
   };
 }
 
+// Second-wave gate: when ANALYTICS_WAVE_LIVE is false, strip internal dashboard
+// and cookie policy HTML from dist even if getStaticPaths was bypassed or
+// LAUNCH_LIVE_ONLY is false (defense in depth for Railway and local builds).
+function isAnalyticsWaveOutputPath(/** @type {string} */ relPath) {
+  const normalized = relPath.split(path.sep).join('/');
+  if (normalized.includes('/internal/')) return true;
+  if (normalized.includes('/legal/cookies')) return true;
+  return false;
+}
+
+function pruneAnalyticsWavePages() {
+  return {
+    name: 'prune-analytics-wave-pages',
+    hooks: {
+      'astro:build:done': async (/** @type {{ dir: URL, logger: { info: (msg: string) => void } }} */ { dir, logger }) => {
+        if (ANALYTICS_WAVE_LIVE) {
+          logger.info('Analytics wave live — keeping internal and cookie policy pages.');
+          return;
+        }
+
+        const outDir = fileURLToPath(dir);
+        let removed = 0;
+
+        async function walk(/** @type {string} */ currentDir) {
+          for (const entry of await readdir(currentDir, { withFileTypes: true })) {
+            const full = path.join(currentDir, entry.name);
+            if (entry.isDirectory()) {
+              await walk(full);
+              continue;
+            }
+            if (!entry.name.endsWith('.html')) continue;
+            const rel = path.relative(outDir, full);
+            if (isAnalyticsWaveOutputPath(rel)) {
+              await rm(full, { force: true });
+              removed += 1;
+            }
+          }
+        }
+
+        await walk(outDir);
+        if (removed > 0) await removeEmptyDirs(outDir);
+        logger.info(`Analytics wave gate: pruned ${removed} second-wave page(s) from the build output.`);
+      },
+    },
+  };
+}
+
 // Soft-launch gate: after the build completes, delete every page that is not
 // on the live allowlist (src/data/launch.ts) so only the approved pages ship
 // to Railway. Hidden routes still build (keeping fallbacks/links resolvable at
@@ -326,13 +373,14 @@ export default defineConfig({
       },
       filter: (page) => {
         const pathname = new URL(page).pathname;
-        const excludedSegments = ['/thank-you', '/thanks', '/404', '/draft', '/preview'];
+        const excludedSegments = ['/thank-you', '/thanks', '/404', '/draft', '/preview', '/internal/'];
         if (excludedSegments.some((seg) => pathname.includes(seg))) return false;
         if (!isPageIndexed(pathname, getLangFromPath(pathname))) return false;
         return isLivePath(pathname);
       },
     }),
     localizeFixedPages(),
+    pruneAnalyticsWavePages(),
     pruneHiddenPages(),
   ]
 });

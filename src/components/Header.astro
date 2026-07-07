@@ -2,12 +2,14 @@
 import Button from "./Button.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import ModuleIcon from "./ModuleIcon.astro";
+import PlatformIcon from "./PlatformIcon.astro";
 import IndustryIcon from "./IndustryIcon.astro";
 import NavDropdownLink from "./NavDropdownLink.astro";
 import MegaMenuLink from "./MegaMenuLink.astro";
 import { getModules } from "../data/modules";
 import { sensorsHub } from "../data/site";
 import { getIndustriesHub } from "../data/hubs/industries";
+import { industrySectors, industrySectorLabel, industryHubHref } from "../data/industrySectors";
 import { externalLinks, getRoomAlyzerLoginUrl } from "../data/externalLinks";
 import { langPath, pagePathname, resolveLang, stripLocaleRoute } from "../data/lang";
 import { getUi } from "../data/i18n/ui";
@@ -52,16 +54,6 @@ const resourcesActive =
 const companyActive =
   isActive("about") || isActive("contact");
 
-// Platform column — curated links (not the full hub catalogue).
-const platformLinks = [
-  { label: "How it works", href: lp("platform/how-it-works") },
-  { label: "Dashboard", href: lp("platform/dashboards") },
-  { label: "Reports", href: lp("platform/reports") },
-  { label: "Notifications", href: lp("platform/notifications") },
-  { label: "Security", href: lp("platform/security") },
-  { label: "API", href: lp("platform/api") },
-].filter((l) => isLivePath(l.href));
-
 // A curated slice of the sensor catalogue for the header. The full list
 // lives on the sensors hub page.
 const sensorFeaturedSlugs = [
@@ -96,28 +88,13 @@ const industryBySlug = Object.fromEntries(
   ]),
 );
 
-// Industries dropdown — curated subset of sector hubs. The full catalogue
-// (15 industries) lives on the industries overview page.
-const industryColumns = [
-  {
-    title: nav.industryColumns.publicHealth,
-    slugs: ["municipalities", "schools", "hospitals"],
-  },
-  {
-    title: nav.industryColumns.commercial,
-    slugs: ["offices", "warehouses-logistics"],
-  },
-  {
-    title: nav.industryColumns.culture,
-    slugs: ["museums-galleries", "archives-libraries", "churches"],
-  },
-  {
-    title: nav.industryColumns.property,
-    slugs: ["property-management"],
-  },
-].map((col) => ({
-  title: col.title,
-  items: col.slugs
+// Industries dropdown — grouped by sector from industrySectors.ts. The full
+// catalogue (15 industries) lives on the industries overview page.
+const industryColumns = industrySectors.map((sector) => ({
+  sectorId: sector.id,
+  title: industrySectorLabel(sector.labelKey, nav),
+  hubHref: industryHubHref(currentLang, sector.id),
+  items: sector.slugs
     .map((slug) => industryBySlug[slug])
     .filter((f) => Boolean(f) && isLivePath(f.href)),
 }));
@@ -179,8 +156,8 @@ const companyLinks = [
   },
 ].filter((l) => isLivePath(l.href));
 
-// Soft-launch: only show a menu/column when it still has live destinations.
-const showPlatform = platformLinks.length > 0;
+// Soft-launch: platform teaser links to the hub only (full catalogue on /platform/).
+const showPlatform = isLivePath(lp("platform"));
 const showPricing = pricingLinks.length > 0;
 const showResources = resourcesLinks.length > 0;
 const showIndustries =
@@ -245,25 +222,7 @@ const showIndustries =
             class="nav-dropdown invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 w-[min(720px,calc(100vw-2rem))]"
           >
             <div class="bg-white rounded-xl shadow-xl border border-stone-100 p-6">
-              <div class:list={["grid gap-6", showPlatform ? "grid-cols-3" : "grid-cols-2"]}>
-                {showPlatform && (
-                  <div>
-                    <a
-                      href={lp("platform")}
-                      class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
-                    >
-                      {nav.columns.platform}
-                    </a>
-                    <ul class="space-y-0.5">
-                      {platformLinks.map((f) => (
-                        <li>
-                          <MegaMenuLink href={f.href} label={f.label} />
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
+              <div class="grid grid-cols-2 gap-6">
                 <!-- Modules -->
                 <div>
                   <a
@@ -319,6 +278,23 @@ const showIndustries =
                       )}
                     </li>
                   </ul>
+                  {showPlatform && (
+                    <div class="mt-3 pt-3 border-t border-stone-100">
+                      <a
+                        href={lp("platform")}
+                        class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
+                      >
+                        {nav.columns.platform}
+                      </a>
+                      <ul class="space-y-0.5">
+                        <li>
+                          <MegaMenuLink href={lp("platform")} label={nav.cta.explorePlatform} iconTone="forest">
+                            <PlatformIcon slot="icon" slug="dashboards" class="w-4 h-4" />
+                          </MegaMenuLink>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -346,7 +322,7 @@ const showIndustries =
                 {industryColumns.map((col) => (
                   <div>
                     <a
-                      href={lp("industries")}
+                      href={col.hubHref}
                       class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
                     >
                       {col.title}
@@ -551,18 +527,6 @@ const showIndustries =
           </svg>
         </summary>
         <div class="pl-4 pb-2 flex flex-col gap-3">
-          {showPlatform && (
-            <div>
-              <a href={lp("platform")} class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500">
-                {nav.columns.platform}
-              </a>
-              <div class="flex flex-col gap-0.5">
-                {platformLinks.map((f) => (
-                  <MegaMenuLink href={f.href} label={f.label} variant="mobile" />
-                ))}
-              </div>
-            </div>
-          )}
           <div>
             <a href={lp("modules")} class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500">
               {nav.columns.modules}
@@ -600,6 +564,19 @@ const showIndustries =
                 </svg>
               </a>
               )}
+              {showPlatform && (
+                <div class="mt-3 pt-3 border-t border-stone-100">
+                  <a
+                    href={lp("platform")}
+                    class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500"
+                  >
+                    {nav.columns.platform}
+                  </a>
+                  <MegaMenuLink href={lp("platform")} label={nav.cta.explorePlatform} iconTone="forest" variant="mobile">
+                    <PlatformIcon slot="icon" slug="dashboards" />
+                  </MegaMenuLink>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -622,9 +599,12 @@ const showIndustries =
         <div class="pl-4 pb-2 flex flex-col gap-4">
           {industryColumns.map((col) => (
             <div>
-              <span class="block py-1 text-sm font-semibold uppercase tracking-wider text-stone-300">
+              <a
+                href={col.hubHref}
+                class="block py-1 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500 transition-colors"
+              >
                 {col.title}
-              </span>
+              </a>
               <div class="flex flex-col gap-0.5">
                 {col.items.map((f) => (
                   <MegaMenuLink href={f.href} label={f.label} iconTone="coral" variant="mobile">

@@ -117,7 +117,7 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
       "museums-galleries": {
         title: "Museen und Galerien.",
         titleAccent: "Bewahren, was Sie ausstellen.",
-        lead: "Klimadaten aus dem Modul Konservierung nach internationalen Erhaltungsstandards für Sammlungen und Leihgaben.",
+        lead: "Klimadaten aus dem Modul Preservation nach internationalen Erhaltungsstandards für Sammlungen und Leihgaben.",
       },
       municipalities: {
         title: "Kommunen.",
@@ -127,7 +127,7 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
       schools: {
         title: "Schulen.",
         titleAccent: "Bessere Luft, besserer Fokus.",
-        lead: "CO₂-, Temperatur- und Feuchteüberwachung, die das Raumklima in jedem Klassenzimmer dokumentiert.",
+        lead: "CO₂-, Temperatur- und Feuchteüberwachung, die das Indoor climate in jedem Klassenzimmer dokumentiert.",
       },
       hospitals: {
         title: "Krankenhäuser.",
@@ -157,22 +157,22 @@ export const industriesHubI18n: Partial<Record<Lang, IndustriesHubOverlay>> = {
       "warehouses-logistics": {
         title: "Lager und Logistik.",
         titleAccent: "Schützen, was auf den Regalen liegt.",
-        lead: "Temperatur, Feuchte und Wassererkennung für Lager, Kühlkette und Laderampen.",
+        lead: "Temperatur, Feuchte und Water detection für Lager, Kühlkette und Laderampen.",
       },
       "elderly-care": {
         title: "Altenpflege.",
         titleAccent: "Ein sichererer, ruhigerer Alltag.",
-        lead: "Raumklimaüberwachung und Drucktasten für Serviceanfragen, die den täglichen Pflegealltag erleichtern.",
+        lead: "Indoor climate monitoring und Push buttons für Serviceanfragen, die den täglichen Pflegealltag erleichtern.",
       },
       "property-management": {
         title: "Immobilienverwaltung.",
         titleAccent: "Weniger Beschwerden, schnellere Lösungen.",
-        lead: "Dokumentation des Raumklimas in Mietobjekten und frühe Warnung bei Leckagen über das Portfolio.",
+        lead: "Dokumentation des Indoor climates in Mietobjekten und frühe Warnung bei Leckagen über das Portfolio.",
       },
       "fm-companies": {
         title: "FM-Unternehmen.",
         titleAccent: "Die White-Label-Datenebene.",
-        lead: "Ergänzen Sie Ihr Facility Management um messbares Raumklima, Space-Management, Reinigung und Wassererkennung.",
+        lead: "Ergänzen Sie Ihr Facility Management um messbares Indoor climate, Space-Management, Reinigung und Water detection.",
       },
       "consulting-engineers": {
         title: "Beratende Ingenieure.",

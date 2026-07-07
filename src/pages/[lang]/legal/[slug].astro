@@ -4,13 +4,18 @@ import { getLegalHub } from "../../../data/hubs/legal";
 import { getLegal } from "../../../data/i18n/legal";
 import { getAbout } from "../../../data/i18n/about";
 import { locales, langPath, localizeSegment, type Lang } from "../../../data/lang";
+import { isAnalyticsWaveBuilt } from "../../../data/launch";
 import type { HubLeaf } from "../../../data/hubs/types";
 
 export function getStaticPaths() {
-  // privacy.astro and impressum.astro are dedicated pages with full content.
+  // privacy.astro, impressum.astro, and cookies.astro are dedicated pages with full content.
   return locales.flatMap((l) =>
     getLegalHub(l.code)
-      .leaves.filter((leaf) => leaf.slug !== "privacy" && leaf.slug !== "impressum")
+      .leaves.filter((leaf) => {
+        if (leaf.slug === "privacy" || leaf.slug === "impressum") return false;
+        if (leaf.slug === "cookies" && !isAnalyticsWaveBuilt()) return false;
+        return true;
+      })
       .map((leaf) => ({
         params: { lang: l.code, slug: localizeSegment(leaf.slug, l.code) },
         props: { leaf },

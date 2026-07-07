@@ -1,6 +1,7 @@
 ---
 import ModuleCard from "./ModuleCard.astro";
 import { getModulesHub } from "../data/hubs/modules";
+import { modules } from "../data/modules";
 import { defaultLang, langPath, type Lang } from "../data/lang";
 import { isLivePath } from "../data/launch";
 
@@ -11,12 +12,14 @@ interface Props {
 const { lang = defaultLang } = Astro.props;
 const hub = getModulesHub(lang);
 
+const colorBySlug = Object.fromEntries(modules.map((m) => [m.slug, m.color]));
+
 const cards = hub.leaves
   .map((leaf) => ({
     slug: leaf.slug,
     href: langPath(`/modules/${leaf.slug}/`, lang),
     title: leaf.title.replace(/\.$/, ""),
-    titleAccent: leaf.titleAccent,
+    color: colorBySlug[leaf.slug] ?? "navy",
   }))
   .filter((item) => isLivePath(item.href));
 ---

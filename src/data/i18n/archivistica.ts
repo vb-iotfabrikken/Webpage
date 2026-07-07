@@ -97,7 +97,7 @@ const de: ArchivisticaStrings = {
   quoteHeading:
     "„Das ist für uns essenziell, eine zuverlässige und präzise Überwachung, auf die wir zählen können.“",
   quoteBody: [
-    "In einem historischen Archiv wie dem unseren ist das Raumklima von entscheidender Bedeutung für die langfristige Bewahrung unwiederbringlicher Kulturschätze. Alte Papierdokumente und empfindliche Pergamente reagieren sensibel auf Schwankungen der Luftfeuchtigkeit. Eine Veränderung der relativen Luftfeuchtigkeit um 5 % kann dazu führen, dass sich Papier verzieht und Pergament reißt.",
+    "In einem historischen Archiv wie dem unseren ist das Indoor climate von entscheidender Bedeutung für die langfristige Bewahrung unwiederbringlicher Kulturschätze. Alte Papierdokumente und empfindliche Pergamente reagieren sensibel auf Schwankungen der Luftfeuchtigkeit. Eine Veränderung der relativen Luftfeuchtigkeit um 5 % kann dazu führen, dass sich Papier verzieht und Pergament reißt.",
     "Was für uns im Alltag den entscheidenden Unterschied macht, ist die hohe Messgenauigkeit und die Langzeitstabilität der Sensoren. Das gesamte System ist zudem unglaublich einfach und zeitsparend in der Handhabung. Die Echtzeit-Alarmierung des Systems fungiert dabei als unser digitaler Wächter, kombiniert mit einer langen Batterielaufzeit und Sensoren, die sich problemlos in Ausstellungen und Archivboxen platzieren lassen.",
   ],
   quoteName: "Martin Eckert",
@@ -109,7 +109,7 @@ const de: ArchivisticaStrings = {
   testimonials: [
     {
       quote:
-        "Die Sensoren von IoT Fabrikken sind für uns eine hilfreiche Lösung: schnell einsetzbar, unabhängig von WLAN oder Strom, und die Datenübertragung läuft sicher über das Mobilfunknetz.",
+        "Die Sensoren von IoT Fabrikken sind für uns eine hilfreiche Lösung: schnell einsetzbar, unabhängig von WLAN oder Strom und die Datenübertragung läuft sicher über das Mobilfunknetz.",
       name: "Tim Brendle-Behnisch",
       org: "Evangelische Kirche in Hessen und Nassau",
       logoAlt: "Evangelische Kirche in Hessen und Nassau",

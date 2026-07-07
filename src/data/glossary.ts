@@ -28,7 +28,7 @@ export const glossary: GlossaryEntry[] = [
     anchor: "bms",
     short: "The central control system for a building's HVAC, lighting, access and fire systems.",
     detail: "BMS / BAS (US) / CTS (DK) sit on top of wired field buses like BACnet, Modbus and KNX. RoomAlyzer overlays wireless sensors on existing BMS installations, often filling in the gaps where wiring is impractical.",
-    seeAlso: ["lorawan", "mqtt", "bacnet"],
+    seeAlso: ["nb-iot", "mqtt", "bacnet"],
   },
   {
     term: "BACnet",
@@ -126,7 +126,7 @@ export const glossary: GlossaryEntry[] = [
     aka: ["Internet of Things"],
     anchor: "iot",
     short: "The network of physical devices (sensors, gateways, actuators) connected to the internet for data collection and automation.",
-    seeAlso: ["lorawan", "nb-iot"],
+    seeAlso: ["nb-iot"],
   },
   {
     term: "ISO 27001",
@@ -148,13 +148,6 @@ export const glossary: GlossaryEntry[] = [
     seeAlso: ["dgnb", "well"],
   },
   {
-    term: "LoRaWAN",
-    anchor: "lorawan",
-    short: "A low-power, long-range wireless protocol (typically 868 MHz in Europe) used by the majority of our battery-powered sensors.",
-    detail: "Gateways cover 2–5 km outdoors and 200–500 m indoors, depending on building construction. Each sensor gets AES-128-encrypted session keys.",
-    seeAlso: ["nb-iot", "iot"],
-  },
-  {
     term: "MQTT",
     aka: ["Message Queuing Telemetry Transport"],
     anchor: "mqtt",
@@ -173,7 +166,6 @@ export const glossary: GlossaryEntry[] = [
     aka: ["Narrowband IoT"],
     anchor: "nb-iot",
     short: "A 3GPP cellular protocol for low-power IoT. Works through concrete and underground, runs on carrier networks, and doesn't need a local gateway.",
-    seeAlso: ["lorawan"],
   },
   {
     term: "Niagara",

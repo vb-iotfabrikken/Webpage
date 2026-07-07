@@ -117,7 +117,7 @@ const en: ModulePageStrings = {
   faqItems: [
     {
       q: "How long does the battery last?",
-      a: "LoRaWAN push buttons typically run 3–7 years on a single battery, depending on how often they are pressed. The platform warns you well in advance when a battery needs replacing.",
+      a: "Wireless push buttons typically run 3–7 years on a single battery, depending on how often they are pressed. The platform warns you well in advance when a battery needs replacing.",
     },
     {
       q: "Where should we place the buttons?",
@@ -257,7 +257,7 @@ const da: ModulePageStrings = {
   faqItems: [
     {
       q: "Hvor længe holder batteriet?",
-      a: "LoRaWAN-trykknapper kører typisk 3–7 år på ét batteri, afhængigt af hvor ofte de trykkes. Platformen advarer i god tid, når et batteri skal skiftes.",
+      a: "Trådløse trykknapper kører typisk 3–7 år på ét batteri, afhængigt af hvor ofte de trykkes. Platformen advarer i god tid, når et batteri skal skiftes.",
     },
     {
       q: "Hvor skal vi placere knapperne?",
@@ -283,12 +283,12 @@ const da: ModulePageStrings = {
 };
 
 const de: ModulePageStrings = {
-  metaTitle: "Drucktasten: Feedback und Serviceanfragen mit einem Tipp | IoT Fabrikken",
+  metaTitle: "Push buttons: Feedback und Serviceanfragen mit einem Tipp | IoT Fabrikken",
   metaDescription:
-    "Drahtlose Drucktasten für Reinigungsanfragen, Nachfüllungen und Wartung. Leiten Sie Alarme sofort an Serviceteams weiter, ohne Apps, Login oder Verzögerung.",
+    "Drahtlose Push buttons für Reinigungsanfragen, Nachfüllungen und Wartung. Leiten Sie Alarme sofort an Serviceteams weiter, ohne Apps, Login oder Verzögerung.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
-  breadcrumbCurrent: "Drucktasten",
+  breadcrumbCurrent: "Push buttons",
   heroTitle: "Feedback mit",
   heroTitleAccent: "einem einzigen Tipp.",
   heroLead:
@@ -298,9 +298,9 @@ const de: ModulePageStrings = {
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer: Drucktasten",
+  dashboardLabel: "RoomAlyzer: Push buttons",
   dashboardAlt:
-    "RoomAlyzer-Dashboard mit Drucktasten-Feedback, Routing-Regeln und Antwortverlauf",
+    "RoomAlyzer-Dashboard mit Push buttons-Feedback, Routing-Regeln und Antwortverlauf",
   challengesEyebrow: "Die Herausforderungen, die Sie kennen",
   challengesHeading: "Wenn Feedback langsam ist, wird jedes kleine Problem zur Beschwerde.",
   challenges: [
@@ -320,9 +320,9 @@ const de: ModulePageStrings = {
   capabilitiesEyebrow: "So löst RoomAlyzer das",
   capabilitiesHeading: "Ein Tipp vom Boden bis zum richtigen Team.",
   solutionLead:
-    "RoomAlyzer Drucktasten machen aus einem physischen Tipp eine geroutete, nachverfolgbare Serviceanfrage — für Facility Manager mit Überblick und Serviceteams mit Klarheit.",
+    "RoomAlyzer Push buttons machen aus einem physischen Tipp eine geroutete, nachverfolgbare Serviceanfrage — für Facility Manager mit Überblick und Serviceteams mit Klarheit.",
   solutionLeadWithSensorLinks: [
-    { type: "text", value: "RoomAlyzer Drucktasten machen aus dem " },
+    { type: "text", value: "RoomAlyzer Push buttons machen aus dem " },
     { type: "sensor", slug: "touch", label: "Touch" },
     {
       type: "text",
@@ -353,31 +353,31 @@ const de: ModulePageStrings = {
       title: "Sofortiges Routing",
       body: "Alarme erreichen das richtige Team, Mobilgerät oder Ticketsystem innerhalb von Sekunden nach dem Tipp.",
       unit: "Sekunden",
-      imageAlt: "RoomAlyzer Routing-Regeln für Drucktasten-Events",
+      imageAlt: "RoomAlyzer Routing-Regeln für Push buttons-Events",
     },
     {
       id: "feedback-history",
       title: "Feedback-Verlauf",
       body: "Sehen Sie Trends nach Raum, Etage und Tastenrolle — erkennen Sie wiederkehrende Probleme, bevor sie eskalieren.",
       unit: "Trends",
-      imageAlt: "Drucktasten-Feedback-Verlauf und Trenddiagramm in RoomAlyzer",
+      imageAlt: "Push buttons-Feedback-Verlauf und Trenddiagramm in RoomAlyzer",
     },
     {
       id: "flexible-placement",
       title: "Flexible Platzierung",
       body: "Montage an Wänden, Spendern, Schreibtischen oder Geräten. Batteriebetrieben und drahtlos — keine Verkabelung nötig.",
       unit: "Überall",
-      imageAlt: "Drucktasten in Toilette, Besprechungsraum und Flur montiert",
+      imageAlt: "Push buttons in Toilette, Besprechungsraum und Flur montiert",
     },
   ],
   relatedModuleLabel: "Intelligenter zusammen",
   relatedModuleBody:
-    "Kombinieren Sie Drucktasten-Signale mit Belegung aus Nutzung und Reinigung — schicken Sie Reinigung in Toiletten, die Gäste gemeldet haben, und überspringen Sie leerstehende Räume.",
-  relatedModuleLink: "Nutzung und Reinigung entdecken",
+    "Kombinieren Sie Push buttons-Signale mit Belegung aus Usage and cleaning — schicken Sie Reinigung in Toiletten, die Gäste gemeldet haben und überspringen Sie leerstehende Räume.",
+  relatedModuleLink: "Usage and cleaning entdecken",
   audiencesEyebrow: "Für wen es gedacht ist",
   audiencesHeading: "Überblick für Manager, Klarheit für Teams vor Ort",
   audiencesLead:
-    "Derselbe Tipp hilft dem Kollegen, der Seife nachfüllen lässt, und dem Facility Manager, der nachweisen muss, dass Servicelevel eingehalten werden.",
+    "Derselbe Tipp hilft dem Kollegen, der Seife nachfüllen lässt und dem Facility Manager, der nachweisen muss, dass Servicelevel eingehalten werden.",
   primaryAudienceHeading: "Für Facility Manager",
   primaryAudienceItems: [
     "Alle offenen Anfragen auf einem Dashboard sehen",
@@ -397,7 +397,7 @@ const de: ModulePageStrings = {
   faqItems: [
     {
       q: "Wie lange hält die Batterie?",
-      a: "LoRaWAN-Drucktasten laufen typischerweise 3–7 Jahre mit einer Batterie, je nach Häufigkeit der Betätigung. Die Plattform warnt rechtzeitig, wenn eine Batterie gewechselt werden muss.",
+      a: "Drahtlose Push buttons laufen typischerweise 3–7 Jahre mit einer Batterie, je nach Häufigkeit der Betätigung. Die Plattform warnt rechtzeitig, wenn eine Batterie gewechselt werden muss.",
     },
     {
       q: "Wo sollen wir die Tasten platzieren?",
@@ -409,7 +409,7 @@ const de: ModulePageStrings = {
     },
     {
       q: "Ist die Lösung DSGVO-konform?",
-      a: "Ja. Drucktasten melden ein Service-Ereignis von einem Standort — nicht, wer gedrückt hat. Es werden keine personenbezogenen Daten erfasst, es sei denn, Sie verknüpfen Tastendrücke in einer Custom-Integration explizit mit angemeldeten Nutzern.",
+      a: "Ja. Push buttons melden ein Service-Ereignis von einem Standort — nicht, wer gedrückt hat. Es werden keine personenbezogenen Daten erfasst, es sei denn, Sie verknüpfen Tastendrücke in einer Custom-Integration explizit mit angemeldeten Nutzern.",
     },
     {
       q: "Was kostet es?",
@@ -537,7 +537,7 @@ const sv: ModulePageStrings = {
   faqItems: [
     {
       q: "Hur länge håller batteriet?",
-      a: "LoRaWAN-tryckknappar kör vanligtvis 3–7 år på ett batteri, beroende på hur ofta de trycks. Plattformen varnar i god tid när ett batteri behöver bytas.",
+      a: "Trådlösa tryckknappar kör vanligtvis 3–7 år på ett batteri, beroende på hur ofta de trycks. Plattformen varnar i god tid när ett batteri behöver bytas.",
     },
     {
       q: "Var ska vi placera knapparna?",

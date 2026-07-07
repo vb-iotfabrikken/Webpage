@@ -218,7 +218,7 @@ const getOfferStrings: Record<Lang, GetOfferStrings> = {
       phone_invalid:
         "Bitte geben Sie eine gültige Telefonnummer ein oder lassen Sie das Feld leer.",
       too_soon:
-        "Bitte warten Sie einen Moment, bevor Sie absenden, und versuchen Sie es erneut.",
+        "Bitte warten Sie einen Moment, bevor Sie absenden und versuchen Sie es erneut.",
       consent_required:
         "Bitte akzeptieren Sie die Datenschutzerklärung, um fortzufahren.",
       company_required: "Bitte geben Sie Ihren Firmennamen ein.",

@@ -324,7 +324,7 @@ const de: AboutStrings = {
     exploreTitle: "Entdecken Sie das Unternehmen.",
     exploreLead: "Unsere Geschichte, die Menschen hinter dem Produkt, offene Stellen, Presseressourcen, Zertifizierung und Partner.",
     ctaTitle: "Möchten Sie eine geführte Tour?",
-    ctaSubtitle: "Buchen Sie eine Demo, und wir passen sie an Ihr Gebäude an.",
+    ctaSubtitle: "Buchen Sie eine Demo und wir passen sie an Ihr Gebäude an.",
   },
   story: {
     metaTitle: "Unsere Geschichte | Über uns | IoT Fabrikken",
@@ -342,7 +342,7 @@ const de: AboutStrings = {
     crumb: "Das Team",
     heroTitle: "Das Team.",
     heroTitleAccent: "Ein Produkt. Ein Team.",
-    heroLead: "Ein erfahrenes Team mit Leidenschaft für Space-Management und Raumklima, wir bleiben von der ersten Demo über den Rollout bis zum Support eng dabei.",
+    heroLead: "Ein erfahrenes Team mit Leidenschaft für Space-Management und Indoor climate – von der ersten Demo über die Einführung bis zum laufenden Support bleiben wir eng an Ihrer Seite.",
     heroPrimary: "Offene Stellen ansehen",
     heroSecondary: "Kontakt",
     viewOpenRoles: "Offene Stellen ansehen",

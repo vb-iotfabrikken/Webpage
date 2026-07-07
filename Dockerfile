@@ -24,6 +24,8 @@ COPY . .
 # LAUNCH_LIVE_ONLY = false for local dev, but Docker/Railway must always prune.
 RUN sed -i 's/export const LAUNCH_LIVE_ONLY = \(true\|false\)/export const LAUNCH_LIVE_ONLY = true/' src/data/launch.ts
 RUN grep -q 'export const LAUNCH_LIVE_ONLY = true' src/data/launch.ts
+RUN sed -i 's/export const ANALYTICS_WAVE_LIVE = \(true\|false\)/export const ANALYTICS_WAVE_LIVE = false/' src/data/launch.ts
+RUN grep -q 'export const ANALYTICS_WAVE_LIVE = false' src/data/launch.ts
 
 RUN npm run build
 

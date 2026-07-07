@@ -1,5 +1,6 @@
 import type { SensorCategory } from "./hubs/types";
 import { defaultLang, type Lang } from "./lang";
+import { SENSOR_NAME_OVERRIDES_DE } from "./deTermLocks";
 
 /** Display labels for the four official RoomAlyzer product lines. */
 export const SENSOR_CATEGORY_LABELS: Record<SensorCategory, string> = {
@@ -51,28 +52,19 @@ export function productSheetPath(slug: string, lang: Lang = defaultLang): string
 
 /**
  * Sensor and brand names are not translated — with approved per-locale
- * exceptions. Keyed by sensor slug.
+ * exceptions. Keyed by sensor slug. Canonical overrides: deTermLocks.ts.
  */
 const SENSOR_NAME_OVERRIDES: Partial<Record<string, Partial<Record<Lang, string>>>> = {
-  "water-detector": { de: "Wasserdetektor" },
-  outdoor: { de: "Außen Sensor" },
+  "water-detector": { de: SENSOR_NAME_OVERRIDES_DE["water-detector"] },
+  outdoor: { de: SENSOR_NAME_OVERRIDES_DE.outdoor },
 };
-
-/** Capitalize generic product suffixes for German noun grammar. */
-function applyGermanProductCasing(name: string): string {
-  return name
-    .replace(/\bOutdoor[- ]?[Ss]ensor\b/g, "Außen Sensor")
-    .replace(/\bdetector\b/g, "Detektor")
-    .replace(/\bsensor\b/g, "Sensor");
-}
 
 /**
  * Applies locale-specific casing to a composed product label (e.g. industry
- * spotlight cards). Catalogue tokens stay English; generic suffixes follow
- * locale grammar. Use `localizedSensorName()` when a sensor slug is known.
+ * spotlight cards). On `/de/` catalogue tokens stay English; use
+ * `localizedSensorName()` when a sensor slug is known.
  */
 export function formatProductLabel(name: string, lang: Lang): string {
-  if (lang === "de") return applyGermanProductCasing(name);
   if (lang === "da" || lang === "sv") return name.replace(/\bSensor\b/g, "sensor");
   return name;
 }
@@ -81,12 +73,10 @@ export function formatProductLabel(name: string, lang: Lang): string {
  * Localized display name for a sensor. Returns the English name unchanged
  * unless an approved per-locale override exists. A trailing period in the
  * English title (e.g. "Water detector.") is preserved on the override.
- * German applies noun capitalization to generic suffixes when no override.
  */
 export function localizedSensorName(slug: string, englishName: string, lang: Lang): string {
   const override = SENSOR_NAME_OVERRIDES[slug]?.[lang];
   const hasPeriod = /\.\s*$/.test(englishName);
   if (override) return hasPeriod ? `${override}.` : override;
-  if (lang === "de") return applyGermanProductCasing(englishName);
   return englishName;
 }

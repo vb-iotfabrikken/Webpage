@@ -164,7 +164,7 @@ const departmentsI18n: Partial<
   de: {
     leadership: { label: "Führung", blurb: "Ausrichtung, Partnerschaften und die langfristige Vision hinter IoT Fabrikken." },
     engineering: { label: "Entwicklung", blurb: "Die Menschen, die die Plattform, Integrationen und das Produkterlebnis bauen und pflegen." },
-    "customer-success": { label: "Customer Success und Implementierung", blurb: "Onboarding, Rollout und laufender Support, damit Kunden dauerhaften Nutzen aus Raumklima und Space-Management ziehen." },
+    "customer-success": { label: "Customer Success und Implementierung", blurb: "Onboarding, Rollout und laufender Support, damit Kunden dauerhaften Nutzen aus Indoor climate und Space-Management ziehen." },
     sales: { label: "Vertrieb", blurb: "Erster Kontakt für neue Kunden, in Dänemark, Schweden und Deutschland." },
     operations: { label: "Betrieb", blurb: "Verwaltung und Logistik, die das Unternehmen reibungslos am Laufen halten." },
     communications: { label: "Kommunikation & Marketing", blurb: "Wie wir unsere Geschichte erzählen: Presse, Newsletter, Website und Kampagnen." },

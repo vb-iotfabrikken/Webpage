@@ -58,6 +58,10 @@ interface Props {
   noindex?: boolean;
   /** Extra page-specific JSON-LD (merged with the auto-generated breadcrumb). */
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+  /** Analytics page_type for content_view (module, sensor, compare, case_study). */
+  analyticsPageType?: string;
+  /** Analytics content_id slug for content_view. */
+  analyticsContentId?: string;
 }
 
 const {
@@ -89,6 +93,8 @@ const {
   heroImageExtra = [],
   noindex = false,
   jsonLd,
+  analyticsPageType,
+  analyticsContentId,
 } = Astro.props;
 
 const lang = astroLang(Astro);
@@ -132,6 +138,8 @@ const effectiveNoindex = noindex || !hideNotice;
   ogImageAlt={ogImageAlt}
   noindex={effectiveNoindex}
   jsonLd={combinedJsonLd}
+  analyticsPageType={analyticsPageType}
+  analyticsContentId={analyticsContentId}
 >
   {localizedBreadcrumbs.length > 0 && (
     <nav class="container-page pt-6" aria-label="Breadcrumb">
@@ -165,8 +173,8 @@ const effectiveNoindex = noindex || !hideNotice;
   >
     {showCtas && (
       <Fragment slot="cta">
-        <Button href={resolvedPrimaryCta.href} variant="primary" size="lg">{resolvedPrimaryCta.label}</Button>
-        <Button href={resolvedSecondaryCta.href} variant="secondary" size="lg">{resolvedSecondaryCta.label}</Button>
+        <Button href={resolvedPrimaryCta.href} variant="primary" size="lg" analyticsCta="book_demo">{resolvedPrimaryCta.label}</Button>
+        <Button href={resolvedSecondaryCta.href} variant="secondary" size="lg" analyticsCta="contact_sales">{resolvedSecondaryCta.label}</Button>
         {resolvedTertiaryCta && (
           <Button href={resolvedTertiaryCta.href} variant="ghost" size="lg">{resolvedTertiaryCta.label}</Button>
         )}
