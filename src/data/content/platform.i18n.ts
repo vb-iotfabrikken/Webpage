@@ -30,7 +30,7 @@ const da: Record<string, PlatformContentOverlay> = {
       {
         heading: "Vi sætter jer i gang og bliver hos jer",
         paragraphs: [
-          "Vi holder altid et online kick-off-møde med jer, så I og jeres kolleger får en ordentlig gennemgang af, hvordan appen virker, og en klar fornemmelse af, hvad den kan. Derefter er online support altid tilgængelig på alt, uanset hvor hvor I er.",
+          "Vi holder altid et online kick-off-møde med jer, så I og jeres kolleger får en ordentlig gennemgang af, hvordan appen virker, og en klar fornemmelse af, hvad den kan. Derefter er online support altid tilgængelig på alt, uanset hvor I er.",
         ],
       },
       {
@@ -68,7 +68,7 @@ const da: Record<string, PlatformContentOverlay> = {
       {
         heading: "Byg det selv på få minutter",
         paragraphs: [
-          "Der er intet fast layout. I vælger, hvad der skal vises, og hvordan det vises, med fem enkle widgettyper: et stort KPI-tal,-tal, en liveaflæsning, en graf, en topliste eller et heatmap. At tilføje én er en guidet firetrinsproces uden træning, og layoutet er drag-and-drop og gemmes automatisk undervejs.",
+          "Der er intet fast layout. I vælger, hvad der skal vises, og hvordan det vises, med fem enkle widgettyper: et stort KPI-tal, en liveaflæsning, en graf, en topliste eller et heatmap. At tilføje én er en guidet firetrinsproces uden træning, og layoutet er drag-and-drop og gemmes automatisk undervejs.",
         ],
       },
       {
@@ -194,7 +194,7 @@ const da: Record<string, PlatformContentOverlay> = {
       {
         heading: "End-to-end-kryptering og EU-baseret hosting",
         paragraphs: [
-          "Alle data beskyttes med fuld end-to-end-kryptering (AES-128), og alt lagres i skyen med 100 % EU-baseret hosting. I beholder fuld ejerskab af jeres data, og I ved altid, hvor de opbevares. Derudover anvender vi standard produktionshærdning: krypteret trafik (HTTPS/HSTS), beskyttelse mod brute-force-loginforsøg, og ingen credentials eksponeres nogensinde i browseren.",
+          "Alle data beskyttes med fuld end-to-end-kryptering (AES-128), og alt lagres i skyen med 100 % EU-baseret hosting. I beholder fuldt ejerskab af jeres data, og I ved altid, hvor de opbevares. Derudover anvender vi standard produktionshærdning: krypteret trafik (HTTPS/HSTS), beskyttelse mod brute-force-loginforsøg, og ingen credentials eksponeres nogensinde i browseren.",
         ],
       },
       {
@@ -355,7 +355,7 @@ const de: Record<string, PlatformContentOverlay> = {
           "Jede Lösung hat ihre eigene fertige Betriebsansicht, damit Sie immer wissen, wo Sie stehen:",
         ],
         list: [
-          "RoomAlyzer Air: Raumklima: Live-Temperatur, Feuchte und CO2 mit Sensoraktivitätsindikatoren, die bei eingehenden Messungen pulsieren. Eine parallele Bevarungsansicht ergänzt die konservierungsspezifischen Kennzahlen (Preservation Index (PI/TWPI), Schimmelrisiko, EN 15757-Schwankungen und Bizot Green) für Museen, Archive und Kirchen.",
+          "RoomAlyzer Air: Raumklima: Live-Temperatur, Feuchte und CO2 mit Sensoraktivitätsindikatoren, die bei eingehenden Messungen pulsieren. Eine parallele Bewahrungsansicht ergänzt die konservierungsspezifischen Kennzahlen (Preservation Index (PI/TWPI), Schimmelrisiko, EN 15757-Schwankungen und Bizot Green) für Museen, Archive und Kirchen.",
           "RoomAlyzer Space: Space-Management: sehen Sie, wie Schreibtische, Räume und Zonen wirklich genutzt werden — Live-Belegung und Heatmaps, die Muster über die Zeit zeigen. Das sind die Daten, die zeigen, wo Reservekapazität liegt, welche Meetingräume leer stehen und wo gerade ein freier Schreibtisch ist.",
           "RoomAlyzer Water: Wassererkennung: ein operatives Cockpit mit aktiven Alarmen, stillen Sensoren und dem Zustand Ihrer gesamten Sensorflotte in Echtzeit, automatisch alle paar Sekunden aktualisiert — damit kein Leck übersehen wird.",
           "Es gibt auch eine Energieansicht, in der Verschwendung in DKK und CO2 angezeigt wird und die Effizienz je Standort aufgeschlüsselt ist.",
@@ -422,7 +422,7 @@ const de: Record<string, PlatformContentOverlay> = {
         heading: "Nie überrascht: Batterie und Sensorzustand",
         paragraphs: [
           "Sie sollten nie blind sein, weil ein Sensor still aufgehört hat zu senden. RoomAlyzer warnt rechtzeitig, bevor eine Batterie leer ist, nicht danach, damit Sie einen Austausch planen können, statt erst später eine Lücke in den Daten zu entdecken.",
-          "Sie können auch einen Sensor-Health-Digest abonnieren (täglich, wöchentlich oder monatlich) der nur Sensoren mit Problemen listet, z. B. stille oder schwach batterierte Geräte. Wenn alles in Ordnung ist, wird nichts gesendet — kommt eine E-Mail, wissen Sie, dass Aufmerksamkeit nötig ist.",
+          "Sie können auch einen Sensor-Health-Digest abonnieren (täglich, wöchentlich oder monatlich), der nur Sensoren mit Problemen listet, z. B. stille oder schwach batterierte Geräte. Wenn alles in Ordnung ist, wird nichts gesendet — kommt eine E-Mail, wissen Sie, dass Aufmerksamkeit nötig ist.",
         ],
       },
       {
@@ -502,7 +502,7 @@ const de: Record<string, PlatformContentOverlay> = {
       {
         heading: "Ein vollständiger Audit-Trail",
         paragraphs: [
-          "Jede Zugriffsänderung wird protokolliert. Wenn ein Nutzer hinzugefügt oder entfernt wird, eine Rolle geändert oder ein Konto erstellt oder gelöscht wird, entsteht ein unveränderlicher Eintrag (wer, wen, was, wann). Administratoren können die vollständige Zugriffshistorie jedes Nutzers einsehen, sodass interne Compliance wird einfach, und die Frage ist beantwortet, die irgendwann jeder stellt: wer hatte wann Zugriff auf was?",
+          "Jede Zugriffsänderung wird protokolliert. Wenn ein Nutzer hinzugefügt oder entfernt wird, eine Rolle geändert oder ein Konto erstellt oder gelöscht wird, entsteht ein unveränderlicher Eintrag (wer, wen, was, wann). Administratoren können die vollständige Zugriffshistorie jedes Nutzers einsehen, sodass interne Compliance einfach wird, und die Frage ist beantwortet, die irgendwann jeder stellt: wer hatte wann Zugriff auf was?",
         ],
       },
       {

@@ -259,7 +259,7 @@ const da: PreservationStrings = {
       value:
         " til facader) til zonede dashboards, driftalarmer og revisionsklare rapporter — så I kan balancere fejlfri bevaring med energieffektivitet. ",
     },
-    { type: "compare", label: "Sammenlign kulturarvsensorer", useCaseId: "heritage" },
+    { type: "compare", label: "Sammenlign kulturarvssensorer", useCaseId: "heritage" },
   ],
   solutionProofPoints: [
     { value: "±0,1 °C · ±1 % RH", label: "Sensorpræcision" },
@@ -344,7 +344,7 @@ const da: PreservationStrings = {
     "Udrul uden WiFi i tykvæggede historiske bygninger",
   ],
   faqTitle: "Ofte stillede spørgsmål",
-  faqContextAlt: "Kolleger der diskuterer planer omkring et mødebord",
+  faqContextAlt: "Kolleger, der diskuterer planer omkring et mødebord",
   faqItems: [
     {
       q: "Hvor lang er batterilevetiden?",
@@ -540,7 +540,7 @@ const de: PreservationStrings = {
     },
     {
       q: "Funktioniert das in historischen Gebäuden ohne WLAN?",
-      a: "Ja. Die Sensoren nutzen LoRaWAN oder ähnliche Funkprotokolle mit großer Reichweite — kein Gebäude-WLAN erforderlich. Ein einziges Gateway deckt in der Regel ein Kirchenschiff, ein Archivmagazin oder eine Museumsetage durch dicke Mauerwerk ab.",
+      a: "Ja. Die Sensoren nutzen LoRaWAN oder ähnliche Funkprotokolle mit großer Reichweite — kein Gebäude-WLAN erforderlich. Ein einziges Gateway deckt in der Regel ein Kirchenschiff, ein Archivmagazin oder eine Museumsetage durch dickes Mauerwerk ab.",
     },
     {
       q: "Unterstützt RoomAlyzer EN-15757-Dokumentation?",
@@ -564,7 +564,7 @@ const sv: PreservationStrings = {
   breadcrumbHome: "Hem",
   breadcrumbModules: "Moduler",
   breadcrumbCurrent: "Bevarande",
-  heroTitle: "Felfri bevaring",
+  heroTitle: "Felfri bevarande",
   heroTitleAccent: "möter energioptimering",
   heroLead:
     "Vår smarta modul säkrar det idealiska klimatet och minskar samtidigt onödig energiförbrukning",
@@ -627,7 +627,7 @@ const sv: PreservationStrings = {
       value:
         " för fasader) till zonerade dashboards, driftlarm och revisionsklara rapporter — så att ni kan balansera felfritt bevarande med energieffektivitet. ",
     },
-    { type: "compare", label: "Jämför kulturarvsensorer", useCaseId: "heritage" },
+    { type: "compare", label: "Jämför kulturarvssensorer", useCaseId: "heritage" },
   ],
   solutionProofPoints: [
     { value: "±0,1 °C · ±1 % RF", label: "Sensorprecision" },
@@ -652,9 +652,9 @@ const sv: PreservationStrings = {
     {
       id: "ashrae",
       title: "ASHRAE",
-      body: "Klimaklassanalys med uppnådda klasspoäng och helårsvy för revisionsklar dokumentation.",
+      body: "Klimatklassanalys med uppnådda klasspoäng och helårsvy för revisionsklar dokumentation.",
       unit: "Compliance",
-      imageAlt: "ASHRAE-klimaklassanalys i RoomAlyzer",
+      imageAlt: "ASHRAE-klimatklassanalys i RoomAlyzer",
     },
     {
       id: "preservation-index",
@@ -728,7 +728,7 @@ const sv: PreservationStrings = {
     },
     {
       q: "Stöder RoomAlyzer EN 15757-dokumentation?",
-      a: "Ja. Kontinuerliga klimaloggar och exporterbara rapporter ger den dokumenterade historik EN 15757 förväntar sig för organiska hygroskopiska material — redo för revisioner, försäkring och ansökningsgranskningar.",
+      a: "Ja. Kontinuerliga klimatloggar och exporterbara rapporter ger den dokumenterade historik EN 15757 förväntar sig för organiska hygroskopiska material — redo för revisioner, försäkring och ansökningsgranskningar.",
     },
     {
       q: "Vad kostar det?",

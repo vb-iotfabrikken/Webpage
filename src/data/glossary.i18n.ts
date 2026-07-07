@@ -183,7 +183,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
     },
     gdpr: {
       short: "Die EU-Datenschutz-Grundverordnung, wenn Gebäudesensordaten einer identifizierbaren Person zugeordnet werden können.",
-      detail: "Aggregierte Raumbelegung ist keine personenbezogene Daten. Schreibtisch-Belegung mit Hot-Desk-Buchungen meist schon, dafür strikte rollenbasierte Zugriffe und konfigurierbare Aufbewahrung.",
+      detail: "Aggregierte Raumbelegung ist keine personenbezogenen Daten. Schreibtisch-Belegung mit Hot-Desk-Buchungen meist schon, dafür strikte rollenbasierte Zugriffe und konfigurierbare Aufbewahrung.",
     },
     ghg: {
       short: "Die Gase im CO₂-Fußabdruck: CO₂, CH₄, N₂O, F-Gase. Gebäudebetrieb erzeugt Scope-1- und Scope-2-Emissionen.",
@@ -304,7 +304,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Den tidigare (2007) europeiska inomhusmiljöstandarden, nu ersatt av EN 16798 men fortfarande refererad i äldre specifikationer.",
     },
     "en-15757": {
-      short: "Den europeiska bevarandestandard som anger klimakrav för organiska hygroskopiska material i kulturarvsmiljöer.",
+      short: "Den europeiska bevarandestandard som anger klimatkrav för organiska hygroskopiska material i kulturarvsmiljöer.",
       detail: "EN 15757 använder ett relativt angrepp (säsongsband från objektets historiska klimat) snarare än en fast setpoint, ofta mer realistiskt i ouppvärmda historiska byggnader.",
     },
     "en-16798": {
@@ -396,7 +396,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       detail: "TVOC är användbart för trenddetektion (städning just skett, ny möbel anlänt) snarare än absoluta hälsotrösklar, eftersom enskilda ämnen har mycket olika toxicitet.",
     },
     twpi: {
-      short: "En inomhusklimaindikator som viktar överskridanden efter hur länge rummet faktiskt var belagt.",
+      short: "En inomhusklimatindikator som viktar överskridanden efter hur länge rummet faktiskt var belagt.",
     },
     vav: {
       short: "Ett ventilationsstyrsystem där varje rum får en spjäll som modulerar luftflöde, idealt mål för CO₂-styrd efterfrågestyrning.",

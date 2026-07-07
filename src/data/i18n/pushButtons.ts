@@ -238,7 +238,7 @@ const da: ModulePageStrings = {
   audiencesHeading: "Overblik for ledere, klarhed for teams på gulvet",
   audiencesLead:
     "Det samme tryk hjælper kollegaen, der mangler sæbe, og facility manageren, der skal dokumentere, at serviceniveauet holdes.",
-  primaryAudienceHeading: "Til Facility Management",
+  primaryAudienceHeading: "Til facility management",
   primaryAudienceItems: [
     "Se alle åbne anmodninger på ét dashboard",
     "Sæt routingregler pr. bygning, etage og knaprolle",
@@ -253,7 +253,7 @@ const da: ModulePageStrings = {
     "Integrér med eksisterende ticketsystemer",
   ],
   faqTitle: "Ofte stillede spørgsmål",
-  faqContextAlt: "Kolleger der diskuterer planer omkring et mødebord",
+  faqContextAlt: "Kolleger, der diskuterer planer omkring et mødebord",
   faqItems: [
     {
       q: "Hvor længe holder batteriet?",
@@ -512,13 +512,13 @@ const sv: ModulePageStrings = {
   ],
   relatedModuleLabel: "Smartare tillsammans",
   relatedModuleBody:
-    "Kombinera tryckknappsignaler med beläggning från Användning och städning — skicka städning till toaletter gäster flaggat och hoppa över rum som stått tomma hela dagen.",
+    "Kombinera tryckknappssignaler med beläggning från Användning och städning — skicka städning till toaletter gäster flaggat och hoppa över rum som stått tomma hela dagen.",
   relatedModuleLink: "Utforska användning och städning",
   audiencesEyebrow: "Vem det är för",
   audiencesHeading: "Överblick för chefer, tydlighet för team på golvet",
   audiencesLead:
     "Samma tryck hjälper kollegan som behöver påfyllning av tvål och facility managern som ska visa att servicenivån hålls.",
-  primaryAudienceHeading: "För Facility Managers",
+  primaryAudienceHeading: "För facility managers",
   primaryAudienceItems: [
     "Se alla öppna förfrågningar på en dashboard",
     "Sätt routingregler per byggnad, våning och knapproll",

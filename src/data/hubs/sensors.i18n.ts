@@ -161,7 +161,7 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
         lead: "Forebyg vandskader med data, alarmer inden for sekunder, når der registreres vand.",
       },
       "water-rope": {
-        titleAccent: "Liniedækning, hvor en punktsensor ikke kan nå.",
+        titleAccent: "Linjedækning, hvor en punktsensor ikke kan nå.",
         lead: "Et følekabel til lange strækninger langs rør, fodlister og gulve i teknikrum.",
       },
       "cloud-connector": {

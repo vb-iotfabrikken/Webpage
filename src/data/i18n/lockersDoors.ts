@@ -247,7 +247,7 @@ const da: ModulePageStrings = {
     "Planlæg skabstildeling ud fra tendenser, ikke antagelser",
   ],
   faqTitle: "Ofte stillede spørgsmål",
-  faqContextAlt: "Kolleger der diskuterer planer omkring et mødebord",
+  faqContextAlt: "Kolleger, der diskuterer planer omkring et mødebord",
   faqItems: [
     {
       q: "Hvad kan åbn/luk-sensorerne overvåge?",
@@ -366,7 +366,7 @@ const de: ModulePageStrings = {
   relatedModuleLabel: "Smarter zusammen",
   relatedModuleBody:
     "Kombinieren Sie Öffnen/Schließen-Daten mit Belegung aus Space-Management — sehen Sie, welche Schließfächer in der Nähe stark genutzter Zonen liegen, und passen Sie die Kapazität an die tatsächliche Nutzung des Gebäudes an.",
-  relatedModuleLink: "Space management entdecken",
+  relatedModuleLink: "Space-Management entdecken",
   audiencesEyebrow: "Für wen",
   audiencesHeading: "Täglicher Betrieb und Arbeitsplatzplanung",
   audiencesLead:
@@ -416,7 +416,7 @@ const de: ModulePageStrings = {
 const sv: ModulePageStrings = {
   metaTitle: "Skåp och dörrar: öppna/stäng-övervakning | IoT Fabrikken",
   metaDescription:
-    "Trådlösa öppna/stäng-sensorer för skåp, dörrar, fönster och skåp. Se vad som är öppet i realtid, upptäck luckor utanför öppettider och planera kapacitet utifrån användningsdata.",
+    "Trådlösa öppna/stäng-sensorer för skåp, dörrar och fönster. Se vad som är öppet i realtid, upptäck luckor utanför öppettider och planera kapacitet utifrån användningsdata.",
   breadcrumbHome: "Hem",
   breadcrumbModules: "Moduler",
   breadcrumbCurrent: "Skåp och dörrar",

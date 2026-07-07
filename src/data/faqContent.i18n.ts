@@ -125,7 +125,7 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
     ],
     "space-management": [
       { q: "Wie funktionieren Belegungssensoren ohne Personen zu identifizieren?", a: "Wir nutzen PIR (passiv infrarot), mmWave und Thermopile-Sensoren, die Bewegung und Wärmesignaturen erfassen, aber keine Gesichter sehen oder Personen identifizieren können. Keine Kameras, keine Badges, keine personenbezogenen Daten." },
-      { q: "Sind Belegungsdaten personenbezogene Daten nach GDPR?", a: "Aggregierte Raumbelegung ist keine personenbezogene Daten. Schreibtisch-Belegung kombiniert mit Hot-Desk-Buchungen kann es sein, dafür gibt es rollenbasierte Zugriffskontrollen und Aufbewahrungseinstellungen." },
+      { q: "Sind Belegungsdaten personenbezogene Daten nach GDPR?", a: "Aggregierte Raumbelegung ist keine personenbezogenen Daten. Schreibtisch-Belegung kombiniert mit Hot-Desk-Buchungen kann es sein, dafür gibt es rollenbasierte Zugriffskontrollen und Aufbewahrungseinstellungen." },
       { q: "Wie genau ist die Belegungserkennung?", a: "PIR-Sensoren sind >98 % genau für Anwesenheit in Räumen bis 40 m². mmWave-Sensoren decken größere Räume ab und zählen Personen, typischerweise mit ±1 Abweichung." },
       { q: "Können wir No-Show-Meetings automatisch freigeben?", a: "Ja. Kombinieren Sie das PIR-Signal mit Kalenderintegration (Google, Microsoft 365, Pronestor), die Plattform gibt den Raum nach einer Karenzzeit frei, Standard sind 10 Minuten." },
       { q: "Können wir ein Homeoffice überwachen?", a: "Das raten wir stark ab. Arbeitgeberüberwachung von Heimarbeitsplätzen ist rechtlich heikel und kulturell schädlich. Fokussieren Sie auf Firmenstandorte; Mitarbeitende können Homeoffice-Setups selbst melden, wenn sie wollen." },
@@ -241,7 +241,7 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
     ],
     sensors: [
       { q: "Vilka sensorer levererar ni?", a: "Vår portfölj är organiserad i fyra linjer: RoomAlyzer Air (klimasensorer som CO2, Full+, Humidity, Mini+, Mini+ PIR, Outdoor och Temperature), RoomAlyzer Space (Desk, Motion, Open/Close och Touch), RoomAlyzer Water (Water detector och Water rope) och Miscellaneous (Cloud connector, Range Extender och Bracket). Ladda ner produktblad från sensorssektionen." },
-      { q: "Behöver sensorerna kalibreras?", a: "CO₂-sensorer kalibrerar sig mot utomhusnivåer; fukt sensorer driver cirka 1 % RH per år; temperatursensorer är stabila under livslängden. Vi rekommenderar fabriksomkalibrering vart femte år för bevarandekritiska utrullningar." },
+      { q: "Behöver sensorerna kalibreras?", a: "CO₂-sensorer kalibrerar sig mot utomhusnivåer; fuktsensorer driver cirka 1 % RH per år; temperatursensorer är stabila under livslängden. Vi rekommenderar fabriksomkalibrering vart femte år för bevarandekritiska utrullningar." },
       { q: "Vad är typisk batteritid?", a: "Tre till sju år beroende på sensortyp, rapporteringsintervall och omgivningstemperatur. Plattformen visar batterimätare per sensor och förutsäger bytesdatum." },
       { q: "Var kan sensorerna placeras?", a: "Överallt med LoRaWAN- eller NB-IoT-täckning. Inomhus 1,1–1,7 m över golv, bort från direkt solljus, uttag och fönster. Placeringsguiden täcker varje rumstyp." },
       { q: "Är sensorerna CE-märkta?", a: "Ja. Alla våra sensorer är CE-märkta och följer Radio Equipment Directive (RED), Low Voltage Directive (LVD) och EMC Directive." },

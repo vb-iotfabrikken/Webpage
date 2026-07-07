@@ -34,7 +34,7 @@ export const faqContent: Record<string, Qa[]> = {
   ],
 
   preservation: [
-    { q: "Which standard do you follow for preservation climate?", a: "EN 15757 is the European standard we default to, it defines acceptable daily and seasonal variation bands relative to each object's historical climate rather than a single absolute setpoint. DGNB, WELL and local diocese guidelines layer on top." },
+    { q: "Which standard do you follow for preservation climate?", a: "EN 15757 is the European standard we default to; it defines acceptable daily and seasonal variation bands relative to each object's historical climate rather than a single absolute setpoint. DGNB, WELL and local diocese guidelines layer on top." },
     { q: "How dense should the sensor coverage be?", a: "One sensor per micro-climate zone. A single nave might need three sensors (chancel, nave, under the organ gallery) because each responds differently to heating and visitor influx." },
     { q: "Can you measure inside display cases?", a: "Yes. Our MINI-series sensors fit inside showcases and report wirelessly through the case glass. They're battery-powered so you don't need to breach the case to run cabling." },
     { q: "How long do the batteries last?", a: "Three to five years for typical preservation settings (15-minute reporting interval, stable temperature). The platform warns you 60 days before the battery needs replacing." },
@@ -46,17 +46,17 @@ export const faqContent: Record<string, Qa[]> = {
     { q: "How do occupancy sensors work without identifying people?", a: "We use PIR (passive infrared), mmWave and thermopile sensors that detect motion and heat signatures but can't see faces or identify individuals. No cameras, no badges, no personal data." },
     { q: "Is occupancy data personal data under GDPR?", a: "Aggregated room occupancy isn't personal data. Desk-level occupancy combined with hot-desk bookings could be, so we provide role-based access controls and retention settings specifically for that case." },
     { q: "How accurate is the occupancy detection?", a: "PIR sensors are >98% accurate for presence detection in rooms up to 40 m². mmWave sensors handle bigger spaces and can count people, typically within ±1 at any given moment." },
-    { q: "Can we automatically release no-show meetings?", a: "Yes. Combine the PIR signal with a calendar integration (Google, Microsoft 365, Pronestor) and the platform will release the room after a grace period, the default is 10 minutes." },
+    { q: "Can we automatically release no-show meetings?", a: "Yes. Combine the PIR signal with a calendar integration (Google, Microsoft 365, Pronestor) and the platform will release the room after a grace period; the default is 10 minutes." },
     { q: "Can we monitor a home office?", a: "We strongly advise against it. Employer monitoring of home workspaces is legally fraught and culturally corrosive. Focus on corporate premises and let employees self-report home setups if they wish." },
     { q: "How long does the data stay around?", a: "Room-level occupancy is retained for 24 months by default. Desk-level data defaults to 6 months and can be configured per room or per desk to match your works-council agreement." },
   ],
 
   "water-detection": [
     { q: "How fast is the alarm?", a: "From water hitting the sensor to an alarm leaving the platform takes under 30 seconds for LoRaWAN-connected sensors and under 2 minutes for NB-IoT. SMS, email, webhook and ticketing integrations then fan out the alarm to on-call staff." },
-    { q: "What's the false-positive rate?", a: "Well below 1 per 1000 sensor-years in production deployments. Condensation, cleaning and spills can all trigger sensors, we tune thresholds and alarm debouncing to your specific risk profile." },
+    { q: "What's the false-positive rate?", a: "Well below 1 per 1000 sensor-years in production deployments. Condensation, cleaning and spills can all trigger sensors; we tune thresholds and alarm debouncing to your specific risk profile." },
     { q: "How long does the battery last in a water sensor?", a: "Five to seven years in most installations. Sensors are sealed against humidity and rated for placement in basements, plant rooms and under-sink cabinets." },
     { q: "Where should we place water sensors?", a: "Under sinks, next to water heaters, near washing machines and dishwashers, at the low points of plant rooms, under raised floors in data centres and at the ends of runs in plumbed ceilings. See the water-detection module guide for a full matrix." },
-    { q: "Does this lower our insurance premiums?", a: "In many Nordic markets yes, particularly for commercial property with a history of escape-of-water claims. We help you package the data for your broker." },
+    { q: "Does this lower our insurance premiums?", a: "In many Nordic markets, yes, particularly for commercial property with a history of escape-of-water claims. We help you package the data for your broker." },
     { q: "Can we integrate the alarm into our existing SCADA or NOC?", a: "Yes. The platform publishes to MQTT in real time so alarms can flow directly into Niagara, Desigo, Intel NOCs or bespoke Grafana/Prometheus stacks." },
   ],
 
@@ -105,7 +105,7 @@ export const faqContent: Record<string, Qa[]> = {
     { q: "What's in the box?", a: "Pre-configured sensors paired with your account, gateways (if ordered), mounting accessories and a printed quick-start guide. Everything is labelled and scannable from the mobile app." },
     { q: "How long does installation take?", a: "30 seconds per sensor (peel, stick, press) plus gateway placement (5 minutes each). A 100-sensor, 3-gateway school deployment typically takes one technician one afternoon." },
     { q: "Who installs the sensors?", a: "Your caretaker, your FM partner or us, whichever suits you. We provide video guides, and the mobile app walks the installer through QR scan, placement photo and signal-strength verification." },
-    { q: "Do we need to run cables?", a: "No. Sensors are wireless and battery-powered. Gateways need mains power and either Ethernet or a SIM, mains is usually the only wiring required." },
+    { q: "Do we need to run cables?", a: "No. Sensors are wireless and battery-powered. Gateways need mains power and either Ethernet or a SIM; mains is usually the only wiring required." },
     { q: "What if we move a sensor later?", a: "Rescan its QR code in the mobile app and assign it to the new room. History stays with the old room and new readings accumulate in the new one." },
   ],
 

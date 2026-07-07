@@ -255,7 +255,7 @@ const da: ModulePageStrings = {
     "Tilpas rengøringsbudgettet til faktisk bygningsbrug",
   ],
   faqTitle: "Ofte stillede spørgsmål",
-  faqContextAlt: "Kolleger der diskuterer planer omkring et mødebord",
+  faqContextAlt: "Kolleger, der diskuterer planer omkring et mødebord",
   faqItems: [
     {
       q: "Hvordan ved RoomAlyzer, at et rum er blevet brugt?",
@@ -378,7 +378,7 @@ const de: ModulePageStrings = {
   relatedModuleLabel: "Smarter zusammen",
   relatedModuleBody:
     "Nutzung und Reinigung teilt Belegungsdaten direkt mit Space-Management — ein Sensornetzwerk, zwei Module und eine gemeinsame Quelle dafür, wie das Gebäude genutzt wird.",
-  relatedModuleLink: "Space management entdecken",
+  relatedModuleLink: "Space-Management entdecken",
   audiencesEyebrow: "Für wen",
   audiencesHeading: "Reinigungsteams und die Facility Manager, die sie steuern",
   audiencesLead:
@@ -448,11 +448,11 @@ const sv: ModulePageStrings = {
   challenges: [
     {
       title: "Städning efter schema, inte efter behov",
-      body: "Uanvända utrymmen städas enligt plan medan aktiva zoner och offentliga toaletter väntar på sin tur.",
+      body: "Oanvända utrymmen städas enligt plan medan aktiva zoner och offentliga toaletter väntar på sin tur.",
     },
     {
       title: "Slösade resurser",
-      body: "Personal tid och städkostnader går till rum som inte rörts sedan förra rundan.",
+      body: "Personaltid och städkostnader går till rum som inte rörts sedan förra rundan.",
     },
     {
       title: "Inget underlag för samtalet",
