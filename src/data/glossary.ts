@@ -104,7 +104,7 @@ export const glossary: GlossaryEntry[] = [
     aka: ["General Data Protection Regulation"],
     anchor: "gdpr",
     short: "The EU data-protection regulation that applies whenever a building's sensor data can be linked to an identifiable individual.",
-    detail: "Aggregated room occupancy is not personal data. Desk-level occupancy combined with hot-desk bookings usually is, we handle that case with strict role-based access controls and configurable retention.",
+    detail: "Aggregated room occupancy is not personal data. Desk-level occupancy combined with hot-desk bookings usually is; we handle that case with strict role-based access controls and configurable retention.",
     seeAlso: ["space-management"],
   },
   {

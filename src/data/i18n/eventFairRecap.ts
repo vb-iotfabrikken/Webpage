@@ -55,7 +55,7 @@ function buildFairLead(): string {
 }
 
 const de = {
-  fairHeading: "Wir sind unterwegs, und freuen uns auf Hof.",
+  fairHeading: "Wir sind unterwegs und freuen uns auf Hof.",
   closingCaption: "Bis bald in Hof",
 } as const;
 

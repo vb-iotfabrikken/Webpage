@@ -287,7 +287,7 @@ const da: IndoorClimateStrings = {
     {
       id: "legacy-report",
       title: "Rapport og advarsler",
-      body: "Daglige, ugentlige og månedlige indeklimaoversigter lander direkte i indbakken. Vælg præcis hvilke værdier der skal med, send til så mange modtagere, I vil, og send altid en test først. Advarselsfunktionen giver besked i det øjeblik, indeklimaet afviger fra det niveau, I har sat. Finjuster alarmer for at undgå falske alarm, vælg SMS eller e-mail, og tildel forskellige rapporter til forskellige modtagere, så stigende fugt eller dårlig luftkvalitet opdages tidligt.",
+      body: "Daglige, ugentlige og månedlige indeklimaoversigter lander direkte i indbakken. Vælg præcis hvilke værdier der skal med, send til så mange modtagere, I vil, og send altid en test først. Advarselsfunktionen giver besked i det øjeblik, indeklimaet afviger fra det niveau, I har sat. Finjuster alarmer for at undgå falske alarmer, vælg SMS eller e-mail, og tildel forskellige rapporter til forskellige modtagere, så stigende fugt eller dårlig luftkvalitet opdages tidligt.",
       unit: "Rapporter",
       imageAlt: "Indeklimarapport og CO₂-graf i RoomAlyzer",
     },
@@ -315,7 +315,7 @@ const da: IndoorClimateStrings = {
     "Evidens til at understøtte energireduktion gennem datadreven styring",
   ],
   faqTitle: "Ofte stillede spørgsmål",
-  faqContextAlt: "Kolleger der diskuterer planer omkring et mødebord",
+  faqContextAlt: "Kolleger, der diskuterer planer omkring et mødebord",
   faqItems: [
     {
       q: "Hvor lang er batterilevetiden?",
@@ -347,7 +347,7 @@ const da: IndoorClimateStrings = {
 const de: IndoorClimateStrings = {
   metaTitle: "Raumklima: Sensoren und Daten | IoT Fabrikken",
   metaDescription:
-    "Fernüberwachung des Raumklimas mit drahtlosen Sensoren. Beschwerden in Fakten verwandeln, Energieverschwendung senken und Schimmel voraus sein — mit EPBD- und DGNB-fertigen Berichten.",
+    "Fernüberwachung des Raumklimas mit drahtlosen Sensoren. Beschwerden in Fakten verwandeln, Energieverschwendung senken und dem Schimmel voraus sein — mit EPBD- und DGNB-fertigen Berichten.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
   breadcrumbCurrent: "Raumklima",
@@ -412,7 +412,7 @@ const de: IndoorClimateStrings = {
     {
       id: "energy-optimisation",
       title: "Energieoptimierung",
-      body: "Sehen Sie, wie viel Energie Ihr Gebäude verschwendet, weil Räume wärmer oder kälter gehalten werden als nötig. Das Modul vergleicht die Innentemperatur mit Winter- und Sommer-Sollwerten und quantifiziert Überhitzung und Überkühlung (in kWh, in Kosten und in CO₂) damit Sie genau sehen, wo Einsparpotenziale liegen. Ein Effizienzscore fasst jeden Standort auf einen Blick zusammen, passive Phasen werden ausgeschlossen, damit die Zahlen ehrlich bleiben, und Sie erhalten konkrete, priorisierte Empfehlungen für jedes Zeitfenster von 24 Stunden bis 90 Tagen.",
+      body: "Sehen Sie, wie viel Energie Ihr Gebäude verschwendet, weil Räume wärmer oder kälter gehalten werden als nötig. Das Modul vergleicht die Innentemperatur mit Winter- und Sommer-Sollwerten und quantifiziert Überhitzung und Überkühlung (in kWh, in Kosten und in CO₂), damit Sie genau sehen, wo Einsparpotenziale liegen. Ein Effizienzscore fasst jeden Standort auf einen Blick zusammen, passive Phasen werden ausgeschlossen, damit die Zahlen ehrlich bleiben, und Sie erhalten konkrete, priorisierte Empfehlungen für jedes Zeitfenster von 24 Stunden bis 90 Tagen.",
       unit: "Energie",
       imageAlt: "Energieoptimierungsanalyse in RoomAlyzer",
     },
@@ -440,8 +440,8 @@ const de: IndoorClimateStrings = {
   ],
   relatedModuleLabel: "Smarter zusammen",
   relatedModuleBody:
-    "Kombinieren Sie Raumklimadaten mit Belegung aus Space management — lüften, wenn Räume genutzt werden, und drosseln, wenn sie leer stehen.",
-  relatedModuleLink: "Space management entdecken",
+    "Kombinieren Sie Raumklimadaten mit Belegung aus Space-Management — lüften, wenn Räume genutzt werden, und drosseln, wenn sie leer stehen.",
+  relatedModuleLink: "Space-Management entdecken",
   audiencesEyebrow: "Für wen es gedacht ist",
   audiencesHeading: "Für Compliance-Verantwortliche und ESG-Manager: Daten, die Sie für Standards und Vorschriften nutzen können.",
   audiencesLead:

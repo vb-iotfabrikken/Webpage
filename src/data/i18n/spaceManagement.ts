@@ -74,7 +74,7 @@ const en: SpaceManagementStrings = {
     "Live desk and room occupancy that turns guesswork into rent and energy savings, and gives people a workplace worth showing up for.",
   heroTitleImageAlt: "Hand placing a RoomAlyzer Space desk sensor under an office desk",
   intro: [
-    "Facility management is no longer just about desks and indoor climate. It is navigating a human dilemma between flexibility and physical presence. Employees no longer commute out of habit; the workplace must deliver clear value. The challenge is to elevate the employee experience while driving waste toward zero, shifting from counting heads to optimising how people actually use the office.",
+    "Facility management is no longer just about desks and indoor climate. It is navigating a human dilemma between flexibility and physical presence. Employees no longer commute out of habit; the workplace must deliver clear value. The challenge is to elevate the employee experience while driving waste towards zero, shifting from counting heads to optimising how people actually use the office.",
   ],
   heroPrimaryCta: "Book a free demo",
   heroSecondaryCta: "Get an offer",
@@ -262,7 +262,7 @@ const da: SpaceManagementStrings = {
     },
     {
       title: "Kontorforbedringer I ikke kan måle",
-      body: "For at tiltrække kontor fremmøde investerer virksomheder i stille zoner, stående rum og projektvægge — men uden sporing har I intet udgangspunkt for, hvilke layouts der driver fremmøde, og hvilke der spilder budget.",
+      body: "For at tiltrække kontorfremmøde investerer virksomheder i stille zoner, stående rum og projektvægge — men uden sporing har I intet udgangspunkt for, hvilke layouts der driver fremmøde, og hvilke der spilder budget.",
     },
   ],
   capabilitiesEyebrow: "Sådan løser RoomAlyzer det",
@@ -337,7 +337,7 @@ const da: SpaceManagementStrings = {
       imageAlt: "RoomAlyzer-dashboard med energi- og drifts-ROI",
     },
   ],
-  smarterTogetherLabel: "Smarter together",
+  smarterTogetherLabel: "Smartere sammen",
   smarterTogetherHeadline: "Belægning, indeklima og compliance i ét overblik",
   smarterTogether:
     "RoomAlyzer kombinerer arealudnyttelse med indeklima (CO₂, temperatur og luftfugtighed) så I ventilerer efter faktisk headcount og skruer ned, når lokaler står tomme.",
@@ -364,7 +364,7 @@ const da: SpaceManagementStrings = {
     "Fordel afdelingsarealer med objektive brugstal, ikke politik",
   ],
   faqTitle: "Ofte stillede spørgsmål",
-  faqContextAlt: "Kolleger der diskuterer planer omkring et mødebord",
+  faqContextAlt: "Kolleger, der diskuterer planer omkring et mødebord",
   faqItems: [
     {
       q: "Hvordan fungerer belægningssensorer uden at identificere personer?",
@@ -501,10 +501,10 @@ const de: SpaceManagementStrings = {
       imageAlt: "RoomAlyzer-Einsparungsdashboard mit Energie- und Betriebs-ROI",
     },
   ],
-  smarterTogetherLabel: "Smarter together",
+  smarterTogetherLabel: "Smarter zusammen",
   smarterTogetherHeadline: "Belegung, Raumklima und Compliance in einer Ansicht",
   smarterTogether:
-    "RoomAlyzer kombiniert Flächennutzung mit Raumklima (CO₂, Temperatur und Luftfeuchtigkeit) damit Sie für tatsächliche Kopfzahl lüften und drosseln, wenn Räume leer sind.",
+    "RoomAlyzer kombiniert Flächennutzung mit Raumklima (CO₂, Temperatur und Luftfeuchtigkeit), damit Sie für tatsächliche Kopfzahl lüften und drosseln, wenn Räume leer sind.",
   smarterTogetherOccupancyLabel: "Flächennutzung",
   smarterTogetherOccupancyContext: "Open Space · Etage 3",
   smarterTogetherOccupancyStat: "62 % belegt",
@@ -665,7 +665,7 @@ const sv: SpaceManagementStrings = {
       imageAlt: "RoomAlyzer-dashboard med energi- och drifts-ROI",
     },
   ],
-  smarterTogetherLabel: "Smarter together",
+  smarterTogetherLabel: "Smartare tillsammans",
   smarterTogetherHeadline: "Beläggning, inomhusklimat och compliance i en vy",
   smarterTogether:
     "RoomAlyzer kombinerar ytanvändning med inomhusklimat (CO₂, temperatur och luftfuktighet) så att ni ventilerar efter faktisk headcount och drar ner när rum står tomma.",

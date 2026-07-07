@@ -1,4 +1,4 @@
-import type { Lang } from "../lang";
+﻿import type { Lang } from "../lang";
 import type { IndustryPageContent } from "./types";
 
 /**
@@ -16,9 +16,9 @@ const da: Record<string, IndustryContentOverlay> = {
     cardSummary:
       "Balanceér arealudnyttelse i hybride arbejdspladser med medarbejdernes produktivitet og komfort.",
     focus:
-      "Moderne kontorer skal balancere hybrid fremmøde, mødelokalebehov og indeklima — ofte uden data til at understøtte leje, HVAC eller layoutbeslutninger.",
+      "Moderne kontorer skal balancere hybridfremmøde, mødelokalebehov og indeklima — ofte uden data til at understøtte leje, HVAC eller layoutbeslutninger.",
     challenges: [
-      "I betaler for skriveborde og etager, der står tomme: hybrid arbejde har ændret fremmødemønstre, men mange organisationer dimensionerer stadig arealer efter headcount — ikke målt brug.",
+      "I betaler for skriveborde og etager, der står tomme: hybridarbejde har ændret fremmødemønstre, men mange organisationer dimensionerer stadig arealer efter headcount — ikke målt brug.",
       "Spøgelsesbookinger af mødelokaler: lokaler reserveret til ti og brugt af to blokerer areal, andre har brug for — uden objektiv indsigt i gapet.",
       "Komfortklager, I ikke kan verificere: 'for tung luft' eller 'for koldt' debatterer videre, fordi ventilation og varme følger faste planer — ikke faktisk belægning.",
       "HVAC kører i blinde: systemer varmer og ventilerer tomme zoner, mens de underpræsterer, når lokaler er fyldte — energispild uden bedre trivsel.",
@@ -107,7 +107,7 @@ const da: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Indeklima giver live CO2-, temperatur-, fugt- og TVOC-data i hvert klasseværelse med alarmer før retningslinjer overskrides, så lærere får et klart signal til at udlufte, og ledelsen har dokumentation for, at forholdene håndteres.",
-      "RoomAlyzer Space management kortlægger reel brug i haller og specialrum, så varme og ventilation kan trække sig tilbage, når bygninger er tomme. En outdoor-sensor giver en vejrreference, så beslutninger om naturlig ventilation matcher forholdene udenfor.",
+      "RoomAlyzer Space management kortlægger reel brug i haller og specialrum, så varme og ventilation kan trække sig tilbage, når bygninger er tomme. En Outdoor-sensor giver en vejrreference, så beslutninger om naturlig ventilation matcher forholdene udenfor.",
     ],
     smarterTogether:
       "RoomAlyzer Indeklima og Space management sammen viser ikke kun, hvornår luftkvaliteten falder, men også hvornår energi spildes på at opvarme lokaler, ingen bruger.",
@@ -154,7 +154,7 @@ const da: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Indeklima overvåger CO2, temperatur, fugt og TVOC i patientvendte områder med kontinuerlig historik, så diskussioner om luftkvalitet bygger på data, ikke indtryk.",
-      "Dedikerede temperature-sensor og humidity-sensor dækker apoteker, laboratorier og kølelager med alarmer, før lager er i fare. RoomAlyzer Vanddetektering sender SMS- og e-mailalarmer fra maskin- og serviceområder med tidsstemplet hændelseslog, før en lækage når kliniske zoner.",
+      "Dedikerede Temperature-sensor og Humidity-sensor dækker apoteker, laboratorier og kølelager med alarmer, før lager er i fare. RoomAlyzer Vanddetektering sender SMS- og e-mailalarmer fra maskin- og serviceområder med tidsstemplet hændelseslog, før en lækage når kliniske zoner.",
     ],
     smarterTogether:
       "RoomAlyzer Indeklima og Vanddetektering på én platform giver ejendomsteams ét overblik over komfort, compliance og infrastrukturrisk på tværs af hospitalets arealer.",
@@ -201,7 +201,7 @@ const da: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Indeklima holder temperatur, fugt, CO2 og TVOC stabile i fællesområder og beboerværelser med alarmer, når forholdene bevæger sig uden for aftalte bånd.",
-      "RoomAlyzer Trykknapper giver servicekald med ét tryk fra toiletter og spisesale, viderestillet via e-mail eller SMS, før problemer bliver klager. temperature-sensor tilføjer præcision i køkkener og vaskerier, mens RoomAlyzer Vanddetektering alarmerer personalet i vådrum og maskinområder tidligt.",
+      "RoomAlyzer Trykknapper giver servicekald med ét tryk fra toiletter og spisesale, viderestillet via e-mail eller SMS, før problemer bliver klager. Temperature-sensor tilføjer præcision i køkkener og vaskerier, mens RoomAlyzer Vanddetektering alarmerer personalet i vådrum og maskinområder tidligt.",
     ],
     smarterTogether:
       "RoomAlyzer Indeklima og Trykknapper på én platform hjælper personalet med at prioritere både komfort og responstid uden at tilføje kompleksitet til daglige runder.",
@@ -247,8 +247,8 @@ const da: Record<string, IndustryContentOverlay> = {
       "Sikkerhed uden for åbningstid uden gennemgang: lastbryggere og indvendige døre, der står åbne, spilder energi og skaber risiko.",
     ],
     solution: [
-      "temperature-sensor leverer kontinuerlig logning og alarmer for køleskabe, fryser og udstillingskøleskabe med historik klar til fødevaresikkerhed og forsikringsgennemgange.",
-      "RoomAlyzer Indeklima sporer butiksgulvets CO2, temperatur, fugt og TVOC, så komfort og energi kan balanceres på tværs af lange åbningstider. motion-sensor kortlægger kundestrøm; RoomAlyzer Skabe og døre bekræfter, at døre og bryggere er lukket, når butikken lukker, uden natlige gennemgange.",
+      "Temperature-sensor leverer kontinuerlig logning og alarmer for køleskabe, fryser og udstillingskøleskabe med historik klar til fødevaresikkerhed og forsikringsgennemgange.",
+      "RoomAlyzer Indeklima sporer butiksgulvets CO2, temperatur, fugt og TVOC, så komfort og energi kan balanceres på tværs af lange åbningstider. Motion-sensor kortlægger kundestrøm; RoomAlyzer Skabe og døre bekræfter, at døre og bryggere er lukket, når butikken lukker, uden natlige gennemgange.",
     ],
     smarterTogether:
       "Kundestrøm og indeklimadata sammen viser, hvor der skal ventileres i myldretid, og hvor der kan skæres ned, når zoner er tomme.",
@@ -341,8 +341,8 @@ const da: Record<string, IndustryContentOverlay> = {
       "Maskinudstyr og kondensbakker: lokale vandkilder spreder sig hurtigt på tværs af åbne gulvflader.",
     ],
     solution: [
-      "temperature-sensor giver revisionsklar logning for kølerum, fryser og følsomme varer med alarmer, før tærskler overskrides.",
-      "humidity-sensor sporer RH i lagerzoner, hvor materialer er fugtfølsomme. RoomAlyzer Vanddetektering dækker lineær risiko med water rope langs rør og bryggegulve og punktsensorer under vask, bakker og maskinudstyr, med SMS- og e-mailalarmer og tidsstemplet hændelseslog til forsikring.",
+      "Temperature-sensor giver revisionsklar logning for kølerum, fryser og følsomme varer med alarmer, før tærskler overskrides.",
+      "Humidity-sensor sporer RH i lagerzoner, hvor materialer er fugtfølsomme. RoomAlyzer Vanddetektering dækker lineær risiko med water rope langs rør og bryggegulve og punktsensorer under vask, bakker og maskinudstyr, med SMS- og e-mailalarmer og tidsstemplet hændelseslog til forsikring.",
     ],
     smarterTogether:
       "Temperatur, fugt og RoomAlyzer Vanddetektering på én platform giver drift og QA ét dashboard til lagerbeskyttelse og hændelseshåndtering.",
@@ -389,7 +389,7 @@ const da: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Bevaring leverer kontinuerlig RH-logning for magasiner, manuskriptlager og sjældne-bogrum med alarmer, før forholdene forlader bevaringsbånd.",
-      "RoomAlyzer Indeklima overvåger læsesale diskret. temperature-sensor dækker kølelager; en outdoor-sensor adskiller indendørstendenser fra vejr, så HVAC reagerer på reel behov.",
+      "RoomAlyzer Indeklima overvåger læsesale diskret. Temperature-sensor dækker kølelager; en Outdoor-sensor adskiller indendørstendenser fra vejr, så HVAC reagerer på reel behov.",
     ],
     smarterTogether:
       "Kontinuerlig logning på tværs af offentlige og lagerzoner giver konservatorer og driftsteams det samme datasæt til bevaringsbeslutninger og daglig drift.",
@@ -436,7 +436,7 @@ const da: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Bevaring sporer RH i sale, trapper og panelerede rum med alarmer, før sæsonbestemte svingninger forårsager revner, forvridning eller tab af forgyldning.",
-      "Mini+ og Full+ sensorer logger trådløst i udstillingsrum åbne for besøgende. motion-sensor korrelerer fugt- og varmebelastninger med turplaner; en outdoor-sensor er essentiel, hvor indeklima halter timer bag vejret.",
+      "Mini+ og Full+ sensorer logger trådløst i udstillingsrum åbne for besøgende. Motion-sensor korrelerer fugt- og varmebelastninger med turplaner; en Outdoor-sensor er essentiel, hvor indeklima halter timer bag vejret.",
     ],
     smarterTogether:
       "Besøgertilstedeværelse og klimadata sammen forklarer pludselige fugtstigninger — så teams kan udlufte eller justere opvarmning, før interiører lider skade.",
@@ -483,7 +483,7 @@ const da: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Indeklima leverer objektive CO2-, temperatur-, fugt- og TVOC-data i lejerarealer og løser komfortklager med dokumentation i stedet for debat.",
-      "RoomAlyzer Vanddetektering sender SMS- og e-mailalarmer fra sensorer under vask, kedler og stigledninger, med water rope til kældre og maskinområder og tidsstemplet hændelseslog til forsikring. temperature-sensor overvåger tekniske rum på tværs af porteføljen fra ét dashboard.",
+      "RoomAlyzer Vanddetektering sender SMS- og e-mailalarmer fra sensorer under vask, kedler og stigledninger, med water rope til kældre og maskinområder og tidsstemplet hændelseslog til forsikring. Temperature-sensor overvåger tekniske rum på tværs af porteføljen fra ét dashboard.",
     ],
     smarterTogether:
       "RoomAlyzer Indeklima og Vanddetektering sammen reducerer både lejeromsætning og akutte udkald, de to omkostningsdrivere, ejendomsteams mærker mest.",
@@ -577,7 +577,7 @@ const da: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Indeklima giver multi-parameter-logning (CO2, temperatur, fugt, TVOC) til post-occupancy-evaluering, ventilationsverifikation og indeklimastudier med eksporterbar historik til rapporter.",
-      "En outdoor-sensor giver den baseline, seriøse audits forventer. Dedikerede Temperature og humidity-sensor dækker problemzoner; RoomAlyzer Space management validerer belægningsantagelser bag ventilations- og opvarmningsskemaer.",
+      "En Outdoor-sensor giver den baseline, seriøse audits forventer. Dedikerede Temperature og Humidity-sensor dækker problemzoner; RoomAlyzer Space management validerer belægningsantagelser bag ventilations- og opvarmningsskemaer.",
     ],
     smarterTogether:
       "Udendørs reference, indendørs multi-parameter-logning og kortsigtet belægningskortlægning giver ingeniører et komplet evidensgrundlag i én udrulning.",
@@ -648,7 +648,7 @@ const de: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Konservierung überwacht Temperatur und Luftfeuchtigkeit kontinuierlich (±0,1 °C · ±1 % RH) und liefert klare Dokumentation der Bedingungen Ihrer Innenräume. Drahtlose Mini+ und Full+ Sensoren sind diskret genug für Kirchenräume und präzise genug für Konservatoren, mit Alarmen bei Grenzwertüberschreitung.",
-      "Ein Außen Sensor trennt Innentrends von Wetterschwankungen; EN-15757-konforme Berichte liefern Diözesen, Versicherern und Denkmalschutzbehörden die erwarteten Nachweise. Eine Plattform kann jede Kirche einer Diözese abdecken, mit rollenbasierem Zugang für Küster, Pfarrer und Berater.",
+      "Ein Außen Sensor trennt Innentrends von Wetterschwankungen; EN-15757-konforme Berichte liefern Diözesen, Versicherern und Denkmalschutzbehörden die erwarteten Nachweise. Eine Plattform kann jede Kirche einer Diözese abdecken, mit rollenbasiertem Zugang für Küster, Pfarrer und Berater.",
     ],
     smarterTogether:
       "RoomAlyzer Konservierung gibt Konservatoren, die das Inventar schützen, und Gebäudeteams, die den Betrieb steuern, denselben Datensatz, ein Gleichgewicht, das selten in einem Werkzeug zu finden ist.",
@@ -679,7 +679,7 @@ const de: Record<string, IndustryContentOverlay> = {
     cardSummary:
       "Gesundheit, Konzentration und Energierücknahme in Schulen, Verwaltung und Kulturgebäuden priorisieren.",
     focus:
-      "Kommunen betreiben Dutzende Gebäudetypen (Schulen, Kitas, Rathäuser und Kulturhäuser) brauchen eine Plattformsicht plus Nachweis, dass Raumklima und Energie tatsächlich zur Nutzung passen.",
+      "Kommunen betreiben Dutzende Gebäudetypen (Schulen, Kitas, Rathäuser und Kulturhäuser) und brauchen eine Plattformsicht plus Nachweis, dass Raumklima und Energie tatsächlich zur Nutzung passen.",
     challenges: [
       "CO2 und Konzentration im Unterricht: Schüler verlieren Fokus, wenn Lüftung der Belegung hinterherhinkt — doch die meisten Schulen verlassen sich auf subjektive Luftgefühl-Checks.",
       "Portfolioskala: Monitoring über alle Schulen und Verwaltungsgebäude wirkt wie ein mehrjähriges IT-Projekt — es sei denn, Sensoren sind wirklich Plug-and-Play.",
@@ -1220,7 +1220,7 @@ const sv: Record<string, IndustryContentOverlay> = {
     cardSummary:
       "Balansera utnyttjandet av ytor i hybridarbete med medarbetarnas produktivitet och komfort.",
     focus:
-      "Moderna kontor måste balansera hybrid närvaro, mötesrumsbehov och inomhusklimat, ofta utan data för hyra, HVAC eller layoutbeslut.",
+      "Moderna kontor måste balansera hybridnärvaro, mötesrumsbehov och inomhusklimat, ofta utan data för hyra, HVAC eller layoutbeslut.",
     challenges: [
       "Ni betalar för skrivbord och våningar som står tomma: hybridarbete har förändrat närvaromönster, men många organisationer dimensionerar fortfarande ytor efter headcount, inte uppmätt användning.",
       "Spökbokningar av mötesrum: rum bokade för tio och använda av två blockerar yta andra behöver, utan objektiv insikt i gapet.",
@@ -1249,13 +1249,13 @@ const sv: Record<string, IndustryContentOverlay> = {
       "Bevaring versus energiräkning: att värma en historisk byggnad för att skydda innehållet är dyrt — utan data hittar ni inte balansen.",
     ],
     solution: [
-      "RoomAlyzer Bevarande övervakar temperatur och fukt kontinuerligt (±0,1 °C · ±1 % RH) och omvandlar avläsningar till tydlig dokumentation av de exakta förhållanden era interiörer hålls i. Trådlösa Mini+ och Full+ sensorer är diskreta nog för heliga rum och precisa nog för konservatorer, med larm när trösklar överskrids.",
+      "RoomAlyzer Bevarande övervakar temperatur och fukt kontinuerligt (±0,1 °C · ±1 % RH) och omvandlar avläsningar till tydlig dokumentation av de exakta förhållanden era interiörer hålls i. Trådlösa Mini+- och Full+-sensorer är diskreta nog för heliga rum och precisa nog för konservatorer, med larm när trösklar överskrids.",
       "En utomhussensor separerar inomhustrender från vädersvängningar, medan EN 15757-anpassad rapportering ger stift, försäkringsbolag och myndigheter den dokumentation de förväntar sig. En plattform kan täcka varje kyrka i ett stift med rollbaserad åtkomst för kyrkvärdar, präster och rådgivare.",
     ],
     smarterTogether:
       "RoomAlyzer Bevarande ger konservatorer som skyddar inventariet och driftteam som driver byggnaden samma dataset, en balans man sällan hittar i ett verktyg.",
     closing:
-      "Klimamätning i kyrkor är normalt dyr och besvärlig att installera. RoomAlyzer är redo på minuter, flexibel nog för vilken byggnad som helst och kostar en bråkdel av det förväntade.",
+      "Klimatmätning i kyrkor är normalt dyr och besvärlig att installera. RoomAlyzer är redo på minuter, flexibel nog för vilken byggnad som helst och kostar en bråkdel av det förväntade.",
   },
   "museums-galleries": {
     cardTitle: "Museer och kultur",
@@ -1311,7 +1311,7 @@ const sv: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Inomhusklimat ger live CO2-, temperatur-, fukt- och TVOC-data i varje klassrum med larm innan riktlinjer överskrids, så lärare får en tydlig signal att vädra och ledningen bevis att förhållanden hanteras.",
-      "RoomAlyzer Space management kartlägger verklig användning i hallar och specialrum så värme och ventilation kan dra tillbaka när byggnader är tomma. En outdoor-sensor ger en väderreferens så beslut om naturlig ventilation matchar förhållanden utomhus.",
+      "RoomAlyzer Space management kartlägger verklig användning i hallar och specialrum så värme och ventilation kan dra tillbaka när byggnader är tomma. En Outdoor-sensor ger en väderreferens så beslut om naturlig ventilation matchar förhållanden utomhus.",
     ],
     smarterTogether:
       "RoomAlyzer Inomhusklimat och Space management tillsammans visar inte bara när luftkvaliteten sjunker, utan när energi slösas på att värma rum ingen använder.",
@@ -1349,7 +1349,7 @@ const sv: Record<string, IndustryContentOverlay> = {
     cardSummary:
       "Övervaka avdelningar, lager och laboratorier med revisionsklara klimatdata där varje grad räknas.",
     focus:
-      "Sjukhus måste balansera patientkomfort, infektionskontroll och strikta lagringsförhållanden — ofta över avdelningar, apotek, laboratorier och kylrum som var och en har egna trösklar. Ett enda avvikelse i ett apotekskylskåp eller en ihållande torr avdelning kan få kliniska, regulatoriska och ryktesmässiga konsekvenser.",
+      "Sjukhus måste balansera patientkomfort, infektionskontroll och strikta lagringsförhållanden — ofta över avdelningar, apotek, laboratorier och kylrum som var och en har egna trösklar. En enda avvikelse i ett apotekskylskåp eller en ihållande torr avdelning kan få kliniska, regulatoriska och ryktesmässiga konsekvenser.",
     challenges: [
       "Smala temperaturband utan kontinuerligt bevis: medicinlager, blodbanker och kylrum behöver revisionsklara loggar — clipboard-rundor är luckor som väntar på att bli incidenter.",
       "Tvister om luftkvalitet på avdelningar: patienter och personal rapporterar tung luft eller torrhet, men fastighetsteam saknar data på rumsnivå för att finjustera ventilation.",
@@ -1358,7 +1358,7 @@ const sv: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Inomhusklimat övervakar CO2, temperatur, fukt och TVOC i patientnära områden med kontinuerlig historik, så luftkvalitetsdiskussioner bygger på data, inte intryck.",
-      "Dedikerade temperature-sensor och humidity-sensor täcker apotek, laboratorier och kyllager med larm innan lager är i fara. RoomAlyzer Vattendetektering skickar SMS- och e-postlarm från maskin- och serviceområden med tidsstämplad incidentlogg, innan en läcka når kliniska zoner.",
+      "Dedikerade Temperature-sensor och Humidity-sensor täcker apotek, laboratorier och kyllager med larm innan lager är i fara. RoomAlyzer Vattendetektering skickar SMS- och e-postlarm från maskin- och serviceområden med tidsstämplad incidentlogg, innan en läcka når kliniska zoner.",
     ],
     smarterTogether:
       "RoomAlyzer Inomhusklimat och Vattendetektering på en plattform ger fastighetsteam en samlad bild av komfort, efterlevnad och infrastrukturrisk över sjukhusets lokaler.",
@@ -1405,7 +1405,7 @@ const sv: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Inomhusklimat håller temperatur, fukt, CO2 och TVOC stabila i gemensamma utrymmen och boenderum med larm när förhållanden rör sig utanför överenskomna band.",
-      "RoomAlyzer Tryckknappar ger serviceanrop med ett tryck från toaletter och matsalar, vidarebefordrade via e-post eller SMS innan problem blir klagomål. temperature-sensor tillför precision i kök och tvätterier; RoomAlyzer Vattendetektering varnar personal i våtutrymmen och maskinområden tidigt.",
+      "RoomAlyzer Tryckknappar ger serviceanrop med ett tryck från toaletter och matsalar, vidarebefordrade via e-post eller SMS innan problem blir klagomål. Temperature-sensor tillför precision i kök och tvätterier; RoomAlyzer Vattendetektering varnar personal i våtutrymmen och maskinområden tidigt.",
     ],
     smarterTogether:
       "RoomAlyzer Inomhusklimat och Tryckknappar på en plattform hjälper personal prioritera både komfort och svarstid utan att lägga till komplexitet i dagliga rundor.",
@@ -1448,11 +1448,11 @@ const sv: Record<string, IndustryContentOverlay> = {
       "Kylkedjefel upptäckta för sent: displykyl och bakrums-kylskåp kan driva utanför intervallet över natten utan att någon vet det förrän varor är förlorade.",
       "Butikskomfort versus energi: långa öppettider innebär att HVAC kör hårt — men utan beläggningsdata kan den inte följa verkligt kundflöde.",
       "Döda zoner och rusningstid: samma planlösning känns olika timme för timme och säsong för säsong, men klimatstyrning anpassar sig sällan.",
-      "Säkerhet efter stängning utan rundgångar: lastkajer och innert dörrar lämnade öppna slösar energi och skapar risk.",
+      "Säkerhet efter stängning utan rundgångar: lastkajer och innerdörrar lämnade öppna slösar energi och skapar risk.",
     ],
     solution: [
-      "temperature-sensor levererar kontinuerlig loggning och larm för kylskåp, frysar och displykyl med historik redo för livsmedelssäkerhet och försäkringsgranskningar.",
-      "RoomAlyzer Inomhusklimat spårar butiksgolvets CO2, temperatur, fukt och TVOC så komfort och energi kan balanseras över långa öppettider. motion-sensor kartlägger kundflöde; RoomAlyzer Skåp och dörrar bekräftar att dörrar och kajer är stängda när butiken stänger, utan nattliga rundgångar.",
+      "Temperature-sensor levererar kontinuerlig loggning och larm för kylskåp, frysar och displykyl med historik redo för livsmedelssäkerhet och försäkringsgranskningar.",
+      "RoomAlyzer Inomhusklimat spårar butiksgolvets CO2, temperatur, fukt och TVOC så komfort och energi kan balanseras över långa öppettider. Motion-sensor kartlägger kundflöde; RoomAlyzer Skåp och dörrar bekräftar att dörrar och kajer är stängda när butiken stänger, utan nattliga rundgångar.",
     ],
     smarterTogether:
       "Kundflöde och inomhusklimatdata visar var ventilation behövs under rusningstid och var det kan skäras ned när zoner är tomma.",
@@ -1498,7 +1498,7 @@ const sv: Record<string, IndustryContentOverlay> = {
       "Långsamma gästfeedback-loopar: problem på toaletter eller i receptionen dyker upp på recensionssajter innan driften hör om dem.",
     ],
     solution: [
-      "Mini+ PIR sensorer kombinerar klimat och beläggning i gästrum, idealiskt för setback-strategier när rum är tomma utan att kompromissa med komfort vid ankomst.",
+      "Mini+ PIR-sensorer kombinerar klimat och beläggning i gästrum, idealiskt för setback-strategier när rum är tomma utan att kompromissa med komfort vid ankomst.",
       "RoomAlyzer Inomhusklimat övervakar lobbyer, restauranger och konferensrum där luftkvalitet driver gästupplevelsen. RoomAlyzer Användning och städning anpassar städning efter faktisk rumsanvändning; RoomAlyzer Tryckknappar ger omedelbar servicefeedback på toaletter och i reception innan problem når recensionssajter.",
     ],
     smarterTogether:
@@ -1545,8 +1545,8 @@ const sv: Record<string, IndustryContentOverlay> = {
       "Maskinutrustning och kondensbrickor: lokala vattenkällor sprider sig snabbt över öppna golvytor.",
     ],
     solution: [
-      "temperature-sensor ger revisionsklar loggning för kylrum, frysar och känsliga varor med larm innan trösklar överskrids.",
-      "humidity-sensor spårar RH i lagerzoner där material är fuktkänsliga. RoomAlyzer Vattendetektering täcker linjär risk med water rope längs rör och kajgolv och punktsensorer under handfat, brickor och maskinutrustning, med SMS- och e-postlarm och tidsstämplad incidentlogg för försäkring.",
+      "Temperature-sensor ger revisionsklar loggning för kylrum, frysar och känsliga varor med larm innan trösklar överskrids.",
+      "Humidity-sensor spårar RH i lagerzoner där material är fuktkänsliga. RoomAlyzer Vattendetektering täcker linjär risk med water rope längs rör och kajgolv och punktsensorer under handfat, brickor och maskinutrustning, med SMS- och e-postlarm och tidsstämplad incidentlogg för försäkring.",
     ],
     smarterTogether:
       "Temperatur, fukt och RoomAlyzer Vattendetektering på en plattform ger drift och QA en instrumentpanel för lagerskydd och incidenthantering.",
@@ -1593,7 +1593,7 @@ const sv: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Bevarande levererar kontinuerlig RH-loggning för magasin, manuskriptlager och sällsynta bokrum med larm innan förhållanden lämnar bevarandeband.",
-      "RoomAlyzer Inomhusklimat övervakar läsesalar diskret. temperature-sensor täcker kylförvaring; en outdoor-sensor separerar inomhustrender från väder så HVAC svarar på verkligt behov.",
+      "RoomAlyzer Inomhusklimat övervakar läsesalar diskret. Temperature-sensor täcker kylförvaring; en Outdoor-sensor separerar inomhustrender från väder så HVAC svarar på verkligt behov.",
     ],
     smarterTogether:
       "Kontinuerlig loggning över offentliga och lagerzoner ger konservatorer och driftteam samma dataset för bevarandebeslut och daglig drift.",
@@ -1631,7 +1631,7 @@ const sv: Record<string, IndustryContentOverlay> = {
     cardSummary:
       "Övervaka fukt och temperatur i ouppvärmda salar, källare och lager utan att skada ytor.",
     focus:
-      "Herrgårdar och slott kombinerar ovärderliga interiörer med byggnader som aldrig designades för modern uppvärmning — sporadisk användning, turisttoppar och ouppvärmda flyglar stressar trä, textilier och ytor. Massivt murverk bromsar den inomhus reaktion på väder. Inomhusavläsningar utan utomhusbaslinje är lätta att misstolka.",
+      "Herrgårdar och slott kombinerar ovärderliga interiörer med byggnader som aldrig designades för modern uppvärmning — sporadisk användning, turisttoppar och ouppvärmda flyglar stressar trä, textilier och ytor. Massivt murverk bromsar den inomhusreaktion på väder. Inomhusavläsningar utan utomhusbaslinje är lätta att misstolka.",
     challenges: [
       "Säsongsbetonad RH som skadar paneler och förgyllning: salar och trappor svänger med besökssäsonger och uppvärmningsmönster.",
       "Eventdrivna värme- och fuktbelastningar: turistgrupper och bröllop pressar förhållanden snabbare än HVAC kan kompensera.",
@@ -1640,7 +1640,7 @@ const sv: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Bevarande spårar RH i salar, trappor och panelerade rum med larm innan säsongsbetonade svängningar orsakar sprickor, vridning eller förlust av förgyllning.",
-      "Mini+ och Full+ sensorer loggar trådlöst i utställningsrum öppna för besökare. motion-sensor korrelerar fukt- och värmebelastningar med turscheman; en outdoor-sensor är essentiell där inomhusklimat släpar timmar efter vädret.",
+      "Mini+ och Full+ sensorer loggar trådlöst i utställningsrum öppna för besökare. Motion-sensor korrelerar fukt- och värmebelastningar med turscheman; en Outdoor-sensor är essentiell där inomhusklimat släpar timmar efter vädret.",
     ],
     smarterTogether:
       "Besökarnärvaro och klimatdata förklarar plötsliga fuktökningar, så team kan vädra eller justera värme innan interiörer skadas.",
@@ -1687,7 +1687,7 @@ const sv: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Inomhusklimat levererar objektiva CO2-, temperatur-, fukt- och TVOC-data i hyresgästutrymmen och löser komfortklagomål med bevis i stället för debatt.",
-      "RoomAlyzer Vattendetektering skickar SMS- och e-postlarm från sensorer under handfat, pannor och stigledningar, med water rope för källare och maskinområden och tidsstämplad incidentlogg för försäkring. temperature-sensor övervakar tekniska rum över portföljen från en instrumentpanel.",
+      "RoomAlyzer Vattendetektering skickar SMS- och e-postlarm från sensorer under handfat, pannor och stigledningar, med water rope för källare och maskinområden och tidsstämplad incidentlogg för försäkring. Temperature-sensor övervakar tekniska rum över portföljen från en instrumentpanel.",
     ],
     smarterTogether:
       "RoomAlyzer Inomhusklimat och Vattendetektering minskar både hyresgästomsättning och akuta utryckningar, de två kostnadsdrivarna fastighetsteam känner mest.",
@@ -1734,7 +1734,7 @@ const sv: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Inomhusklimat är standardutrullningen: Mini+ och Full+ sensorer täcker CO2, temperatur, fukt och TVOC i en enhet, med instrumentpaneler FM-team kan branda per kontrakt.",
-      "RoomAlyzer Space management stödjer utnyttjningsrekommendationer med anonymiserade skrivbords- och rumsdata. RoomAlyzer Användning och städning riktar insatsen mot utrymmen som faktiskt används. RoomAlyzer Vattendetektering tillför SMS- och e-postläckagelarm till låg marginalkostnad. Cloud Connector för data till plattformen över cellulär, utan kund-Wi-Fi per byggnad.",
+      "RoomAlyzer Space management stödjer utnyttjanderekommendationer med anonymiserade skrivbords- och rumsdata. RoomAlyzer Användning och städning riktar insatsen mot utrymmen som faktiskt används. RoomAlyzer Vattendetektering tillför SMS- och e-postläckagelarm till låg marginalkostnad. Cloud Connector för data till plattformen över cellulär, utan kund-Wi-Fi per byggnad.",
     ],
     smarterTogether:
       "RoomAlyzer Inomhusklimat, Space management, Användning och städning samt Vattendetektering på en plattform låter FM-leverantörer merförsälja tjänster med ett installationsbesök och ett pågående dataförhållande.",
@@ -1781,7 +1781,7 @@ const sv: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Inomhusklimat ger multi-parameter-loggning (CO2, temperatur, fukt, TVOC) för post-occupancy-utvärdering, ventilationsverifiering och inomhusklimatstudier med exporterbar historik för rapporter.",
-      "En outdoor-sensor ger den baslinje seriösa revisioner förväntar sig. Dedikerade Temperature och humidity-sensor täcker problemzoner; RoomAlyzer Space management validerar beläggningsantaganden bakom ventilations- och värmescheman.",
+      "En Outdoor-sensor ger den baslinje seriösa revisioner förväntar sig. Dedikerade Temperature och Humidity-sensor täcker problemzoner; RoomAlyzer Space management validerar beläggningsantaganden bakom ventilations- och värmescheman.",
     ],
     smarterTogether:
       "Utomhusreferens, inomhus multi-parameter-loggning och kortsiktig beläggningskartläggning ger ingenjörer en komplett evidensbas i en utrullning.",

@@ -313,7 +313,7 @@ const da: ModulePageStrings = {
     "Giv bestyrelse og forsikring et klart billede af, hvornår og hvor der blev registreret vand",
   ],
   faqTitle: "Ofte stillede spørgsmål",
-  faqContextAlt: "Kolleger der diskuterer planer omkring et mødebord",
+  faqContextAlt: "Kolleger, der diskuterer planer omkring et mødebord",
   faqItems: [
     {
       q: "Hvor længe holder batteriet?",

@@ -503,7 +503,7 @@ const en: UiStrings = {
       sectionEyebrow: "Modules",
       sectionHeading: "Solve real building problems.",
       sectionIntro:
-        "Indoor climate, space management, water detection and more, each module runs on the same RoomAlyzer platform and sensor network.",
+        "Indoor climate, space management, water detection and more — each module runs on the same RoomAlyzer platform and sensor network.",
       ctaTitle: "Want a guided walk-through?",
       ctaSubtitle: "Book a 30-minute demo and we'll tailor it to your building.",
     },
@@ -513,7 +513,7 @@ const en: UiStrings = {
       smarterTogether: "Smarter together:",
     },
     detail: {
-      ctaBandTitle: "Want to know more already now?",
+      ctaBandTitle: "Want to know more right now?",
       ctaBandSubtitle: "Get in touch, we're always happy to have a no-strings chat.",
     },
   },
@@ -772,7 +772,7 @@ const da: UiStrings = {
       sectionEyebrow: "Moduler",
       sectionHeading: "Løs reelle bygningsudfordringer.",
       sectionIntro:
-        "Indeklima, pladsudnyttelse, vanddetektion og mere, hvert modul kører på den samme RoomAlyzer-platform og sensornetværk.",
+        "Indeklima, pladsudnyttelse, vanddetektion og mere — hvert modul kører på den samme RoomAlyzer-platform og sensornetværk.",
       ctaTitle: "Vil du have en guidet gennemgang?",
       ctaSubtitle: "Book en demo på 30 minutter, så tilpasser vi den til din bygning.",
     },
@@ -814,7 +814,7 @@ const da: UiStrings = {
   },
   faqSection: {
     title: "Ofte stillede spørgsmål",
-    contextAlt: "Kolleger der diskuterer planer omkring et mødebord",
+    contextAlt: "Kolleger, der diskuterer planer omkring et mødebord",
   },
 };
 
