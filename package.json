@@ -22,6 +22,7 @@
     "generate-favicon": "node scripts/generate-favicon.mjs",
     "export-redirects": "node scripts/export-redirects.mjs",
     "crawl-legacy-sitemaps": "node scripts/crawl-legacy-sitemaps.mjs",
+    "export-legacy-migration-map": "node scripts/export-legacy-migration-map.mjs",
     "audit:locale-grammar": "node scripts/audit-locale-grammar.mjs",
     "audit:hyphen-dashes": "node scripts/audit-hyphen-dashes.mjs",
     "audit:seo": "node scripts/audit-seo.mjs",

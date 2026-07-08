@@ -1,0 +1,50 @@
+Old URL,New URL,Note,Review reason
+https://www.iot-fabrikken.com/,https://iot-fabrikken.com/da/,direct match,Domain root → locale home
+https://www.iot-fabrikken.com/case-kategori/indeklima/,https://iot-fabrikken.com/da/case-studies/,closest relevant page,Taxonomy archive → hub (no filtered equivalent)
+https://www.iot-fabrikken.com/case-kategori/space-management/,https://iot-fabrikken.com/da/case-studies/,closest relevant page,Taxonomy archive → hub (no filtered equivalent)
+https://www.iot-fabrikken.com/case/data-skal-dimensionere-nyt-raadhus-rigtigt/,https://iot-fabrikken.com/da/case-studies/gribskov-kommune/,case study — slug alias,Verify slug alias content match
+https://www.iot-fabrikken.com/case/deutches-museum-nordschleswig/,https://iot-fabrikken.com/da/case-studies/deutsches-museum-nordschleswig/,case study — slug alias,Verify slug alias content match
+https://www.iot-fabrikken.com/case/sweco-6/,https://iot-fabrikken.com/da/case-studies/sweco/,case study — slug alias,Verify slug alias content match
+https://www.iot-fabrikken.com/case/varde-kommune-3/,https://iot-fabrikken.com/da/case-studies/varde-kommune/,case study — slug alias,Verify slug alias content match
+https://www.iot-fabrikken.com/epbd/,https://iot-fabrikken.com/da/artikler/,closest relevant page,Topic landing → articles hub
+https://www.iot-fabrikken.com/indeklima-maaler/,https://iot-fabrikken.com/da/sensorer/,closest relevant page,Closest relevant page — confirm target
+https://www.iot-fabrikken.com/jobopslag/business-development-manager-tyskland/,https://iot-fabrikken.com/da/om-os/karriere/,closest relevant page,Closed job listing → careers hub
+https://www.iot-fabrikken.com/l_kategori/use-cases/,https://iot-fabrikken.com/da/artikler/,closest relevant page,Taxonomy archive → hub (no filtered equivalent)
+https://www.iot-fabrikken.com/ret-titlen-her/,https://iot-fabrikken.com/da/,ATTENTION: no good match — suggestion: homepage,WordPress placeholder — no equivalent page
+https://www.iot-fabrikken.com/sitemap/,https://iot-fabrikken.com/da/,closest relevant page,HTML sitemap page retired → locale home
+https://www.iot-fabrikken.com/tak-for-din-henvendelse/,https://iot-fabrikken.com/da/kontakt/,closest relevant page,Form thank-you → contact
+https://iot-fabrikken.de/,https://iot-fabrikken.com/de/,direct match,Domain root → locale home
+https://iot-fabrikken.de/author/lars/,https://iot-fabrikken.com/de/ueber-uns/,closest relevant page,Author archive → about
+https://iot-fabrikken.de/case/data-skal-dimensionere-nyt-raadhus-rigtigt/,https://iot-fabrikken.com/de/referenzen/gribskov-municipality/,case study — slug alias,Verify slug alias content match
+https://iot-fabrikken.de/case/deutches-museum-nordschleswig/,https://iot-fabrikken.com/de/referenzen/deutsches-museum-nordschleswig/,case study — slug alias,Verify slug alias content match
+https://iot-fabrikken.de/case/erzdioezese-freiburg/,https://iot-fabrikken.com/de/referenzen/archdiocese-of-freiburg/,case study — slug alias,Verify slug alias content match
+https://iot-fabrikken.de/case/kommune-norddjurs/,https://iot-fabrikken.com/de/referenzen/norddjurs-municipality/,case study — slug alias,Verify slug alias content match
+https://iot-fabrikken.de/case/kommune-varde/,https://iot-fabrikken.com/de/referenzen/varde-municipality/,case study — slug alias,Verify slug alias content match
+https://iot-fabrikken.de/case/sweco-6/,https://iot-fabrikken.com/de/referenzen/sweco/,case study — slug alias,Verify slug alias content match
+https://iot-fabrikken.de/category/raumklima/,https://iot-fabrikken.com/de/module/raumklima/,closest relevant page,Taxonomy archive → hub (no filtered equivalent)
+https://iot-fabrikken.de/danke-fuer-ihre-anfrage/,https://iot-fabrikken.com/de/kontakt/,closest relevant page,Form thank-you → contact
+https://iot-fabrikken.de/epbd/,https://iot-fabrikken.com/de/wissenszentrum/,closest relevant page,Topic landing → articles hub
+https://iot-fabrikken.de/raumklima-messgerat/,https://iot-fabrikken.com/de/sensoren/,closest relevant page,Closest relevant page — confirm target
+https://iot-fabrikken.de/sitemap/,https://iot-fabrikken.com/de/,closest relevant page,HTML sitemap page retired → locale home
+https://iot-fabrikken.de/vdi-6022-hygienestandard-was-betreiber-wissen-muessen-und-wie-digitalisierung-hilft/,https://iot-fabrikken.com/de/wissenszentrum/,closest relevant page,Long-form article URL → articles hub
+https://iot-fabrikken.se/,https://iot-fabrikken.com/sv/,direct match,Domain root → locale home
+https://iot-fabrikken.se/case/data-skal-dimensionere-nyt-raadhus-rigtigt/,https://iot-fabrikken.com/sv/projekt/gribskov-municipality/,case study — slug alias,Verify slug alias content match
+https://iot-fabrikken.se/case/deutches-museum-nordschleswig/,https://iot-fabrikken.com/sv/projekt/deutsches-museum-nordschleswig/,case study — slug alias,Verify slug alias content match
+https://iot-fabrikken.se/case/norddjurs-kommun/,https://iot-fabrikken.com/sv/projekt/norddjurs-municipality/,case study — slug alias,Verify slug alias content match
+https://iot-fabrikken.se/case/sweco-6/,https://iot-fabrikken.com/sv/projekt/sweco/,case study — slug alias,Verify slug alias content match
+https://iot-fabrikken.se/case/varde-kommun/,https://iot-fabrikken.com/sv/projekt/varde-municipality/,case study — slug alias,Verify slug alias content match
+https://iot-fabrikken.se/epbd/,https://iot-fabrikken.com/sv/artiklar/,closest relevant page,Topic landing → articles hub
+https://iot-fabrikken.se/inomhusklimatmatare/,https://iot-fabrikken.com/sv/sensorer/,closest relevant page,Closest relevant page — confirm target
+https://iot-fabrikken.se/sitemap/,https://iot-fabrikken.com/sv/,closest relevant page,HTML sitemap page retired → locale home
+https://iot-fabrikken.se/tack-for-din-forfragan/,https://iot-fabrikken.com/sv/kontakt/,closest relevant page,Form thank-you → contact
+https://iot-fabrikken.uk/,https://iot-fabrikken.com/en/,direct match,Domain root → locale home
+https://iot-fabrikken.uk/author/acend/,https://iot-fabrikken.com/en/about/,closest relevant page,Author archive → about
+https://iot-fabrikken.uk/case/data-skal-dimensionere-nyt-raadhus-rigtigt/,https://iot-fabrikken.com/en/case-studies/gribskov-municipality/,case study — slug alias,Verify slug alias content match
+https://iot-fabrikken.uk/case/deutches-museum-nordschleswig/,https://iot-fabrikken.com/en/case-studies/deutsches-museum-nordschleswig/,case study — slug alias,Verify slug alias content match
+https://iot-fabrikken.uk/case/sweco-6/,https://iot-fabrikken.com/en/case-studies/sweco/,case study — slug alias,Verify slug alias content match
+https://iot-fabrikken.uk/category/uncategorized/,https://iot-fabrikken.com/en/articles/,closest relevant page,Taxonomy archive → hub (no filtered equivalent)
+https://iot-fabrikken.uk/epbd/,https://iot-fabrikken.com/en/articles/,closest relevant page,Topic landing → articles hub
+https://iot-fabrikken.uk/indoor-climate-sensor/,https://iot-fabrikken.com/en/sensors/,closest relevant page,Closest relevant page — confirm target
+https://iot-fabrikken.uk/sitemap/,https://iot-fabrikken.com/en/,closest relevant page,HTML sitemap page retired → locale home
+https://iot-fabrikken.uk/thank-you-for-your-inquiry/,https://iot-fabrikken.com/en/contact/,closest relevant page,Form thank-you → contact
+https://iot-fabrikken.uk/vdi-6022-hygiene-standard-what-operators-need-to-know-and-how-digitalization-helps/,https://iot-fabrikken.com/en/articles/,closest relevant page,Long-form article URL → articles hub
