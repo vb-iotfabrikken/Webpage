@@ -41,6 +41,8 @@ export type SegmentI18n = Partial<Record<Lang, string>>;
  *   `gdpr`, `whitepapers`, `impressum`, `team`, `trust-center`).
  * - `space-management` and `water-detection` intentionally stay English in all
  *   locales (the legacy site kept them English).
+ * - German module slugs align with display names: `erhaltung`, `drucktasten`,
+ *   `reinigung-nutzung`, `schliessfaecher-tueren` (ASCII, hyphenated).
  * - Segment translations are global: a localized value must not equal another
  *   canonical key, and two canonicals must not share a localized value in the
  *   same locale (see the collision guard in `buildLocaleMaps`). Extend
@@ -92,7 +94,10 @@ export const SEGMENT_I18N: Record<string, SegmentI18n> = {
 
   // --- Module leaves (space-management / water-detection stay English) ---
   "indoor-climate": { da: "indeklima", de: "raumklima", sv: "inomhusklimat" },
-  preservation: { da: "bevaring", de: "konservierung", sv: "bevarande" },
+  preservation: { da: "bevaring", de: "erhaltung", sv: "bevarande" },
+  "push-buttons": { de: "drucktasten" },
+  "usage-cleaning": { de: "reinigung-nutzung" },
+  "lockers-doors": { de: "schliessfaecher-tueren" },
 
   // --- Industry leaves (legacy-confirmed) ---
   churches: { da: "kirker", de: "kirchen", sv: "kyrkor" },

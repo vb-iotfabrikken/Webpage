@@ -70,7 +70,7 @@ const de: CaseStrings = {
   breadcrumbCases: "Referenzen",
   metaTitle: "Kundenreferenzen | IoT Fabrikken",
   metaDescription:
-    "Sehen Sie, wie Kommunen, Beratungsbüros und Immobilienverwalter RoomAlyzer für Indoor climate und Space-Management nutzen – echte Gebäude, echte Ergebnisse.",
+    "Sehen Sie, wie Kommunen, Beratungsbüros und Immobilienverwalter RoomAlyzer für Raumklima und Space-Management nutzen – echte Gebäude, echte Ergebnisse.",
   bookDemo: "Kostenlose Demo buchen",
   contactSales: "Vertrieb kontaktieren",
   allCases: "Alle Kundenreferenzen",
@@ -78,13 +78,13 @@ const de: CaseStrings = {
   readArticle: "Artikel lesen",
   readFullCase: "Den ganzen Fall lesen",
   loadMore: "Mehr laden",
-  categories: { spaceManagement: "Space-Management", indoorClimate: "Indoor climate" },
+  categories: { spaceManagement: "Space-Management", indoorClimate: "Raumklima" },
   contactTitle: "Vereinbaren Sie ein Treffen mit uns",
   contactSubtitle:
-    "Haben Sie Fragen? Möchten Sie mehr über Indoor climate und/oder Space-Management erfahren? Dann melden Sie sich gern. Wir sprechen jederzeit gern über Ihre Möglichkeiten, online oder persönlich.",
+    "Haben Sie Fragen? Möchten Sie mehr über Raumklima und/oder Space-Management erfahren? Dann melden Sie sich gern. Wir sprechen jederzeit gern über Ihre Möglichkeiten, online oder persönlich.",
   detailCtaTitle: "Möchten Sie mehr erfahren?",
   detailCtaSubtitle:
-    "Melden Sie sich – wir sprechen jederzeit gern über Indoor climate und Space-Management für Ihre Gebäude.",
+    "Melden Sie sich – wir sprechen jederzeit gern über Raumklima und Space-Management für Ihre Gebäude.",
 };
 
 const sv: CaseStrings = {

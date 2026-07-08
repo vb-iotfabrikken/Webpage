@@ -374,20 +374,20 @@ const da: PreservationStrings = {
 };
 
 const de: PreservationStrings = {
-  metaTitle: "Preservation: Klimaüberwachung für Kulturgut | IoT Fabrikken",
+  metaTitle: "Erhaltung: Klimaüberwachung für Kulturgut | IoT Fabrikken",
   metaDescription:
     "Drahtlose Sensoren überwachen Temperatur und Luftfeuchtigkeit rund um unersetzliche Sammlungen, mit der Präzision, die Restauratoren verlangen und Dokumentation für EN 15757.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
-  breadcrumbCurrent: "Preservation",
-  heroTitle: "Makellose Preservation",
+  breadcrumbCurrent: "Erhaltung",
+  heroTitle: "Makellose Erhaltung",
   heroTitleAccent: "trifft auf Energieoptimierung",
   heroLead:
     "Unser intelligentes Modul sichert das ideale Klima und reduziert gleichzeitig unnötigen Energieverbrauch",
   intro: [],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer: Preservation",
+  dashboardLabel: "RoomAlyzer: Erhaltung",
   dashboardAlt: "RoomAlyzer-Dashboard mit Klimadaten für Kulturgut in Räumen und Vitrinen",
   heroGallery: {
     images: [
@@ -416,22 +416,22 @@ const de: PreservationStrings = {
     },
     {
       title: "Keine Dokumentation der Bedingungen",
-      body: "Sie können das Klima, in dem Ihre Sammlung aufbewahrt wird, nicht lückenlos belegen, weder gegenüber Versicherern und Fördergebern noch zur Erfüllung von Preservationsanforderungen, wenn Messwerte nur in Notizbüchern stehen oder gar nicht existieren.",
+      body: "Sie können das Klima, in dem Ihre Sammlung aufbewahrt wird, nicht lückenlos belegen, weder gegenüber Versicherern und Fördergebern noch zur Erfüllung von Erhaltungsanforderungen, wenn Messwerte nur in Notizbüchern stehen oder gar nicht existieren.",
     },
     {
-      title: "Preservation versus Energiekosten",
+      title: "Erhaltung versus Energiekosten",
       body: "Ein historisches Gebäude zu beheizen, um seinen kostbaren Inhalt zu schützen, ist extrem teuer. Ohne präzise Daten ist es jedoch schier unmöglich, die richtige Balance zwischen Sammlungsschutz und Betriebskosten zu finden.",
     },
   ],
   capabilitiesEyebrow: "So löst RoomAlyzer das",
   capabilitiesHeading: "Die spezifischen Analysewerkzeuge, die Sie brauchen. Die Standards, denen Sie vertrauen.",
   solutionLead:
-    "Schluss mit Vermutungen — starten Sie mit Optimierung. RoomAlyzer Preservation bietet eine vollständige Suite spezialisierter Analysewerkzeuge und verwandelt drahtlose Sensordaten in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte, damit Sie makellose Preservation mit Energieeffizienz in Einklang bringen.",
+    "Schluss mit Vermutungen — starten Sie mit Optimierung. RoomAlyzer Erhaltung bietet eine vollständige Suite spezialisierter Analysewerkzeuge und verwandelt drahtlose Sensordaten in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte, damit Sie makellose Erhaltung mit Energieeffizienz in Einklang bringen.",
   solutionLeadWithSensorLinks: [
     {
       type: "text",
       value:
-        "Schluss mit Vermutungen — starten Sie mit Optimierung. RoomAlyzer Preservation bietet spezialisierte Analysewerkzeuge und verwandelt drahtlose ",
+        "Schluss mit Vermutungen — starten Sie mit Optimierung. RoomAlyzer Erhaltung bietet spezialisierte Analysewerkzeuge und verwandelt drahtlose ",
     },
     { type: "sensor", slug: "humidity", label: "Humidity" },
     { type: "text", value: " und " },
@@ -441,7 +441,7 @@ const de: PreservationStrings = {
     {
       type: "text",
       value:
-        " für Fassaden) in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte, damit Sie makellose Preservation mit Energieeffizienz in Einklang bringen. ",
+        " für Fassaden) in Zonen-Dashboards, Drift-Alarme und prüffähige Berichte, damit Sie makellose Erhaltung mit Energieeffizienz in Einklang bringen. ",
     },
     { type: "compare", label: "Kulturerbe-Sensoren vergleichen", useCaseId: "heritage" },
   ],
@@ -474,10 +474,10 @@ const de: PreservationStrings = {
     },
     {
       id: "preservation-index",
-      title: "Preservation Index",
+      title: "Erhaltungsindex",
       body: "Eine klare, umsetzbare Bewertung, wie gut Ihre aktuelle Umgebung Ihre Werte schützt.",
       unit: "PI / TWPI",
-      imageAlt: "Preservation Index-Bewertung in RoomAlyzer",
+      imageAlt: "Erhaltungsindex-Bewertung in RoomAlyzer",
     },
     {
       id: "fluctuations",
@@ -499,16 +499,16 @@ const de: PreservationStrings = {
     },
     {
       id: "heat-ventilation",
-      title: "Preservationsheiz- und Lüftungsanalyse",
+      title: "Erhaltungsheiz- und Lüftungsanalyse",
       body: "Tiefe Einblicke, die Ihnen helfen, Ihr Klima zu stabilisieren und gleichzeitig unnötigen Energieverbrauch zu reduzieren.",
       unit: "Energie",
-      imageAlt: "Preservationsheiz- und Lüftungsanalyse in RoomAlyzer",
+      imageAlt: "Erhaltungsheiz- und Lüftungsanalyse in RoomAlyzer",
     },
   ],
   relatedModuleLabel: "Smarter zusammen",
   relatedModuleBody:
-    "Kombinieren Sie Preservationsüberwachung mit Live-Indoor climate data für bewohnte Bereiche.",
-  relatedModuleLink: "Indoor climate entdecken",
+    "Kombinieren Sie Erhaltungsüberwachung mit Live-Raumklimadaten für bewohnte Bereiche.",
+  relatedModuleLink: "Raumklima entdecken",
   audiencesEyebrow: "Für wen es gedacht ist",
   audiencesHeading: "Für Restauratoren und Facility-Teams, mit Daten, denen alle vertrauen können.",
   audiencesLead:
@@ -522,9 +522,9 @@ const de: PreservationStrings = {
   ],
   secondaryAudienceHeading: "Für Facility Manager",
   secondaryAudienceItems: [
-    "Preservation mit Heiz- und Energiekosten in Einklang bringen",
+    "Erhaltung mit Heiz- und Energiekosten in Einklang bringen",
     "Frühwarnungen erhalten, wenn die HLK vom Sollwert abweicht",
-    "Dieselben Daten mit Preservationsteams teilen",
+    "Dieselben Daten mit Erhaltungsteams teilen",
     "Ohne WLAN in dickwändigen historischen Gebäuden einsetzen",
   ],
   faqTitle: "Häufig gestellte Fragen",
@@ -532,7 +532,7 @@ const de: PreservationStrings = {
   faqItems: [
     {
       q: "Wie lange hält die Batterie?",
-      a: "Unsere Preservationssensoren laufen je nach Meldefrequenz typischerweise 7–10 Jahre mit einer einzigen Batterie. Die Plattform warnt Sie rechtzeitig, wenn eine Batterie gewechselt werden muss.",
+      a: "Unsere Erhaltungssensoren laufen je nach Meldefrequenz typischerweise 7–10 Jahre mit einer einzigen Batterie. Die Plattform warnt Sie rechtzeitig, wenn eine Batterie gewechselt werden muss.",
     },
     {
       q: "Wie präzise sind die Sensoren und müssen sie kalibriert werden?",

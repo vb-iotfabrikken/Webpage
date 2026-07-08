@@ -42,7 +42,7 @@ const de: MutecStrings = {
   breadcrumbCurrent: "MUTEC 2026",
   heroEyebrow: "Wir sind dabei · MUTEC 2026",
   heroTitle: "Museumstechnik trifft",
-  heroTitleAccent: "Indoor climate-Monitoring.",
+  heroTitleAccent: "Raumklima-Monitoring.",
   heroLead:
     "Treffen Sie IoT Fabrikken auf der MUTEC in Leipzig und erfahren Sie, wie RoomAlyzer Temperatur, Luftfeuchtigkeit und CO₂ in Museen, Depots und Ausstellungsräumen überwacht, diskret, kabellos und dokumentationsfähig.",
   heroMetaFields: {
@@ -65,7 +65,7 @@ const de: MutecStrings = {
     {
       title: "CO₂ und Besucherströme",
       icon: "climate",
-      body: "Messen Sie CO₂ und Belegung in öffentlichen Bereichen. Steuern Sie Lüftung bedarfsgerecht und dokumentieren Sie Indoor climate für Audits.",
+      body: "Messen Sie CO₂ und Belegung in öffentlichen Bereichen. Steuern Sie Lüftung bedarfsgerecht und dokumentieren Sie Raumklima für Audits.",
     },
     {
       title: "Leckage und Gebäudehülle",

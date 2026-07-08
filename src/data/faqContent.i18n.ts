@@ -106,7 +106,7 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
       { q: "Kann ich alles exportieren, wenn ich aussteige?", a: "Ja. Jeder Kunde kann alle historischen Sensormessungen als CSV oder Parquet sowie Metadaten (Räume, Grundrisse, Schwellen) als JSON exportieren. Keine Exportgebühr, kein Lock-in." },
     ],
     "indoor-climate": [
-      { q: "Welche Parameter misst RoomAlyzer für das Indoor climate?", a: "CO₂ (400–5000 ppm), Temperatur, relative Luftfeuchte und je nach Sensor VOC (TVOC), Feinstaub (PM2.5) und Beleuchtungsstärke. Alle Parameter werden kontinuierlich erfasst und in von Ihnen konfigurierten Intervallen gemeldet." },
+      { q: "Welche Parameter misst RoomAlyzer für das Raumklima?", a: "CO₂ (400–5000 ppm), Temperatur, relative Luftfeuchte und je nach Sensor VOC (TVOC), Feinstaub (PM2.5) und Beleuchtungsstärke. Alle Parameter werden kontinuierlich erfasst und in von Ihnen konfigurierten Intervallen gemeldet." },
       { q: "Wie genau sind die CO₂-Messungen?", a: "Typischerweise ±30 ppm oder ±3 % des Messwerts (je nachdem, was größer ist) im Bereich 400–2000 ppm, der für Klassenzimmer und Büros zählt. Sensoren kalibrieren sich bei regulären Lüftungszyklen gegen die Außenluft." },
       { q: "Welchen CO₂-Schwellenwert sollten wir nutzen?", a: "EN 16798 Kategorie II definiert 800–1200 ppm als akzeptabel; viele Schul-Kunden alarmieren bei 1200 ppm. In Deutschland gelten vergleichbare Anforderungen über DIN/EN-Normen, GEG oder Ihre lokale Vorgabe." },
       { q: "Brauchen wir einen Sensor pro Raum?", a: "Ja, ein Sensor pro Raum ist die Faustregel. Sehr große Räume wie Auditorien und Sporthallen können zwei oder drei Sensoren für eine genaue Zonenerfassung benötigen." },
@@ -114,12 +114,12 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
       { q: "Kann CO₂-Daten die Lüftung automatisch steuern?", a: "Ja. Die Plattform stellt Live-Messwerte per MQTT und REST bereit und kann Setpoint-Hinweise an BMS-Systeme wie Niagara, Desigo und EcoStruxure senden. Mehr im MQTT-Integrationsleitfaden." },
     ],
     preservation: [
-      { q: "Welcher Standard gilt für Preservationsklima?", a: "EN 15757 ist der europäische Standard, den wir standardmäßig zugrunde legen, er definiert zulässige tägliche und saisonale Variationsbänder relativ zum historischen Klima jedes Objekts statt eines festen absoluten Sollwerts. DGNB, WELL und lokale Diözesen-Richtlinien ergänzen das." },
+      { q: "Welcher Standard gilt für Erhaltungsklima?", a: "EN 15757 ist der europäische Standard, den wir standardmäßig zugrunde legen, er definiert zulässige tägliche und saisonale Variationsbänder relativ zum historischen Klima jedes Objekts statt eines festen absoluten Sollwerts. DGNB, WELL und lokale Diözesen-Richtlinien ergänzen das." },
       { q: "Wie dicht sollte die Sensorabdeckung sein?", a: "Ein Sensor pro Mikroklimazone. Ein einzelnes Kirchenschiff kann drei Sensoren brauchen (Chor, Schiff, unter der Orgelempore), weil jede Zone unterschiedlich auf Heizung und Besucherandrang reagiert." },
       { q: "Können Sie in Vitrinen messen?", a: "Ja. Unsere MINI-Serie passt in Schaukästen und meldet drahtlos durch das Glas. Batteriebetrieb bedeutet keine Kabel durch die Vitrine." },
-      { q: "Wie lange halten die Batterien?", a: "Drei bis fünf Jahre bei typischen Preservationseinstellungen (15-Minuten-Intervall, stabile Temperatur). Die Plattform warnt 60 Tage vor dem Batteriewechsel." },
+      { q: "Wie lange halten die Batterien?", a: "Drei bis fünf Jahre bei typischen Erhaltungseinstellungen (15-Minuten-Intervall, stabile Temperatur). Die Plattform warnt 60 Tage vor dem Batteriewechsel." },
       { q: "Unterstützen Sie Reise-Logger für Leihgaben?", a: "Ja. Kleine Taschen-Logger begleiten Objekte auf Leihgabe und docken am Zielort an die Plattform an, eine Timeline von Lager über Transport bis zur Ausstellung." },
-      { q: "Wie präsentieren wir die Daten gegenüber Diözese oder Vorstand?", a: "Nutzen Sie die Preservationsberichtsvorlage: monatliches PDF mit Bändern, Überschreitungen, Maßnahmen und Anmerkungen. Die meisten Kunden senden es direkt an den Diözesenkonservator oder den Vorstandsvorsitzenden." },
+      { q: "Wie präsentieren wir die Daten gegenüber Diözese oder Vorstand?", a: "Nutzen Sie die Erhaltungsberichtsvorlage: monatliches PDF mit Bändern, Überschreitungen, Maßnahmen und Anmerkungen. Die meisten Kunden senden es direkt an den Diözesenkonservator oder den Vorstandsvorsitzenden." },
     ],
     "space-management": [
       { q: "Wie funktionieren Belegungssensoren ohne Personen zu identifizieren?", a: "Wir nutzen PIR (passiv infrarot), mmWave und Thermopile-Sensoren, die Bewegung und Wärmesignaturen erfassen, aber keine Gesichter sehen oder Personen identifizieren können. Keine Kameras, keine Badges, keine personenbezogenen Daten." },
@@ -138,15 +138,15 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
       { q: "Können wir den Alarm in bestehendes SCADA oder NOC integrieren?", a: "Ja. Die Plattform publiziert in Echtzeit per MQTT, sodass Alarme direkt in Niagara, Desigo, Intel NOC oder eigene Grafana/Prometheus-Stacks fließen können." },
     ],
     "push-buttons": [
-      { q: "Wie kommunizieren die Taster mit der Plattform?", a: "Drahtlose Push buttons für batteriebetriebene Installationen und NFC für Tap-to-Report-Aufkleber über Gästehandys. Beides landet im gleichen Ereignisstrom auf der Plattform." },
+      { q: "Wie kommunizieren die Taster mit der Plattform?", a: "Drahtlose Drucktasten für batteriebetriebene Installationen und NFC für Tap-to-Report-Aufkleber über Gästehandys. Beides landet im gleichen Ereignisstrom auf der Plattform." },
       { q: "Wie viele Ereignisse pro Tag verträgt ein Taster?", a: "Ein drahtloser Push button verträgt 100+ Drücke pro Tag jahrelang mit einer Batterie. Für höheres Volumen empfehlen wir netzbetriebene Geräte oder NFC-Aufkleber mit Backend." },
       { q: "Können wir Taster mit festen Bedeutungen beschriften?", a: "Ja. Jeder Taster erhält eine Rolle (Reinigung, Nachfüllung, Wartung, Panik, Feedback) und ein physisches Label. Die Plattform routet Ereignisse nach Rolle und Raum." },
       { q: "Können Taster mit unserem Ticketing-System integriert werden?", a: "Ja. Drücke werden per ausgehender Webhooks zu Tickets in ServiceNow, Jira, Freshdesk und ähnlichen Systemen, mit automatischer Kategorisierung und Standortkontext." },
-      { q: "Wie groß ist die Reichweite?", a: "Drahtlose Push buttons verbinden sich über NB-IoT in Mobilfunknetzen. Die Abdeckung folgt dem Indoor-Profil Ihres Mobilfunkanbieters — in der Regel ausreichend für Büros, Schulen und Krankenhäuser ohne zusätzliche Infrastruktur." },
+      { q: "Wie groß ist die Reichweite?", a: "Drahtlose Drucktasten verbinden sich über NB-IoT in Mobilfunknetzen. Die Abdeckung folgt dem Indoor-Profil Ihres Mobilfunkanbieters — in der Regel ausreichend für Büros, Schulen und Krankenhäuser ohne zusätzliche Infrastruktur." },
     ],
     sensors: [
       { q: "Welche Sensoren liefern Sie?", a: "Unser Portfolio ist in vier Linien gegliedert: RoomAlyzer Air (Klimasensoren wie CO2, Full+, Humidity, Mini+, Mini+ PIR, Outdoor und Temperature), RoomAlyzer Space (Desk, Motion, Open/Close und Touch), RoomAlyzer Water (Wasserdetektor und Water rope) und Miscellaneous (Cloud connector, Range Extender und Bracket). Produktblätter im Sensorenbereich herunterladen." },
-      { q: "Müssen die Sensoren kalibriert werden?", a: "CO₂-Sensoren kalibrieren sich gegen Außenluft; Humidity driften etwa 1 % r. F. pro Jahr; Temperature sind über die Lebensdauer stabil. Wir empfehlen Werks-Rekalibrierung alle fünf Jahre für konservierungskritische Rollouts." },
+      { q: "Müssen die Sensoren kalibriert werden?", a: "CO₂-Sensoren kalibrieren sich gegen Außenluft; Humidity driften etwa 1 % r. F. pro Jahr; Temperature sind über die Lebensdauer stabil. Wir empfehlen Werks-Rekalibrierung alle fünf Jahre für erhaltungskritische Rollouts." },
       { q: "Wie lang ist die typische Batterielaufzeit?", a: "Drei bis sieben Jahre je nach Sensortyp, Meldeintervall und Umgebungstemperatur. Die Plattform zeigt eine Batterieanzeige pro Sensor und prognostiziert Wechseltermine." },
       { q: "Wo können Sensoren platziert werden?", a: "Überall mit NB-IoT-Abdeckung. Innen 1,1–1,7 m über dem Boden, fern von direkter Sonne, Steckdosen und Fenstern. Der Platzierungsleitfaden deckt jeden Raumtyp ab." },
       { q: "Sind die Sensoren CE-gekennzeichnet?", a: "Ja. Alle unsere Sensoren sind CE-gekennzeichnet und erfüllen die Funkanlagenrichtlinie (RED), die Niederspannungsrichtlinie (LVD) und die EMV-Richtlinie." },

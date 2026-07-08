@@ -285,12 +285,12 @@ const da: ModulePageStrings = {
 };
 
 const de: ModulePageStrings = {
-  metaTitle: "Usage and cleaning: bedarfsorientierte Reinigung | IoT Fabrikken",
+  metaTitle: "Reinigung/Nutzung: bedarfsorientierte Reinigung | IoT Fabrikken",
   metaDescription:
     "Lenken Sie die Reinigung dorthin, wo Räume tatsächlich genutzt wurden. Belegung sehen, nach Bedarf planen, Sanitärräume priorisieren und Berichte mit Dienstleistern teilen.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
-  breadcrumbCurrent: "Usage and cleaning",
+  breadcrumbCurrent: "Reinigung/Nutzung",
   heroTitle: "Reinigen, wo",
   heroTitleAccent: "es wirklich nötig ist.",
   heroLead:
@@ -300,7 +300,7 @@ const de: ModulePageStrings = {
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer: Usage and cleaning",
+  dashboardLabel: "RoomAlyzer: Reinigung/Nutzung",
   dashboardAlt: "RoomAlyzer-Dashboard mit Raumnutzung und Reinigungsprioritäten",
   challengesEyebrow: "Die Herausforderungen, die Sie kennen",
   challengesHeading: "Bei Reinigung nach Plan warten stark genutzte Räume, während leere poliert werden.",
@@ -321,9 +321,9 @@ const de: ModulePageStrings = {
   capabilitiesEyebrow: "So löst RoomAlyzer das",
   capabilitiesHeading: "Belegungsdaten, die die Reinigung noch am selben Tag steuern.",
   solutionLead:
-    "RoomAlyzer Usage and cleaning macht aus Belegung klare Prioritäten — entwickelt für Reinigungsteams und Facility Manager, die belegen müssen, wohin der Aufwand geht.",
+    "RoomAlyzer Reinigung/Nutzung macht aus Belegung klare Prioritäten — entwickelt für Reinigungsteams und Facility Manager, die belegen müssen, wohin der Aufwand geht.",
   solutionLeadWithSensorLinks: [
-    { type: "text", value: "RoomAlyzer Usage and cleaning nutzt " },
+    { type: "text", value: "RoomAlyzer Reinigung/Nutzung nutzt " },
     { type: "sensor", slug: "motion", label: "Motion" },
     { type: "text", value: " und " },
     { type: "sensor", slug: "mini-plus-pir", label: "Mini+ PIR" },
@@ -377,7 +377,7 @@ const de: ModulePageStrings = {
   ],
   relatedModuleLabel: "Smarter zusammen",
   relatedModuleBody:
-    "Usage and cleaning teilt Belegungsdaten direkt mit Space-Management — ein Sensornetzwerk, zwei Module und eine gemeinsame Quelle dafür, wie das Gebäude genutzt wird.",
+    "Reinigung/Nutzung teilt Belegungsdaten direkt mit Space-Management — ein Sensornetzwerk, zwei Module und eine gemeinsame Quelle dafür, wie das Gebäude genutzt wird.",
   relatedModuleLink: "Space-Management entdecken",
   audiencesEyebrow: "Für wen",
   audiencesHeading: "Reinigungsteams und die Facility Manager, die sie steuern",
@@ -416,7 +416,7 @@ const de: ModulePageStrings = {
     },
     {
       q: "Wie hängt das mit Space-Management zusammen?",
-      a: "Beide Module nutzen dieselben Belegungsdaten in RoomAlyzer. Space-Management fokussiert Arbeitsplätze und Besprechungsräume; Usage and cleaning macht daraus Reinigungsprioritäten.",
+      a: "Beide Module nutzen dieselben Belegungsdaten in RoomAlyzer. Space-Management fokussiert Arbeitsplätze und Besprechungsräume; Reinigung/Nutzung macht daraus Reinigungsprioritäten.",
     },
   ],
   ctaTitle: "Möchten Sie es selbst sehen?",

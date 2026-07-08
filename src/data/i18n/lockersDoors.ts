@@ -277,12 +277,12 @@ const da: ModulePageStrings = {
 };
 
 const de: ModulePageStrings = {
-  metaTitle: "Lockers and doors: Open/Close monitoring | IoT Fabrikken",
+  metaTitle: "Schließfächer/Türen: Open/Close monitoring | IoT Fabrikken",
   metaDescription:
     "Drahtlose Open/Close für Schließfächer, Türen, Fenster und Schränke. Sehen Sie in Echtzeit, was offen ist, erkennen Sie Lücken außerhalb der Öffnungszeiten und planen Sie Kapazität anhand von Nutzungsdaten.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
-  breadcrumbCurrent: "Lockers and doors",
+  breadcrumbCurrent: "Schließfächer/Türen",
   heroTitle: "Sehen Sie, was offen ist.",
   heroTitleAccent: "Schließen Sie die Lücken.",
   heroLead:
@@ -292,8 +292,8 @@ const de: ModulePageStrings = {
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer: Lockers and doors",
-  dashboardAlt: "RoomAlyzer-Dashboard mit Live-Offen/Geschlossen-Status für Lockers and doors",
+  dashboardLabel: "RoomAlyzer: Schließfächer/Türen",
+  dashboardAlt: "RoomAlyzer-Dashboard mit Live-Offen/Geschlossen-Status für Schließfächer/Türen",
   challengesEyebrow: "Die Herausforderungen, die Sie kennen",
   challengesHeading: "Ohne Sicht auf Offen-Status wird jede Runde zum Rundgang.",
   challenges: [
@@ -313,9 +313,9 @@ const de: ModulePageStrings = {
   capabilitiesEyebrow: "So löst RoomAlyzer das",
   capabilitiesHeading: "Live-Offen/Geschlossen-Status, den Sie noch am selben Tag nutzen können.",
   solutionLead:
-    "RoomAlyzer Lockers and doors gibt Ihnen einen Echtzeitüberblick darüber, was offen oder geschlossen ist — und macht daraus Nutzungsmuster für Facility Management und Arbeitsplatzplanung.",
+    "RoomAlyzer Schließfächer/Türen gibt Ihnen einen Echtzeitüberblick darüber, was offen oder geschlossen ist — und macht daraus Nutzungsmuster für Facility Management und Arbeitsplatzplanung.",
   solutionLeadWithSensorLinks: [
-    { type: "text", value: "RoomAlyzer Lockers and doors nutzt den " },
+    { type: "text", value: "RoomAlyzer Schließfächer/Türen nutzt den " },
     { type: "sensor", slug: "open-close", label: "Open/Close" },
     {
       type: "text",
@@ -339,7 +339,7 @@ const de: ModulePageStrings = {
         },
       ],
       unit: "Echtzeit",
-      imageAlt: "Live Offen/Geschlossen-Status für Lockers and doors in RoomAlyzer",
+      imageAlt: "Live Offen/Geschlossen-Status für Schließfächer/Türen in RoomAlyzer",
     },
     {
       id: "locker-overview",

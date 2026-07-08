@@ -74,12 +74,12 @@ export const modulesHubI18n: Partial<Record<Lang, ModulesHubOverlay>> = {
     lead: "Gezielte Problemlösung mit modularer Freiheit: Starten Sie genau mit dem Modul, das Sie aktuell am dringendsten benötigen und erweitern Sie Ihr System flexibel Ihren Anforderungen entsprechend.",
     leaves: {
       "indoor-climate": {
-        title: "Indoor climate.",
+        title: "Raumklima.",
         titleAccent: "CO2, Temperatur, Luftfeuchtigkeit und VOC in Echtzeit inklusive frühzeitiger Warnungen vor Schimmel und Feuchtigkeit, bevor Gebäudeschäden entstehen.",
         lead: "CO2, Temperatur, Luftfeuchtigkeit und VOC in Echtzeit und frühzeitige Warnungen vor Schimmel und Feuchtigkeit, bevor sie dem Gebäude schaden.",
       },
       preservation: {
-        title: "Preservation.",
+        title: "Erhaltung.",
         titleAccent: "Schützen Sie, was unersetzlich ist.",
         lead: "Kontinuierliche Überwachung des Klimas rund um Sammlungen, Kunstwerke, Archive und empfindliche Materialien.",
       },
@@ -94,17 +94,17 @@ export const modulesHubI18n: Partial<Record<Lang, ModulesHubOverlay>> = {
         lead: "Drahtlose Lecksensoren, die alarmieren, sobald Wasser dort auftaucht, wo es nicht sein sollte.",
       },
       "push-buttons": {
-        title: "Push buttons.",
+        title: "Drucktasten.",
         titleAccent: "Feedback mit einem einzigen Tastendruck.",
         lead: "Serviceanfragen, Reinigungswünsche und Zufriedenheitsfeedback von Mitarbeitenden und Gästen, direkt an das richtige Team.",
       },
       "lockers-doors": {
-        title: "Lockers and doors.",
+        title: "Schließfächer/Türen.",
         titleAccent: "Drahtlose Open/Closeen für Türen, Schränke, Fenster und Schließfächer, ganz ohne Verkabelung.",
         lead: "Drahtlose Open/Close für Türen, Schränke, Fenster und Schließfächer, ganz ohne Verkabelung.",
       },
       "usage-cleaning": {
-        title: "Usage and cleaning.",
+        title: "Reinigung/Nutzung.",
         titleAccent: "Bedarfsgerechte Reinigung, die auf die tatsächliche Nutzung ausgelegt ist statt auf einen Plan.",
         lead: "Bedarfsgerechte Reinigung, die auf die tatsächliche Nutzung ausgelegt ist statt auf einen Plan.",
       },

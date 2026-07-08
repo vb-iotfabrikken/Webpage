@@ -291,7 +291,7 @@ const de: Record<string, PlatformContentOverlay> = {
     heroTitle: "So funktioniert RoomAlyzer.",
     heroTitleAccent: "Eine vollständige Gebäudeüberwachungslösung, die vom ersten Tag an funktioniert.",
     heroLead:
-      "RoomAlyzer ist eine drahtlose Gebäudeüberwachungslösung für Indoor climate, Space-Management und Water detection. Sie ist einfach gedacht: Wenn Sie eine unserer Lösungen bestellen (RoomAlyzer Air, RoomAlyzer Space oder RoomAlyzer Water), erhalten Sie alles in einem Paket, einsatzbereit. So funktioniert es — von der Bestellung bis zu den Daten auf dem Bildschirm.",
+      "RoomAlyzer ist eine drahtlose Gebäudeüberwachungslösung für Raumklima, Space-Management und Water detection. Sie ist einfach gedacht: Wenn Sie eine unserer Lösungen bestellen (RoomAlyzer Air, RoomAlyzer Space oder RoomAlyzer Water), erhalten Sie alles in einem Paket, einsatzbereit. So funktioniert es — von der Bestellung bis zu den Daten auf dem Bildschirm.",
     sections: [
       {
         heading: "Alles in einer vollständigen Lösung",
@@ -355,7 +355,7 @@ const de: Record<string, PlatformContentOverlay> = {
           "Jede Lösung hat ihre eigene fertige Betriebsansicht, damit Sie immer wissen, wo Sie stehen:",
         ],
         list: [
-          "RoomAlyzer Air: Indoor climate: Live-Temperatur, Feuchte und CO2 mit Sensoraktivitätsindikatoren, die bei eingehenden Messungen pulsieren. Eine parallele Bewahrungsansicht ergänzt die konservierungsspezifischen Kennzahlen (Preservation Index (PI/TWPI), Schimmelrisiko, EN 15757-Schwankungen und Bizot Green) für Museen, Archive und Kirchen.",
+          "RoomAlyzer Air: Raumklima: Live-Temperatur, Feuchte und CO2 mit Sensoraktivitätsindikatoren, die bei eingehenden Messungen pulsieren. Eine parallele Bewahrungsansicht ergänzt die erhaltungsspezifischen Kennzahlen (Erhaltungsindex (PI/TWPI), Schimmelrisiko, EN 15757-Schwankungen und Bizot Green) für Museen, Archive und Kirchen.",
           "RoomAlyzer Space: Space-Management: sehen Sie, wie Schreibtische, Räume und Zonen wirklich genutzt werden — Live-Belegung und Heatmaps, die Muster über die Zeit zeigen. Das sind die Daten, die zeigen, wo Reservekapazität liegt, welche Meetingräume leer stehen und wo gerade ein freier Schreibtisch ist.",
           "RoomAlyzer Water: Water detection: ein operatives Cockpit mit aktiven Alarmen, stillen Sensoren und dem Zustand Ihrer gesamten Sensorflotte in Echtzeit, automatisch alle paar Sekunden aktualisiert — damit kein Leck übersehen wird.",
           "Es gibt auch eine Energieansicht, in der Verschwendung in DKK und CO2 angezeigt wird und die Effizienz je Standort aufgeschlüsselt ist.",
@@ -367,7 +367,7 @@ const de: Record<string, PlatformContentOverlay> = {
           "Es gibt zwei Arten, ein Dashboard zu nutzen — und Sie entscheiden, welche welche ist.",
           "Für Sie und Ihr Team: bauen Sie beliebig viele Dashboards für verschiedene Rollen (Management-Überblick, technisches Monitoring, Abteilungsansicht) und wechseln Sie in Sekunden. Daten sind immer auf Ihre Organisation begrenzt und respektieren den Zugriff jedes Nutzers, sodass jeder genau das sieht, was er soll — und nichts, was er nicht soll.",
           "Für alle im Gebäude: jedes Dashboard oder jeder Live-Grundriss kann per passwortgeschütztem Link an einer Wandanzeige geteilt werden — kein Login, nur URL und Passwort. Zeigen Sie Kollegen und Besuchern, wie voll die Kantine ist, wo beim Vorbeigehen an der Rezeption ein freier Schreibtisch ist oder welche Meetingräume frei sind.",
-          "Und entscheidend: Sie wählen, was auf einem öffentlichen Bildschirm erscheint. Vielleicht teilen Sie Flächendaten gern, während Indoor climate data beim Betriebsteam bleiben sollen. Sie können mehrere Bildschirme im selben Gebäude betreiben, jeweils mit eigenem Passwort — Lobby und Leitstand zeigen unterschiedliche Ansichten.",
+          "Und entscheidend: Sie wählen, was auf einem öffentlichen Bildschirm erscheint. Vielleicht teilen Sie Flächendaten gern, während Raumklimadaten beim Betriebsteam bleiben sollen. Sie können mehrere Bildschirme im selben Gebäude betreiben, jeweils mit eigenem Passwort — Lobby und Leitstand zeigen unterschiedliche Ansichten.",
         ],
       },
     ],
@@ -376,19 +376,19 @@ const de: Record<string, PlatformContentOverlay> = {
     heroTitle: "Berichte.",
     heroTitleAccent: "Von Rohdaten zu klarer, nutzbarer Erkenntnis.",
     heroLead:
-      "RoomAlyzer verwandelt Ihre kontinuierlichen Sensordaten in klare, strukturierte Berichte, automatisch an die richtigen Personen, im richtigen Format, zur richtigen Zeit. Ob wiederkehrendes Team-Briefing, Compliance-Dokumentation oder ein Datensatz für Ihre eigene Analyse: die Plattform erledigt das ohne manuelle Arbeit. Wenn Sie Berichte mit konkreten Empfehlungen an viele Nutzer an vielen Standorten senden müssen, helfen wir auch dabei: ein spezieller Berichtstyp, der unsere Indoor climate-Expertise mit KI kombiniert und jedem Standort in klarer Sprache sagt, was zu tun ist, um Energie zu sparen und das Klima richtig zu halten.",
+      "RoomAlyzer verwandelt Ihre kontinuierlichen Sensordaten in klare, strukturierte Berichte, automatisch an die richtigen Personen, im richtigen Format, zur richtigen Zeit. Ob wiederkehrendes Team-Briefing, Compliance-Dokumentation oder ein Datensatz für Ihre eigene Analyse: die Plattform erledigt das ohne manuelle Arbeit. Wenn Sie Berichte mit konkreten Empfehlungen an viele Nutzer an vielen Standorten senden müssen, helfen wir auch dabei: ein spezieller Berichtstyp, der unsere Raumklima-Expertise mit KI kombiniert und jedem Standort in klarer Sprache sagt, was zu tun ist, um Energie zu sparen und das Klima richtig zu halten.",
     sections: [
       {
         heading: "Geplante Berichte, direkt ins Postfach",
         paragraphs: [
-          "Halten Sie Ihr Team informiert, ohne dass jemand einloggen muss. Indoor climate-Berichte laufen automatisch täglich, wöchentlich oder monatlich und kommen direkt per E-Mail. Jeder Bericht kann einen Sensor oder einen ganzen Standort abdecken, mit beliebig vielen Empfängern — und Sie können vorab einen Test senden, um Inhalt und Format zu prüfen.",
+          "Halten Sie Ihr Team informiert, ohne dass jemand einloggen muss. Raumklima-Berichte laufen automatisch täglich, wöchentlich oder monatlich und kommen direkt per E-Mail. Jeder Bericht kann einen Sensor oder einen ganzen Standort abdecken, mit beliebig vielen Empfängern — und Sie können vorab einen Test senden, um Inhalt und Format zu prüfen.",
           "Für ein reichhaltigeres, visuelleres Briefing kann RoomAlyzer auch geplante Grafikberichte senden — ein PDF-Snapshot von bis zu fünf Sensoren mit Ihren gewählten Parametern und Zeitfenster (von den letzten 24 Stunden bis zum letzten Jahr). Sie können Außenwetter einblenden und eine KI-generierte Trendanalyse hinzufügen. Frequenz und Empfänger lassen sich jederzeit ändern, ohne den Bericht neu aufzubauen.",
         ],
       },
       {
         heading: "Compliance-Dokumentation, abgabefertig",
         paragraphs: [
-          "Viele Facility Manager wurden von der Geschäftsführung gebeten, das Indoor climate zu dokumentieren, oft infolge von EU-Richtlinien. RoomAlyzer erstellt diese Dokumentation für Sie, direkt aus Ihren Live-Sensordaten, ohne manuelle Datenerhebung und ohne Tabellen.",
+          "Viele Facility Manager wurden von der Geschäftsführung gebeten, das Raumklima zu dokumentieren, oft infolge von EU-Richtlinien. RoomAlyzer erstellt diese Dokumentation für Sie, direkt aus Ihren Live-Sensordaten, ohne manuelle Datenerhebung und ohne Tabellen.",
           "Für DGNB-Zertifizierung (SOC1.1 / SOC1.2, EN 16798-1) führt ein einfacher Assistent Sie durch: Zeitraum und Arbeitszeiten wählen, Sensoren auswählen, passende Schwellen (DGNB 2020 oder 2023, Gebäude- und Lüftungstyp) und ein professionelles PDF mit Diagrammen, Statistiken und Grundriss-Overlays erzeugen. Für Gebäude unter der Energy Performance of Buildings Directive (EPBD 2024, EN 16798-1) erstellt RoomAlyzer auf Abruf einen vollständigen Compliance-Bericht — mit Gap-Analyse, Compliance-Prozentsätzen je Parameter, Energieüberblick und regelbasierten Verbesserungsempfehlungen. Sie nehmen genau die Abschnitte auf, die relevant sind und ein Download-Verlauf hält frühere Berichte verfügbar. Wenn Sie unsicher sind, welcher Standard für Sie gilt, helfen wir gern.",
         ],
       },
@@ -407,7 +407,7 @@ const de: Record<string, PlatformContentOverlay> = {
       "Der Sinn von Monitoring ist, ein Problem zu erkennen, bevor es zur Katastrophe wird. RoomAlyzer sendet Ihnen sofort eine E-Mail oder SMS, wenn etwas nicht stimmt, egal wo Sie sind und wo das Gebäude steht. Wenn also ein Entfeuchter in einem Lager am anderen Ende des Landes ausfällt und die Feuchte steigt, erfahren Sie das rechtzeitig, statt den Schaden Wochen später zu entdecken.",
     sections: [
       {
-        heading: "RoomAlyzer Air: Indoor climate- und Preservationsalarme",
+        heading: "RoomAlyzer Air: Raumklima- und Erhaltungsalarme",
         paragraphs: [
           "Erhalten Sie einen Alarm, wenn Temperatur, Feuchte, CO2 oder Schimmelrisiko außerhalb Ihres eingestellten Bereichs liegen. In einem vollen Büro oder einer Schule kann das bedeuten, schlechte Luftqualität anzugehen, bevor Beschwerden kommen. In Museum, Kirche oder Archiv kann es unersetzliche Objekte schützen — einen ausfallenden Entfeuchter oder Feuchteschwankung erkennen, bevor Holz, Gemälde oder Papier Schaden nehmen. Sie legen die Grenzen fest, RoomAlyzer überwacht sie rund um die Uhr.",
         ],
@@ -526,8 +526,8 @@ const de: Record<string, PlatformContentOverlay> = {
         ],
         listIntro: "Worauf Sie zugreifen können:",
         list: [
-          "Indoor climate — Live-Messungen und historische Daten für Temperatur, Feuchte, CO2 und mehr. Schwellenwerte pro Sensor und Abweichungszusammenfassungen abrufen, um zu sehen, wie oft Bedingungen außerhalb akzeptabler Bereiche liegen.",
-          "Preservation: Gebäudedaten für Preservation Index (PI/TWPI), Schimmelrisiko (VTT), EN 15757-Schwankungen und Preservationsheizung. Ideal für Museen, Archive und Kulturerbe.",
+          "Raumklima — Live-Messungen und historische Daten für Temperatur, Feuchte, CO2 und mehr. Schwellenwerte pro Sensor und Abweichungszusammenfassungen abrufen, um zu sehen, wie oft Bedingungen außerhalb akzeptabler Bereiche liegen.",
+          "Erhaltung: Gebäudedaten für Erhaltungsindex (PI/TWPI), Schimmelrisiko (VTT), EN 15757-Schwankungen und Erhaltungsheizung. Ideal für Museen, Archive und Kulturerbe.",
           "Water detection — aktive Alarme, Alarmhistorie und Sensorflottenstatus für Ihr Lecküberwachungsnetzwerk.",
           "Space-Management — monatliche Belegungs-Heatmaps zur Analyse der tatsächlichen Flächennutzung.",
           "Drucktaster — Warteschlangenstatus, Bearbeitungshistorie und Antwortstatistiken für Service- und Alarmtaster.",
@@ -541,7 +541,7 @@ const de: Record<string, PlatformContentOverlay> = {
       {
         heading: "MCP-Server — KI-Agenten mit Ihren Daten arbeiten lassen",
         paragraphs: [
-          "RoomAlyzer ist auch als MCP-Server (Model Context Protocol) verfügbar — der aufkommende Standard, um KI-Assistenten und Agenten mit externen Datenquellen zu verbinden. Mit einem MCP-Schlüssel können KI-Agenten Ihre Indoor climate data direkt in natürlicher Sprache abfragen. Fragen Sie z. B. „Welche Räume hatten diese Woche die höchsten CO2-Werte?“ oder „Zeigen Sensoren Bedingungen außerhalb der Sommerschwellen?“ und erhalten strukturierte, mandantenspezifische Antworten.",
+          "RoomAlyzer ist auch als MCP-Server (Model Context Protocol) verfügbar — der aufkommende Standard, um KI-Assistenten und Agenten mit externen Datenquellen zu verbinden. Mit einem MCP-Schlüssel können KI-Agenten Ihre Raumklimadaten direkt in natürlicher Sprache abfragen. Fragen Sie z. B. „Welche Räume hatten diese Woche die höchsten CO2-Werte?“ oder „Zeigen Sensoren Bedingungen außerhalb der Sommerschwellen?“ und erhalten strukturierte, mandantenspezifische Antworten.",
           "Der MCP-Server ist unter mcp.roomalyzer.com/sse erreichbar und authentifiziert mit einem Bearer-Schlüssel. Schlüssel werden im RoomAlyzer-Adminbereich verwaltet und an Ihren Mandanten gebunden — Ihre Daten vermischen sich nie mit denen eines anderen Kunden. RoomAlyzer wird so zu einer natürlichen Datenquelle für KI-gestützte Facility-Berichte, automatisierte Compliance-Prüfungen und dialogbasierte Gebäude-Assistenten.",
         ],
       },

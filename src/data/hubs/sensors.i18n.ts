@@ -38,8 +38,8 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
         lead: "Überwachen Sie CO₂, Temperatur und Luftfeuchtigkeit in Klassenzimmern, Besprechungsräumen und anderen stark frequentierten Räumen.",
       },
       "full-plus": {
-        titleAccent: "Alles über Ihr Indoor climate.",
-        lead: "CO₂, Temperatur, Luftfeuchtigkeit, VOC und mehr in einer einzigen, diskreten Einheit, das Arbeitstier der meisten Indoor climate-Rollouts.",
+        titleAccent: "Alles über Ihr Raumklima.",
+        lead: "CO₂, Temperatur, Luftfeuchtigkeit, VOC und mehr in einer einzigen, diskreten Einheit, das Arbeitstier der meisten Raumklima-Rollouts.",
       },
       humidity: {
         titleAccent: "Schutz vor Feuchtigkeit und Schimmel.",

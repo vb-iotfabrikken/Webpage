@@ -483,8 +483,8 @@ const de: ModulePageStrings = {
   ],
   relatedModuleLabel: "Auch relevant",
   relatedModuleBody:
-    "Denkmalgeschützte Gebäude laufen ein doppeltes Risiko: langsame Feuchteschäden an Sammlungen und plötzliches Wassereindringen durch Dächer, Rohre und Mauerwerk. Kombinieren Sie Water detection mit Preservation, um sowohl die Bausubstanz als auch ihren Inhalt zu schützen.",
-  relatedModuleLink: "Preservationsmodul entdecken",
+    "Denkmalgeschützte Gebäude laufen ein doppeltes Risiko: langsame Feuchteschäden an Sammlungen und plötzliches Wassereindringen durch Dächer, Rohre und Mauerwerk. Kombinieren Sie Water detection mit Erhaltung, um sowohl die Bausubstanz als auch ihren Inhalt zu schützen.",
+  relatedModuleLink: "Erhaltungsmodul entdecken",
   audiencesEyebrow: "Für wen",
   audiencesHeading: "Betriebsteams, die schnell handeln müssen",
   audiencesLead:

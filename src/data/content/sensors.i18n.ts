@@ -17,7 +17,7 @@ export type SensorContentOverlay = Partial<Omit<SensorPageContent, "slug">>;
 export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorContentOverlay>>> = {
   de: {
     "full-plus": {
-      heroTitleAccent: "Vollständige Indoor climate monitoring, komplett kabellos.",
+      heroTitleAccent: "Vollständige Raumklimaüberwachung, komplett kabellos.",
       heroLead:
         "Der Full+ ist Ihre All-in-One-Lösung zur präzisen Überwachung von Temperatur, Luftfeuchtigkeit, CO2 und TVOC. Konzipiert für den mühelosen professionellen Einsatz, liefert er die entscheidenden Daten, um Wohlbefinden zu optimieren, Gebäude zu schützen und Heizkosten zu senken.",
       useCases: "Schulen & Klassenzimmer · Kindertagesstätten · Büros · DGNB-zertifizierte Gebäude",
@@ -43,7 +43,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
     "mini-plus": {
       heroTitleAccent: "Präzise Temperatur- und Feuchtemessung, ohne die Komplexität.",
       heroLead:
-        "Der Mini+ ist die ideale Lösung, um die wichtigsten Parameter Ihres Indoor climates präzise zu überwachen, ohne unnötige Komplexität. Für den professionellen Einsatz konzipiert, verbindet er robuste Hardware mit der intelligenten RoomAlyzer-Plattform, um Energieverbrauch zu optimieren und Werte zu schützen.",
+        "Der Mini+ ist die ideale Lösung, um die wichtigsten Parameter Ihres Raumklimas präzise zu überwachen, ohne unnötige Komplexität. Für den professionellen Einsatz konzipiert, verbindet er robuste Hardware mit der intelligenten RoomAlyzer-Plattform, um Energieverbrauch zu optimieren und Werte zu schützen.",
       useCases: "Gebäude mit vielen Räumen · Pflegeheime · Museen & Kirchen · Mietobjekte",
       benefits: [
         {
@@ -65,14 +65,14 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     "mini-plus-pir": {
-      heroTitleAccent: "Präzise Indoor climate- und Auslastungsdaten, mit langer Batterielaufzeit.",
+      heroTitleAccent: "Präzise Raumklima- und Auslastungsdaten, mit langer Batterielaufzeit.",
       heroLead:
-        "Der Mini+ PIR ist die intelligente All-in-One-Lösung für ein optimiertes Indoor climate und eine bedarfsgerechte Flächennutzung. Durch die Kombination präziser Klimamessungen mit anonymisierter Belegungserfassung liefert er einen ganzheitlichen Überblick über Ihre Gebäudedynamik.",
+        "Der Mini+ PIR ist die intelligente All-in-One-Lösung für ein optimiertes Raumklima und eine bedarfsgerechte Flächennutzung. Durch die Kombination präziser Klimamessungen mit anonymisierter Belegungserfassung liefert er einen ganzheitlichen Überblick über Ihre Gebäudedynamik.",
       useCases: "Flexible Büros · Besprechungsräume · Geteilte Arbeitsplätze",
       benefits: [
         {
           title: "Dokumentierte Bedingungen in Echtzeit",
-          body: "Schaffen Sie eine verlässliche Datenbasis für Ihr Indoor climate mit High-End-Sensorik für maximale Präzision.",
+          body: "Schaffen Sie eine verlässliche Datenbasis für Ihr Raumklima mit High-End-Sensorik für maximale Präzision.",
         },
         {
           title: "Intelligente Energieoptimierung",
@@ -89,7 +89,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
       ],
     },
     humidity: {
-      heroTitleAccent: "Diskreter Schutz für Werte und Indoor climate, mit extrem langer Batterielaufzeit.",
+      heroTitleAccent: "Diskreter Schutz für Werte und Raumklima, mit extrem langer Batterielaufzeit.",
       heroLead:
         "Der Humidity ist die ideale Lösung für alle, die präzise Temperatur- und Feuchtedaten in einem diskreten, kompakten Format benötigen. Er liefert exakte Werte an die RoomAlyzer-Plattform, um unersetzliche Kulturgüter zu schützen, strengen Denkmalschutz einzuhalten oder Büroumgebungen zu optimieren.",
       useCases: "Museen & Kirchen · Archive · Denkmalgeschützte Gebäude",
@@ -115,7 +115,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
     co2: {
       heroTitleAccent: "Präzise Luftqualitätsdaten, mit maximaler Batterielaufzeit.",
       heroLead:
-        "Der CO2 ist die professionelle Lösung zur Überwachung der Luftqualität dort, wo Wohlbefinden, Gesundheit und Konzentration entscheidend sind. In Kombination mit der RoomAlyzer-Plattform bietet er eine fundierte, faktenbasierte Grundlage, um Lüftung und Indoor climate zu optimieren.",
+        "Der CO2 ist die professionelle Lösung zur Überwachung der Luftqualität dort, wo Wohlbefinden, Gesundheit und Konzentration entscheidend sind. In Kombination mit der RoomAlyzer-Plattform bietet er eine fundierte, faktenbasierte Grundlage, um Lüftung und Raumklima zu optimieren.",
       useCases: "Klassenzimmer · Besprechungsräume · Großraumbüros",
       benefits: [
         {

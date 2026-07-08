@@ -147,8 +147,8 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Ein ANSI/ISO-Protokoll für Gebäudeautomation, das HVAC, Beleuchtung und Zutrittskontrolle über verkabelte Netze verbindet.",
     },
     br18: {
-      short: "Die dänische Bauordnung von 2018 mit Grundanforderungen an Indoor climate und Energie für Neubau und Sanierung.",
-      detail: "BR18 Kapitel 14 regelt das Indoor climate und verlangt CO₂ unter 1000 ppm in belegten Räumen; Temperatur- und Feuchtebereiche variieren nach Nutzungstyp. In Deutschland gelten vergleichbare Anforderungen über DIN/EN oder lokale Vorschriften.",
+      short: "Die dänische Bauordnung von 2018 mit Grundanforderungen an Raumklima und Energie für Neubau und Sanierung.",
+      detail: "BR18 Kapitel 14 regelt das Raumklima und verlangt CO₂ unter 1000 ppm in belegten Räumen; Temperatur- und Feuchtebereiche variieren nach Nutzungstyp. In Deutschland gelten vergleichbare Anforderungen über DIN/EN oder lokale Vorschriften.",
     },
     co2: {
       short: "Das von Nutzern ausgeatmete Gas; Innenwerte sind der praktischste Indikator für Lüftungsqualität in Klassenzimmern und Büros.",
@@ -164,7 +164,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Die frühere (2007) europäische Innenumweltnorm, heute durch EN 16798 abgelöst, aber in älteren Spezifikationen noch referenziert.",
     },
     "en-15757": {
-      short: "Die europäische Preservationsnorm mit Klimavorgaben für organische hygroskopische Materialien im Kulturerbe.",
+      short: "Die europäische Erhaltungsnorm mit Klimavorgaben für organische hygroskopische Materialien im Kulturerbe.",
       detail: "EN 15757 nutzt einen relativen Ansatz (Saisonbänder aus dem historischen Klima des Objekts) statt eines festen Sollwerts, oft realistischer in unbeheizten historischen Gebäuden.",
     },
     "en-16798": {
@@ -172,7 +172,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       detail: "Teil 1 definiert vier Kategorien der Innenumwelt (I–IV) mit CO₂-, Temperatur- und Feuchtebereichen. Kategorie II ist das übliche Ziel für Neubauten.",
     },
     esg: {
-      short: "Ein Berichtsrahmen für nicht-finanzielle Leistung von Investoren und Aufsicht, inkl. Gebäudeenergie und Indoor climate data.",
+      short: "Ein Berichtsrahmen für nicht-finanzielle Leistung von Investoren und Aufsicht, inkl. Gebäudeenergie und Raumklimadaten.",
     },
     fm: {
       short: "Die Disziplin, die den physischen Arbeitsplatz betreibt: Reinigung, Wartung, Flächenplanung, Energie und Umwelt.",
@@ -215,7 +215,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Das 24/7-Überwachungszentrum, das Water detections- und kritische Alarme für Rechenzentrum- und Enterprise-Kunden empfängt.",
     },
     pi: {
-      short: "Ein aggregierter Score in Indoor climateberichten, der Überschreitungshäufigkeit, Schwere und Dauer zu einem Prozentwert bündelt.",
+      short: "Ein aggregierter Score in Raumklimaberichten, der Überschreitungshäufigkeit, Schwere und Dauer zu einem Prozentwert bündelt.",
     },
     pir: {
       short: "Belegungssensortechnik, die Bewegung über Infrarotstrahlung erfasst: Standard für Anwesenheit auf Raumebene.",
@@ -252,7 +252,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       detail: "TVOC eignet sich für Trenddetektion (Reinigung gerade erfolgt, neues Möbelstück) statt absoluter Gesundheitsschwellen, weil Einzelstoffe sehr unterschiedlich toxisch sind.",
     },
     twpi: {
-      short: "Ein Indoor climateindikator, der Überschreitungen nach tatsächlicher Belegungsdauer gewichtet.",
+      short: "Ein Raumklimaindikator, der Überschreitungen nach tatsächlicher Belegungsdauer gewichtet.",
     },
     vav: {
       short: "Lüftungsregelung mit modulierenden Klappen pro Raum, ideales Ziel für CO₂-gesteuerte Bedarfsführung.",
@@ -261,7 +261,7 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Eine große Familie kohlenstoffbasierter Verbindungen, die bei Raumtemperatur verdampfen. Gemessen als TVOC.",
     },
     vtt: {
-      short: "Das finnische Technische Forschungszentrum. Veröffentlicht häufig zitierte Studien zu Indoor climate und Preservation.",
+      short: "Das finnische Technische Forschungszentrum. Veröffentlicht häufig zitierte Studien zu Raumklima und Erhaltung.",
     },
     well: {
       short: "Ein Wellness-orientiertes Gebäudezertifikat mit strengen Anforderungen an Luft und Komfort, beliebt bei Büromietern.",

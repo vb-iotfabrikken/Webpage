@@ -263,6 +263,14 @@ export function getStaticSiteRedirectMap(): Record<string, string> {
     [`/${lang}/about/d-maerket/`, `/${lang}/about/trust-center/`],
   ] as [string, string][]);
 
+  /** German module slug renames — 301 old published URLs to localized slugs. */
+  const deModuleSlugRedirects: [string, string][] = [
+    ["/de/module/konservierung/", routePath("modules/preservation", "de")],
+    ["/de/module/push-buttons/", routePath("modules/push-buttons", "de")],
+    ["/de/module/usage-cleaning/", routePath("modules/usage-cleaning", "de")],
+    ["/de/module/lockers-doors/", routePath("modules/lockers-doors", "de")],
+  ];
+
   const articleSlugRenameEntries: [string, string][] = [];
   for (const [oldSlug, newSlug] of Object.entries(legacyArticleSlugAliases)) {
     for (const lang of SITE_LOCALES) {
@@ -288,6 +296,7 @@ export function getStaticSiteRedirectMap(): Record<string, string> {
     ...compareEntries,
     ...pricingEntries,
     ...articleSlugRenameEntries,
+    ...deModuleSlugRedirects,
   ]);
 }
 

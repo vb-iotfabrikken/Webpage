@@ -139,21 +139,21 @@ const da: Record<string, ModuleContentOverlay> = {
 
 const de: Record<string, ModuleContentOverlay> = {
   "indoor-climate": {
-    heroTitle: "Indoor climate-Monitoring,",
+    heroTitle: "Raumklima-Monitoring,",
     heroTitleAccent: "das Beschwerden zu Fakten macht.",
     heroLead:
-      "Indoor climate-Monitoring liefert die Antwort auf eine Frage, die jeder Facility Manager kennt: Ist die Beschwerde berechtigt oder nur ein Gefühl? Dem einen ist zu warm, der anderen zu kalt und nachmittags wird die Luft stickig. Ohne präzise Daten zu Temperatur, Luftfeuchtigkeit und  verwalten Sie jedoch nur Eindrücke. Sie regeln die Lüftung nach Bauchgefühl – und müssen am Ende Entscheidungen verteidigen, die Sie nicht belegen können.",
+      "Raumklima-Monitoring liefert die Antwort auf eine Frage, die jeder Facility Manager kennt: Ist die Beschwerde berechtigt oder nur ein Gefühl? Dem einen ist zu warm, der anderen zu kalt und nachmittags wird die Luft stickig. Ohne präzise Daten zu Temperatur, Luftfeuchtigkeit und  verwalten Sie jedoch nur Eindrücke. Sie regeln die Lüftung nach Bauchgefühl – und müssen am Ende Entscheidungen verteidigen, die Sie nicht belegen können.",
     challenges: [
       "Beschwerden, die Sie nicht überprüfen können: Jemand meldet schlechte Luftqualität und Sie können nicht bestätigen, ob Handlungsbedarf besteht oder ob es nur eine Frage der Wahrnehmung ist.",
       "Systeme, die blind laufen: Heizung und Lüftung folgen festen Zeitplänen statt den tatsächlichen Bedingungen, verschwenden Energie in leeren Räumen und liefern zu wenig, wenn sie voll sind.",
-      "Kein Nachweis für das Gespräch: Wenn Geschäftsführung, Mitarbeitende oder Behörden nach dem Indoor climate in Ihren Büros oder Schulen fragen, haben Sie nichts Konkretes in der Hand.",
+      "Kein Nachweis für das Gespräch: Wenn Geschäftsführung, Mitarbeitende oder Behörden nach dem Raumklima in Ihren Büros oder Schulen fragen, haben Sie nichts Konkretes in der Hand.",
     ],
     solution: [
       "RoomAlyzer misst Temperatur, Luftfeuchtigkeit, CO2 und TVOC kontinuierlich und macht daraus klare Dokumentation, damit Sie jede Beschwerde mit Fakten statt mit Gefühlen beantworten können. Sie sehen genau, wann die CO2-Werte steigen, wann die Feuchtigkeit Schimmel begünstigt und ob wirklich Handlungsbedarf besteht oder sich das Problem von selbst löst.",
       "Und es zeigt Ihnen mehr als nur die Zahlen: Es warnt Sie, wenn Schimmel zum Risiko wird und gibt konkrete Anpassungsvorschläge. Das Ergebnis: Sie steuern Heizung und Lüftung bedarfsgerecht, senken Ihre Energiekosten und bewahren den vollen Komfort. Bewährt im Einsatz in Büros, Schulen und Kommunen.",
     ],
     smarterTogether:
-      "In Kombination mit Space-Management kann RoomAlyzer Energieverbrauch und Indoor climate an die Zahl der tatsächlich anwesenden Personen anpassen.",
+      "In Kombination mit Space-Management kann RoomAlyzer Energieverbrauch und Raumklima an die Zahl der tatsächlich anwesenden Personen anpassen.",
     closing:
       "Lösungen wie diese sind normalerweise teuer und mühsam zu installieren. RoomAlyzer ist in Minuten einsatzbereit, bleibt flexibel selbst wenn sich Ihre Anforderungen ändern und kostet einen Bruchteil des Preises von herkömmlichen Systemen.",
   },
@@ -173,7 +173,7 @@ const de: Record<string, ModuleContentOverlay> = {
       "Besprechungsräume sind ein eigener Schwerpunkt: Sie sehen, wie sie wirklich genutzt werden (für viele gebucht, von wenigen besucht) und lassen Räume automatisch freigeben, wenn eine Buchung ungenutzt bleibt, sodass ein abgesagtes Meeting keinen tatsächlich freien Raum mehr blockiert. Der integrierte Wirtschaftlichkeitsrechner verwandelt all das in klare Einsparungen bei Miete und Energie, während Heatmaps und Berichte eine objektive Grundlage für faire Entscheidungen liefern. In Dänemark entwickelt und für jeden Anwendertyp einfach gestaltet, ist es relevant für Facility Management, Flächenplaner, den Betrieb und Kommunen.",
     ],
     smarterTogether:
-      "RoomAlyzer kann Flächennutzung und Indoor climate simultan darstellen, sodass Sie Energieverbrauch und Lüftung an die Zahl der tatsächlich anwesenden Personen anpassen können — für die richtige Balance zwischen Wohlbefinden und Energieoptimierung.",
+      "RoomAlyzer kann Flächennutzung und Raumklima simultan darstellen, sodass Sie Energieverbrauch und Lüftung an die Zahl der tatsächlich anwesenden Personen anpassen können — für die richtige Balance zwischen Wohlbefinden und Energieoptimierung.",
     closing:
       "Während Space-Management-Systeme normalerweise kostspielig und aufwendig einzuführen sind, ist RoomAlyzer in Minuten installiert, passt sich an, wenn sich Ihr Arbeitsplatz verändert und kostet einen Bruchteil des Preises von herkömmlichen Systemen.",
   },
@@ -199,15 +199,15 @@ const de: Record<string, ModuleContentOverlay> = {
     heroTitle: "Klimaüberwachung für Kulturgut,",
     heroTitleAccent: "die Sammlungen schützt und Energie spart.",
     heroLead:
-      "Präventive Preservation beginnt mit einer entscheidenden Frage, vor der jede Kirche, jedes Museum, jedes Archiv und jedes denkmalgeschützte Gebäude steht: Wie steht es tatsächlich um das Klima in Ihren Räumen? Ob Hochaltar, Orgel, Gemälde oder eine Vitrine mit altem Holz — die falsche Luftfeuchtigkeit oder Temperatur richtet langsamen, irreversiblen Schaden an den man erst bemerkt, bevor es zu spät ist.",
+      "Präventive Erhaltung beginnt mit einer entscheidenden Frage, vor der jede Kirche, jedes Museum, jedes Archiv und jedes denkmalgeschützte Gebäude steht: Wie steht es tatsächlich um das Klima in Ihren Räumen? Ob Hochaltar, Orgel, Gemälde oder eine Vitrine mit altem Holz — die falsche Luftfeuchtigkeit oder Temperatur richtet langsamen, irreversiblen Schaden an den man erst bemerkt, bevor es zu spät ist.",
     challenges: [
       "Unsichtbare, schleichende Schäden: Ungünstige Luftfeuchtigkeit und Temperatur schädigen unersetzliche Objekte, lange bevor ein sichtbares Zeichen erscheint.",
-      "Lückenhafte Dokumentation: Sie können das Klima, in dem Ihre Sammlung aufbewahrt wurde, nicht lückenlos belegen – weder gegenüber Versicherern und Fördergebern noch zur Erfüllung strenger Preservationsanforderungen.",
-      "Preservation versus Energiekosten: ein historisches Gebäude zu beheizen, um seinen Inhalt zu schützen, ist extrem teuer. Ohne präzise Daten ist es fast unmöglich, die richtige Balance zu finden.",
+      "Lückenhafte Dokumentation: Sie können das Klima, in dem Ihre Sammlung aufbewahrt wurde, nicht lückenlos belegen – weder gegenüber Versicherern und Fördergebern noch zur Erfüllung strenger Erhaltungsanforderungen.",
+      "Erhaltung versus Energiekosten: ein historisches Gebäude zu beheizen, um seinen Inhalt zu schützen, ist extrem teuer. Ohne präzise Daten ist es fast unmöglich, die richtige Balance zu finden.",
     ],
     solution: [
       "RoomAlyzer überwacht Temperatur und Luftfeuchtigkeit kontinuierlich und erstellt eine lückenlose Dokumentationder genauen Lagerbedingungen. Unsere Sensoren erfüllen die hohe Präzision, auf die Restauratoren zu Recht bestehen damit Sie jederzeit eine verlässliche Entscheidungsgrundlage für den Erhalt Ihrer Sammlung haben.",
-      "Vom Hochaltar über historische Orgeln bis hin zu Gemälden und empfindlichen Exponaten: Überwachen Sie jede Art von Sammlung und wägen Sie Preservation und Energieverbrauch präzise ab, statt nur zu raten. Die wahre Stärke des Systems liegt darin, dass es die perfekte Schnittstelle für zwei Bereiche bildet, die sonst selten mit demselben Werkzeug arbeiten: Restauratoren, die die Sammlung schützen und Facility Manager, die das Gebäude betreiben, nutzen hier ein und dieselbe Datenbasis. Das ist kein Zufall, denn RoomAlyzer wurde in enger Zusammenarbeit mit Restauratoren entwickelt. Ideal für Museen, Kirchen, Archive und die Denkmalpflege.",
+      "Vom Hochaltar über historische Orgeln bis hin zu Gemälden und empfindlichen Exponaten: Überwachen Sie jede Art von Sammlung und wägen Sie Erhaltung und Energieverbrauch präzise ab, statt nur zu raten. Die wahre Stärke des Systems liegt darin, dass es die perfekte Schnittstelle für zwei Bereiche bildet, die sonst selten mit demselben Werkzeug arbeiten: Restauratoren, die die Sammlung schützen und Facility Manager, die das Gebäude betreiben, nutzen hier ein und dieselbe Datenbasis. Das ist kein Zufall, denn RoomAlyzer wurde in enger Zusammenarbeit mit Restauratoren entwickelt. Ideal für Museen, Kirchen, Archive und die Denkmalpflege.",
     ],
     closing:
       "Klimaüberwachung für Sammlungen ist normalerweise teuer und umständlich zu installieren. RoomAlyzer ist in Minuten einsatzbereit, flexibel genug für jedes Gebäude und kostet einen Bruchteil der herkömmlichen Systeme.",

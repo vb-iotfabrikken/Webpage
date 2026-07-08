@@ -1,6 +1,7 @@
 /**
- * One-off bulk fix for German locale strings under src/data/.
- * Applies module/sensor/RH/comma-und replacements inside de blocks only.
+ * Bulk fix for German locale strings under src/data/.
+ * Applies approved German module/sensor name replacements inside de blocks only.
+ * Do NOT revert to English — see de-term-locks.json for canonical forms.
  * Re-run `npm run check:locale` after execution.
  */
 
@@ -11,26 +12,38 @@ const roots = ["src/data"];
 
 /** Longest-first replacements inside de locale string literals. */
 const REPLACEMENTS = [
-  ["RoomAlyzer Nutzung und Reinigung", "RoomAlyzer Usage and cleaning"],
-  ["RoomAlyzer Schließfächer und Türen", "RoomAlyzer Lockers and doors"],
-  ["RoomAlyzer Schließfächer", "RoomAlyzer Lockers and doors"],
-  ["RoomAlyzer Wassererkennung", "RoomAlyzer Water detection"],
-  ["RoomAlyzer Konservierung", "RoomAlyzer Preservation"],
-  ["RoomAlyzer Drucktasten", "RoomAlyzer Push buttons"],
-  ["RoomAlyzer Raumklima", "RoomAlyzer Indoor climate"],
-  ["Öffnen/Schließen-Überwachung", "Open/Close monitoring"],
-  ["Öffnen/Schließen-Monitoring", "Open/Close monitoring"],
-  ["Öffnen/Schließen-Sensoren", "Open/Close"],
-  ["Öffnen/Schließen-Sensor", "Open/Close"],
-  ["Öffnen/Schließen", "Open/Close"],
-  ["Raumklimaüberwachung", "Indoor climate monitoring"],
-  ["Raumklimadaten", "Indoor climate data"],
-  ["Raumklima", "Indoor climate"],
-  ["Wassererkennung", "Water detection"],
-  ["Schließfächer und Türen", "Lockers and doors"],
-  ["Nutzung und Reinigung", "Usage and cleaning"],
-  ["Drucktasten", "Push buttons"],
-  ["Konservierung", "Preservation"],
+  ["Preservationsheiz- und Lüftungsanalyse", "Erhaltungsheiz- und Lüftungsanalyse"],
+  ["Preservation Index", "Erhaltungsindex"],
+  ["Preservationsüberwachung", "Erhaltungsüberwachung"],
+  ["Preservationsbericht", "Erhaltungsbericht"],
+  ["Preservationsarbeit", "Erhaltungsarbeit"],
+  ["Preservationsanforderungen", "Erhaltungsanforderungen"],
+  ["Preservationsklima", "Erhaltungsklima"],
+  ["Preservationsmodul", "Erhaltungsmodul"],
+  ["Preservationsheizung", "Erhaltungsheizung"],
+  ["RoomAlyzer Indoor climate", "RoomAlyzer Raumklima"],
+  ["RoomAlyzer Preservation", "RoomAlyzer Erhaltung"],
+  ["RoomAlyzer Usage and cleaning", "RoomAlyzer Reinigung/Nutzung"],
+  ["RoomAlyzer Push buttons", "RoomAlyzer Drucktasten"],
+  ["RoomAlyzer Lockers and doors", "RoomAlyzer Schließfächer/Türen"],
+  ["Range Extender and Bracket", "Range Extender und Bracket"],
+  ["Indoor climate monitoring", "Raumklimaüberwachung"],
+  ["Indoor climate data", "Raumklimadaten"],
+  ["Indoor climatedokumentation", "Raumklimadokumentation"],
+  ["Indoor climateprojekt", "Raumklimaprojekt"],
+  ["Indoor climate-Sensorsystem", "Raumklima-Sensorsystem"],
+  ["Indoor climate-Loggern", "Raumklima-Loggern"],
+  ["Indoor climate-Monitoring", "Raumklima-Monitoring"],
+  ["Indoor climatebedingungen", "Raumklimabedingungen"],
+  ["Indoor climatestudien", "Raumklimastudien"],
+  ["Indoor climate", "Raumklima"],
+  ["Usage and cleaning", "Reinigung/Nutzung"],
+  ["Lockers and doors", "Schließfächer/Türen"],
+  ["Push buttons", "Drucktasten"],
+  ["Konservierung", "Erhaltung"],
+  ["Preservation", "Erhaltung"],
+  ["Schließfächer und Türen", "Schließfächer/Türen"],
+  ["Nutzung und Reinigung", "Reinigung/Nutzung"],
   ["Feuchtesensoren", "Humidity"],
   ["Feuchtesensor", "Humidity"],
   ["Temperatursensoren", "Temperature"],

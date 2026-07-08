@@ -2,10 +2,13 @@
  * Locale grammar audit for src/data i18n strings.
  *
  * German copy checklist:
- * 1. Module names stay English (Indoor climate, Preservation, …).
- * 2. Sensor catalogue names stay English except Wasserdetektor and Außen Sensor.
- * 3. Relative humidity: r. F. or relative Luftfeuchtigkeit — never RH/RF.
- * 4. Never write ", und" — use "XX und YY" or split the sentence.
+ * 1. Module names: five German overrides (Raumklima, Erhaltung, …); Space management
+ *    and Water detection stay English.
+ * 2. Sensor catalogue names stay English except Wasserdetektor, Außen Sensor, and
+ *    Range Extender und Bracket.
+ * 3. Preservation product terms use Erhaltungs… (not Preservation Index, etc.).
+ * 4. Relative humidity: r. F. or relative Luftfeuchtigkeit — never RH/RF.
+ * 5. Never write ", und" — use "XX und YY" or split the sentence.
  *
  * Shared term locks: src/data/de-term-locks.json
  */
@@ -85,17 +88,38 @@ const dePatterns = [
     hint: "Use English catalogue name without Sensor suffix (except Außen Sensor, Wasserdetektor)",
   },
   ...lockData.forbiddenModuleTokens.map((token) => ({
-    id: "de-translated-module",
+    id: "de-wrong-module",
     re: new RegExp(token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"),
     locales: ["de"],
-    hint: `Use English module name (see de-term-locks.json)`,
+    hint: "Use approved German module name (see moduleNameOverridesDe in de-term-locks.json)",
+    token,
+  })),
+  ...(lockData.forbiddenEnglishModuleTokens ?? []).map((token) => ({
+    id: "de-english-module",
+    re: new RegExp(token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"),
+    locales: ["de"],
+    hint: "Use approved German module name via localizedModuleName() (see de-term-locks.json)",
     token,
   })),
   ...lockData.forbiddenSensorTokens.map((token) => ({
-    id: "de-translated-sensor",
+    id: "de-wrong-sensor",
     re: new RegExp(token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"),
     locales: ["de"],
-    hint: "Use English catalogue name or approved override (Wasserdetektor, Außen Sensor)",
+    hint: "Use English catalogue name or approved override (Wasserdetektor, Außen Sensor, Range Extender und Bracket)",
+    token,
+  })),
+  ...(lockData.forbiddenEnglishSensorTokens ?? []).map((token) => ({
+    id: "de-english-sensor",
+    re: new RegExp(token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"),
+    locales: ["de"],
+    hint: "Use approved German sensor override (see sensorNameOverridesDe in de-term-locks.json)",
+    token,
+  })),
+  ...(lockData.forbiddenPreservationTermsDe ?? []).map((token) => ({
+    id: "de-english-preservation-term",
+    re: new RegExp(token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"),
+    locales: ["de"],
+    hint: "Use Erhaltungs… form (e.g. Erhaltungsindex, Erhaltungsheizung)",
     token,
   })),
 ];

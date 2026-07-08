@@ -286,7 +286,7 @@ const contactStrings: Record<Lang, ContactStrings> = {
       heroTitle: "Sehen Sie die Plattform.",
       heroTitleAccent: "Stellen Sie Ihre Fragen.",
       heroLead:
-        "Keine Verpflichtungen. RoomAlyzer ist eine komplexe Plattform, deshalb nehmen wir uns die Zeit, die Ihre Fragen brauchen. Wir gehen die Plattform durch, sprechen über Ihren Anwendungsfall und geben eine konkrete Einschätzung für ein Setup.",
+        "Völlig unverbindlich: RoomAlyzer ist eine vielseitige und leistungsstarke Plattform. Deshalb nehmen wir uns genau die Zeit, die Sie für Ihre Fragen brauchen. Gemeinsam gehen wir durch das System, sprechen über Ihren konkreten Anwendungsfall und erstellen eine präzise Einschätzung für Ihr optimales Setup.",
       formTitle: "Termin buchen",
       formSubtitle: "Füllen Sie das Formular aus und wir melden uns innerhalb eines Werktags, um einen passenden Termin zu finden.",
     },

@@ -198,6 +198,10 @@ only for locales listed in each event's `detailLocales` (see
 | `/de/events/dhbv-verbandstag-2026/` | DE |
 | `/sv/events/worktech26-stockholm/` | SV |
 
+**ARCHIVISTICA landing (`/de/events/archivistica/`):** the featured quote
+section (“Stimme aus der Praxis”) is hidden during soft launch via
+`LIVE_ARCHIVISTICA_SECTIONS`. Testimonials, fair recap, and CTA remain visible.
+
 Foreign locales redirect detail URLs to their events hub (e.g.
 `/en/events/archivistica/` → `/en/events/`).
 
@@ -250,6 +254,7 @@ From [`launch.ts`](../launch.ts):
 | `LIVE_EXACT` | homepage, `cases` (legacy redirect), `compare`, `get-an-offer`, `legal/privacy`, `legal/impressum` |
 | `LIVE_MODULE_SLUGS` | `indoor-climate`, `space-management`, `water-detection`, `preservation` (+ `modules` hub index) |
 | `LIVE_TRUST_CENTER_SECTIONS` | _(empty during soft launch — certification hidden)_ |
+| `LIVE_ARCHIVISTICA_SECTIONS` | _(empty during soft launch — featured quote hidden)_ |
 | `ALWAYS_ALLOWED` | `404`, `thank-you`, `thanks` |
 | `ANALYTICS_WAVE_LIVE` | `false` during soft launch — see **Second wave** below |
 | `isAnalyticsWaveBuilt()` | `true` in `astro dev` only until wave is approved |

@@ -8,6 +8,13 @@
     "push-buttons": "Push buttons",
     "lockers-doors": "Lockers and doors"
   },
+  "moduleNameOverridesDe": {
+    "indoor-climate": "Raumklima",
+    "preservation": "Erhaltung",
+    "usage-cleaning": "Reinigung/Nutzung",
+    "push-buttons": "Drucktasten",
+    "lockers-doors": "Schließfächer/Türen"
+  },
   "sensorNamesEn": {
     "co2": "CO2",
     "full-plus": "Full+",
@@ -27,25 +34,32 @@
   },
   "sensorNameOverridesDe": {
     "water-detector": "Wasserdetektor",
-    "outdoor": "Außen Sensor"
+    "outdoor": "Außen Sensor",
+    "range-extender-and-bracket": "Range Extender und Bracket"
   },
   "forbiddenModuleTokens": [
-    "Raumklima",
-    "Raumklimaüberwachung",
-    "Raumklimadaten",
-    "Wassererkennung",
     "Konservierung",
-    "Drucktasten",
-    "Schließfächer und Türen",
-    "Nutzung und Reinigung",
-    "RoomAlyzer Raumklima",
+    "Wassererkennung",
     "RoomAlyzer Konservierung",
     "RoomAlyzer Wassererkennung",
-    "RoomAlyzer Drucktasten",
-    "RoomAlyzer Schließfächer",
-    "RoomAlyzer Nutzung und Reinigung",
+    "Schließfächer und Türen",
+    "Nutzung und Reinigung",
     "Öffnen/Schließen-Monitoring",
     "Öffnen/Schließen-Überwachung"
+  ],
+  "forbiddenEnglishModuleTokens": [
+    "RoomAlyzer Indoor climate",
+    "RoomAlyzer Preservation",
+    "RoomAlyzer Usage and cleaning",
+    "RoomAlyzer Push buttons",
+    "RoomAlyzer Lockers and doors",
+    "Indoor climate monitoring",
+    "Indoor climate data",
+    "Indoor climate",
+    "Usage and cleaning",
+    "Lockers and doors",
+    "Push buttons",
+    "Preservation"
   ],
   "forbiddenSensorTokens": [
     "Feuchtesensor",
@@ -62,5 +76,21 @@
     "Punktsensor",
     "Outdoor Sensor",
     "Outdoor-Sensor"
+  ],
+  "forbiddenEnglishSensorTokens": [
+    "Range Extender and Bracket"
+  ],
+  "forbiddenPreservationTermsDe": [
+    "Preservationsheiz- und Lüftungsanalyse",
+    "Preservation Index",
+    "Preservationsüberwachung",
+    "Preservationsbericht",
+    "Preservationsarbeit",
+    "Preservationsklima",
+    "Preservationsmodul",
+    "Preservationsheizung",
+    "Preservationsanforderungen",
+    "konservierungsspezifischen",
+    "konservierungskritische"
   ]
 }

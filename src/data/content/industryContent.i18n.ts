@@ -618,7 +618,7 @@ const de: Record<string, IndustryContentOverlay> = {
     cardSummary:
       "Flächennutzung in hybriden Arbeitswelten mit Produktivität und Komfort der Mitarbeitenden in Einklang bringen.",
     focus:
-      "Moderne Büros müssen hybride Anwesenheit, Meetingraumbedarf und Indoor climate ausbalancieren, oft ohne Daten für Miete, HVAC oder Layoutentscheidungen.",
+      "Moderne Büros müssen hybride Anwesenheit, Meetingraumbedarf und Raumklima ausbalancieren, oft ohne Daten für Miete, HVAC oder Layoutentscheidungen.",
     challenges: [
       "Bezahlung für leere Schreibtische und Etagen: Hybrides Arbeiten hat Anwesenheitsmuster verändert, doch viele Organisationen dimensionieren Flächen noch nach Kopfzahl, nicht nach gemessener Nutzung.",
       "Geisterbuchungen in Meetingräumen: für zehn reserviert, von zwei genutzt, blockieren Räume, die andere brauchen, ohne objektive Sicht auf die Lücke.",
@@ -627,10 +627,10 @@ const de: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "RoomAlyzer Space-Management liefert anonymisierte Schreibtisch- und Raumbelegung in Echtzeit und über die Zeit, damit Sie Etagen richtig dimensionieren, Buchung versus tatsächliche Nutzung sehen und Geisterbuchungen freigeben (einschließlich über Google Calendar, Microsoft 365 oder Pronestor). Der Kontext ist deutlich: die UK Workspace Survey zeigt Büroanwesenheit von 83 % der Arbeitszeit 2016 auf 46 % 2023, ein Rückgang um 37 Prozentpunkte in sieben Jahren.",
-      "RoomAlyzer Indoor climate ergänzt kontinuierliches CO2-, Temperatur-, Feuchte- und TVOC-Monitoring, damit Nachmittagsmüdigkeit und Lüftungsbeschwerden mit Fakten beantwortet werden, nicht Eindrücken. Drahtlose Sensoren sind in Minuten installiert (ohne Wi-Fi-Projekt) und dieselbe Plattform zeigt Flächennutzung und Luftqualität nebeneinander.",
+      "RoomAlyzer Raumklima ergänzt kontinuierliches CO2-, Temperatur-, Feuchte- und TVOC-Monitoring, damit Nachmittagsmüdigkeit und Lüftungsbeschwerden mit Fakten beantwortet werden, nicht Eindrücken. Drahtlose Sensoren sind in Minuten installiert (ohne Wi-Fi-Projekt) und dieselbe Plattform zeigt Flächennutzung und Luftqualität nebeneinander.",
     ],
     smarterTogether:
-      "Kombiniert lassen RoomAlyzer Space-Management und Indoor climate Sie Lüftung und Heizung an die tatsächlich anwesenden Personen anpassen und Energieeinsparung ohne Komfortverlust an vollen Tagen erreichen.",
+      "Kombiniert lassen RoomAlyzer Space-Management und Raumklima Sie Lüftung und Heizung an die tatsächlich anwesenden Personen anpassen und Energieeinsparung ohne Komfortverlust an vollen Tagen erreichen.",
     closing:
       "Büro-Sensor-Rollouts sind normalerweise teuer und störend. RoomAlyzer ist in Minuten einsatzbereit, passt sich an veränderte Arbeitswelten an und kostet einen Bruchteil des Üblichen.",
   },
@@ -647,11 +647,11 @@ const de: Record<string, IndustryContentOverlay> = {
       "Erhaltung versus Energiekosten: ein historisches Gebäude zum Schutz des Inventars zu heizen ist teuer — ohne Daten finden Sie kein Gleichgewicht.",
     ],
     solution: [
-      "RoomAlyzer Preservation überwacht Temperatur und Luftfeuchtigkeit kontinuierlich (±0,1 °C · ±1 % r. F.) und liefert klare Dokumentation der Bedingungen Ihrer Innenräume. Drahtlose Mini+ und Full+en sind diskret genug für Kirchenräume und präzise genug für Konservatoren, mit Alarmen bei Grenzwertüberschreitung.",
+      "RoomAlyzer Erhaltung überwacht Temperatur und Luftfeuchtigkeit kontinuierlich (±0,1 °C · ±1 % r. F.) und liefert klare Dokumentation der Bedingungen Ihrer Innenräume. Drahtlose Mini+ und Full+en sind diskret genug für Kirchenräume und präzise genug für Konservatoren, mit Alarmen bei Grenzwertüberschreitung.",
       "Ein Außen Sensor trennt Innentrends von Wetterschwankungen; EN-15757-konforme Berichte liefern Diözesen, Versicherern und Denkmalschutzbehörden die erwarteten Nachweise. Eine Plattform kann jede Kirche einer Diözese abdecken, mit rollenbasiertem Zugang für Küster, Pfarrer und Berater.",
     ],
     smarterTogether:
-      "RoomAlyzer Preservation gibt Konservatoren, die das Inventar schützen und Gebäudeteams, die den Betrieb steuern, denselben Datensatz, ein Gleichgewicht, das selten in einem Werkzeug zu finden ist.",
+      "RoomAlyzer Erhaltung gibt Konservatoren, die das Inventar schützen und Gebäudeteams, die den Betrieb steuern, denselben Datensatz, ein Gleichgewicht, das selten in einem Werkzeug zu finden ist.",
     closing:
       "Klimamonitoring in Kirchen ist normalerweise teuer und aufwendig. RoomAlyzer ist in Minuten einsatzbereit, flexibel für jedes Gebäude und kostet einen Bruchteil des Erwarteten.",
   },
@@ -668,7 +668,7 @@ const de: Record<string, IndustryContentOverlay> = {
       "Drahtlose Installation in sensiblen Räumen: Kabel durch historisches Gewebe oder voll besuchte Galerien sind selten akzeptabel.",
     ],
     solution: [
-      "RoomAlyzer Preservation liefert kontinuierliche drahtlose Temperatur- und Feuchtigkeitsprotokollierung in EN-15757-Bändern in Galerien, Lagern und Transportkisten. Kuratoren erhalten Alarme vor Abweichungen und prüffähige PDF-Berichte für Versicherung und Leihverträge.",
+      "RoomAlyzer Erhaltung liefert kontinuierliche drahtlose Temperatur- und Feuchtigkeitsprotokollierung in EN-15757-Bändern in Galerien, Lagern und Transportkisten. Kuratoren erhalten Alarme vor Abweichungen und prüffähige PDF-Berichte für Versicherung und Leihverträge.",
       "Motion kartieren Besucherströme, damit Feuchtespitzen mit Öffnungszeiten korreliert werden können und Kapazität entsprechend geplant wird. Ein Außen Sensor lässt HVAC auf echtes Wetter reagieren, schützt Sammlungen und hält Energie im Griff.",
     ],
     closing:
@@ -679,7 +679,7 @@ const de: Record<string, IndustryContentOverlay> = {
     cardSummary:
       "Gesundheit, Konzentration und Energierücknahme in Schulen, Verwaltung und Kulturgebäuden priorisieren.",
     focus:
-      "Kommunen betreiben Dutzende Gebäudetypen (Schulen, Kitas, Rathäuser und Kulturhäuser) und brauchen eine Plattformsicht plus Nachweis, dass Indoor climate und Energie tatsächlich zur Nutzung passen.",
+      "Kommunen betreiben Dutzende Gebäudetypen (Schulen, Kitas, Rathäuser und Kulturhäuser) und brauchen eine Plattformsicht plus Nachweis, dass Raumklima und Energie tatsächlich zur Nutzung passen.",
     challenges: [
       "CO2 und Konzentration im Unterricht: Schüler verlieren Fokus, wenn Lüftung der Belegung hinterherhinkt — doch die meisten Schulen verlassen sich auf subjektive Luftgefühl-Checks.",
       "Portfolioskala: Monitoring über alle Schulen und Verwaltungsgebäude wirkt wie ein mehrjähriges IT-Projekt — es sei denn, Sensoren sind wirklich Plug-and-Play.",
@@ -687,11 +687,11 @@ const de: Record<string, IndustryContentOverlay> = {
       "Antworten an Eltern und Lehrkräfte: bei Luftqualitätsfragen brauchen Kommunen dokumentierte Daten — keine Einzelmessung.",
     ],
     solution: [
-      "RoomAlyzer Indoor climate setzt CO2-, Temperatur-, Feuchte- und TVOC-Sensoren in jedes Klassenzimmer und Gemeinschaftsgebäude mit Alarmen vor Richtlinienüberschreitung und Dashboards, die Hausmeister wirklich nutzen. Varde Kommune rollte 1.400 Sensoren auf 36 Schulen in neun Wochen aus; durchschnittliches CO2 über 1.200 ppm in Unterrichtszeiten sank von 23 % auf 6 % in zehn Monaten.",
+      "RoomAlyzer Raumklima setzt CO2-, Temperatur-, Feuchte- und TVOC-Sensoren in jedes Klassenzimmer und Gemeinschaftsgebäude mit Alarmen vor Richtlinienüberschreitung und Dashboards, die Hausmeister wirklich nutzen. Varde Kommune rollte 1.400 Sensoren auf 36 Schulen in neun Wochen aus; durchschnittliches CO2 über 1.200 ppm in Unterrichtszeiten sank von 23 % auf 6 % in zehn Monaten.",
       "RoomAlyzer Space-Management kartiert echte Belegung in Sporthallen, Aula und Gemeinschaftsräumen, damit Heizung und Lüftung zurückfahren, wenn Räume leer sind. Ein kommunales Dashboard bündelt alle Gebäude (Schulen, Verwaltung und Kultur) ohne separates System pro Standort.",
     ],
     smarterTogether:
-      "RoomAlyzer Indoor climate und Space-Management zusammen ermöglichen Lüftung nach tatsächlicher Kopfzahl und Energieeinsparung in Gebäuden, die außerhalb der Schulzeit leer stehen.",
+      "RoomAlyzer Raumklima und Space-Management zusammen ermöglichen Lüftung nach tatsächlicher Kopfzahl und Energieeinsparung in Gebäuden, die außerhalb der Schulzeit leer stehen.",
     closing:
       "Kommunale Sensorprogramme sind normalerweise teuer und langsam. RoomAlyzer installiert sich in Minuten pro Raum, braucht kein Wi-Fi pro Gebäude und skaliert von einer Schule bis zur ganzen Kommune.",
   },
@@ -700,7 +700,7 @@ const de: Record<string, IndustryContentOverlay> = {
     cardSummary:
       "CO2, Temperatur und Feuchte in jedem Klassenzimmer dokumentieren — für Konzentration und Gesundheit der Schüler.",
     focus:
-      "Schulen brauchen objektive Indoor climate data in jedem Lernraum — nicht nur zur Einhaltung von Richtlinien, sondern um zu belegen, dass Lüftung und Heizung die Konzentration tatsächlich unterstützen, wenn Räume voll sind. Lehrkräfte und Hausmeister treffen tägliche Lüftungsentscheidungen ohne ein gemeinsames Bild von CO2, Feuchte oder ob Räume nach Unterricht wirklich genutzt werden.",
+      "Schulen brauchen objektive Raumklimadaten in jedem Lernraum — nicht nur zur Einhaltung von Richtlinien, sondern um zu belegen, dass Lüftung und Heizung die Konzentration tatsächlich unterstützen, wenn Räume voll sind. Lehrkräfte und Hausmeister treffen tägliche Lüftungsentscheidungen ohne ein gemeinsames Bild von CO2, Feuchte oder ob Räume nach Unterricht wirklich genutzt werden.",
     challenges: [
       "CO2 über 1.000 ppm in vollen Klassenzimmern: Forschung verbindet erhöhtes CO2 mit reduzierter Konzentration — doch die meisten Schulen reagieren erst, wenn jemand sich beschwert.",
       "Lüftung nach Gewohnheit, nicht nach Daten: Fensterlüftungsroutinen und mechanische Systeme spiegeln selten tatsächliche Belegung oder Außenbedingungen wider.",
@@ -708,11 +708,11 @@ const de: Record<string, IndustryContentOverlay> = {
       "Keine Nachverfolgung für Eltern oder Prüfer: wenn die Luftqualität infrage gestellt wird, brauchen Schulen kontinuierliche Protokolle — keinen Beraterbesuch einmal im Jahr.",
     ],
     solution: [
-      "RoomAlyzer Indoor climate liefert Live-CO2-, Temperatur-, Feuchte- und TVOC-Daten in jedem Klassenzimmer mit Alarmen vor Richtlinienüberschreitung, damit Lehrkräfte ein klares Signal zum Lüften erhalten und die Leitung Nachweise hat, dass Bedingungen gemanagt werden.",
+      "RoomAlyzer Raumklima liefert Live-CO2-, Temperatur-, Feuchte- und TVOC-Daten in jedem Klassenzimmer mit Alarmen vor Richtlinienüberschreitung, damit Lehrkräfte ein klares Signal zum Lüften erhalten und die Leitung Nachweise hat, dass Bedingungen gemanagt werden.",
       "RoomAlyzer Space-Management kartiert echte Nutzung in Hallen und Fachräumen, damit Heizung und Lüftung zurückfahren, wenn Gebäude leer sind. Ein Außen Sensor liefert eine Wetterreferenz, damit natürliche Lüftung zu den Bedingungen draußen passt.",
     ],
     smarterTogether:
-      "RoomAlyzer Indoor climate und Space-Management zusammen zeigen nicht nur, wann die Luftqualität nachlässt, sondern auch, wann Energie verschwendet wird, leere Räume zu heizen.",
+      "RoomAlyzer Raumklima und Space-Management zusammen zeigen nicht nur, wann die Luftqualität nachlässt, sondern auch, wann Energie verschwendet wird, leere Räume zu heizen.",
     closing:
       "Klassenzimmer-Monitoring muss kein Verkabelungs-, Gateway- oder Monatsplanungsprojekt sein. RoomAlyzer-Sensoren installieren sich in Minuten und skalieren von einer Schule bis zum ganzen Schulbezirk.",
     sensorRecommendations: [
@@ -755,11 +755,11 @@ const de: Record<string, IndustryContentOverlay> = {
       "Wassereintritt nahe kritischer Zonen: Technikräume und Schächte können klinische oder elektrische Bereiche überfluten, bevor jemand es bemerkt.",
     ],
     solution: [
-      "RoomAlyzer Indoor climate überwacht CO2, Temperatur, Feuchte und TVOC in patientennahen Bereichen mit kontinuierlicher Historie, damit Luftqualitätsdiskussionen auf Daten basieren, nicht Eindrücken.",
+      "RoomAlyzer Raumklima überwacht CO2, Temperatur, Feuchte und TVOC in patientennahen Bereichen mit kontinuierlicher Historie, damit Luftqualitätsdiskussionen auf Daten basieren, nicht Eindrücken.",
       "Dedizierte Temperature-Sensor und Humidity-Sensor decken Apotheken, Labore und Kühlung mit Alarmen ab, bevor Bestände gefährdet sind. RoomAlyzer Water detection sendet SMS- und E-Mail-Alarme aus Technik- und Servicebereichen mit zeitgestempeltem Vorfallprotokoll, bevor ein Leck klinische Zonen erreicht.",
     ],
     smarterTogether:
-      "RoomAlyzer Indoor climate und Water detection auf einer Plattform geben Gebäudeteams eine Gesamtsicht auf Komfort, Compliance und Infrastrukturrisiko im Krankenhaus.",
+      "RoomAlyzer Raumklima und Water detection auf einer Plattform geben Gebäudeteams eine Gesamtsicht auf Komfort, Compliance und Infrastrukturrisiko im Krankenhaus.",
     closing:
       "Krankenhaus-Gebäude brauchen zuverlässiges, störungsarmes Monitoring. RoomAlyzer installiert sich ohne Kabel durch klinische Bereiche und hält Prüfprotokolle bereit, wenn Inspektoren fragen.",
     sensorRecommendations: [
@@ -792,7 +792,7 @@ const de: Record<string, IndustryContentOverlay> = {
   "elderly-care": {
     cardTitle: "Altenpflege",
     cardSummary:
-      "Stabiles Indoor climate und einfache Serviceanfragen für einen sichereren, ruhigeren Pflegealltag.",
+      "Stabiles Raumklima und einfache Serviceanfragen für einen sichereren, ruhigeren Pflegealltag.",
     focus:
       "Pflegeheime und Einrichtungen betreuen vulnerable Bewohner rund um die Uhr — stabile Temperatur und Feuchte reduzieren Unbehagen und Gesundheitsrisiken, während Personal schnell reagieren muss, wenn etwas Aufmerksamkeit braucht. Familien erwarten ruhige, komfortable Zimmer; Betreiber brauchen Frühwarnung, wenn Bedingungen abweichen oder Wasser auftaucht.",
     challenges: [
@@ -802,11 +802,11 @@ const de: Record<string, IndustryContentOverlay> = {
       "Lecks in Bädern und Küchen: Feuchtigkeit breitet sich in Bewohnerbereiche aus, bevor eine Nachtrunde es entdeckt.",
     ],
     solution: [
-      "RoomAlyzer Indoor climate hält Temperatur, Feuchte, CO2 und TVOC in Gemeinschaftsbereichen und Bewohnerzimmern stabil, mit Alarmen bei Abweichung von vereinbarten Bändern.",
-      "RoomAlyzer Push buttons ermöglichen Serviceanfragen mit einem Tipp aus Sanitärräumen und Speisesälen, weitergeleitet per E-Mail oder SMS, bevor Probleme zu Beschwerden werden. Temperature-Sensor ergänzt Präzision in Küchen und Wäschereien; RoomAlyzer Water detection warnt Personal in Nassräumen und Technikbereichen früh.",
+      "RoomAlyzer Raumklima hält Temperatur, Feuchte, CO2 und TVOC in Gemeinschaftsbereichen und Bewohnerzimmern stabil, mit Alarmen bei Abweichung von vereinbarten Bändern.",
+      "RoomAlyzer Drucktasten ermöglichen Serviceanfragen mit einem Tipp aus Sanitärräumen und Speisesälen, weitergeleitet per E-Mail oder SMS, bevor Probleme zu Beschwerden werden. Temperature-Sensor ergänzt Präzision in Küchen und Wäschereien; RoomAlyzer Water detection warnt Personal in Nassräumen und Technikbereichen früh.",
     ],
     smarterTogether:
-      "RoomAlyzer Indoor climate und Push buttons auf einer Plattform helfen dem Personal, Komfort und Reaktionszeit zu priorisieren, ohne die täglichen Runden zu verkomplizieren.",
+      "RoomAlyzer Raumklima und Drucktasten auf einer Plattform helfen dem Personal, Komfort und Reaktionszeit zu priorisieren, ohne die täglichen Runden zu verkomplizieren.",
     closing:
       "Pflegeeinrichtungen brauchen diskretes, zuverlässiges Monitoring, dem Personal vertraut. RoomAlyzer installiert sich schnell, vermeidet Wi-Fi-Abhängigkeit und skaliert über Flügel und Standorte.",
     sensorRecommendations: [
@@ -850,10 +850,10 @@ const de: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "Temperature-Sensor liefert kontinuierliche Protokollierung und Alarme für Kühlschränke, Gefrierschränke und Kühltheken mit Historie für Lebensmittelsicherheit und Versicherungsprüfungen.",
-      "RoomAlyzer Indoor climate erfasst CO2, Temperatur, Feuchte und TVOC im Verkaufsbereich, damit Komfort und Energie über lange Öffnungszeiten ausbalanciert werden. Motion-Sensor kartiert Kundenfrequenz; RoomAlyzer Lockers and doors bestätigt, dass Türen und Rampen bei Ladenschluss geschlossen sind, ohne nächtliche Rundgänge.",
+      "RoomAlyzer Raumklima erfasst CO2, Temperatur, Feuchte und TVOC im Verkaufsbereich, damit Komfort und Energie über lange Öffnungszeiten ausbalanciert werden. Motion-Sensor kartiert Kundenfrequenz; RoomAlyzer Schließfächer/Türen bestätigt, dass Türen und Rampen bei Ladenschluss geschlossen sind, ohne nächtliche Rundgänge.",
     ],
     smarterTogether:
-      "Kundenfrequenz und Indoor climate data zeigen, wo in Stoßzeiten gelüftet werden muss und wo zurückgefahren werden kann, wenn Zonen leer sind.",
+      "Kundenfrequenz und Raumklimadaten zeigen, wo in Stoßzeiten gelüftet werden muss und wo zurückgefahren werden kann, wenn Zonen leer sind.",
     closing:
       "Multi-Site-Einzelhandel braucht Monitoring, das schnell ausgerollt und konsistent verglichen wird. RoomAlyzer skaliert über Filialen ohne separates IT-Projekt pro Standort.",
     sensorRecommendations: [
@@ -897,10 +897,10 @@ const de: Record<string, IndustryContentOverlay> = {
     ],
     solution: [
       "Mini+ PIRen kombinieren Klima und Belegung in Gästezimmern, ideal für Absenkstrategien bei leeren Zimmern ohne Kompromiss beim Ankunftskomfort.",
-      "RoomAlyzer Indoor climate überwacht Lobby, Restaurants und Konferenzräume, wo Luftqualität die Gästewahrnehmung prägt. RoomAlyzer Usage and cleaning richtet Housekeeping nach tatsächlicher Zimmernutzung aus; RoomAlyzer Push buttons liefern sofortiges Service-Feedback in Sanitärräumen und an der Rezeption, bevor Probleme Bewertungsportale erreichen.",
+      "RoomAlyzer Raumklima überwacht Lobby, Restaurants und Konferenzräume, wo Luftqualität die Gästewahrnehmung prägt. RoomAlyzer Reinigung/Nutzung richtet Housekeeping nach tatsächlicher Zimmernutzung aus; RoomAlyzer Drucktasten liefern sofortiges Service-Feedback in Sanitärräumen und an der Rezeption, bevor Probleme Bewertungsportale erreichen.",
     ],
     smarterTogether:
-      "Zimmerbelegung, Indoor climate und bedarfsgesteuerte Reinigung ermöglichen Energieeinsparung in leeren Zimmern bei priorisierter Lüftung und Housekeeping dort, wo Gäste versammelt sind.",
+      "Zimmerbelegung, Raumklima und bedarfsgesteuerte Reinigung ermöglichen Energieeinsparung in leeren Zimmern bei priorisierter Lüftung und Housekeeping dort, wo Gäste versammelt sind.",
     closing:
       "Hotelportfolios brauchen Monitoring, das Gästeprivatsphäre respektiert, störungsarm installiert und ohne Gäste-Wi-Fi funktioniert. RoomAlyzer passt über Objekte hinweg.",
     sensorRecommendations: [
@@ -990,8 +990,8 @@ const de: Record<string, IndustryContentOverlay> = {
       "HVAC reagiert auf Wetterschätzung: Befeuchtung und Entfeuchtung ohne Außenreferenz über- oder unterschießen.",
     ],
     solution: [
-      "RoomAlyzer Preservation liefert kontinuierliche r. F.-Protokollierung für Magazine, Manuskriptlager und Seltenheitenräume mit Alarmen vor Verlassen der Erhaltungsbänder.",
-      "RoomAlyzer Indoor climate überwacht Lesesäle diskret. Temperature-Sensor deckt Kühlräume; ein Außen Sensor trennt Innentrends vom Wetter, damit HVAC auf echten Bedarf reagiert.",
+      "RoomAlyzer Erhaltung liefert kontinuierliche r. F.-Protokollierung für Magazine, Manuskriptlager und Seltenheitenräume mit Alarmen vor Verlassen der Erhaltungsbänder.",
+      "RoomAlyzer Raumklima überwacht Lesesäle diskret. Temperature-Sensor deckt Kühlräume; ein Außen Sensor trennt Innentrends vom Wetter, damit HVAC auf echten Bedarf reagiert.",
     ],
     smarterTogether:
       "Kontinuierliche Protokollierung über öffentliche und Lagerzonen gibt Konservatoren und Gebäudeteams denselben Datensatz für Erhaltungsentscheidungen und Tagesbetrieb.",
@@ -1037,8 +1037,8 @@ const de: Record<string, IndustryContentOverlay> = {
       "Unbeheizte Flügel driften unbeaufsichtigt: entfernte Räume verfallen, während Personal sich auf Hauptbesucherrouten konzentriert.",
     ],
     solution: [
-      "RoomAlyzer Preservation erfasst r. F. in Sälen, Treppen und vertäfelten Räumen mit Alarmen vor saisonalen Schwankungen, die Risse, Verwerfungen oder Vergoldungsverlust verursachen.",
-      "Mini+ und Full+en protokollieren drahtlos in für Besucher geöffneten Ausstellungsräumen. Motion-Sensor korreliert Feuchte- und Wärmelasten mit Tourplänen; ein Außen Sensor ist essenziell, wo Indoor climate stundenlang dem Wetter hinterherhinkt.",
+      "RoomAlyzer Erhaltung erfasst r. F. in Sälen, Treppen und vertäfelten Räumen mit Alarmen vor saisonalen Schwankungen, die Risse, Verwerfungen oder Vergoldungsverlust verursachen.",
+      "Mini+ und Full+en protokollieren drahtlos in für Besucher geöffneten Ausstellungsräumen. Motion-Sensor korreliert Feuchte- und Wärmelasten mit Tourplänen; ein Außen Sensor ist essenziell, wo Raumklima stundenlang dem Wetter hinterherhinkt.",
     ],
     smarterTogether:
       "Besucherpräsenz und Klimadaten erklären plötzliche Feuchteanstiege, damit Teams lüften oder heizen anpassen können, bevor Innenräume Schaden nehmen.",
@@ -1066,7 +1066,7 @@ const de: Record<string, IndustryContentOverlay> = {
       {
         name: "Außen Sensor",
         badge: "Wetter-Baseline",
-        body: "Essenzielle Referenz für massive Mauerwerkgebäude, wo Indoor climate stundenlang hinter Außenänderungen zurückbleibt.",
+        body: "Essenzielle Referenz für massive Mauerwerkgebäude, wo Raumklima stundenlang hinter Außenänderungen zurückbleibt.",
         sensorSlugs: ["outdoor"],
       },
     ],
@@ -1074,7 +1074,7 @@ const de: Record<string, IndustryContentOverlay> = {
   "property-management": {
     cardTitle: "Immobilienverwaltung",
     cardSummary:
-      "Indoor climate für Mieter dokumentieren und Lecks früh in Wohn- oder Gewerbeportfolios erkennen.",
+      "Raumklima für Mieter dokumentieren und Lecks früh in Wohn- oder Gewerbeportfolios erkennen.",
     focus:
       "Immobilienverwalter beantworten Komfortbeschwerden mit begrenzter Sicht — ein unentdecktes Leck kann zu Versicherungsfällen über mehrere Einheiten werden, bevor jemand es bemerkt. Portfolioteams brauchen vergleichbare Daten über Gebäude, keine Ad-hoc-Messungen bei Mietereskalation.",
     challenges: [
@@ -1084,11 +1084,11 @@ const de: Record<string, IndustryContentOverlay> = {
       "Technikräume reaktiv überwacht: Heizungsräume und Wärmetauscher bekommen erst nach Ausfall Aufmerksamkeit.",
     ],
     solution: [
-      "RoomAlyzer Indoor climate liefert objektive CO2-, Temperatur-, Feuchte- und TVOC-Daten in Mieterbereichen und löst Komfortbeschwerden mit Nachweis statt Debatte.",
+      "RoomAlyzer Raumklima liefert objektive CO2-, Temperatur-, Feuchte- und TVOC-Daten in Mieterbereichen und löst Komfortbeschwerden mit Nachweis statt Debatte.",
       "RoomAlyzer Water detection sendet SMS- und E-Mail-Alarme von Sensoren unter Spülen, Boilern und Steigleitungen, mit Water Rope für Keller und Technikbereiche und zeitgestempeltem Vorfallprotokoll für Versicherungen. Temperature-Sensor überwacht Technikräume im Portfolio von einem Dashboard.",
     ],
     smarterTogether:
-      "RoomAlyzer Indoor climate und Water detection reduzieren Mieterfluktuation und Notfalleinsätze, die zwei Kostentreiber, die Immobilienteams am stärksten spüren.",
+      "RoomAlyzer Raumklima und Water detection reduzieren Mieterfluktuation und Notfalleinsätze, die zwei Kostentreiber, die Immobilienteams am stärksten spüren.",
     closing:
       "Portfolio-Monitoring sollte kein Maßprojekt pro Gebäude bedeuten. RoomAlyzer rollt gebäudeweise über Mobilfunk aus — ohne Mieter-Wi-Fi.",
     sensorRecommendations: [
@@ -1131,17 +1131,17 @@ const de: Record<string, IndustryContentOverlay> = {
       "Konnektivität ohne Kunden-IT-Projekte: Gast-Wi-Fi und Unternehmens-Firewalls blockieren viele IoT-Rollouts, bevor sie starten.",
     ],
     solution: [
-      "RoomAlyzer Indoor climate ist der Standard-Rollout: Mini+ und Full+en decken CO2, Temperatur, Feuchte und TVOC in einer Einheit ab, mit Dashboards, die FM-Teams pro Vertrag branden können.",
-      "RoomAlyzer Space-Management untermauert Nutzungsempfehlungen mit anonymisierten Schreibtisch- und Raumdaten. RoomAlyzer Usage and cleaning richtet den Aufwand auf tatsächlich genutzte Flächen. RoomAlyzer Water detection ergänzt SMS- und E-Mail-Leckalarme zu geringen Grenzkosten. Cloud Connector bringt Daten über Mobilfunk zur Plattform, ohne Kunden-Wi-Fi pro Gebäude.",
+      "RoomAlyzer Raumklima ist der Standard-Rollout: Mini+ und Full+en decken CO2, Temperatur, Feuchte und TVOC in einer Einheit ab, mit Dashboards, die FM-Teams pro Vertrag branden können.",
+      "RoomAlyzer Space-Management untermauert Nutzungsempfehlungen mit anonymisierten Schreibtisch- und Raumdaten. RoomAlyzer Reinigung/Nutzung richtet den Aufwand auf tatsächlich genutzte Flächen. RoomAlyzer Water detection ergänzt SMS- und E-Mail-Leckalarme zu geringen Grenzkosten. Cloud Connector bringt Daten über Mobilfunk zur Plattform, ohne Kunden-Wi-Fi pro Gebäude.",
     ],
     smarterTogether:
-      "RoomAlyzer Indoor climate, Space-Management, Usage and cleaning sowie Water detection auf einer Plattform ermöglichen FM-Anbietern Cross-Selling mit einem Installationsbesuch und einer laufenden Datenbeziehung.",
+      "RoomAlyzer Raumklima, Space-Management, Reinigung/Nutzung sowie Water detection auf einer Plattform ermöglichen FM-Anbietern Cross-Selling mit einem Installationsbesuch und einer laufenden Datenbeziehung.",
     closing:
       "FM-Margen hängen an schnellem Deployment und nachweisbaren Ergebnissen. RoomAlyzer ist für Multi-Site-Rollouts ohne Gateway-Sprawl oder IT-Tickets pro Gebäude konzipiert.",
     sensorRecommendations: [
       {
         name: "Mini+ / Full+",
-        badge: "Indoor climate",
+        badge: "Raumklima",
         body: "Der Standard-Rollout-Sensor für Büros, Schulen und öffentliche Gebäude, der CO2, Temperatur, Feuchte und TVOC in einer Einheit abdeckt.",
         sensorSlugs: ["mini-plus", "full-plus"],
       },
@@ -1178,7 +1178,7 @@ const de: Record<string, IndustryContentOverlay> = {
       "Belegungsannahmen in Lüftungsdesign: Zeitpläne und Kopfzahl-Schätzungen brauchen Validierung gegen echte Präsenz.",
     ],
     solution: [
-      "RoomAlyzer Indoor climate liefert Multi-Parameter-Protokollierung (CO2, Temperatur, Feuchte, TVOC) für Post-Occupancy-Bewertung, Lüftungsverifikation und Indoor climatestudien mit exportierbarer Historie für Berichte.",
+      "RoomAlyzer Raumklima liefert Multi-Parameter-Protokollierung (CO2, Temperatur, Feuchte, TVOC) für Post-Occupancy-Bewertung, Lüftungsverifikation und Raumklimastudien mit exportierbarer Historie für Berichte.",
       "Ein Außen Sensor liefert die Baseline, die seriöse Audits erwarten. Dedizierte Temperature und Humidity-Sensor decken Problemzonen; RoomAlyzer Space-Management validiert Belegungsannahmen hinter Lüftungs- und Heizplänen.",
     ],
     smarterTogether:
@@ -1189,7 +1189,7 @@ const de: Record<string, IndustryContentOverlay> = {
       {
         name: "Mini+ / Full+",
         badge: "Baseline-Erhebungen",
-        body: "Multi-Parameter-Protokollierung (CO2, Temperatur, Feuchte, TVOC) für Post-Occupancy-Bewertung, Lüftungsverifikation und Indoor climatestudien.",
+        body: "Multi-Parameter-Protokollierung (CO2, Temperatur, Feuchte, TVOC) für Post-Occupancy-Bewertung, Lüftungsverifikation und Raumklimastudien.",
         sensorSlugs: ["mini-plus", "full-plus"],
       },
       {

@@ -1,5 +1,12 @@
 import type { LeadFormFields } from "./validate-lead";
 
+const REQUIRED_LEAD_INPUTS = ["firstName", "lastName", "email"] as const;
+
+type FieldSnapshot = {
+  userEmptied: boolean;
+  trimmedEmpty: boolean;
+};
+
 /** Let the browser commit pending edits (notably Chrome autofill clears). */
 export function commitFormControlValues(form: HTMLFormElement): void {
   const active = document.activeElement;
@@ -8,8 +15,27 @@ export function commitFormControlValues(form: HTMLFormElement): void {
   }
 }
 
-function readTextValue(input: HTMLInputElement | HTMLTextAreaElement | null): string {
+function getLeadInput(form: HTMLFormElement, name: string): HTMLInputElement | null {
+  return form.querySelector<HTMLInputElement>(`input[name="${name}"]`);
+}
+
+function snapshotField(input: HTMLInputElement | null): FieldSnapshot {
+  if (!input) return { userEmptied: false, trimmedEmpty: true };
+  return {
+    userEmptied: input.dataset.userEmptied === "true",
+    trimmedEmpty: !input.value.trim(),
+  };
+}
+
+function readTextValue(
+  input: HTMLInputElement | HTMLTextAreaElement | null,
+  snapshot?: FieldSnapshot,
+): string {
   if (!input) return "";
+  if (snapshot && (snapshot.userEmptied || snapshot.trimmedEmpty)) {
+    input.value = "";
+    return "";
+  }
   const trimmed = input.value.trim();
   if (!trimmed) {
     input.value = "";
@@ -17,64 +43,72 @@ function readTextValue(input: HTMLInputElement | HTMLTextAreaElement | null): st
   return trimmed;
 }
 
-function readEmailValue(input: HTMLInputElement | null): string {
-  if (!input) return "";
-  if (input.dataset.userCleared === "true") {
-    input.value = "";
-    return "";
-  }
-  return readTextValue(input);
-}
-
 async function waitForPaint(): Promise<void> {
   await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
   await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+}
+
+function readLeadFieldsFromDom(
+  form: HTMLFormElement,
+  snapshots: Partial<Record<(typeof REQUIRED_LEAD_INPUTS)[number], FieldSnapshot>>,
+  useSnapshots: boolean,
+): LeadFormFields {
+  const snap = (name: (typeof REQUIRED_LEAD_INPUTS)[number]) =>
+    useSnapshots ? snapshots[name] : undefined;
+
+  return {
+    firstName: readTextValue(getLeadInput(form, "firstName"), snap("firstName")),
+    lastName: readTextValue(getLeadInput(form, "lastName"), snap("lastName")),
+    email: readTextValue(getLeadInput(form, "email"), snap("email")),
+    phone: readTextValue(form.querySelector<HTMLInputElement>('[name="phone"]')),
+  };
 }
 
 /** Read lead fields after blur + paint so autofill edits are committed. */
 export async function readLeadFormValuesFromForm(
   form: HTMLFormElement,
 ): Promise<LeadFormFields> {
+  const snapshots: Partial<Record<(typeof REQUIRED_LEAD_INPUTS)[number], FieldSnapshot>> = {};
+  for (const name of REQUIRED_LEAD_INPUTS) {
+    snapshots[name] = snapshotField(getLeadInput(form, name));
+  }
+
   commitFormControlValues(form);
   await waitForPaint();
 
-  const firstName = readTextValue(form.querySelector<HTMLInputElement>('[name="firstName"]'));
-  const lastName = readTextValue(form.querySelector<HTMLInputElement>('[name="lastName"]'));
-  let email = readEmailValue(form.querySelector<HTMLInputElement>('[name="email"]'));
-  const phone = readTextValue(form.querySelector<HTMLInputElement>('[name="phone"]'));
+  let fields = readLeadFieldsFromDom(form, snapshots, true);
 
   // Chrome can lag behind on autofill batch fills — retry once if names look empty.
-  if (!firstName && !lastName && !email) {
+  if (!fields.firstName && !fields.lastName && !fields.email) {
     await waitForPaint();
-    return {
-      firstName: readTextValue(form.querySelector<HTMLInputElement>('[name="firstName"]')),
-      lastName: readTextValue(form.querySelector<HTMLInputElement>('[name="lastName"]')),
-      email: readEmailValue(form.querySelector<HTMLInputElement>('[name="email"]')),
-      phone: readTextValue(form.querySelector<HTMLInputElement>('[name="phone"]')),
-    };
+    fields = readLeadFieldsFromDom(form, snapshots, false);
   }
 
-  return { firstName, lastName, email, phone };
+  return fields;
 }
 
-/** Track autofill + manual clears so empty email is detected reliably. */
+/** Track autofill + manual clears so emptied required fields are detected reliably. */
 export function bindAutofillFieldSync(form: HTMLFormElement): void {
-  form.querySelectorAll<HTMLInputElement>('input[name="email"]').forEach((emailInput) => {
-    emailInput.addEventListener("focus", () => {
-      emailInput.dataset.userFocused = "true";
-    });
+  for (const name of REQUIRED_LEAD_INPUTS) {
+    const input = getLeadInput(form, name);
+    if (!input) continue;
 
-    const syncCleared = () => {
-      if (emailInput.dataset.userFocused !== "true") return;
-      if (!emailInput.value.trim()) {
-        emailInput.value = "";
-        emailInput.dataset.userCleared = "true";
+    const markTouched = () => {
+      input.dataset.userTouched = "true";
+    };
+
+    const syncEmptied = () => {
+      input.dataset.userTouched = "true";
+      if (!input.value.trim()) {
+        input.value = "";
+        input.dataset.userEmptied = "true";
       } else {
-        delete emailInput.dataset.userCleared;
+        delete input.dataset.userEmptied;
       }
     };
 
-    emailInput.addEventListener("input", syncCleared);
-    emailInput.addEventListener("change", syncCleared);
-  });
+    input.addEventListener("focus", markTouched);
+    input.addEventListener("input", syncEmptied);
+    input.addEventListener("change", syncEmptied);
+  }
 }
