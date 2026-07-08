@@ -16,14 +16,17 @@ alwaysApply: true
 - URL slugs are English by default; localized slugs are allowed only via the
   slug-pair mechanism in `src/data/lang.ts`.
 - Product and brand names (the RoomAlyzer lines and product names) are NOT
-  translated — they stay identical across all locales, with **two approved
-  exceptions** in German (`de`): "Water detector" → **"Wasserdetektor"**;
-  "Outdoor" → **"Außen Sensor"**. Per-locale name overrides live in
-  `src/data/deTermLocks.ts` and `src/data/sensorCategories.ts`
-  (`localizedSensorName`); do not add others without explicit approval.
-- **Module names** (Indoor climate, Preservation, Water detection, etc.) are
-  NOT translated on `/de/` — use English canonical names from `modules.ts`
-  via `localizedModuleName()`. See `src/data/deTermLocks.ts`.
+  translated — they stay identical across all locales, with **three approved
+  sensor exceptions** in German (`de`): "Water detector" → **"Wasserdetektor"**;
+  "Outdoor" → **"Außen Sensor"**; "Range Extender and Bracket" →
+  **"Range Extender und Bracket"**. Per-locale overrides live in
+  `src/data/de-term-locks.json` and `src/data/deTermLocks.ts` /
+  `src/data/sensorCategories.ts` (`localizedSensorName`); do not add others
+  without explicit approval.
+- **Module names** on `/de/`: five German overrides via `localizedModuleName()`
+  (Raumklima, Erhaltung, Reinigung/Nutzung, Drucktasten, Schließfächer/Türen);
+  **Space management** and **Water detection** stay English. See
+  `src/data/de-term-locks.json`.
 - When adding new content, write the English version first, then provide the
   translations (or rely on the English fallback) for the other locales.
 
@@ -47,8 +50,9 @@ rules below. Use `localizedSensorName()`, `localizedModuleName()`, and
 
 | Locale | Rule | Do | Don't |
 |--------|------|----|-------|
-| **German (`de`)** | Module names | English canonical names (`Indoor climate`, `Preservation`) | `Raumklima`, `Konservierung`, `Wassererkennung` |
-| **German (`de`)** | Sensor / product names | English catalogue tokens (`Humidity`, `Open/Close`, `Water rope`); approved overrides (`Wasserdetektor`, `Außen Sensor`) | `Feuchtesensor`, `Öffnen/Schließen`, `Humidity Sensor` |
+| **German (`de`)** | Module names | Approved German names via `localizedModuleName()` (`Raumklima`, `Erhaltung`, …); `Space management` and `Water detection` stay English | `Konservierung`, English module names in German copy (`Indoor climate`, `Preservation`) |
+| **German (`de`)** | Sensor / product names | English catalogue tokens; approved overrides (`Wasserdetektor`, `Außen Sensor`, `Range Extender und Bracket`) | `Feuchtesensor`, `Öffnen/Schließen`, `Humidity Sensor`, `Range Extender and Bracket` |
+| **German (`de`)** | Preservation product terms | `Erhaltungsindex`, `Erhaltungsheizung`, … | `Preservation Index`, `Preservationsheizung`, … |
 | **German (`de`)** | Relative humidity | `r. F.` or `relative Luftfeuchtigkeit` / `Luftfeuchtigkeit` | `RH`, `RF`, `rF`, `relative Feuchte` |
 | **German (`de`)** | Conjunction punctuation | `XX und YY` or split sentences | `, und` (comma immediately before *und*) |
 | **German (`de`)** | Standard noun capitalization | `Sensoren`, `Entscheidungen` (generic prose nouns) | Lowercase nouns (`sensor`, `entscheidungen`) in prose |
@@ -57,6 +61,94 @@ rules below. Use `localizedSensorName()`, `localizedModuleName()`, and
 
 Automated checks: `npm run check:locale` (also runs via pre-commit when
 `src/data/**/*.ts` is staged). Canonical term lists: `src/data/deTermLocks.ts`.
+
+### German module and sensor names (`de`) — quick reference
+
+Three sensor overrides are approved: `water-detector` → **Wasserdetektor**,
+`outdoor` → **Außen Sensor**, `range-extender-and-bracket` →
+**Range Extender und Bracket**. Any new German sensor override requires
+explicit approval.
+
+**Modules** (five German overrides; two stay English):
+
+| Slug | German display name |
+|------|---------------------|
+| `indoor-climate` | Raumklima |
+| `space-management` | Space management |
+| `water-detection` | Water detection |
+| `preservation` | Erhaltung |
+| `usage-cleaning` | Reinigung/Nutzung |
+| `push-buttons` | Drucktasten |
+| `lockers-doors` | Schließfächer/Türen |
+
+**German module URL slugs** (`/de/module/…`) live in `SEGMENT_I18N` in
+[`routes.ts`](src/data/routes.ts). Display names (`Reinigung/Nutzung`) and URL
+segments (`reinigung-nutzung`) are separate: URLs use ASCII hyphens, not slashes
+or umlauts. When a German display name changes, update both
+`moduleNameOverridesDe` and the matching `de` entry in `SEGMENT_I18N`, then add
+301 redirects in [`redirects.ts`](src/data/redirects.ts) from the old slug.
+
+| Slug | German URL segment |
+|------|-------------------|
+| `indoor-climate` | `raumklima` |
+| `preservation` | `erhaltung` |
+| `usage-cleaning` | `reinigung-nutzung` |
+| `push-buttons` | `drucktasten` |
+| `lockers-doors` | `schliessfaecher-tueren` |
+| `space-management`, `water-detection` | English (unchanged) |
+
+**Preservation product terms** in German prose: `Preservation Index` →
+**Erhaltungsindex**; `Preservationsheizung` → **Erhaltungsheizung**; etc.
+
+**Sensors** (English catalogue; overrides noted):
+
+| Slug | German display name |
+|------|---------------------|
+| `co2` | CO2 |
+| `full-plus` | Full+ |
+| `humidity` | Humidity |
+| `mini-plus` | Mini+ |
+| `mini-plus-pir` | Mini+ PIR |
+| `outdoor` | Außen Sensor |
+| `temperature` | Temperature |
+| `desk` | Desk |
+| `motion` | Motion |
+| `open-close` | Open/Close |
+| `touch` | Touch |
+| `water-detector` | Wasserdetektor |
+| `water-rope` | Water rope |
+| `cloud-connector` | Cloud connector |
+| `range-extender-and-bracket` | Range Extender und Bracket |
+
+RoomAlyzer line names (`RoomAlyzer Air`, `Space`, `Water`) never translate.
+Only the generic **Miscellaneous** category label is localized (`Sonstiges`).
+
+**When editing German copy:**
+
+- Display names with a known slug: use `localizedModuleName(slug, englishName, "de")`
+  or `localizedSensorName(slug, englishName, "de")` — never hand-type English
+  module or sensor names in `de` i18n.
+- German i18n overlays (`modules.i18n.ts`, `hubs/modules.i18n.ts`,
+  `hubs/sensors.i18n.ts`, `content/sensors.i18n.ts`): prefer omitting `name` /
+  `title` for modules and sensors on `de` so helpers resolve at render time;
+  translate marketing fields (`short`, `long`, `titleAccent`, `lead`, etc.).
+- Canonical source: `src/data/de-term-locks.json`. Update overrides and forbidden
+  lists together; re-run `npm run check:locale`.
+
+**Do not regress:**
+
+- Before committing `src/data/**` changes: run `npm run check:locale`.
+- New module German name: add to `moduleNameOverridesDe` **and**
+  `forbiddenEnglishModuleTokens` in JSON — not rules alone.
+- New sensor override: add to `sensorNameOverridesDe` **and**
+  `forbiddenEnglishSensorTokens`.
+- Header and nav dropdowns: use `getModules(lang)` and `getSensorsHub(lang)` for
+  localized labels — never raw `sensorsHub` from `site.ts`.
+
+**Forbidden tokens** (grep when fixing regressions): `forbiddenModuleTokens`,
+`forbiddenEnglishModuleTokens`, `forbiddenSensorTokens`,
+`forbiddenEnglishSensorTokens`, and `forbiddenPreservationTermsDe` in
+`de-term-locks.json`.
 
 ### Em dashes (`en`, `da`, `de`, `sv`)
 
