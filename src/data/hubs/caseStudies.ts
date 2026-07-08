@@ -381,7 +381,7 @@ const enHub = {
 function buildContent(lang: Lang, baseCases: CaseStudyLeaf[]): CaseStudiesContent {
   const leafOverlay = caseStudiesI18n.leaf[lang];
   const cases =
-    lang === defaultLang || !leafOverlay
+    lang === "en" || !leafOverlay
       ? baseCases
       : baseCases.map((entry) => {
           const o = leafOverlay[entry.slug];
@@ -402,7 +402,7 @@ const byLang: Record<Lang, CaseStudiesContent> = {
 };
 
 export function getCaseStudiesContent(lang: Lang): CaseStudiesContent {
-  return byLang[lang] ?? byLang[defaultLang];
+  return byLang[lang] ?? byLang.en;
 }
 
 /** Hub shape for static routes and legacy imports (English catalog). */

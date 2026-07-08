@@ -342,7 +342,7 @@ const de: AboutStrings = {
     crumb: "Das Team",
     heroTitle: "Das Team.",
     heroTitleAccent: "Ein Produkt. Ein Team.",
-    heroLead: "Ein erfahrenes Team mit Leidenschaft für Space-Management und Indoor climate – von der ersten Demo über die Einführung bis zum laufenden Support bleiben wir eng an Ihrer Seite.",
+    heroLead: "Ein erfahrenes Team mit Leidenschaft für Space-Management und Raumklima – von der ersten Demo über die Einführung bis zum laufenden Support bleiben wir eng an Ihrer Seite.",
     heroPrimary: "Offene Stellen ansehen",
     heroSecondary: "Kontakt",
     viewOpenRoles: "Offene Stellen ansehen",

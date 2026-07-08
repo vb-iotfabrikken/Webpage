@@ -70,8 +70,6 @@ const sensorOptions = getSensorsHub(lang)
         <div class="relative bg-stone-50 border border-stone-100 rounded-xl">
         <form
           class="relative p-6 md:p-8 space-y-4"
-          action="#"
-          method="post"
           autocomplete="off"
           data-offer-form
           data-offer-messages={validationMessages}
@@ -200,7 +198,7 @@ const sensorOptions = getSensorsHub(lang)
             </span>
           </label>
           </div>
-          <p class="text-xs text-coral-600 hidden" role="alert" data-offer-error>
+          <p class="text-xs text-coral-600 hidden" role="alert" aria-live="assertive" data-offer-error>
             {f.emailError}
           </p>
           <div class="flex items-center justify-between gap-4 pt-2">
@@ -269,9 +267,19 @@ const sensorOptions = getSensorsHub(lang)
 
   function bindOfferForms() {
     initOfferForms();
+    if (import.meta.env.DEV) {
+      document.querySelectorAll("[data-offer-form]").forEach((form) => {
+        if (form instanceof HTMLFormElement && form.dataset.leadFormBound !== "true") {
+          console.warn("[offer-form] Form was not bound:", form);
+        }
+      });
+    }
   }
 
-  bindOfferForms();
-  document.addEventListener("DOMContentLoaded", bindOfferForms);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bindOfferForms);
+  } else {
+    bindOfferForms();
+  }
   document.addEventListener("astro:page-load", bindOfferForms);
 </script>

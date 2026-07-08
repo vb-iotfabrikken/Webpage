@@ -3,8 +3,10 @@
  * Shared data lives in `de-term-locks.json` (also imported by the audit script).
  *
  * German copy checklist (de user-facing strings):
- * 1. Module names stay English (Indoor climate, Preservation, …).
- * 2. Sensor catalogue names stay English except Wasserdetektor and Außen Sensor.
+ * 1. Module names: five German overrides via moduleNameOverridesDe; Space management
+ *    and Water detection stay English.
+ * 2. Sensor catalogue names stay English except Wasserdetektor, Außen Sensor, and
+ *    Range Extender und Bracket.
  * 3. Relative humidity: use r. F. or relative Luftfeuchtigkeit — never RH/RF.
  * 4. Never write ", und" — use "XX und YY" or split the sentence.
  * 5. Run `npm run check:locale` before committing changes under src/data/.
@@ -15,6 +17,9 @@ import lockData from "./de-term-locks.json";
 
 export const MODULE_NAMES_EN: Record<string, string> = lockData.moduleNamesEn;
 
+export const MODULE_NAME_OVERRIDES_DE: Record<string, string> =
+  lockData.moduleNameOverridesDe;
+
 export const SENSOR_NAMES_EN: Record<string, string> = lockData.sensorNamesEn;
 
 export const SENSOR_NAME_OVERRIDES_DE: Record<string, string> =
@@ -23,8 +28,17 @@ export const SENSOR_NAME_OVERRIDES_DE: Record<string, string> =
 export const DE_FORBIDDEN_MODULE_TOKENS: readonly string[] =
   lockData.forbiddenModuleTokens;
 
+export const DE_FORBIDDEN_ENGLISH_MODULE_TOKENS: readonly string[] =
+  lockData.forbiddenEnglishModuleTokens;
+
 export const DE_FORBIDDEN_SENSOR_TOKENS: readonly string[] =
   lockData.forbiddenSensorTokens;
+
+export const DE_FORBIDDEN_ENGLISH_SENSOR_TOKENS: readonly string[] =
+  lockData.forbiddenEnglishSensorTokens;
+
+export const DE_FORBIDDEN_PRESERVATION_TERMS: readonly string[] =
+  lockData.forbiddenPreservationTermsDe;
 
 /** Allowed relative-humidity forms in de copy. */
 export const RH_ALLOWED_DE = [
@@ -36,7 +50,10 @@ export const RH_ALLOWED_DE = [
 /** Patterns exported for the locale grammar audit script. */
 export const DE_AUDIT_PATTERNS = {
   forbiddenModuleTokens: DE_FORBIDDEN_MODULE_TOKENS,
+  forbiddenEnglishModuleTokens: DE_FORBIDDEN_ENGLISH_MODULE_TOKENS,
   forbiddenSensorTokens: DE_FORBIDDEN_SENSOR_TOKENS,
+  forbiddenEnglishSensorTokens: DE_FORBIDDEN_ENGLISH_SENSOR_TOKENS,
+  forbiddenPreservationTermsDe: DE_FORBIDDEN_PRESERVATION_TERMS,
   rhForbidden: [
     { re: /\bRH\b/g, hint: 'Use "r. F." or "relative Luftfeuchtigkeit"' },
     { re: /\bRF\b/g, hint: 'Use "r. F." or "relative Luftfeuchtigkeit"' },
@@ -53,8 +70,15 @@ export const DE_AUDIT_PATTERNS = {
   },
 } as const;
 
-/** Returns the display module name. Module names stay English on all locales. */
-export function localizedModuleName(slug: string, englishName: string, _lang: Lang): string {
+/** Returns the display module name. German overrides apply on `/de/` when defined. */
+export function localizedModuleName(slug: string, englishName: string, lang: Lang): string {
+  if (lang === "de") {
+    const override = MODULE_NAME_OVERRIDES_DE[slug];
+    if (override) {
+      const hasPeriod = /\.\s*$/.test(englishName);
+      return hasPeriod ? `${override}.` : override;
+    }
+  }
   return MODULE_NAMES_EN[slug] ?? englishName;
 }
 

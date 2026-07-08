@@ -24,6 +24,10 @@ import {
 
 } from "../lib/forms/read-form-fields";
 
+import { bindFormSubmitEligibility } from "../lib/forms/submit-eligibility";
+
+import { bindFormSubmitGuard } from "../lib/forms/submit-guard";
+
 import {
 
   isSubmitTooSoon,
@@ -104,9 +108,23 @@ function initContactFormLayout(section: HTMLElement) {
 
 
 
-  sync();
+  const syncAfterLayout = () => {
+
+    requestAnimationFrame(() => {
+
+      requestAnimationFrame(sync);
+
+    });
+
+  };
+
+
+
+  syncAfterLayout();
 
   window.addEventListener("resize", sync, { passive: true });
+
+  window.addEventListener("load", sync, { passive: true });
 
 
 
@@ -124,7 +142,9 @@ function initContactFormLayout(section: HTMLElement) {
 
 function initContactForm(form: HTMLFormElement) {
 
-  const readyAt = Date.now();
+  bindFormSubmitGuard(form);
+
+  const getSubmitReadyAt = bindFormSubmitEligibility(form);
 
   const messages = readMessages(form);
 
@@ -188,9 +208,13 @@ function initContactForm(form: HTMLFormElement) {
 
 
 
+  let submitting = false;
+
   form.addEventListener("submit", async (e) => {
 
     e.preventDefault();
+
+    if (submitting) return;
 
 
 
@@ -203,6 +227,10 @@ function initContactForm(form: HTMLFormElement) {
       }
 
 
+
+      submitting = true;
+
+      if (submitBtn) submitBtn.disabled = true;
 
       hideFormError();
 
@@ -246,13 +274,17 @@ function initContactForm(form: HTMLFormElement) {
 
         trackFormError(form, "validation");
 
+        resetSubmitButton();
+
+        submitting = false;
+
         return;
 
       }
 
 
 
-      if (isSubmitTooSoon(readyAt)) {
+      if (isSubmitTooSoon(getSubmitReadyAt())) {
 
         showFormError(
 
@@ -261,6 +293,10 @@ function initContactForm(form: HTMLFormElement) {
         );
 
         trackFormError(form, "too_soon");
+
+        resetSubmitButton();
+
+        submitting = false;
 
         return;
 
@@ -280,13 +316,7 @@ function initContactForm(form: HTMLFormElement) {
 
       clearFieldErrors(form);
 
-      if (submitBtn) {
-
-        submitBtn.disabled = true;
-
-        submitBtn.textContent = messages.sending ?? "Sending…";
-
-      }
+      if (submitBtn) submitBtn.textContent = messages.sending ?? "Sending…";
 
 
 
@@ -318,7 +348,13 @@ function initContactForm(form: HTMLFormElement) {
 
       form.hidden = true;
 
-      if (successEl) successEl.hidden = false;
+      if (successEl) {
+
+        successEl.hidden = false;
+
+        successEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+      }
 
       const section = form.closest<HTMLElement>("[data-contact-form-layout]");
 
@@ -337,6 +373,8 @@ function initContactForm(form: HTMLFormElement) {
       );
 
       resetSubmitButton();
+
+      submitting = false;
 
     }
 
@@ -364,9 +402,17 @@ export function initContactForms(): void {
 
     if (form.dataset.leadFormBound === "true") return;
 
-    initContactForm(form);
+    try {
 
-    form.dataset.leadFormBound = "true";
+      initContactForm(form);
+
+      form.dataset.leadFormBound = "true";
+
+    } catch (err) {
+
+      console.error("[contact-form] Failed to bind form", err);
+
+    }
 
   });
 

@@ -31,7 +31,12 @@ const alignWithSideImage = Boolean(sideImage);
   data-contact-form-layout={alignWithSideImage || undefined}
 >
   <div class="container-page">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+    <div
+      class:list={[
+        "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start",
+        alignWithSideImage && "lg:items-stretch",
+      ]}
+    >
       <div class="reveal" data-contact-form-left={alignWithSideImage || undefined}>
         <p class="inline-block px-3 py-1 rounded-md bg-stone-100 text-navy-500 text-xs font-semibold uppercase tracking-wider mb-5">
           {f.eyebrow}
@@ -69,22 +74,23 @@ const alignWithSideImage = Boolean(sideImage);
       </div>
 
       <div
-        class:list={["reveal", alignWithSideImage && "lg:flex lg:flex-col lg:min-h-0"]}
+        class:list={[
+          "reveal",
+          alignWithSideImage && "lg:flex lg:flex-col lg:h-full lg:min-h-0",
+        ]}
         data-contact-form-right={alignWithSideImage || undefined}
       >
         <div
           class:list={[
             "relative bg-stone-50 border border-stone-100 rounded-xl",
-            alignWithSideImage && "lg:h-full lg:flex lg:flex-col lg:min-h-0",
+            alignWithSideImage && "lg:flex-1 lg:h-full lg:flex lg:flex-col lg:min-h-0",
           ]}
         >
         <form
         class:list={[
-          "p-6 md:p-8 space-y-4",
-          alignWithSideImage && "contact-form-aligned lg:flex-1 lg:flex lg:flex-col lg:min-h-0",
+          "p-6 md:p-8",
+          alignWithSideImage ? "gap-4 contact-form-aligned lg:flex-1 lg:flex lg:flex-col lg:min-h-0" : "space-y-4",
         ]}
-        action="#"
-        method="post"
         autocomplete="off"
         data-contact-form
         data-contact-messages={validationMessages}
@@ -143,7 +149,7 @@ const alignWithSideImage = Boolean(sideImage);
             ]}
           ></textarea>
         </label>
-        <p class="text-xs text-coral-600 hidden shrink-0" role="alert" data-contact-error>
+        <p class="text-xs text-coral-600 hidden shrink-0" role="alert" aria-live="assertive" data-contact-error>
           {f.emailError}
         </p>
         <div class:list={["flex items-center justify-between gap-4 pt-2", alignWithSideImage && "shrink-0"]}>
@@ -186,10 +192,20 @@ const alignWithSideImage = Boolean(sideImage);
 
   function bindContactForms() {
     initContactForms();
+    if (import.meta.env.DEV) {
+      document.querySelectorAll("[data-contact-form]").forEach((form) => {
+        if (form instanceof HTMLFormElement && form.dataset.leadFormBound !== "true") {
+          console.warn("[contact-form] Form was not bound:", form);
+        }
+      });
+    }
   }
 
-  bindContactForms();
-  document.addEventListener("DOMContentLoaded", bindContactForms);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bindContactForms);
+  } else {
+    bindContactForms();
+  }
   document.addEventListener("astro:page-load", bindContactForms);
 </script>
 

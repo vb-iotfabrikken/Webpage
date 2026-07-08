@@ -402,7 +402,7 @@ const de: SpaceManagementStrings = {
     "Echte Auslastungsdaten statt vager Schätzungen: Senken Sie Miet- sowie Energiekosten spürbar und bieten Sie Ihren Teams eine moderne Arbeitsumgebung, in die man gerne kommt.",
   heroTitleImageAlt: "Hand, die einen RoomAlyzer Space Desk unter einem Bürotisch anbringt",
   intro: [
-    "Modernes Facility Management umfasst weit mehr als die reine Bereitstellung von Arbeitsplätzen und Indoor climate. Es bewegt sich im Spannungsfeld zwischen maximaler Flexibilität und physischer Präsenz. Mitarbeitende pendeln heute nicht mehr aus reiner Gewohnheit ins Büro – der Arbeitsplatz muss einen klaren Mehrwert bieten. Die große Herausforderung lautet: Das Mitarbeitererlebnis spürbar zu verbessern und gleichzeitig Ressourcenverschwendung konsequent zu minimieren. Der Schlüssel dazu liegt im Wechsel von starren Mitarbeiterzahlen hin zur präzisen Optimierung der tatsächlichen Nutzung.",
+    "Modernes Facility Management umfasst weit mehr als die reine Bereitstellung von Arbeitsplätzen und Raumklima. Es bewegt sich im Spannungsfeld zwischen maximaler Flexibilität und physischer Präsenz. Mitarbeitende pendeln heute nicht mehr aus reiner Gewohnheit ins Büro – der Arbeitsplatz muss einen klaren Mehrwert bieten. Die große Herausforderung lautet: Das Mitarbeitererlebnis spürbar zu verbessern und gleichzeitig Ressourcenverschwendung konsequent zu minimieren. Der Schlüssel dazu liegt im Wechsel von starren Mitarbeiterzahlen hin zur präzisen Optimierung der tatsächlichen Nutzung.",
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
@@ -502,15 +502,15 @@ const de: SpaceManagementStrings = {
     },
   ],
   smarterTogetherLabel: "Smarter zusammen",
-  smarterTogetherHeadline: "Belegung, Indoor climate und Compliance in einer Ansicht",
+  smarterTogetherHeadline: "Belegung, Raumklima und Compliance in einer Ansicht",
   smarterTogether:
-    "RoomAlyzer kombiniert Flächennutzung mit Indoor climate (CO₂, Temperatur und Luftfeuchtigkeit), damit Sie für tatsächliche Kopfzahl lüften und drosseln, wenn Räume leer sind.",
+    "RoomAlyzer kombiniert Flächennutzung mit Raumklima (CO₂, Temperatur und Luftfeuchtigkeit), damit Sie für tatsächliche Kopfzahl lüften und drosseln, wenn Räume leer sind.",
   smarterTogetherOccupancyLabel: "Flächennutzung",
   smarterTogetherOccupancyContext: "Open Space · Etage 3",
   smarterTogetherOccupancyStat: "62 % belegt",
-  smarterTogetherClimateLabel: "Indoor climate",
+  smarterTogetherClimateLabel: "Raumklima",
   smarterTogetherClimateContext: "Besprechungsraum A",
-  smarterTogetherIndoorClimateLink: "Indoor climate-Modul entdecken",
+  smarterTogetherIndoorClimateLink: "Raumklima-Modul entdecken",
   audiencesEyebrow: "Für wen",
   audiencesHeading: "Für Workplace- und Facility-Teams — und die Führung, die die Zahlen freigibt.",
   audiencesLead:

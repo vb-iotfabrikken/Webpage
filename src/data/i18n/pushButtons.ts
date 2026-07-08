@@ -283,12 +283,12 @@ const da: ModulePageStrings = {
 };
 
 const de: ModulePageStrings = {
-  metaTitle: "Push buttons: Feedback und Serviceanfragen mit einem Tipp | IoT Fabrikken",
+  metaTitle: "Drucktasten: Feedback und Serviceanfragen mit einem Tipp | IoT Fabrikken",
   metaDescription:
-    "Drahtlose Push buttons für Reinigungsanfragen, Nachfüllungen und Wartung. Leiten Sie Alarme sofort an Serviceteams weiter, ohne Apps, Login oder Verzögerung.",
+    "Drahtlose Drucktasten für Reinigungsanfragen, Nachfüllungen und Wartung. Leiten Sie Alarme sofort an Serviceteams weiter, ohne Apps, Login oder Verzögerung.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
-  breadcrumbCurrent: "Push buttons",
+  breadcrumbCurrent: "Drucktasten",
   heroTitle: "Feedback mit",
   heroTitleAccent: "einem einzigen Tipp.",
   heroLead:
@@ -298,9 +298,9 @@ const de: ModulePageStrings = {
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer: Push buttons",
+  dashboardLabel: "RoomAlyzer: Drucktasten",
   dashboardAlt:
-    "RoomAlyzer-Dashboard mit Push buttons-Feedback, Routing-Regeln und Antwortverlauf",
+    "RoomAlyzer-Dashboard mit Drucktasten-Feedback, Routing-Regeln und Antwortverlauf",
   challengesEyebrow: "Die Herausforderungen, die Sie kennen",
   challengesHeading: "Wenn Feedback langsam ist, wird jedes kleine Problem zur Beschwerde.",
   challenges: [
@@ -320,9 +320,9 @@ const de: ModulePageStrings = {
   capabilitiesEyebrow: "So löst RoomAlyzer das",
   capabilitiesHeading: "Ein Tipp vom Boden bis zum richtigen Team.",
   solutionLead:
-    "RoomAlyzer Push buttons machen aus einem physischen Tipp eine geroutete, nachverfolgbare Serviceanfrage — für Facility Manager mit Überblick und Serviceteams mit Klarheit.",
+    "RoomAlyzer Drucktasten machen aus einem physischen Tipp eine geroutete, nachverfolgbare Serviceanfrage — für Facility Manager mit Überblick und Serviceteams mit Klarheit.",
   solutionLeadWithSensorLinks: [
-    { type: "text", value: "RoomAlyzer Push buttons machen aus dem " },
+    { type: "text", value: "RoomAlyzer Drucktasten machen aus dem " },
     { type: "sensor", slug: "touch", label: "Touch" },
     {
       type: "text",
@@ -353,27 +353,27 @@ const de: ModulePageStrings = {
       title: "Sofortiges Routing",
       body: "Alarme erreichen das richtige Team, Mobilgerät oder Ticketsystem innerhalb von Sekunden nach dem Tipp.",
       unit: "Sekunden",
-      imageAlt: "RoomAlyzer Routing-Regeln für Push buttons-Events",
+      imageAlt: "RoomAlyzer Routing-Regeln für Drucktasten-Events",
     },
     {
       id: "feedback-history",
       title: "Feedback-Verlauf",
       body: "Sehen Sie Trends nach Raum, Etage und Tastenrolle — erkennen Sie wiederkehrende Probleme, bevor sie eskalieren.",
       unit: "Trends",
-      imageAlt: "Push buttons-Feedback-Verlauf und Trenddiagramm in RoomAlyzer",
+      imageAlt: "Drucktasten-Feedback-Verlauf und Trenddiagramm in RoomAlyzer",
     },
     {
       id: "flexible-placement",
       title: "Flexible Platzierung",
       body: "Montage an Wänden, Spendern, Schreibtischen oder Geräten. Batteriebetrieben und drahtlos — keine Verkabelung nötig.",
       unit: "Überall",
-      imageAlt: "Push buttons in Toilette, Besprechungsraum und Flur montiert",
+      imageAlt: "Drucktasten in Toilette, Besprechungsraum und Flur montiert",
     },
   ],
   relatedModuleLabel: "Intelligenter zusammen",
   relatedModuleBody:
-    "Kombinieren Sie Push buttons-Signale mit Belegung aus Usage and cleaning — schicken Sie Reinigung in Toiletten, die Gäste gemeldet haben und überspringen Sie leerstehende Räume.",
-  relatedModuleLink: "Usage and cleaning entdecken",
+    "Kombinieren Sie Drucktasten-Signale mit Belegung aus Reinigung/Nutzung — schicken Sie Reinigung in Toiletten, die Gäste gemeldet haben und überspringen Sie leerstehende Räume.",
+  relatedModuleLink: "Reinigung/Nutzung entdecken",
   audiencesEyebrow: "Für wen es gedacht ist",
   audiencesHeading: "Überblick für Manager, Klarheit für Teams vor Ort",
   audiencesLead:
@@ -397,7 +397,7 @@ const de: ModulePageStrings = {
   faqItems: [
     {
       q: "Wie lange hält die Batterie?",
-      a: "Drahtlose Push buttons laufen typischerweise 3–7 Jahre mit einer Batterie, je nach Häufigkeit der Betätigung. Die Plattform warnt rechtzeitig, wenn eine Batterie gewechselt werden muss.",
+      a: "Drahtlose Drucktasten laufen typischerweise 3–7 Jahre mit einer Batterie, je nach Häufigkeit der Betätigung. Die Plattform warnt rechtzeitig, wenn eine Batterie gewechselt werden muss.",
     },
     {
       q: "Wo sollen wir die Tasten platzieren?",
@@ -409,7 +409,7 @@ const de: ModulePageStrings = {
     },
     {
       q: "Ist die Lösung DSGVO-konform?",
-      a: "Ja. Push buttons melden ein Service-Ereignis von einem Standort — nicht, wer gedrückt hat. Es werden keine personenbezogenen Daten erfasst, es sei denn, Sie verknüpfen Tastendrücke in einer Custom-Integration explizit mit angemeldeten Nutzern.",
+      a: "Ja. Drucktasten melden ein Service-Ereignis von einem Standort — nicht, wer gedrückt hat. Es werden keine personenbezogenen Daten erfasst, es sei denn, Sie verknüpfen Tastendrücke in einer Custom-Integration explizit mit angemeldeten Nutzern.",
     },
     {
       q: "Was kostet es?",

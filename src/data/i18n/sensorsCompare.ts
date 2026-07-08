@@ -252,7 +252,7 @@ const de: CompareStrings = {
   },
   useCases: {
     classroom: { label: "Klassenzimmer & Lernen", description: "CO₂, Komfort und dokumentierte Luftqualität." },
-    "hybrid-office": { label: "Hybride Büros", description: "Schreibtischnutzung, Besprechungsräume und Indoor climate." },
+    "hybrid-office": { label: "Hybride Büros", description: "Schreibtischnutzung, Besprechungsräume und Raumklima." },
     heritage: { label: "Kulturerbe & Bewahrung", description: "Diskrete Feuchtigkeitsaufzeichnung und Außenreferenz." },
     "cold-chain": { label: "Kühlschränke & Kühllager", description: "Punkttemperatur mit Sofortalarmen." },
     leak: { label: "Leckageschutz", description: "Punkt- oder Linienabdeckung gegen Wasserschäden." },

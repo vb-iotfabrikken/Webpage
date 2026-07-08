@@ -7,7 +7,7 @@ import IndustryIcon from "./IndustryIcon.astro";
 import NavDropdownLink from "./NavDropdownLink.astro";
 import MegaMenuLink from "./MegaMenuLink.astro";
 import { getModules } from "../data/modules";
-import { sensorsHub } from "../data/site";
+import { getSensorsHub } from "../data/hubs/sensors";
 import { getIndustriesHub } from "../data/hubs/industries";
 import { industrySectors, industrySectorLabel, industryHubHref } from "../data/industrySectors";
 import { externalLinks, getRoomAlyzerLoginUrl } from "../data/externalLinks";
@@ -56,6 +56,7 @@ const companyActive =
 
 // A curated slice of the sensor catalogue for the header. The full list
 // lives on the sensors hub page.
+const sensorsHub = getSensorsHub(currentLang);
 const sensorFeaturedSlugs = [
   "full-plus",
   "mini-plus",

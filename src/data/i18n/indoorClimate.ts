@@ -345,23 +345,23 @@ const da: IndoorClimateStrings = {
 };
 
 const de: IndoorClimateStrings = {
-  metaTitle: "Indoor climate: Sensoren und Daten | IoT Fabrikken",
+  metaTitle: "Raumklima: Sensoren und Daten | IoT Fabrikken",
   metaDescription:
-    "Drahtloses Indoor climate-Fernmonitoring: Verwandeln Sie Beschwerden in Fakten, senken Sie die Energieverschwendung und beugen Sie Schimmelbildung rechtzeitig vor – unterstützt durch EPBD- und DGNB-konforme Berichte.",
+    "Drahtloses Raumklima-Fernmonitoring: Verwandeln Sie Beschwerden in Fakten, senken Sie die Energieverschwendung und beugen Sie Schimmelbildung rechtzeitig vor – unterstützt durch EPBD- und DGNB-konforme Berichte.",
   breadcrumbHome: "Startseite",
   breadcrumbModules: "Module",
-  breadcrumbCurrent: "Indoor climate",
+  breadcrumbCurrent: "Raumklima",
   heroTitle: "Beschwerden und Energie mit Daten begegnen,",
   heroTitleAccent: "nicht mit Gefühlen.",
   heroLead:
-    "Indoor climate-Fernmonitoring, das Beschwerden mit harten Fakten entkräftet und Ihre Energiekosten spürbar senkt.",
+    "Raumklima-Fernmonitoring, das Beschwerden mit harten Fakten entkräftet und Ihre Energiekosten spürbar senkt.",
   intro: [
-    "Indoor climate monitoring liefert die Daten, um eine Frage zu beantworten, die jeder Facility Manager kennt: Ist die Beschwerde berechtigt oder eine subjektive Empfindung? Dem einen ist es zu warm, dem anderen zu kalt und nachmittags fühlt sich die Luft „schwer“ an. Ohne konkrete Daten zu Temperatur, Luftfeuchtigkeit und CO2 steuern Sie die Lüftung jedoch im Blindflug und müssen am Ende Entscheidungen verteidigen, die Sie nicht belegen können.",
+    "Raumklimaüberwachung liefert die Daten, um eine Frage zu beantworten, die jeder Facility Manager kennt: Ist die Beschwerde berechtigt oder eine subjektive Empfindung? Dem einen ist es zu warm, dem anderen zu kalt und nachmittags fühlt sich die Luft „schwer“ an. Ohne konkrete Daten zu Temperatur, Luftfeuchtigkeit und CO2 steuern Sie die Lüftung jedoch im Blindflug und müssen am Ende Entscheidungen verteidigen, die Sie nicht belegen können.",
   ],
   heroPrimaryCta: "Kostenlose Demo buchen",
   heroSecondaryCta: "Angebot anfordern",
-  dashboardLabel: "RoomAlyzer: Indoor climate",
-  dashboardAlt: "Belegtes Büro mit RoomAlyzer Indoor climateüberwachung",
+  dashboardLabel: "RoomAlyzer: Raumklima",
+  dashboardAlt: "Belegtes Büro mit RoomAlyzer Raumklimaüberwachung",
   challengesEyebrow: "Die Herausforderungen, die Sie kennen",
   challengesHeading: "Ohne Raumdaten verschlechtern sich sowohl Energieverbrauch als auch Komfortbeschwerden.",
   challenges: [
@@ -375,19 +375,19 @@ const de: IndoorClimateStrings = {
     },
     {
       title: "Koordinationsprobleme",
-      body: "Facility Manager, HLK-Dienstleister und Compliance-Teams arbeiten oft mit völlig unterschiedlichen Annahmen – ohne einen verlässlichen Gesamtüberblick über den tatsächlichen Zustand des Indoor climates.",
+      body: "Facility Manager, HLK-Dienstleister und Compliance-Teams arbeiten oft mit völlig unterschiedlichen Annahmen – ohne einen verlässlichen Gesamtüberblick über den tatsächlichen Zustand des Raumklimas.",
     },
     {
       title: "Unvorhersehbarkeit",
-      body: "Das Indoor climate schwankt je nach Tages- und Jahreszeit. Ohne kontinuierliches Monitoring agieren Sie im Dauerblindflug. Mit Daten verwandeln Sie Unsicherheit in planbares Handeln.",
+      body: "Das Raumklima schwankt je nach Tages- und Jahreszeit. Ohne kontinuierliches Monitoring agieren Sie im Dauerblindflug. Mit Daten verwandeln Sie Unsicherheit in planbares Handeln.",
     },
   ],
   capabilitiesEyebrow: "So löst RoomAlyzer das",
   capabilitiesHeading: "Alle relevanten Parameter — in einer Ansicht.",
   solutionLead:
-    "RoomAlyzer Indoor climate verbindet CO2, Humidity und Mini+en mit klaren Dashboards, Alarmen, Berichten, Prognosen und Empfehlungen — für Facility-Teams, Compliance-Verantwortliche und Gebäudeeigentümer mit Compliance im Blick.",
+    "RoomAlyzer Raumklima verbindet CO2, Humidity und Mini+en mit klaren Dashboards, Alarmen, Berichten, Prognosen und Empfehlungen — für Facility-Teams, Compliance-Verantwortliche und Gebäudeeigentümer mit Compliance im Blick.",
   solutionLeadWithSensorLinks: [
-    { type: "text", value: "RoomAlyzer Indoor climate verbindet " },
+    { type: "text", value: "RoomAlyzer Raumklima verbindet " },
     { type: "sensor", slug: "co2", label: "CO2" },
     { type: "text", value: ", " },
     { type: "sensor", slug: "humidity", label: "Humidity" },
@@ -398,9 +398,9 @@ const de: IndoorClimateStrings = {
       value:
         "-Sensoren mit klaren Dashboards, Alarmen, Berichten, Prognosen und Empfehlungen — für Facility-Teams, Compliance-Verantwortliche und Gebäudeeigentümer mit Compliance im Blick. ",
     },
-    { type: "compare", label: "Indoor climatesensoren vergleichen", useCaseId: "classroom" },
+    { type: "compare", label: "Raumklimasensoren vergleichen", useCaseId: "classroom" },
   ],
-  capabilitiesContextAlt: "RoomAlyzer-Dashboard mit Indoor climate data aus mehreren Räumen",
+  capabilitiesContextAlt: "RoomAlyzer-Dashboard mit Raumklimadaten aus mehreren Räumen",
   features: [
     {
       id: "epbd-report",
@@ -428,19 +428,19 @@ const de: IndoorClimateStrings = {
       title: "Schwellen & Szenarien",
       body: "Mit Szenarien steuern Sie Ihre Grenzwerte flexibel: Legen Sie grüne, gelbe und rote Zonen einmal fest und wenden Sie diese global, standortbasiert oder auf Sensorebene an. RoomAlyzer enthält schlüsselfertige Profile nach anerkannten Normen (u.a. EPBD/EN 16798 & GEG für Büros, EN 15757 für Archive/Museen, HACCP für Lebensmittel). Nach Branchen sortiert, sind die richtigen Compliance-Grenzen sofort einsatzbereit.",
       unit: "Schwellen",
-      imageAlt: "Indoor climateszenarien und Standardbibliothek in RoomAlyzer",
+      imageAlt: "Raumklimaszenarien und Standardbibliothek in RoomAlyzer",
     },
     {
       id: "legacy-report",
       title: "Berichte & Warnungen",
-      body: "Sie erhalten tägliche, wöchentliche oder monatliche Indoor climate-Zusammenfassungen in Ihrem Posteingang. Bestimmen Sie flexibel, welche Kennzahlen enthalten sein sollen, versenden Sie die Berichte an beliebig viele Empfänger und nutzen Sie die Vorschau-Funktion für einen schnellen Vorab-Test. Die integrierte Warnfunktion benachrichtigt Sie per SMS oder E-Mail, sobald das Indoor climate von Ihren definierten Sollwerten abweicht. Durch die präzise Feinabstimmung der Alarme und die zielgerichtete Zuweisung an verschiedene Empfänger stellen Sie sicher, dass steigende Luftfeuchtigkeit oder sinkende Luftqualität sofort erkannt werden.",
+      body: "Sie erhalten tägliche, wöchentliche oder monatliche Raumklima-Zusammenfassungen in Ihrem Posteingang. Bestimmen Sie flexibel, welche Kennzahlen enthalten sein sollen, versenden Sie die Berichte an beliebig viele Empfänger und nutzen Sie die Vorschau-Funktion für einen schnellen Vorab-Test. Die integrierte Warnfunktion benachrichtigt Sie per SMS oder E-Mail, sobald das Raumklima von Ihren definierten Sollwerten abweicht. Durch die präzise Feinabstimmung der Alarme und die zielgerichtete Zuweisung an verschiedene Empfänger stellen Sie sicher, dass steigende Luftfeuchtigkeit oder sinkende Luftqualität sofort erkannt werden.",
       unit: "Berichte",
-      imageAlt: "Indoor climatebericht und CO₂-Diagramm in RoomAlyzer",
+      imageAlt: "Raumklimabericht und CO₂-Diagramm in RoomAlyzer",
     },
   ],
   relatedModuleLabel: "Smarter zusammen",
   relatedModuleBody:
-    "Kombinieren Sie Indoor climate data mit Belegung aus Space-Management — lüften, wenn Räume genutzt werden und drosseln, wenn sie leer stehen.",
+    "Kombinieren Sie Raumklimadaten mit Belegung aus Space-Management — lüften, wenn Räume genutzt werden und drosseln, wenn sie leer stehen.",
   relatedModuleLink: "Space-Management entdecken",
   audiencesEyebrow: "Für wen es gedacht ist",
   audiencesHeading: "Daten für die sichere Einhaltung aller relevanten Standards, Richtlinien und gesetzlichen Vorschriften",
@@ -457,7 +457,7 @@ const de: IndoorClimateStrings = {
   complianceItems: [
     "Exportierte Berichte, die Sie für CSRD-, ESG- und andere Offenlegungsarbeit nutzen können",
     "EPBD 2024 und DGNB — Berichte und PDF-Exporte, die Sie für Gap-Analyse, Energieüberblicke und SOC 1.1 / 1.2 (EN 16798-1)-Einreichungen nutzen können",
-    "Indoor climate-Historie und dokumentierte Daten, auf die Sie bei Arbeitsstättenprüfungen, Audits und Mitarbeiterwohlbefinden zurückgreifen können",
+    "Raumklima-Historie und dokumentierte Daten, auf die Sie bei Arbeitsstättenprüfungen, Audits und Mitarbeiterwohlbefinden zurückgreifen können",
     "Belege zur Unterstützung von Energieeinsparung durch datengestützte Steuerung",
   ],
   faqTitle: "Häufig gestellte Fragen",
@@ -465,7 +465,7 @@ const de: IndoorClimateStrings = {
   faqItems: [
     {
       q: "Wie lange hält die Batterie?",
-      a: "Unsere Indoor climatesensoren laufen je nach Meldefrequenz typischerweise 7–10 Jahre mit einer einzigen Batterie. Die Plattform warnt Sie rechtzeitig, wenn die Batterie gewechselt werden muss.",
+      a: "Unsere Raumklimasensoren laufen je nach Meldefrequenz typischerweise 7–10 Jahre mit einer einzigen Batterie. Die Plattform warnt Sie rechtzeitig, wenn die Batterie gewechselt werden muss.",
     },
     {
       q: "Brauchen wir WLAN im gesamten Gebäude?",

@@ -95,12 +95,12 @@ export const faqHubI18n: Partial<Record<Lang, FaqHubOverlay>> = {
         lead: "Architektur, Dashboards, Updates, Verfügbarkeit und das, was Kunden vor der Anmeldung fragen.",
       },
       "indoor-climate": {
-        title: "Indoor climate-FAQ.",
+        title: "Raumklima-FAQ.",
         titleAccent: "CO₂, Feuchte, VOC und mehr.",
         lead: "Was wir messen, warum es zählt und wie Alarme konfiguriert werden.",
       },
       preservation: {
-        title: "Preservation-FAQ.",
+        title: "Erhaltung-FAQ.",
         titleAccent: "Für Sammlungen und Kulturerbe.",
         lead: "Normen, Messfrequenz, Sensorplatzierung und Berichte für Museen, Archive und Kirchen.",
       },

@@ -54,10 +54,10 @@ export function productSheetPath(slug: string, lang: Lang = defaultLang): string
  * Sensor and brand names are not translated — with approved per-locale
  * exceptions. Keyed by sensor slug. Canonical overrides: deTermLocks.ts.
  */
-const SENSOR_NAME_OVERRIDES: Partial<Record<string, Partial<Record<Lang, string>>>> = {
-  "water-detector": { de: SENSOR_NAME_OVERRIDES_DE["water-detector"] },
-  outdoor: { de: SENSOR_NAME_OVERRIDES_DE.outdoor },
-};
+const SENSOR_NAME_OVERRIDES: Partial<Record<string, Partial<Record<Lang, string>>>> =
+  Object.fromEntries(
+    Object.entries(SENSOR_NAME_OVERRIDES_DE).map(([slug, name]) => [slug, { de: name }]),
+  );
 
 /**
  * Applies locale-specific casing to a composed product label (e.g. industry

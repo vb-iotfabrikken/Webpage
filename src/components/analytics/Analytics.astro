@@ -10,7 +10,7 @@ const analyticsEnabled = isAnalyticsEnabled() && Boolean(getGtmId());
 )}
 
 {analyticsEnabled && (
-  <script is:inline define:vars={{ bootstrapConsentDefaults }}>
+  <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag("consent", "default", {

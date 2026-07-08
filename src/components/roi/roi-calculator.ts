@@ -43,6 +43,11 @@ import {
   resolveFieldErrorMessages,
 } from "../../lib/forms/field-errors";
 import {
+  bindAutofillFieldSync,
+  readLeadFormValuesFromForm,
+} from "../../lib/forms/read-form-fields";
+import { bindFormSubmitGuard } from "../../lib/forms/submit-guard";
+import {
   isHoneypotFilled,
   isSubmitTooSoon,
   validateLeadFormFields,
@@ -216,6 +221,15 @@ function initCalculator(root: HTMLElement) {
   const disqualifyHoneypot = root.querySelector<HTMLInputElement>(
     "[data-roi-disqualify-honeypot]",
   );
+
+  if (emailForm) {
+    bindFormSubmitGuard(emailForm);
+    bindAutofillFieldSync(emailForm);
+  }
+  if (disqualifyForm) {
+    bindFormSubmitGuard(disqualifyForm);
+    bindAutofillFieldSync(disqualifyForm);
+  }
 
   const currencySymbols = root.querySelectorAll<HTMLElement>(
     "[data-roi-currency-symbol], [data-roi-currency-symbol-energy]",
@@ -910,6 +924,7 @@ function initCalculator(root: HTMLElement) {
 
   emailForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
+    if (!emailForm) return;
 
     // Anti-spam gates (honeypot + dwell time) are temporarily disabled so
     // reports can be tested end-to-end. Re-enable both before going live.
@@ -921,12 +936,7 @@ function initCalculator(root: HTMLElement) {
     void isSubmitTooSoon;
 
     clearEmailFieldErrors();
-    const formFields = {
-      firstName: firstNameInput?.value ?? "",
-      lastName: lastNameInput?.value ?? "",
-      email: emailInput?.value ?? "",
-      phone: phoneInput?.value ?? "",
-    };
+    const formFields = await readLeadFormValuesFromForm(emailForm);
     const result = validateLeadFormFields(formFields);
     if (!result.valid) {
       if (emailForm) {
@@ -995,18 +1005,15 @@ function initCalculator(root: HTMLElement) {
 
   disqualifyForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
+    if (!disqualifyForm) return;
 
     // Anti-spam gates temporarily disabled (see emailForm handler above).
     void disqualifyHoneypot;
 
     const fieldErrors: Record<string, string> = {};
-    const validation = validateLeadFormFields({
-      firstName: disqualifyFirstName?.value ?? "",
-      lastName: disqualifyLastName?.value ?? "",
-      email: disqualifyEmail?.value ?? "",
-      phone: disqualifyPhone?.value ?? "",
-    });
-    const phoneRaw = disqualifyPhone?.value.trim() ?? "";
+    const fields = await readLeadFormValuesFromForm(disqualifyForm);
+    const validation = validateLeadFormFields(fields);
+    const phoneRaw = fields.phone?.trim() ?? "";
 
     if (!validation.valid) {
       Object.assign(fieldErrors, validation.fieldErrors);
@@ -1110,6 +1117,14 @@ function initCalculator(root: HTMLElement) {
   window.addEventListener("resize", () => syncAttendanceMarks());
 }
 
-document.querySelectorAll<HTMLElement>("[data-roi-calculator]").forEach((root) => {
-  initCalculator(root);
-});
+export function initRoiCalculators(): void {
+  document.querySelectorAll<HTMLElement>("[data-roi-calculator]").forEach((root) => {
+    if (root.dataset.roiCalculatorBound === "true") return;
+    try {
+      initCalculator(root);
+      root.dataset.roiCalculatorBound = "true";
+    } catch (err) {
+      console.error("[roi-calculator] Failed to bind", err);
+    }
+  });
+}

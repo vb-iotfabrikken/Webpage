@@ -240,12 +240,12 @@ const de: HomeStrings = {
   meta: {
     title: "IoT Fabrikken: Sensoren und Plattform für Facility- und Space-Management",
     description:
-      "Marktführende dänische Plattform für Indoor climate, Space-Management und Wasserleckerkennung. Plug-and-Play-Sensoren, lange Batterielaufzeit ohne Installation.",
+      "Marktführende dänische Plattform für Raumklima, Space-Management und Wasserleckerkennung. Plug-and-Play-Sensoren, lange Batterielaufzeit ohne Installation.",
   },
   hero: {
-    title: "Marktführende Software für Indoor climate und",
+    title: "Marktführende Software für Raumklima und",
     titleAccent: "Space-Management.",
-    lead: "Drahtlose Sensoren in einer einzigen Plattform, die Daten zu Indoor climate, Flächennutzung und Wasserlecks in echten Mehrwert verwandelt, Plug\u2011and\u2011Play.",
+    lead: "Drahtlose Sensoren in einer einzigen Plattform, die Daten zu Raumklima, Flächennutzung und Wasserlecks in echten Mehrwert verwandelt, Plug\u2011and\u2011Play.",
     ctaPrimary: "Kostenlose Demo buchen",
     ctaSecondary: "Vertrieb kontaktieren",
   },
@@ -269,7 +269,7 @@ const de: HomeStrings = {
       },
       {
         title: "Schluss mit Diskussionen",
-        body: "Verlassen Sie sich nicht auf Ihr Bauchgefühl – steuern Sie Ihr Indoor climate datenbasiert und sicher.",
+        body: "Verlassen Sie sich nicht auf Ihr Bauchgefühl – steuern Sie Ihr Raumklima datenbasiert und sicher.",
       },
       {
         title: "Intelligenter Einsatz",
@@ -295,7 +295,7 @@ const de: HomeStrings = {
       "museums-galleries": {
         title: "Museen & Kultur",
         description:
-          "Minimieren Sie Risiken und bewahren Sie empfindliche Sammlungen mit kontinuierlicher Klimaüberwachung nach den höchsten Preservationsstandards.",
+          "Minimieren Sie Risiken und bewahren Sie empfindliche Sammlungen mit kontinuierlicher Klimaüberwachung nach den höchsten Erhaltungsstandards.",
       },
       municipalities: {
         title: "Schulen & Kommunen",

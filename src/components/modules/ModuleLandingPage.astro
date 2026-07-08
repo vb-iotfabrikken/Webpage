@@ -66,6 +66,8 @@ interface Props {
     manuscript: HeroGalleryImage;
   };
   heroGalleryImageClass?: Partial<Record<"archive" | "manuscript", string>>;
+  /** Wider intro column in the hero gallery band (for long-locale copy). */
+  heroGalleryTextWide?: boolean;
 }
 
 const {
@@ -89,6 +91,7 @@ const {
   heroVisual = "dashboard",
   heroGalleryImages,
   heroGalleryImageClass,
+  heroGalleryTextWide = false,
 } = Astro.props;
 
 const showHeroDashboard = heroVisual === "dashboard";
@@ -187,6 +190,7 @@ const pageJsonLd = [
             gallery={t.heroGallery!}
             images={heroGalleryImages!}
             imageClass={heroGalleryImageClass}
+            textColumnWide={heroGalleryTextWide}
           />
         </div>
       </div>

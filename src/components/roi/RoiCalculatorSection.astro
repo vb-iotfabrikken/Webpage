@@ -163,5 +163,23 @@ const indoorClimateHref = langPath("modules/indoor-climate", lang);
 </style>
 
 <script>
-  import "./roi-calculator.ts";
+  import { initRoiCalculators } from "./roi-calculator";
+
+  function bindRoiCalculators() {
+    initRoiCalculators();
+    if (import.meta.env.DEV) {
+      document.querySelectorAll("[data-roi-calculator]").forEach((root) => {
+        if (root instanceof HTMLElement && root.dataset.roiCalculatorBound !== "true") {
+          console.warn("[roi-calculator] Calculator was not bound:", root);
+        }
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bindRoiCalculators);
+  } else {
+    bindRoiCalculators();
+  }
+  document.addEventListener("astro:page-load", bindRoiCalculators);
 </script>

@@ -20,6 +20,10 @@ import {
 
 } from "../lib/forms/read-form-fields";
 
+import { bindFormSubmitEligibility } from "../lib/forms/submit-eligibility";
+
+import { bindFormSubmitGuard } from "../lib/forms/submit-guard";
+
 import {
 
   isSubmitTooSoon,
@@ -242,7 +246,9 @@ function initSensorRows(form: HTMLFormElement) {
 
 function initOfferForm(form: HTMLFormElement) {
 
-  const readyAt = Date.now();
+  bindFormSubmitGuard(form);
+
+  const getSubmitReadyAt = bindFormSubmitEligibility(form);
 
   const messages = readMessages(form);
 
@@ -310,9 +316,13 @@ function initOfferForm(form: HTMLFormElement) {
 
 
 
+  let submitting = false;
+
   form.addEventListener("submit", async (e) => {
 
     e.preventDefault();
+
+    if (submitting) return;
 
 
 
@@ -325,6 +335,10 @@ function initOfferForm(form: HTMLFormElement) {
       }
 
 
+
+      submitting = true;
+
+      if (submitBtn) submitBtn.disabled = true;
 
       hideFormError();
 
@@ -376,13 +390,17 @@ function initOfferForm(form: HTMLFormElement) {
 
         trackFormError(form, "validation");
 
+        resetSubmitButton();
+
+        submitting = false;
+
         return;
 
       }
 
 
 
-      if (isSubmitTooSoon(readyAt)) {
+      if (isSubmitTooSoon(getSubmitReadyAt())) {
 
         showFormError(
 
@@ -392,25 +410,31 @@ function initOfferForm(form: HTMLFormElement) {
 
         trackFormError(form, "too_soon");
 
+        resetSubmitButton();
+
+        submitting = false;
+
         return;
 
       }
 
 
 
-      if (!result.valid) return;
+      if (!result.valid) {
+
+        resetSubmitButton();
+
+        submitting = false;
+
+        return;
+
+      }
 
 
 
       clearFieldErrors(form);
 
-      if (submitBtn) {
-
-        submitBtn.disabled = true;
-
-        submitBtn.textContent = messages.sending ?? "Sending…";
-
-      }
+      if (submitBtn) submitBtn.textContent = messages.sending ?? "Sending…";
 
 
 
@@ -442,7 +466,13 @@ function initOfferForm(form: HTMLFormElement) {
 
       form.hidden = true;
 
-      if (successEl) successEl.hidden = false;
+      if (successEl) {
+
+        successEl.hidden = false;
+
+        successEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+      }
 
     } catch {
 
@@ -458,6 +488,8 @@ function initOfferForm(form: HTMLFormElement) {
 
       resetSubmitButton();
 
+      submitting = false;
+
     }
 
   });
@@ -472,9 +504,17 @@ export function initOfferForms(): void {
 
     if (form.dataset.leadFormBound === "true") return;
 
-    initOfferForm(form);
+    try {
 
-    form.dataset.leadFormBound = "true";
+      initOfferForm(form);
+
+      form.dataset.leadFormBound = "true";
+
+    } catch (err) {
+
+      console.error("[offer-form] Failed to bind form", err);
+
+    }
 
   });
 

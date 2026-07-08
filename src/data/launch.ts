@@ -124,6 +124,13 @@ export const LIVE_TRUST_CENTER_SECTIONS: readonly string[] = [
   // "certification" omitted until full launch
 ];
 
+/**
+ * Inline ARCHIVISTICA landing sections live during soft launch.
+ */
+export const LIVE_ARCHIVISTICA_SECTIONS: readonly string[] = [
+  // "quote" omitted during soft launch — Martin Eckert featured quote
+];
+
 const localePrefix = new RegExp(`^/(?:${locales.map((l) => l.code).join("|")})(?:/|$)`);
 const localePrefixCapture = new RegExp(
   `^/(${locales.map((l) => l.code).join("|")})(?:/|$)`,
@@ -184,4 +191,10 @@ export function isHiddenPath(pathname: string): boolean {
 export function isLiveTrustCenterSection(section: string): boolean {
   if (!LAUNCH_LIVE_ONLY) return true;
   return LIVE_TRUST_CENTER_SECTIONS.includes(section);
+}
+
+/** Is the given ARCHIVISTICA landing inline section part of the live set? */
+export function isLiveArchivisticaSection(section: string): boolean {
+  if (!LAUNCH_LIVE_ONLY) return true;
+  return LIVE_ARCHIVISTICA_SECTIONS.includes(section);
 }

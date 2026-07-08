@@ -44,7 +44,7 @@ const de: DhbvStrings = {
   heroTitle: "Holz- und Gebäudeschutz.",
   heroTitleAccent: "Mit Daten im Blick.",
   heroLead:
-    "Treffen Sie IoT Fabrikken auf dem DHBV-Verbandstag in Papenburg und erfahren Sie, wie RoomAlyzer Feuchte, Temperatur und Leckagen in Gebäuden und Schutzkonstruktionen überwacht, kabellos, skalierbar und ohne aufwendige Verkabelung.",
+    "Treffen Sie IoT Fabrikken auf dem DHBV-Verbandstag in Papenburg und erfahren Sie, wie RoomAlyzer Feuchte, Temperatur und Leckagen in Gebäuden und Schutzkonstruktionen überwacht — vollkommen kabellos, hochgradig skalierbar und im Handumdrehen installiert.",
   heroMetaFields: {
     labels: { termin: "Termin", ort: "Ort", detail: "Veranstaltung" },
     ort: "Papenburg",
@@ -60,7 +60,7 @@ const de: DhbvStrings = {
     {
       title: "Holzfeuchte und Schimmelrisiko",
       icon: "wood",
-      body: "Überwachen Sie relative Luftfeuchtigkeit und Temperatur in Holzkonstruktionen und Schutzbereichen, mit Alarmen, bevor Schäden entstehen.",
+      body: "Überwachen Sie Luftfeuchtigkeit und Temperatur in Holzkonstruktionen und Schutzbereichen, mit Alarmen, bevor Schäden entstehen.",
     },
     {
       title: "Gebäude und Konstruktionen",
