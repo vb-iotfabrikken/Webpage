@@ -81,10 +81,13 @@ export interface NavStrings {
     library: string;
   };
   cta: {
+    allModules: string;
     allSensors: string;
+    more: string;
     compareSensors: string;
     allIndustries: string;
     explorePlatform: string;
+    explorePlatformDesc: string;
   };
   industryColumns: {
     publicHealth: string;
@@ -355,10 +358,13 @@ const en: UiStrings = {
       library: "Articles",
     },
     cta: {
+      allModules: "All modules",
       allSensors: "All sensors",
+      more: "More",
       compareSensors: "Compare sensors",
       allIndustries: "All industries",
       explorePlatform: "RoomAlyzer platform",
+      explorePlatformDesc: "How it works, dashboards, API and more",
     },
     industryColumns: {
       publicHealth: "Public sector & healthcare",
@@ -629,10 +635,13 @@ const da: UiStrings = {
       library: "Artikler",
     },
     cta: {
+      allModules: "Alle moduler",
       allSensors: "Alle sensorer",
+      more: "Mere",
       compareSensors: "Sammenlign sensorer",
       allIndustries: "Alle brancher",
       explorePlatform: "RoomAlyzer platform",
+      explorePlatformDesc: "Sådan virker det, dashboards, API og mere",
     },
     industryColumns: {
       publicHealth: "Offentlig sektor og sundhed",
@@ -903,10 +912,13 @@ const de: UiStrings = {
       library: "Artikel",
     },
     cta: {
+      allModules: "Alle Module",
       allSensors: "Alle Sensoren",
+      more: "Mehr",
       compareSensors: "Sensoren vergleichen",
       allIndustries: "Alle Branchen",
       explorePlatform: "RoomAlyzer platform",
+      explorePlatformDesc: "So funktioniert es, Dashboards, API und mehr",
     },
     industryColumns: {
       publicHealth: "Öffentlicher Sektor & Gesundheit",
@@ -1177,10 +1189,13 @@ const sv: UiStrings = {
       library: "Artiklar",
     },
     cta: {
+      allModules: "Alla moduler",
       allSensors: "Alla sensorer",
+      more: "Mer",
       compareSensors: "Jämför sensorer",
       allIndustries: "Alla branscher",
       explorePlatform: "RoomAlyzer platform",
+      explorePlatformDesc: "Så fungerar det, dashboards, API och mer",
     },
     industryColumns: {
       publicHealth: "Offentlig sektor och vård",

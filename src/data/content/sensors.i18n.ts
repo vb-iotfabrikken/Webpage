@@ -56,7 +56,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
         },
         {
           title: "Faktenbasierte Dokumentation",
-          body: "±0,1 °C und ±1 % r.F. Präzision bei <0,03 °C/Jahr Drift – nachweisbare Bedingungen, exportierbar über die RoomAlyzer-Plattform.",
+          body: "±0,1 °C und ±1 % r. F. Präzision bei <0,03 °C/Jahr Drift – nachweisbare Bedingungen, exportierbar über die RoomAlyzer-Plattform.",
         },
         {
           title: "Präzise Energieeinsparungen",
@@ -394,7 +394,7 @@ export const sensorContentI18n: Partial<Record<Lang, Record<string, SensorConten
         },
         {
           title: "Faktabaseret dokumentation",
-          body: "±0,1 °C og ±1 % r.f. i præcision med under 0,03 °C/år i drift – verificerbare forhold, du kan eksportere fra RoomAlyzer-platformen.",
+          body: "±0,1 °C og ±1 % RF i præcision med under 0,03 °C/år i drift – verificerbare forhold, du kan eksportere fra RoomAlyzer-platformen.",
         },
         {
           title: "Præcise energibesparelser",

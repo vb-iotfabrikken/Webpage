@@ -1,5 +1,12 @@
 import type { Hub, HubLeaf } from "./types";
-import { defaultLang, type Lang } from "../lang";
+import { defaultLang, routePath, type Lang } from "../lang";
+
+/** Locales that publish the statutory Impressum page (German TMG requirement). */
+export const IMPRESSUM_LOCALES = ["en", "de"] as const satisfies readonly Lang[];
+
+export function hasImpressum(lang: Lang): boolean {
+  return (IMPRESSUM_LOCALES as readonly Lang[]).includes(lang);
+}
 
 export const legalHub: Hub = {
   slug: "legal",
@@ -78,7 +85,6 @@ const legalHubI18n: Partial<Record<Lang, HubOverlay>> = {
       privacy: { title: "Privatlivspolitik.", titleAccent: "Hvad vi gør med data, og hvad vi ikke gør.", lead: "Hvordan vi behandler personoplysninger, hvilke underdatabehandlere vi bruger, og hvilke rettigheder du har som registreret." },
       cookies: { title: "Cookiepolitik.", titleAccent: "Hvilke cookies, og hvorfor.", lead: "De cookies vi sætter, dem vi ikke sætter, og hvordan du til enhver tid kan ændre dine præferencer." },
       terms: { title: "Vilkår og databehandleraftale.", titleAccent: "Kommercielle vilkår og databehandling.", lead: "Vores kommercielle vilkår og den databehandleraftale, der gælder for enhver RoomAlyzer-implementering." },
-      impressum: { title: "Impressum.", titleAccent: "Lovpligtige oplysninger.", lead: "Virksomhedsoplysninger, registreret adresse og ansvarlige personer, som krævet efter tysk lov." },
       security: { title: "Sikkerhed.", titleAccent: "Sådan beskytter vi dine data.", lead: "Certificeringer, kontroller og de arkitektoniske valg bag RoomAlyzers sikkerhed." },
       accessibility: { title: "Tilgængelighedserklæring.", titleAccent: "Et website, som alle kan bruge.", lead: "Vores nuværende tilgængelighedsniveau, kendte problemer og hvordan du rapporterer problemer." },
       sla: { title: "Service-level-aftale.", titleAccent: "Hvad vi forpligter os til, og hvordan.", lead: "Vores oppetidsgaranti, supporttider og måden, vi måler og rapporterer serviceniveauer på." },
@@ -108,7 +114,6 @@ const legalHubI18n: Partial<Record<Lang, HubOverlay>> = {
       privacy: { title: "Integritetspolicy.", titleAccent: "Vad vi gör med data, och vad vi inte gör.", lead: "Hur vi behandlar personuppgifter, vilka underbiträden vi använder och vilka rättigheter du har som registrerad." },
       cookies: { title: "Cookiepolicy.", titleAccent: "Vilka cookies, och varför.", lead: "De cookies vi sätter, de vi inte sätter och hur du när som helst kan ändra dina inställningar." },
       terms: { title: "Villkor och personuppgiftsbiträdesavtal.", titleAccent: "Kommersiella villkor och databehandling.", lead: "Våra kommersiella villkor och det personuppgiftsbiträdesavtal som gäller för varje RoomAlyzer-driftsättning." },
-      impressum: { title: "Impressum.", titleAccent: "Lagstadgad information.", lead: "Företagsuppgifter, registrerad adress och ansvariga personer, enligt tysk lag." },
       security: { title: "Säkerhet.", titleAccent: "Så skyddar vi dina data.", lead: "Certifieringar, kontroller och de arkitekturval som ligger bakom RoomAlyzers säkerhet." },
       accessibility: { title: "Tillgänglighetsutlåtande.", titleAccent: "En webbplats som alla kan använda.", lead: "Vår nuvarande tillgänglighetsnivå, kända problem och hur du rapporterar problem." },
       sla: { title: "Service-level-avtal.", titleAccent: "Vad vi förbinder oss till, och hur.", lead: "Vårt drifttidsåtagande, supporttider och hur vi mäter och rapporterar servicenivåer." },
@@ -116,17 +121,28 @@ const legalHubI18n: Partial<Record<Lang, HubOverlay>> = {
   },
 };
 
+function filterImpressumLeaves(leaves: HubLeaf[], lang: Lang): HubLeaf[] {
+  return leaves.filter((leaf) => leaf.slug !== "impressum" || hasImpressum(lang));
+}
+
 /** Locale-aware Legal hub. Falls back to English for untranslated locales. */
 export function getLegalHub(lang: Lang = defaultLang): Hub {
-  if (lang === defaultLang) return legalHub;
+  if (lang === defaultLang) {
+    return { ...legalHub, leaves: filterImpressumLeaves(legalHub.leaves, lang) };
+  }
   const overlay = legalHubI18n[lang];
-  if (!overlay) return legalHub;
-  const leaves: HubLeaf[] = legalHub.leaves.map((leaf) => {
-    const lo = overlay.leaves[leaf.slug];
-    return lo
-      ? { ...leaf, title: lo.title, titleAccent: lo.titleAccent, lead: lo.lead }
-      : leaf;
-  });
+  if (!overlay) {
+    return { ...legalHub, leaves: filterImpressumLeaves(legalHub.leaves, lang) };
+  }
+  const leaves: HubLeaf[] = filterImpressumLeaves(
+    legalHub.leaves.map((leaf) => {
+      const lo = overlay.leaves[leaf.slug];
+      return lo
+        ? { ...leaf, title: lo.title, titleAccent: lo.titleAccent, lead: lo.lead }
+        : leaf;
+    }),
+    lang,
+  );
   return {
     ...legalHub,
     title: overlay.title,
@@ -135,4 +151,13 @@ export function getLegalHub(lang: Lang = defaultLang): Hub {
     lead: overlay.lead,
     leaves,
   };
+}
+
+/** 301 map for Impressum URLs in locales that no longer publish the page. */
+export function getImpressumRedirectMap(): Record<string, string> {
+  const map: Record<string, string> = {};
+  for (const lang of ["da", "sv"] as const) {
+    map[routePath("legal/impressum", lang)] = routePath("", lang);
+  }
+  return map;
 }

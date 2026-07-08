@@ -64,7 +64,7 @@ const de: ArchivisticaStrings = {
   heroSecondaryCta: "Online-Demo buchen",
   venueBooth: {
     label: "Besuchen Sie uns",
-    detail: "Stand 1 - Oberes Festsaalfoyer E + 1",
+    detail: "Stand 1 — Oberes Festsaalfoyer E + 1",
   },
   usps: [
     { value: "Bis zu 10 Jahre", label: "Batterielaufzeit" },

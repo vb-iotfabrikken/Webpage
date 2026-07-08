@@ -1,10 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "./Hero.astro";
-import Button from "./Button.astro";
 import CtaBand from "./CtaBand.astro";
 import { getCaseStudyCategoryLabels } from "../data/hubs/caseStudies";
-import { resolveCaseStudyDetail } from "../data/hubs/caseStudyDetails";
+import { isPublishedCaseStudy, resolveCaseStudyDetail } from "../data/hubs/caseStudyDetails";
 import type { CaseStudyLeaf } from "../data/hubs/caseStudies";
 import { getCases } from "../data/i18n/cases";
 import { langPath, type Lang } from "../data/lang";
@@ -27,11 +26,15 @@ const { lang, leaf, breadcrumbs, suppressHreflang = false } = Astro.props;
 const detail = resolveCaseStudyDetail(leaf, lang);
 const t = getCases(lang);
 const categoryLabels = getCaseStudyCategoryLabels(lang);
-const casesHref = langPath("case-studies", lang);
 const pageTitle = `${leaf.seoTitle ?? leaf.title.replace(/\.$/, "")} | IoT Fabrikken`;
 const heroLead = detail.intro[0] ?? leaf.lead;
 const metaDescription = leaf.metaDescription ?? heroLead;
 const bodyParagraphs = detail.intro.length > 1 ? detail.intro.slice(1) : detail.intro.length === 0 ? [] : [];
+const published = isPublishedCaseStudy(leaf, lang);
+const hasBodyContent = published;
+const categoryLabel = leaf.category
+  ? categoryLabels[leaf.category as keyof typeof categoryLabels]
+  : undefined;
 const isExternal = (href: string) => /^https?:\/\//i.test(href);
 
 const caseJsonLd = [
@@ -55,7 +58,7 @@ const caseJsonLd = [
   title={pageTitle}
   description={metaDescription}
   ogImage={leaf.ogImage ?? leaf.logo}
-  noindex={leaf.noindex}
+  noindex={leaf.noindex || !published}
   suppressHreflang={suppressHreflang}
   jsonLd={caseJsonLd}
   analyticsPageType="case_study"
@@ -89,34 +92,49 @@ const caseJsonLd = [
     title={leaf.title}
     titleAccent={detail.titleAccent}
     lead={heroLead}
+    eyebrow={categoryLabel}
     align="left"
     compactTop={breadcrumbs.length > 0}
   >
     {leaf.logo && (
       <div slot="visual" class="reveal max-w-xs">
         <div class="bg-white border border-stone-100 rounded-xl p-8 flex items-center justify-center">
-          <img
-            src={leaf.logo}
-            alt={leaf.logoAlt ?? ""}
-            width="280"
-            height="120"
-            class="max-h-24 w-auto object-contain"
-            loading="eager"
-          />
+          {leaf.articleHref ? (
+            <a
+              href={leaf.articleHref}
+              class="rounded-md transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+              aria-label={t.readFullCase}
+              target={isExternal(leaf.articleHref) ? "_blank" : undefined}
+              rel={isExternal(leaf.articleHref) ? "noopener noreferrer" : undefined}
+            >
+              <img
+                src={leaf.logo}
+                alt={leaf.logoAlt ?? ""}
+                width="280"
+                height="120"
+                class="max-h-24 w-auto object-contain"
+                loading="eager"
+              />
+            </a>
+          ) : (
+            <img
+              src={leaf.logo}
+              alt={leaf.logoAlt ?? ""}
+              width="280"
+              height="120"
+              class="max-h-24 w-auto object-contain"
+              loading="eager"
+            />
+          )}
         </div>
       </div>
     )}
   </Hero>
 
+  {hasBodyContent && (
   <section class="py-12 md:py-16 border-b border-stone-100">
     <div class="container-page">
       <div class="max-w-3xl space-y-8">
-        {leaf.category && (
-          <p class="inline-block px-2.5 py-1 rounded-md bg-stone-50 text-navy-500 text-[11px] font-semibold uppercase tracking-wider">
-            {categoryLabels[leaf.category as keyof typeof categoryLabels]}
-          </p>
-        )}
-
         {bodyParagraphs.map((paragraph) => (
           <p class="text-lg text-stone-900/80 leading-relaxed">{paragraph}</p>
         ))}
@@ -158,16 +176,10 @@ const caseJsonLd = [
             </blockquote>
           </div>
         )}
-
-        <div class="flex flex-wrap gap-3 pt-2">
-          <Button href={casesHref} variant="secondary" size="md">{t.allCases}</Button>
-          <Button href={langPath("contact/book-demo", lang)} variant="primary" size="md">
-            {t.bookDemo}
-          </Button>
-        </div>
       </div>
     </div>
   </section>
+  )}
 
   <CtaBand
     title={t.detailCtaTitle}

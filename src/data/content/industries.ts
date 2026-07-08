@@ -562,7 +562,7 @@ export const industryPageContent: IndustryPageContent[] = [
   },
   {
     slug: "property-management",
-    featuredCaseStudySlugs: ["boligselskabet-sjaelland", "skade-teknik"],
+    featuredCaseStudySlugs: ["skade-teknik"],
     cardSummary:
       "Document indoor climate for tenants and catch leaks early across a residential or commercial portfolio.",
     focus:
@@ -657,7 +657,7 @@ export const industryPageContent: IndustryPageContent[] = [
   },
   {
     slug: "consulting-engineers",
-    featuredCaseStudySlugs: ["sweco", "hj-energi"],
+    featuredCaseStudySlugs: ["sweco"],
     cardSummary:
       "Temporary and permanent measurements that back up commissioning, audits, and renovation advice.",
     focus:

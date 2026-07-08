@@ -122,7 +122,7 @@ export const sensorsHubI18n: Partial<Record<Lang, SensorHubOverlay>> = {
         lead: "Mål temperatur og luftfugtighed diskret, ideel til krybekældre, kældre og ydervægge.",
       },
       "mini-plus": {
-        titleAccent: "Lille fodaftryk, præcise klimadata.",
+        titleAccent: "Kompakt design, præcise klimadata.",
         lead: "Nem installation og præcise klimaaflæsninger, hvor størrelse og æstetik betyder noget.",
         seoTitle: "RoomAlyzer Air Mini+ | NB-IoT temperatur- og fugtsensor",
         metaDescription:

@@ -17,6 +17,33 @@ import { ANALYTICS_WAVE_LIVE, isHiddenPath, isLivePath, LAUNCH_LIVE_ONLY } from 
 import { getSiteRedirectMap } from './src/data/redirects';
 import { getLangFromPath, isPageIndexed, canonicalizePath, routePath } from './src/data/lang';
 
+const isAstroDev = process.argv.includes('dev');
+
+/**
+ * In dev, case-study pages live under `src/pages/[lang]/case-studies/` but
+ * `langPath("case-studies")` emits `/de/referenzen/` and `/sv/projekt/`.
+ * Production relocates built HTML to those localized paths; dev does not.
+ */
+function devCaseStudyRewrites() {
+  return {
+    name: 'dev-case-study-rewrites',
+    apply: 'serve',
+    configureServer(/** @type {import('vite').ViteDevServer} */ server) {
+      server.middlewares.use((req, _res, next) => {
+        if (!req.url) return next();
+        const [pathname, search = ''] = req.url.split('?');
+        const suffix = search ? `?${search}` : '';
+        if (pathname === '/de/referenzen' || pathname.startsWith('/de/referenzen/')) {
+          req.url = pathname.replace(/^\/de\/referenzen/, '/de/case-studies') + suffix;
+        } else if (pathname === '/sv/projekt' || pathname.startsWith('/sv/projekt/')) {
+          req.url = pathname.replace(/^\/sv\/projekt/, '/sv/case-studies') + suffix;
+        }
+        next();
+      });
+    },
+  };
+}
+
 /**
  * Translate an emitted locale URL path into its localized form via the route
  * registry. `/de/modules/indoor-climate/` -> `/de/module/raumklima/`. English
@@ -356,7 +383,7 @@ export default defineConfig({
   redirects: getSiteRedirectMap(),
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss(), ...(isAstroDev ? [devCaseStudyRewrites()] : [])],
   },
 
   integrations: [

@@ -104,6 +104,11 @@ export function articlePath(slug: string, lang: Lang = defaultLang): string {
   return langPath(`articles/${slug}`, lang);
 }
 
+/** URL of a single case study by slug. */
+export function caseStudyPath(slug: string, lang: Lang = defaultLang): string {
+  return langPath(`case-studies/${slug}`, lang);
+}
+
 /** URL of the per-sector article list under an industry hub. */
 export function industryArticlesPath(
   industrySlug: string,

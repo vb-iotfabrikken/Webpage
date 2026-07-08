@@ -4,7 +4,7 @@ import Hero from "./Hero.astro";
 import Button from "./Button.astro";
 import CtaBand from "./CtaBand.astro";
 import CaseStudyGrid from "./CaseStudyGrid.astro";
-import { getCaseStudiesContent } from "../data/hubs/caseStudies";
+import { getPublishedCaseStudiesContent } from "../data/hubs/caseStudies";
 import { getCases } from "../data/i18n/cases";
 import { langPath, type Lang } from "../data/lang";
 
@@ -13,8 +13,7 @@ interface Props {
 }
 
 const { lang } = Astro.props;
-const { hub, cases, initialVisible } = getCaseStudiesContent(lang);
-const basePath = langPath("case-studies", lang);
+const { hub, cases, initialVisible } = getPublishedCaseStudiesContent(lang);
 const t = getCases(lang);
 ---
 
@@ -48,7 +47,6 @@ const t = getCases(lang);
     <div class="container-page">
       <CaseStudyGrid
         cases={cases}
-        basePath={basePath}
         lang={lang}
         initialVisible={initialVisible}
       />

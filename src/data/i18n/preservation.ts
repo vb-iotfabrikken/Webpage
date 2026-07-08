@@ -262,7 +262,7 @@ const da: PreservationStrings = {
     { type: "compare", label: "Sammenlign kulturarvssensorer", useCaseId: "heritage" },
   ],
   solutionProofPoints: [
-    { value: "±0,1 °C · ±1 % r.f.", label: "Sensorpræcision" },
+    { value: "±0,1 °C · ±1 % RF", label: "Sensorpræcision" },
     { value: "7–10 år", label: "Batterilevetid" },
   ],
   capabilitiesContextAlt: "Specialist vedligeholder et historisk orgel",
@@ -331,7 +331,7 @@ const da: PreservationStrings = {
     "Det samme objektive klimagrundlag kan bruges af både konservatoren, der beskytter samlingen, og facility manageren, der driver bygningen.",
   primaryAudienceHeading: "Til konservatorer og specialister",
   primaryAudienceItems: [
-    "Overvåg r.f. og temperatur på samlingsniveau",
+    "Overvåg RF og temperatur på samlingsniveau",
     "Dokumentér forhold til EN 15757, forsikring og fonde",
     "Stol på højpræcise målinger, konservatorer kræver",
     "Se klimahistorik for hver montre og hvert magasin",
@@ -352,7 +352,7 @@ const da: PreservationStrings = {
     },
     {
       q: "Hvor præcise er sensorerne, og skal de kalibreres?",
-      a: "RoomAlyzer Air-fugt- og temperatursensorer leverer ±0,1 °C og ±1 % r.f. – de tolerancer, konservatorer forventer. Hver sensor er fabrikskalibreret, og platformen markerer de enheder, der glider uden for spec.",
+      a: "RoomAlyzer Air-fugt- og temperatursensorer leverer ±0,1 °C og ±1 % RF – de tolerancer, konservatorer forventer. Hver sensor er fabrikskalibreret, og platformen markerer de enheder, der glider uden for spec.",
     },
     {
       q: "Kan det fungere i historiske bygninger uden WiFi?",

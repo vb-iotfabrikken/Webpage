@@ -45,7 +45,7 @@ const da: Record<string, IndustryContentOverlay> = {
       "Bevaring versus energiregning: opvarmning af en historisk bygning for at beskytte indholdet er dyrt — uden data finder I ikke balancen.",
     ],
     solution: [
-      "RoomAlyzer Bevaring overvåger temperatur og fugt kontinuerligt (±0,1 °C · ±1 % RH) og omsætter aflæsninger til klar dokumentation af de præcise forhold, jeres interiører holdes i. Trådløse Mini+ og Full+ sensorer er diskrete nok til hellige rum og præcise nok til konservatorer, med alarmer når tærskler overskrides.",
+      "RoomAlyzer Bevaring overvåger temperatur og fugt kontinuerligt (±0,1 °C · ±1 % RF) og omsætter aflæsninger til klar dokumentation af de præcise forhold, jeres interiører holdes i. Trådløse Mini+ og Full+ sensorer er diskrete nok til hellige rum og præcise nok til konservatorer, med alarmer når tærskler overskrides.",
       "En udendørssensor adskiller indendørs tendenser fra vejrsvingninger, mens EN 15757-tilpasset rapportering giver stifter, forsikring og myndigheder den dokumentation, de forventer. Én platform kan dække alle kirker i en stift med rollebaseret adgang for kirkeværger, præster og rådgivere.",
     ],
     smarterTogether:
@@ -336,13 +336,13 @@ const da: Record<string, IndustryContentOverlay> = {
       "Lagre og logistiksteder opbevarer varer, der fordærves, korroderer eller vrides, når forholdene driver — ofte på tværs af store gulvflader, kølerum og lastbryggere, hvor en enkelt uopdaget lækage kan stoppe driften. Compliance og forsikring forventer i stigende grad kontinuerlige logfiler, ikke stikprøvekontrol på clipboard.",
     challenges: [
       "Kølerum, der driver uden for intervallet: kølelager kan fejle stille, indtil produkt kasseres.",
-      "Fugt, der skader lager: pap, elektronik og hygroskopiske varer har brug for stabil RH på tværs af store, ujævnt konditionerede rum.",
+      "Fugt, der skader lager: pap, elektronik og hygroskopiske varer har brug for stabil RF på tværs af store, ujævnt konditionerede rum.",
       "Lækager langs lange stræk: rør, fodlister og lastbryggere har brug for linjedækning, som en enkelt punktsensor ikke kan levere.",
       "Maskinudstyr og kondensbakker: lokale vandkilder spreder sig hurtigt på tværs af åbne gulvflader.",
     ],
     solution: [
       "Temperature-sensor giver revisionsklar logning for kølerum, fryser og følsomme varer med alarmer, før tærskler overskrides.",
-      "Humidity-sensor sporer RH i lagerzoner, hvor materialer er fugtfølsomme. RoomAlyzer Vanddetektering dækker lineær risiko med water rope langs rør og bryggegulve og punktsensorer under vask, bakker og maskinudstyr, med SMS- og e-mailalarmer og tidsstemplet hændelseslog til forsikring.",
+      "Humidity-sensor sporer RF i lagerzoner, hvor materialer er fugtfølsomme. RoomAlyzer Vanddetektering dækker lineær risiko med water rope langs rør og bryggegulve og punktsensorer under vask, bakker og maskinudstyr, med SMS- og e-mailalarmer og tidsstemplet hændelseslog til forsikring.",
     ],
     smarterTogether:
       "Temperatur, fugt og RoomAlyzer Vanddetektering på én platform giver drift og QA ét dashboard til lagerbeskyttelse og hændelseshåndtering.",
@@ -382,13 +382,13 @@ const da: Record<string, IndustryContentOverlay> = {
     focus:
       "Arkiver og biblioteker opbevarer papirsamlinger, der forringes, når temperatur og fugt svinger — ofte på tværs af læsesale, magasiner og kølelager, der hver især har brug for dokumenterede, stabile forhold. Udlångivere og fondsmodtagere forventer dokumentation; konservatorer har brug for tidlig advarsel, før bindinger, film eller manuskripter er i fare.",
     challenges: [
-      "RH-svingninger i magasinområder: relativ fugt er den første forsvarslinje for papir — alligevel kontrolleres mange lagre højst månedligt.",
+      "RF-svingninger i magasinområder: relativ fugt er den første forsvarslinje for papir — alligevel kontrolleres mange lagre højst månedligt.",
       "Læsesale versus lager: komfort for besøgende må ikke kompromittere samlingens forhold i nærheden.",
       "Kølelager til film og fotografier: samlinger under rumtemperatur har brug for dedikeret, kontinuerlig logning.",
       "HVAC reagerer på vejrgætteri: befugtning og affugtning uden udendørs reference over- eller underskyder.",
     ],
     solution: [
-      "RoomAlyzer Bevaring leverer kontinuerlig RH-logning for magasiner, manuskriptlager og sjældne-bogrum med alarmer, før forholdene forlader bevaringsbånd.",
+      "RoomAlyzer Bevaring leverer kontinuerlig RF-logning for magasiner, manuskriptlager og sjældne-bogrum med alarmer, før forholdene forlader bevaringsbånd.",
       "RoomAlyzer Indeklima overvåger læsesale diskret. Temperature-sensor dækker kølelager; en Outdoor-sensor adskiller indendørstendenser fra vejr, så HVAC reagerer på reel behov.",
     ],
     smarterTogether:
@@ -429,13 +429,13 @@ const da: Record<string, IndustryContentOverlay> = {
     focus:
       "Herregårde og slotte kombinerer uvurderlige interiører med bygninger, der aldrig var designet til moderne opvarmning — sporadisk brug, turistbølger og uopvarmede fløje stresser træ, tekstiler og overflader. Massivt murværk bremser den indendørs reaktion på vejret, så indendørs aflæsninger uden udendørs baseline er lette at misfortolke.",
     challenges: [
-      "Sæsonbestemt RH, der skader paneler og forgyldning: sale og trapper svinger med besøgssæsoner og opvarmningsmønstre.",
+      "Sæsonbestemt RF, der skader paneler og forgyldning: sale og trapper svinger med besøgssæsoner og opvarmningsmønstre.",
       "Eventdrevne varme- og fugtbelastninger: turistgrupper og bryllupper presser forholdene hurtigere, end HVAC kan kompensere.",
       "Trådløs overvågning uden historisk skade: kabler gennem panelerede rum og gobeliner er sjældent acceptable.",
       "Uopvarmede fløje, der driver ukontrolleret: fjerne rum kan forringes, mens personalet fokuserer på hovedruter for besøgende.",
     ],
     solution: [
-      "RoomAlyzer Bevaring sporer RH i sale, trapper og panelerede rum med alarmer, før sæsonbestemte svingninger forårsager revner, forvridning eller tab af forgyldning.",
+      "RoomAlyzer Bevaring sporer RF i sale, trapper og panelerede rum med alarmer, før sæsonbestemte svingninger forårsager revner, forvridning eller tab af forgyldning.",
       "Mini+ og Full+ sensorer logger trådløst i udstillingsrum åbne for besøgende. Motion-sensor korrelerer fugt- og varmebelastninger med turplaner; en Outdoor-sensor er essentiel, hvor indeklima halter timer bag vejret.",
     ],
     smarterTogether:
@@ -446,7 +446,7 @@ const da: Record<string, IndustryContentOverlay> = {
       {
         name: "Humidity-sensor",
         badge: "Interiørbeskyttelse",
-        body: "Konservator-kvalitet RH-logging i sale, trapper og panelerede rum, hvor sæsonbestemte svingninger forårsager revner, forvridning og tab af forgyldning.",
+        body: "Konservator-kvalitet RF-logning i sale, trapper og panelerede rum, hvor sæsonbestemte svingninger forårsager revner, forvridning og tab af forgyldning.",
         sensorSlugs: ["humidity"],
       },
       {
@@ -1249,7 +1249,7 @@ const sv: Record<string, IndustryContentOverlay> = {
       "Bevaring versus energiräkning: att värma en historisk byggnad för att skydda innehållet är dyrt — utan data hittar ni inte balansen.",
     ],
     solution: [
-      "RoomAlyzer Bevarande övervakar temperatur och fukt kontinuerligt (±0,1 °C · ±1 % RH) och omvandlar avläsningar till tydlig dokumentation av de exakta förhållanden era interiörer hålls i. Trådlösa Mini+- och Full+-sensorer är diskreta nog för heliga rum och precisa nog för konservatorer, med larm när trösklar överskrids.",
+      "RoomAlyzer Bevarande övervakar temperatur och fukt kontinuerligt (±0,1 °C · ±1 % RF) och omvandlar avläsningar till tydlig dokumentation av de exakta förhållanden era interiörer hålls i. Trådlösa Mini+- och Full+-sensorer är diskreta nog för heliga rum och precisa nog för konservatorer, med larm när trösklar överskrids.",
       "En utomhussensor separerar inomhustrender från vädersvängningar, medan EN 15757-anpassad rapportering ger stift, försäkringsbolag och myndigheter den dokumentation de förväntar sig. En plattform kan täcka varje kyrka i ett stift med rollbaserad åtkomst för kyrkvärdar, präster och rådgivare.",
     ],
     smarterTogether:
@@ -1540,13 +1540,13 @@ const sv: Record<string, IndustryContentOverlay> = {
       "Lager och logistikplatser förvarar varor som förstörs, korroderar eller vrider sig när förhållanden avviker, ofta över stora golvytor, kylrum och lastkajer där en enda oupptäckt läcka kan stoppa driften. Efterlevnad och försäkring förväntar sig allt oftare kontinuerliga loggar, inte stickprovskontroll på clipboard.",
     challenges: [
       "Kylrum som driver utanför intervallet: kyld lagring kan misslyckas tyst tills produkt kasseras.",
-      "Fukt som skadar lager: kartong, elektronik och hygroskopiska varor behöver stabil RH över stora, ojämnt konditionerade ytor.",
+      "Fukt som skadar lager: kartong, elektronik och hygroskopiska varor behöver stabil RF över stora, ojämnt konditionerade ytor.",
       "Läckor längs långa sträckor: rör, golvlister och lastkajer behöver linjetäckning som en enskild punktsensor inte kan ge.",
       "Maskinutrustning och kondensbrickor: lokala vattenkällor sprider sig snabbt över öppna golvytor.",
     ],
     solution: [
       "Temperature-sensor ger revisionsklar loggning för kylrum, frysar och känsliga varor med larm innan trösklar överskrids.",
-      "Humidity-sensor spårar RH i lagerzoner där material är fuktkänsliga. RoomAlyzer Vattendetektering täcker linjär risk med water rope längs rör och kajgolv och punktsensorer under handfat, brickor och maskinutrustning, med SMS- och e-postlarm och tidsstämplad incidentlogg för försäkring.",
+      "Humidity-sensor spårar RF i lagerzoner där material är fuktkänsliga. RoomAlyzer Vattendetektering täcker linjär risk med water rope längs rör och kajgolv och punktsensorer under handfat, brickor och maskinutrustning, med SMS- och e-postlarm och tidsstämplad incidentlogg för försäkring.",
     ],
     smarterTogether:
       "Temperatur, fukt och RoomAlyzer Vattendetektering på en plattform ger drift och QA en instrumentpanel för lagerskydd och incidenthantering.",
@@ -1586,13 +1586,13 @@ const sv: Record<string, IndustryContentOverlay> = {
     focus:
       "Arkiv och bibliotek förvarar papperssamlingar som försämras när temperatur och fukt svänger — ofta över läsesalar, magasin och kylförvaring som var och en behöver dokumenterade, stabila förhållanden. Långivare och bidragsgivare förväntar sig bevis; konservatorer behöver tidig varning innan bindningar, film eller manuskript är i fara.",
     challenges: [
-      "RH-svängningar i magasinområden: relativ fukt är den första försvarslinjen för papper — ändå kontrolleras många lager högst månadsvis.",
+      "RF-svängningar i magasinområden: relativ fukt är den första försvarslinjen för papper — ändå kontrolleras många lager högst månadsvis.",
       "Läsesalar versus lager: komfort för besökare får inte kompromissa samlingens förhållanden i närheten.",
       "Kylförvaring för film och fotografier: samlingar under rumstemperatur behöver dedikerad, kontinuerlig loggning.",
       "HVAC reagerar på vädergissning: fuktning och avfuktning utan utomhusreferens över- eller underskjuter.",
     ],
     solution: [
-      "RoomAlyzer Bevarande levererar kontinuerlig RH-loggning för magasin, manuskriptlager och sällsynta bokrum med larm innan förhållanden lämnar bevarandeband.",
+      "RoomAlyzer Bevarande levererar kontinuerlig RF-loggning för magasin, manuskriptlager och sällsynta bokrum med larm innan förhållanden lämnar bevarandeband.",
       "RoomAlyzer Inomhusklimat övervakar läsesalar diskret. Temperature-sensor täcker kylförvaring; en Outdoor-sensor separerar inomhustrender från väder så HVAC svarar på verkligt behov.",
     ],
     smarterTogether:
@@ -1633,13 +1633,13 @@ const sv: Record<string, IndustryContentOverlay> = {
     focus:
       "Herrgårdar och slott kombinerar ovärderliga interiörer med byggnader som aldrig designades för modern uppvärmning — sporadisk användning, turisttoppar och ouppvärmda flyglar stressar trä, textilier och ytor. Massivt murverk bromsar den inomhusreaktion på väder. Inomhusavläsningar utan utomhusbaslinje är lätta att misstolka.",
     challenges: [
-      "Säsongsbetonad RH som skadar paneler och förgyllning: salar och trappor svänger med besökssäsonger och uppvärmningsmönster.",
+      "Säsongsbetonad RF som skadar paneler och förgyllning: salar och trappor svänger med besökssäsonger och uppvärmningsmönster.",
       "Eventdrivna värme- och fuktbelastningar: turistgrupper och bröllop pressar förhållanden snabbare än HVAC kan kompensera.",
       "Trådlös övervakning utan historisk skada: kablar genom panelerade rum och gobelänger är sällan acceptabla.",
       "Ouppvärmda flyglar som driver okontrollerat: avlägsna rum kan försämras medan personal fokuserar på huvudbesöksrutter.",
     ],
     solution: [
-      "RoomAlyzer Bevarande spårar RH i salar, trappor och panelerade rum med larm innan säsongsbetonade svängningar orsakar sprickor, vridning eller förlust av förgyllning.",
+      "RoomAlyzer Bevarande spårar RF i salar, trappor och panelerade rum med larm innan säsongsbetonade svängningar orsakar sprickor, vridning eller förlust av förgyllning.",
       "Mini+ och Full+ sensorer loggar trådlöst i utställningsrum öppna för besökare. Motion-sensor korrelerar fukt- och värmebelastningar med turscheman; en Outdoor-sensor är essentiell där inomhusklimat släpar timmar efter vädret.",
     ],
     smarterTogether:
@@ -1650,7 +1650,7 @@ const sv: Record<string, IndustryContentOverlay> = {
       {
         name: "Humidity-sensor",
         badge: "Interiörskydd",
-        body: "Konservatorisk RH-loggning i salar, trappor och panelerade rum där säsongsbetonade svängningar orsakar sprickor, vridning och förlust av förgyllning.",
+        body: "Konservatorisk RF-loggning i salar, trappor och panelerade rum där säsongsbetonade svängningar orsakar sprickor, vridning och förlust av förgyllning.",
         sensorSlugs: ["humidity"],
       },
       {

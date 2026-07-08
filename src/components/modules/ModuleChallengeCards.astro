@@ -182,7 +182,18 @@ const stroke = {
             {challenge.title}
           </h3>
         </div>
-        <p class:list={["text-stone-900/75", isCompact ? "text-sm leading-snug" : "mt-3 text-base leading-relaxed"]}>{challenge.body}</p>
+        {
+          challenge.body.includes("<") ? (
+            <p
+              class:list={["text-stone-900/75", isCompact ? "text-sm leading-snug" : "mt-3 text-base leading-relaxed"]}
+              set:html={challenge.body}
+            />
+          ) : (
+            <p class:list={["text-stone-900/75", isCompact ? "text-sm leading-snug" : "mt-3 text-base leading-relaxed"]}>
+              {challenge.body}
+            </p>
+          )
+        }
       </article>
     ))
   }

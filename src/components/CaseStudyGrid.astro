@@ -2,11 +2,10 @@
 import type { CaseStudyLeaf } from "../data/hubs/caseStudies";
 import { getCaseStudyCategoryLabels } from "../data/hubs/caseStudies";
 import { getCases } from "../data/i18n/cases";
-import { defaultLang, type Lang } from "../data/lang";
+import { caseStudyPath, defaultLang, type Lang } from "../data/lang";
 
 interface Props {
   cases: CaseStudyLeaf[];
-  basePath: string;
   lang?: Lang;
   initialVisible?: number;
   loadMoreLabel?: string;
@@ -14,7 +13,6 @@ interface Props {
 
 const {
   cases,
-  basePath,
   lang = defaultLang,
   initialVisible = cases.length,
   loadMoreLabel,
@@ -24,7 +22,6 @@ const t = getCases(lang);
 const categoryLabels = getCaseStudyCategoryLabels(lang);
 const loadMoreText = loadMoreLabel ?? t.loadMore;
 
-const leafBase = basePath.endsWith("/") ? basePath : `${basePath}/`;
 const hasMore = cases.length > initialVisible;
 
 function isExternalHref(href: string): boolean {
@@ -67,7 +64,7 @@ const gridId = `case-grid-${Math.random().toString(36).slice(2, 9)}`;
             <p class="case-showcase__lead">{entry.lead}</p>
 
             <div class="case-showcase__actions">
-              <a href={`${leafBase}${entry.slug}/`} class="case-showcase__link case-showcase__link--primary">
+              <a href={caseStudyPath(entry.slug, lang)} class="case-showcase__link case-showcase__link--primary">
                 {t.readMore}
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                   <path

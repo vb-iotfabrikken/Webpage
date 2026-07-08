@@ -418,7 +418,7 @@ const de: SpaceManagementStrings = {
     },
     {
       title: "Politik vs. Realität",
-      body: "Die Unternehmensleitung kann zwar eine Fünf-Tage-Präsenzwoche anordnen, doch in der Praxis machen Teamleiter weiterhin Ausnahmen. Die Folge: Mitte der Woche erreicht die Büroauslastung ihren Höchststand, während Arbeitsplätze montags und freitags völlig leer stehen – und Sie Woche für Woche für Heizung, Kühlung und Reinigung auf Hochtouren zahlen.",
+      body: "Die Unternehmensleitung kann zwar eine Präsenzwoche anordnen, doch in der Praxis machen Teamleiter oft Ausnahmen. <strong>Die Folge:</strong> Volle Büros zur Wochenmitte, leere Schreibtische an den Randtagen – bei durchgehend vollen Betriebs- und Reinigungskosten.",
     },
     {
       title: "Grüne Agenda ohne Substanz",

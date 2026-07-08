@@ -41,7 +41,7 @@ flowchart TD
 | Utility bar | “Built in Denmark” status, **Helpcenter** (external), language switcher |
 | Primary nav | **Products**, **Resources**, **Company** only |
 | Hidden nav items | **Industries**, **Pricing** (no live destinations) |
-| Products dropdown | **Modules** (4 live) + **Sensors** (6 featured + “All sensors” + **Compare sensors**); when platform is live, a **Platform footer teaser** links to `/platform/` only (no sub-page list in the dropdown) |
+| Products dropdown | **Modules** + **Sensors** (4 featured each, **More →** hub links) + optional third column: **Compare sensors** and **RoomAlyzer platform** CTA cards |
 | Resources dropdown | **Case studies** only (Articles, Whitepapers hidden) |
 | Company dropdown | **About**, **Careers**, **Contact** |
 | Header actions | **Log in** (external RoomAlyzer), **Book a demo** CTA |
@@ -56,7 +56,7 @@ flowchart TD
 | Company | About, Careers, Partners, Press, Events, Contact |
 | Support / legal | Log in, Support (external), Impressum |
 | Bottom bar legal | Privacy, Impressum |
-| Always shown | Brand blurb, CVR, Roskilde + Hørning addresses, phone/email, opening hours, LinkedIn / YouTube / GitHub |
+| Always shown | Brand blurb, CVR, Roskilde + Hørning addresses, phone/email, opening hours, LinkedIn |
 
 **Footer links hidden:** Platform, Pricing, Industries, ROI, Articles/Library,
 Whitepapers, FAQ, Cookies, Terms, Security, SLA.
@@ -66,7 +66,7 @@ Whitepapers, FAQ, Cookies, Terms, Security, SLA.
 - **Helpcenter:** `support.iot-fabrikken.com`
 - **RoomAlyzer Log in** (locale-aware URL)
 - **Product sheet PDFs** under `/downloads/product-sheets/`
-- Social: LinkedIn, YouTube, GitHub
+- Social (footer): LinkedIn only during soft launch; YouTube returns at full launch
 
 ## Pages that ship
 

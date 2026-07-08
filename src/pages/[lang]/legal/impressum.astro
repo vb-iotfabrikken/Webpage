@@ -1,13 +1,13 @@
 ---
 import PlaceholderPage from "../../../components/PlaceholderPage.astro";
 import LegalProse from "../../../components/legal/LegalProse.astro";
-import { getLegalHub } from "../../../data/hubs/legal";
+import { getLegalHub, IMPRESSUM_LOCALES } from "../../../data/hubs/legal";
 import { getLegal } from "../../../data/i18n/legal";
-import { locales, langPath, type Lang } from "../../../data/lang";
+import { langPath, type Lang } from "../../../data/lang";
 import { isLivePath } from "../../../data/launch";
 
 export function getStaticPaths() {
-  return locales.map((l) => ({ params: { lang: l.code } }));
+  return IMPRESSUM_LOCALES.map((lang) => ({ params: { lang } }));
 }
 
 const { lang } = Astro.params as { lang: Lang };

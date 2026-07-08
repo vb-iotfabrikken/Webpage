@@ -2,7 +2,6 @@
 import Button from "./Button.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import ModuleIcon from "./ModuleIcon.astro";
-import PlatformIcon from "./PlatformIcon.astro";
 import IndustryIcon from "./IndustryIcon.astro";
 import NavDropdownLink from "./NavDropdownLink.astro";
 import MegaMenuLink from "./MegaMenuLink.astro";
@@ -26,6 +25,16 @@ const loginUrl = getRoomAlyzerLoginUrl(currentLang);
 const nav = getUi(currentLang).nav;
 const modules = getModules(currentLang);
 const liveModules = modules.filter((m) => isLivePath(m.href));
+const moduleFeaturedSlugs = [
+  "indoor-climate",
+  "space-management",
+  "water-detection",
+  "preservation",
+];
+const moduleFeatured = moduleFeaturedSlugs
+  .map((slug) => liveModules.find((m) => m.slug === slug))
+  .filter((m): m is (typeof liveModules)[number] => Boolean(m))
+  .map((m) => ({ label: m.name, href: m.href, slug: m.slug }));
 const lp = (path: string) => langPath(path, currentLang);
 const routeKey = stripLocaleRoute(pathname);
 const isActive = (segment: string) => {
@@ -61,9 +70,7 @@ const sensorFeaturedSlugs = [
   "full-plus",
   "mini-plus",
   "humidity",
-  "co2",
   "water-detector",
-  "cloud-connector",
 ];
 const sensorFeatured = sensorFeaturedSlugs
   .map((slug) => sensorsHub.leaves.find((l) => l.slug === slug))
@@ -159,6 +166,7 @@ const companyLinks = [
 
 // Soft-launch: platform teaser links to the hub only (full catalogue on /platform/).
 const showPlatform = isLivePath(lp("platform"));
+const showProductsCtas = showPlatform || showCompare;
 const showPricing = pricingLinks.length > 0;
 const showResources = resourcesLinks.length > 0;
 const showIndustries =
@@ -220,12 +228,17 @@ const showIndustries =
             </svg>
           </button>
           <div
-            class="nav-dropdown invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 w-[min(720px,calc(100vw-2rem))]"
+            class="nav-dropdown invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 w-[min(920px,calc(100vw-2rem))]"
           >
             <div class="bg-white rounded-xl shadow-xl border border-stone-100 p-6">
-              <div class="grid grid-cols-2 gap-6">
+              <div
+                class:list={[
+                  "grid gap-6 items-stretch",
+                  showProductsCtas ? "grid-cols-[1fr_1fr_minmax(11rem,13.5rem)]" : "grid-cols-2",
+                ]}
+              >
                 <!-- Modules -->
-                <div>
+                <div class="flex flex-col h-full min-w-0">
                   <a
                     href={lp("modules")}
                     class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
@@ -233,18 +246,24 @@ const showIndustries =
                     {nav.columns.modules}
                   </a>
                   <ul class="space-y-0.5">
-                    {liveModules.map((m) => (
+                    {moduleFeatured.map((m) => (
                       <li>
-                        <MegaMenuLink href={m.href} label={m.name} iconTone="forest">
+                        <MegaMenuLink href={m.href} label={m.label} iconTone="forest">
                           <ModuleIcon slot="icon" slug={m.slug} class="w-4 h-4" />
                         </MegaMenuLink>
                       </li>
                     ))}
                   </ul>
+                  <a
+                    href={lp("modules")}
+                    class="mt-auto pt-3 px-2 -mx-2 text-[12.5px] font-medium text-stone-400 hover:text-coral-500 transition-colors"
+                  >
+                    {nav.cta.more} →
+                  </a>
                 </div>
 
                 <!-- Sensors -->
-                <div>
+                <div class="flex flex-col h-full min-w-0">
                   <a
                     href={lp("sensors")}
                     class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
@@ -257,46 +276,50 @@ const showIndustries =
                         <MegaMenuLink href={f.href} label={f.label} />
                       </li>
                     ))}
-                    <li class="mt-1.5 pt-1.5 border-t border-stone-100">
-                      <a
-                        href={lp("sensors")}
-                        class="group/item flex rounded-lg px-2 py-1.5 -mx-2 text-[12.5px] font-medium text-coral-500 hover:bg-stone-50 hover:text-coral-500 transition-colors"
-                      >
-                        {nav.cta.allSensors} →
-                      </a>
-                    </li>
-                    <li class="mt-1">
-                      {showCompare && (
+                  </ul>
+                  <a
+                    href={lp("sensors")}
+                    class="mt-auto pt-3 px-2 -mx-2 text-[12.5px] font-medium text-stone-400 hover:text-coral-500 transition-colors"
+                  >
+                    {nav.cta.more} →
+                  </a>
+                </div>
+
+                {showProductsCtas && (
+                  <div class="flex flex-col gap-3">
+                    {showCompare && (
                       <a
                         href={lp("compare")}
-                        class="flex items-center justify-between gap-2 px-2 py-1.5 rounded-lg bg-coral-50 text-[12.5px] font-semibold text-coral-600 hover:bg-coral-100 transition-colors group/compare"
+                        class="flex items-center justify-between gap-2 p-2.5 rounded-lg bg-coral-50 hover:bg-coral-100 transition-colors group/products-compare"
                       >
-                        {nav.cta.compareSensors}
-                        <svg width="12" height="12" viewBox="0 0 14 14" fill="none" class="shrink-0 text-coral-500 group-hover/compare:translate-x-0.5 transition-transform" aria-hidden="true">
+                        <span class="text-[13.5px] font-semibold text-coral-600">
+                          {nav.cta.compareSensors}
+                        </span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0 text-coral-500 group-hover/products-compare:translate-x-0.5 transition-transform" aria-hidden="true">
                           <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                       </a>
-                      )}
-                    </li>
-                  </ul>
-                  {showPlatform && (
-                    <div class="mt-3 pt-3 border-t border-stone-100">
+                    )}
+                    {showPlatform && (
                       <a
                         href={lp("platform")}
-                        class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-3 hover:text-coral-500 transition-colors leading-snug"
+                        class="flex items-center justify-between gap-2 p-2.5 rounded-lg bg-stone-50 hover:bg-stone-100 transition-colors group/products-platform"
                       >
-                        {nav.columns.platform}
+                        <span class="min-w-0">
+                          <span class="block text-[13.5px] font-semibold text-navy-500 group-hover/products-platform:text-coral-500">
+                            {nav.cta.explorePlatform}
+                          </span>
+                          <span class="mt-0.5 block text-[11.5px] text-stone-400 leading-snug">
+                            {nav.cta.explorePlatformDesc}
+                          </span>
+                        </span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0 text-navy-500 group-hover/products-platform:text-coral-500 group-hover/products-platform:translate-x-0.5 transition-all" aria-hidden="true">
+                          <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
                       </a>
-                      <ul class="space-y-0.5">
-                        <li>
-                          <MegaMenuLink href={lp("platform")} label={nav.cta.explorePlatform} iconTone="forest">
-                            <PlatformIcon slot="icon" slug="dashboards" class="w-4 h-4" />
-                          </MegaMenuLink>
-                        </li>
-                      </ul>
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -533,12 +556,18 @@ const showIndustries =
               {nav.columns.modules}
             </a>
             <div class="flex flex-col gap-0.5">
-              {liveModules.map((m) => (
-                <MegaMenuLink href={m.href} label={m.name} iconTone="forest" variant="mobile">
+              {moduleFeatured.map((m) => (
+                <MegaMenuLink href={m.href} label={m.label} iconTone="forest" variant="mobile">
                   <ModuleIcon slot="icon" slug={m.slug} />
                 </MegaMenuLink>
               ))}
             </div>
+            <a
+              href={lp("modules")}
+              class="mt-2 px-2 py-1 text-[14px] font-medium text-stone-400 hover:text-coral-500 transition-colors"
+            >
+              {nav.cta.more} →
+            </a>
           </div>
           <div>
             <a href={lp("sensors")} class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500">
@@ -548,38 +577,47 @@ const showIndustries =
               {sensorFeatured.map((f) => (
                 <MegaMenuLink href={f.href} label={f.label} variant="mobile" />
               ))}
-              <a
-                href={lp("sensors")}
-                class="group/item flex rounded-lg px-2 py-2 mt-1 text-[14px] font-medium text-coral-500 hover:bg-stone-50 transition-colors"
-              >
-                {nav.cta.allSensors} →
-              </a>
+            </div>
+            <a
+              href={lp("sensors")}
+              class="mt-2 px-2 py-1 text-[14px] font-medium text-stone-400 hover:text-coral-500 transition-colors"
+            >
+              {nav.cta.more} →
+            </a>
+          </div>
+          {showProductsCtas && (
+            <div class="flex flex-col gap-2 pt-1">
               {showCompare && (
-              <a
-                href={lp("compare")}
-                class="mt-1.5 flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg bg-coral-50 text-[15px] font-semibold text-coral-600 hover:bg-coral-100 transition-colors"
-              >
-                {nav.cta.compareSensors}
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </a>
+                <a
+                  href={lp("compare")}
+                  class="flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg bg-coral-50 hover:bg-coral-100 transition-colors"
+                >
+                  <span class="text-[15px] font-semibold text-coral-600">{nav.cta.compareSensors}</span>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0 text-coral-500" aria-hidden="true">
+                    <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
               )}
               {showPlatform && (
-                <div class="mt-3 pt-3 border-t border-stone-100">
-                  <a
-                    href={lp("platform")}
-                    class="block py-1.5 text-sm font-semibold uppercase tracking-wider text-stone-300 hover:text-coral-500"
-                  >
-                    {nav.columns.platform}
-                  </a>
-                  <MegaMenuLink href={lp("platform")} label={nav.cta.explorePlatform} iconTone="forest" variant="mobile">
-                    <PlatformIcon slot="icon" slug="dashboards" />
-                  </MegaMenuLink>
-                </div>
+                <a
+                  href={lp("platform")}
+                  class="flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg bg-stone-50 hover:bg-stone-100 transition-colors"
+                >
+                  <span class="min-w-0">
+                    <span class="block text-[15px] font-semibold text-navy-500">
+                      {nav.cta.explorePlatform}
+                    </span>
+                    <span class="mt-0.5 block text-[13px] text-stone-400 leading-snug">
+                      {nav.cta.explorePlatformDesc}
+                    </span>
+                  </span>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0 text-navy-500" aria-hidden="true">
+                    <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
               )}
             </div>
-          </div>
+          )}
         </div>
       </details>
 

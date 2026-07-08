@@ -2,19 +2,30 @@
 import CaseStudyDetailPage from "../../../components/CaseStudyDetailPage.astro";
 import { getCaseStudiesHub } from "../../../data/hubs/caseStudies";
 import { getCases } from "../../../data/i18n/cases";
-import { locales, langPath, canonicalizeSegment, type Lang } from "../../../data/lang";
+import { locales, langPath, canonicalizeSegment, astroLang } from "../../../data/lang";
 import type { CaseStudyLeaf } from "../../../data/hubs/caseStudies";
 
 export function getStaticPaths() {
   return locales.flatMap((l) =>
-    getCaseStudiesHub(l.code).leaves.map((leaf) => ({
-      params: { lang: l.code, slug: leaf.slug },
-      props: { leaf },
-    })),
+    getCaseStudiesHub(l.code).leaves.flatMap((leaf) => {
+      const entry = {
+        params: { lang: l.code, slug: leaf.slug },
+        props: { leaf },
+      };
+      const canonicalSlug = canonicalizeSegment(leaf.slug, l.code);
+      if (canonicalSlug === leaf.slug) return [entry];
+      return [
+        entry,
+        {
+          params: { lang: l.code, slug: canonicalSlug },
+          props: { leaf },
+        },
+      ];
+    }),
   );
 }
 
-const { lang } = Astro.params as { lang: Lang; slug: string };
+const lang = astroLang(Astro);
 const { leaf } = Astro.props as { leaf: CaseStudyLeaf };
 const t = getCases(lang);
 const casesHref = langPath("case-studies", lang);

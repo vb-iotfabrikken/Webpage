@@ -202,3 +202,27 @@ export function resolveCaseStudyDetail(
     intro: [leaf.lead],
   };
 }
+
+/**
+ * Whether a case earns a hub listing and indexable detail page: customer quote,
+ * external article link, or multi-paragraph intro. Thin migration teasers stay
+ * reachable (legacy redirects) but are hidden from the hub and noindexed.
+ */
+export function isPublishedCaseStudy(
+  leaf: CaseStudyLeaf,
+  lang: Lang = defaultLang,
+): boolean {
+  const detail = resolveCaseStudyDetail(leaf, lang);
+  return (
+    Boolean(detail.quote) ||
+    Boolean(leaf.articleHref) ||
+    detail.intro.length > 1
+  );
+}
+
+export function filterPublishedCaseStudies(
+  cases: CaseStudyLeaf[],
+  lang: Lang = defaultLang,
+): CaseStudyLeaf[] {
+  return cases.filter((leaf) => isPublishedCaseStudy(leaf, lang));
+}

@@ -956,7 +956,7 @@ function drawDeskHeatmap(
   doc.setTextColor(...STONE_300);
   y = drawWrappedText(
     doc,
-    "Illustrative layout - not your actual floor plan. Desk sensors map the real pattern within weeks.",
+    "Illustrative layout — not your actual floor plan. Desk sensors map the real pattern within weeks.",
     MARGIN,
     y + 1,
     CONTENT_W,
