@@ -1,4 +1,6 @@
 /** Hero and capability screenshot metadata for the water-detection module page. */
+import type { Lang } from "./lang";
+
 export const waterDetectionDashboard = {
   width: 1200,
   height: 750,
@@ -35,7 +37,7 @@ export const waterDetectionFeatureImages: Record<
 > = {
   "smart-notifications": {
     src: "/images/modules/water-detection-smart-notifications.webp",
-    width: 829,
+    width: 769,
     height: 1024,
     placeholderLabel: "Smart water alert via SMS and email",
   },
@@ -64,3 +66,33 @@ export const waterDetectionFeatureImages: Record<
     placeholderLabel: "NB-IoT water sensor in plant room",
   },
 };
+
+const waterDetectionSmartNotificationsByLang: Partial<
+  Record<Lang, { src: string; width: number; height: number }>
+> = {
+  de: {
+    src: "/images/modules/water-detection-smart-notifications-de.webp",
+    width: 769,
+    height: 1024,
+  },
+  da: {
+    src: "/images/modules/water-detection-smart-notifications-da.webp",
+    width: 769,
+    height: 1024,
+  },
+};
+
+export function getWaterDetectionFeatureImages(
+  lang: Lang,
+): Record<string, { width: number; height: number; placeholderLabel: string; src?: string }> {
+  const localized = waterDetectionSmartNotificationsByLang[lang];
+  if (!localized) return waterDetectionFeatureImages;
+
+  return {
+    ...waterDetectionFeatureImages,
+    "smart-notifications": {
+      ...waterDetectionFeatureImages["smart-notifications"],
+      ...localized,
+    },
+  };
+}

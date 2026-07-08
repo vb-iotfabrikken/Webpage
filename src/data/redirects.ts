@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 
 import { articles as articleCatalog } from "./library/catalog";
 import { getEventRedirectMap } from "./events";
+import { getImpressumRedirectMap } from "./hubs/legal";
 import { getCaseStudiesContent } from "./hubs/caseStudies";
 import { platformHub } from "./hubs/platform";
 import {
@@ -310,6 +311,7 @@ export function getSiteRedirectMap(): Record<string, string> {
     ...getLegacyArticlesRedirectMap(),
     ...getBarePathLegacyRedirectMap(),
     ...getEventRedirectMap(),
+    ...getImpressumRedirectMap(),
   };
   // Localize every target so redirects land in a single hop on the localized
   // destination. Sources stay as authored (legacy URLs we redirect *from*).

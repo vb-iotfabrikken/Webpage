@@ -1,6 +1,8 @@
 import type { Lang } from "./lang";
 
 export interface GlossaryEntryOverlay {
+  term?: string;
+  aka?: string[];
   short?: string;
   detail?: string;
 }
@@ -104,7 +106,9 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Et HTTP request-response-interface til at hente sensordata, administrere rum og konfigurere alarmer. Dokumenteret med OpenAPI.",
     },
     rh: {
-      short: "Forholdet mellem vanddamptryk og mætning, angivet i procent. 40–60 % RH er komfortzonen for de fleste belagte rum.",
+      term: "RF",
+      aka: ["Relativ luftfugtighed"],
+      short: "Forholdet mellem vanddamptryk og mætning, angivet i procent. 40–60 % RF er komfortzonen for de fleste belagte rum.",
     },
     "scope-2": {
       short: "GHG-emissioner fra købt elektricitet og fjernvarme. Det meste af bygningsdriftens emissioner er scope 2.",
@@ -236,6 +240,8 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Eine HTTP-Schnittstelle zum Abrufen von Sensordaten, Verwalten von Räumen und Konfigurieren von Alarmen. Dokumentiert mit OpenAPI.",
     },
     rh: {
+      term: "r. F.",
+      aka: ["Relative Luftfeuchtigkeit"],
       short: "Verhältnis von Dampfdruck zu Sättigung in Prozent. 40–60 % r. F. ist der Komfortbereich für die meisten belegten Räume.",
     },
     "scope-2": {
@@ -368,7 +374,9 @@ export const glossaryI18n: Partial<Record<Lang, Record<string, GlossaryEntryOver
       short: "Ett HTTP request-response-gränssnitt för sensordata, rumshantering och larmkonfiguration. Dokumenterat med OpenAPI.",
     },
     rh: {
-      short: "Förhållandet mellan ångtryck och mättnad i procent. 40–60 % RH är komfortzonen för de flesta belagda rum.",
+      term: "RF",
+      aka: ["Relativ luftfuktighet"],
+      short: "Förhållandet mellan ångtryck och mättnad i procent. 40–60 % RF är komfortzonen för de flesta belagda rum.",
     },
     "scope-2": {
       short: "GHG-utsläpp från köpt el och fjärrvärme. Det mesta av byggnadsdriftens utsläpp är scope 2.",

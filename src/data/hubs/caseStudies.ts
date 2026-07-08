@@ -2,6 +2,7 @@ import type { Lang } from "../lang";
 import { defaultLang } from "../lang";
 import type { CaseStudyCategory, Hub, HubLeaf } from "./types";
 import { getCases } from "../i18n/cases";
+import { filterPublishedCaseStudies } from "./caseStudyDetails";
 import { caseStudiesI18n } from "./caseStudies.i18n";
 
 export const caseStudyCategoryLabels: Record<CaseStudyCategory, string> = {
@@ -403,6 +404,15 @@ const byLang: Record<Lang, CaseStudiesContent> = {
 
 export function getCaseStudiesContent(lang: Lang): CaseStudiesContent {
   return byLang[lang] ?? byLang.en;
+}
+
+/** Hub grid: rich cases only (quote, article, or multi-paragraph intro). */
+export function getPublishedCaseStudiesContent(lang: Lang): CaseStudiesContent {
+  const content = getCaseStudiesContent(lang);
+  return {
+    ...content,
+    cases: filterPublishedCaseStudies(content.cases, lang),
+  };
 }
 
 /** Hub shape for static routes and legacy imports (English catalog). */

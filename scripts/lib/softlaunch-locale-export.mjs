@@ -134,7 +134,8 @@ function extractLegalHtmlBodies(text, locale) {
   const localeStart = text.indexOf(`const ${locale}:`);
   if (localeStart === -1) return results;
   const localeSlice = text.slice(localeStart);
-  for (const section of ["privacy", "impressum"]) {
+  const sections = locale === "da" || locale === "sv" ? ["privacy"] : ["privacy", "impressum"];
+  for (const section of sections) {
     const bodyMarker = new RegExp(`${section}:\\s*\\{[\\s\\S]*?body:\\s*\``);
     const match = bodyMarker.exec(localeSlice);
     if (!match) continue;
@@ -279,6 +280,9 @@ function shouldInclude({ targetLocale, filter, locale, keyPath, ctx }) {
     case "legal-hub-leaves":
       if (keyPath.startsWith("leaves.")) {
         const leaf = keyPath.split(".")[1];
+        if (leaf === "impressum" && (targetLocale === "da" || targetLocale === "sv")) {
+          return false;
+        }
         return leaf === "privacy" || leaf === "impressum";
       }
       return false;

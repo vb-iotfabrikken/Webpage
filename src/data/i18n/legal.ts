@@ -200,7 +200,9 @@ const en: LegalStrings = {
   },
 };
 
-const da: LegalStrings = {
+type LegalDictionary = Omit<LegalStrings, "impressum"> & { impressum?: LegalStrings["impressum"] };
+
+const da: LegalDictionary = {
   common: { home: "Hjem", legal: "Juridisk", lastUpdated: "Senest opdateret:" },
   privacy: {
     metaTitle: "Privatlivspolitik | IoT Fabrikken",
@@ -346,24 +348,6 @@ const da: LegalStrings = {
     <p>Brug cookiebanneret ved første besøg, eller klik <strong>Cookieindstillinger</strong> (nederst til venstre) for at ændre valget senere. Du kan også blokere cookies i browseren.</p>
     <h2>Kontakt</h2>
     <p>Spørgsmål om cookies: <a href="mailto:info@iot-fabrikken.com">info@iot-fabrikken.com</a>.</p>
-    `,
-  },
-  impressum: {
-    metaTitle: "Impressum | IoT Fabrikken",
-    body: `
-    <h3>Virksomhedsoplysninger</h3>
-    <p><strong>IoT Fabrikken ApS</strong><br />Brønsager 1<br />4000 Roskilde<br />Danmark</p>
-    <h3>Repræsenteret af</h3>
-    <p>Jon Wichmann (CEO / Partner)<br />Mikkel Fischer (Partner)</p>
-    <h3>Kontakt</h3>
-    <ul>
-      <li><strong>Telefon:</strong> <a href="tel:+4571718090">+45 71 71 80 90</a></li>
-      <li><strong>E-mail:</strong> <a href="mailto:info@iot-fabrikken.com">info@iot-fabrikken.com</a></li>
-      <li><strong>Website:</strong> <a href="https://www.iot-fabrikken.com/">www.iot-fabrikken.com</a></li>
-    </ul>
-    <h3>Registreringsoplysninger</h3>
-    <p>Registreret hos Erhvervsstyrelsen (<em>Det Centrale Virksomhedsregister</em>).</p>
-    <p><strong>CVR-nummer:</strong> 39110393</p>
     `,
   },
 };
@@ -536,7 +520,7 @@ const de: LegalStrings = {
   },
 };
 
-const sv: LegalStrings = {
+const sv: LegalDictionary = {
   common: { home: "Hem", legal: "Juridik", lastUpdated: "Senast uppdaterad:" },
   privacy: {
     metaTitle: "Integritetspolicy | IoT Fabrikken",
@@ -684,27 +668,9 @@ const sv: LegalStrings = {
     <p>Frågor om cookies: <a href="mailto:info@iot-fabrikken.com">info@iot-fabrikken.com</a>.</p>
     `,
   },
-  impressum: {
-    metaTitle: "Impressum | IoT Fabrikken",
-    body: `
-    <h3>Företagsuppgifter</h3>
-    <p><strong>IoT Fabrikken ApS</strong><br />Brønsager 1<br />4000 Roskilde<br />Danmark</p>
-    <h3>Företräds av</h3>
-    <p>Jon Wichmann (CEO / Partner)<br />Mikkel Fischer (Partner)</p>
-    <h3>Kontakt</h3>
-    <ul>
-      <li><strong>Telefon:</strong> <a href="tel:+4571718090">+45 71 71 80 90</a></li>
-      <li><strong>E-post:</strong> <a href="mailto:info@iot-fabrikken.com">info@iot-fabrikken.com</a></li>
-      <li><strong>Webbplats:</strong> <a href="https://www.iot-fabrikken.com/">www.iot-fabrikken.com</a></li>
-    </ul>
-    <h3>Registrering</h3>
-    <p>Registrerat hos den danska Erhvervsstyrelsen (<em>Det Centrale Virksomhedsregister</em>).</p>
-    <p><strong>CVR-nummer:</strong> 39110393</p>
-    `,
-  },
 };
 
-const dictionaries: Record<Lang, LegalStrings> = { en, da, de, sv };
+const dictionaries: Record<Lang, LegalDictionary> = { en, da, de, sv };
 
 function applyLocaleLegalLinks(html: string, lang: Lang): string {
   // The inline bodies hard-code locale-prefixed English-segment legal links
@@ -718,6 +684,7 @@ function applyLocaleLegalLinks(html: string, lang: Lang): string {
 
 export function getLegal(lang: Lang): LegalStrings {
   const base = dictionaries[lang] ?? dictionaries[defaultLang];
+  const impressum = base.impressum ?? dictionaries.en.impressum!;
   const privacyBody = applyLocaleLegalLinks(
     applyLocaleContactToHtml(base.privacy.body, lang),
     lang,
@@ -737,8 +704,8 @@ export function getLegal(lang: Lang): LegalStrings {
       body: cookiesBody,
     },
     impressum: {
-      ...base.impressum,
-      body: applyLocaleContactToHtml(base.impressum.body, lang),
+      ...impressum,
+      body: applyLocaleContactToHtml(impressum.body, lang),
     },
   };
 }

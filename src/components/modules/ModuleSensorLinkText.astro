@@ -1,6 +1,6 @@
 ---
 import type { ModuleProseWithLinks } from "../../data/i18n/modulePageTypes";
-import { langPath, type Lang } from "../../data/lang";
+import { caseStudyPath, langPath, type Lang } from "../../data/lang";
 
 interface Props {
   lang: Lang;
@@ -29,7 +29,7 @@ const linkClass =
       }
       if (segment.type === "caseStudy") {
         return (
-          <a href={langPath(`/case-studies/${segment.slug}/`, lang)} class={linkClass}>
+          <a href={caseStudyPath(segment.slug, lang)} class={linkClass}>
             {segment.label}
           </a>
         );

@@ -16,6 +16,8 @@ const SOURCES = [
   { input: "HVAC.png", output: "water-detection-spotlight-compact.webp", width: 960 },
   { input: "Pipes.png", output: "water-detection-spotlight-pro.webp", width: 960 },
   { input: "SMS Alert EN.jpeg", output: "water-detection-smart-notifications.webp", width: 1200 },
+  { input: "SMS Alert DE.jpeg", output: "water-detection-smart-notifications-de.webp", width: 1200 },
+  { input: "SMS Alert DK.jpeg", output: "water-detection-smart-notifications-da.webp", width: 1200 },
   { input: "WD 2 in use .png", output: "water-detection-visual-overview.webp", width: 1200 },
   {
     input: "WD 3 instant alert.png",

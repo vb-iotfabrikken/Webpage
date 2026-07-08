@@ -1,7 +1,8 @@
 ---
 import { resolveCaseStudyLeaf } from "../../data/hubs/caseStudies";
+import { isPublishedCaseStudy } from "../../data/hubs/caseStudyDetails";
 import { getUi } from "../../data/i18n/ui";
-import { langPath, type Lang } from "../../data/lang";
+import { caseStudyPath, type Lang } from "../../data/lang";
 
 interface Props {
   slugs: string[];
@@ -22,8 +23,6 @@ const cases = slugs
 if (cases.length === 0) {
   return;
 }
-
-const casesBase = langPath("case-studies", lang).replace(/\/$/, "");
 ---
 
 <div class="reveal bg-white border border-stone-100 rounded-xl p-6">
@@ -31,18 +30,31 @@ const casesBase = langPath("case-studies", lang).replace(/\/$/, "");
     {t.eyebrow}
   </h2>
   <ul class="space-y-4" role="list">
-    {cases.map((entry) => (
-      <li>
-        <a href={`${casesBase}/${entry.slug}/`} class="group flex items-baseline gap-3">
-          <span class="mt-1 w-1.5 h-1.5 rounded-full shrink-0 bg-sky-500"></span>
-          <div>
-            <div class="font-semibold text-navy-500 group-hover:text-coral-500 transition-colors">
-              {entry.title}
+    {cases.map((entry) => {
+      const published = isPublishedCaseStudy(entry, lang);
+      return (
+        <li>
+          {published ? (
+            <a href={caseStudyPath(entry.slug, lang)} class="group flex items-baseline gap-3">
+              <span class="mt-1 w-1.5 h-1.5 rounded-full shrink-0 bg-sky-500"></span>
+              <div>
+                <div class="font-semibold text-navy-500 group-hover:text-coral-500 transition-colors">
+                  {entry.title}
+                </div>
+                <p class="mt-1 text-sm text-stone-900/70 leading-relaxed">{entry.lead}</p>
+              </div>
+            </a>
+          ) : (
+            <div class="flex items-baseline gap-3">
+              <span class="mt-1 w-1.5 h-1.5 rounded-full shrink-0 bg-stone-300"></span>
+              <div>
+                <div class="font-semibold text-navy-500">{entry.title}</div>
+                <p class="mt-1 text-sm text-stone-900/70 leading-relaxed">{entry.lead}</p>
+              </div>
             </div>
-            <p class="mt-1 text-sm text-stone-900/70 leading-relaxed">{entry.lead}</p>
-          </div>
-        </a>
-      </li>
-    ))}
+          )}
+        </li>
+      );
+    })}
   </ul>
 </div>

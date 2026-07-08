@@ -150,7 +150,10 @@ function caseStudyScopedRoutes(): Record<string, Lang[]> {
 }
 
 function buildLocaleScopedRoutes(asOf: Date = new Date()): Record<string, readonly Lang[]> {
-  const routes: Record<string, readonly Lang[]> = { ...caseStudyScopedRoutes() };
+  const routes: Record<string, readonly Lang[]> = {
+    ...caseStudyScopedRoutes(),
+    "legal/impressum": ["en", "de"],
+  };
   for (const event of getLiveEvents(asOf)) {
     if (event.detailLocales.length === 0) continue;
     routes[`events/${event.slug}`] = event.detailLocales;
@@ -193,6 +196,7 @@ export function isRouteAvailableInLocale(routeKey: string, lang: Lang): boolean 
 
 /** Parent hub to land on when switching away from a locale-scoped route. */
 export function getRouteFallback(routeKey: string, targetLang: Lang): string {
+  if (routeKey === "legal/impressum") return langPath("", targetLang);
   if (routeKey.startsWith("events/")) return langPath("events", targetLang);
   if (routeKey.startsWith("contact/")) return langPath("contact", targetLang);
   if (routeKey.startsWith("case-studies/")) return langPath("case-studies", targetLang);

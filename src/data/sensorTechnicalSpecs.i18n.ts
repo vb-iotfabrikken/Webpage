@@ -1,6 +1,9 @@
 /**
  * Localized technical spec values for enhanced sensor product pages.
  * Row labels live in `src/data/i18n/ui.ts` under `sensors.detail.specs`.
+ *
+ * Nordic humidity abbreviations (`da`/`sv`: RF; `de`: r. F.) must match
+ * Productsheets/DK/ and Productsheets/DE/ spec rows.
  */
 import type { Lang } from "./lang";
 import type { SpecRowId } from "./sensorTechnicalSpecs";
@@ -20,11 +23,11 @@ export const sensorTechnicalSpecsI18n: Partial<
       values: {
         measurements: "Temperatur og luftfugtighed",
         dimensions: "H124 × B60 × D26 mm · 130 g",
-        measuringRange: "Temperatur −15 til +70 °C / Luftfugtighed 0–99 % r.f.",
+        measuringRange: "Temperatur −15 til +70 °C / Luftfugtighed 0–99 % RF",
         operatingRange: "−35 °C til +70 °C",
-        precision: "Temperatur ±0,1 °C / Luftfugtighed ±1 % r.f.",
+        precision: "Temperatur ±0,1 °C / Luftfugtighed ±1 % RF",
         longTermDrift:
-          "Temperatur <0,03 °C/år / Luftfugtighed <0,20 % r.f./år (under normale forhold)",
+          "Temperatur <0,03 °C/år / Luftfugtighed <0,20 % RF/år (under normale forhold)",
         battery: "Op til 10 år (udskifteligt 3 × AA litiumpakke)",
         connectivity: "NB-IoT (direkte mobil, uden Wi-Fi eller gateway)",
         activation: "Knap på sensoren",
@@ -42,11 +45,11 @@ export const sensorTechnicalSpecsI18n: Partial<
       values: {
         measurements: "Temperatur und Luftfeuchtigkeit",
         dimensions: "H124 × B60 × T26 mm · 130 g",
-        measuringRange: "Temperatur −15 bis +70 °C / Luftfeuchtigkeit 0–99 % r.F.",
+        measuringRange: "Temperatur −15 bis +70 °C / Luftfeuchtigkeit 0–99 % r. F.",
         operatingRange: "−35 °C bis +70 °C",
-        precision: "Temperatur ±0,1 °C / Luftfeuchtigkeit ±1 % r.F.",
+        precision: "Temperatur ±0,1 °C / Luftfeuchtigkeit ±1 % r. F.",
         longTermDrift:
-          "Temperatur <0,03 °C/Jahr / Luftfeuchtigkeit <0,20 % r.F./Jahr (unter normalen Bedingungen)",
+          "Temperatur <0,03 °C/Jahr / Luftfeuchtigkeit <0,20 % r. F./Jahr (unter normalen Bedingungen)",
         battery: "Bis zu 10 Jahre (austauschbares 3 × AA-Lithium-Paket)",
         connectivity: "NB-IoT (direktes Mobilfunk, ohne Wi-Fi oder Gateway)",
         activation: "Taste am Sensor",

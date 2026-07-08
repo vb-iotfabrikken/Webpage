@@ -54,6 +54,8 @@ rules below. Use `localizedSensorName()`, `localizedModuleName()`, and
 | **German (`de`)** | Sensor / product names | English catalogue tokens; approved overrides (`Wasserdetektor`, `Außen Sensor`, `Range Extender und Bracket`) | `Feuchtesensor`, `Öffnen/Schließen`, `Humidity Sensor`, `Range Extender and Bracket` |
 | **German (`de`)** | Preservation product terms | `Erhaltungsindex`, `Erhaltungsheizung`, … | `Preservation Index`, `Preservationsheizung`, … |
 | **German (`de`)** | Relative humidity | `r. F.` or `relative Luftfeuchtigkeit` / `Luftfeuchtigkeit` | `RH`, `RF`, `rF`, `relative Feuchte` |
+| **Danish (`da`)** | Relative humidity | `RF` or `relativ luftfugtighed` / `luftfugtighed` (match `Productsheets/DK/`) | `RH`, `r.f.` |
+| **Swedish (`sv`)** | Relative humidity | `RF` or `relativ luftfuktighet` / `luftfuktighet` | `RH` |
 | **German (`de`)** | Conjunction punctuation | `XX und YY` or split sentences | `, und` (comma immediately before *und*) |
 | **German (`de`)** | Standard noun capitalization | `Sensoren`, `Entscheidungen` (generic prose nouns) | Lowercase nouns (`sensor`, `entscheidungen`) in prose |
 | **Danish / Swedish (`da` / `sv`)** | Sentence case (mirror `en`) | `sensor`, `sensorer`; hyphenated compounds (`Humidity-sensoren`, `CO2-sensor`) | English Title Case (`CO2 Sensor`, `Temperature Sensor`) |

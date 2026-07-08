@@ -10,15 +10,18 @@
  * 4. Relative humidity: r. F. or relative Luftfeuchtigkeit — never RH/RF.
  * 5. Never write ", und" — use "XX und YY" or split the sentence.
  *
- * Shared term locks: src/data/de-term-locks.json
+ * Danish (`da`): RF or relativ luftfugtighed — never RH/r.f.
+ * Swedish (`sv`): RF or relativ luftfuktighet — never RH.
+ *
+ * Scans src/data and src/components; glossary rh term must be localized in glossary.i18n.ts.
  */
 
 import fs from "node:fs";
 import path from "node:path";
 import lockData from "../src/data/de-term-locks.json" with { type: "json" };
 
-const roots = ["src/data"];
-const exts = new Set([".ts"]);
+const roots = ["src/data", "src/components"];
+const exts = new Set([".ts", ".astro"]);
 
 const PRODUCT_TOKENS =
   "Humidity|CO2|Motion|Outdoor|Temperature|Desk|Touch|Open/Close|Full\\+|Mini\\+|Water";
@@ -71,6 +74,12 @@ const dePatterns = [
     re: /relative Feuchte/g,
     locales: ["de"],
     hint: 'Use "relative Luftfeuchtigkeit"',
+  },
+  {
+    id: "de-r-dot-f-compact",
+    re: /r\.F\./g,
+    locales: ["de"],
+    hint: 'Use spaced form: "r. F."',
   },
   {
     id: "de-comma-und",
@@ -126,6 +135,24 @@ const dePatterns = [
 
 const nordicPatterns = [
   {
+    id: "da-rh-forbidden",
+    re: /\bRH\b/g,
+    locales: ["da"],
+    hint: 'Use "RF" or "relativ luftfugtighed"',
+  },
+  {
+    id: "da-r-dot-f-forbidden",
+    re: /r\.f\./g,
+    locales: ["da"],
+    hint: 'Use "RF" (see Productsheets/DK/)',
+  },
+  {
+    id: "sv-rh-forbidden",
+    re: /\bRH\b/g,
+    locales: ["sv"],
+    hint: 'Use "RF" or "relativ luftfuktighet"',
+  },
+  {
     id: "nordic-title-case-sensor",
     re: new RegExp(`\\b(?:${PRODUCT_TOKENS}) Sensor\\b`, "g"),
     locales: ["da", "sv"],
@@ -169,6 +196,67 @@ function extractStringLiterals(line) {
     literals.push({ quote: m[1], value: m[2], index: m.index });
   }
   return literals;
+}
+
+/** RH glossary term must be localized on non-English locales. */
+function auditGlossaryRhTerms() {
+  const file = "src/data/glossary.i18n.ts";
+  if (!fs.existsSync(file)) return [];
+
+  const text = fs.readFileSync(file, "utf8");
+  const expected = {
+    da: "RF",
+    de: "r. F.",
+    sv: "RF",
+  };
+  const hits = [];
+
+  for (const [locale, term] of Object.entries(expected)) {
+    const blockStart = text.indexOf(`  ${locale}: {`);
+    if (blockStart === -1) continue;
+
+    const nextLocale = text.indexOf("\n  },", blockStart);
+    const block = text.slice(blockStart, nextLocale === -1 ? undefined : nextLocale);
+    const rhStart = block.indexOf("rh: {");
+    if (rhStart === -1) {
+      hits.push({
+        file,
+        line: 0,
+        locale,
+        rule: "glossary-rh-term-missing",
+        hint: `Add rh: { term: "${term}", … } to glossary.i18n.ts`,
+        match: "rh",
+        snippet: `Missing rh overlay for ${locale}`,
+      });
+      continue;
+    }
+
+    const rhBlock = block.slice(rhStart, block.indexOf("},", rhStart) + 2);
+    const termMatch = rhBlock.match(/term:\s*["']([^"']+)["']/);
+    if (!termMatch) {
+      hits.push({
+        file,
+        line: 0,
+        locale,
+        rule: "glossary-rh-term-missing",
+        hint: `Add term: "${term}" to rh overlay in glossary.i18n.ts`,
+        match: "rh",
+        snippet: rhBlock.slice(0, 80),
+      });
+    } else if (termMatch[1] !== term) {
+      hits.push({
+        file,
+        line: 0,
+        locale,
+        rule: "glossary-rh-term-wrong",
+        hint: `Use term: "${term}" for ${locale} rh glossary entry`,
+        match: termMatch[1],
+        snippet: rhBlock.slice(0, 80),
+      });
+    }
+  }
+
+  return hits;
 }
 
 function auditFile(file) {
@@ -221,6 +309,7 @@ for (const root of roots) {
     allHits.push(...auditFile(file));
   }
 }
+allHits.push(...auditGlossaryRhTerms());
 
 if (allHits.length === 0) {
   console.log("No locale grammar violations found.");

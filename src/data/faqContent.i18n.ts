@@ -54,7 +54,7 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
     ],
     sensors: [
       { q: "Hvilke sensorer leverer I?", a: "Vores portefølje er organiseret i fire linjer: RoomAlyzer Air (klimasensorer som CO2, Full+, Humidity, Mini+, Mini+ PIR, Outdoor og Temperature), RoomAlyzer Space (Desk, Motion, Open/Close og Touch), RoomAlyzer Water (Water detector og Water rope) og Miscellaneous (Cloud connector, Range Extender og Bracket). Download produktark fra sensorssektionen." },
-      { q: "Skal sensorerne kalibreres?", a: "CO₂-sensorer kalibrerer sig mod udendørs niveauer; fugtsensorer driver ca. 1 % RH pr. år; temperatursensorer er stabile i levetiden. Vi anbefaler fabriksgenkalibrering hvert femte år til bevaringskritiske udrulninger." },
+      { q: "Skal sensorerne kalibreres?", a: "CO₂-sensorer kalibrerer sig mod udendørs niveauer; fugtsensorer driver ca. 1 % RF pr. år; temperatursensorer er stabile i levetiden. Vi anbefaler fabriksgenkalibrering hvert femte år til bevaringskritiske udrulninger." },
       { q: "Hvad er typisk batterilevetid?", a: "Tre til syv år afhængigt af sensortype, rapporteringsinterval og omgivelsestemperatur. Platformen viser batterimåler for hver sensor og forudsiger skiftedatoer." },
       { q: "Hvor kan sensorerne placeres?", a: "Overalt med NB-IoT-dækning. Indendørs placeres de 1,1–1,7 m over gulv, væk fra direkte sollys, stikkontakter og vinduer. Sensorplaceringsguiden dækker detaljer pr. rumtype." },
       { q: "Er sensorerne CE-mærkede?", a: "Ja. Alle vores sensorer er CE-mærkede og overholder Radio Equipment Directive (RED), Low Voltage Directive (LVD) og EMC Directive." },
@@ -106,7 +106,7 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
       { q: "Kann ich alles exportieren, wenn ich aussteige?", a: "Ja. Jeder Kunde kann alle historischen Sensormessungen als CSV oder Parquet sowie Metadaten (Räume, Grundrisse, Schwellen) als JSON exportieren. Keine Exportgebühr, kein Lock-in." },
     ],
     "indoor-climate": [
-      { q: "Welche Parameter misst RoomAlyzer für das Raumklima?", a: "CO₂ (400–5000 ppm), Temperatur, relative Luftfeuchte und je nach Sensor VOC (TVOC), Feinstaub (PM2.5) und Beleuchtungsstärke. Alle Parameter werden kontinuierlich erfasst und in von Ihnen konfigurierten Intervallen gemeldet." },
+      { q: "Welche Parameter misst RoomAlyzer für das Raumklima?", a: "CO₂ (400–5000 ppm), Temperatur, relative Luftfeuchtigkeit und je nach Sensor VOC (TVOC), Feinstaub (PM2.5) und Beleuchtungsstärke. Alle Parameter werden kontinuierlich erfasst und in von Ihnen konfigurierten Intervallen gemeldet." },
       { q: "Wie genau sind die CO₂-Messungen?", a: "Typischerweise ±30 ppm oder ±3 % des Messwerts (je nachdem, was größer ist) im Bereich 400–2000 ppm, der für Klassenzimmer und Büros zählt. Sensoren kalibrieren sich bei regulären Lüftungszyklen gegen die Außenluft." },
       { q: "Welchen CO₂-Schwellenwert sollten wir nutzen?", a: "EN 16798 Kategorie II definiert 800–1200 ppm als akzeptabel; viele Schul-Kunden alarmieren bei 1200 ppm. In Deutschland gelten vergleichbare Anforderungen über DIN/EN-Normen, GEG oder Ihre lokale Vorgabe." },
       { q: "Brauchen wir einen Sensor pro Raum?", a: "Ja, ein Sensor pro Raum ist die Faustregel. Sehr große Räume wie Auditorien und Sporthallen können zwei oder drei Sensoren für eine genaue Zonenerfassung benötigen." },
@@ -238,7 +238,7 @@ export const faqContentI18n: Partial<Record<Lang, FaqContentOverlay>> = {
     ],
     sensors: [
       { q: "Vilka sensorer levererar ni?", a: "Vår portfölj är organiserad i fyra linjer: RoomAlyzer Air (klimasensorer som CO2, Full+, Humidity, Mini+, Mini+ PIR, Outdoor och Temperature), RoomAlyzer Space (Desk, Motion, Open/Close och Touch), RoomAlyzer Water (Water detector och Water rope) och Miscellaneous (Cloud connector, Range Extender och Bracket). Ladda ner produktblad från sensorssektionen." },
-      { q: "Behöver sensorerna kalibreras?", a: "CO₂-sensorer kalibrerar sig mot utomhusnivåer; fuktsensorer driver cirka 1 % RH per år; temperatursensorer är stabila under livslängden. Vi rekommenderar fabriksomkalibrering vart femte år för bevarandekritiska utrullningar." },
+      { q: "Behöver sensorerna kalibreras?", a: "CO₂-sensorer kalibrerar sig mot utomhusnivåer; fuktsensorer driver cirka 1 % RF per år; temperatursensorer är stabila under livslängden. Vi rekommenderar fabriksomkalibrering vart femte år för bevarandekritiska utrullningar." },
       { q: "Vad är typisk batteritid?", a: "Tre till sju år beroende på sensortyp, rapporteringsintervall och omgivningstemperatur. Plattformen visar batterimätare per sensor och förutsäger bytesdatum." },
       { q: "Var kan sensorerna placeras?", a: "Överallt med NB-IoT-täckning. Inomhus 1,1–1,7 m över golv, bort från direkt solljus, uttag och fönster. Placeringsguiden täcker varje rumstyp." },
       { q: "Är sensorerna CE-märkta?", a: "Ja. Alla våra sensorer är CE-märkta och följer Radio Equipment Directive (RED), Low Voltage Directive (LVD) och EMC Directive." },

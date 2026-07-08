@@ -313,6 +313,8 @@ export function getGlossary(lang: Lang = defaultLang): GlossaryEntry[] {
     if (!o) return entry;
     return {
       ...entry,
+      term: o.term ?? entry.term,
+      aka: o.aka ?? entry.aka,
       short: o.short ?? entry.short,
       detail: o.detail ?? entry.detail,
     };
