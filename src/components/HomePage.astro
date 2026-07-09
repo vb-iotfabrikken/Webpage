@@ -11,6 +11,7 @@ import SensorFinderSection from "./SensorFinderSection.astro";
 import { type Lang, defaultLang, langPath } from "../data/lang";
 import { getHome } from "../data/i18n/home";
 import { heroBackdropImage } from "../data/heroImages";
+import { softwareApplicationSchema } from "../lib/seo/schema";
 
 interface Props {
   lang?: Lang;
@@ -29,7 +30,7 @@ const stats = [
 ];
 ---
 
-<Layout title={t.meta.title} description={t.meta.description}>
+<Layout title={t.meta.title} description={t.meta.description} jsonLd={softwareApplicationSchema()}>
   <link
     slot="head"
     rel="preload"

@@ -5,6 +5,10 @@ import path from 'node:path';
 
 const SITE_URL = 'https://iot-fabrikken.com';
 
+// Stamped into every sitemap entry as <lastmod>. The whole site is statically
+// rebuilt on deploy, so build time is the honest modification date.
+const BUILD_TIMESTAMP = new Date().toISOString();
+
 import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
@@ -98,7 +102,7 @@ function redirectStubHtml(/** @type {string} */ target) {
     <meta charset="utf-8" />
     <title>Redirecting…</title>
     <meta http-equiv="refresh" content="0;url=${target}" />
-    <link rel="canonical" href="${target}" />
+    <link rel="canonical" href="${SITE_URL}${target}" />
     <meta name="robots" content="noindex,follow" />
   </head>
   <body>
@@ -203,9 +207,40 @@ function localizeFixedPages() {
             }
             return whole;
           });
-          if (rewritten > 0) {
-            await writeFile(sitemapFile, cleaned);
-            logger.info(`Localized URLs: rewrote ${rewritten} sitemap URL(s) to localized paths.`);
+
+          // Mirror the HTML <head>: every <url> that carries locale alternates
+          // also gets an x-default alternate pointing at the English URL.
+          // @astrojs/sitemap only emits the configured locale codes, so the
+          // x-default entry is injected here after localization. When the
+          // alternate group has no English member (dynamic localized slugs
+          // group without their English equivalent), the English URL is
+          // derived from the route registry instead.
+          let injected = 0;
+          const withDefaults = cleaned.replace(/<url>.*?<\/url>/gs, (block) => {
+            if (block.includes('hreflang="x-default"')) return block;
+            if (!block.includes('<xhtml:link')) return block;
+            let enHref = block.match(
+              /<xhtml:link\b(?=[^>]*hreflang="en")[^>]*\bhref="([^"]*)"[^>]*\/?>/,
+            )?.[1];
+            if (!enHref) {
+              const loc = block.match(/<loc>(.*?)<\/loc>/)?.[1];
+              const match = loc ? new URL(loc).pathname.match(/^\/(en|da|de|sv)(\/.*)?$/) : null;
+              if (!match) return block;
+              const lang = /** @type {import('./src/data/lang').Lang} */ (match[1]);
+              const rest = (match[2] ?? '/').replace(/^\/+/, '').replace(/\/+$/, '');
+              enHref = `${SITE_URL}${routePath(canonicalizePath(rest, lang), 'en')}`;
+            }
+            injected += 1;
+            return block.replace(
+              '</url>',
+              `<xhtml:link rel="alternate" hreflang="x-default" href="${enHref}"/></url>`,
+            );
+          });
+          if (rewritten > 0 || injected > 0) {
+            await writeFile(sitemapFile, withDefaults);
+            logger.info(
+              `Localized URLs: rewrote ${rewritten} sitemap URL(s) and injected ${injected} x-default alternate(s).`,
+            );
           }
         } catch {
           // No sitemap emitted — nothing to do.
@@ -265,27 +300,25 @@ function pruneAnalyticsWavePages() {
 // Soft-launch gate: after the build completes, delete every page that is not
 // on the live allowlist (src/data/launch.ts) so only the approved pages ship
 // to Railway. Hidden routes still build (keeping fallbacks/links resolvable at
-// dev time) but are pruned from the static output here.
+// dev time) but are pruned from the static output here. Independently of the
+// gate, the sitemap is always reconciled against emitted noindex pages so it
+// never advertises a non-indexable URL (even in local/full builds).
 function pruneHiddenPages() {
   return {
     name: 'prune-hidden-pages',
     hooks: {
       'astro:build:done': async (/** @type {{ dir: URL, logger: { info: (msg: string) => void } }} */ { dir, logger }) => {
-        if (!LAUNCH_LIVE_ONLY) {
-          logger.info('Soft-launch gate disabled (LAUNCH_LIVE_ONLY = false) — shipping all pages.');
-          return;
-        }
-
         const outDir = fileURLToPath(dir);
         let removed = 0;
-        // Canonical URLs of pages that survive pruning but carry a `noindex`
-        // robots tag (untranslated locales + thin "content on the way"
-        // placeholders). These must be dropped from the sitemap so it never
-        // advertises a non-indexable URL.
+        // Canonical URLs of pages that carry a `noindex` robots tag
+        // (untranslated locales + thin "content on the way" placeholders).
+        // These must be dropped from the sitemap so it never advertises a
+        // non-indexable URL.
         const noindexLocs = new Set();
 
         // Walk the emitted HTML (including redirect stubs, which are not in the
-        // build-done `pages` list) and delete anything not on the allowlist.
+        // build-done `pages` list); delete anything not on the allowlist when
+        // the gate is on, and collect noindex URLs either way.
         async function walk(/** @type {string} */ currentDir) {
           for (const entry of await readdir(currentDir, { withFileTypes: true })) {
             const full = path.join(currentDir, entry.name);
@@ -295,7 +328,7 @@ function pruneHiddenPages() {
             }
             if (!entry.name.endsWith('.html')) continue;
             const rel = path.relative(outDir, full).split(path.sep).join('/');
-            if (isHiddenPath(`/${rel}`)) {
+            if (LAUNCH_LIVE_ONLY && isHiddenPath(`/${rel}`)) {
               await rm(full, { force: true });
               removed += 1;
               continue;
@@ -309,8 +342,12 @@ function pruneHiddenPages() {
         }
 
         await walk(outDir);
-        await removeEmptyDirs(outDir);
-        logger.info(`Soft-launch gate: pruned ${removed} hidden page(s) from the build output.`);
+        if (LAUNCH_LIVE_ONLY) {
+          await removeEmptyDirs(outDir);
+          logger.info(`Soft-launch gate: pruned ${removed} hidden page(s) from the build output.`);
+        } else {
+          logger.info('Soft-launch gate disabled (LAUNCH_LIVE_ONLY = false) — shipping all pages.');
+        }
 
         // Reconcile the sitemap: @astrojs/sitemap runs before this hook, so its
         // file already exists. Strip any <url> whose <loc> is noindex.
@@ -404,6 +441,10 @@ export default defineConfig({
         if (excludedSegments.some((seg) => pathname.includes(seg))) return false;
         if (!isPageIndexed(pathname, getLangFromPath(pathname))) return false;
         return isLivePath(pathname);
+      },
+      serialize: (item) => {
+        item.lastmod = BUILD_TIMESTAMP;
+        return item;
       },
     }),
     localizeFixedPages(),

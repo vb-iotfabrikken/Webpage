@@ -1,0 +1,118 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+import { locales, langPath, type Lang } from "../data/lang";
+
+// Single static 404.html served by Caddy's handle_errors for every unknown
+// URL (all locales). Each locale block is pre-rendered with its localized
+// links; a small inline script shows the block matching the /da/, /de/ or
+// /sv/ prefix of the requested URL (English is the default).
+
+const copy: Record<Lang, { title: string; lead: string; home: string; links: Array<{ label: string; path: string }> }> = {
+  en: {
+    title: "Page not found",
+    lead: "The page you are looking for does not exist or has moved.",
+    home: "Go to homepage",
+    links: [
+      { label: "Modules", path: "modules" },
+      { label: "Sensors", path: "sensors" },
+      { label: "Case studies", path: "case-studies" },
+      { label: "About", path: "about" },
+      { label: "Contact", path: "contact" },
+    ],
+  },
+  da: {
+    title: "Siden blev ikke fundet",
+    lead: "Siden, du leder efter, findes ikke eller er flyttet.",
+    home: "Gå til forsiden",
+    links: [
+      { label: "Moduler", path: "modules" },
+      { label: "Sensorer", path: "sensors" },
+      { label: "Cases", path: "case-studies" },
+      { label: "Om os", path: "about" },
+      { label: "Kontakt", path: "contact" },
+    ],
+  },
+  de: {
+    title: "Seite nicht gefunden",
+    lead: "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+    home: "Zur Startseite",
+    links: [
+      { label: "Module", path: "modules" },
+      { label: "Sensoren", path: "sensors" },
+      { label: "Referenzen", path: "case-studies" },
+      { label: "Über uns", path: "about" },
+      { label: "Kontakt", path: "contact" },
+    ],
+  },
+  sv: {
+    title: "Sidan hittades inte",
+    lead: "Sidan du letar efter finns inte eller har flyttats.",
+    home: "Till startsidan",
+    links: [
+      { label: "Moduler", path: "modules" },
+      { label: "Sensorer", path: "sensors" },
+      { label: "Projekt", path: "case-studies" },
+      { label: "Om oss", path: "about" },
+      { label: "Kontakt", path: "contact" },
+    ],
+  },
+};
+
+const blocks = locales.map((l) => ({
+  lang: l.code,
+  ...copy[l.code],
+  homeHref: langPath("", l.code),
+  links: copy[l.code].links.map((link) => ({
+    label: link.label,
+    href: langPath(link.path, l.code),
+  })),
+}));
+---
+
+<Layout
+  title="Page not found — IoT Fabrikken"
+  description="The page you are looking for does not exist or has moved."
+  noindex
+  suppressHreflang
+  canonicalPath="/404/"
+>
+  <section class="flex flex-1 items-center justify-center px-6 py-24">
+    <div class="mx-auto w-full max-w-2xl text-center">
+      {blocks.map((block) => (
+        <div data-nf-lang={block.lang} hidden={block.lang !== "en"}>
+          <p class="text-7xl font-bold tracking-tight text-stone-200 sm:text-8xl" aria-hidden="true">
+            404
+          </p>
+          <h1 class="mt-4 text-3xl font-bold tracking-tight text-navy-500 sm:text-4xl">
+            {block.title}
+          </h1>
+          <p class="mt-4 text-lg text-stone-600">{block.lead}</p>
+          <div class="mt-8">
+            <Button href={block.homeHref} variant="primary" size="lg">{block.home}</Button>
+          </div>
+          <nav class="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+            {block.links.map((link) => (
+              <a
+                href={link.href}
+                class="font-medium text-navy-500 underline-offset-4 hover:text-coral-500 hover:underline"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var match = window.location.pathname.match(/^\/(da|de|sv)(\/|$)/);
+      if (!match) return;
+      document.querySelectorAll("[data-nf-lang]").forEach(function (el) {
+        el.hidden = el.getAttribute("data-nf-lang") !== match[1];
+      });
+    })();
+  </script>
+</Layout>

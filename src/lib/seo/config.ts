@@ -59,6 +59,13 @@ export function organizationSchema() {
     vatID: VAT_ID,
     email: CONTACT.email,
     telephone: CONTACT.phone,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: CONTACT.email,
+      telephone: CONTACT.phone,
+      availableLanguage: ["en", "da", "de", "sv"],
+    },
     address: {
       "@type": "PostalAddress",
       streetAddress: POSTAL_ADDRESS.street,

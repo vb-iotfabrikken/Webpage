@@ -91,6 +91,25 @@ export function productSchema(input: ProductSchemaInput) {
   };
 }
 
+/**
+ * SoftwareApplication schema for the RoomAlyzer platform. Emitted on the
+ * locale homepages (the dedicated platform page is not live yet).
+ */
+export function softwareApplicationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": `${SITE_URL}/#roomalyzer`,
+    name: "RoomAlyzer",
+    description:
+      "SaaS platform for wireless IoT sensor networks: indoor climate analysis, preservation, space and meeting-room occupancy analytics, and water-leak detection with real-time dashboards, alarms and open integrations (MQTT, REST, Azure IoT Hub, Power BI).",
+    url: `${SITE_URL}/`,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    publisher: ORG_REF,
+  };
+}
+
 export interface FaqItem {
   q: string;
   a: string;

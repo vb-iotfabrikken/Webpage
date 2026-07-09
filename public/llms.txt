@@ -1,15 +1,26 @@
 # IoT Fabrikken
 
-> IoT Fabrikken builds wireless IoT sensor networks for indoor climate,
-> preservation, space management and water-leak detection. The RoomAlyzer
-> platform delivers real-time data, dashboards, alarms and open integrations
-> (MQTT, REST, Azure IoT Hub, OS2iot, Dalux, Pronestor, Power BI, BMS/CTS).
+> IoT Fabrikken builds wireless IoT sensor networks for indoor climate
+> analysis, preservation, space optimisation (meeting-room and desk occupancy
+> analytics) and water-leak detection. The RoomAlyzer platform delivers
+> real-time data, dashboards, alarms and open integrations (MQTT, REST,
+> Azure IoT Hub, OS2iot, Dalux, Pronestor, Power BI, BMS/CTS).
 > We serve schools, offices, hospitals, museums, churches, archives,
 > municipalities, hotels, retail, warehouses and elderly care across Europe.
 
+Key facts:
+
+- Company: IoT Fabrikken (Denmark). Platform: RoomAlyzer.
+- Sensor catalogue in four lines: RoomAlyzer Air (CO2, Full+, Humidity, Mini+,
+  Mini+ PIR, Outdoor, Temperature), RoomAlyzer Space (Desk, Motion, Open/Close,
+  Touch), RoomAlyzer Water (Water detector, Water rope) and Miscellaneous
+  (Cloud connector, Range Extender and Bracket).
+- Site languages: English (/en/), Danish (/da/), German (/de/), Swedish (/sv/).
+  English is the canonical source; the root URL redirects to /da/.
+
 This file lists only pages that are currently published. Other sections
 (platform, pricing, ROI, library, integrations) are not live yet and are
-intentionally omitted.
+intentionally omitted. English links first; key Danish pages at the end.
 
 ## Modules
 
@@ -25,7 +36,7 @@ intentionally omitted.
 ## Sensors
 
 - [Sensors overview](https://iot-fabrikken.com/en/sensors/)
-- [Compare sensors](https://iot-fabrikken.com/en/sensors/compare/)
+- [Compare sensors](https://iot-fabrikken.com/en/compare/)
 - [Product sheets (PDF)](https://iot-fabrikken.com/en/sensors/product-sheets/)
 - [CO₂](https://iot-fabrikken.com/en/sensors/co2/)
 - [Full+](https://iot-fabrikken.com/en/sensors/full-plus/)
@@ -67,3 +78,20 @@ intentionally omitted.
 
 - [Privacy](https://iot-fabrikken.com/en/legal/privacy/)
 - [Impressum](https://iot-fabrikken.com/en/legal/impressum/)
+
+## Key pages in Danish
+
+- [Forside (homepage)](https://iot-fabrikken.com/da/)
+- [Moduler (modules overview)](https://iot-fabrikken.com/da/moduler/)
+- [Indeklima (indoor climate)](https://iot-fabrikken.com/da/moduler/indeklima/)
+- [Space management](https://iot-fabrikken.com/da/moduler/space-management/)
+- [Bevaring (preservation)](https://iot-fabrikken.com/da/moduler/bevaring/)
+- [Water detection](https://iot-fabrikken.com/da/moduler/water-detection/)
+- [Sensorer (sensors overview)](https://iot-fabrikken.com/da/sensorer/)
+- [Sammenlign sensorer (compare)](https://iot-fabrikken.com/da/sammenlign/)
+- [Produktark (product sheets)](https://iot-fabrikken.com/da/sensorer/produktark/)
+- [Cases (case studies)](https://iot-fabrikken.com/da/case-studies/)
+- [Om os (about)](https://iot-fabrikken.com/da/om-os/)
+- [Kontakt (contact)](https://iot-fabrikken.com/da/kontakt/)
+- [Få et tilbud (get an offer)](https://iot-fabrikken.com/da/faa-et-tilbud/)
+- [Privatlivspolitik (privacy)](https://iot-fabrikken.com/da/juridisk/privatlivspolitik/)
