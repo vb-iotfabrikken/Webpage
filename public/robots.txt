@@ -1,17 +1,70 @@
+# Utility and internal routes are disallowed for every crawler. Named AI /
+# LLM crawler groups are listed explicitly to welcome them; each named group
+# repeats the disallows because a matching named group replaces the * group.
+
 User-agent: *
 Allow: /
+Disallow: /*/thank-you
+Disallow: /*/thanks
+Disallow: /*/draft
+Disallow: /*/preview
+Disallow: /*/internal/
 
 # AI / LLM crawler guidance.
 User-agent: GPTBot
 Allow: /
+Disallow: /*/thank-you
+Disallow: /*/thanks
+Disallow: /*/draft
+Disallow: /*/preview
+Disallow: /*/internal/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /*/thank-you
+Disallow: /*/thanks
+Disallow: /*/draft
+Disallow: /*/preview
+Disallow: /*/internal/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /*/thank-you
+Disallow: /*/thanks
+Disallow: /*/draft
+Disallow: /*/preview
+Disallow: /*/internal/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /*/thank-you
+Disallow: /*/thanks
+Disallow: /*/draft
+Disallow: /*/preview
+Disallow: /*/internal/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /*/thank-you
+Disallow: /*/thanks
+Disallow: /*/draft
+Disallow: /*/preview
+Disallow: /*/internal/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /*/thank-you
+Disallow: /*/thanks
+Disallow: /*/draft
+Disallow: /*/preview
+Disallow: /*/internal/
+
+User-agent: CCBot
+Allow: /
+Disallow: /*/thank-you
+Disallow: /*/thanks
+Disallow: /*/draft
+Disallow: /*/preview
+Disallow: /*/internal/
 
 Sitemap: https://iot-fabrikken.com/sitemap-index.xml

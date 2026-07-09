@@ -3,6 +3,7 @@
 // config also emits a build-time redirect, but we ship the HTML fallback so
 // the site works on any host without native redirect support.
 const target = "/da/";
+const canonical = new URL(target, Astro.site ?? "https://iot-fabrikken.com").toString();
 ---
 
 <!doctype html>
@@ -11,7 +12,7 @@ const target = "/da/";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>IoT Fabrikken</title>
-    <link rel="canonical" href={target} />
+    <link rel="canonical" href={canonical} />
     <meta http-equiv="refresh" content={`0; url=${target}`} />
     <meta name="robots" content="noindex" />
   </head>
