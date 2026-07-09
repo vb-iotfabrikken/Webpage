@@ -132,7 +132,7 @@ export interface SensorStrings {
     allSensors: string;
     demoDisclaimer: string;
   };
-  index: { ctaTitle: string; ctaSubtitle: string };
+  index: { ctaTitle: string; ctaSubtitle: string; heroImageAlt: string };
   detail: {
     exampleUseCases: string;
     productViews: string;
@@ -411,6 +411,8 @@ const en: UiStrings = {
     index: {
       ctaTitle: "Want a guided walk-through?",
       ctaSubtitle: "Book a demo and we'll tailor it to your building.",
+      heroImageAlt:
+        "RoomAlyzer wireless sensors and cloud connector on a desk with a laptop showing the monitoring dashboard",
     },
     detail: {
       exampleUseCases: "Example use cases",
@@ -688,6 +690,8 @@ const da: UiStrings = {
     index: {
       ctaTitle: "Vil du have en guidet gennemgang?",
       ctaSubtitle: "Book en demo, så tilpasser vi den til jeres bygning.",
+      heroImageAlt:
+        "RoomAlyzer trådløse sensorer og cloud connector på et skrivebord med en bærbar, der viser overvågningsdashboardet",
     },
     detail: {
       exampleUseCases: "Eksempler på anvendelse",
@@ -965,6 +969,8 @@ const de: UiStrings = {
     index: {
       ctaTitle: "Möchten Sie einen kurzen Überblick bekommen?",
       ctaSubtitle: "Buchen Sie eine Demo, maßgeschneidert auf Ihr Gebäude.",
+      heroImageAlt:
+        "RoomAlyzer-Funksensoren und Cloud connector auf einem Schreibtisch mit einem Laptop, der das Monitoring-Dashboard zeigt",
     },
     detail: {
       exampleUseCases: "Beispielhafte Anwendungsfälle",
@@ -1242,6 +1248,8 @@ const sv: UiStrings = {
     index: {
       ctaTitle: "Vill du ha en guidad genomgång?",
       ctaSubtitle: "Boka en demo så skräddarsyr vi den efter din byggnad.",
+      heroImageAlt:
+        "RoomAlyzer trådlösa sensorer och cloud connector på ett skrivbord med en bärbar dator som visar övervakningsdashboarden",
     },
     detail: {
       exampleUseCases: "Exempel på användning",

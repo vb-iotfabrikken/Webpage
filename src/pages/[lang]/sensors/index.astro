@@ -11,6 +11,7 @@ import {
   SENSOR_CATEGORY_ORDER,
 } from "../../../data/sensorCategories";
 import { getUi } from "../../../data/i18n/ui";
+import { sensorsHubHeroImage } from "../../../data/sensorsHubImages";
 import { locales, langPath, type Lang } from "../../../data/lang";
 
 export function getStaticPaths() {
@@ -42,9 +43,18 @@ const filterGroups = byCategory.map((group) => ({
 <Layout
   title={`${sensorsHub.title.replace(/\.$/, "")} | IoT Fabrikken`}
   description={sensorsHub.lead}
+  ogImage={sensorsHubHeroImage.src}
+  ogImageAlt={t.index.heroImageAlt}
 >
-  <nav class="container-page pt-6" aria-label="Breadcrumb">
-    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
+  <Hero
+    title={sensorsHub.title}
+    titleAccent={sensorsHub.titleAccent}
+    lead={sensorsHub.lead}
+    align="left"
+    compactTop
+    splitVisual
+  >
+    <ol slot="breadcrumb" class="flex flex-wrap items-center gap-1.5 text-sm text-stone-300">
       <li class="flex items-center gap-1.5">
         <a href={langPath("/", lang)} class="hover:text-coral-500 transition-colors">{t.breadcrumb.home}</a>
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
@@ -53,17 +63,21 @@ const filterGroups = byCategory.map((group) => ({
       </li>
       <li><span class="text-navy-500">{t.breadcrumb.sensors}</span></li>
     </ol>
-  </nav>
 
-  <Hero
-    title={sensorsHub.title}
-    titleAccent={sensorsHub.titleAccent}
-    lead={sensorsHub.lead}
-    align="left"
-    compactTop
-  >
     <Button href={langPath("/contact/book-demo/", lang)} variant="primary" size="lg" slot="cta">{t.common.bookDemo}</Button>
     <Button href={langPath("/sensors/product-sheets/", lang)} variant="secondary" size="lg" slot="cta">{t.common.productSheets}</Button>
+
+    <div slot="visual" class="bg-white border border-stone-100 rounded-xl shadow-xl overflow-hidden">
+      <img
+        src={sensorsHubHeroImage.src}
+        alt={t.index.heroImageAlt}
+        width={sensorsHubHeroImage.width}
+        height={sensorsHubHeroImage.height}
+        class="block w-full h-auto scale-[1.12] origin-center"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
   </Hero>
 
   <section class="py-16 md:py-20">
