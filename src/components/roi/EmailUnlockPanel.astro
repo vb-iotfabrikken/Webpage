@@ -137,14 +137,9 @@ const privacyHref = langPath("legal/privacy", lang);
 </style>
 
 <style is:global>
-  [data-roi-email-panel].roi-email-inline {
-    margin-top: 0;
-  }
-
   [data-roi-email-panel].roi-email-paywall {
     position: relative;
     z-index: 2;
-    margin-top: -5.5rem;
     padding: 1rem 1.25rem;
     background: white;
     border: 1px solid var(--color-stone-100);
@@ -152,8 +147,12 @@ const privacyHref = langPath("legal/privacy", lang);
     box-shadow: 0 8px 24px rgb(15 23 42 / 0.08);
   }
 
+  [data-roi-right-stack].has-demo [data-roi-email-panel].roi-email-paywall {
+    margin-top: -5.5rem;
+  }
+
   @media (min-width: 768px) {
-    [data-roi-email-panel].roi-email-paywall {
+    [data-roi-right-stack].has-demo [data-roi-email-panel].roi-email-paywall {
       margin-top: -6.5rem;
     }
   }

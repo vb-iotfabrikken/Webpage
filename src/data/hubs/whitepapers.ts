@@ -1,6 +1,26 @@
 import type { Lang } from "../lang";
 import { articlesIndexPath, langPath } from "../lang";
 import type { Hub } from "./types";
+import type { WhitepaperLeaf } from "../whitepapers/types";
+import { whitepaperCatalog } from "../whitepapers/catalog";
+
+export type { WhitepaperLeaf } from "../whitepapers/types";
+export {
+  wave1Outlines,
+  getWhitepaperOutline,
+  whitepaperContentSources,
+  getWhitepaperContentSources,
+  getWhitepaperSourcesByChapter,
+  wave2Flagships,
+  getWave2Flagship,
+  getWave2FlagshipByModule,
+  whitepaperLocalizationPlans,
+  getWhitepaperLocalizationPlan,
+  getTranslationLocales,
+  whitepaperCatalog,
+  getWhitepaperCatalogEntry,
+  getWhitepapersByWave,
+} from "../whitepapers";
 
 export type WhitepaperResource = {
   href: string;
@@ -11,13 +31,52 @@ export type WhitepaperResource = {
   ctaLabel: string;
 };
 
+/** Localize CTA hrefs on hub leaves for a given locale. */
+function localizeWhitepaperLeaf(leaf: WhitepaperLeaf, lang: Lang): WhitepaperLeaf {
+  return {
+    ...leaf,
+    primaryCta: leaf.primaryCta
+      ? {
+          ...leaf.primaryCta,
+          href:
+            leaf.primaryCta.href === "/en/contact/book-demo/"
+              ? langPath("contact/book-demo", lang)
+              : leaf.primaryCta.href,
+        }
+      : undefined,
+    secondaryCta: leaf.secondaryCta
+      ? {
+          ...leaf.secondaryCta,
+          href:
+            leaf.secondaryCta.href === "/en/articles/"
+              ? articlesIndexPath(lang)
+              : leaf.secondaryCta.href,
+        }
+      : undefined,
+  };
+}
+
+/** Hub leaves for static paths and listing — wave 1 in preparation, wave 2 planned. */
+export function getWhitepaperLeaves(lang: Lang = "en"): WhitepaperLeaf[] {
+  return whitepaperCatalog.map((leaf) => localizeWhitepaperLeaf(leaf, lang));
+}
+
 export const whitepapersHub: Hub = {
   slug: "whitepapers",
   title: "White papers.",
   titleAccent: "Long-form guides for decision makers.",
   eyebrow: "White papers",
   lead: "We are preparing official white papers on the topics our customers ask about most. Until they are ready, explore our articles and customer cases, or book a briefing with our team.",
-  leaves: [],
+  leaves: whitepaperCatalog.map((leaf) => ({
+    slug: leaf.slug,
+    eyebrow: leaf.eyebrow,
+    title: leaf.title,
+    titleAccent: leaf.titleAccent,
+    lead: leaf.lead,
+    noindex: leaf.noindex,
+    primaryCta: leaf.primaryCta,
+    secondaryCta: leaf.secondaryCta,
+  })),
 };
 
 const whitepaperResourcesEn: WhitepaperResource[] = [

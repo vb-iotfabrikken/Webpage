@@ -1,31 +1,131 @@
 ---
 import PlaceholderPage from "../../../components/PlaceholderPage.astro";
+import { getWhitepaperCatalogEntry, getWhitepaperOutline, getWhitepaperContentSources } from "../../../data/hubs/whitepapers";
+import { astroLang, langPath, locales, localizeSegment } from "../../../data/lang";
 import { whitepapersHub } from "../../../data/site";
-import { locales, localizeSegment } from "../../../data/lang";
 
 export function getStaticPaths() {
   return locales.flatMap((l) =>
     whitepapersHub.leaves.map((leaf) => ({
       params: { lang: l.code, slug: localizeSegment(leaf.slug, l.code) },
-      props: { leaf },
+      props: { leafSlug: leaf.slug },
     })),
   );
 }
 
-const { leaf } = Astro.props;
+const { leafSlug } = Astro.props;
+const lang = astroLang(Astro);
+const entry = getWhitepaperCatalogEntry(leafSlug);
+const outline = getWhitepaperOutline(leafSlug);
+const sources = getWhitepaperContentSources(leafSlug);
+
+if (!entry) {
+  throw new Error(`Unknown white paper slug: ${leafSlug}`);
+}
+
+const statusLabel =
+  entry.status === "published"
+    ? "Available now"
+    : entry.status === "in_preparation"
+      ? "In preparation"
+      : "Planned";
+
+const articlesHref = langPath("articles", lang);
+const casesHref = langPath("case-studies", lang);
 ---
 
 <PlaceholderPage
-  title={`${leaf.title.replace(/\.$/, "")} | IoT Fabrikken`}
-  description={leaf.lead}
-  heroTitle={leaf.title}
-  heroTitleAccent={leaf.titleAccent}
-  heroLead={leaf.lead}
+  title={`${entry.title.replace(/\.$/, "")} | IoT Fabrikken`}
+  description={entry.lead}
+  heroTitle={entry.title}
+  heroTitleAccent={entry.titleAccent}
+  heroLead={entry.lead}
+  heroEyebrow={entry.eyebrow}
+  hideNotice={Boolean(outline)}
+  noticeTitle="PDF in production"
+  noticeSubtitle="We do not publish placeholder PDFs. This white paper is being authored with references, benchmarks and case numbers."
   breadcrumbs={[
-    { label: "Home", href: "/en/" },
-    { label: "White papers", href: "/en/whitepapers/" },
-    { label: leaf.title.replace(/\.$/, "") },
+    { label: "Home", href: langPath("", lang) },
+    { label: "White papers", href: langPath("whitepapers", lang) },
+    { label: entry.title.replace(/\.$/, "") },
   ]}
-  primaryCta={leaf.primaryCta}
-  secondaryCta={leaf.secondaryCta}
-/>
+  primaryCta={entry.primaryCta}
+  secondaryCta={entry.secondaryCta}
+  noindex={entry.noindex}
+>
+  {outline ? (
+    <>
+      <div class="reveal mb-10">
+        <p class="inline-block px-2.5 py-1 rounded-md bg-sky-50 text-xs font-semibold uppercase tracking-wider text-sky-700 border border-sky-100 mb-4">
+          {statusLabel}
+        </p>
+        {outline.subtitle && (
+          <p class="text-lg text-stone-900/70 leading-relaxed mb-4">{outline.subtitle}</p>
+        )}
+        <p class="text-base text-stone-900/80 leading-relaxed">
+          <span class="font-semibold text-navy-500">Core argument:</span> {outline.coreArgument}
+        </p>
+        {outline.audience.length > 0 && (
+          <p class="mt-4 text-sm text-stone-300">
+            <span class="font-medium text-stone-900/70">Audience:</span>{" "}
+            {outline.audience.join(" · ")}
+          </p>
+        )}
+      </div>
+
+      <div class="reveal space-y-8">
+        <h2 class="text-2xl font-bold text-navy-500 tracking-tight">Outline</h2>
+        {outline.sections.map((section) => (
+          <article class="border border-stone-100 rounded-xl p-5 md:p-6">
+            <div class="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+              <h3 class="text-lg font-semibold text-navy-500">{section.title}</h3>
+              {section.pages && (
+                <span class="text-xs font-medium text-stone-300 uppercase tracking-wider">
+                  ~{section.pages} {section.pages === 1 ? "page" : "pages"}
+                </span>
+              )}
+            </div>
+            <ul class="space-y-2 text-sm text-stone-900/70 leading-relaxed list-disc pl-5">
+              {section.points.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+
+      {outline.standards && outline.standards.length > 0 && (
+        <div class="reveal mt-10">
+          <h2 class="text-lg font-semibold text-navy-500 mb-3">Standards referenced</h2>
+          <p class="text-sm text-stone-900/70">{outline.standards.join(", ")}</p>
+        </div>
+      )}
+
+      {sources.length > 0 && (
+        <div class="reveal mt-10">
+          <h2 class="text-lg font-semibold text-navy-500 mb-3">Content sources</h2>
+          <ul class="space-y-2 text-sm text-stone-900/70">
+            {sources.map((source) => (
+              <li>
+                <span class="font-medium text-navy-500">{source.chapterTitle}</span>
+                {" — "}
+                {source.articleSlug && `Article: ${source.articleSlug}`}
+                {source.caseStudySlug && `Case: ${source.caseStudySlug}`}
+                {source.roiReference && `ROI: ${source.roiReference}`}
+                {source.externalUrl && "External press"}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </>
+  ) : (
+    <p class="reveal text-stone-900/70 leading-relaxed">
+      Detailed outline coming soon. Browse{" "}
+      <a href={articlesHref} class="text-sky-600 hover:text-coral-500 transition-colors">articles</a>
+      {" "}or{" "}
+      <a href={casesHref} class="text-sky-600 hover:text-coral-500 transition-colors">customer cases</a>
+      {" "}for related content in the meantime.
+    </p>
+  )}
+</PlaceholderPage>

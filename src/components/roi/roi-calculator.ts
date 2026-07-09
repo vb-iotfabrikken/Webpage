@@ -160,9 +160,10 @@ function initCalculator(root: HTMLElement) {
     "[data-roi-desk-heatmap-wrap]",
   );
   const demoWrap = root.querySelector<HTMLElement>("[data-roi-demo-wrap]");
+  const rightStack = root.querySelector<HTMLElement>("[data-roi-right-stack]");
   const emailPanel = root.querySelector<HTMLElement>("[data-roi-email-panel]");
-  const emailSlotDesk = root.querySelector<HTMLElement>("[data-roi-email-slot-desk]");
-  const emailSlotRight = root.querySelector<HTMLElement>("[data-roi-email-slot-right]");
+  const emailWrap = root.querySelector<HTMLElement>("[data-roi-email-wrap]");
+  const salesCta = root.querySelector<HTMLElement>("[data-roi-sales-cta]");
 
   const employeesInput = root.querySelector<HTMLInputElement>("[data-roi-employees]");
   const employeeCostInput = root.querySelector<HTMLInputElement>(
@@ -357,6 +358,7 @@ function initCalculator(root: HTMLElement) {
     emailGate?.classList.add("hidden");
     emailSuccess?.classList.remove("hidden");
     syncReportCache();
+    syncCompletionGating();
     renderDemoPanel();
   }
 
@@ -533,15 +535,27 @@ function initCalculator(root: HTMLElement) {
     zone.classList.toggle("is-locked", !leadUnlocked);
   }
 
-  function syncEmailPanelPlacement() {
-    if (!emailPanel || !emailSlotDesk || !emailSlotRight) return;
-    const onLeft = activeTab === "desk" && deskGoals.size === 0;
-    const target = onLeft ? emailSlotDesk : emailSlotRight;
-    if (emailPanel.parentElement !== target) {
-      target.appendChild(emailPanel);
+  function isCalculatorComplete(): boolean {
+    if (activeTab === "desk") {
+      if (deskGoals.size === 0) return false;
+      if (deskGoals.has("cut")) {
+        const cost = Number(deskCostInput?.value);
+        if (!Number.isFinite(cost) || cost <= 0) return false;
+      }
+      return true;
     }
-    emailPanel.classList.toggle("roi-email-inline", onLeft);
-    emailPanel.classList.toggle("roi-email-paywall", !onLeft);
+    return true;
+  }
+
+  function syncCompletionGating() {
+    const complete = isCalculatorComplete();
+    if (emailWrap) {
+      emailWrap.classList.toggle("hidden", !complete && !leadUnlocked);
+    }
+    salesCta?.classList.toggle("hidden", !complete);
+    if (emailPanel) {
+      emailPanel.classList.add("roi-email-paywall");
+    }
   }
 
   function syncDeskBlocks() {
@@ -558,9 +572,11 @@ function initCalculator(root: HTMLElement) {
     const hasGoals = deskGoals.size > 0;
     const onDesk = activeTab === "desk";
     if (onDesk) syncDeskBlocks();
+    const demoVisible = !(onDesk && !hasGoals);
     deskHeatmapWrap?.classList.toggle("hidden", !onDesk || !hasGoals);
-    demoWrap?.classList.toggle("hidden", onDesk && !hasGoals);
-    syncEmailPanelPlacement();
+    demoWrap?.classList.toggle("hidden", !demoVisible);
+    rightStack?.classList.toggle("has-demo", demoVisible);
+    syncCompletionGating();
     syncPaywallState();
   }
 
@@ -711,6 +727,7 @@ function initCalculator(root: HTMLElement) {
     renderDesk();
     renderEnergy();
     renderDemoPanel();
+    syncCompletionGating();
     if (leadUnlocked && breakdownVisible) {
       syncReportCache();
     }
@@ -1073,6 +1090,7 @@ function initCalculator(root: HTMLElement) {
     () => {
       leadUnlocked = false;
       showGate(true);
+      syncCompletionGating();
       renderDemoPanel();
       root.scrollIntoView({ behavior: "smooth", block: "start" });
     },
@@ -1108,9 +1126,6 @@ function initCalculator(root: HTMLElement) {
   breakdownVisible = false;
   prefillLeadFromStorage();
   showGate();
-  if (emailPanel && emailSlotDesk) {
-    emailSlotDesk.appendChild(emailPanel);
-  }
   syncLayout();
   setFacility("office");
   requestAnimationFrame(() => syncAttendanceMarks());

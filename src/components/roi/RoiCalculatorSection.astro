@@ -120,10 +120,15 @@ const indoorClimateHref = langPath("modules/indoor-climate", lang);
           <div data-roi-demo-wrap class="hidden">
             <RoiDemoPanel />
           </div>
-          <div data-roi-email-slot-right></div>
-          {showEmailGate && <EmailUnlockPanel />}
+          {showEmailGate && (
+            <div class="hidden" data-roi-email-wrap>
+              <div data-roi-email-slot-right>
+                <EmailUnlockPanel />
+              </div>
+            </div>
+          )}
           {salesCtaLabel && salesCtaHref && (
-            <div class="pt-2 border-t border-stone-100">
+            <div class="hidden pt-2 border-t border-stone-100" data-roi-sales-cta>
               <Button href={salesCtaHref} variant="secondary" size="sm" class="w-full sm:w-auto">
                 {salesCtaLabel}
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
