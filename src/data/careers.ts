@@ -10,6 +10,8 @@ import { defaultLang, type Lang } from "./lang";
 
 import { defaultContact, getLocaleContact, isLocaleContactEmail } from "./contact";
 
+import type { TeamDepartment } from "./team";
+
 
 
 /** @deprecated Use `getLocaleContact(lang)` for locale-aware contact details. */
@@ -75,6 +77,9 @@ export type JobOpening = {
   };
 
   externalApplyUrl?: string;
+
+  /** Team page section where the hiring placeholder card appears. */
+  department: TeamDepartment;
 
 };
 

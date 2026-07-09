@@ -4,6 +4,7 @@
  * `Portraits/` via `node scripts/build-team-portraits.mjs`.
  */
 
+import { openPositions } from "./careers";
 import { defaultLang, langPath, type Lang } from "./lang";
 
 /** Full team photo shown at the top of `/en/about/team/`. */
@@ -11,6 +12,14 @@ export const teamGroupPhoto = {
   src: "/team/team-group.webp",
   alt: "The IoT Fabrikken team",
 };
+
+export type TeamDepartment =
+  | "leadership"
+  | "engineering"
+  | "customer-success"
+  | "sales"
+  | "operations"
+  | "communications";
 
 export type TeamMember = {
   name: string;
@@ -21,13 +30,7 @@ export type TeamMember = {
   /** Hiring placeholder card — links to `href` instead of showing contact details. */
   placeholder?: boolean;
   href?: string;
-  department:
-    | "leadership"
-    | "engineering"
-    | "customer-success"
-    | "sales"
-    | "operations"
-    | "communications";
+  department: TeamDepartment;
 };
 
 export const team: TeamMember[] = [
@@ -72,13 +75,6 @@ export const team: TeamMember[] = [
     department: "sales",
   },
   {
-    name: "This could be you",
-    role: "Join our sales team",
-    placeholder: true,
-    href: "/en/about/careers/",
-    department: "sales",
-  },
-  {
     name: "Lars Wichmann",
     role: "Software developer",
     photo: "/team/lars-wichmann.webp",
@@ -118,10 +114,7 @@ export const team: TeamMember[] = [
   },
 ];
 
-export const departments: Record<
-  TeamMember["department"],
-  { label: string; blurb: string }
-> = {
+export const departments: Record<TeamDepartment, { label: string; blurb: string }> = {
   leadership: {
     label: "Leadership",
     blurb: "Direction, partnerships and the long-term vision behind IoT Fabrikken.",
@@ -150,9 +143,7 @@ export const departments: Record<
 
 type DeptMeta = { label: string; blurb: string };
 
-const departmentsI18n: Partial<
-  Record<Lang, Record<TeamMember["department"], DeptMeta>>
-> = {
+const departmentsI18n: Partial<Record<Lang, Record<TeamDepartment, DeptMeta>>> = {
   da: {
     leadership: { label: "Ledelse", blurb: "Retning, partnerskaber og den langsigtede vision bag IoT Fabrikken." },
     engineering: { label: "Udvikling", blurb: "Dem, der bygger og vedligeholder platformen, integrationerne og produktoplevelsen." },
@@ -179,6 +170,16 @@ const departmentsI18n: Partial<
   },
 };
 
+/** English role line on hiring placeholder cards, keyed by team section. */
+const hiringPlaceholderRoles: Record<TeamDepartment, string> = {
+  leadership: "Join our leadership team",
+  engineering: "Join our engineering team",
+  "customer-success": "Join our customer success team",
+  sales: "Join our sales team",
+  operations: "Join our operations team",
+  communications: "Join our communications team",
+};
+
 /** English role string → per-locale translation. */
 const roleI18n: Record<Lang, Record<string, string>> = {
   en: {},
@@ -190,7 +191,12 @@ const roleI18n: Record<Lang, Record<string, string>> = {
     "Office coordinator": "Kontorkoordinator",
     Communications: "Kommunikation",
     "Marketing coordinator": "Marketingkoordinator",
+    "Join our leadership team": "Bliv en del af vores ledelsesteam",
+    "Join our engineering team": "Bliv en del af vores udviklingsteam",
+    "Join our customer success team": "Bliv en del af vores customer success-team",
     "Join our sales team": "Bliv en del af vores salgsteam",
+    "Join our operations team": "Bliv en del af vores driftsteam",
+    "Join our communications team": "Bliv en del af vores kommunikationsteam",
   },
   de: {
     "Head of sales, East": "Vertriebsleiter, Ost",
@@ -200,7 +206,12 @@ const roleI18n: Record<Lang, Record<string, string>> = {
     "Office coordinator": "Büromanagement",
     Communications: "Kommunikation",
     "Marketing coordinator": "Marketingkoordination",
+    "Join our leadership team": "Werden Sie Teil unseres Führungsteams",
+    "Join our engineering team": "Werden Sie Teil unseres Entwicklungsteams",
+    "Join our customer success team": "Werden Sie Teil unseres Customer-Success-Teams",
     "Join our sales team": "Werden Sie Teil unseres Vertriebsteams",
+    "Join our operations team": "Werden Sie Teil unseres Betriebsteams",
+    "Join our communications team": "Werden Sie Teil unseres Kommunikationsteams",
   },
   sv: {
     "Head of sales, East": "Försäljningschef, Öst",
@@ -210,7 +221,12 @@ const roleI18n: Record<Lang, Record<string, string>> = {
     "Office coordinator": "Kontorskoordinator",
     Communications: "Kommunikation",
     "Marketing coordinator": "Marknadskoordinator",
+    "Join our leadership team": "Bli en del av vårt ledningsteam",
+    "Join our engineering team": "Bli en del av vårt utvecklingsteam",
+    "Join our customer success team": "Bli en del av vårt customer success-team",
     "Join our sales team": "Bli en del av vårt säljteam",
+    "Join our operations team": "Bli en del av vårt driftteam",
+    "Join our communications team": "Bli en del av vårt kommunikationsteam",
   },
 };
 
@@ -220,24 +236,66 @@ const placeholderNameI18n: Partial<Record<Lang, string>> = {
   sv: "Här kan du stå",
 };
 
+const PLACEHOLDER_NAME = "This could be you";
+
+/** First open role per department — used for team-page hiring placeholder cards. */
+function openRolesByDepartment(): Map<TeamDepartment, string> {
+  const byDept = new Map<TeamDepartment, string>();
+  for (const job of openPositions) {
+    if (!byDept.has(job.department)) {
+      byDept.set(job.department, job.slug);
+    }
+  }
+  return byDept;
+}
+
+function localizeMember(member: TeamMember, lang: Lang): TeamMember {
+  const localized: TeamMember = { ...member };
+  if (lang !== defaultLang) {
+    localized.role = roleI18n[lang]?.[member.role] ?? member.role;
+    if (member.placeholder) {
+      localized.name = placeholderNameI18n[lang] ?? member.name;
+    }
+  }
+  if (member.href) {
+    localized.href = member.href.startsWith("/")
+      ? member.href
+      : langPath(member.href, lang);
+  }
+  return localized;
+}
+
+function buildHiringPlaceholder(
+  department: TeamDepartment,
+  jobSlug: string,
+  lang: Lang,
+): TeamMember {
+  const role = hiringPlaceholderRoles[department];
+  return localizeMember(
+    {
+      name: PLACEHOLDER_NAME,
+      role,
+      placeholder: true,
+      href: langPath(`about/careers/${jobSlug}`, lang),
+      department,
+    },
+    lang,
+  );
+}
+
 export function getDepartments(
   lang: Lang = defaultLang,
-): Record<TeamMember["department"], DeptMeta> {
+): Record<TeamDepartment, DeptMeta> {
   return departmentsI18n[lang] ?? departments;
 }
 
 export function getTeam(lang: Lang = defaultLang): TeamMember[] {
-  return team.map((m) => {
-    const localized: TeamMember = { ...m };
-    if (lang !== defaultLang) {
-      localized.role = roleI18n[lang]?.[m.role] ?? m.role;
-      if (m.placeholder) {
-        localized.name = placeholderNameI18n[lang] ?? m.name;
-      }
-    }
-    if (m.href) {
-      localized.href = langPath("about/careers", lang);
-    }
-    return localized;
-  });
+  const members = team.map((m) => localizeMember(m, lang));
+  const hiringByDept = openRolesByDepartment();
+
+  for (const [department, jobSlug] of hiringByDept) {
+    members.push(buildHiringPlaceholder(department, jobSlug, lang));
+  }
+
+  return members;
 }

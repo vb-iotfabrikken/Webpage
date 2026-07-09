@@ -211,6 +211,21 @@ in addition to the product-name rules above:
   appears in existing content, remove it. Do not add him back unless the
   user explicitly revokes this rule.
 
+## Careers ↔ team placeholders
+
+The team page **“This could be you”** hiring card is **derived from open roles** in
+[`src/data/careers.ts`](src/data/careers.ts) — do not add manual `placeholder: true`
+entries to the `team` array in [`src/data/team.ts`](src/data/team.ts).
+
+| Rule | Detail |
+|------|--------|
+| **Required field** | Every job in `openPositions` must include `department` (a `TeamDepartment` slug matching team sections). |
+| **Visibility** | A placeholder appears in that department’s section only while at least one job with that `department` is in `openPositions`. |
+| **Removal** | Deleting a job from `openPositions` removes its team-page placeholder (unless another open role shares the same department). |
+| **Link target** | Placeholder card links to the job detail page (`/{lang}/about/careers/{slug}/`). |
+| **Multiple roles, same department** | One card per department; links to the **first** matching job in `openPositions` array order. Avoid listing two roles in the same department unless intentional. |
+| **Ambiguous department** | If unclear which team section a new role belongs to, confirm before publishing. |
+
 ## RoomAlyzer product portfolio (official)
 
 The authoritative product list uses **four lines only**. Do not publish Series A/B/C,
